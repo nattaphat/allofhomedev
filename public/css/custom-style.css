@@ -1,0 +1,155 @@
+/*/////////////////////////////////////////////////////////////////////
+ // 
+ // Custom theme code styles
+ // Written by Themelize.me (http://themelize.me)
+ // 
+ // This is an empty starter template for overriding styles
+ // set by Bootstrap & the theme
+ // 
+ // ----------------------------------------------------
+ // 
+ // Remove unused code for better performances
+ // 
+ // ----------------------------------------------------
+ // 
+ // @see - Usefuls tools online for editing
+ // 1. http://charliepark.org/bootstrap_buttons/ - Button style generator
+ // 2. http://www.colorzilla.com/gradient-editor/ - CSS3 gradient maker
+ // 
+ // @note
+ // To ensure custom styles are picked up
+ // wrap definitions in body tag
+ // ie.
+ // body .navbar-inner {
+ //   background: #ff0000;
+ // }
+ // 
+ /////////////////////////////////////////////////////////////////////*/
+/*
+ * --------------------------------------------------
+ * 1. General Elements
+ *--------------------------------------------------
+ */
+#navigation {
+  /* 1. Navigation wrapper */
+}
+#highlighted {
+  /* 2. Highlighted (below header) wrapper */
+}
+#content {
+  /* 3. Content wrapper */
+}
+#content-below {
+  /* 4. Content Below wrapper */
+}
+#footer {
+  /* 5. Footer wrapper */
+}
+/*
+ * --------------------------------------------------
+ * 2. Colours
+ *-------------------------------------------------- 
+ */
+/*
+ * --------------------------------------------------
+ * 3. Responsiveness/media queries
+ *--------------------------------------------------
+ */
+/* Extra small devices (phones, less than 768px) */
+/* No media query since this is the default in Bootstrap */
+@media (min-width: 768px) {
+  /* Small devices (tablets, 768px and up) */
+}
+@media (min-width: 992px) {
+  /* Medium devices (desktops, 992px and up) */
+}
+@media (min-width: 1200px) {
+  /* Large devices (large desktops, 1200px and up) */
+}
+/*
+ * --------------------------------------------------
+ * 4. Misc
+ * Other stuff
+ *--------------------------------------------------
+ */
+
+
+/*
+  Add by Admin
+  License: GNU General Public License v2.0
+  License URI: license.txt
+*/
+
+@font-face {
+font-family: "Thai Sans Neue Fixed";
+  src: url("http://www.macstroke.com/wp-content/uploads/fonts/ThaiSansNeue-fixed-height/extralight.eot");
+}
+
+@font-face {
+font-family: "Thai Sans Neue Fixed";
+  src:  url("http://www.macstroke.com/wp-content/uploads/fonts/ThaiSansNeue-fixed-height/light.woff") format("woff"),
+    url("http://www.macstroke.com/wp-content/uploads/fonts/ThaiSansNeue-fixed-height/light.svg#ThaiSansNeue-Light") format("svg"),
+    url("http://www.macstroke.com/wp-content/uploads/fonts/ThaiSansNeue-fixed-height/light.ttf") format("truetype");
+}
+
+@font-face {
+font-family: "Roboto Light";
+  src:  url("http://www.macstroke.com/wp-content/uploads/fonts/Roboto/Light.eot");
+}
+
+@font-face {
+font-family: "Roboto Light";
+  src:  url("http://www.macstroke.com/wp-content/uploads/fonts/Roboto/Light.woff") format("woff"),
+    url("http://www.macstroke.com/wp-content/uploads/fonts/Roboto/Light.ttf") format("truetype");
+}
+
+@font-face {
+font-family: "Roboto Regular";
+  src: url("http://www.macstroke.com/wp-content/uploads/fonts/Roboto/Regular.eot");
+}
+
+@font-face {
+font-family: "Roboto Regular";
+  src:  url("http://www.macstroke.com/wp-content/uploads/fonts/Roboto/Regular.woff") format("woff"),
+    url("http://www.macstroke.com/wp-content/uploads/fonts/Roboto/Regular.ttf") format("truetype");
+}
+
+body,h1, h2, h3, h4, h5, h6, h7,
+html,a {
+  font-family: "Helvetica Neue", "Roboto Light", "Sukhumvit Set", "Thai Sans Neue Fixed" !important;
+}
+
+h1 {
+    font-size: 2em;
+    font-weight: 300;
+}
+
+h2 {
+    font-size: 1.84em;
+    font-weight: 300;
+}
+
+h3 {
+    font-size: 1.62em;
+    font-weight: 300;
+}
+
+h4 {
+    font-size: 1.4em;
+    font-weight: 300;
+}
+
+h5 {
+    font-size: 1.31em;
+}
+
+h6 {
+    font-size: 1.12em;
+}
+
+p {
+    margin: 1em 4px;
+}
+
+
+

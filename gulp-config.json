@@ -1,0 +1,47 @@
+{
+    "css" : {
+        "assets":["./public/js/lib/bootstrap/dist/css/bootstrap.min.css",
+                  "./public/js/lib/bootstrap/dist/css/bootstrap-theme.min.css",
+                  "./public/js/lib/bootstrap-switch/dist/css/bootstrap3/bootstrap-switch.min.css",
+                  "./public/js/lib/fontawesome/css/font-awesome.min.css",
+                  "./public/js/lib/bootstrap-datepicker/css/datepicker3.css",
+                  "./public/css/style.css"],
+        "build_dest":"./builds/css",
+        "final_dest":"./public/css",
+        "filename":"shared.css",
+        "min_filename":"shared.min.css"
+    },
+    "js" : {
+        "assets":["./public/js/lib/jquery/dist/jquery.min.js",
+                  "./public/js/lib/bootstrap/dist/js/bootstrap.min.js",
+                  "./public/js/lib/jpanelmenu/jquery.jpanelmenu.min.js",
+                  "./public/js/lib/jquery.slimscroll/jquery.slimscroll.min.js",
+                  "./public/js/lib/bootstrap-switch/dist/js/bootstrap-switch.min.js",
+                  "./public/js/lib/bootstrap-datepicker/js/bootstrap-datepicker.js",
+                  "./public/js/lib/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js",
+                  "./public/js/scripts.js",
+                  "./public/js/restfulizer.js"],
+        "build_dest":"./builds/js",
+        "final_dest":"./public/js",
+        "filename":"shared.js",
+        "min_filename":"shared.min.js"
+    },
+    "svg" : {
+        "assets":["./public/svg/*.svg"],
+        "dest":"./builds/svg"
+    },
+    "js_fitness" : {
+        "assets":["./public/js/lib/angular/angular.min.js",
+                  
+                  "./public/js/lib/angular-bootstrap/ui-bootstrap-tpls.min.js",
+                  "./public/js/lib/angular-ui/build/angular-ui.min.js",
+                  "./public/js/lib/textAngular/dist/textAngular-sanitize.min.js",
+                  "./public/js/lib/textAngular/dist/textAngular.min.js",
+                  "./public/js/lib/datatables/media/js/jquery.dataTables.js",
+                  "./public/js/lib/datatables-bootstrap3/BS3/assets/js/datatables.js"],
+        "build_dest":"./builds/js",
+        "final_dest":"./public/js",
+        "filename":"fitness.js",
+        "min_filename":"fitness.min.js"
+    }
+}
