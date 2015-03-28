@@ -82,36 +82,36 @@
 
 @font-face {
 font-family: "Thai Sans Neue Fixed";
-  src: url("http://www.macstroke.com/wp-content/uploads/fonts/ThaiSansNeue-fixed-height/extralight.eot");
+  src: url("../fonts/macstroke/ThaiSansNeue/extralight.eot");
 }
 
 @font-face {
 font-family: "Thai Sans Neue Fixed";
-  src:  url("http://www.macstroke.com/wp-content/uploads/fonts/ThaiSansNeue-fixed-height/light.woff") format("woff"),
-    url("http://www.macstroke.com/wp-content/uploads/fonts/ThaiSansNeue-fixed-height/light.svg#ThaiSansNeue-Light") format("svg"),
-    url("http://www.macstroke.com/wp-content/uploads/fonts/ThaiSansNeue-fixed-height/light.ttf") format("truetype");
+  src:  url("../fonts/macstroke/ThaiSansNeue/light.woff") format("woff"),
+    url("../fonts/macstroke/ThaiSansNeue/light.svg#ThaiSansNeue-Light") format("svg"),
+    url("../fonts/macstroke/ThaiSansNeue/light.ttf") format("truetype");
 }
+
+/*@font-face {
+font-family: "Roboto Light";
+  src:  url("../fonts/macstroke/Light.eot");
+}*/
 
 @font-face {
 font-family: "Roboto Light";
-  src:  url("http://www.macstroke.com/wp-content/uploads/fonts/Roboto/Light.eot");
-}
-
-@font-face {
-font-family: "Roboto Light";
-  src:  url("http://www.macstroke.com/wp-content/uploads/fonts/Roboto/Light.woff") format("woff"),
-    url("http://www.macstroke.com/wp-content/uploads/fonts/Roboto/Light.ttf") format("truetype");
+  src:  url("../fonts/macstroke/Light.woff") format("woff"),
+    url("../fonts/macstroke/Light.ttf") format("truetype");
 }
 
 @font-face {
 font-family: "Roboto Regular";
-  src: url("http://www.macstroke.com/wp-content/uploads/fonts/Roboto/Regular.eot");
+  src: url("../fonts/macstroke/Regular.eot");
 }
 
 @font-face {
 font-family: "Roboto Regular";
-  src:  url("http://www.macstroke.com/wp-content/uploads/fonts/Roboto/Regular.woff") format("woff"),
-    url("http://www.macstroke.com/wp-content/uploads/fonts/Roboto/Regular.ttf") format("truetype");
+  src:  url("../fonts/macstroke/Regular.woff") format("woff"),
+    url("../fonts/macstroke/Regular.ttf") format("truetype");
 }
 
 body,h1, h2, h3, h4, h5, h6, h7,

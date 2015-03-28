@@ -18,28 +18,28 @@
     <meta name="description" content="">
 
     <!-- Bootstrap CSS -->
-    <link href="{{ asset('js/lib/bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link type="text/css" href="{{ asset('js/lib/bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet">
     
     <!-- Font Awesome -->
-    <link href="{{ asset('js/lib/fontawesome/css/font-awesome.min.css') }}" rel="stylesheet">
+    <link type="text/css" href="{{ asset('js/lib/fontawesome/css/font-awesome.min.css') }}" rel="stylesheet">
     
     <!-- Bootstrap Social -->
-    <link href="{{ asset('js/lib/bootstrap-social/bootstrap-social.min.css') }}" rel="stylesheet">
+    <link type="text/css" type="text/css" href="{{ asset('js/lib/bootstrap-social/bootstrap-social.css') }}" rel="stylesheet">
     
     <!-- Plugins required on all pages NOTE: Additional non-required plugins are loaded ondemand as of AppStrap 2.5 -->
     <!-- Plugin: animate.css (animated effects) - http://daneden.github.io/animate.css/ -->
-    <link href="{{ asset('plugins/animate/animate.css') }}" rel="stylesheet">
+    <link type="text/css" href="{{ asset('plugins/animate/animate.css') }}" rel="stylesheet">
     <!-- @LINEBREAK -- <!-- Plugin: flag icons - http://lipis.github.io/flag-icon-css/ -->
-    <link href="{{ asset('plugins/flag-icon-css/css/flag-icon.min.css') }}" rel="stylesheet">
+    <link type="text/css" href="{{ asset('plugins/flag-icon-css/css/flag-icon.min.css') }}" rel="stylesheet">
     
     <!-- Theme style -->
-    <link href="{{ asset('css/theme-style.min.css') }}" rel="stylesheet">
+    <link type="text/css" href="{{ asset('css/theme-style.min.css') }}" rel="stylesheet">
     
     <!--Your custom colour override-->
-    <link href="#" id="colour-scheme" rel="stylesheet">
+    <link type="text/css" href="#" id="colour-scheme" rel="stylesheet">
     
     <!-- Your custom override -->
-    <link href="{{ asset('css/custom-style.css') }}" rel="stylesheet">
+    <link type="text/css" href="{{ asset('css/custom-style.css') }}" rel="stylesheet">
     
     <!-- HTML5 shiv & respond.js for IE6-8 support of HTML5 elements & media queries -->
     <!--[if lt IE 9]>
