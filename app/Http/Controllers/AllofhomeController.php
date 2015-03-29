@@ -4,259 +4,263 @@ use Config;
 
 class AllofhomeController extends Controller {
 
-	/*
-	|--------------------------------------------------------------------------
-	| Welcome Controller
-	|--------------------------------------------------------------------------
-	|
-	| This controller renders the "marketing page" for the application and
-	| is configured to only allow guests. Like most of the other sample
-	| controllers, you are free to modify or remove it as you desire.
-	|
-	*/
+    /*
+    |--------------------------------------------------------------------------
+    | Welcome Controller
+    |--------------------------------------------------------------------------
+    |
+    | This controller renders the "marketing page" for the application and
+    | is configured to only allow guests. Like most of the other sample
+    | controllers, you are free to modify or remove it as you desire.
+    |
+    */
 
-	public $fb;
-	/**
-	 * Create a new controller instance.
-	 *
-	 * @return void
-	 */
-	public function __construct()
-	{
-		$this->fb = \Socialize::with("facebook");
-		$this->middleware('guest');
-	}
+    public $fb;
 
-	/**
-	 * Show the application welcome screen to the user.
-	 *
-	 * @return Response
-	 */
-	public function index()
-	{	
-		// if (\Input::has('code'))
-	 //    {
-	 //        $user = $this->fb->user();
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->fb = \Socialize::with("facebook");
+        $this->middleware('guest');
+    }
 
-	 //        // var_dump($this->fb->user());
-	 //        print 'yes';exit;
-	 //    } 
-		// $user = \Socialize::with('facebook')->user();
-		// echo $this->fb->user()->getEmail();
-		// $user->getNickname();
-		// $user->getName();
-		// echo $user->getEmail();
-		// $user->getAvatar();
+    /**
+     * Show the application welcome screen to the user.
+     *
+     * @return Response
+     */
+    public function index()
+    {
+        // if (\Input::has('code'))
+        //    {
+        //        $user = $this->fb->user();
 
-		return view('web.index');
-	}
+        //        // var_dump($this->fb->user());
+        //        print 'yes';exit;
+        //    }
+        // $user = \Socialize::with('facebook')->user();
+        // echo $this->fb->user()->getEmail();
+        // $user->getNickname();
+        // $user->getName();
+        // echo $user->getEmail();
+        // $user->getAvatar();
 
-	public function login()
-	{
-		return view('web.login');
-	}
+        return view('web.index');
+    }
 
-	public function about()
-	{
-		return view('web.about');
-	}
+    public function login()
+    {
+        return view('web.login');
+    }
 
-	public function about_ex()
-	{
-		return view('web.aboutex');
-	}
+    public function about_ex()
+    {
+        return view('web.aboutex');
+    }
 
-	public function about_me()
-	{
-		return view('web.aboutme');
-	}
+    public function about()
+    {
+        return view('web.about');
+    }
 
-	public function teamlist()
-	{
-		return view('web.teamlist');
-	}
+    public function about_me()
+    {
+        return view('web.aboutme');
+    }
 
-	public function teamgrid()
-	{
-		return view('web.teamgrid');
-	}
+    public function teamlist()
+    {
+        return view('web.teamlist');
+    }
 
-	public function teammemb()
-	{
-		return view('web.teammemb');
-	}
+    public function teamgrid()
+    {
+        return view('web.teamgrid');
+    }
 
-	public function contact()
-	{
-		return view('web.contact');
-	}
-	
-	public function pricing()
-	{
-		return view('web.pricing');
-	}
+    public function teammemb()
+    {
+        return view('web.teammemb');
+    }
 
-	public function pricing_table()
-	{
-		return view('web.pricing_table');
-	}
+    public function contact()
+    {
+        return view('web.contact');
+    }
 
-	public function timeline()
-	{
-		return view('web.timeline');
-	}
+    public function pricing()
+    {
+        return view('web.pricing');
+    }
 
-	public function timelineleft()
-	{
-		return view('web.timeleft');
-	}
+    public function pricing_table()
+    {
+        return view('web.pricing_table');
+    }
 
-	public function timelineright()
-	{
-		return view('web.timeright');
-	}
+    /**
+     * @return \Illuminate\View\View
+     */
+    public function timeline()
+    {
+        return view('web.timeline');
+    }
 
-	public function timelinestacked()
-	{
-		return view('web.timelinestacked');
-	}
+    public function timelineleft()
+    {
+        return view('web.timeleft');
+    }
 
-	public function custumers()
-	{
-		return view('web.custumers');
-	}
+    public function timelineright()
+    {
+        return view('web.timeright');
+    }
 
-	public function features()
-	{
-		return view('web.features');
-	}
+    public function timelinestacked()
+    {
+        return view('web.timelinestacked');
+    }
 
-	public function signup()
-	{
-		$user = \Socialize::with('facebook')->user();
-		return view('web.signup');
-	}
+    public function custumers()
+    {
+        return view('web.custumers');
+    }
 
-	public function starter()
-	{
-		return view('web.starter');
-	}
+    public function features()
+    {
+        return view('web.features');
+    }
 
-	public function index_boxed()
-	{
-		return view('web.index_boxed');	
-	}
+    public function signup()
+    {
+        $user = \Socialize::with('facebook')->user();
 
-	public function blog()
-	{
-		if(\Auth::check())
-		{
-			echo "test";//return view('web.blog');
-		}
-		else 
-		{
-			return redirect('/login');
-		}
-	}
+        return view('web.signup');
+    }
 
-	public function blogleft()
-	{
-		return view('web.blogleft');	
-	}
+    public function starter()
+    {
+        return view('web.starter');
+    }
 
-	public function blogtimeline()
-	{
-		return view('web.blogtimeline');	
-	}
+    public function index_boxed()
+    {
+        return view('web.index_boxed');
+    }
 
-	public function bloggrid()
-	{
-		return view('web.blogtimeline');	
-	}
+    public function blog()
+    {
+        if (\Auth::check())
+        {
+            echo "test";//return view('web.blog');
+        } else
+        {
+            return redirect('/login');
+        }
+    }
 
-	public function blogpost()
-	{
-		return view('web.blogpost');	
-	}
+    public function blogleft()
+    {
+        return view('web.blogleft');
+    }
 
-	public function blogvdo()
-	{
-		return view('web.blogpostvdo');	
-	}
+    public function blogtimeline()
+    {
+        return view('web.blogtimeline');
+    }
 
-	public function blogpostslide()
-	{
-		return view('web.blogpostslide');	
-	}
+    public function bloggrid()
+    {
+        return view('web.blogtimeline');
+    }
 
-	public function blogpostaudio()
-	{
-		return view('web.blogpostaudio');	
-	}
+    public function blogpost()
+    {
+        return view('web.blogpost');
+    }
 
-	public function sliderdefault()
-	{
-		return view('web.slider_default');	
-	}
+    public function blogvdo()
+    {
+        return view('web.blogpostvdo');
+    }
 
-	public function sliderfull()
-	{
-		return view('web.slide_full');	
-	}
+    public function blogpostslide()
+    {
+        return view('web.blogpostslide');
+    }
 
-	public function sliderbehide()
-	{
-		return view('web.slide_behide');	
-	}
+    public function blogpostaudio()
+    {
+        return view('web.blogpostaudio');
+    }
 
-	public function sliderboxed()
-	{
-		return view('web.slide_boxed');	
-	}
+    public function sliderdefault()
+    {
+        return view('web.slider_default');
+    }
 
-	public function backstretch()
-	{
-		return view('web.backstretch');	
-	}
+    public function sliderfull()
+    {
+        return view('web.slide_full');
+    }
 
-	public function backstretchboxed()
-	{
-		return view('web.backstretchboxed');	
-	}
+    public function sliderbehide()
+    {
+        return view('web.slide_behide');
+    }
 
-	public function flexslider_default()
-	{
-		return view('web.flexslider_default');	
-	}
+    public function sliderboxed()
+    {
+        return view('web.slide_boxed');
+    }
 
-	public function flexslider_full()
-	{
-		return view('web.flexslider_full');	
-	}
+    public function backstretch()
+    {
+        return view('web.backstretch');
+    }
 
-	public function flexslider_behide()
-	{
-		return view('web.flexslider_behide');	
-	}
+    public function backstretchboxed()
+    {
+        return view('web.backstretchboxed');
+    }
 
-	public function flexslider_boxed()
-	{
-		return view('web.flexslider_boxed');	
-	}
+    public function flexslider_default()
+    {
+        return view('web.flexslider_default');
+    }
 
-	public function elements()
-	{
-		return view('web.elements');	
-	}
+    public function flexslider_full()
+    {
+        return view('web.flexslider_full');
+    }
 
-	public function colours()
-	{
-		return view('web.colours');	
-	}
+    public function flexslider_behide()
+    {
+        return view('web.flexslider_behide');
+    }
 
-	public function bs_mobilemenu()
-	{
-		return view('web.bs_mobilemenu');	
-	}
+    public function flexslider_boxed()
+    {
+        return view('web.flexslider_boxed');
+    }
+
+    public function elements()
+    {
+        return view('web.elements');
+    }
+
+    public function colours()
+    {
+        return view('web.colours');
+    }
+
+    public function bs_mobilemenu()
+    {
+        return view('web.bs_mobilemenu');
+    }
 }
 
