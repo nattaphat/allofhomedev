@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateGeoProviceTable extends Migration {
+class CreateGeoProvinceTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -14,10 +14,10 @@ class CreateGeoProviceTable extends Migration {
 	{
         Schema::create('geo_province', function(Blueprint $table)
         {
-            $table->string('name');
-            $table->string('provid', 2);
+            $table->string('name')->nullable(false);
+            $table->string('provid', 2)->nullable(false);
             $table->primary('provid');
-            $table->integer('region_id');
+            $table->integer('region_id')->nullable(false);
             $table->foreign('region_id')->references('id')->on('geo_region');
         });
 	}

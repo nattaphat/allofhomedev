@@ -14,13 +14,13 @@ class CreateGeoAmphoeTable extends Migration {
 	{
         Schema::create('geo_amphoe', function(Blueprint $table)
         {
-            $table->string('provid',2);
+            $table->string('provid',2)->nullable(false);
             $table->foreign('provid')->references('provid')->on('geo_province');
-            $table->string('name');
-            $table->string('amphid',2);
+            $table->string('name')->nullable(false);
+            $table->string('amphid',2)->nullable(false);
             $table->primary(['provid', 'amphid']);
             $table->unique(['provid', 'amphid']);
-            $table->integer('region_id');
+            $table->integer('region_id')->nullable(false);
             $table->foreign('region_id')->references('id')->on('geo_region');
         });
 	}

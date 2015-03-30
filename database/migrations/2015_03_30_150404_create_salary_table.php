@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateGeoRegionTable extends Migration {
+class CreateSalaryTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,10 +12,10 @@ class CreateGeoRegionTable extends Migration {
 	 */
 	public function up()
 	{
-        Schema::create('geo_region', function(Blueprint $table)
+        Schema::create('salary', function(Blueprint $table)
         {
             $table->increments('id');
-            $table->string('name')->nullable(false);
+            $table->string('range')->nullable(false);
         });
 	}
 
@@ -26,7 +26,7 @@ class CreateGeoRegionTable extends Migration {
 	 */
 	public function down()
 	{
-        Schema::drop('geo_region');
+		Schema::drop('salary');
 	}
 
 }
