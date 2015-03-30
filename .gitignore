@@ -4,3 +4,5 @@
 .DS_Store
 /public/js/lib
 /web
+_ide_helper.php
+/.idea

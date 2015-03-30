@@ -1,6 +1,7 @@
 <?php namespace App\Http\Controllers;
 
 use Config;
+use App\Models\geoRegion;
 
 class AllofhomeController extends Controller {
 
@@ -28,6 +29,11 @@ class AllofhomeController extends Controller {
         $this->middleware('guest');
     }
 
+    public function test()
+    {
+        $m = new geoRegion();
+        return 'yes';
+    }
     /**
      * Show the application welcome screen to the user.
      *
