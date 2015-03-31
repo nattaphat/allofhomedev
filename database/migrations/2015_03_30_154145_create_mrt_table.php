@@ -17,8 +17,8 @@ class CreateMrtTable extends Migration {
             $table->increments('id');
             $table->integer('route_id')->nullable(false);
             $table->foreign('route_id')->references('id')->on('mrt_route');
-            $table->string('mrt_name')->nullable(false);
             $table->string('mrt_code')->nullable(false);
+            $table->string('mrt_name')->nullable(false);
         });
 	}
 

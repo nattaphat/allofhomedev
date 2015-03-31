@@ -1,12 +1,12 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Models\geoRegion;
+use App\Models\airportRailLink;
 
 // composer require laracasts/testdummy
 use Laracasts\TestDummy\Factory as TestDummy;
 
-class AirportRailLinkTableSeeder extends Seeder
+class AplTableSeeder extends Seeder
 {
     public function run()
     {

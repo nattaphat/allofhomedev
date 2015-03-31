@@ -27,7 +27,7 @@ class CreateAirportLinkTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('airport_link')
+		Schema::drop('airport_link');
 	}
 
 }

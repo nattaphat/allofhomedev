@@ -17,8 +17,8 @@ class CreateBtsTable extends Migration {
             $table->increments('id');
             $table->integer('route_id')->nullable(false);
             $table->foreign('route_id')->references('id')->on('bts_route');
-            $table->string('bts_name')->nullable(false);
             $table->string('bts_code')->nullable(false);
+            $table->string('bts_name')->nullable(false);
         });
 	}
 
