@@ -15,8 +15,10 @@ class CreateBtsTable extends Migration {
         Schema::create('bts', function(Blueprint $table)
         {
             $table->increments('id');
-            $table->string('bts_route')->nullable(false);
+            $table->integer('route_id')->nullable(false);
+            $table->foreign('route_id')->references('id')->on('bts_route');
             $table->string('bts_name')->nullable(false);
+            $table->string('bts_code')->nullable(false);
         });
 	}
 

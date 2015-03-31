@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAirportLinkTable extends Migration {
+class CreateBtsRouteTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,11 +12,11 @@ class CreateAirportLinkTable extends Migration {
 	 */
 	public function up()
 	{
-        Schema::create('airport_link', function(Blueprint $table)
+        Schema::create('bts_route', function(Blueprint $table)
         {
             $table->increments('id');
-            $table->string('apl_name')->nullable(false);
-            $table->string('apl_code')->nullable(false);
+            $table->string('name')->nullable(false);
+            $table->string('memo')->nullable(true);
         });
 	}
 
@@ -27,7 +27,7 @@ class CreateAirportLinkTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('airport_link')
+		Schema::drop('bts_route');
 	}
 
 }

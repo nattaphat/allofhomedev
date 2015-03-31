@@ -15,8 +15,10 @@ class CreateMrtTable extends Migration {
         Schema::create('mrt', function(Blueprint $table)
         {
             $table->increments('id');
-            $table->string('mrt_route')->nullable(false);
+            $table->integer('route_id')->nullable(false);
+            $table->foreign('route_id')->references('id')->on('mrt_route');
             $table->string('mrt_name')->nullable(false);
+            $table->string('mrt_code')->nullable(false);
         });
 	}
 
@@ -27,7 +29,7 @@ class CreateMrtTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('mrt')
+		Schema::drop('mrt');
 	}
 
 }
