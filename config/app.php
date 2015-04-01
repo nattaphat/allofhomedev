@@ -137,7 +137,8 @@ return [
 		'Illuminate\View\ViewServiceProvider',
 		'Laravel\Socialite\SocialiteServiceProvider',
 		'SammyK\LaravelFacebookSdk\LaravelFacebookSdkServiceProvider',
-		
+		'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider',
+
 		/*
 		 * Application Service Providers...
 		 */
