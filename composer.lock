@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "8fadd7cd4e282bfe1936a7cf2ec3532e",
+    "hash": "ee5b09e381630aca438d829411f740a0",
     "packages": [
         {
             "name": "barryvdh/laravel-ide-helper",
@@ -291,12 +291,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/facebook/facebook-php-sdk-v4.git",
-                "reference": "97e3953165f091afee360b4bbf66e1f71ec3e104"
+                "reference": "d6c2bad7db17525bdf70f452bac2e40f6f415cb3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/facebook/facebook-php-sdk-v4/zipball/97e3953165f091afee360b4bbf66e1f71ec3e104",
-                "reference": "97e3953165f091afee360b4bbf66e1f71ec3e104",
+                "url": "https://api.github.com/repos/facebook/facebook-php-sdk-v4/zipball/d6c2bad7db17525bdf70f452bac2e40f6f415cb3",
+                "reference": "d6c2bad7db17525bdf70f452bac2e40f6f415cb3",
                 "shasum": ""
             },
             "require": {
@@ -338,7 +338,7 @@
                 "facebook",
                 "sdk"
             ],
-            "time": "2015-03-10 23:56:45"
+            "time": "2015-03-31 21:58:12"
         },
         {
             "name": "fzaninotto/faker",
@@ -391,6 +391,58 @@
                 "fixtures"
             ],
             "time": "2015-03-30 08:56:14"
+        },
+        {
+            "name": "greggilbert/recaptcha",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/greggilbert/recaptcha.git",
+                "reference": "a1d3e8b73998e80571eb999c82361884c450373d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/greggilbert/recaptcha/zipball/a1d3e8b73998e80571eb999c82361884c450373d",
+                "reference": "a1d3e8b73998e80571eb999c82361884c450373d",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "5.0.*",
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.0-dev"
+                }
+            },
+            "autoload": {
+                "classmap": [
+                    "src/migrations"
+                ],
+                "psr-4": {
+                    "Greggilbert\\Recaptcha\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Greg Gilbert",
+                    "email": "greg@greg-gilbert.com"
+                }
+            ],
+            "description": "reCAPTCHA Validator for Laravel 5",
+            "homepage": "http://github.com/greggilbert/recaptcha",
+            "keywords": [
+                "captcha",
+                "laravel",
+                "laravel5",
+                "recaptcha"
+            ],
+            "time": "2015-02-25 14:46:33"
         },
         {
             "name": "guzzle/guzzle",
@@ -3650,7 +3702,8 @@
         "thujohn/twitter": 20,
         "barryvdh/laravel-ide-helper": 20,
         "laracasts/generators": 20,
-        "fzaninotto/faker": 20
+        "fzaninotto/faker": 20,
+        "greggilbert/recaptcha": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
