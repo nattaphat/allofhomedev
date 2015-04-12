@@ -10,6 +10,15 @@
 | and give it the controller to call when that URI is requested.
 |
 */
+
+/* Frontend route*/
+Route::get('signup', [
+    'as' => 'signup',
+    'uses' => 'Frontend\SignupController@signup'
+]);
+
+/*--------------------------------------------------------------*/
+
 Route::get('/test', [
     'as' => 'index',
     'uses' => 'AllofhomeController@test'
@@ -44,11 +53,6 @@ Route::get('twlogged', [
 Route::get('twlogin', [
 	'as' => 'twlogin',
 	'uses' => 'SocialLoginController@TWlogin'
-]);
-
-Route::get('signup', [
-	'as' => 'signup',
-	'uses' => 'AllofhomeController@signup'
 ]);
 
 Route::get('aboutus', [

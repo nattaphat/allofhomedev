@@ -8,4 +8,8 @@ class salary extends Model {
     protected $primaryKey = 'id';
     public $timestamps = false;
 
+    public function getAllSalary()
+    {
+        return salary::all();
+    }
 }

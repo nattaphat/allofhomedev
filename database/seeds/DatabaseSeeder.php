@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder {
         $this->call('AplTableSeeder');
         $this->call('BtsRouteTableSeeder');
         $this->call('MrtRouteTableSeeder');
+        $this->call('SalaryTableSeeder');
 	}
 
 }
