@@ -169,23 +169,28 @@
 </div>
 
 
-<!--Scripts -->
-<script src={{ asset('js/lib/jquery/dist/jquery.min.js') }}></script>
+        <!--Scripts -->
+        <script src={{ asset('js/lib/jquery/dist/jquery.min.js') }}></script>
 
-<!-- File input JS -->
-<script src={{ asset('js/lib/bootstrap-fileinput/js/fileinput.min.js') }}></script>
+        <!-- File input JS -->
+        <script src={{ asset('js/lib/bootstrap-fileinput/js/fileinput.min.js') }}></script>
 
-<!-- Datepicker JS -->
-<script src={{ asset('js/lib/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js') }}></script>
+        <!-- Datepicker JS -->
+        <script src={{ asset('js/lib/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js') }}></script>
 
-<!-- Bootstrap JS -->
-<script src={{ asset('js/lib/bootstrap/dist/js/bootstrap.min.js') }}></script>
+        <!-- Bootstrap JS -->
+        <script src={{ asset('js/lib/bootstrap/dist/js/bootstrap.min.js') }}></script>
 
+        <!-- jqBoostrapValidation-->
+        <script src="{{ asset('js/lib/jqBootstrapValidation/dist/jqBootstrapValidation-1.3.7.min.js') }}"> </script>
 
-<!-- JS plugins required on all pages NOTE: Additional non-required plugins are loaded ondemand as of AppStrap 2.5 -->
+        <!-- JS plugins required on all pages NOTE: Additional non-required plugins are loaded ondemand as of AppStrap 2.5 -->
 
-<!--Custom scripts mainly used to trigger libraries/plugins -->
-<script src={{ asset('js/script.min.js') }}></script>
-@yield('jsbody')
-</body>
+        <!--Custom scripts mainly used to trigger libraries/plugins -->
+        <script src={{ asset('js/script.min.js') }}></script>
+
+        <!--Custom scripts for allofhome -->
+        <script src={{ asset('js/allofhome.js') }}></script>
+        @yield('jsbody')
+    </body>
 </html>

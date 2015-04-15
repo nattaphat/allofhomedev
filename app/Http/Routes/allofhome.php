@@ -17,6 +17,16 @@ Route::get('signup', [
     'uses' => 'Frontend\SignupController@signup'
 ]);
 
+Route::get('login', [
+    'as' => 'login',
+    'uses' => 'AllofhomeController@login'
+]);
+
+Route::post('login', [
+    'as' => 'postlogin',
+    'uses' => 'Auth\AuthController@login'
+]);
+
 /*--------------------------------------------------------------*/
 
 Route::get('/test', [
@@ -28,12 +38,6 @@ Route::get('/', [
 	'as' => 'index',
 	'uses' => 'AllofhomeController@index'
 ]);
-
-Route::get('login', [
-	'as' => 'login',
-	'uses' => 'AllofhomeController@login'
-]);
-
 
 Route::get('fblogin', [
 	'as' => 'fblogin',

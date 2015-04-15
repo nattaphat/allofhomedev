@@ -1,28 +1,5 @@
 @extends('layouts.main')
 
-@section('jsbody')
-    <script type="text/javascript">
-
-        $( document ).ready(function() {
-            setDatePicker();
-
-            /**
-             * [setDatePicker description]
-             */
-            function setDatePicker()
-            {
-                /*DatePicker*/
-                $('#birthday').datepicker({
-                    autoclose: true,
-                    todayHighlight: true ,
-                    format: 'mm-dd-yyyy',
-                    endDate: '+0d'
-                });
-            }
-        });
-    </script>
-@stop
-
 @section('content')
 <div class="container">
     <!-- Sign Up form -->
@@ -91,6 +68,24 @@
                         หญิง
                     </label>
                 </div>
+            </div>
+            <div class="form-group">
+                <select class="form-control" id="prov">
+                    <option>-กรุณาเลือกจังหวัด-</option>
+                    @foreach ($prov as $key => $value)
+                        <option id="{{ $value->id }}" > {{ $value->name }}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="form-group">
+                <select class="form-control amph" id="amph">
+                    <option>-กรุณาเลือกอำเภอ-</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <select class="form-control tamb" id="tamb">
+                    <option>-กรุณาเลือกตำบล-</option>
+                </select>
             </div>
             <div class="checkbox">
                 <label>

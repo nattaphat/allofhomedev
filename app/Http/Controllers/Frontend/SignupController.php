@@ -3,7 +3,8 @@
 use Config;
 use App\Http\Controllers\Controller;
 
-use App\Models\salary;
+use App\Models\Salary;
+use App\Models\Provinces;
 
 class SignupController extends Controller {
 
@@ -19,6 +20,8 @@ class SignupController extends Controller {
     */
     public $fb;
     public $salaryObj;
+    public $provObj;
+
     /**
      * Create a new controller instance.
      *
@@ -27,15 +30,22 @@ class SignupController extends Controller {
     public function __construct()
     {
         $this->fb = \Socialize::with("facebook");
-        $this->salaryObj = new salary();
+        $this->salaryObj = new Salary();
+        $this->provObj = new Provinces();
         $this->middleware('guest');
     }
 
+    /**
+     * @return $this
+     */
     public function signup()
     {
         $rs_salary = $this->salaryObj->getAllSalary();
+        $rs_prov = $this->provObj->getAllProvince();
+
         return view('web.frontend.signup')
-                    ->with('salary',$rs_salary);
+                    ->with('salary',$rs_salary)
+                    ->with('prov',$rs_prov);
     }
 
 }

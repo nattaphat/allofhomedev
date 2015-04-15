@@ -6,4 +6,9 @@ class geoRegion extends Model {
     protected $table = 'geo_region';
     protected $primaryKey = 'id';
     public $timestamps = false;
+
+    public function provinces()
+    {
+        return $this->hasOne('App\Models\Provinces');
+    }
 }

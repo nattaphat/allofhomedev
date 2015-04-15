@@ -37,6 +37,24 @@ class AuthController extends Controller {
 		$this->middleware('guest', ['except' => 'getLogout']);
 	}
 
+    public function login()
+    {
+        $data = \Input::all();
+        dd($data);
+        if (Auth::attempt(array(
+                'email'     => Input::get('email_or_username'),
+                'password'  => Input::get('password')
+            )) ||
+            Auth::attempt(array(
+                'username'     => Input::get('email_or_username'),
+                'password'  => Input::get('password')
+            ))) {
+            // SUCCESS
+        } else {
+            // FAILURE
+        }
+    }
+
 	// public function login(SocialLoginController $authenticateUser, Request $request)
 	// {
 	// 	$authenticateUser->execute($request->has('code'));

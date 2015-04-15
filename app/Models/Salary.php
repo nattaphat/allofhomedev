@@ -2,14 +2,17 @@
 
 use Illuminate\Database\Eloquent\Model;
 
-class salary extends Model {
+class Salary extends Model {
 
     protected $table = 'salary';
     protected $primaryKey = 'id';
     public $timestamps = false;
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Collection|static[]
+     */
     public function getAllSalary()
     {
-        return salary::all();
+        return Salary::all();
     }
 }

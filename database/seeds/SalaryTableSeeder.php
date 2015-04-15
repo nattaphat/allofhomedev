@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Models\salary;
+use App\Models\Salary;
 
 // composer require laracasts/testdummy
 use Laracasts\TestDummy\Factory as TestDummy;
@@ -49,7 +49,7 @@ class SalaryTableSeeder extends Seeder
 
         DB::table('salary')->delete();
         foreach ($salarys as $salary){
-            salary::create($salary);
+            Salary::create($salary);
         }
     }
 }
