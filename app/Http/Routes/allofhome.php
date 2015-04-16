@@ -27,17 +27,17 @@ Route::post('signin', [
     'uses' => 'Auth\AuthController@login'
 ]);
 
-/*--------------------------------------------------------------*/
-
-Route::get('/test', [
-    'as' => 'index',
-    'uses' => 'AllofhomeController@test'
+Route::get('signout', [
+    'as' => 'signout',
+    'uses' => 'Auth\AuthController@logout'
 ]);
+/*--------------------------------------------------------------*/
 
 Route::get('/', [
 	'as' => 'index',
 	'uses' => 'AllofhomeController@index'
 ]);
+
 
 Route::get('fblogin', [
 	'as' => 'fblogin',
@@ -54,10 +54,10 @@ Route::get('twlogged', [
 	'uses' => 'Auth\AuthController@twlogged'
 ]);
 
-Route::get('twlogin', [
-	'as' => 'twlogin',
-	'uses' => 'SocialLoginController@TWlogin'
-]);
+//Route::get('twlogin', [
+//	'as' => 'twlogin',
+//	'uses' => 'SocialLoginController@TWlogin'
+//]);
 
 Route::get('aboutus', [
 	'as' => 'aboutus_basic',

@@ -4,7 +4,6 @@ use App\Http\Controllers\Controller;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Contracts\Auth\Registrar;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
-use App\Http\Controllers\SocialLoginController;
 use Request;
 use Validator;
 
@@ -23,6 +22,8 @@ class AuthController extends Controller {
 
 	use AuthenticatesAndRegistersUsers;
 
+    protected $redirectTo = '/';
+
 	/**
 	 * Create a new authentication controller instance.
 	 *
@@ -30,47 +31,68 @@ class AuthController extends Controller {
 	 * @param  \Illuminate\Contracts\Auth\Registrar  $registrar
 	 * @return void
 	 */
-	public function __construct(Guard $auth, Registrar $registrar)
-	{
-		$this->auth = $auth;
-		$this->registrar = $registrar;
-
-		$this->middleware('guest', ['except' => 'getLogout']);
-	}
+//	public function __construct(Guard $auth, Registrar $registrar)
+//	{
+//		$this->auth = $auth;
+//		$this->registrar = $registrar;
+//
+//		$this->middleware('auth', ['except' => 'getLogout']);
+//	}
 
     public function login()
     {
         $data = Request::all();
+
+        $rules = [
+            'email_or_username' => 'required',
+            'password' => 'required'
+        ];
+        $messages = [
+            'required' => 'The :attribute field is required.',
+        ];
+
         $validator = Validator::make(
             $data,
-            [
-                'email_or_username' => 'required'
-            ]
+            $rules,
+            $messages
         );
+
         if ($validator->fails())
         {
-            return redirect('signin')->withErrors($validator);;
+//            dd($validator->messages());
+            return redirect('signin')
+                ->withErrors($validator)
+                ->withInput(\Input::except('password'));
         }
-//        $this->validate($data ,['email_or_username'=>'required']);
+        else{
+            if (\Auth::attempt(array(
+                    'email'     => $data['email_or_username'],
+                    'password'  => $data['password']
+                )) ||
+                \Auth::attempt(array(
+                    'username'  => $data['email_or_username'],
+                    'password'  => $data['password']
+                ))) {
+                // SUCCESS
+                return redirect()->intended('/');
+            } else {
+                 return redirect('signin')
+                     ->withErrors(['msg'=>'You not register yet.'])
+                     ->withInput(\Input::except('password'));
+                //Carbon::now();
+            }
+        }
 
-//        $data = Request::all();
-//        dd($data);
-//        if (Auth::attempt(array(
-//                'email'     => Input::get('email_or_username'),
-//                'password'  => Input::get('password')
-//            )) ||
-//            Auth::attempt(array(
-//                'username'     => Input::get('email_or_username'),
-//                'password'  => Input::get('password')
-//            ))) {
-//            // SUCCESS
-//            return redirect('/');
-//        } else {
-//            // return redirect('');
-//            //Carbon::now();
-//        }
     }
 
+    public function logout()
+    {
+        if (Auth::check())
+        {
+            Auth::logout();
+        }
+        return redirect()->intended('/');
+    }
 	// public function login(SocialLoginController $authenticateUser, Request $request)
 	// {
 	// 	$authenticateUser->execute($request->has('code'));

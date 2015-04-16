@@ -1,24 +1,27 @@
 <div class="row">
     <div class="col-xs-8 col-xs-push-4">
         <!--Show/hide trigger for #hidden-header -->
-        <div id="header-hidden-link">
-            <a
-                    href="#"
-                    title="Click me you'll get a surprise"
-                    class="show-hide"
-                    data-toggle="show-hide"
-                    data-target=".header-hidden"
-                    data-callback="searchFormFocus"><i></i>Open</a>
-        </div>
+        {{--<div id="header-hidden-link">--}}
+            {{--<a--}}
+                    {{--href="#"--}}
+                    {{--title="Click me you'll get a surprise"--}}
+                    {{--class="show-hide"--}}
+                    {{--data-toggle="show-hide"--}}
+                    {{--data-target=".header-hidden"--}}
+                    {{--data-callback="searchFormFocus"><i></i>Open</a>--}}
+        {{--</div>--}}
 
         <!--social media icons-->
+        @if (Auth::check())
         <div class="social-media">
             <!--@todo: replace with company social media details-->
-            <a href="#"> <i class="fa fa-twitter-square"></i> </a>
-            <a href="#"> <i class="fa fa-facebook-square"></i> </a>
-            <a href="#"> <i class="fa fa-linkedin-square"></i> </a>
-            <a href="#"> <i class="fa fa-google-plus-square"></i> </a>
+            <a href="#"> <i class="fa fa-user fa-1"></i> </a>
+            <a href="#"> <i class="fa fa-star fa-1"></i> </a>
+            <a href="#"> <i class="fa fa-envelope fa-1"></i> </a>
+            <a href=" {{ URL::to('signout') }}"> <i class="fa fa-sign-out fa-1"></i> </a>
         </div>
+        @endif
+
     </div>
     <div class="col-xs-4 col-xs-pull-8">
         <!--user menu-->
