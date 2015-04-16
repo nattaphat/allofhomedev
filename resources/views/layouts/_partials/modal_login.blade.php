@@ -8,7 +8,7 @@
                 </h4>
             </div>
             <div class="modal-body">
-                <form action="{{route('postlogin')}}" id="frm_sigin" method="post" role="form">
+                <form action="{{route('postsignin')}}" id="frm_signin" method="post" role="form">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <div class="form-group">
                         <label class="sr-only" for="email_or_username">Input with warning</label>

@@ -27,7 +27,7 @@
             {{--<a href="#signup-modal" class="btn btn-link signup" data-toggle="modal">ลงทะเบียน</a>--}}
             <a href="{{ URL::to('signup') }}" class="btn btn-link signup" data-toggle="modal">ลงทะเบียน</a>
             <!--</li>-->
-            <a href="#login-modal" class="btn btn-link login" data-toggle="modal">เข้าสู่ระบบ</a>
+            <a href="{{ URL::to('signin') }}" class="btn btn-link login" data-toggle="modal">เข้าสู่ระบบ</a>
             <!-- <div class="btn-group language-menu"> -->
             <!--language menu-->
             <!--<a href="#en"

@@ -181,9 +181,6 @@
         <!-- Bootstrap JS -->
         <script src={{ asset('js/lib/bootstrap/dist/js/bootstrap.min.js') }}></script>
 
-        <!-- jqBoostrapValidation-->
-        <script src="{{ asset('js/lib/jqBootstrapValidation/dist/jqBootstrapValidation-1.3.7.min.js') }}"> </script>
-
         <!-- JS plugins required on all pages NOTE: Additional non-required plugins are loaded ondemand as of AppStrap 2.5 -->
 
         <!--Custom scripts mainly used to trigger libraries/plugins -->

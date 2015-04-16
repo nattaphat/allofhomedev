@@ -17,13 +17,13 @@ Route::get('signup', [
     'uses' => 'Frontend\SignupController@signup'
 ]);
 
-Route::get('login', [
-    'as' => 'login',
+Route::get('signin', [
+    'as' => 'signin',
     'uses' => 'AllofhomeController@login'
 ]);
 
-Route::post('login', [
-    'as' => 'postlogin',
+Route::post('signin', [
+    'as' => 'postsignin',
     'uses' => 'Auth\AuthController@login'
 ]);
 

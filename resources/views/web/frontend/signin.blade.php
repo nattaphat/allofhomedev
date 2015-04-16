@@ -3,45 +3,46 @@
 @section('content')
 <div class="container">
     <!-- Login form -->
-    <form action="{{route('postlogin')}}" id="frm_sigin" method="post" role="form">
+    <form
+            class="form-login form-wrapper form-medium"
+            action="{{route('postsignin')}}"
+            id="frm_signin"
+            method="post"
+            role="form">
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
         <div class="form-group">
             <label class="sr-only" for="email_or_username">Input with warning</label>
             <input
                     type="email"
                     id="email_or_username"
+                    name="email_or_username"
                     class="form-control email"
                     placeholder="Email Or Username"
-                    data-validation-matches-match="email"
-                    data-validation-email-message="Invalid email"
                     >
             <p class="help-block"></p>
         </div>
         <div class="form-group">
             <label class="sr-only" for="password">Password</label>
-            <input type="password" id="password" class="form-control password" placeholder="Password">
+            <input type="password" name="password" id="password" class="form-control password" placeholder="Password">
         </div>
-        <button type="submit" class="btn btn-primary loginaction">Login</button>
-        <div class="checkbox">
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary loginaction">Login</button> Or
+            <button type="button" class="btn btn-primary loginbytw"><i class="fa fa-twitter fa-4"></i> Twitter</button>
+            <button type="button" class="btn btn-primary loginbyfb"><i class="fa fa-facebook fa-4"></i> Facebook</button>
+        </div>
+        <div class="form-group checkbox">
             <label>
                 <input type="checkbox" id="rememberme"> Remember me.
             </label>
         </div>
+
     </form>
-    <div class="modal-footer">
-        <form class="form-inline text-center">
-            <div class="form-group">
-                <!--@todo: replace with company social media details-->
-                <a class="btn btn-block btn-social btn-twitter">
-                    <i class="fa fa-twitter"></i> Twitter
-                </a>
-            </div>
-            <div class="form-group">
-                <a class="btn btn-block btn-social btn-facebook">
-                    <i class="fa fa-facebook"></i> Facebook
-                </a>
-            </div>
-        </form>
-    </div>
+    @if( $errors->any())
+        <ul class="alert alert-danger">
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    @endif
 </div>
 @stop

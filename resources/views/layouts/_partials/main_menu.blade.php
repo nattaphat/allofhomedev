@@ -64,7 +64,7 @@
             <li>
                 <a href="{{ URL::route('features') }}" class="menu-item">ที่ดินเปล่า</a></li>
             <li role="presentation">
-                <a role="menuitem" href="{{ URL::route('login') }}" tabindex="-1" class="menu-item">เฟอร์นิเจอร์ ของตกแต่ง</a>
+                <a role="menuitem" href="{{ URL::route('signin') }}" tabindex="-1" class="menu-item">เฟอร์นิเจอร์ ของตกแต่ง</a>
             </li>
             <li role="presentation">
                 <a role="menuitem" href="{{ URL::route('signup') }}" tabindex="-1" class="menu-item">เครื่องใช้ไฟฟ้า</a>

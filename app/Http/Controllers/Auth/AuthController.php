@@ -5,7 +5,8 @@ use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Contracts\Auth\Registrar;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 use App\Http\Controllers\SocialLoginController;
-use Illuminate\Http\Request;
+use Request;
+use Validator;
 
 class AuthController extends Controller {
 
@@ -39,20 +40,35 @@ class AuthController extends Controller {
 
     public function login()
     {
-        $data = \Input::all();
-        dd($data);
-        if (Auth::attempt(array(
-                'email'     => Input::get('email_or_username'),
-                'password'  => Input::get('password')
-            )) ||
-            Auth::attempt(array(
-                'username'     => Input::get('email_or_username'),
-                'password'  => Input::get('password')
-            ))) {
-            // SUCCESS
-        } else {
-            // FAILURE
+        $data = Request::all();
+        $validator = Validator::make(
+            $data,
+            [
+                'email_or_username' => 'required'
+            ]
+        );
+        if ($validator->fails())
+        {
+            return redirect('signin')->withErrors($validator);;
         }
+//        $this->validate($data ,['email_or_username'=>'required']);
+
+//        $data = Request::all();
+//        dd($data);
+//        if (Auth::attempt(array(
+//                'email'     => Input::get('email_or_username'),
+//                'password'  => Input::get('password')
+//            )) ||
+//            Auth::attempt(array(
+//                'username'     => Input::get('email_or_username'),
+//                'password'  => Input::get('password')
+//            ))) {
+//            // SUCCESS
+//            return redirect('/');
+//        } else {
+//            // return redirect('');
+//            //Carbon::now();
+//        }
     }
 
 	// public function login(SocialLoginController $authenticateUser, Request $request)
