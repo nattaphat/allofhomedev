@@ -17,7 +17,7 @@ include app_path().'/Http/Routes/allofhome.php';
 
 // Route::get('home', 'HomeController@index');
 
-// Route::controllers([
-// 	'auth' => 'Auth\AuthController',
-// 	'password' => 'Auth\PasswordController',
-// ]);
+ Route::controllers([
+ 	'auth' => 'Auth\AuthController',
+ 	'password' => 'Auth\PasswordController',
+ ]);

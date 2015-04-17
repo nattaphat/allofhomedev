@@ -33,7 +33,7 @@
         </div>
         <div class="form-group checkbox">
             <label>
-                <input type="checkbox" id="rememberme"> Remember me.
+                <input type="checkbox" @if(Input::old('rememberme')) {{"checked"}} @endif  name="rememberme" id="rememberme"> Remember me.
             </label>
         </div>
         <div class="form-group">
@@ -44,14 +44,12 @@
         <div class="form-group">
             <small>Not a member? <a href="{{URL::to('signup')}}" class="signup">Sign up now!</a></small>
             <br />
-            <small><a href="#">Forgotten password?</a></small>
+            <small><a href="{{URL::to('forgotpwd')}}">Forgotten password?</a></small>
         </div>
 
-        @if( $errors->any())
+        @if( $errors->has('msg'))
             <ul class="alert alert-danger">
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
+                    <li>{{ $errors->first('msg') }}</li>
             </ul>
         @endif
     </form>

@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Eloquent\Model;
 
-class btsRoute extends Model {
+class BtsRoute extends Model {
 
     protected $table = 'bts_route';
     protected $primaryKey = 'id';

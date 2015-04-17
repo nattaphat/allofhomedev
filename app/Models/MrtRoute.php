@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Eloquent\Model;
 
-class mrtRoute extends Model {
+class MrtRoute extends Model {
 
     protected $table = 'mrt_route';
     protected $primaryKey = 'id';

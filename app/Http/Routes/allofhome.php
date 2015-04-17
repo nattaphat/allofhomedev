@@ -12,31 +12,51 @@
 */
 
 /* Frontend route*/
+Route::get('/', [
+    'as' => 'index',
+    'uses' => 'AllofhomeController@index'
+]);
+
 Route::get('signup', [
     'as' => 'signup',
     'uses' => 'Frontend\SignupController@signup'
 ]);
 
-Route::get('signin', [
+Route::get('login', [
     'as' => 'signin',
     'uses' => 'AllofhomeController@login'
 ]);
 
-Route::post('signin', [
+Route::post('login', [
     'as' => 'postsignin',
-    'uses' => 'Auth\AuthController@login'
+    'uses' => 'Auth\AuthController@postLogin'
 ]);
 
 Route::get('signout', [
     'as' => 'signout',
     'uses' => 'Auth\AuthController@logout'
 ]);
-/*--------------------------------------------------------------*/
 
-Route::get('/', [
-	'as' => 'index',
-	'uses' => 'AllofhomeController@index'
+Route::get('forgotpwd', [
+    'as' => 'forgotpwd',
+    'uses' => 'Auth\PasswordController@getEmail'
 ]);
+
+Route::post('forgotpwd', [
+    'as' => 'postforgetpwd',
+    'uses' => 'Auth\PasswordController@postEmail'
+]);
+
+Route::get('resetpwd/{token?}', [
+    'as' => 'resetpwd',
+    'uses' => 'Auth\PasswordController@getReset'
+]);
+
+Route::post('resetpwd', [
+    'as' => 'postresetpwd',
+    'uses' => 'Auth\PasswordController@postReset'
+]);
+/*--------------------------------------------------------------*/
 
 
 Route::get('fblogin', [

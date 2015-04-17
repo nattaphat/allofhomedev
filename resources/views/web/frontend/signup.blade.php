@@ -8,7 +8,7 @@
             <input type="hidden" id="role_id" name="role_id" value="3">
             <h3 class="title-divider">
                 <span>ลงทะเบียนใช้งาน</span>
-                <small>ลงทะเบียนเรียบร้อยแล้ว? <a href="#login-modal" data-toggle="modal">เข้าสู่ระบบที่นี่</a>.</small>
+                <small>ลงทะเบียนเรียบร้อยแล้ว? <a href="{{ URL::to('login') }}" data-toggle="modal">เข้าสู่ระบบที่นี่</a>.</small>
             </h3>
             <h5>
                 ข้อมูลบัญชีใช้งาน

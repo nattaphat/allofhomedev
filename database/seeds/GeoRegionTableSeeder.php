@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use Faker\Factory as Faker;
-use App\Models\geoRegion;
+use App\Models\GeoRegion;
 // composer require laracasts/testdummy
 //use Laracasts\TestDummy\Factory as TestDummy;
 
@@ -48,7 +48,7 @@ class GeoRegionTableSeeder extends Seeder
 
         DB::table('geo_region')->delete();
         foreach ($regions as $region){
-            geoRegion::create($region);
+            GeoRegion::create($region);
         }
     }
 }

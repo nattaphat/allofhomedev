@@ -22,8 +22,6 @@ class AuthController extends Controller {
 
 	use AuthenticatesAndRegistersUsers;
 
-    protected $redirectTo = '/';
-
 	/**
 	 * Create a new authentication controller instance.
 	 *
@@ -31,17 +29,19 @@ class AuthController extends Controller {
 	 * @param  \Illuminate\Contracts\Auth\Registrar  $registrar
 	 * @return void
 	 */
-//	public function __construct(Guard $auth, Registrar $registrar)
-//	{
-//		$this->auth = $auth;
-//		$this->registrar = $registrar;
-//
-//		$this->middleware('auth', ['except' => 'getLogout']);
-//	}
+	public function __construct(Guard $auth, Registrar $registrar)
+	{
+		$this->auth = $auth;
+		$this->registrar = $registrar;
 
-    public function login()
+		$this->middleware('guest', ['except' => 'getLogout']);
+	}
+
+    public function postLogin()
     {
         $data = Request::all();
+
+        (isset($data['rememberme']))? $remember = true : $remember=false;
 
         $rules = [
             'email_or_username' => 'required',
@@ -60,7 +60,7 @@ class AuthController extends Controller {
         if ($validator->fails())
         {
 //            dd($validator->messages());
-            return redirect('signin')
+            return redirect('login')
                 ->withErrors($validator)
                 ->withInput(\Input::except('password'));
         }
@@ -68,15 +68,16 @@ class AuthController extends Controller {
             if (\Auth::attempt(array(
                     'email'     => $data['email_or_username'],
                     'password'  => $data['password']
-                )) ||
+                ),$remember) ||
                 \Auth::attempt(array(
                     'username'  => $data['email_or_username'],
                     'password'  => $data['password']
-                ))) {
-                // SUCCESS
-                return redirect()->intended('/');
+                ),$remember)) {
+                // success check here to redirect to properly user page
+                //dd(\Auth::user());exit;
+                return redirect('/');
             } else {
-                 return redirect('signin')
+                 return redirect('login')
                      ->withErrors(['msg'=>'You not register yet.'])
                      ->withInput(\Input::except('password'));
                 //Carbon::now();
@@ -85,14 +86,18 @@ class AuthController extends Controller {
 
     }
 
+    /**
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
     public function logout()
     {
-        if (Auth::check())
+        if (\Auth::check())
         {
-            Auth::logout();
+            \Auth::logout();
         }
-        return redirect()->intended('/');
+        return redirect('/');
     }
+
 	// public function login(SocialLoginController $authenticateUser, Request $request)
 	// {
 	// 	$authenticateUser->execute($request->has('code'));

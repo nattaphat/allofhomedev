@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Eloquent\Model;
 
-class airportRailLink extends Model {
+class AirportRailLink extends Model {
 
     protected $table = 'airport_link';
     protected $primaryKey = 'id';
