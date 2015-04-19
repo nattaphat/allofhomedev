@@ -26,6 +26,10 @@
     "bootstrap-social": "~4.8.0",
     "bootstrap-fileinput": "~4.1.8",
     "bootstrap-datepicker": "~1.4.0",
-    "remarkable-bootstrap-notify": "~3.0.2"
+    "remarkable-bootstrap-notify": "~3.0.2",
+    "datatables-bootstrap3": "*",
+    "metisMenu": "~2.0.0",
+    "raphael": "~2.1.4",
+    "morris.js": "~0.5.1"
   }
 }
