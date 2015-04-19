@@ -70,6 +70,16 @@ Route::post('resetpwd', [
 /*--------------------------------------------------------------*/
 
 
+/* ----- backend ----- */
+
+Route::get('backend/index', [
+    'as' => 'backendindex',
+    'uses' => 'Backend\UserController@index'
+]);
+
+/* ----- ## backend ## ----- */
+
+
 Route::get('fblogin', [
 	'as' => 'fblogin',
 	'uses' => 'Auth\AuthController@facebooklogin'
