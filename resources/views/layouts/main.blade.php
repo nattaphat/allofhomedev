@@ -72,9 +72,8 @@
   @section('body')
         <body class="page page-index">
   @show
-    
             <a href="#content" class="sr-only">Skip to content</a>
-    
+
             <!-- ======== @Region: #navigation ======== -->
             <div id="navigation" class="wrapper">
             <div class="navbar-static-top">
@@ -95,7 +94,7 @@
             <div class="header-search">
                 @include('layouts._partials.header_search')
             </div>
-      
+
             <!--Header & Branding region-->
             <div class="header" data-toggle="clingify">
                 <div class="header-inner container">
@@ -142,6 +141,9 @@
     @yield('slider')
 </div>
 
+<!-- ======== @Carousel ==========> -->
+{{-- @include('layouts._partials.carousel') --}}
+
 <!-- ======== @Region: #content ======== -->
 <div id="content">
     @yield('content')
@@ -180,6 +182,9 @@
 
         <!-- Bootstrap JS -->
         <script src={{ asset('js/lib/bootstrap/dist/js/bootstrap.min.js') }}></script>
+
+        <!-- Remarkable Bootstrap Notify -->
+        <script src={{ asset('js/lib/remarkable-bootstrap-notify/dist/bootstrap-notify.min.js') }}></script>
 
         <!-- JS plugins required on all pages NOTE: Additional non-required plugins are loaded ondemand as of AppStrap 2.5 -->
 

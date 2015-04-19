@@ -22,7 +22,8 @@ class PasswordController extends Controller {
 
 	use ResetsPasswords;
 
-	/**
+
+    /**
 	 * Create a new password controller instance.
 	 *
 	 * @param  \Illuminate\Contracts\Auth\Guard  $auth
@@ -63,7 +64,7 @@ class PasswordController extends Controller {
 
     public function getReset($token = null)
     {
-        $token = "cdb37c6a1b1f87d6d5169c9984233f08a8caba4b488ca0ebe497284007f515bd";
+        $token = "75a22c078dd895a47d452b97512b008924d5d6afeeb14bc5fea6928c902bb870";
         if (is_null($token))
         {
             throw new NotFoundHttpException;
@@ -96,7 +97,11 @@ class PasswordController extends Controller {
         switch ($response)
         {
             case PasswordBroker::PASSWORD_RESET:
-                return redirect($this->redirectPath());
+//                return redirect($this->redirectPath());
+                //$title, $message,$type
+                \Session::flash('notifyUser', 'Reset Password|Your password has been reset.|success');
+                return redirect('/');
+                    //->withErrors(['reset_success'=>'Your password has been reset.']);
 
             default:
                 return redirect()->back()

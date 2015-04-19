@@ -245,7 +245,7 @@
           <span>Carousel</span>
         </h3>
         <!-- Logos carousel Uses Owl Carousel plugin All options here are customisable from the data-owl-carousel-settings="{OBJECT}" item via data- attributes: http://www.owlgraphic.com/owlcarousel/#customizing ie. data-settings="{"items": "4", "lazyLoad":"true", "navigation":"true"}" -->
-        <div class="customers-carousel" data-toggle="owl-carousel" data-owl-carousel-settings='{"items": 4, "lazyLoad":true, "navigation":true, "scrollPerPage":true}'>
+        <div class="customers-carousel" data-toggle="owl-carousel" data-owl-carousel-settings='{"items": 4, "lazyLoad":true, "navigation":true,"autoPlay":true, "scrollPerPage":true}'>
           <a href="#">
             <img data-src="img/customers/customer-1.png" alt="Item 1 image" class="lazyOwl img-responsive underlay" />
             <h6>

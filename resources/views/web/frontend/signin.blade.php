@@ -52,6 +52,13 @@
                     <li>{{ $errors->first('msg') }}</li>
             </ul>
         @endif
+
+        @if( $errors->has('reset_success'))
+            <ul class="alert alert-success">
+                <li>{{ $errors->first('reset_success') }}</li>
+            </ul>
+        @endif
+
     </form>
 
 </div>

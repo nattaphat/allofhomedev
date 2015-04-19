@@ -75,10 +75,12 @@ class AuthController extends Controller {
                 ),$remember)) {
                 // success check here to redirect to properly user page
                 //dd(\Auth::user());exit;
+                //$title, $message,$type
+                \Session::flash('notifyUser', 'Message|Welcome to AllOfHome.|success');
                 return redirect('/');
             } else {
                  return redirect('login')
-                     ->withErrors(['msg'=>'You not register yet.'])
+                     ->withErrors(['msg'=>'User not found or you not register yet.'])
                      ->withInput(\Input::except('password'));
                 //Carbon::now();
             }

@@ -17,6 +17,17 @@ Route::get('/', [
     'uses' => 'AllofhomeController@index'
 ]);
 
+//Route::get('/', ['middleware' => 'auth', 'uses' => 'AllofhomeController@index']);
+
+//Route::group(['middleware' => 'auth'], function()
+//{
+//    Route::get('/', [
+//        'as' => 'index',
+//        'uses' => 'AllofhomeController@index'
+//    ]);
+//
+//});
+
 Route::get('signup', [
     'as' => 'signup',
     'uses' => 'Frontend\SignupController@signup'
