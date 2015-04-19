@@ -18,7 +18,7 @@
                     name="email_or_username"
                     class="form-control email"
                     placeholder="Email Or Username"
-                    value="{{Input::old('email_or_username')}}"
+                    value="{{ old('email_or_username')}}"
                     >
             <p class="help-block">
                 {{ $errors->first('email_or_username') }}

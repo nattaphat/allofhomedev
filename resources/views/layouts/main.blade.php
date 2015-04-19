@@ -142,7 +142,7 @@
 </div>
 
 <!-- ======== @Carousel ==========> -->
-{{-- @include('layouts._partials.carousel') --}}
+ {{--@include('layouts._partials.carousel')--}}
 
 <!-- ======== @Region: #content ======== -->
 <div id="content">
