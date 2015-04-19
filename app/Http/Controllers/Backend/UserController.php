@@ -7,7 +7,7 @@ class UserController extends Controller {
 
     public function index()
     {
-        return view('web.backend.userindex');
+        return view('web.backend.dashboard');
     }
 
 }
