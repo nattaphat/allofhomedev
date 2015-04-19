@@ -2,13 +2,12 @@
 
 use Config;
 use App\Http\Controllers\Controller;
-use App\User;
 
-class UserController extends Controller {
+class DashboardController extends Controller {
 
     public function index()
     {
-        $user = new User();
-        return $user::find(1)->get();
+        return view('web.backend.dashboard');
     }
+
 }

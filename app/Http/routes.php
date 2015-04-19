@@ -12,6 +12,7 @@
 */
 
 include app_path().'/Http/Routes/allofhome.php';
+include app_path().'/Http/Routes/allofhome_backend.php';
 
 // Route::get('/', 'WelcomeController@index');
 
