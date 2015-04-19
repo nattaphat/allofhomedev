@@ -50,8 +50,8 @@
     
       <!-- HTML5 shiv & respond.js for IE6-8 support of HTML5 elements & media queries -->
       <!--[if lt IE 9]>
-            <script src="plugins/html5shiv/dist/html5shiv.js"></script>
-            <script src="plugins/respond/respond.min.js"></script>
+            <script src="{{ asset('plugins/html5shiv/dist/html5shiv.js') }}"></script>
+            <script src="{{ asset('plugins/respond/respond.min.js') }}"></script>
       <![endif]-->
     
       <!-- Le fav and touch icons - @todo: fill with your icons or remove -->
