@@ -9,7 +9,11 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Bootstrap Admin Theme</title>
+    <title>
+        @section('title')
+            {{ Config::get('allofhome.title') }}
+        @show
+    </title>
 
     <!-- Bootstrap Core CSS -->
     <link type="text/css" href="{{ asset('js/lib/bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet">
