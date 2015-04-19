@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Models\btsRoute;
+use App\Models\BtsRoute;
 
 // composer require laracasts/testdummy
 use Laracasts\TestDummy\Factory as TestDummy;
@@ -42,7 +42,7 @@ class BtsRouteTableSeeder extends Seeder
 
         DB::table('bts_route')->delete();
         foreach ($bts_routes as $bts){
-            btsRoute::create($bts);
+            BtsRoute::create($bts);
         }
     }
 }

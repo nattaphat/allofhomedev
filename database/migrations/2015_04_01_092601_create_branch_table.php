@@ -16,7 +16,10 @@ class CreateBranchTable extends Migration {
         {
             $table->increments('id');
             $table->integer('shop_id')->nullable(false);
-            $table->foreign('shop_id')->references('id')->on('shop');
+            $table->foreign('shop_id')
+                ->references('id')
+                ->on('shop')
+                ->onDelete('cascade');
             $table->string('branch_name')->nullable(false);
             $table->string('telephone')->nullable(true);
             $table->string('mobile_phone')->nullable(false);
@@ -55,7 +58,7 @@ class CreateBranchTable extends Migration {
 	 */
 	public function down()
 	{
-		Schmema::drop('branch');
+		Schema::drop('branch');
 	}
 
 }

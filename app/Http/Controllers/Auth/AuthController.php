@@ -4,8 +4,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Contracts\Auth\Registrar;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
-use App\Http\Controllers\SocialLoginController;
-use Illuminate\Http\Request;
+use Request;
+use Validator;
 
 class AuthController extends Controller {
 
@@ -36,6 +36,69 @@ class AuthController extends Controller {
 
 		$this->middleware('guest', ['except' => 'getLogout']);
 	}
+
+    public function postLogin()
+    {
+        $data = Request::all();
+
+        (isset($data['rememberme']))? $remember = true : $remember=false;
+
+        $rules = [
+            'email_or_username' => 'required',
+            'password' => 'required'
+        ];
+        $messages = [
+            'required' => 'The :attribute field is required.',
+        ];
+
+        $validator = Validator::make(
+            $data,
+            $rules,
+            $messages
+        );
+
+        if ($validator->fails())
+        {
+//            dd($validator->messages());
+            return redirect('login')
+                ->withErrors($validator)
+                ->withInput(\Input::except('password'));
+        }
+        else{
+            if (\Auth::attempt(array(
+                    'email'     => $data['email_or_username'],
+                    'password'  => $data['password']
+                ),$remember) ||
+                \Auth::attempt(array(
+                    'username'  => $data['email_or_username'],
+                    'password'  => $data['password']
+                ),$remember)) {
+                // success check here to redirect to properly user page
+                //dd(\Auth::user());exit;
+                //$title, $message,$type
+                \Session::flash('notifyUser', 'Message|Welcome to AllOfHome.|success');
+                return redirect('/');
+            } else {
+                 return redirect('login')
+                     ->withErrors(['msg'=>'User not found or you not register yet.'])
+                     ->withInput(\Input::except('password'));
+                //Carbon::now();
+            }
+        }
+
+    }
+
+    /**
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function logout()
+    {
+        if (\Auth::check())
+        {
+            \Auth::logout();
+        }
+        return redirect('/');
+    }
 
 	// public function login(SocialLoginController $authenticateUser, Request $request)
 	// {

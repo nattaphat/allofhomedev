@@ -2,9 +2,9 @@
 
 use Illuminate\Database\Eloquent\Model;
 
-class mrtRoute extends Model {
+class BtsRoute extends Model {
 
-    protected $table = 'mrt_route';
+    protected $table = 'bts_route';
     protected $primaryKey = 'id';
     public $timestamps = false;
 

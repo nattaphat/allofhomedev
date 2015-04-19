@@ -10,20 +10,64 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-Route::get('/test', [
+
+/* Frontend route*/
+Route::get('/', [
     'as' => 'index',
-    'uses' => 'AllofhomeController@test'
+    'uses' => 'AllofhomeController@index'
 ]);
 
-Route::get('/', [
-	'as' => 'index',
-	'uses' => 'AllofhomeController@index'
+//Route::get('/', ['middleware' => 'auth', 'uses' => 'AllofhomeController@index']);
+
+//Route::group(['middleware' => 'auth'], function()
+//{
+//    Route::get('/', [
+//        'as' => 'index',
+//        'uses' => 'AllofhomeController@index'
+//    ]);
+//
+//});
+
+Route::get('signup', [
+    'as' => 'signup',
+    'uses' => 'Frontend\SignupController@signup'
 ]);
 
 Route::get('login', [
-	'as' => 'login',
-	'uses' => 'AllofhomeController@login'
+    'as' => 'signin',
+    'uses' => 'AllofhomeController@login'
 ]);
+
+Route::post('login', [
+    'as' => 'postsignin',
+    'uses' => 'Auth\AuthController@postLogin'
+]);
+
+Route::get('signout', [
+    'as' => 'signout',
+    'uses' => 'Auth\AuthController@logout'
+]);
+
+Route::get('forgotpwd', [
+    'as' => 'forgotpwd',
+    'uses' => 'Auth\PasswordController@getEmail'
+]);
+
+Route::post('forgotpwd', [
+    'as' => 'postforgetpwd',
+    'uses' => 'Auth\PasswordController@postEmail'
+]);
+
+Route::get('resetpwd/{token?}', [
+    'as' => 'resetpwd',
+    'uses' => 'Auth\PasswordController@getReset'
+]);
+
+Route::post('resetpwd', [
+    'as' => 'postresetpwd',
+    'uses' => 'Auth\PasswordController@postReset'
+]);
+/*--------------------------------------------------------------*/
 
 
 Route::get('fblogin', [
@@ -41,15 +85,10 @@ Route::get('twlogged', [
 	'uses' => 'Auth\AuthController@twlogged'
 ]);
 
-Route::get('twlogin', [
-	'as' => 'twlogin',
-	'uses' => 'SocialLoginController@TWlogin'
-]);
-
-Route::get('signup', [
-	'as' => 'signup',
-	'uses' => 'AllofhomeController@signup'
-]);
+//Route::get('twlogin', [
+//	'as' => 'twlogin',
+//	'uses' => 'SocialLoginController@TWlogin'
+//]);
 
 Route::get('aboutus', [
 	'as' => 'aboutus_basic',

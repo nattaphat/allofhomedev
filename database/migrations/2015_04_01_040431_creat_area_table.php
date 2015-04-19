@@ -26,7 +26,7 @@ class CreatAreaTable extends Migration {
 	 */
 	public function down()
 	{
-		Schmema::drop('area');
+		Schema::drop('area');
 	}
 
 }

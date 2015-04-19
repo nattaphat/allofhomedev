@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Models\airportRailLink;
+use App\Models\AirportRailLink;
 
 // composer require laracasts/testdummy
 use Laracasts\TestDummy\Factory as TestDummy;
@@ -53,7 +53,7 @@ class AplTableSeeder extends Seeder
 
         DB::table('airport_link')->delete();
         foreach ($apls as $apl){
-            airportRailLink::create($apl);
+            AirportRailLink::create($apl);
         }
     }
 }

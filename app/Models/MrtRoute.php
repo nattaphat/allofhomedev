@@ -2,8 +2,10 @@
 
 use Illuminate\Database\Eloquent\Model;
 
-class geoRegion extends Model {
-    protected $table = 'geo_region';
+class MrtRoute extends Model {
+
+    protected $table = 'mrt_route';
     protected $primaryKey = 'id';
     public $timestamps = false;
+
 }

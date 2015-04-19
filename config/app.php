@@ -138,6 +138,7 @@ return [
 		'Laravel\Socialite\SocialiteServiceProvider',
 		'SammyK\LaravelFacebookSdk\LaravelFacebookSdkServiceProvider',
 		'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider',
+        'Illuminate\Html\HtmlServiceProvider',
 
 		/*
 		 * Application Service Providers...
@@ -196,7 +197,9 @@ return [
 		'Validator' => 'Illuminate\Support\Facades\Validator',
 		'View'      => 'Illuminate\Support\Facades\View',
 		'Socialize' => 'Laravel\Socialite\Facades\Socialite',
-		'Facebook' => 'SammyK\LaravelFacebookSdk\FacebookFacade',
+		'Facebook'  => 'SammyK\LaravelFacebookSdk\FacebookFacade',
+        'Html'      => 'Illuminate\Html\HtmlFacade',
+        'Form'      => 'Illuminate\Html\FormFacade',
 	],
 
 ];

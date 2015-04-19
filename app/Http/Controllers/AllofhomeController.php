@@ -58,9 +58,10 @@ class AllofhomeController extends Controller {
         return view('web.index');
     }
 
+
     public function login()
     {
-        return view('web.login');
+        return view('web.frontend.signin');
     }
 
     public function about_ex()

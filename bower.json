@@ -23,6 +23,9 @@
     "html5shiv": "~3.7.2",
     "responsejs": "~0.9.1",
     "fontawesome": "~4.3.0",
-    "bootstrap-social": "~4.8.0"
+    "bootstrap-social": "~4.8.0",
+    "bootstrap-fileinput": "~4.1.8",
+    "bootstrap-datepicker": "~1.4.0",
+    "remarkable-bootstrap-notify": "~3.0.2"
   }
 }

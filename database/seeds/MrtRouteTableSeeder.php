@@ -4,7 +4,7 @@ use Illuminate\Database\Seeder;
 
 // composer require laracasts/testdummy
 use Laracasts\TestDummy\Factory as TestDummy;
-use App\Models\mrtRoute;
+use App\Models\MrtRoute;
 
 class MrtRouteTableSeeder extends Seeder
 {
@@ -48,7 +48,7 @@ class MrtRouteTableSeeder extends Seeder
 
         DB::table('mrt_route')->delete();
         foreach ($mrt_routes as $mrt){
-            mrtRoute::create($mrt);
+            MrtRoute::create($mrt);
         }
     }
 }
