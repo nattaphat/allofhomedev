@@ -4,94 +4,77 @@
 <div class="container">
     <!-- Sign Up form -->
     <div class="row">
-        <form class="form-login form-wrapper form-medium" role="form">
+        <form
+                class="form-login form-wrapper form-medium"
+                action="{{route('postsignup')}}"
+                id="frm_signup"
+                method="post"
+                role="form">
             <input type="hidden" id="role_id" name="role_id" value="3">
+            <input type="hidden" name="_token" value="{{ csrf_token() }}">
             <h3 class="title-divider">
                 <span>ลงทะเบียนใช้งาน</span>
-                <small>ลงทะเบียนเรียบร้อยแล้ว? <a href="{{ URL::to('login') }}" data-toggle="modal">เข้าสู่ระบบที่นี่</a>.</small>
+                <small>ลงทะเบียนเรียบร้อยแล้ว?
+                    <a href="{{ URL::to('login') }}" data-toggle="modal">เข้าสู่ระบบที่นี่</a>.
+                </small>
             </h3>
             <h5>
                 ข้อมูลบัญชีใช้งาน
             </h5>
 
-            <div class="form-group">
-                <article class="thumbnail">
-                    <img src="//placehold.it/100x100" class="img-circle" alt="รูปโปรไฟล์">
-                </article>
-            </div>
-            <div class="form-group">
+            <div class="form-group @if ($errors->has('first_name')) {{ "has-error" }} @endif">
                 <label class="sr-only" for="first_name">ชื่อ</label>
-                <input type="text" class="form-control" id="first_name" placeholder="ชื่อ">
+                <input type="text" class="form-control" id="first_name"
+                       value="{{ old('first_name')}}" placeholder="ชื่อ">
+                <p class="help-block">
+                    {{ $errors->first('first_name') }}
+                </p>
             </div>
-            <div class="form-group">
+            <div class="form-group @if ($errors->has('last_name')) {{ "has-error" }} @endif">
                 <label class="sr-only" for="last_name">นามสกุล</label>
-                <input type="text" class="form-control" id="last_name" placeholder="นามสกุล">
+                <input type="text" class="form-control" id="last_name"
+                       value="{{ old('last_name')}}"
+                       placeholder="นามสกุล">
+                <p class="help-block">
+                    {{ $errors->first('last_name') }}
+                </p>
             </div>
-            <div class="form-group">
+            <div class="form-group @if ($errors->has('username')) {{ "has-error" }} @endif">
                 <label class="sr-only" for="username">Userame</label>
-                <input type="text" class="form-control" id="username" placeholder="Username">
+                <input type="text" class="form-control" id="username"
+                       value="{{ old('username')}}"
+                       placeholder="Username">
+                <p class="help-block">
+                    {{ $errors->first('username') }}
+                </p>
             </div>
-            <div class="form-group">
+            <div class="form-group @if ($errors->has('email')) {{ "has-error" }} @endif">
                 <label class="sr-only" for="email">Email address</label>
-                <input type="email" class="form-control" id="email" placeholder="Email address">
+                <input type="email" class="form-control" id="email"
+                       value="{{ old('email')}}"
+                       placeholder="Email address">
+                <p class="help-block">
+                    {{ $errors->first('email') }}
+                </p>
             </div>
-            <div class="form-group">
+            <div class="form-group @if ($errors->has('password')) {{ "has-error" }} @endif">
                 <label class="sr-only" for="password">Password</label>
-                <input type="password" class="form-control" id="password" placeholder="Password">
+                <input type="password" class="form-control" id="password"
+                       value="{{ old('password')}}"
+                       placeholder="Password">
+                <p class="help-block">
+                    {{ $errors->first('password') }}
+                </p>
             </div>
-            <div class="form-group">
-                <select class="form-control" id="salary">
-                    <option>-กรุณาเลือกเงินเดือน-</option>
-                    @foreach ($salary as $key => $value)
-                        <option id="{{ $value->id }}" > {{ $value->range }}</option>
-                    @endforeach
-                </select>
-            </div>
-            <div class="form-group">
-                <label class="sr-only" for="telephone">เบอร์โทร/มือถือ</label>
-                <input type="text" class="form-control" id="telephone" placeholder="02-123-4567 ต่อ 123">
-            </div>
-            <div class="form-group">
-                <label class="sr-only" for="birthday">วัน-เดือน-ปี เกิด</label>
-                <input type="text" class="form-control" id="birthday" placeholder="วว-ดด-ปปปป วันเดือนปีเกิด">
-            </div>
-            <div class="form-group">
-                <div class="radio">
-                    <label>
-                        <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1">
-                        ชาย
-                    </label>
-                </div>
-                <div class="radio">
-                    <label>
-                        <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
-                        หญิง
-                    </label>
-                </div>
-            </div>
-            <div class="form-group">
-                <select class="form-control" id="prov">
-                    <option>-กรุณาเลือกจังหวัด-</option>
-                    @foreach ($prov as $key => $value)
-                        <option id="{{ $value->id }}" > {{ $value->name }}</option>
-                    @endforeach
-                </select>
-            </div>
-            <div class="form-group">
-                <select class="form-control amph" id="amph">
-                    <option>-กรุณาเลือกอำเภอ-</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <select class="form-control tamb" id="tamb">
-                    <option>-กรุณาเลือกตำบล-</option>
-                </select>
-            </div>
-            <div class="checkbox">
-                <label>
-                    <input type="checkbox" value="term">
-                    ฉันยอมรับ <a href="" target="_blank">เงื่อนไขการใช้งาน</a>
-                </label>
+
+            <div class="form-group @if ($errors->has('password_confirmation')) {{ "has-error" }} @endif">
+                <label class="sr-only" for="password_confirmation">Password</label>
+                <input type="password" class="form-control" id="password_confirmation"
+                       value="{{ old('password_confirmation')}}"
+                       placeholder="Re-Password">
+                <p class="help-block">
+                    {{ $errors->first('password_confirmation') }}
+                </p>
             </div>
             <button class="btn btn-primary" type="submit">Sign up</button>
         </form>

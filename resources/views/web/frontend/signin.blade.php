@@ -37,9 +37,10 @@
             </label>
         </div>
         <div class="form-group">
-            <button type="submit" class="btn btn-primary loginaction">Login</button> Or
-            <button type="button" class="btn btn-primary loginbytw"><i class="fa fa-twitter fa-4"></i> Twitter</button>
-            <button type="button" class="btn btn-primary loginbyfb"><i class="fa fa-facebook fa-4"></i> Facebook</button>
+            <button type="submit" class="btn btn-primary loginaction">Login</button>
+            {{--Or--}}
+            {{--<button type="button" class="btn btn-primary loginbytw"><i class="fa fa-twitter fa-4"></i> Twitter</button>--}}
+            {{--<button type="button" class="btn btn-primary loginbyfb"><i class="fa fa-facebook fa-4"></i> Facebook</button>--}}
         </div>
         <div class="form-group">
             <small>Not a member? <a href="{{URL::to('signup')}}" class="signup">Sign up now!</a></small>
