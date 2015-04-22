@@ -20,7 +20,7 @@ class CreateGeoAmphoeTable extends Migration {
             $table->string('amphid',2)->nullable(false);
             $table->primary(['provid', 'amphid']);
             $table->unique(['provid', 'amphid']);
-            $table->integer('region_id')->nullable(false);
+            $table->integer('region_id')->unsigned()->nullable(false);
             $table->foreign('region_id')->references('id')->on('geo_region');
         });
 	}

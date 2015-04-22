@@ -15,7 +15,7 @@ class CreatSubAreaTable extends Migration {
         Schema::create('subarea', function(Blueprint $table)
         {
             $table->increments('id');
-            $table->integer('area_id')->nullable(false);
+            $table->integer('area_id')->unsigned()->nullable(false);
             $table->string('subarea_name')->nullable(false);
         });
 	}

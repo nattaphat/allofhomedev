@@ -15,7 +15,7 @@ class CreateBranchTable extends Migration {
         Schema::create('branch', function(Blueprint $table)
         {
             $table->increments('id');
-            $table->integer('shop_id')->nullable(false);
+            $table->integer('shop_id')->unsigned()->nullable(false);
             $table->foreign('shop_id')
                 ->references('id')
                 ->on('shop')
@@ -43,7 +43,7 @@ class CreateBranchTable extends Migration {
 //            $table->foreign('provice_id')->references('provid')->on('geo_province');
             $table->integer('region_id')->nullable(false);
             $table->foreign('region_id')->references('id')->on('geo_region');
-            $table->integer('area_id')->nullable(true);
+            $table->integer('area_id')->unsigned()->nullable(true);
             $table->foreign('area_id')->references('id')->on('area');
             $table->integer('subarea_id')->nullable(true);
             $table->foreign('subarea_id')->references('id')->on('subarea');

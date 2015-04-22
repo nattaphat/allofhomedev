@@ -17,7 +17,7 @@ class CreateUsersTable extends Migration {
 			$table->increments('id');
             $table->integer('salary_id')->nullable(true);
             $table->foreign('salary_id')->references('id')->on('salary');
-            $table->integer('attachment_id')->nullable(true);
+            $table->integer('attachment_id')->unsigned()->nullable(true);
             $table->foreign('attachment_id')->references('id')->on('attachment');
             $table->string('username')->nullable(false);
             $table->string('password')->nullable(false);

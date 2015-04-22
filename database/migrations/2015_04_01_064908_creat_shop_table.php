@@ -15,9 +15,9 @@ class CreatShopTable extends Migration {
         Schema::create('shop', function(Blueprint $table)
         {
             $table->increments('id');
-            $table->integer('user_id')->nullable(false);
+            $table->integer('user_id')->unsigned()->nullable(false);
             $table->foreign('user_id')->references('id')->on('users');
-            $table->integer('business_type_id')->nullable(false);
+            $table->integer('business_type_id')->unsigned()->nullable(false);
             $table->foreign('business_type_id')->references('id')->on('business_type');
             $table->integer('attachment_id')->nullable(false);
             $table->foreign('attachment_id')->references('id')->on('attachment');

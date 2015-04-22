@@ -188,6 +188,9 @@
 
         <!-- JS plugins required on all pages NOTE: Additional non-required plugins are loaded ondemand as of AppStrap 2.5 -->
 
+        <!--JSSOR slider -->
+        <script src={{ asset('js/lib/jssor-slider/js/jssor.slider.mini.js') }}></script>
+
         <!--Custom scripts mainly used to trigger libraries/plugins -->
         <script src={{ asset('js/script.min.js') }}></script>
 

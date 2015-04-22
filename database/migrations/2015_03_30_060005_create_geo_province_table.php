@@ -17,7 +17,7 @@ class CreateGeoProvinceTable extends Migration {
             $table->string('name')->nullable(false);
             $table->string('provid', 2)->nullable(false);
             $table->primary('provid');
-            $table->integer('region_id')->nullable(false);
+            $table->integer('region_id')->unsigned()->nullable(false);
             $table->foreign('region_id')->references('id')->on('geo_region');
         });
 	}
