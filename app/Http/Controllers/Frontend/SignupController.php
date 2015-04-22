@@ -7,6 +7,7 @@ use App\Models\Salary;
 use App\Models\Provinces;
 use Request;
 use Validator;
+use App\User;
 
 class SignupController extends Controller {
 
@@ -22,6 +23,7 @@ class SignupController extends Controller {
     */
     public $salaryObj;
     public $provObj;
+    public $userObj;
 
     /**
      * Create a new controller instance.
@@ -32,6 +34,7 @@ class SignupController extends Controller {
     {
         $this->salaryObj = new Salary();
         $this->provObj = new Provinces();
+        $this->userObj = new User();
         $this->middleware('guest');
     }
 
@@ -51,14 +54,13 @@ class SignupController extends Controller {
     public function postSignup()
     {
         $data = Request::all();
-
         $rules = [
             'first_name' => 'required',
             'last_name' => 'required',
-            'username' => 'required',
+            'username' => 'required|min:6',
             'email' => 'required|email',
-            'password' => 'required|confirmed',
-            'password_confirmation' => 'required'
+            'password' => 'required|confirmed|min:6',
+            'password_confirmation' => 'required|min:6'
         ];
         $messages = [
             'required' => 'The :attribute field is required.',
@@ -73,30 +75,43 @@ class SignupController extends Controller {
 
         if ($validator->fails())
         {
-//            dd($validator->messages());
             return redirect('signup')
                 ->withErrors($validator)
                 ->withInput(\Input::except(array('password', 'password_confirmation')));
         }
         else{
-
-            if(User::where('email', '=', Input::get('email'))->exists()){
-                // user found
-                \Session::flash('notifyUser', 'Message|Welcome to AllOfHome.|success');
-                return redirect('/');
+            $user = User::where('email', '=', \Input::get('email'))
+                            ->orWhere('username','=',\Input::get('username'))
+                            ->exists();
+            if($user){// user exists
+                return redirect('signup')
+                        ->withErrors(['msg'=>'Your email or username already registered.'])
+                        ->withInput(\Input::except(array('password', 'password_confirmation')));
             } else {
-                return redirect('login')
-                    ->withErrors(['msg'=>'User not found or you not register yet.'])
-                    ->withInput(\Input::except('password'));
 
-                \Session::flash('notifyUser', 'Message|Welcome to AllOfHome.|success');
+                $this->userObj->username = $data['username'];
+                $this->userObj->password = bcrypt($data['password']);
+                $this->userObj->role = $data['role_id'];
+                $this->userObj->firstname = $data['first_name'];
+                $this->userObj->lastname = $data['last_name'];
+                $this->userObj->email = $data['email'];
+                $this->userObj->signup_type = 'regular';
+                $this->userObj->save();
+
+                (isset($data['rememberme']))? $remember = true : $remember=false;
+                \Auth::attempt(
+                    array(
+                        'email'     => $data['email'],
+                        'password'  => $data['password']
+                    ),
+                    $remember);
+
+                \Session::flash('notifyUser', 'Message|Register completed and Welcome to AllOfHome.|success');
                 return redirect('/');
-                //Carbon::now();
+//                //Carbon::now();
             }
         }
-
-
-    }
+    }//end func
 
 }
 
