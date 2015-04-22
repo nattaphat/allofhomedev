@@ -4,11 +4,11 @@ use Config;
 use App\Http\Controllers\Controller;
 use App\User;
 
-class UserController extends Controller {
+class BackendUserController extends Controller {
 
     public function index()
     {
-        $user = new User();
-        return $user::find(1)->get();
+        $users = User::all();
+        return view('web.backend.user')->with('users', $users);
     }
 }

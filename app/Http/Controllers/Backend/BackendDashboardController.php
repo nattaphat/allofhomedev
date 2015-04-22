@@ -3,11 +3,10 @@
 use Config;
 use App\Http\Controllers\Controller;
 
-class DashboardController extends Controller {
+class BackendDashboardController extends Controller {
 
     public function index()
     {
         return view('web.backend.dashboard');
     }
-
 }
