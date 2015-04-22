@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\Registrar;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 use Request;
 use Validator;
+//use Laravel\Socialite;
 
 class AuthController extends Controller {
 
@@ -98,6 +99,30 @@ class AuthController extends Controller {
             \Auth::logout();
         }
         return redirect('/');
+    }
+
+    public function redirectToProvider()
+    {
+        return \Socialize::with('twitter')->redirect();
+    }
+
+    public function handleProviderCallback()
+    {
+        $user = \Socialize::with('twitter')->user();
+        dd($user->getEmail());
+        // $user->token;
+    }
+
+    public function redirectFBToProvider()
+    {
+        return \Socialize::with('facebook')->redirect();
+    }
+
+    public function handleFBProviderCallback()
+    {
+        $user = \Socialize::with('facebook')->user();
+        dd($user->getEmail());
+        // $user->token;
     }
 
 	// public function login(SocialLoginController $authenticateUser, Request $request)

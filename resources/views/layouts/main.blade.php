@@ -45,9 +45,6 @@
       <!--Your custom colour override-->
       <link type="text/css" href="#" id="colour-scheme" rel="stylesheet">
     
-      <!-- Your custom override -->
-      <link type="text/css" href="{{ asset('css/custom-style.css') }}" rel="stylesheet">
-    
       <!-- HTML5 shiv & respond.js for IE6-8 support of HTML5 elements & media queries -->
       <!--[if lt IE 9]>
             <script src="{{ asset('plugins/html5shiv/dist/html5shiv.js') }}"></script>
@@ -60,9 +57,13 @@
       <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{ asset('img/icons/114x114.png') }}">
       <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{ asset('img/icons/72x72.png') }}">
       <link rel="apple-touch-icon-precomposed" href="{{ asset('img/icons/default.png') }}">
-      <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,300' rel='stylesheet' type='text/css'>
-      <link href='http://fonts.googleapis.com/css?family=Rambla' rel='stylesheet' type='text/css'>
-      <link href='http://fonts.googleapis.com/css?family=Calligraffitti' rel='stylesheet' type='text/css'>
+
+      <!-- Your custom override -->
+      <link type="text/css" href="{{ asset('css/custom-style.css') }}" rel="stylesheet">
+
+      {{--<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,300' rel='stylesheet' type='text/css'>--}}
+      {{--<link href='http://fonts.googleapis.com/css?family=Rambla' rel='stylesheet' type='text/css'>--}}
+      {{--<link href='http://fonts.googleapis.com/css?family=Calligraffitti' rel='stylesheet' type='text/css'>--}}
     
       <!--Plugin: Retina.js (high def image replacement) - @see: http://retinajs.com/-->
       <script src="{{ asset('plugins/retina/dist/retina.min.js') }}"></script>

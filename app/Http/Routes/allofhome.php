@@ -33,6 +33,11 @@ Route::get('signup', [
     'uses' => 'Frontend\SignupController@signup'
 ]);
 
+Route::post('postsignup', [
+    'as' => 'postsignup',
+    'uses' => 'Frontend\SignupController@postSignup'
+]);
+
 Route::get('login', [
     'as' => 'signin',
     'uses' => 'AllofhomeController@login'
@@ -67,6 +72,27 @@ Route::post('resetpwd', [
     'as' => 'postresetpwd',
     'uses' => 'Auth\PasswordController@postReset'
 ]);
+
+Route::get('twlogin', [
+    'as' => 'twlogin',
+    'uses' => 'Auth\AuthController@redirectToProvider'
+]);
+
+Route::get('twpostlogin', [
+    'as' => 'twpostlogin',
+    'uses' => 'Auth\AuthController@handleProviderCallback'
+]);
+
+Route::get('fblogin', [
+    'as' => 'fblogin',
+    'uses' => 'Auth\AuthController@redirectFBToProvider'
+]);
+
+Route::get('fbpostlogin', [
+    'as' => 'fbpostlogin',
+    'uses' => 'Auth\AuthController@handleFBProviderCallback'
+]);
+
 /*--------------------------------------------------------------*/
 
 Route::get('fblogin', [

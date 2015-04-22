@@ -114,6 +114,54 @@ font-family: "Roboto Regular";
     url("../fonts/macstroke/Regular.ttf") format("truetype");
 }
 
+
+/*------------------------- Google fonts ----------------------*/
+
+@font-face {
+    font-family: 'Calligraffitti';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Calligraffitti'), local('Calligraffitti-Regular'),
+    url("../fonts/gfonts/vLVN2Y-z65rVu1R7lWdvyFsJabEw4YBLEUaE5wXPU60.woff2") format('woff2'),
+    url("../fonts/gfonts/vLVN2Y-z65rVu1R7lWdvyCsProE6K2albZZcEbhKl38.woff") format('woff');
+}
+
+@font-face {
+    font-family: 'Rambla';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Rambla'), local('Rambla-Regular'),
+    url("../fonts/gfonts/_dOruQeaMX8CyCptDfrBKuvvDin1pK8aKteLpeZ5c0A.woff2") format('woff2'),
+    url("../fonts/gfonts/4oKK3Z-EimNu4ISiv21vMuvvDin1pK8aKteLpeZ5c0A.woff") format('woff');
+}
+
+@font-face {
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 300;
+    src: local('Open Sans Light'), local('OpenSans-Light'),
+    url("../fonts/gfonts/DXI1ORHCpsQm3Vp6mXoaTRampu5_7CjHW5spxoeN3Vs.woff2") format('woff2'),
+    url("../fonts/gfonts/DXI1ORHCpsQm3Vp6mXoaTaRDOzjiPcYnFooOUGCOsRk.woff") format('woff');
+}
+@font-face {
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Open Sans'), local('OpenSans'),
+    url("../fonts/gfonts/cJZKeOuBrn4kERxqtaUH3ZBw1xU1rKptJj_0jans920.woff2") format('woff2'),
+    url("../fonts/gfonts/cJZKeOuBrn4kERxqtaUH3bO3LdcAZYWl9Si6vvxL-qU.woff") format('woff');
+}
+@font-face {
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 700;
+    src: local('Open Sans Bold'), local('OpenSans-Bold'),
+    url("../fonts/gfonts/k3k702ZOKiLJc3WVjuplzBampu5_7CjHW5spxoeN3Vs.woff2") format('woff2'),
+    url("../fonts/gfonts/k3k702ZOKiLJc3WVjuplzKRDOzjiPcYnFooOUGCOsRk.woff") format('woff');
+}
+
+/*-------------------------------------------------------------*/
+
 body,h1, h2, h3, h4, h5, h6, h7,
 html,a {
   font-family: "Helvetica Neue", "Roboto Light", "Sukhumvit Set", "Thai Sans Neue Fixed" !important;
