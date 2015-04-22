@@ -60,11 +60,13 @@ class SignupController extends Controller {
             'username' => 'required|min:6',
             'email' => 'required|email',
             'password' => 'required|confirmed|min:6',
-            'password_confirmation' => 'required|min:6'
+            'password_confirmation' => 'required|min:6',
+            'g-recaptcha-response' => 'required|recaptcha'
         ];
         $messages = [
-            'required' => 'The :attribute field is required.',
             'email' => 'Invalid :attribute format.',
+            "g-recaptcha-response.required" => 'Verify you are not robot.',
+            'required' => 'The :attribute field is required.',
         ];
 
         $validator = Validator::make(
@@ -96,7 +98,7 @@ class SignupController extends Controller {
                 $this->userObj->lastname = $data['last_name'];
                 $this->userObj->email = $data['email'];
                 $this->userObj->signup_type = 'regular';
-                $this->userObj->save();
+                //$this->userObj->save();
 
                 (isset($data['rememberme']))? $remember = true : $remember=false;
                 \Auth::attempt(

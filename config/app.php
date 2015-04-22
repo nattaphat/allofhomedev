@@ -139,6 +139,7 @@ return [
 		'SammyK\LaravelFacebookSdk\LaravelFacebookSdkServiceProvider',
 		'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider',
         'Illuminate\Html\HtmlServiceProvider',
+        'Greggilbert\Recaptcha\RecaptchaServiceProvider',
 
 		/*
 		 * Application Service Providers...
@@ -200,6 +201,7 @@ return [
 		'Facebook'  => 'SammyK\LaravelFacebookSdk\FacebookFacade',
         'Html'      => 'Illuminate\Html\HtmlFacade',
         'Form'      => 'Illuminate\Html\FormFacade',
+        'Recaptcha' => 'Greggilbert\Recaptcha\Facades\Recaptcha',
 	],
 
 ];
