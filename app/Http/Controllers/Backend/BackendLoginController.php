@@ -10,7 +10,7 @@ use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 use Request;
 use Validator;
 
-class LoginController extends Controller {
+class BackendLoginController extends Controller {
 
     use AuthenticatesAndRegistersUsers;
 
@@ -63,8 +63,27 @@ class LoginController extends Controller {
                     'username'  => $data['email_or_username'],
                     'password'  => $data['password']
                 ),$remember)) {
-                // success check here to redirect to properly user page
-                return redirect('backend/index');
+
+                // admin or superadmin
+                $user = User::where('username','=',$data['email_or_username'])
+                    ->whereIn('role',[1,2])
+                    ->get();
+
+                $user2 = User::where('email','=',$data['email_or_username'])
+                    ->whereIn('role',[1,2])
+                    ->get();
+
+                if(count($user) == 0 && count($user2) == 0)
+                {
+                    // User not allowed
+                    return redirect('backend/login')
+                        ->withErrors(['msg'=>'Permission, user is not allowed to access !'])
+                        ->withInput(\Input::except('password'));
+                }
+                else
+                {
+                    return redirect('backend/index');
+                }
             } else {
                 return redirect('backend/login')
                     ->withErrors(['msg'=>'User not found or you not register yet.'])
