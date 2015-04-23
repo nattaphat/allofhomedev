@@ -19,15 +19,6 @@ Route::get('/', [
 
 //Route::get('/', ['middleware' => 'auth', 'uses' => 'AllofhomeController@index']);
 
-//Route::group(['middleware' => 'auth'], function()
-//{
-//    Route::get('/', [
-//        'as' => 'index',
-//        'uses' => 'AllofhomeController@index'
-//    ]);
-//
-//});
-
 Route::get('signup', [
     'as' => 'signup',
     'uses' => 'Frontend\SignupController@signup'
@@ -48,10 +39,6 @@ Route::post('login', [
     'uses' => 'Auth\AuthController@postLogin'
 ]);
 
-Route::get('signout', [
-    'as' => 'signout',
-    'uses' => 'Auth\AuthController@logout'
-]);
 
 Route::get('forgotpwd', [
     'as' => 'forgotpwd',
@@ -92,6 +79,35 @@ Route::get('fbpostlogin', [
     'as' => 'fbpostlogin',
     'uses' => 'Auth\AuthController@handleFBProviderCallback'
 ]);
+
+//Login first
+Route::group(['middleware' => 'auth'], function()
+{
+    Route::get('signout', [
+        'as' => 'signout',
+        'uses' => 'Auth\AuthController@logout'
+    ]);
+
+    Route::get('user/accinfo', [
+        'as' => 'user_accinfo',
+        'uses' => 'Frontend\UserinfoController@userInfo'
+    ]);
+
+    Route::get('user/uasge', [
+        'as' => 'user_usage',
+        'uses' => 'AllofhomeController@index'
+    ]);
+
+    Route::get('user/msg', [
+        'as' => 'user_msg',
+        'uses' => 'AllofhomeController@index'
+    ]);
+
+    Route::get('post/add', [
+        'as' => 'post_add',
+        'uses' => 'AllofhomeController@index'
+    ]);
+});
 
 /*--------------------------------------------------------------*/
 

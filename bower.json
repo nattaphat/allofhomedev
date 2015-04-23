@@ -32,6 +32,7 @@
     "raphael": "~2.1.4",
     "morris.js": "~0.5.1",
     "jssor-slider": "*",
-    "select2-dist": "~3.5.2"
+    "select2-dist": "~3.5.2",
+    "dropzone": "~4.0.1"
   }
 }

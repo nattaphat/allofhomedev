@@ -13,17 +13,43 @@
 
         <!--social media icons-->
         @if (Auth::check())
-        <div class="social-media">
+        <div class="navbar-collapse collapse pull-right">
             <!--@todo: replace with company social media details-->
-            <a href="#"> <i class="fa fa-user fa-1"></i> </a>
-            <a href="#"> <i class="fa fa-star fa-1"></i> </a>
-            <a href="#"> <i class="fa fa-envelope fa-1"></i> </a>
-            <a href=" {{ URL::to('signout') }}"> <i class="fa fa-sign-out fa-1"></i> </a>
+            <ul class="nav navbar-nav">
+                <li>
+                    <a href="{{ URL::route('post_add') }}"><i class="glyphicon glyphicon-plus"></i> เพิ่มประกาศ</a>
+                </li>
+                <li>
+                    <a href="{{ URL::route('user_msg') }}" class="btn btn-link"> <i class="glyphicon glyphicon-envelope" title="ข้อความ"></i></a>
+                </li>
+                <li class="dropdown">
+                    <a
+                            href="#"
+                            class="dropdown-toggle"
+                            id="blog-drop"
+                            data-toggle="dropdown"
+                            data-hover="dropdown">บัญชีผู้ใช้</a>
+                    <!-- Dropdown Menu -->
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="blog-drop">
+                        <li role="presentation">
+                            <a role="menuitem" href="{{ URL::route('user_accinfo') }}" tabindex="-1" class="menu-item">หน้าของฉัน</a>
+                        </li>
+                        <li role="presentation">
+                            <a role="menuitem" href="{{ URL::route('user_usage') }}" tabindex="-1" class="menu-item">จัดการข้อมูลส่วนตัว</a>
+                        </li>
+                        <li role="presentation">
+                            <a role="menuitem" href="{{ URL::to('signout') }}" tabindex="-1" class="menu-item">ออกจากระบบ</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+
         </div>
         @endif
 
     </div>
     <div class="col-xs-4 col-xs-pull-8">
+        @if (!Auth::check())
         <!--user menu-->
         <div class="btn-group user-menu">
             <a href="login.htm" class="btn btn-link login-mobile"><i class="fa fa-user"></i></a>
@@ -54,5 +80,6 @@
             </ul>
         </div> -->
         </div>
+        @endif
     </div>
 </div>

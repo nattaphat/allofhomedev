@@ -63,3 +63,7 @@ php artisan make:model --no-migration geoRegion
 15 - 30 ล้านบาท
 30 ล้านบาท ขึ้นไป
 
+https://laracasts.com/discuss/channels/general-discussion/jquery-file-upload-with-laravel
+http://www.tutsway.com/laravelfileupload.php
+http://tutsnare.com/upload-files-in-laravel/
+

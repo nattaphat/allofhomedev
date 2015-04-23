@@ -40,7 +40,7 @@
       <link type="text/css" href="{{ asset('plugins/flag-icon-css/css/flag-icon.min.css') }}" rel="stylesheet">
     
       <!-- Theme style -->
-      <link type="text/css" href="{{ asset('css/theme-style.min.css') }}" rel="stylesheet">
+      <link type="text/css" href="{{ asset('css/theme-style.css') }}" rel="stylesheet">
     
       <!--Your custom colour override-->
       <link type="text/css" href="#" id="colour-scheme" rel="stylesheet">
@@ -191,6 +191,9 @@
 
         <!--JSSOR slider -->
         <script src={{ asset('js/lib/jssor-slider/js/jssor.slider.mini.js') }}></script>
+
+  <!--JSSOR slider -->
+  <script src={{ asset('js/lib/jssor-slider/js/jssor.slider.mini.js') }}></script>
 
         <!--Custom scripts mainly used to trigger libraries/plugins -->
         <script src={{ asset('js/script.min.js') }}></script>

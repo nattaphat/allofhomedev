@@ -16,8 +16,10 @@
 
                 <div class="form-group">
                     <article class="thumbnail">
-                        <img src="//placehold.it/100x100" class="img-circle" alt="รูปโปรไฟล์">
+                        <img src="//placehold.it/100x100" id="userInfoPhoto" class="img-circle" alt="รูปโปรไฟล์">
                     </article>
+
+                    <input id="userInfoPhotoUpload" type="file" class="file" data-preview-file-type="text">
                 </div>
                 <div class="form-group">
                     <label class="sr-only" for="first_name">ชื่อ</label>
