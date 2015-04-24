@@ -31,6 +31,9 @@
     
       <!-- Bootstrap Social -->
       <link type="text/css" type="text/css" href="{{ asset('js/lib/bootstrap-social/bootstrap-social.css') }}" rel="stylesheet">
+
+      <!-- Dropzone -->
+      <link type="text/css" type="text/css" href="{{ asset('js/lib/dropzone/min/dropzone.min.css') }}" rel="stylesheet">
     
       <!-- Plugins required on all pages NOTE: Additional non-required plugins are loaded ondemand as of AppStrap 2.5 -->
       <!-- Plugin: animate.css (animated effects) - http://daneden.github.io/animate.css/ -->
@@ -192,8 +195,8 @@
         <!--JSSOR slider -->
         <script src={{ asset('js/lib/jssor-slider/js/jssor.slider.mini.js') }}></script>
 
-  <!--JSSOR slider -->
-  <script src={{ asset('js/lib/jssor-slider/js/jssor.slider.mini.js') }}></script>
+        <!--Dropzone -->
+        <script src={{ asset('js/lib/dropzone/dist/min/dropzone.min.js') }}></script>
 
         <!--Custom scripts mainly used to trigger libraries/plugins -->
         <script src={{ asset('js/script.min.js') }}></script>
