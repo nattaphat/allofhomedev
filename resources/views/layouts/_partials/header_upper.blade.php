@@ -38,6 +38,9 @@
                             <a role="menuitem" href="{{ URL::route('user_usage') }}" tabindex="-1" class="menu-item">จัดการข้อมูลส่วนตัว</a>
                         </li>
                         <li role="presentation">
+                            <a role="menuitem" href="{{ URL::route('user_passwd') }}" tabindex="-1" class="menu-item">เปลี่ยนรหัสผ่าน</a>
+                        </li>
+                        <li role="presentation">
                             <a role="menuitem" href="{{ URL::to('signout') }}" tabindex="-1" class="menu-item">ออกจากระบบ</a>
                         </li>
                     </ul>
