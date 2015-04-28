@@ -93,6 +93,11 @@ Route::group(['middleware' => 'auth'], function()
         'uses' => 'Frontend\UserinfoController@userInfo'
     ]);
 
+	Route::get('user/passwd', [
+		'as' => 'user_passwd',
+		'uses' => 'Frontend\UserinfoController@userChangPwd'
+	]);
+
     Route::get('user/uasge', [
         'as' => 'user_usage',
         'uses' => 'AllofhomeController@index'

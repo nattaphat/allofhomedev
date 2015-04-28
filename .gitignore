@@ -5,8 +5,10 @@
 /public/js/lib
 /web
 _ide_helper.php
-/.idea
 composer.phar
 auth.json
+=======
+.idea/
 /.idea/
 *.iml
+.idea

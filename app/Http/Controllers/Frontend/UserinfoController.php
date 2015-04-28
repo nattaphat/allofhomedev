@@ -6,27 +6,51 @@ use App\User;
 use App\Models\Salary;
 use Illuminate\Http\Request;
 use App\Models\Provinces;
+use Illuminate\Contracts\Auth\Guard;
+use Illuminate\Support\Facades\Auth;
 
 class UserinfoController extends Controller {
 
     private $salaryObj;
     private $provObj;
 
-	public function __construct()
+    /**
+     * @param Guard $auth
+     */
+	public function __construct(Guard $auth)
     {
+        $this->auth = $auth;
         $this->salaryObj = new Salary();
         $this->provObj = new Provinces();
 
     }
 
+    /**
+     * @return $this
+     */
     public function userInfo()
     {
         $salary = $this->salaryObj->getAllSalary();
-        $prov = $this->provObj->getAllProvince();
-
+        $userInfo = Auth::user();
         return view('web.frontend.useraccount')
                 ->with('salary',$salary)
-                ->with('prov', $prov);
+                ->with('userInfo',$userInfo);
+    }
+
+    /**
+     *
+     */
+    public function postUpdateInfo()
+    {
+
+    }
+
+    /**
+     * 
+     */
+    public function userChangPwd()
+    {
+
     }
 
 }

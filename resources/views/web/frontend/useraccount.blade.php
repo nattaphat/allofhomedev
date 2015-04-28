@@ -23,23 +23,33 @@
                 </div>
                 <div class="form-group">
                     <label class="sr-only" for="first_name">ชื่อ</label>
-                    <input type="text" class="form-control" id="first_name" placeholder="ชื่อ">
+                    <input type="text" value="{!! $userInfo->firstname !!}" class="form-control" name="first_name" id="first_name" placeholder="ชื่อ">
                 </div>
                 <div class="form-group">
                     <label class="sr-only" for="last_name">นามสกุล</label>
-                    <input type="text" class="form-control" id="last_name" placeholder="นามสกุล">
+                    <input type="text" value="{!! $userInfo->lastname !!}" class="form-control" name="last_name" id="last_name" placeholder="นามสกุล">
                 </div>
                 <div class="form-group">
                     <label class="sr-only" for="username">Userame</label>
-                    <input type="text" class="form-control" id="username" placeholder="Username">
+                    <input type="text" disabled value="{!! $userInfo->username !!}" class="form-control" id="username" placeholder="Username">
                 </div>
                 <div class="form-group">
                     <label class="sr-only" for="email">Email address</label>
-                    <input type="email" class="form-control" id="email" placeholder="Email address">
+                    <input type="email" disabled value="{!! $userInfo->email !!}" class="form-control" id="email" placeholder="Email address">
                 </div>
                 <div class="form-group">
-                    <label class="sr-only" for="password">Password</label>
-                    <input type="password" class="form-control" id="password" placeholder="Password">
+                    <label class="sr-only" for="password">ประเภทสมาชิก</label>
+                    <input type="text" disabled
+                            @if ($userInfo->role == 3)
+                                value="สมาชิกทั่วไป"
+                            @elseif ($userInfo->role == 4)
+                                value="สมาชิก VIP"
+                            @elseif ($userInfo->role == 2)
+                                value="ผู้ดูแลระบบ (Admin)"
+                            @else
+                                value="ผู้ดูแลระบบสูงสุด (Super Admin)"
+                            @endif
+                             class="form-control" id="role" placeholder="Password">
                 </div>
                 <div class="form-group">
                     <select class="form-control" id="salary">
@@ -51,11 +61,11 @@
                 </div>
                 <div class="form-group">
                     <label class="sr-only" for="telephone">เบอร์โทร/มือถือ</label>
-                    <input type="text" class="form-control" id="telephone" placeholder="02-123-4567 ต่อ 123">
+                    <input type="text" class="form-control" name="telephone" id="telephone" placeholder="02-123-4567 ต่อ 123">
                 </div>
                 <div class="form-group">
                     <label class="sr-only" for="birthday">วัน-เดือน-ปี เกิด</label>
-                    <input type="text" class="form-control" id="birthday" placeholder="วว-ดด-ปปปป วันเดือนปีเกิด">
+                    <input type="text" disabled class="form-control" name="birthday" id="birthday" placeholder="วว-ดด-ปปปป วันเดือนปีเกิด">
                 </div>
                 <div class="form-group">
                     <div class="radio">
@@ -72,30 +82,32 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <select class="form-control" id="prov">
-                        <option>-กรุณาเลือกจังหวัด-</option>
-                        @foreach ($prov as $key => $value)
-                            <option id="{{ $value->id }}" > {{ $value->name }}</option>
-                        @endforeach
-                    </select>
+
                 </div>
                 <div class="form-group">
-                    <select class="form-control amph" id="amph">
-                        <option>-กรุณาเลือกอำเภอ-</option>
-                    </select>
+                    <textarea class="form-control custom-control" id="address" name="address"
+                              rows="3" placeholder="ระบุที่อยู่" style="resize:none">
+
+                    </textarea>
                 </div>
                 <div class="form-group">
-                    <select class="form-control tamb" id="tamb">
-                        <option>-กรุณาเลือกตำบล-</option>
-                    </select>
+                    <label class="sr-only" for="occupation">อาชีพ</label>
+                    <input type="text" class="form-control" name="occupation" id="occupation" placeholder="อาชีพ">
                 </div>
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" value="term">
+                        ฉันต้องการรับข่าวสารจากทางเว็บไซต์</a>
+                    </label>
+                </div>
+
                 <div class="checkbox">
                     <label>
                         <input type="checkbox" value="term">
                         ฉันยอมรับ <a href="" target="_blank">เงื่อนไขการใช้งาน</a>
                     </label>
                 </div>
-                <button class="btn btn-primary" type="submit">Sign up</button>
+                <button class="btn btn-primary" type="submit">บันทึก</button>
             </form>
         </div>
     </div>
