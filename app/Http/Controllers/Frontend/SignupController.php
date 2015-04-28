@@ -98,7 +98,7 @@ class SignupController extends Controller {
                 $this->userObj->lastname = $data['last_name'];
                 $this->userObj->email = $data['email'];
                 $this->userObj->signup_type = 'regular';
-                //$this->userObj->save();
+                $this->userObj->save();
 
                 (isset($data['rememberme']))? $remember = true : $remember=false;
                 \Auth::attempt(

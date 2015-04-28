@@ -80,7 +80,7 @@ Route::get('fbpostlogin', [
     'uses' => 'Auth\AuthController@handleFBProviderCallback'
 ]);
 
-//Login first
+/*----------------------------------------------Login first -------------------------------*/
 Route::group(['middleware' => 'auth'], function()
 {
     Route::get('signout', [
@@ -93,9 +93,19 @@ Route::group(['middleware' => 'auth'], function()
         'uses' => 'Frontend\UserinfoController@userInfo'
     ]);
 
+	Route::post('user/accinfo', [
+            'as' => 'user_postaccinfo',
+            'uses' => 'Frontend\UserinfoController@postUpdateInfo'
+    ]);
+
 	Route::get('user/passwd', [
 		'as' => 'user_passwd',
-		'uses' => 'Frontend\UserinfoController@userChangPwd'
+		'uses' => 'Frontend\UserinfoController@userChangePwd'
+	]);
+
+	Route::post('user/passwd', [
+		'as' => 'user_postpasswd',
+		'uses' => 'Frontend\UserinfoController@postUserChangePwd'
 	]);
 
     Route::get('user/uasge', [

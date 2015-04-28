@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\Registrar;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 use Request;
 use Validator;
+use Carbon\Carbon;
 //use Laravel\Socialite;
 
 class AuthController extends Controller {
@@ -96,6 +97,10 @@ class AuthController extends Controller {
     {
         if (\Auth::check())
         {
+            $user = \Auth::user();
+            $user->last_login = Carbon::now();
+            $user->save();
+
             \Auth::logout();
         }
         return redirect('/');
