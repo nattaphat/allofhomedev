@@ -107,7 +107,7 @@
                             <!--branding/logo-->
                             <a class="navbar-brand" href="{{ URL::to('/') }}" title="Home">
                                 <h1>
-                                    <!-- <span>AllOf</span>Home<span>.</span> -->
+                                    <!-- <span>AllOf</span>home<span>.</span> -->
                                     <img src="{{ asset('./img/logo_v2.png')}}">
                                 </h1>
                             </a>

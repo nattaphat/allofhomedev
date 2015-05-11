@@ -7,56 +7,66 @@
         <a href="#" class="dropdown-toggle" id="pages-drop" data-toggle="dropdown" data-hover="dropdown">เมนูหลัก</a> 
         <!-- Menu -->
         <ul class="dropdown-menu" role="menu" aria-labelledby="pages-drop">
-            <li class="dropdown dropdown-submenu">
-                <a 
-                    href="{{ URL::route('aboutus_basic') }}" 
-                    class="dropdown-toggle" 
-                    id="about-drop" 
-                    data-toggle="dropdown" 
-                    data-hover="dropdown" 
-                    data-close-others="false">โครงการบ้านใหม่</a> 
-                <!-- Dropdown Menu -->
-                <ul class="dropdown-menu" role="menu" aria-labelledby="about-drop">
-                    <li role="presentation">
-                        <a role="menuitem" href="{{ URL::route('aboutus_basic') }}" tabindex="-1" class="menu-item">About Us Basic <i class="new-tag">Updated!</i></a>
-                    </li>
-                    <li role="presentation">
-                        <a role="menuitem" href="{{ URL::route('aboutus_extend') }}" tabindex="-1" class="menu-item">About Us Extended <i class="new-tag">New!</i></a>
-                    </li>
-                    <li role="presentation">
-                        <a role="menuitem" href="{{ URL::route('aboutus_me') }}" tabindex="-1" class="menu-item">About Me <i class="new-tag">New!</i></a>
-                    </li>
-                    <li role="presentation">
-                        <a role="menuitem" href="{{ URL::route('teamlist') }}" tabindex="-1" class="menu-item">Team List <i class="new-tag">Updated!</i></a>
-                    </li>
-                    <li role="presentation">
-                        <a role="menuitem" href="{{ URL::route('teamgrid') }}" tabindex="-1" class="menu-item">Team Grid <i class="new-tag">New!</i></a>
-                    </li>
-                    <li role="presentation">
-                        <a role="menuitem" href="{{ URL::route('teammemb') }}" tabindex="-1" class="menu-item">Team Member <i class="new-tag">New!</i></a>
-                    </li>
-                    <li role="presentation">
-                        <a role="menuitem" href="{{ URL::route('contact') }}" tabindex="-1" class="menu-item">Contact</a>
-                    </li>
-                </ul>
+            {{--<li class="dropdown dropdown-submenu">--}}
+                {{--<a --}}
+                    {{--href="{{ URL::route('aboutus_basic') }}" --}}
+                    {{--class="dropdown-toggle" --}}
+                    {{--id="about-drop" --}}
+                    {{--data-toggle="dropdown" --}}
+                    {{--data-hover="dropdown" --}}
+                    {{--data-close-others="false">โครงการบ้านใหม่</a> --}}
+                {{--<!-- Dropdown Menu -->--}}
+                {{--<ul class="dropdown-menu" role="menu" aria-labelledby="about-drop">--}}
+                    {{--<li role="presentation">--}}
+                        {{--<a role="menuitem" href="{{ URL::route('aboutus_basic') }}" tabindex="-1" class="menu-item">About Us Basic <i class="new-tag">Updated!</i></a>--}}
+                    {{--</li>--}}
+                    {{--<li role="presentation">--}}
+                        {{--<a role="menuitem" href="{{ URL::route('aboutus_extend') }}" tabindex="-1" class="menu-item">About Us Extended <i class="new-tag">New!</i></a>--}}
+                    {{--</li>--}}
+                    {{--<li role="presentation">--}}
+                        {{--<a role="menuitem" href="{{ URL::route('aboutus_me') }}" tabindex="-1" class="menu-item">About Me <i class="new-tag">New!</i></a>--}}
+                    {{--</li>--}}
+                    {{--<li role="presentation">--}}
+                        {{--<a role="menuitem" href="{{ URL::route('teamlist') }}" tabindex="-1" class="menu-item">Team List <i class="new-tag">Updated!</i></a>--}}
+                    {{--</li>--}}
+                    {{--<li role="presentation">--}}
+                        {{--<a role="menuitem" href="{{ URL::route('teamgrid') }}" tabindex="-1" class="menu-item">Team Grid <i class="new-tag">New!</i></a>--}}
+                    {{--</li>--}}
+                    {{--<li role="presentation">--}}
+                        {{--<a role="menuitem" href="{{ URL::route('teammemb') }}" tabindex="-1" class="menu-item">Team Member <i class="new-tag">New!</i></a>--}}
+                    {{--</li>--}}
+                    {{--<li role="presentation">--}}
+                        {{--<a role="menuitem" href="{{ URL::route('contact') }}" tabindex="-1" class="menu-item">Contact</a>--}}
+                    {{--</li>--}}
+                {{--</ul>--}}
+            {{--</li>--}}
+            {{--<li class="dropdown dropdown-submenu">--}}
+                {{--<a href="{{ URL::route('pricing') }}" class="dropdown-toggle" id="pricing-drop" data-toggle="dropdown" data-hover="dropdown" data-close-others="false">โครงการทาวน์โฮมใหม่</a> --}}
+                {{--<!-- pricing pages -->--}}
+                {{--<ul class="dropdown-menu" role="menu" aria-labelledby="pricing-drop">--}}
+                    {{--<li role="presentation"><a role="menuitem" href="{{ URL::route('pricing') }}" tabindex="-1" class="menu-item">Pricing Plans</a></li>--}}
+                    {{--<li role="presentation"><a role="menuitem" href="{{ URL::route('pricing_table') }}" tabindex="-1" class="menu-item">Comparison Tables</a></li>--}}
+                {{--</ul>--}}
+            {{--</li>--}}
+            {{--<li class="dropdown dropdown-submenu">--}}
+                {{--<a href="{{ URL::route('timeline') }}" class="dropdown-toggle" id="timeline-drop" data-toggle="dropdown" data-hover="dropdown" data-close-others="false">โครงการคอนโดใหม่</a> --}}
+                {{--<!-- timelines -->--}}
+                {{--<ul class="dropdown-menu" role="menu" aria-labelledby="timeline-drop">--}}
+                    {{--<li role="presentation"><a role="menuitem" href="{{ URL::route('timeline') }}" tabindex="-1" class="menu-item">Timeline Default</a></li>--}}
+                    {{--<li role="presentation"><a role="menuitem" href="{{ URL::route('timelineleft') }}" tabindex="-1" class="menu-item">Timeline Left</a></li>--}}
+                    {{--<li role="presentation"><a role="menuitem" href="{{ URL::route('timelineright') }}" tabindex="-1" class="menu-item">Timeline Right</a></li>--}}
+                    {{--<li role="presentation"><a role="menuitem" href="{{ URL::route('timelinestacked') }}" tabindex="-1" class="menu-item">Timeline Stacked</a></li>--}}
+                {{--</ul>--}}
+            {{--</li>--}}
+
+            <li>
+                <a href="{{ URL::route('home_index') }}" class="menu-item">โครงการบ้านใหม่</a>
             </li>
-            <li class="dropdown dropdown-submenu">
-                <a href="{{ URL::route('pricing') }}" class="dropdown-toggle" id="pricing-drop" data-toggle="dropdown" data-hover="dropdown" data-close-others="false">โครงการทาวน์โฮมใหม่</a> 
-                <!-- pricing pages -->
-                <ul class="dropdown-menu" role="menu" aria-labelledby="pricing-drop">
-                    <li role="presentation"><a role="menuitem" href="{{ URL::route('pricing') }}" tabindex="-1" class="menu-item">Pricing Plans</a></li>
-                    <li role="presentation"><a role="menuitem" href="{{ URL::route('pricing_table') }}" tabindex="-1" class="menu-item">Comparison Tables</a></li>
-                </ul>
+            <li>
+                <a href="{{ URL::route('custumers') }}" class="menu-item">โครงการทาวน์โฮมใหม่</a>
             </li>
-            <li class="dropdown dropdown-submenu">
-                <a href="{{ URL::route('timeline') }}" class="dropdown-toggle" id="timeline-drop" data-toggle="dropdown" data-hover="dropdown" data-close-others="false">โครงการคอนโดใหม่</a> 
-                <!-- timelines -->
-                <ul class="dropdown-menu" role="menu" aria-labelledby="timeline-drop">
-                    <li role="presentation"><a role="menuitem" href="{{ URL::route('timeline') }}" tabindex="-1" class="menu-item">Timeline Default</a></li>
-                    <li role="presentation"><a role="menuitem" href="{{ URL::route('timelineleft') }}" tabindex="-1" class="menu-item">Timeline Left</a></li>
-                    <li role="presentation"><a role="menuitem" href="{{ URL::route('timelineright') }}" tabindex="-1" class="menu-item">Timeline Right</a></li>
-                    <li role="presentation"><a role="menuitem" href="{{ URL::route('timelinestacked') }}" tabindex="-1" class="menu-item">Timeline Stacked</a></li>
-                </ul>
+            <li>
+                <a href="{{ URL::route('custumers') }}" class="menu-item">โครงการคอนโดใหม่</a>
             </li>
             <li>
                 <a href="{{ URL::route('custumers') }}" class="menu-item">ออกแบบภายใน ภายนอก</a>

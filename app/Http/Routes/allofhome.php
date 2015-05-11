@@ -146,6 +146,15 @@ Route::get('twlogged', [
 //	'uses' => 'SocialLoginController@TWlogin'
 //]);
 
+/*-------------------------------- โครงการบ้านใหม่ -------------------------------*/
+Route::get('home/index', [
+    'as' => 'home_index',
+    'uses' => 'Frontend\HomeCategoryController@index'
+]);
+
+/*------------------------------------------------------------------------------*/
+
+
 Route::get('aboutus', [
 	'as' => 'aboutus_basic',
 	'uses' => 'AllofhomeController@about'
