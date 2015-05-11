@@ -149,6 +149,7 @@ return [
 		'App\Providers\ConfigServiceProvider',
 		'App\Providers\EventServiceProvider',
 		'App\Providers\RouteServiceProvider',
+        'yajra\Datatables\DatatablesServiceProvider',
 
 	],
 
@@ -202,6 +203,7 @@ return [
         'Html'      => 'Illuminate\Html\HtmlFacade',
         'Form'      => 'Illuminate\Html\FormFacade',
         'Recaptcha' => 'Greggilbert\Recaptcha\Facades\Recaptcha',
+        'Datatables'      => 'yajra\Datatables\Datatables',
 	],
 
 ];

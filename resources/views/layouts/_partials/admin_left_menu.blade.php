@@ -6,7 +6,7 @@
                 <a href="{{ URL::to('backend/index') }}"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
             </li>
             <li>
-                <a href="{{ URL::to('backend/user') }}"><i class="fa fa-user fa-fw"></i> จัดการกลุ่มผู้ใช้งานสมาชิก</a>
+                <a href="{{ URL::to('backend/user') }}"><i class="fa fa-user fa-fw"></i> จัดการผู้ใช้งานระบบ</a>
             </li>
             <li>
                 <a href="{{ URL::to('backend/newPost') }}"><i class="fa fa-legal fa-fw"></i> พิจารณาอนุมัติกระทู้ใหม่</a>
