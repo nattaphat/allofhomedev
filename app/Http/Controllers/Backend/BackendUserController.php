@@ -50,8 +50,17 @@ class BackendUserController extends Controller {
         $input = Input::all();
 
         $user = User::find($input['id']);
-        $user->role = $input['role'];
-        $user->status = $input['status'];
+
+        if($user->username == "superadmin")
+        {
+            $user->role = "1";
+            $user->status = true;
+        }
+        else
+        {
+            $user->role = $input['role'];
+            $user->status = $input['status'];
+        }
 
         if($user->save())
         {
