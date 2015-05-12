@@ -269,5 +269,11 @@ class AllofhomeController extends Controller {
     {
         return view('web.bs_mobilemenu');
     }
+
+    public function createPost()
+    {
+        return view('web.frontend.createPost');
+    }
+
 }
 

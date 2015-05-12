@@ -120,7 +120,13 @@ Route::group(['middleware' => 'auth'], function()
 
     Route::get('post/add', [
         'as' => 'post_add',
-        'uses' => 'AllofhomeController@index'
+        'uses' => 'AllofhomeController@createPost'
+    ]);
+
+    //    โครงการบ้านใหม่
+    Route::get('home/create', [
+        'as' => 'home_create',
+        'uses' => 'Frontend\HomeCategoryController@create'
     ]);
 });
 

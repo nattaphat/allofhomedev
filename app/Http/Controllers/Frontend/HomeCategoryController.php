@@ -13,4 +13,8 @@ class HomeCategoryController extends Controller {
         return view('web.frontend.home.index');
     }
 
+    public function create()
+    {
+        return view('web.frontend.home.create');
+    }
 }
