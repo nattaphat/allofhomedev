@@ -40,12 +40,12 @@ class AplTableSeeder extends Seeder
                 "apl_code"  => "06 MAS"
             ],
             [
-                'id'  => 5,
+                'id'  => 6,
                 "apl_name"  => "ราชปรารภ",
                 "apl_code"  => "07 RPR"
             ],
             [
-                'id'  => 5,
+                'id'  => 7,
                 "apl_name"  => "พญาไท",
                 "apl_code"  => "08 PTH"
             ]
