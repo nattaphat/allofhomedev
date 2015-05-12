@@ -33,7 +33,7 @@
       <link type="text/css" type="text/css" href="{{ asset('js/lib/bootstrap-social/bootstrap-social.css') }}" rel="stylesheet">
 
       <!-- Dropzone -->
-      <link type="text/css" type="text/css" href="{{ asset('js/lib/dropzone/min/dropzone.min.css') }}" rel="stylesheet">
+      <link type="text/css" type="text/css" href="{{ asset('js/lib/dropzone/dist/min/dropzone.min.css') }}" rel="stylesheet">
     
       <!-- Plugins required on all pages NOTE: Additional non-required plugins are loaded ondemand as of AppStrap 2.5 -->
       <!-- Plugin: animate.css (animated effects) - http://daneden.github.io/animate.css/ -->

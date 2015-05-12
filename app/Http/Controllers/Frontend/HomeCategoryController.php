@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 use Request;
 use Validator;
 
+
 class HomeCategoryController extends Controller {
 
     public function index()
