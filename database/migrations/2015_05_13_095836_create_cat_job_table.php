@@ -27,12 +27,11 @@ class CreateCatJobTable extends Migration {
             $table->string('add_building')->nullable(false);
             $table->string('add_floor')->nullable(false);
             $table->string('add_street')->nullable(false);
-            $table->integer('tambon_id')->nullable(false);
-//            $table->foreign('tambon_id')->references('tambid')->on('geo_tambon');
-            $table->integer('amphoe_id')->nullable(false);
-//            $table->foreign('amphoe_id')->references('amphid')->on('geo_amphoe');
-            $table->integer('provice_id')->nullable(false);
-//            $table->foreign('provice_id')->references('provid')->on('geo_province');
+            $table->string('tambid',2)->nullable(false);
+            $table->string('amphid',2)->nullable(false);
+            $table->string('provid', 2)->nullable(false);
+            $table->foreign(['provid', 'amphid', 'tambid'])
+                ->references(['provid', 'amphid', 'tambid'])->on('geo_tambon');
             $table->integer('region_id')->unsigned()->nullable(false);
             $table->foreign('region_id')->references('id')->on('geo_region');
             $table->integer('area_id')->unsigned()->nullable(true);

@@ -10,6 +10,8 @@
 | and give it the controller to call when that URI is requested.
 |
 */
+use App\Models\Area;
+use App\Models\SubArea;
 
 include app_path().'/Http/Routes/allofhome.php';
 include app_path().'/Http/Routes/allofhome_backend.php';
@@ -22,3 +24,12 @@ include app_path().'/Http/Routes/allofhome_backend.php';
  	'auth' => 'Auth\AuthController',
  	'password' => 'Auth\PasswordController',
  ]);
+
+Route::get('test', function(){
+    $m = \App\Models\Promotion::all()->toArray();
+    dd($m);
+
+//    $m = Area::find(1)->subArea()->get()->toArray();
+//    dd($m);
+
+});

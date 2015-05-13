@@ -20,6 +20,10 @@ class DatabaseSeeder extends Seeder {
         $this->call('MrtRouteTableSeeder');
         $this->call('SalaryTableSeeder');
         $this->call('UserTableSeeder');
+        $this->call('FacilityTableSeeder');
+        $this->call('PromotionTableSeeder');
+        $this->call('AreaTableSeeder');
+        $this->call('SubAreaTableSeeder');
 	}
 
 }
