@@ -14,7 +14,7 @@ class CreateGeoAmphoeTable extends Migration {
 	{
         Schema::create('geo_amphoe', function(Blueprint $table)
         {
-            $table->string('provid',2)->nullable(false);
+            $table->string('provid',2)->unsigned()->nullable(false);
             $table->foreign('provid')->references('provid')->on('geo_province');
             $table->string('name')->nullable(false);
             $table->string('amphid',2)->nullable(false);

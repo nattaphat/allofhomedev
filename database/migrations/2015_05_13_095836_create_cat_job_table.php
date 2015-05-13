@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateBranchTable extends Migration {
+class CreateCatJobTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,23 +12,15 @@ class CreateBranchTable extends Migration {
 	 */
 	public function up()
 	{
-        Schema::create('branch', function(Blueprint $table)
-        {
-            $table->increments('id');
-            $table->integer('shop_id')->unsigned()->nullable(false);
-            $table->foreign('shop_id')
-                ->references('id')
-                ->on('shop')
-                ->onDelete('cascade');
-            $table->string('branch_name')->nullable(false);
-            $table->string('telephone')->nullable(true);
-            $table->string('mobile_phone')->nullable(false);
-            $table->string('fax')->nullable(true);
-            $table->string('email')->nullable(false);
-            $table->string('service_day')->nullable(true);
-            $table->string('service_time')->nullable(true);
-            $table->boolean('credit_card')->nullable(true);
-            $table->boolean('parking')->nullable(true);
+		Schema::create('cat_job', function(Blueprint $table)
+		{
+			$table->increments('id');
+            $table->integer('user_id')->unsigned()->nullable(false);
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->string('title')->nullable(false);
+            $table->string('subtitle')->nullable(false);
+            $table->string('company_name')->nullable(false);
+            $table->string('company_introduce')->nullable(false);
             $table->string('lat')->nullable(false);
             $table->string('long')->nullable(false);
             $table->string('add_no')->nullable(false);
@@ -49,8 +41,21 @@ class CreateBranchTable extends Migration {
             $table->foreign('subarea_id')->references('id')->on('subarea');
             $table->text('map_url')->nullable(true);
             $table->string('nearby_str')->nullable(true);
-            $table->timestamps();
-        });
+            $table->string('position')->nullable(false);
+            $table->integer('number')->nullable(false);
+            $table->string('salary')->nullable(false);
+            $table->string('attribute')->nullable(false);
+            $table->string('job_detail')->nullable(false);
+            $table->string('job_place')->nullable(false);
+            $table->string('welfare')->nullable(false);
+            $table->string('applying')->nullable(false);
+            $table->string('website')->nullable(true);
+            $table->string('facebook')->nullable(true);
+            $table->string('bus_route')->nullable(true);
+            $table->string('bts_route')->nullable(true);
+            $table->string('car_route')->nullable(true);
+			$table->timestamps();
+		});
 	}
 
 	/**
@@ -60,7 +65,7 @@ class CreateBranchTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('branch');
+		Schema::drop('cat_job');
 	}
 
 }
