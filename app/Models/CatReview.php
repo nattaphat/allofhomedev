@@ -8,6 +8,8 @@ class CatReview extends Model {
     protected $primaryKey = 'id';
     public $timestamps = true;
 
+
+
     public function user()
     {
         return $this->belongsTo("App\User");
@@ -22,6 +24,13 @@ class CatReview extends Model {
     {
         return $this->belongsTo('App\Models\Shop');
     }
+
+    public function branch()
+    {
+        return $this->belongsTo('App\Models\Branch');
+    }
+
+
 
     public function comment()
     {

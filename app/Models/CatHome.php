@@ -8,6 +8,8 @@ class CatHome extends Model {
     protected $primaryKey = 'id';
     public $timestamps = true;
 
+
+
     public function user()
     {
         return $this->belongsTo("App\User");
@@ -17,6 +19,8 @@ class CatHome extends Model {
     {
         return $this->belongsTo('App\Models\Project');
     }
+
+
 
     public function comment()
     {
@@ -32,5 +36,7 @@ class CatHome extends Model {
     {
         return $this->belongsToMany('App\Models\TagSub', 'tag', 'cat_home_id', 'tag_sub_id' );
     }
+
+
 
 }
