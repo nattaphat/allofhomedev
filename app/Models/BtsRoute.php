@@ -8,4 +8,9 @@ class BtsRoute extends Model {
     protected $primaryKey = 'id';
     public $timestamps = false;
 
+    public function bts()
+    {
+        return $this->hasMany('App\Models\Bts', 'route_id');
+    }
+
 }

@@ -9,4 +9,9 @@ class Promotion extends Model {
     public $timestamps = false;
 
     protected $fillable = array('promotion_name');
+
+    public function project()
+    {
+        return $this->belongsToMany('App\Models\Project');
+    }
 }

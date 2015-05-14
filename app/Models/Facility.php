@@ -10,4 +10,8 @@ class Facility extends Model {
 
     protected $fillable = array('fac_name');
 
+    public function project()
+    {
+        return $this->belongsToMany('App\Models\Project', 'project_facility');
+    }
 }

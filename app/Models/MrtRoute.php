@@ -8,4 +8,9 @@ class MrtRoute extends Model {
     protected $primaryKey = 'id';
     public $timestamps = false;
 
+    public function mrt()
+    {
+        return $this->hasMany('App\Models\Mrt', 'route_id');
+    }
+
 }

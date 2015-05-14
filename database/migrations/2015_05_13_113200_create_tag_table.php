@@ -31,9 +31,7 @@ class CreateTagTable extends Migration {
             $table->foreign('cat_job_id')->references('id')->on('cat_job');
             $table->integer('cat_2hand_id')->unsign()->nullable(true);
             $table->foreign('cat_2hand_id')->references('id')->on('cat_2hand');
-            $table->integer('tag_main_id')->unsign()->nullable(true);
-            $table->foreign('tag_main_id')->references('id')->on('tag_main');
-            $table->integer('tag_sub_id')->unsign()->nullable(true);
+            $table->integer('tag_sub_id')->unsign()->nullable(false);
             $table->foreign('tag_sub_id')->references('id')->on('tag_sub');
 		});
 	}
