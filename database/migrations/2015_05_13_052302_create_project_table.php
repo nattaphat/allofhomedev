@@ -17,8 +17,8 @@ class CreateProjectTable extends Migration {
             $table->increments('id');
             $table->integer('user_id')->unsigned()->nullable(false);
             $table->foreign('user_id')->references('id')->on('users');
-            $table->string('project_name')->nullable(false);
-            $table->string('project_company_owner')->nullable(false);
+            $table->string('project_name')->nullable(false)->unique();
+            $table->string('project_company_owner')->nullable(false)->unique();
             $table->integer('attachment_id')->unsigned()->nullable(false);
             $table->foreign('attachment_id')->references('id')->on('attachment');
             $table->string('lat')->nullable(false);

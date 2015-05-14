@@ -15,14 +15,23 @@ class CreateCatReviewTable extends Migration {
 		Schema::create('cat_review', function(Blueprint $table)
 		{
 			$table->increments('id');
+
             $table->integer('user_id')->unsigned()->nullable(false);
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users')
+                ->onDelete('cascade');
+
             $table->integer('shop_id')->unsigned()->nullable(true);
-            $table->foreign('shop_id')->references('id')->on('shop');
+            $table->foreign('shop_id')->references('id')->on('shop')
+                ->onDelete('cascade');
+
             $table->integer('branch_id')->unsigned()->nullable(true);
-            $table->foreign('branch_id')->references('id')->on('branch');
+            $table->foreign('branch_id')->references('id')->on('branch')
+                ->onDelete('cascade');
+
             $table->integer('project_id')->unsigned()->nullable(true);
-            $table->foreign('project_id')->references('id')->on('project');
+            $table->foreign('project_id')->references('id')->on('project')
+                ->onDelete('cascade');
+
             $table->string('title')->nullable(false);
             $table->string('subtitle')->nullable(false);
             $table->integer('shop_rating1')->nullable(true);

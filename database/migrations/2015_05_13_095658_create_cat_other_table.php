@@ -15,10 +15,15 @@ class CreateCatOtherTable extends Migration {
 		Schema::create('cat_other', function(Blueprint $table)
 		{
 			$table->increments('id');
+
             $table->integer('user_id')->unsigned()->nullable(false);
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users')
+                ->onDelete('cascade');
+
             $table->integer('shop_id')->unsigned()->nullable(false);
-            $table->foreign('shop_id')->references('id')->on('shop');
+            $table->foreign('shop_id')->references('id')->on('shop')
+                ->onDelete('cascade');
+
             $table->string('title')->nullable(false);
             $table->string('subtitle')->nullable(false);
             $table->string('product_name')->nullable(false);

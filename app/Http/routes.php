@@ -116,7 +116,10 @@ Route::get('testModel', function(){
 //    $m = \App\Models\CatReview::findOrFail(1)->tagSub()->get()->toArray();
 //    dd($m);
 
-    $m = \App\Models\CatReview::findOrFail(1)->picture()->get()->toArray();
+//    $m = \App\Models\CatReview::findOrFail(1)->picture()->get()->toArray();
+//    dd($m);
+
+    $m = \App\Models\Branch::findOrFail(1)->tambon()->get()->toArray();
     dd($m);
 
 });

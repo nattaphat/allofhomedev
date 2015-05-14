@@ -27,16 +27,27 @@ class CatHome extends Model {
         return $this->hasMany('App\Models\Comment');
     }
 
+    public function myList()
+    {
+        return $this->hasMany('App\Models\MyList');
+    }
+
     public function picture()
     {
         return $this->hasMany('App\Models\Picture');
     }
 
+    public function tag()
+    {
+        return $this->hasMany('App\Models\Tag');
+    }
+
+
+
     public function tagSub()
     {
         return $this->belongsToMany('App\Models\TagSub', 'tag', 'cat_home_id', 'tag_sub_id' );
     }
-
 
 
 }

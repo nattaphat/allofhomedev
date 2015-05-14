@@ -13,10 +13,14 @@ class TagSub extends Model {
         return $this->belongsTo('App\Models\TagMain');
     }
 
+
+
     public function tag()
     {
         return $this->hasOne('App\Models\Tag', 'tag_sub_id');
     }
+
+
 
     public function catHome()
     {
@@ -32,4 +36,5 @@ class TagSub extends Model {
     {
         return $this->belongsToMany('App\Models\CatIdea', 'tag', 'tag_sub_id', 'cat_idea_id' );
     }
+
 }

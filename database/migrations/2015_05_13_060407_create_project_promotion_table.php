@@ -16,9 +16,11 @@ class CreateProjectPromotionTable extends Migration {
         {
             $table->increments('id');
             $table->integer('promotion_id')->unsigned()->nullable(false);
-            $table->foreign('promotion_id')->references('id')->on('promotion');
+            $table->foreign('promotion_id')->references('id')->on('promotion')
+                ->onDelete('cascade');
             $table->integer('project_id')->unsigned()->nullable(false);
-            $table->foreign('project_id')->references('id')->on('project');
+            $table->foreign('project_id')->references('id')->on('project')
+                ->onDelete('cascade');
         });
     }
 

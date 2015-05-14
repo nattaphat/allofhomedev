@@ -15,7 +15,7 @@ class CreateTagMainTable extends Migration {
         Schema::create('tag_main', function(Blueprint $table)
         {
             $table->increments('id');
-            $table->text('tag_main_name')->nullable(false);
+            $table->text('tag_main_name')->nullable(false)->unique();
         });
 	}
 

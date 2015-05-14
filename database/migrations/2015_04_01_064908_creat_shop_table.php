@@ -21,7 +21,7 @@ class CreatShopTable extends Migration {
             $table->foreign('business_type_id')->references('id')->on('business_type');
             $table->integer('attachment_id')->nullable(false);
             $table->foreign('attachment_id')->references('id')->on('attachment');
-            $table->string('shop_name')->nullable(false);
+            $table->string('shop_name')->nullable(false)->unique();
             $table->text('shop_history')->nullable(false);
             $table->text('shop_introduce')->nullable(false);
             $table->text('shop_condition')->nullable(true);

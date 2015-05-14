@@ -15,7 +15,7 @@ class CreateBusinessTypeTable extends Migration {
         Schema::create('business_type', function(Blueprint $table)
         {
             $table->increments('id');
-            $table->string('type_name')->nullable(false);
+            $table->string('type_name')->nullable(false)->unique();
         });
 	}
 

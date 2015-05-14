@@ -18,6 +18,7 @@ class CreateTagSubTable extends Migration {
             $table->integer('tag_main_id')->unsigned()->nullable(false);
             $table->foreign('tag_main_id')->references('id')->on('tag_main');
             $table->string('tag_sub_name')->nullable(false);
+            $table->unique(['tag_main_id', 'tag_sub_name']);
         });
 	}
 

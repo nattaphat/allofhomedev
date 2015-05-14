@@ -15,8 +15,11 @@ class CreateCat2handTable extends Migration {
 		Schema::create('cat_2hand', function(Blueprint $table)
 		{
 			$table->increments('id');
+
             $table->integer('user_id')->unsigned()->nullable(false);
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users')
+                ->onDelete('cascade');
+
             $table->string('title')->nullable(false);
             $table->string('subtitle')->nullable(false);
             $table->string('shop_name')->nullable(true);

@@ -2,20 +2,17 @@
 
 use Illuminate\Database\Eloquent\Model;
 
-class Tag extends Model {
+class MyList extends Model {
 
-    protected $table = 'tag';
+    protected $table = 'my_list';
     protected $primaryKey = 'id';
-    public $timestamps = false;
+    public $timestamps = true;
 
-    public function tagSub()
-    {
-        return $this->belongsTo('App\Models\TagSub', 'tag_sub_id');
-    }
 
     public function catHome()
     {
         return $this->belongsTo("App\Models\CatHome");
     }
+
 
 }

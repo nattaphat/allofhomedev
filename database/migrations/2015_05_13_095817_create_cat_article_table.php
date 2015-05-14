@@ -15,10 +15,15 @@ class CreateCatArticleTable extends Migration {
 		Schema::create('cat_article', function(Blueprint $table)
 		{
 			$table->increments('id');
+
             $table->integer('user_id')->unsigned()->nullable(false);
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users')
+                ->onDelete('cascade');
+
             $table->integer('category_id')->unsigned()->nullable(false);
-            $table->foreign('category_id')->references('id')->on('category');
+            $table->foreign('category_id')->references('id')->on('category')
+                ->onDelete('cascade');
+
             $table->string('title')->nullable(false);
             $table->string('subtitle')->nullable(false);
             $table->string('short_detail')->nullable(false);

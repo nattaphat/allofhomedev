@@ -1,10 +1,11 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 use App\Models\SubArea;
 
 // composer require laracasts/testdummy
-use Laracasts\TestDummy\Factory as TestDummy;
+// use Laracasts\TestDummy\Factory as TestDummy;
 
 class SubAreaTableSeeder extends Seeder
 {

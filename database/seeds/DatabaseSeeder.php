@@ -24,6 +24,8 @@ class DatabaseSeeder extends Seeder {
         $this->call('PromotionTableSeeder');
         $this->call('AreaTableSeeder');
         $this->call('SubAreaTableSeeder');
+        $this->call('TagMainTableSeeder');
+        $this->call('TagSubTableSeeder');
 	}
 
 }

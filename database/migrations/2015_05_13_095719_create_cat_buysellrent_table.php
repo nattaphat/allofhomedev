@@ -15,8 +15,11 @@ class CreateCatBuysellrentTable extends Migration {
 		Schema::create('cat_buysellrent', function(Blueprint $table)
 		{
 			$table->increments('id');
+
             $table->integer('user_id')->unsigned()->nullable(false);
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users')
+                ->onDelete('cascade');
+
             $table->string('title')->nullable(false);
             $table->string('subtitle')->nullable(false);
             $table->integer('type')->nullable(false);
@@ -29,15 +32,24 @@ class CreateCatBuysellrentTable extends Migration {
             $table->string('add_street')->nullable(true);
             $table->string('tambid',2)->nullable(false);
             $table->string('amphid',2)->nullable(false);
+
             $table->string('provid', 2)->nullable(false);
             $table->foreign(['provid', 'amphid', 'tambid'])
-                ->references(['provid', 'amphid', 'tambid'])->on('geo_tambon');
+                ->references(['provid', 'amphid', 'tambid'])->on('geo_tambon')
+                ->onDelete('cascade');
+
             $table->integer('region_id')->unsigned()->nullable(true);
-            $table->foreign('region_id')->references('id')->on('geo_region');
+            $table->foreign('region_id')->references('id')->on('geo_region')
+                ->onDelete('cascade');
+
             $table->integer('area_id')->unsigned()->nullable(true);
-            $table->foreign('area_id')->references('id')->on('area');
+            $table->foreign('area_id')->references('id')->on('area')
+                ->onDelete('cascade');
+
             $table->integer('subarea_id')->unsigned()->nullable(true);
-            $table->foreign('subarea_id')->references('id')->on('subarea');
+            $table->foreign('subarea_id')->references('id')->on('subarea')
+                ->onDelete('cascade');
+
             $table->text('map_url')->nullable(true);
             $table->string('nearby_str')->nullable(true);
             $table->integer('num_floor')->nullable(true);

@@ -15,7 +15,7 @@ class CreateFacilityTable extends Migration {
         Schema::create('facility', function(Blueprint $table)
         {
             $table->increments('id');
-            $table->text('fac_name')->nullable(false);
+            $table->text('fac_name')->nullable(false)->unique();
         });
 	}
 

@@ -15,12 +15,12 @@ class CreateBranchTable extends Migration {
         Schema::create('branch', function(Blueprint $table)
         {
             $table->increments('id');
-            $table->integer('shop_id')->unsigned()->nullable(false);
+            $table->integer('shop_id')->unsigned()->nullable(false)->unique();
             $table->foreign('shop_id')
                 ->references('id')
                 ->on('shop')
                 ->onDelete('cascade');
-            $table->string('branch_name')->nullable(false);
+            $table->string('branch_name')->nullable(false)->unique();
             $table->string('telephone')->nullable(true);
             $table->string('mobile_phone')->nullable(false);
             $table->string('fax')->nullable(true);

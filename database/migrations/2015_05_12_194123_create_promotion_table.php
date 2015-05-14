@@ -15,7 +15,7 @@ class CreatePromotionTable extends Migration {
         Schema::create('promotion', function(Blueprint $table)
         {
             $table->increments('id');
-            $table->text('promotion_name')->nullable(false);
+            $table->text('promotion_name')->nullable(false)->unique();
         });
 	}
 

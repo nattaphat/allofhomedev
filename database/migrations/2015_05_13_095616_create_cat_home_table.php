@@ -15,10 +15,15 @@ class CreateCatHomeTable extends Migration {
 		Schema::create('cat_home', function(Blueprint $table)
 		{
 			$table->increments('id');
+
             $table->integer('user_id')->unsigned()->nullable(false);
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users')
+                ->onDelete('cascade');
+
             $table->integer('project_id')->unsigned()->nullable(false);
-            $table->foreign('project_id')->references('id')->on('project');
+            $table->foreign('project_id')->references('id')->on('project')
+                ->onDelete('cascade');
+
             $table->string('title')->nullable(false);
             $table->string('subtitle')->nullable(false);
             $table->string('contact_company_name')->nullable(false);

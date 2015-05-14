@@ -55,4 +55,8 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
         return $this->hasOne("App\Models\Comment");
     }
 
+    public function banner()
+    {
+        return $this->hasOne("App\Models\Banner");
+    }
 }
