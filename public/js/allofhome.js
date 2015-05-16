@@ -1,6 +1,8 @@
 $( document ).ready(function() {
 
     setDatePicker();
+    fistPageSlide();
+
     /**
      * For signup page
      * [setDatePicker description]
@@ -16,6 +18,11 @@ $( document ).ready(function() {
         });
     }
 
+    function fistPageSlide()
+    {
+        var options = { $AutoPlay: true };
+        var jssor_slider1 = new $JssorSlider$('slider1_container', options);
+    }
     changeInfoPhoto();
     function changeInfoPhoto()
     {
