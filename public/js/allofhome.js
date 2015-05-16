@@ -20,8 +20,25 @@ $( document ).ready(function() {
 
     function fistPageSlide()
     {
-        var options = { $AutoPlay: true };
-        var jssor_slider1 = new $JssorSlider$('slider1_container', options);
+        $('#carousel_allofhome').flexslider({
+            animation: "slide",
+            controlNav: false,
+            animationLoop: true,
+            slideshow: false,
+            itemWidth: 210,
+            itemMargin: 5,
+            asNavFor: '#slider_allofhome'
+        });
+
+        $('#slider_allofhome').flexslider({
+            animation: "slide",
+            controlNav: false,
+            animationLoop: true,
+            pausePlay: true,
+            animationSpeed: 400,
+            slideshow: true,
+            sync: "#carousel_allofhome"
+        });
     }
     changeInfoPhoto();
     function changeInfoPhoto()

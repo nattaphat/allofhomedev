@@ -34,7 +34,10 @@
 
       <!-- Dropzone -->
       <link type="text/css" type="text/css" href="{{ asset('js/lib/dropzone/dist/min/dropzone.min.css') }}" rel="stylesheet">
-    
+
+      <!-- Flexslider -->
+      <link type="text/css" type="text/css" href="{{ asset('plugins/flexslider/flexslider.css') }}" rel="stylesheet">
+
       <!-- Plugins required on all pages NOTE: Additional non-required plugins are loaded ondemand as of AppStrap 2.5 -->
       <!-- Plugin: animate.css (animated effects) - http://daneden.github.io/animate.css/ -->
       <link type="text/css" href="{{ asset('plugins/animate/animate.css') }}" rel="stylesheet">
@@ -152,7 +155,6 @@
 <div class="row">
     <!-- ======== @Region: Left MainMenu ======== -->
     <div class="col-sm-3">
-        @include('layouts._partials.left_menu')
         <ul class="nav nav-sidebar">
             <li class="active"><a href="#">Overview <span class="sr-only">(current)</span></a></li>
             <li><a href="#">Reports</a></li>
@@ -162,13 +164,59 @@
     </div>
     <!-- ======== @Region: Slide ======== -->
     <div class="col-sm-9">
-        <div id="slider1_container" style="position: relative; top: 0px; left: 0px; width: 600px; height: 300px;">
-            <!-- Slides Container -->
-            <div u="slides" style="cursor: move; position: absolute; overflow: hidden; left: 0px; top: 0px; width: 600px; height: 300px;">
-                <div><img u="image" src="http://www.jssor.com/img/travel/12.jpg" /></div>
-                <div><img u="image" src="http://www.jssor.com/img/travel/13.jpg" /></div>
+        <section class="slider">
+            <div id="slider_allofhome" class="flexslider">
+                <ul class="slides">
+                    <li>
+                        <img src="{{ asset('./plugins/flexslider/demo/images/kitchen_adventurer_cheesecake_brownie.jpg')}}" />
+                    </li>
+                    <li>
+                        <img src="{{ asset('./plugins/flexslider/demo/images/kitchen_adventurer_lemon.jpg')}}" />
+                    </li>
+                    <li>
+                        <img src="{{ asset('./plugins/flexslider/demo/images/kitchen_adventurer_donut.jpg')}}" />
+                    </li>
+                    <li>
+                        <img src="{{ asset('./plugins/flexslider/demo/images/kitchen_adventurer_caramel.jpg')}}" />
+                    </li>
+                    <li>
+                        <img src="{{ asset('./plugins/flexslider/demo/images/kitchen_adventurer_caramel.jpg')}}" />
+                    </li>
+                    <li>
+                        <img src="{{ asset('./plugins/flexslider/demo/images/kitchen_adventurer_caramel.jpg')}}" />
+                    </li>
+                    <li>
+                        <img src="{{ asset('./plugins/flexslider/demo/images/kitchen_adventurer_caramel.jpg')}}" />
+                    </li>
+                </ul>
             </div>
-        </div>
+
+            <div id="carousel_allofhome" class="flexslider">
+                <ul class="slides">
+                    <li>
+                        <img src="{{ asset('./plugins/flexslider/demo/images/kitchen_adventurer_cheesecake_brownie.jpg')}}" />
+                    </li>
+                    <li>
+                        <img src="{{ asset('./plugins/flexslider/demo/images/kitchen_adventurer_lemon.jpg')}}" />
+                    </li>
+                    <li>
+                        <img src="{{ asset('./plugins/flexslider/demo/images/kitchen_adventurer_donut.jpg')}}" />
+                    </li>
+                    <li>
+                        <img src="{{ asset('./plugins/flexslider/demo/images/kitchen_adventurer_caramel.jpg')}}" />
+                    </li>
+                    <li>
+                        <img src="{{ asset('./plugins/flexslider/demo/images/kitchen_adventurer_caramel.jpg')}}" />
+                    </li>
+                    <li>
+                        <img src="{{ asset('./plugins/flexslider/demo/images/kitchen_adventurer_caramel.jpg')}}" />
+                    </li>
+                    <li>
+                        <img src="{{ asset('./plugins/flexslider/demo/images/kitchen_adventurer_caramel.jpg')}}" />
+                    </li>
+                </ul>
+            </div>
+        </section>
     </div>
 </div> <!-- End class="row" -->
 
@@ -216,8 +264,8 @@
 
         <!-- JS plugins required on all pages NOTE: Additional non-required plugins are loaded ondemand as of AppStrap 2.5 -->
 
-        <!--JSSOR slider -->
-        <script src={{ asset('js/lib/jssor-slider/js/jssor.slider.mini.js') }}></script>
+        <!--Flex slider -->
+        <script src={{ asset('plugins/flexslider/jquery.flexslider-min.js') }}></script>
 
         <!--Dropzone -->
         <script src={{ asset('js/lib/dropzone/dist/min/dropzone.min.js') }}></script>
@@ -227,6 +275,28 @@
 
         <!--Custom scripts for allofhome -->
         <script src={{ asset('js/allofhome.js') }}></script>
+//        <script type="javascript">
+//            $(window).load(function() {
+//                // The slider being synced must be initialized first
+//                $('#carousel').flexslider({
+//                    animation: "slide",
+//                    controlNav: false,
+//                    animationLoop: false,
+//                    slideshow: false,
+//                    itemWidth: 210,
+//                    itemMargin: 5,
+//                    asNavFor: '#slider'
+//                });
+//
+//                $('#slider').flexslider({
+//                    animation: "slide",
+//                    controlNav: false,
+//                    animationLoop: false,
+//                    slideshow: false,
+//                    sync: "#carousel"
+//                });
+//            });
+//        </script>
         @yield('jsbody')
     </body>
 </html>
