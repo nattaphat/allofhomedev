@@ -103,7 +103,8 @@
             </div>
 
             <!--Header & Branding region-->
-            <div class="header" data-toggle="clingify">
+                {{--<div class="header" data-toggle="clingify">--}}
+            <div class="header">
                 <div class="header-inner container">
                     <div class="navbar">
                         <div class="pull-left">
@@ -155,15 +156,10 @@
 <div class="row">
     <!-- ======== @Region: Left MainMenu ======== -->
     <div class="col-sm-3">
-        <ul class="nav nav-sidebar">
-            <li class="active"><a href="#">Overview <span class="sr-only">(current)</span></a></li>
-            <li><a href="#">Reports</a></li>
-            <li><a href="#">Analytics</a></li>
-            <li><a href="#">Export</a></li>
-        </ul>
+        @include('layouts._partials.left_menu')
     </div>
     <!-- ======== @Region: Slide ======== -->
-    <div class="col-sm-9">
+    <div class="col-sm-6">
         <section class="slider">
             <div id="slider_allofhome" class="flexslider">
                 <ul class="slides">
@@ -218,6 +214,22 @@
             </div>
         </section>
     </div>
+    <!-- ======== @Region: Banner ======== -->
+    <div class="col-sm-3" style="padding-right: 40px;">
+        <div>
+            <a href="#">
+                <img src="http://www.itgadgeteer.com/wp-content/uploads/2014/06/ad_300x250.png"
+                     alt="Banner 1" class="img-responsive" />
+            </a>
+        </div>
+        <div style="padding-top: 20px;">
+            <a href="#">
+                <img src="http://www.itgadgeteer.com/wp-content/uploads/2014/06/ad_300x250.png"
+                     alt="Banner 2" class="img-responsive" />
+            </a>
+        </div>
+    </div>
+
 </div> <!-- End class="row" -->
 
   <!-- ======== @Region: #content ======== -->
