@@ -166,7 +166,7 @@
         </div>
     </div>
     <!-- ======== @Region: Banner ======== -->
-    <div class="col-sm-3">
+    <div class="col-sm-3" style="padding-right: 40px;">
         <div>
             <a href="#">
                 <img src="http://www.itgadgeteer.com/wp-content/uploads/2014/06/ad_300x250.png"
