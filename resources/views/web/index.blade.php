@@ -61,33 +61,7 @@
 @section('content')
 	<div class="container">
 
-        {{--บทความและข่าวสาร--}}
-        <div class="row">
-            <div class="col-md-9" style="padding-left: 80px;">
-                <img src="http://smart-retailer.com/wp-content/uploads/rod_2.jpg"
-                     alt="Feature 1" class="img-responsive" />
-                <h3 class="title">
-                    <a href="#">หัวข้อบทความและข่าวสาร</a>
-                </h3>
-                <p>รายละเอียดบทความและข่าวสาร</p>
-            </div>
-            <div class="col-md-3">
-                <div>
-                    <a href="#">
-                        <img src="http://www.itgadgeteer.com/wp-content/uploads/2014/06/ad_300x250.png"
-                             alt="Feature 1" class="img-responsive" />
-                    </a>
-                </div>
-                <div style="padding-top: 20px">
-                    <a href="#">
-                        <img src="http://www.itgadgeteer.com/wp-content/uploads/2014/06/ad_300x250.png"
-                             alt="Feature 1" class="img-responsive" />
-                    </a>
-                </div>
-            </div>
-        </div>
-
-        <br><br>
+        @include('layouts._partials.articleSlide')
 
         {{--อ่านรีวิวทั้งหมด--}}
         <div class="panel panel-default">

@@ -7,7 +7,7 @@
 
         <div class="panel panel-default">
             <div class="panel-heading">
-                เพิ่มประกาศหมวดหมู่โครงการบ้านใหม่
+                เพิ่มประกาศหมวดหมู่โครงการคอนโดใหม่
             </div>
             <div class="panel-body">
                 {!! Form::open() !!}

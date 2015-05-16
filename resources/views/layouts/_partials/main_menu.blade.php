@@ -3,10 +3,10 @@
         <a href="{{ URL::to('/') }}"><i class="fa fa-home"></i><span class="hidden">Home</span></a>
     </li>
   
-    <li class="dropdown">
-        <a href="#" class="dropdown-toggle" id="pages-drop" data-toggle="dropdown" data-hover="dropdown">เมนูหลัก</a> 
-        <!-- Menu -->
-        <ul class="dropdown-menu" role="menu" aria-labelledby="pages-drop">
+    {{--<li class="dropdown">--}}
+        {{--<a href="#" class="dropdown-toggle" id="pages-drop" data-toggle="dropdown" data-hover="dropdown">เมนูหลัก</a> --}}
+        {{--<!-- Menu -->--}}
+        {{--<ul class="dropdown-menu" role="menu" aria-labelledby="pages-drop">--}}
             {{--<li class="dropdown dropdown-submenu">--}}
                 {{--<a --}}
                     {{--href="{{ URL::route('aboutus_basic') }}" --}}
@@ -59,40 +59,40 @@
                 {{--</ul>--}}
             {{--</li>--}}
 
-            <li>
-                <a href="{{ URL::route('home_index') }}" class="menu-item">โครงการบ้านใหม่</a>
-            </li>
-            <li>
-                <a href="{{ URL::route('custumers') }}" class="menu-item">โครงการทาวน์โฮมใหม่</a>
-            </li>
-            <li>
-                <a href="{{ URL::route('custumers') }}" class="menu-item">โครงการคอนโดใหม่</a>
-            </li>
-            <li>
-                <a href="{{ URL::route('custumers') }}" class="menu-item">ออกแบบภายใน ภายนอก</a>
-            </li>
-            <li>
-                <a href="{{ URL::route('features') }}" class="menu-item">ที่ดินเปล่า</a></li>
-            <li role="presentation">
-                <a role="menuitem" href="{{ URL::route('signin') }}" tabindex="-1" class="menu-item">เฟอร์นิเจอร์ ของตกแต่ง</a>
-            </li>
-            <li role="presentation">
-                <a role="menuitem" href="{{ URL::route('signup') }}" tabindex="-1" class="menu-item">เครื่องใช้ไฟฟ้า</a>
-            </li>
-            <li role="presentation">
-                <a role="menuitem" href="{{ URL::route('starter') }}" tabindex="-1" class="menu-item">เครื่องครัว สุขภัณฑ์</a>
-            </li>
-            <li role="presentation">
-                <a role="menuitem" href="{{ URL::route('custumers') }}" tabindex="-1" class="menu-item">วัสดุก่อสร้าง รับเหมา</a>
-            </li>
-            <li role="presentation">
-                <a role="menuitem" href="{{ URL::route('index_boxed') }}" tabindex="-1" class="menu-item">ดูแลสวน</a>
-            </li>
-            <li role="presentation">
-                <a role="menuitem" href="{{ URL::route('custumers') }}" tabindex="-1" class="menu-item">เฟอร์โบราณเก่าเก็บ</a>
-            </li>
-        </ul>
-    </li>
+            {{--<li>--}}
+                {{--<a href="{{ URL::route('home_index') }}" class="menu-item">โครงการบ้านใหม่</a>--}}
+            {{--</li>--}}
+            {{--<li>--}}
+                {{--<a href="{{ URL::route('custumers') }}" class="menu-item">โครงการทาวน์โฮมใหม่</a>--}}
+            {{--</li>--}}
+            {{--<li>--}}
+                {{--<a href="{{ URL::route('custumers') }}" class="menu-item">โครงการคอนโดใหม่</a>--}}
+            {{--</li>--}}
+            {{--<li>--}}
+                {{--<a href="{{ URL::route('custumers') }}" class="menu-item">ออกแบบภายใน ภายนอก</a>--}}
+            {{--</li>--}}
+            {{--<li>--}}
+                {{--<a href="{{ URL::route('features') }}" class="menu-item">ที่ดินเปล่า</a></li>--}}
+            {{--<li role="presentation">--}}
+                {{--<a role="menuitem" href="{{ URL::route('signin') }}" tabindex="-1" class="menu-item">เฟอร์นิเจอร์ ของตกแต่ง</a>--}}
+            {{--</li>--}}
+            {{--<li role="presentation">--}}
+                {{--<a role="menuitem" href="{{ URL::route('signup') }}" tabindex="-1" class="menu-item">เครื่องใช้ไฟฟ้า</a>--}}
+            {{--</li>--}}
+            {{--<li role="presentation">--}}
+                {{--<a role="menuitem" href="{{ URL::route('starter') }}" tabindex="-1" class="menu-item">เครื่องครัว สุขภัณฑ์</a>--}}
+            {{--</li>--}}
+            {{--<li role="presentation">--}}
+                {{--<a role="menuitem" href="{{ URL::route('custumers') }}" tabindex="-1" class="menu-item">วัสดุก่อสร้าง รับเหมา</a>--}}
+            {{--</li>--}}
+            {{--<li role="presentation">--}}
+                {{--<a role="menuitem" href="{{ URL::route('index_boxed') }}" tabindex="-1" class="menu-item">ดูแลสวน</a>--}}
+            {{--</li>--}}
+            {{--<li role="presentation">--}}
+                {{--<a role="menuitem" href="{{ URL::route('custumers') }}" tabindex="-1" class="menu-item">เฟอร์โบราณเก่าเก็บ</a>--}}
+            {{--</li>--}}
+        {{--</ul>--}}
+    {{--</li>--}}
   
     <li class="dropdown">
         <a 

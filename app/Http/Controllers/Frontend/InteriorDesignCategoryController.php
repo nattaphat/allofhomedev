@@ -6,25 +6,25 @@ use Request;
 use Validator;
 
 
-class HomeCategoryController extends Controller {
+class InteriorDesignCategoryController extends Controller {
 
     public function index()
     {
-        return view('web.frontend.home.index');
+        return view('web.frontend.interiorDesign.index');
     }
 
     public function create()
     {
-        return view('web.frontend.home.create');
+        return view('web.frontend.interiorDesign.create');
     }
 
     public function update()
     {
-        return view('web.frontend.home.update');
+        return view('web.frontend.interiorDesign.update');
     }
 
     public function view()
     {
-        return view('web.frontend.home.view');
+        return view('web.frontend.interiorDesign.view');
     }
 }
