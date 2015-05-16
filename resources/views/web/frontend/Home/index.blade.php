@@ -7,7 +7,7 @@
         <div class="row">
             <div class="col-md-2"></div>
             <div class="col-md-8" style="padding-left: 80px;">
-                <img src="http://www.moe.go.th/websm/2013/nov/DSC_5570.jpg"
+                <img src="http://smart-retailer.com/wp-content/uploads/rod_2.jpg"
                      alt="Feature 1" class="img-responsive" />
                 <h3 class="title">
                     <a href="#">หัวข้อบทความและข่าวสาร</a>

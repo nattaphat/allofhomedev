@@ -13,6 +13,10 @@
 use App\Models\Area;
 use App\Models\SubArea;
 
+use App\Models\TestStaff;
+use App\Models\TestOrder;
+use App\Models\TestPhoto;
+
 include app_path().'/Http/Routes/allofhome.php';
 include app_path().'/Http/Routes/allofhome_backend.php';
 
@@ -119,7 +123,19 @@ Route::get('testModel', function(){
 //    $m = \App\Models\CatReview::findOrFail(1)->picture()->get()->toArray();
 //    dd($m);
 
-    $m = \App\Models\Branch::findOrFail(1)->tambon()->get()->toArray();
-    dd($m);
+//    $m = \App\Models\Branch::findOrFail(1)->tambon()->get()->toArray();
+//    dd($m);
+
+//    $staff = new TestStaff;
+//    $staff->name = "thapakit";
+//    $staff->save();
+
+//    $order = new TestOrder;
+//    $order->price = 200;
+//    $order->save();
+
+//    $order = TestOrder::find(1);
+//    $photo = $order->photos()->create(array('path' => 'foo'));
+//    dd($photo);
 
 });

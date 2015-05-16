@@ -100,7 +100,8 @@
             </div>
 
             <!--Header & Branding region-->
-            <div class="header" data-toggle="clingify">
+                {{--<div class="header" data-toggle="clingify">--}}
+            <div class="header">
                 <div class="header-inner container">
                     <div class="navbar">
                         <div class="pull-left">
