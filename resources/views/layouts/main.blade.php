@@ -164,7 +164,7 @@
         @include('layouts._partials.left_menu')
     </div>
     <!-- ======== @Region: Slide ======== -->
-    <div class="col-sm-6">
+    <div class="col-sm-6 panel">
         <section class="slider">
             <div id="slider_allofhome" class="flexslider">
                 <ul class="slides">
@@ -218,6 +218,23 @@
     </div>
 
 </div> <!-- End class="row" -->
+
+  <!-- ======== @Region: ข้อความบทความ Slide ======== -->
+<div class="row">
+    <div class="col-sm-3"></div>
+    <div class="col-sm-6">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <a href="#" class="font-xs-x3 font-md-x2" style="color: #55a79a;">
+                    เรื่อง: หัวข้อบทความและข่าวสาร</a>
+                <div style="text-indent: 30px;">
+                    <p>รายละเอียดบทความและข่าวสาร</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-3"></div>
+</div>
 
   <!-- ======== @Region: #content ======== -->
    <div class="row">
