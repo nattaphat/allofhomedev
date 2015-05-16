@@ -144,12 +144,36 @@
 <div id="highlighted">
     @yield('slider')
 </div>
-
+<p></p>
 <!-- ======== @Carousel ==========> -->
  {{--@include('layouts._partials.carousel')--}}
 
-<!-- ======== @Region: #content ======== -->
-<div id="content">
+
+<div class="row">
+    <!-- ======== @Region: Left MainMenu ======== -->
+    <div class="col-sm-3">
+        @include('layouts._partials.left_menu')
+        <ul class="nav nav-sidebar">
+            <li class="active"><a href="#">Overview <span class="sr-only">(current)</span></a></li>
+            <li><a href="#">Reports</a></li>
+            <li><a href="#">Analytics</a></li>
+            <li><a href="#">Export</a></li>
+        </ul>
+    </div>
+    <!-- ======== @Region: Slide ======== -->
+    <div class="col-sm-9">
+        <div id="slider1_container" style="position: relative; top: 0px; left: 0px; width: 600px; height: 300px;">
+            <!-- Slides Container -->
+            <div u="slides" style="cursor: move; position: absolute; overflow: hidden; left: 0px; top: 0px; width: 600px; height: 300px;">
+                <div><img u="image" src="http://www.jssor.com/img/travel/12.jpg" /></div>
+                <div><img u="image" src="http://www.jssor.com/img/travel/13.jpg" /></div>
+            </div>
+        </div>
+    </div>
+</div> <!-- End class="row" -->
+
+  <!-- ======== @Region: #content ======== -->
+  <div id="content">
     @yield('content')
 </div>
 

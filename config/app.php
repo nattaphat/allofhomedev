@@ -149,7 +149,7 @@ return [
 		'App\Providers\ConfigServiceProvider',
 		'App\Providers\EventServiceProvider',
 		'App\Providers\RouteServiceProvider',
-        'yajra\Datatables\DatatablesServiceProvider',
+//        'yajra\Datatables\DatatablesServiceProvider',
 
 	],
 
