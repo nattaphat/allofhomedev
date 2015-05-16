@@ -38,6 +38,10 @@
       <!-- Flexslider -->
       <link type="text/css" type="text/css" href="{{ asset('plugins/flexslider/flexslider.css') }}" rel="stylesheet">
 
+      <!-- Owlcarousel -->
+      <link type="text/css" type="text/css" href="{{ asset('plugins/owl-carousel/owl-carousel/owl.carousel.css') }}" rel="stylesheet">
+      <link type="text/css" type="text/css" href="{{ asset('plugins/owl-carousel/owl-carousel/owl.theme.css') }}" rel="stylesheet">
+
       <!-- Plugins required on all pages NOTE: Additional non-required plugins are loaded ondemand as of AppStrap 2.5 -->
       <!-- Plugin: animate.css (animated effects) - http://daneden.github.io/animate.css/ -->
       <link type="text/css" href="{{ asset('plugins/animate/animate.css') }}" rel="stylesheet">
@@ -146,6 +150,7 @@
 
 <!-- ======== @Region: #highlighted ======== -->
 <div id="highlighted">
+<!--<div class="row">-->
     @yield('slider')
 </div>
 <p></p>
@@ -164,51 +169,33 @@
             <div id="slider_allofhome" class="flexslider">
                 <ul class="slides">
                     <li>
-                        <img src="{{ asset('./plugins/flexslider/demo/images/kitchen_adventurer_cheesecake_brownie.jpg')}}" />
+                        <img src="http://www.metricon.com.au/Metricon/media/metricon/gallery/Thumbs/Living-Rooms.jpg?width=800&height=600&ext=.jpg" />
                     </li>
                     <li>
-                        <img src="{{ asset('./plugins/flexslider/demo/images/kitchen_adventurer_lemon.jpg')}}" />
+                        <img src="http://www.olirip.com/wp-content/uploads/2015/03/best-small-living-room-design-with-picture-of-small-living-set-on-home-interior-design.jpg" />
                     </li>
                     <li>
-                        <img src="{{ asset('./plugins/flexslider/demo/images/kitchen_adventurer_donut.jpg')}}" />
+                        <img src="http://www.esnhome.net/wp-content/uploads/2015/03/contemporary-living-room-curtains-ideas-luxury-living-room-curtains-ideas-modern-furniture-design-blog-800x500.jpg" />
                     </li>
                     <li>
-                        <img src="{{ asset('./plugins/flexslider/demo/images/kitchen_adventurer_caramel.jpg')}}" />
-                    </li>
-                    <li>
-                        <img src="{{ asset('./plugins/flexslider/demo/images/kitchen_adventurer_caramel.jpg')}}" />
-                    </li>
-                    <li>
-                        <img src="{{ asset('./plugins/flexslider/demo/images/kitchen_adventurer_caramel.jpg')}}" />
-                    </li>
-                    <li>
-                        <img src="{{ asset('./plugins/flexslider/demo/images/kitchen_adventurer_caramel.jpg')}}" />
+                        <img src="http://www.olirip.com/wp-content/uploads/2015/04/awesome-living-room-sets-with-tv-with-picture-of-living-room-photography-on-furniture-design.jpg" />
                     </li>
                 </ul>
             </div>
-
+            <p></p>
             <div id="carousel_allofhome" class="flexslider">
                 <ul class="slides">
                     <li>
-                        <img src="{{ asset('./plugins/flexslider/demo/images/kitchen_adventurer_cheesecake_brownie.jpg')}}" />
+                        <img src="http://www.metricon.com.au/Metricon/media/metricon/gallery/Thumbs/Living-Rooms.jpg?width=800&height=600&ext=.jpg" />
                     </li>
                     <li>
-                        <img src="{{ asset('./plugins/flexslider/demo/images/kitchen_adventurer_lemon.jpg')}}" />
+                        <img src="http://www.olirip.com/wp-content/uploads/2015/03/best-small-living-room-design-with-picture-of-small-living-set-on-home-interior-design.jpg" />
                     </li>
                     <li>
-                        <img src="{{ asset('./plugins/flexslider/demo/images/kitchen_adventurer_donut.jpg')}}" />
+                        <img src="http://www.esnhome.net/wp-content/uploads/2015/03/contemporary-living-room-curtains-ideas-luxury-living-room-curtains-ideas-modern-furniture-design-blog-800x500.jpg" />
                     </li>
                     <li>
-                        <img src="{{ asset('./plugins/flexslider/demo/images/kitchen_adventurer_caramel.jpg')}}" />
-                    </li>
-                    <li>
-                        <img src="{{ asset('./plugins/flexslider/demo/images/kitchen_adventurer_caramel.jpg')}}" />
-                    </li>
-                    <li>
-                        <img src="{{ asset('./plugins/flexslider/demo/images/kitchen_adventurer_caramel.jpg')}}" />
-                    </li>
-                    <li>
-                        <img src="{{ asset('./plugins/flexslider/demo/images/kitchen_adventurer_caramel.jpg')}}" />
+                        <img src="http://www.olirip.com/wp-content/uploads/2015/04/awesome-living-room-sets-with-tv-with-picture-of-living-room-photography-on-furniture-design.jpg" />
                     </li>
                 </ul>
             </div>
@@ -233,10 +220,11 @@
 </div> <!-- End class="row" -->
 
   <!-- ======== @Region: #content ======== -->
-  <div id="content">
-    @yield('content')
+   <div class="row">
+    <div id="content">
+        @yield('content')
+    </div>
 </div>
-
 <!-- ======== @Region: #content-below ======== -->
 <div id="content-below" class="wrapper">
     @include('layouts._partials.content_below')
@@ -282,33 +270,15 @@
         <!--Dropzone -->
         <script src={{ asset('js/lib/dropzone/dist/min/dropzone.min.js') }}></script>
 
+        <!--OWL Carousel -->
+        <script src={{ asset('plugins/owl-carousel/owl-carousel/owl.carousel.min.js') }}></script>
+
         <!--Custom scripts mainly used to trigger libraries/plugins -->
         <script src={{ asset('js/script.min.js') }}></script>
 
         <!--Custom scripts for allofhome -->
         <script src={{ asset('js/allofhome.js') }}></script>
-//        <script type="javascript">
-//            $(window).load(function() {
-//                // The slider being synced must be initialized first
-//                $('#carousel').flexslider({
-//                    animation: "slide",
-//                    controlNav: false,
-//                    animationLoop: false,
-//                    slideshow: false,
-//                    itemWidth: 210,
-//                    itemMargin: 5,
-//                    asNavFor: '#slider'
-//                });
-//
-//                $('#slider').flexslider({
-//                    animation: "slide",
-//                    controlNav: false,
-//                    animationLoop: false,
-//                    slideshow: false,
-//                    sync: "#carousel"
-//                });
-//            });
-//        </script>
+
         @yield('jsbody')
     </body>
 </html>
