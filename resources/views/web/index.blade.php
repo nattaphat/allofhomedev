@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('slider')
-    @include('layouts._partials.slider')
+    @include('layouts._partials.topslide')
 @stop
 
 @section('jsbody')

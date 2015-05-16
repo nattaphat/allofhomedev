@@ -38,6 +38,10 @@
       <!-- Flexslider -->
       <link type="text/css" type="text/css" href="{{ asset('plugins/flexslider/flexslider.css') }}" rel="stylesheet">
 
+      <!-- Owlcarousel -->
+      <link type="text/css" type="text/css" href="{{ asset('plugins/owl-carousel/owl-carousel/owl.carousel.css') }}" rel="stylesheet">
+      <link type="text/css" type="text/css" href="{{ asset('plugins/owl-carousel/owl-carousel/owl.theme.css') }}" rel="stylesheet">
+
       <!-- Plugins required on all pages NOTE: Additional non-required plugins are loaded ondemand as of AppStrap 2.5 -->
       <!-- Plugin: animate.css (animated effects) - http://daneden.github.io/animate.css/ -->
       <link type="text/css" href="{{ asset('plugins/animate/animate.css') }}" rel="stylesheet">
@@ -146,6 +150,7 @@
 
 <!-- ======== @Region: #highlighted ======== -->
 <div id="highlighted">
+<!--<div class="row">-->
     @yield('slider')
 </div>
 <p></p>
@@ -153,10 +158,11 @@
  {{--@include('layouts._partials.carousel')--}}
 
   <!-- ======== @Region: #content ======== -->
-  <div id="content">
-    @yield('content')
+<div class="row">
+    <div id="content">
+        @yield('content')
+    </div>
 </div>
-
 <!-- ======== @Region: #content-below ======== -->
 {{--<div id="content-below" class="wrapper">--}}
     {{--@include('layouts._partials.content_below')--}}
@@ -202,33 +208,15 @@
         <!--Dropzone -->
         <script src={{ asset('js/lib/dropzone/dist/min/dropzone.min.js') }}></script>
 
+        <!--OWL Carousel -->
+        <script src={{ asset('plugins/owl-carousel/owl-carousel/owl.carousel.min.js') }}></script>
+
         <!--Custom scripts mainly used to trigger libraries/plugins -->
         <script src={{ asset('js/script.min.js') }}></script>
 
         <!--Custom scripts for allofhome -->
         <script src={{ asset('js/allofhome.js') }}></script>
-//        <script type="javascript">
-//            $(window).load(function() {
-//                // The slider being synced must be initialized first
-//                $('#carousel').flexslider({
-//                    animation: "slide",
-//                    controlNav: false,
-//                    animationLoop: false,
-//                    slideshow: false,
-//                    itemWidth: 210,
-//                    itemMargin: 5,
-//                    asNavFor: '#slider'
-//                });
-//
-//                $('#slider').flexslider({
-//                    animation: "slide",
-//                    controlNav: false,
-//                    animationLoop: false,
-//                    slideshow: false,
-//                    sync: "#carousel"
-//                });
-//            });
-//        </script>
+
         @yield('jsbody')
     </body>
 </html>
