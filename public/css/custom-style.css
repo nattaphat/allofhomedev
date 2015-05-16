@@ -206,3 +206,5 @@ p {
     /*height: auto;*/
     height: 300px;
 }
+
+.short { width: 300px; }

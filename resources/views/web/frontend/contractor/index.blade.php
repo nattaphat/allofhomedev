@@ -5,9 +5,10 @@
 @stop
 
 @section('content')
-    <div class="container">
 
-        @include('layouts._partials.articleSlide')
+    @include('layouts._partials.articleSlide')
+
+    <div class="container">
 
         <div class="row">
             <div class="col-md-12">
@@ -23,7 +24,7 @@
 
         <br><br>
 
-        {{--Google Map--}}
+        Google Map
         <div class="row">
             <div class="col-md-12">
                 <div class="panel panel-default">
@@ -38,7 +39,7 @@
 
         <br><br>
 
-        {{-- รายการประกาศหมวดหมู่บ้าน --}}
+         รายการประกาศหมวดหมู่บ้าน
         <div class="row">
             <div class="col-md-12">
                 <div class="panel panel-default">

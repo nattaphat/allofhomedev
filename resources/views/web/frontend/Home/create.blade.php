@@ -5,20 +5,40 @@
 @stop
 
 @section('content')
-    <div class="container">
 
-        @include('layouts._partials.articleSlide')
+    <div class="container">
 
         <div class="panel panel-default">
             <div class="panel-heading">
-                เพิ่มประกาศหมวดหมู่โครงการบ้านใหม่
+                ประกาศหมวดหมู่ XXXXXX
             </div>
             <div class="panel-body">
-                {!! Form::open() !!}
 
+                <div class="col-md-1"></div>
+                <div class="col-md-11">
+                    {!! Form::open() !!}
 
+                    <div class="form-group">
+                        {!! Form::label('attribute', 'attribute:') !!}
+                        {!! Form::text('attribute', null,['class' => 'form-control short']) !!}
+                    </div>
 
-                {!! Form::close() !!}
+                    <div class="form-group">
+                        {!! Form::label('attribute', 'attribute:') !!}
+                        {!! Form::text('attribute', null,['class' => 'form-control short']) !!}
+                    </div>
+
+                    <div class="form-group">
+                        {!! Form::label('attribute', 'attribute:') !!}
+                        {!! Form::textarea('attribute', null,['class' => 'form-control']) !!}
+                    </div>
+
+                    <div class="form-group">
+                        {!! Form::submit('บันทึก', ['class'=>'btn btn-primary']) !!}
+                        {!! link_to(URL::route('home_index'), 'ยกเลิก', ['class' => 'btn btn-default']) !!}
+                    </div>
+                    {!! Form::close() !!}
+                </div>
             </div>
         </div>
 

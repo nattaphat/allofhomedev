@@ -5,9 +5,11 @@
 @stop
 
 @section('content')
-    <div class="container">
 
-        @include('layouts._partials.articleSlide')
+    @include('layouts._partials.articleSlide')
+
+    <div class="container">
+        
 
     </div>
 @stop
