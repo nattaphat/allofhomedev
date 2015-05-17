@@ -23,15 +23,41 @@ Route::post('postsignup', [
     'uses' => 'Frontend\SignupController@postSignup'
 ]);
 
+// Filter Login
+Route::filter('frontend_auth', function()
+{
+    if (!Auth::check() && !Auth::viaRemember())
+    {
+        return redirect('login');
+    }
+});
+
+//    Login Logout
 Route::get('login', [
-    'as' => 'signin',
+    'as' => 'login',
     'uses' => 'AllofhomeController@login'
 ]);
 
 Route::post('login', [
     'as' => 'postsignin',
-    'uses' => 'Auth\AuthController@postLogin'
+    'uses' => 'AllofhomeController@post_login'
 ]);
+
+Route::get('signout', [
+    'as' => 'signout',
+    'uses' => 'AllofhomeController@logout'
+]);
+
+
+//Route::get('login', [
+//    'as' => 'signin',
+//    'uses' => 'AllofhomeController@login'
+//]);
+//
+//Route::post('login', [
+//    'as' => 'postsignin',
+//    'uses' => 'Auth\AuthController@postLogin'
+//]);
 
 
 Route::get('forgotpwd', [
@@ -77,418 +103,504 @@ Route::get('fbpostlogin', [
 /*----------------------------------------------Login first -------------------------------*/
 Route::group(['middleware' => 'auth'], function()
 {
-    /* Frontend route*/
-    Route::get('/', [
-        'as' => 'index',
-        'uses' => 'AllofhomeController@index'
-    ]);
 
-    Route::get('signout', [
-        'as' => 'signout',
-        'uses' => 'Auth\AuthController@logout'
-    ]);
-
-    Route::get('user/accinfo', [
-        'as' => 'user_accinfo',
-        'uses' => 'Frontend\UserinfoController@userInfo'
-    ]);
-
-	Route::post('user/accinfo', [
-            'as' => 'user_postaccinfo',
-            'uses' => 'Frontend\UserinfoController@postUpdateInfo'
-    ]);
-
-	Route::get('user/passwd', [
-		'as' => 'user_passwd',
-		'uses' => 'Frontend\UserinfoController@userChangePwd'
-	]);
-
-	Route::post('user/passwd', [
-		'as' => 'user_postpasswd',
-		'uses' => 'Frontend\UserinfoController@postUserChangePwd'
-	]);
-
-    Route::get('user/uasge', [
-        'as' => 'user_usage',
-        'uses' => 'AllofhomeController@index'
-    ]);
-
-    Route::get('user/msg', [
-        'as' => 'user_msg',
-        'uses' => 'AllofhomeController@index'
-    ]);
-
-    Route::get('post/add', [
-        'as' => 'post_add',
-        'uses' => 'AllofhomeController@createPost'
-    ]);
-
-    /*-------------------------------- Home -------------------------------*/
-    Route::get('home/index', [
-        'as' => 'home_index',
-        'uses' => 'Frontend\HomeCategoryController@index'
-    ]);
-
-    Route::get('home/create', [
-        'as' => 'home_create',
-        'uses' => 'Frontend\HomeCategoryController@create'
-    ]);
-
-    Route::get('home/update', [
-        'as' => 'home_update',
-        'uses' => 'Frontend\HomeCategoryController@update'
-    ]);
-
-    Route::get('home/view', [
-        'as' => 'home_view',
-        'uses' => 'Frontend\HomeCategoryController@view'
-    ]);
-
-    /*-------------------------------- Condo -------------------------------*/
-    Route::get('condo/index', [
-        'as' => 'condo_index',
-        'uses' => 'Frontend\CondoCategoryController@index'
-    ]);
-
-    Route::get('condo/create', [
-        'as' => 'condo_create',
-        'uses' => 'Frontend\CondoCategoryController@create'
-    ]);
-
-    Route::get('condo/update', [
-        'as' => 'condo_update',
-        'uses' => 'Frontend\CondoCategoryController@update'
-    ]);
-
-    Route::get('condo/view', [
-        'as' => 'condo_view',
-        'uses' => 'Frontend\CondoCategoryController@view'
-    ]);
-
-    /*-------------------------------- Townhome -------------------------------*/
-    Route::get('townhome/index', [
-        'as' => 'townhome_index',
-        'uses' => 'Frontend\TownHomeCategoryController@index'
-    ]);
-
-    Route::get('townhome/create', [
-        'as' => 'townhome_create',
-        'uses' => 'Frontend\TownHomeCategoryController@create'
-    ]);
-
-    Route::get('townhome/update', [
-        'as' => 'townhome_update',
-        'uses' => 'Frontend\TownHomeCategoryController@update'
-    ]);
-
-    Route::get('townhome/view', [
-        'as' => 'townhome_view',
-        'uses' => 'Frontend\TownHomeCategoryController@view'
-    ]);
-
-    /*-------------------------------- Interior Design -------------------------------*/
-    Route::get('interiorDesign/index', [
-        'as' => 'interiorDesign_index',
-        'uses' => 'Frontend\InteriorDesignCategoryController@index'
-    ]);
-
-    Route::get('interiorDesign/create', [
-        'as' => 'interiorDesign_create',
-        'uses' => 'Frontend\InteriorDesignCategoryController@create'
-    ]);
-
-    Route::get('interiorDesign/update', [
-        'as' => 'interiorDesign_update',
-        'uses' => 'Frontend\InteriorDesignCategoryController@update'
-    ]);
-
-    Route::get('interiorDesign/view', [
-        'as' => 'interiorDesign_view',
-        'uses' => 'Frontend\InteriorDesignCategoryController@view'
-    ]);
-
-    /*-------------------------------- Land -------------------------------*/
-    Route::get('land/index', [
-        'as' => 'land_index',
-        'uses' => 'Frontend\LandCategoryController@index'
-    ]);
-
-    Route::get('land/create', [
-        'as' => 'land_create',
-        'uses' => 'Frontend\LandCategoryController@create'
-    ]);
-
-    Route::get('land/update', [
-        'as' => 'land_update',
-        'uses' => 'Frontend\LandCategoryController@update'
-    ]);
-
-    Route::get('land/view', [
-        'as' => 'land_view',
-        'uses' => 'Frontend\LandCategoryController@view'
-    ]);
-
-    /*-------------------------------- Furniture -------------------------------*/
-    Route::get('furniture/index', [
-        'as' => 'furniture_index',
-        'uses' => 'Frontend\FurnitureCategoryController@index'
-    ]);
-
-    Route::get('furniture/create', [
-        'as' => 'furniture_create',
-        'uses' => 'Frontend\FurnitureCategoryController@create'
-    ]);
-
-    Route::get('furniture/update', [
-        'as' => 'furniture_update',
-        'uses' => 'Frontend\FurnitureCategoryController@update'
-    ]);
-
-    Route::get('furniture/view', [
-        'as' => 'furniture_view',
-        'uses' => 'Frontend\FurnitureCategoryController@view'
-    ]);
-
-    /*-------------------------------- Electric -------------------------------*/
-    Route::get('electric/index', [
-        'as' => 'electric_index',
-        'uses' => 'Frontend\ElectricCategoryController@index'
-    ]);
-
-    Route::get('electric/create', [
-        'as' => 'electric_create',
-        'uses' => 'Frontend\ElectricCategoryController@create'
-    ]);
-
-    Route::get('electric/update', [
-        'as' => 'electric_update',
-        'uses' => 'Frontend\ElectricCategoryController@update'
-    ]);
-
-    Route::get('electric/view', [
-        'as' => 'electric_view',
-        'uses' => 'Frontend\ElectricCategoryController@view'
-    ]);
-
-    /*-------------------------------- Kitchenware -------------------------------*/
-    Route::get('kitchenware/index', [
-        'as' => 'kitchenware_index',
-        'uses' => 'Frontend\KitchenwareCategoryController@index'
-    ]);
-
-    Route::get('kitchenware/create', [
-        'as' => 'kitchenware_create',
-        'uses' => 'Frontend\KitchenwareCategoryController@create'
-    ]);
-
-    Route::get('kitchenware/update', [
-        'as' => 'kitchenware_update',
-        'uses' => 'Frontend\HomeCategoryController@update'
-    ]);
-
-    Route::get('kitchenware/view', [
-        'as' => 'kitchenware_view',
-        'uses' => 'Frontend\KitchenwareCategoryController@view'
-    ]);
-
-    /*-------------------------------- Contractor -------------------------------*/
-    Route::get('contractor/index', [
-        'as' => 'contractor_index',
-        'uses' => 'Frontend\ContractorCategoryController@index'
-    ]);
-
-    Route::get('contractor/create', [
-        'as' => 'contractor_create',
-        'uses' => 'Frontend\ContractorCategoryController@create'
-    ]);
-
-    Route::get('contractor/update', [
-        'as' => 'contractor_update',
-        'uses' => 'Frontend\ContractorCategoryController@update'
-    ]);
-
-    Route::get('contractor/view', [
-        'as' => 'contractor_view',
-        'uses' => 'Frontend\ContractorCategoryController@view'
-    ]);
-
-    /*-------------------------------- Garden -------------------------------*/
-    Route::get('garden/index', [
-        'as' => 'garden_index',
-        'uses' => 'Frontend\GardenCategoryController@index'
-    ]);
-
-    Route::get('garden/create', [
-        'as' => 'garden_index_create',
-        'uses' => 'Frontend\GardenCategoryController@create'
-    ]);
-
-    Route::get('garden/update', [
-        'as' => 'garden_index_update',
-        'uses' => 'Frontend\GardenCategoryController@update'
-    ]);
-
-    Route::get('garden/view', [
-        'as' => 'garden_index_view',
-        'uses' => 'Frontend\GardenCategoryController@view'
-    ]);
-
-    /*-------------------------------- OldFurniture -------------------------------*/
-    Route::get('oldFurniture/index', [
-        'as' => 'oldFurniture_index',
-        'uses' => 'Frontend\OldFurnitureCategoryController@index'
-    ]);
-
-    Route::get('oldFurniture/create', [
-        'as' => 'oldFurniture_create',
-        'uses' => 'Frontend\OldFurnitureCategoryController@create'
-    ]);
-
-    Route::get('oldFurniture/update', [
-        'as' => 'oldFurniture_update',
-        'uses' => 'Frontend\OldFurnitureCategoryController@update'
-    ]);
-
-    Route::get('oldFurniture/view', [
-        'as' => 'oldFurniture_view',
-        'uses' => 'Frontend\OldFurnitureCategoryController@view'
-    ]);
-    /*------------------------------------------------------------------------------*/
-
-    /*-------------------------------- Review -------------------------------*/
-    Route::get('review/index', [
-        'as' => 'review_index',
-        'uses' => 'Frontend\ReviewCategoryController@index'
-    ]);
-
-    Route::get('review/create', [
-        'as' => 'review_create',
-        'uses' => 'Frontend\ReviewCategoryController@create'
-    ]);
-
-    Route::get('review/update', [
-        'as' => 'review_update',
-        'uses' => 'Frontend\ReviewCategoryController@update'
-    ]);
-
-    Route::get('review/view', [
-        'as' => 'review_view',
-        'uses' => 'Frontend\ReviewCategoryController@view'
-    ]);
-    /*------------------------------------------------------------------------------*/
-
-    /*-------------------------------- Idea -------------------------------*/
-    Route::get('idea/index', [
-        'as' => 'idea_index',
-        'uses' => 'Frontend\IdeaCategoryController@index'
-    ]);
-
-    Route::get('idea/create', [
-        'as' => 'idea_create',
-        'uses' => 'Frontend\IdeaCategoryController@create'
-    ]);
-
-    Route::get('idea/update', [
-        'as' => 'idea_update',
-        'uses' => 'Frontend\IdeaCategoryController@update'
-    ]);
-
-    Route::get('idea/view', [
-        'as' => 'idea_view',
-        'uses' => 'Frontend\IdeaCategoryController@view'
-    ]);
-    /*------------------------------------------------------------------------------*/
-
-    /*-------------------------------- Buysellrent -------------------------------*/
-    Route::get('buysellrent/index', [
-        'as' => 'buysellrent_index',
-        'uses' => 'Frontend\BuysellrentCategoryController@index'
-    ]);
-
-    Route::get('buysellrent/create', [
-        'as' => 'buysellrent_create',
-        'uses' => 'Frontend\BuysellrentCategoryController@create'
-    ]);
-
-    Route::get('buysellrent/update', [
-        'as' => 'buysellrent_update',
-        'uses' => 'Frontend\BuysellrentCategoryController@update'
-    ]);
-
-    Route::get('buysellrent/view', [
-        'as' => 'buysellrent_view',
-        'uses' => 'Frontend\BuysellrentCategoryController@view'
-    ]);
-    /*------------------------------------------------------------------------------*/
-
-    /*-------------------------------- Article -------------------------------*/
-    Route::get('article/index', [
-        'as' => 'article_index',
-        'uses' => 'Frontend\ArticleCategoryController@index'
-    ]);
-
-    Route::get('article/create', [
-        'as' => 'article_create',
-        'uses' => 'Frontend\ArticleCategoryController@create'
-    ]);
-
-    Route::get('article/update', [
-        'as' => 'article_update',
-        'uses' => 'Frontend\ArticleCategoryController@update'
-    ]);
-
-    Route::get('article/view', [
-        'as' => 'article_view',
-        'uses' => 'Frontend\ArticleCategoryController@view'
-    ]);
-    /*------------------------------------------------------------------------------*/
-
-    /*-------------------------------- Job -------------------------------*/
-    Route::get('job/index', [
-        'as' => 'job_index',
-        'uses' => 'Frontend\JobCategoryController@index'
-    ]);
-
-    Route::get('job/create', [
-        'as' => 'job_create',
-        'uses' => 'Frontend\JobCategoryController@create'
-    ]);
-
-    Route::get('job/update', [
-        'as' => 'job_update',
-        'uses' => 'Frontend\JobCategoryController@update'
-    ]);
-
-    Route::get('job/view', [
-        'as' => 'job_view',
-        'uses' => 'Frontend\JobCategoryController@view'
-    ]);
-    /*------------------------------------------------------------------------------*/
-
-    /*-------------------------------- 2hand -------------------------------*/
-    Route::get('2hand/index', [
-        'as' => '2hand_index',
-        'uses' => 'Frontend\TwohandCategoryController@index'
-    ]);
-
-    Route::get('2hand/create', [
-        'as' => '2hand_create',
-        'uses' => 'Frontend\TwohandCategoryController@create'
-    ]);
-
-    Route::get('2hand/update', [
-        'as' => '2hand_update',
-        'uses' => 'Frontend\TwohandCategoryController@update'
-    ]);
-
-    Route::get('2hand/view', [
-        'as' => '2hand_view',
-        'uses' => 'Frontend\TwohandCategoryController@view'
-    ]);
-    /*------------------------------------------------------------------------------*/
 });
 
 /*--------------------------------------------------------------*/
+
+
+
+
+/* Frontend route*/
+Route::get('/', [
+    'as' => 'index',
+    'before' => 'frontend_auth',
+    'uses' => 'AllofhomeController@index'
+]);
+
+//    Route::get('signout', [
+//        'as' => 'signout',
+//        'uses' => 'Auth\AuthController@logout'
+//    ]);
+
+Route::get('user/accinfo', [
+    'as' => 'user_accinfo',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\UserinfoController@userInfo'
+]);
+
+Route::post('user/accinfo', [
+    'as' => 'user_postaccinfo',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\UserinfoController@postUpdateInfo'
+]);
+
+Route::get('user/passwd', [
+    'as' => 'user_passwd',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\UserinfoController@userChangePwd'
+]);
+
+Route::post('user/passwd', [
+    'as' => 'user_postpasswd',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\UserinfoController@postUserChangePwd'
+]);
+
+Route::get('user/uasge', [
+    'as' => 'user_usage',
+    'before' => 'frontend_auth',
+    'uses' => 'AllofhomeController@index'
+]);
+
+Route::get('user/msg', [
+    'as' => 'user_msg',
+    'before' => 'frontend_auth',
+    'uses' => 'AllofhomeController@index'
+]);
+
+Route::get('post/add', [
+    'as' => 'post_add',
+    'before' => 'frontend_auth',
+    'uses' => 'AllofhomeController@createPost'
+]);
+
+/*-------------------------------- Home -------------------------------*/
+Route::get('home/index', [
+    'as' => 'home_index',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\HomeCategoryController@index'
+]);
+
+Route::get('home/create', [
+    'as' => 'home_create',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\HomeCategoryController@create'
+]);
+
+Route::get('home/update', [
+    'as' => 'home_update',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\HomeCategoryController@update'
+]);
+
+Route::get('home/view', [
+    'as' => 'home_view',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\HomeCategoryController@view'
+]);
+
+/*-------------------------------- Condo -------------------------------*/
+Route::get('condo/index', [
+    'as' => 'condo_index',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\CondoCategoryController@index'
+]);
+
+Route::get('condo/create', [
+    'as' => 'condo_create',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\CondoCategoryController@create'
+]);
+
+Route::get('condo/update', [
+    'as' => 'condo_update',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\CondoCategoryController@update'
+]);
+
+Route::get('condo/view', [
+    'as' => 'condo_view',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\CondoCategoryController@view'
+]);
+
+/*-------------------------------- Townhome -------------------------------*/
+Route::get('townhome/index', [
+    'as' => 'townhome_index',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\TownHomeCategoryController@index'
+]);
+
+Route::get('townhome/create', [
+    'as' => 'townhome_create',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\TownHomeCategoryController@create'
+]);
+
+Route::get('townhome/update', [
+    'as' => 'townhome_update',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\TownHomeCategoryController@update'
+]);
+
+Route::get('townhome/view', [
+    'as' => 'townhome_view',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\TownHomeCategoryController@view'
+]);
+
+/*-------------------------------- Interior Design -------------------------------*/
+Route::get('interiorDesign/index', [
+    'as' => 'interiorDesign_index',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\InteriorDesignCategoryController@index'
+]);
+
+Route::get('interiorDesign/create', [
+    'as' => 'interiorDesign_create',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\InteriorDesignCategoryController@create'
+]);
+
+Route::get('interiorDesign/update', [
+    'as' => 'interiorDesign_update',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\InteriorDesignCategoryController@update'
+]);
+
+Route::get('interiorDesign/view', [
+    'as' => 'interiorDesign_view',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\InteriorDesignCategoryController@view'
+]);
+
+/*-------------------------------- Land -------------------------------*/
+Route::get('land/index', [
+    'as' => 'land_index',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\LandCategoryController@index'
+]);
+
+Route::get('land/create', [
+    'as' => 'land_create',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\LandCategoryController@create'
+]);
+
+Route::get('land/update', [
+    'as' => 'land_update',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\LandCategoryController@update'
+]);
+
+Route::get('land/view', [
+    'as' => 'land_view',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\LandCategoryController@view'
+]);
+
+/*-------------------------------- Furniture -------------------------------*/
+Route::get('furniture/index', [
+    'as' => 'furniture_index',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\FurnitureCategoryController@index'
+]);
+
+Route::get('furniture/create', [
+    'as' => 'furniture_create',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\FurnitureCategoryController@create'
+]);
+
+Route::get('furniture/update', [
+    'as' => 'furniture_update',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\FurnitureCategoryController@update'
+]);
+
+Route::get('furniture/view', [
+    'as' => 'furniture_view',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\FurnitureCategoryController@view'
+]);
+
+/*-------------------------------- Electric -------------------------------*/
+Route::get('electric/index', [
+    'as' => 'electric_index',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\ElectricCategoryController@index'
+]);
+
+Route::get('electric/create', [
+    'as' => 'electric_create',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\ElectricCategoryController@create'
+]);
+
+Route::get('electric/update', [
+    'as' => 'electric_update',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\ElectricCategoryController@update'
+]);
+
+Route::get('electric/view', [
+    'as' => 'electric_view',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\ElectricCategoryController@view'
+]);
+
+/*-------------------------------- Kitchenware -------------------------------*/
+Route::get('kitchenware/index', [
+    'as' => 'kitchenware_index',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\KitchenwareCategoryController@index'
+]);
+
+Route::get('kitchenware/create', [
+    'as' => 'kitchenware_create',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\KitchenwareCategoryController@create'
+]);
+
+Route::get('kitchenware/update', [
+    'as' => 'kitchenware_update',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\HomeCategoryController@update'
+]);
+
+Route::get('kitchenware/view', [
+    'as' => 'kitchenware_view',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\KitchenwareCategoryController@view'
+]);
+
+/*-------------------------------- Contractor -------------------------------*/
+Route::get('contractor/index', [
+    'as' => 'contractor_index',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\ContractorCategoryController@index'
+]);
+
+Route::get('contractor/create', [
+    'as' => 'contractor_create',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\ContractorCategoryController@create'
+]);
+
+Route::get('contractor/update', [
+    'as' => 'contractor_update',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\ContractorCategoryController@update'
+]);
+
+Route::get('contractor/view', [
+    'as' => 'contractor_view',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\ContractorCategoryController@view'
+]);
+
+/*-------------------------------- Garden -------------------------------*/
+Route::get('garden/index', [
+    'as' => 'garden_index',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\GardenCategoryController@index'
+]);
+
+Route::get('garden/create', [
+    'as' => 'garden_index_create',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\GardenCategoryController@create'
+]);
+
+Route::get('garden/update', [
+    'as' => 'garden_index_update',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\GardenCategoryController@update'
+]);
+
+Route::get('garden/view', [
+    'as' => 'garden_index_view',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\GardenCategoryController@view'
+]);
+
+/*-------------------------------- OldFurniture -------------------------------*/
+Route::get('oldFurniture/index', [
+    'as' => 'oldFurniture_index',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\OldFurnitureCategoryController@index'
+]);
+
+Route::get('oldFurniture/create', [
+    'as' => 'oldFurniture_create',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\OldFurnitureCategoryController@create'
+]);
+
+Route::get('oldFurniture/update', [
+    'as' => 'oldFurniture_update',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\OldFurnitureCategoryController@update'
+]);
+
+Route::get('oldFurniture/view', [
+    'as' => 'oldFurniture_view',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\OldFurnitureCategoryController@view'
+]);
+/*------------------------------------------------------------------------------*/
+
+/*-------------------------------- Review -------------------------------*/
+Route::get('review/index', [
+    'as' => 'review_index',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\ReviewCategoryController@index'
+]);
+
+Route::get('review/create', [
+    'as' => 'review_create',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\ReviewCategoryController@create'
+]);
+
+Route::get('review/update', [
+    'as' => 'review_update',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\ReviewCategoryController@update'
+]);
+
+Route::get('review/view', [
+    'as' => 'review_view',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\ReviewCategoryController@view'
+]);
+/*------------------------------------------------------------------------------*/
+
+/*-------------------------------- Idea -------------------------------*/
+Route::get('idea/index', [
+    'as' => 'idea_index',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\IdeaCategoryController@index'
+]);
+
+Route::get('idea/create', [
+    'as' => 'idea_create',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\IdeaCategoryController@create'
+]);
+
+Route::get('idea/update', [
+    'as' => 'idea_update',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\IdeaCategoryController@update'
+]);
+
+Route::get('idea/view', [
+    'as' => 'idea_view',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\IdeaCategoryController@view'
+]);
+/*------------------------------------------------------------------------------*/
+
+/*-------------------------------- Buysellrent -------------------------------*/
+Route::get('buysellrent/index', [
+    'as' => 'buysellrent_index',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\BuysellrentCategoryController@index'
+]);
+
+Route::get('buysellrent/create', [
+    'as' => 'buysellrent_create',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\BuysellrentCategoryController@create'
+]);
+
+Route::get('buysellrent/update', [
+    'as' => 'buysellrent_update',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\BuysellrentCategoryController@update'
+]);
+
+Route::get('buysellrent/view', [
+    'as' => 'buysellrent_view',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\BuysellrentCategoryController@view'
+]);
+/*------------------------------------------------------------------------------*/
+
+/*-------------------------------- Article -------------------------------*/
+Route::get('article/index', [
+    'as' => 'article_index',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\ArticleCategoryController@index'
+]);
+
+Route::get('article/create', [
+    'as' => 'article_create',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\ArticleCategoryController@create'
+]);
+
+Route::get('article/update', [
+    'as' => 'article_update',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\ArticleCategoryController@update'
+]);
+
+Route::get('article/view', [
+    'as' => 'article_view',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\ArticleCategoryController@view'
+]);
+/*------------------------------------------------------------------------------*/
+
+/*-------------------------------- Job -------------------------------*/
+Route::get('job/index', [
+    'as' => 'job_index',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\JobCategoryController@index'
+]);
+
+Route::get('job/create', [
+    'as' => 'job_create',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\JobCategoryController@create'
+]);
+
+Route::get('job/update', [
+    'as' => 'job_update',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\JobCategoryController@update'
+]);
+
+Route::get('job/view', [
+    'as' => 'job_view',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\JobCategoryController@view'
+]);
+/*------------------------------------------------------------------------------*/
+
+/*-------------------------------- 2hand -------------------------------*/
+Route::get('2hand/index', [
+    'as' => '2hand_index',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\TwohandCategoryController@index'
+]);
+
+Route::get('2hand/create', [
+    'as' => '2hand_create',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\TwohandCategoryController@create'
+]);
+
+Route::get('2hand/update', [
+    'as' => '2hand_update',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\TwohandCategoryController@update'
+]);
+
+Route::get('2hand/view', [
+    'as' => '2hand_view',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\TwohandCategoryController@view'
+]);
+/*------------------------------------------------------------------------------*/
+
+
+
+
+
 
 Route::get('fblogin', [
 	'as' => 'fblogin',

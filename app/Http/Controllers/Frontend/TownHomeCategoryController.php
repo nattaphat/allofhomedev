@@ -44,7 +44,7 @@ class TownHomeCategoryController extends Controller {
         return view('web.frontend.townhome.update');
     }
 
-    public function view()
+    public function view($id = 0)
     {
         return view('web.frontend.townhome.view');
     }

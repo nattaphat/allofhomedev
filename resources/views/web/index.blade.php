@@ -65,7 +65,7 @@
     <div class="container">
 
         {{--อ่านรีวิวทั้งหมด--}}
-        <div class="panel panel-default">
+        <div class="panel panel-success">
             <div class="panel-body">
                 <div class="row">
                     {{--Banner--}}
@@ -197,7 +197,7 @@
         </div>
 
         {{--อ่านไอเดียทั้งหมด--}}
-        <div class="panel panel-default" >
+        <div class="panel panel-success" >
             <div class="panel-body">
                 <div class="row">
 
@@ -315,154 +315,153 @@
                             <hr>
                         </div>
                     </div>
-
-                    {{--Read More--}}
-                    <ul class="list-inline links" style="text-align: right">
-                        <li>
-                            <a href="{{ URL::to('idea/index') }}" class="btn btn-default btn-xs"><i class="fa fa-arrow-circle-right"></i> Read more</a>
-                        </li>
-                    </ul>
-
                 </div>
+                {{--Read More--}}
+                <ul class="list-inline links" style="text-align: right;">
+                    <li>
+                        <a href="{{ URL::to('idea/index') }}" class="btn btn-default btn-xs">
+                            <i class="fa fa-arrow-circle-right"></i> Read more</a>
+                    </li>
+                </ul>
             </div>
         </div>
 
         {{--อ่านกระทู้ทั้งหมด--}}
-        <div class="panel panel-default" >
-            <div class="panel-body">
-                <div class="row">
+        <div class="row">
+            <div class="panel panel-success" >
+                <div class="panel-body">
+                    <div class="row">
 
-                    {{--Banner--}}
-                    <div class="col-md-3">
-                        <div class="row" style="padding-top: 90px; padding-left:10px; padding-right:10px;">
-                            <a href="#">
-                                <img src="http://www.itgadgeteer.com/wp-content/uploads/2014/06/ad_300x250.png"
-                                     alt="Feature 1" class="img-responsive" />
-                            </a>
+                        {{--Banner--}}
+                        <div class="col-md-3">
+                            <div class="row" style="padding-top: 90px; padding-left:10px; padding-right:10px;">
+                                <a href="#">
+                                    <img src="http://www.itgadgeteer.com/wp-content/uploads/2014/06/ad_300x250.png"
+                                         alt="Feature 1" class="img-responsive" />
+                                </a>
+                            </div>
+                            <div class="row" style="padding-top: 20px;  padding-left:10px; padding-right:10px;">
+                                <a href="#">
+                                    <img src="http://www.itgadgeteer.com/wp-content/uploads/2014/06/ad_300x250.png"
+                                         alt="Feature 1" class="img-responsive" />
+                                </a>
+                            </div>
                         </div>
-                        <div class="row" style="padding-top: 20px;  padding-left:10px; padding-right:10px;">
-                            <a href="#">
-                                <img src="http://www.itgadgeteer.com/wp-content/uploads/2014/06/ad_300x250.png"
-                                     alt="Feature 1" class="img-responsive" />
-                            </a>
+
+                        {{--Post Detail--}}
+                        <div class="col-md-9" >
+                            <div class="block features">
+                                <h2 class="title-divider" >
+                                    <span style="color: #55a79a;">ประกาศซื้อ ขาย เช่า ให้เช่า</span>
+                                    <small>ต้องการซื้อ ขาย เช่า ให้เช่า บ้าน คอนโด อพาร์ทเม้น ฯลฯ</small>
+                                </h2>
+                                <div class="row">
+
+                                    <div class="col-md-4 block features">
+                                        <div class="row" style="padding-left: 10px; padding-right: 10px;">
+                                            <div class="feature">
+                                                <a href="#">
+                                                    <img src="http://www.thaihometown.com/exclusive/40442/home_40442_6t4bq2_1.jpg"
+                                                         alt="Feature 3" class="img-responsive" />
+                                                </a>
+                                                <h3 class="title">
+                                                    <a href="#">ประกาศขายบ้านมือสอง</a>
+                                                </h3>
+                                                <p>Rhoncus adipiscing, magna integer cursus augue eros lacus porttitor magna. Dictumst, odio! Elementum tortor sociis in eu dis dictumst pulvinar lorem nec aliquam a nascetur.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4 block features">
+                                        <div class="row" style="padding-left: 10px; padding-right: 10px;">
+                                            <div class="feature">
+                                                <a href="#">
+                                                    <img src="http://bookup.asia/cache/images/shop/4723/main-250x150.jpg"
+                                                         alt="Feature 3" class="img-responsive" />
+                                                </a>
+                                                <h3 class="title">
+                                                    <a href="#">ประกาศขายบ้านมือสอง</a>
+                                                </h3>
+                                                <p>Rhoncus adipiscing, magna integer cursus augue eros lacus porttitor magna. Dictumst, odio! Elementum tortor sociis in eu dis dictumst pulvinar lorem nec aliquam a nascetur.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4 block features">
+                                        <div class="row" style="padding-left: 10px; padding-right: 10px;">
+                                            <div class="feature">
+                                                <a href="#">
+                                                    <img src="http://www.hydefly.com/images/school/profile/sprachcaffe--geos-london-471.jpg"
+                                                         alt="Feature 3" class="img-responsive" />
+                                                </a>
+                                                <h3 class="title">
+                                                    <a href="#">ประกาศขายบ้านมือสอง</a>
+                                                </h3>
+                                                <p>Rhoncus adipiscing, magna integer cursus augue eros lacus porttitor magna. Dictumst, odio! Elementum tortor sociis in eu dis dictumst pulvinar lorem nec aliquam a nascetur.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <hr>
+                                <div class="row">
+
+                                    <div class="col-md-4 block features">
+                                        <div class="row" style="padding-left: 10px; padding-right: 10px;">
+                                            <div class="feature">
+                                                <a href="#">
+                                                    <img src="http://www.thaihometown.com/exclusive/40442/home_40442_6t4bq2_1.jpg"
+                                                         alt="Feature 3" class="img-responsive" />
+                                                </a>
+                                                <h3 class="title">
+                                                    <a href="#">ประกาศขายบ้านมือสอง</a>
+                                                </h3>
+                                                <p>Rhoncus adipiscing, magna integer cursus augue eros lacus porttitor magna. Dictumst, odio! Elementum tortor sociis in eu dis dictumst pulvinar lorem nec aliquam a nascetur.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4 block features">
+                                        <div class="row" style="padding-left: 10px; padding-right: 10px;">
+                                            <div class="feature">
+                                                <a href="#">
+                                                    <img src="http://bookup.asia/cache/images/shop/4723/main-250x150.jpg"
+                                                         alt="Feature 3" class="img-responsive" />
+                                                </a>
+                                                <h3 class="title">
+                                                    <a href="#">ประกาศขายบ้านมือสอง</a>
+                                                </h3>
+                                                <p>Rhoncus adipiscing, magna integer cursus augue eros lacus porttitor magna. Dictumst, odio! Elementum tortor sociis in eu dis dictumst pulvinar lorem nec aliquam a nascetur.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4 block features">
+                                        <div class="row" style="padding-left: 10px; padding-right: 10px;">
+                                            <div class="feature">
+                                                <a href="#">
+                                                    <img src="http://www.hydefly.com/images/school/profile/sprachcaffe--geos-london-471.jpg"
+                                                         alt="Feature 3" class="img-responsive" />
+                                                </a>
+                                                <h3 class="title">
+                                                    <a href="#">ประกาศขายบ้านมือสอง</a>
+                                                </h3>
+                                                <p>Rhoncus adipiscing, magna integer cursus augue eros lacus porttitor magna. Dictumst, odio! Elementum tortor sociis in eu dis dictumst pulvinar lorem nec aliquam a nascetur.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <hr>
+                            </div>
                         </div>
                     </div>
-
-                    {{--Post Detail--}}
-                    <div class="col-md-9" >
-                        <div class="block features">
-                            <h2 class="title-divider" >
-                                <span style="color: #55a79a;">ประกาศซื้อ ขาย เช่า ให้เช่า</span>
-                                <small>ต้องการซื้อ ขาย เช่า ให้เช่า บ้าน คอนโด อพาร์ทเม้น ฯลฯ</small>
-                            </h2>
-                            <div class="row">
-
-                                <div class="col-md-4 block features">
-                                    <div class="row" style="padding-left: 10px; padding-right: 10px;">
-                                        <div class="feature">
-                                            <a href="#">
-                                                <img src="http://www.thaihometown.com/exclusive/40442/home_40442_6t4bq2_1.jpg"
-                                                     alt="Feature 3" class="img-responsive" />
-                                            </a>
-                                            <h3 class="title">
-                                                <a href="#">ประกาศขายบ้านมือสอง</a>
-                                            </h3>
-                                            <p>Rhoncus adipiscing, magna integer cursus augue eros lacus porttitor magna. Dictumst, odio! Elementum tortor sociis in eu dis dictumst pulvinar lorem nec aliquam a nascetur.</p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-4 block features">
-                                    <div class="row" style="padding-left: 10px; padding-right: 10px;">
-                                        <div class="feature">
-                                            <a href="#">
-                                                <img src="http://bookup.asia/cache/images/shop/4723/main-250x150.jpg"
-                                                     alt="Feature 3" class="img-responsive" />
-                                            </a>
-                                            <h3 class="title">
-                                                <a href="#">ประกาศขายบ้านมือสอง</a>
-                                            </h3>
-                                            <p>Rhoncus adipiscing, magna integer cursus augue eros lacus porttitor magna. Dictumst, odio! Elementum tortor sociis in eu dis dictumst pulvinar lorem nec aliquam a nascetur.</p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-4 block features">
-                                    <div class="row" style="padding-left: 10px; padding-right: 10px;">
-                                        <div class="feature">
-                                            <a href="#">
-                                                <img src="http://www.hydefly.com/images/school/profile/sprachcaffe--geos-london-471.jpg"
-                                                     alt="Feature 3" class="img-responsive" />
-                                            </a>
-                                            <h3 class="title">
-                                                <a href="#">ประกาศขายบ้านมือสอง</a>
-                                            </h3>
-                                            <p>Rhoncus adipiscing, magna integer cursus augue eros lacus porttitor magna. Dictumst, odio! Elementum tortor sociis in eu dis dictumst pulvinar lorem nec aliquam a nascetur.</p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                            <hr>
-                            <div class="row">
-
-                                <div class="col-md-4 block features">
-                                    <div class="row" style="padding-left: 10px; padding-right: 10px;">
-                                        <div class="feature">
-                                            <a href="#">
-                                                <img src="http://www.thaihometown.com/exclusive/40442/home_40442_6t4bq2_1.jpg"
-                                                     alt="Feature 3" class="img-responsive" />
-                                            </a>
-                                            <h3 class="title">
-                                                <a href="#">ประกาศขายบ้านมือสอง</a>
-                                            </h3>
-                                            <p>Rhoncus adipiscing, magna integer cursus augue eros lacus porttitor magna. Dictumst, odio! Elementum tortor sociis in eu dis dictumst pulvinar lorem nec aliquam a nascetur.</p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-4 block features">
-                                    <div class="row" style="padding-left: 10px; padding-right: 10px;">
-                                        <div class="feature">
-                                            <a href="#">
-                                                <img src="http://bookup.asia/cache/images/shop/4723/main-250x150.jpg"
-                                                     alt="Feature 3" class="img-responsive" />
-                                            </a>
-                                            <h3 class="title">
-                                                <a href="#">ประกาศขายบ้านมือสอง</a>
-                                            </h3>
-                                            <p>Rhoncus adipiscing, magna integer cursus augue eros lacus porttitor magna. Dictumst, odio! Elementum tortor sociis in eu dis dictumst pulvinar lorem nec aliquam a nascetur.</p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-4 block features">
-                                    <div class="row" style="padding-left: 10px; padding-right: 10px;">
-                                        <div class="feature">
-                                            <a href="#">
-                                                <img src="http://www.hydefly.com/images/school/profile/sprachcaffe--geos-london-471.jpg"
-                                                     alt="Feature 3" class="img-responsive" />
-                                            </a>
-                                            <h3 class="title">
-                                                <a href="#">ประกาศขายบ้านมือสอง</a>
-                                            </h3>
-                                            <p>Rhoncus adipiscing, magna integer cursus augue eros lacus porttitor magna. Dictumst, odio! Elementum tortor sociis in eu dis dictumst pulvinar lorem nec aliquam a nascetur.</p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                            <hr>
-                        </div>
-                    </div>
-
                     {{--Read More--}}
                     <ul class="list-inline links" style="text-align: right">
                         <li>
                             <a href="{{ URL::to('2hand/index') }}" class="btn btn-default btn-xs"><i class="fa fa-arrow-circle-right"></i> Read more</a>
                         </li>
                     </ul>
-
                 </div>
             </div>
         </div>
@@ -498,8 +497,8 @@
         <br><br>
 
         {{--สมัครงานกับบริษัทชั้นนำต่างๆ--}}
-        <div class="row">
-            <div class="panel panel-default" >
+        <div class="block">
+            <div class="row panel panel-success" >
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-md-3"></div>
@@ -513,13 +512,13 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="feature col-md-3">
+                        <div class="col-md-3">
                             <a href="#">
                                 <img src="http://www.home.co.th//images/img_v/BuyHome/title-05042558-751-P4220106.JPG"
                                      alt="Feature 1" class="img-responsive" />
                             </a>
                         </div>
-                        <div class="feature col-md-9">
+                        <div class="col-md-9">
                             <h3 class="title">
                                 <a href="#">ข้อความประกาศรับสมัครงาน</a>
                             </h3>

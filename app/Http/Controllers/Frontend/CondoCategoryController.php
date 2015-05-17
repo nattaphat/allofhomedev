@@ -44,7 +44,7 @@ class CondoCategoryController extends Controller {
         return view('web.frontend.condo.update');
     }
 
-    public function view()
+    public function view($id = 0)
     {
         return view('web.frontend.condo.view');
     }

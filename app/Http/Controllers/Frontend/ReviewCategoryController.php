@@ -23,7 +23,7 @@ class ReviewCategoryController extends Controller {
         return view('web.frontend.review.update');
     }
 
-    public function view()
+    public function view($id = 0)
     {
         return view('web.frontend.review.view');
     }

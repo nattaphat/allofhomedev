@@ -38,7 +38,7 @@
                     <div class="col-md-9" >
                         <div class="block features">
                             <h2 class="title-divider" >
-                                <span style="color: #55a79a;">แสดงโครงการตามแบรนด์</span>
+                                <span style="color: #55a79a;">แสดง ร้านค้า/โครงการ ตามแบรนด์</span>
                             </h2>
                             <div class="row">
                                 <div class="col-md-12 block features">
@@ -206,7 +206,7 @@
                 <div class="row well active">
                     <div class="col-md-3">
                         <div class="blog-media">
-                            <a href="#">
+                            <a href="{{ URL::route('home_view', ['id' => 1]) }}">
                                 <img src="http://www.home.co.th//images/img_v/BuyHome/57/2012_12_26_11_27_59.jpg"
                                      alt="Picture of frog by Ben Fredericson" class="img-responsive" />
                             </a>
@@ -214,7 +214,7 @@
                     </div>
                     <div class="col-md-6">
                         <h4>
-                            <a href="#">เรื่อง <span class="fancy">หัวข้อประกาศ</span></a>
+                            <a href="{{ URL::route('home_view', ['id' => 1]) }}">เรื่อง <span class="fancy">หัวข้อประกาศ</span></a>
                         </h4>
                         <ul class="list-inline">
                             <li>
@@ -230,10 +230,10 @@
                                 <p>Commodo consequat feugiat lenis nunc tum verto. Abico cogo enim erat incassum pertineo sudo utrum vulputate. Et ideo luptatum nobis persto si sit suscipere. Dolus obruo persto. Aliquip antehabeo euismod nisl oppeto uxor vel verto.</p>
                                 <ul class="list-inline links" style="text-align: right">
                                     <li>
-                                        <a href="#" class="btn btn-default btn-xs"><i class="fa fa-arrow-circle-right"></i> Read more</a>
+                                        <a href="{{ URL::route('home_view', ['id' => 1]) }}" class="btn btn-default btn-xs"><i class="fa fa-arrow-circle-right"></i> Read more</a>
                                     </li>
                                     <li>
-                                        <a href="#" class="btn btn-default btn-xs"><i class="fa fa-comment"></i> 76 Comments</a>
+                                        <a href="{{ URL::route('home_view', ['id' => 1]) }}" class="btn btn-default btn-xs"><i class="fa fa-comment"></i> 76 Comments</a>
                                     </li>
                                 </ul>
                             </div>
@@ -261,7 +261,7 @@
                 <div class="row well active">
                     <div class="col-md-3">
                         <div class="blog-media">
-                            <a href="#">
+                            <a href="{{ URL::route('home_view', ['id' => 1]) }}">
                                 <img src="http://www.home.co.th//images/img_v/BuyHome/57/2012_12_26_11_27_59.jpg"
                                      alt="Picture of frog by Ben Fredericson" class="img-responsive" />
                             </a>
@@ -269,7 +269,7 @@
                     </div>
                     <div class="col-md-6">
                         <h4>
-                            <a href="#">เรื่อง <span class="fancy">หัวข้อประกาศ</span></a>
+                            <a href="{{ URL::route('home_view', ['id' => 1]) }}">เรื่อง <span class="fancy">หัวข้อประกาศ</span></a>
                         </h4>
                         <ul class="list-inline">
                             <li>
@@ -285,10 +285,10 @@
                                 <p>Commodo consequat feugiat lenis nunc tum verto. Abico cogo enim erat incassum pertineo sudo utrum vulputate. Et ideo luptatum nobis persto si sit suscipere. Dolus obruo persto. Aliquip antehabeo euismod nisl oppeto uxor vel verto.</p>
                                 <ul class="list-inline links" style="text-align: right">
                                     <li>
-                                        <a href="#" class="btn btn-default btn-xs"><i class="fa fa-arrow-circle-right"></i> Read more</a>
+                                        <a href="{{ URL::route('home_view', ['id' => 1]) }}" class="btn btn-default btn-xs"><i class="fa fa-arrow-circle-right"></i> Read more</a>
                                     </li>
                                     <li>
-                                        <a href="#" class="btn btn-default btn-xs"><i class="fa fa-comment"></i> 76 Comments</a>
+                                        <a href="{{ URL::route('home_view', ['id' => 1]) }}" class="btn btn-default btn-xs"><i class="fa fa-comment"></i> 76 Comments</a>
                                     </li>
                                 </ul>
                             </div>
@@ -316,7 +316,7 @@
                 <div class="row well active">
                     <div class="col-md-3">
                         <div class="blog-media">
-                            <a href="#">
+                            <a href="{{ URL::route('home_view', ['id' => 1]) }}">
                                 <img src="http://www.home.co.th//images/img_v/BuyHome/57/2012_12_26_11_27_59.jpg"
                                      alt="Picture of frog by Ben Fredericson" class="img-responsive" />
                             </a>
@@ -324,7 +324,7 @@
                     </div>
                     <div class="col-md-6">
                         <h4>
-                            <a href="#">เรื่อง <span class="fancy">หัวข้อประกาศ</span></a>
+                            <a href="{{ URL::route('home_view', ['id' => 1]) }}">เรื่อง <span class="fancy">หัวข้อประกาศ</span></a>
                         </h4>
                         <ul class="list-inline">
                             <li>
@@ -340,10 +340,10 @@
                                 <p>Commodo consequat feugiat lenis nunc tum verto. Abico cogo enim erat incassum pertineo sudo utrum vulputate. Et ideo luptatum nobis persto si sit suscipere. Dolus obruo persto. Aliquip antehabeo euismod nisl oppeto uxor vel verto.</p>
                                 <ul class="list-inline links" style="text-align: right">
                                     <li>
-                                        <a href="#" class="btn btn-default btn-xs"><i class="fa fa-arrow-circle-right"></i> Read more</a>
+                                        <a href="{{ URL::route('home_view', ['id' => 1]) }}" class="btn btn-default btn-xs"><i class="fa fa-arrow-circle-right"></i> Read more</a>
                                     </li>
                                     <li>
-                                        <a href="#" class="btn btn-default btn-xs"><i class="fa fa-comment"></i> 76 Comments</a>
+                                        <a href="{{ URL::route('home_view', ['id' => 1]) }}" class="btn btn-default btn-xs"><i class="fa fa-comment"></i> 76 Comments</a>
                                     </li>
                                 </ul>
                             </div>
@@ -371,7 +371,7 @@
                 <div class="row well active">
                     <div class="col-md-3">
                         <div class="blog-media">
-                            <a href="#">
+                            <a href="{{ URL::route('home_view', ['id' => 1]) }}">
                                 <img src="http://www.home.co.th//images/img_v/BuyHome/57/2012_12_26_11_27_59.jpg"
                                      alt="Picture of frog by Ben Fredericson" class="img-responsive" />
                             </a>
@@ -379,7 +379,7 @@
                     </div>
                     <div class="col-md-6">
                         <h4>
-                            <a href="#">เรื่อง <span class="fancy">หัวข้อประกาศ</span></a>
+                            <a href="{{ URL::route('home_view', ['id' => 1]) }}">เรื่อง <span class="fancy">หัวข้อประกาศ</span></a>
                         </h4>
                         <ul class="list-inline">
                             <li>
@@ -395,10 +395,10 @@
                                 <p>Commodo consequat feugiat lenis nunc tum verto. Abico cogo enim erat incassum pertineo sudo utrum vulputate. Et ideo luptatum nobis persto si sit suscipere. Dolus obruo persto. Aliquip antehabeo euismod nisl oppeto uxor vel verto.</p>
                                 <ul class="list-inline links" style="text-align: right">
                                     <li>
-                                        <a href="#" class="btn btn-default btn-xs"><i class="fa fa-arrow-circle-right"></i> Read more</a>
+                                        <a href="{{ URL::route('home_view', ['id' => 1]) }}" class="btn btn-default btn-xs"><i class="fa fa-arrow-circle-right"></i> Read more</a>
                                     </li>
                                     <li>
-                                        <a href="#" class="btn btn-default btn-xs"><i class="fa fa-comment"></i> 76 Comments</a>
+                                        <a href="{{ URL::route('home_view', ['id' => 1]) }}" class="btn btn-default btn-xs"><i class="fa fa-comment"></i> 76 Comments</a>
                                     </li>
                                 </ul>
                             </div>
@@ -426,7 +426,7 @@
                 <div class="row well active">
                     <div class="col-md-3">
                         <div class="blog-media">
-                            <a href="#">
+                            <a href="{{ URL::route('home_view', ['id' => 1]) }}">
                                 <img src="http://www.home.co.th//images/img_v/BuyHome/57/2012_12_26_11_27_59.jpg"
                                      alt="Picture of frog by Ben Fredericson" class="img-responsive" />
                             </a>
@@ -434,7 +434,7 @@
                     </div>
                     <div class="col-md-6">
                         <h4>
-                            <a href="#">เรื่อง <span class="fancy">หัวข้อประกาศ</span></a>
+                            <a href="{{ URL::route('home_view', ['id' => 1]) }}">เรื่อง <span class="fancy">หัวข้อประกาศ</span></a>
                         </h4>
                         <ul class="list-inline">
                             <li>
@@ -450,10 +450,10 @@
                                 <p>Commodo consequat feugiat lenis nunc tum verto. Abico cogo enim erat incassum pertineo sudo utrum vulputate. Et ideo luptatum nobis persto si sit suscipere. Dolus obruo persto. Aliquip antehabeo euismod nisl oppeto uxor vel verto.</p>
                                 <ul class="list-inline links" style="text-align: right">
                                     <li>
-                                        <a href="#" class="btn btn-default btn-xs"><i class="fa fa-arrow-circle-right"></i> Read more</a>
+                                        <a href="{{ URL::route('home_view', ['id' => 1]) }}" class="btn btn-default btn-xs"><i class="fa fa-arrow-circle-right"></i> Read more</a>
                                     </li>
                                     <li>
-                                        <a href="#" class="btn btn-default btn-xs"><i class="fa fa-comment"></i> 76 Comments</a>
+                                        <a href="{{ URL::route('home_view', ['id' => 1]) }}" class="btn btn-default btn-xs"><i class="fa fa-comment"></i> 76 Comments</a>
                                     </li>
                                 </ul>
                             </div>
@@ -481,7 +481,7 @@
                 <div class="row well">
                     <div class="col-md-3">
                         <div class="blog-media">
-                            <a href="#">
+                            <a href="{{ URL::route('home_view', ['id' => 1]) }}">
                                 <img src="http://www.home.co.th//images/img_v/BuyHome/57/2012_12_26_11_27_59.jpg"
                                      alt="Picture of frog by Ben Fredericson" class="img-responsive" />
                             </a>
@@ -489,7 +489,7 @@
                     </div>
                     <div class="col-md-6">
                         <h4>
-                            <a href="#">เรื่อง <span class="fancy">หัวข้อประกาศ</span></a>
+                            <a href="{{ URL::route('home_view', ['id' => 1]) }}">เรื่อง <span class="fancy">หัวข้อประกาศ</span></a>
                         </h4>
                         <ul class="list-inline">
                             <li>
@@ -505,10 +505,10 @@
                                 <p>Commodo consequat feugiat lenis nunc tum verto. Abico cogo enim erat incassum pertineo sudo utrum vulputate. Et ideo luptatum nobis persto si sit suscipere. Dolus obruo persto. Aliquip antehabeo euismod nisl oppeto uxor vel verto.</p>
                                 <ul class="list-inline links" style="text-align: right">
                                     <li>
-                                        <a href="#" class="btn btn-default btn-xs"><i class="fa fa-arrow-circle-right"></i> Read more</a>
+                                        <a href="{{ URL::route('home_view', ['id' => 1]) }}" class="btn btn-default btn-xs"><i class="fa fa-arrow-circle-right"></i> Read more</a>
                                     </li>
                                     <li>
-                                        <a href="#" class="btn btn-default btn-xs"><i class="fa fa-comment"></i> 76 Comments</a>
+                                        <a href="{{ URL::route('home_view', ['id' => 1]) }}" class="btn btn-default btn-xs"><i class="fa fa-comment"></i> 76 Comments</a>
                                     </li>
                                 </ul>
                             </div>
@@ -536,7 +536,7 @@
                 <div class="row well">
                     <div class="col-md-3">
                         <div class="blog-media">
-                            <a href="#">
+                            <a href="{{ URL::route('home_view', ['id' => 1]) }}">
                                 <img src="http://www.home.co.th//images/img_v/BuyHome/57/2012_12_26_11_27_59.jpg"
                                      alt="Picture of frog by Ben Fredericson" class="img-responsive" />
                             </a>
@@ -544,7 +544,7 @@
                     </div>
                     <div class="col-md-6">
                         <h4>
-                            <a href="#">เรื่อง <span class="fancy">หัวข้อประกาศ</span></a>
+                            <a href="{{ URL::route('home_view', ['id' => 1]) }}">เรื่อง <span class="fancy">หัวข้อประกาศ</span></a>
                         </h4>
                         <ul class="list-inline">
                             <li>
@@ -560,10 +560,10 @@
                                 <p>Commodo consequat feugiat lenis nunc tum verto. Abico cogo enim erat incassum pertineo sudo utrum vulputate. Et ideo luptatum nobis persto si sit suscipere. Dolus obruo persto. Aliquip antehabeo euismod nisl oppeto uxor vel verto.</p>
                                 <ul class="list-inline links" style="text-align: right">
                                     <li>
-                                        <a href="#" class="btn btn-default btn-xs"><i class="fa fa-arrow-circle-right"></i> Read more</a>
+                                        <a href="{{ URL::route('home_view', ['id' => 1]) }}" class="btn btn-default btn-xs"><i class="fa fa-arrow-circle-right"></i> Read more</a>
                                     </li>
                                     <li>
-                                        <a href="#" class="btn btn-default btn-xs"><i class="fa fa-comment"></i> 76 Comments</a>
+                                        <a href="{{ URL::route('home_view', ['id' => 1]) }}" class="btn btn-default btn-xs"><i class="fa fa-comment"></i> 76 Comments</a>
                                     </li>
                                 </ul>
                             </div>
@@ -591,7 +591,7 @@
                 <div class="row well">
                     <div class="col-md-3">
                         <div class="blog-media">
-                            <a href="#">
+                            <a href="{{ URL::route('home_view', ['id' => 1]) }}">
                                 <img src="http://www.home.co.th//images/img_v/BuyHome/57/2012_12_26_11_27_59.jpg"
                                      alt="Picture of frog by Ben Fredericson" class="img-responsive" />
                             </a>
@@ -599,7 +599,7 @@
                     </div>
                     <div class="col-md-6">
                         <h4>
-                            <a href="#">เรื่อง <span class="fancy">หัวข้อประกาศ</span></a>
+                            <a href="{{ URL::route('home_view', ['id' => 1]) }}">เรื่อง <span class="fancy">หัวข้อประกาศ</span></a>
                         </h4>
                         <ul class="list-inline">
                             <li>
@@ -615,10 +615,10 @@
                                 <p>Commodo consequat feugiat lenis nunc tum verto. Abico cogo enim erat incassum pertineo sudo utrum vulputate. Et ideo luptatum nobis persto si sit suscipere. Dolus obruo persto. Aliquip antehabeo euismod nisl oppeto uxor vel verto.</p>
                                 <ul class="list-inline links" style="text-align: right">
                                     <li>
-                                        <a href="#" class="btn btn-default btn-xs"><i class="fa fa-arrow-circle-right"></i> Read more</a>
+                                        <a href="{{ URL::route('home_view', ['id' => 1]) }}" class="btn btn-default btn-xs"><i class="fa fa-arrow-circle-right"></i> Read more</a>
                                     </li>
                                     <li>
-                                        <a href="#" class="btn btn-default btn-xs"><i class="fa fa-comment"></i> 76 Comments</a>
+                                        <a href="{{ URL::route('home_view', ['id' => 1]) }}" class="btn btn-default btn-xs"><i class="fa fa-comment"></i> 76 Comments</a>
                                     </li>
                                 </ul>
                             </div>
@@ -646,7 +646,7 @@
                 <div class="row well">
                     <div class="col-md-3">
                         <div class="blog-media">
-                            <a href="#">
+                            <a href="{{ URL::route('home_view', ['id' => 1]) }}">
                                 <img src="http://www.home.co.th//images/img_v/BuyHome/57/2012_12_26_11_27_59.jpg"
                                      alt="Picture of frog by Ben Fredericson" class="img-responsive" />
                             </a>
@@ -654,7 +654,7 @@
                     </div>
                     <div class="col-md-6">
                         <h4>
-                            <a href="#">เรื่อง <span class="fancy">หัวข้อประกาศ</span></a>
+                            <a href="{{ URL::route('home_view', ['id' => 1]) }}">เรื่อง <span class="fancy">หัวข้อประกาศ</span></a>
                         </h4>
                         <ul class="list-inline">
                             <li>
@@ -670,10 +670,10 @@
                                 <p>Commodo consequat feugiat lenis nunc tum verto. Abico cogo enim erat incassum pertineo sudo utrum vulputate. Et ideo luptatum nobis persto si sit suscipere. Dolus obruo persto. Aliquip antehabeo euismod nisl oppeto uxor vel verto.</p>
                                 <ul class="list-inline links" style="text-align: right">
                                     <li>
-                                        <a href="#" class="btn btn-default btn-xs"><i class="fa fa-arrow-circle-right"></i> Read more</a>
+                                        <a href="{{ URL::route('home_view', ['id' => 1]) }}" class="btn btn-default btn-xs"><i class="fa fa-arrow-circle-right"></i> Read more</a>
                                     </li>
                                     <li>
-                                        <a href="#" class="btn btn-default btn-xs"><i class="fa fa-comment"></i> 76 Comments</a>
+                                        <a href="{{ URL::route('home_view', ['id' => 1]) }}" class="btn btn-default btn-xs"><i class="fa fa-comment"></i> 76 Comments</a>
                                     </li>
                                 </ul>
                             </div>
@@ -701,7 +701,7 @@
                 <div class="row well">
                     <div class="col-md-3">
                         <div class="blog-media">
-                            <a href="#">
+                            <a href="{{ URL::route('home_view', ['id' => 1]) }}">
                                 <img src="http://www.home.co.th//images/img_v/BuyHome/57/2012_12_26_11_27_59.jpg"
                                      alt="Picture of frog by Ben Fredericson" class="img-responsive" />
                             </a>
@@ -709,7 +709,7 @@
                     </div>
                     <div class="col-md-6">
                         <h4>
-                            <a href="#">เรื่อง <span class="fancy">หัวข้อประกาศ</span></a>
+                            <a href="{{ URL::route('home_view', ['id' => 1]) }}">เรื่อง <span class="fancy">หัวข้อประกาศ</span></a>
                         </h4>
                         <ul class="list-inline">
                             <li>
@@ -725,10 +725,10 @@
                                 <p>Commodo consequat feugiat lenis nunc tum verto. Abico cogo enim erat incassum pertineo sudo utrum vulputate. Et ideo luptatum nobis persto si sit suscipere. Dolus obruo persto. Aliquip antehabeo euismod nisl oppeto uxor vel verto.</p>
                                 <ul class="list-inline links" style="text-align: right">
                                     <li>
-                                        <a href="#" class="btn btn-default btn-xs"><i class="fa fa-arrow-circle-right"></i> Read more</a>
+                                        <a href="{{ URL::route('home_view', ['id' => 1]) }}" class="btn btn-default btn-xs"><i class="fa fa-arrow-circle-right"></i> Read more</a>
                                     </li>
                                     <li>
-                                        <a href="#" class="btn btn-default btn-xs"><i class="fa fa-comment"></i> 76 Comments</a>
+                                        <a href="{{ URL::route('home_view', ['id' => 1]) }}" class="btn btn-default btn-xs"><i class="fa fa-comment"></i> 76 Comments</a>
                                     </li>
                                 </ul>
                             </div>

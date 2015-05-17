@@ -1,11 +1,11 @@
 <div class="row">
     <!-- ======== @Region: Left MainMenu ======== -->
-    <div class="col-sm-3" style="padding-left: 50px;">
+    <div class="col-md-3" style="padding-left: 50px;">
         @include('layouts._partials.left_menu')
     </div>
 
     <!-- ======== @Region: Slide ======== -->
-    <div class="col-sm-6">
+    <div class="col-md-6">
         <section class="slider">
             <div id="slider_allofhome" class="flexslider">
                 <ul class="slides">
@@ -59,7 +59,7 @@
     </div>
 
     <!-- ======== @Region: Banner ======== -->
-    <div class="col-sm-3" style="padding-right: 50px;">
+    <div class="col-md-3" style="padding-right: 50px;">
         <div>
             <a href="#">
                 <img src="http://www.itgadgeteer.com/wp-content/uploads/2014/06/ad_300x250.png"
