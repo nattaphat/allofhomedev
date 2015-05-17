@@ -5,15 +5,15 @@
     </li>
 
     <li class="dropdown">
-        <a href="{{ URL::route('blog') }}">รีวิวทั้งหมด</a>
+        <a href="{{ URL::to('review/index') }}">รีวิวทั้งหมด</a>
     </li>
 
     <li class="dropdown">
-        <a href="{{ URL::route('blog') }}">ไอเดียทั้งหมด</a>
+        <a href="{{ URL::to('idea/index') }}">ไอเดียทั้งหมด</a>
     </li>
 
     <li class="dropdown">
-        <a href="{{ URL::route('blog') }}">บทความและข่าวสาร</a>
+        <a href="{{ URL::to('article/index') }}">บทความและข่าวสาร</a>
     </li>
 
     <li class="dropdown">
@@ -21,13 +21,13 @@
         <!-- Menu -->
         <ul class="dropdown-menu" role="menu" aria-labelledby="pages-drop">
             <li class="dropdown">
-                <a href="{{ URL::route('blog') }}">กระทู้ทั้งหมด (ซื้อ ขาย เช่า)</a>
+                <a href="{{ URL::to('buysellrent/index') }}">กระทู้ทั้งหมด (ซื้อ ขาย เช่า)</a>
             </li>
             <li class="dropdown">
-                <a href="{{ URL::route('blog') }}">ของใช้ภายในบ้าน (มือสอง)</a>
+                <a href="{{ URL::to('2hand/index') }}">ของใช้ภายในบ้าน (มือสอง)</a>
             </li>
             <li class="dropdown">
-                <a href="{{ URL::route('blog') }}">ประกาศรับสมัครงาน</a>
+                <a href="{{ URL::to('job/index') }}">ประกาศรับสมัครงาน</a>
             </li>
         </ul>
 

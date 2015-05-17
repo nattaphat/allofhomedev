@@ -9253,8 +9253,10 @@ body.has-isotope,
 }
 @media (min-width: 1200px) {
   .customers li.customer {
-    height: 260px;
-    width: 390px;
+    /*height: 260px;*/
+    /*width: 390px;*/
+      height: 180px;
+      width: 205px;
   }
 }
 /* --------------------------------------------------

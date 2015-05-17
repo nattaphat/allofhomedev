@@ -4,8 +4,56 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "78a9ad4326c4e9c3f33dc9dd6a8c2c48",
+    "hash": "148ff492e7cbecf5de3059c9c99ab627",
     "packages": [
+        {
+            "name": "appitventures/phpgmaps",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/appitventures/Phpgmaps.git",
+                "reference": "f2f0d1f38803898dd38b08bbeebfa31ef4e9aaf1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/appitventures/Phpgmaps/zipball/f2f0d1f38803898dd38b08bbeebfa31ef4e9aaf1",
+                "reference": "f2f0d1f38803898dd38b08bbeebfa31ef4e9aaf1",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/framework": "5.*",
+                "php": ">=5.4.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-laravel4": "1.0-dev",
+                    "dev-develop": "2.0-dev",
+                    "dev-master": "2.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Appitventures\\Phpgmaps\\": "src/Appitventures/Phpgmaps/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "Michael Hopkins",
+                    "email": "michael@appitventures.com",
+                    "role": "developer"
+                }
+            ],
+            "description": "A codeigniter library that has been modified a bit so that it's laravel friendly",
+            "keywords": [
+                "biostall",
+                "googlemaps",
+                "laravel",
+                "phpgmaps"
+            ],
+            "time": "2015-02-15 21:39:31"
+        },
         {
             "name": "barryvdh/laravel-ide-helper",
             "version": "dev-master",
@@ -3754,7 +3802,8 @@
         "laracasts/generators": 20,
         "fzaninotto/faker": 20,
         "greggilbert/recaptcha": 20,
-        "illuminate/html": 20
+        "illuminate/html": 20,
+        "appitventures/phpgmaps": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

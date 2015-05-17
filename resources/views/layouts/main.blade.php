@@ -77,6 +77,7 @@
 
     <!--Plugin: Retina.js (high def image replacement) - @see: http://retinajs.com/-->
     <script src="{{ asset('plugins/retina/dist/retina.min.js') }}"></script>
+    @yield('jshome')
 </head>
 
 <!-- ======== @Region: body ======== -->

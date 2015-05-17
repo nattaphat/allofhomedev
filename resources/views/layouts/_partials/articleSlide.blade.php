@@ -47,7 +47,7 @@
         <div class="row" style="padding-top: 10px; padding-left: 10px; padding-right: 10px;">
             <div class="panel panel-default">
                 <div class="panel-body">
-                    <a href="#" class="font-xs-x3 font-md-x2">
+                    <a href="#" class="font-xs-x3 font-md-x2" style="color: #55a79a;">
                         เรื่อง: หัวข้อบทความและข่าวสาร</a>
                     <div style="text-indent: 30px;">
                         <p>Rhoncus adipiscing, magna integer cursus augue eros lacus porttitor magna. Dictumst, odio! Elementum tortor sociis in eu dis dictumst pulvinar lorem nec aliquam a nascetur.</p>

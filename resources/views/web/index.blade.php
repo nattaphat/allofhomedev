@@ -180,11 +180,13 @@
                                 </div>
                             </div>
                             <hr>
-                            <div style="text-align: right; padding-right:20px;">
-                                <button class="btn btn-link" type="button">
-                                    <i class="fa fa-arrow-right"></i> Read all
-                                </button>
-                            </div>
+
+                            {{--Read More--}}
+                            <ul class="list-inline links" style="text-align: right">
+                                <li>
+                                    <a href="{{ URL::to('review/index') }}" class="btn btn-default btn-xs"><i class="fa fa-arrow-circle-right"></i> Read more</a>
+                                </li>
+                            </ul>
 
                         </div>
                     </div>
@@ -314,11 +316,12 @@
                         </div>
                     </div>
 
-                    <div style="text-align: right; padding-right:20px;">
-                        <button class="btn btn-link" type="button">
-                            <i class="fa fa-arrow-right"></i> Read all
-                        </button>
-                    </div>
+                    {{--Read More--}}
+                    <ul class="list-inline links" style="text-align: right">
+                        <li>
+                            <a href="{{ URL::to('idea/index') }}" class="btn btn-default btn-xs"><i class="fa fa-arrow-circle-right"></i> Read more</a>
+                        </li>
+                    </ul>
 
                 </div>
             </div>
@@ -453,12 +456,12 @@
                         </div>
                     </div>
 
-                    {{--Read All--}}
-                    <div style="text-align: right; padding-right:20px;">
-                        <button class="btn btn-link" type="button">
-                            <i class="fa fa-arrow-right"></i> Read all
-                        </button>
-                    </div>
+                    {{--Read More--}}
+                    <ul class="list-inline links" style="text-align: right">
+                        <li>
+                            <a href="{{ URL::to('2hand/index') }}" class="btn btn-default btn-xs"><i class="fa fa-arrow-circle-right"></i> Read more</a>
+                        </li>
+                    </ul>
 
                 </div>
             </div>
@@ -594,12 +597,13 @@
                         </div>
                     </div>
                     <hr>
-                    {{--Read All--}}
-                    <div style="text-align: right; padding-right:20px;">
-                        <button class="btn btn-link" type="button">
-                            <i class="fa fa-arrow-right"></i> Read all
-                        </button>
-                    </div>
+
+                    {{--Read More--}}
+                    <ul class="list-inline links" style="text-align: right">
+                        <li>
+                            <a href="{{ URL::to('job/index') }}" class="btn btn-default btn-xs"><i class="fa fa-arrow-circle-right"></i> Read more</a>
+                        </li>
+                    </ul>
 
                 </div>
             </div>

@@ -38,7 +38,7 @@
     <div class="col-md-4 col">
         <div class="block">
             <h3>
-                ลิงค์ที่หน้าสนใจ
+                ลิงค์ที่น่าสนใจ
             </h3>
             <p style="padding-left:5px;">
                 <a href="#"><small>ร้านค้า/สาขา ทั้งหมด</small></a><br/>

@@ -354,6 +354,138 @@ Route::group(['middleware' => 'auth'], function()
         'uses' => 'Frontend\OldFurnitureCategoryController@view'
     ]);
     /*------------------------------------------------------------------------------*/
+
+    /*-------------------------------- Review -------------------------------*/
+    Route::get('review/index', [
+        'as' => 'review_index',
+        'uses' => 'Frontend\ReviewCategoryController@index'
+    ]);
+
+    Route::get('review/create', [
+        'as' => 'review_create',
+        'uses' => 'Frontend\ReviewCategoryController@create'
+    ]);
+
+    Route::get('review/update', [
+        'as' => 'review_update',
+        'uses' => 'Frontend\ReviewCategoryController@update'
+    ]);
+
+    Route::get('review/view', [
+        'as' => 'review_view',
+        'uses' => 'Frontend\ReviewCategoryController@view'
+    ]);
+    /*------------------------------------------------------------------------------*/
+
+    /*-------------------------------- Idea -------------------------------*/
+    Route::get('idea/index', [
+        'as' => 'idea_index',
+        'uses' => 'Frontend\IdeaCategoryController@index'
+    ]);
+
+    Route::get('idea/create', [
+        'as' => 'idea_create',
+        'uses' => 'Frontend\IdeaCategoryController@create'
+    ]);
+
+    Route::get('idea/update', [
+        'as' => 'idea_update',
+        'uses' => 'Frontend\IdeaCategoryController@update'
+    ]);
+
+    Route::get('idea/view', [
+        'as' => 'idea_view',
+        'uses' => 'Frontend\IdeaCategoryController@view'
+    ]);
+    /*------------------------------------------------------------------------------*/
+
+    /*-------------------------------- Buysellrent -------------------------------*/
+    Route::get('buysellrent/index', [
+        'as' => 'buysellrent_index',
+        'uses' => 'Frontend\BuysellrentCategoryController@index'
+    ]);
+
+    Route::get('buysellrent/create', [
+        'as' => 'buysellrent_create',
+        'uses' => 'Frontend\BuysellrentCategoryController@create'
+    ]);
+
+    Route::get('buysellrent/update', [
+        'as' => 'buysellrent_update',
+        'uses' => 'Frontend\BuysellrentCategoryController@update'
+    ]);
+
+    Route::get('buysellrent/view', [
+        'as' => 'buysellrent_view',
+        'uses' => 'Frontend\BuysellrentCategoryController@view'
+    ]);
+    /*------------------------------------------------------------------------------*/
+
+    /*-------------------------------- Article -------------------------------*/
+    Route::get('article/index', [
+        'as' => 'article_index',
+        'uses' => 'Frontend\ArticleCategoryController@index'
+    ]);
+
+    Route::get('article/create', [
+        'as' => 'article_create',
+        'uses' => 'Frontend\ArticleCategoryController@create'
+    ]);
+
+    Route::get('article/update', [
+        'as' => 'article_update',
+        'uses' => 'Frontend\ArticleCategoryController@update'
+    ]);
+
+    Route::get('article/view', [
+        'as' => 'article_view',
+        'uses' => 'Frontend\ArticleCategoryController@view'
+    ]);
+    /*------------------------------------------------------------------------------*/
+
+    /*-------------------------------- Job -------------------------------*/
+    Route::get('job/index', [
+        'as' => 'job_index',
+        'uses' => 'Frontend\JobCategoryController@index'
+    ]);
+
+    Route::get('job/create', [
+        'as' => 'job_create',
+        'uses' => 'Frontend\JobCategoryController@create'
+    ]);
+
+    Route::get('job/update', [
+        'as' => 'job_update',
+        'uses' => 'Frontend\JobCategoryController@update'
+    ]);
+
+    Route::get('job/view', [
+        'as' => 'job_view',
+        'uses' => 'Frontend\JobCategoryController@view'
+    ]);
+    /*------------------------------------------------------------------------------*/
+
+    /*-------------------------------- 2hand -------------------------------*/
+    Route::get('2hand/index', [
+        'as' => '2hand_index',
+        'uses' => 'Frontend\TwohandCategoryController@index'
+    ]);
+
+    Route::get('2hand/create', [
+        'as' => '2hand_create',
+        'uses' => 'Frontend\TwohandCategoryController@create'
+    ]);
+
+    Route::get('2hand/update', [
+        'as' => '2hand_update',
+        'uses' => 'Frontend\TwohandCategoryController@update'
+    ]);
+
+    Route::get('2hand/view', [
+        'as' => '2hand_view',
+        'uses' => 'Frontend\TwohandCategoryController@view'
+    ]);
+    /*------------------------------------------------------------------------------*/
 });
 
 /*--------------------------------------------------------------*/
