@@ -16,6 +16,32 @@
                     <h2 class="title-divider" >
                         <span style="color: #55a79a;">เพิ่มไอเดีย</span>
                     </h2>
+
+                    <div class="row" style="padding-left: 50px;">
+                        {!! Form::open() !!}
+
+                        <div class="form-group">
+                            {!! Form::label('attribute', 'attribute:') !!}
+                            {!! Form::text('attribute', null,['class' => 'form-control short']) !!}
+                        </div>
+
+                        <div class="form-group">
+                            {!! Form::label('attribute', 'attribute:') !!}
+                            {!! Form::text('attribute', null,['class' => 'form-control short']) !!}
+                        </div>
+
+                        <div class="form-group">
+                            {!! Form::label('attribute', 'attribute:') !!}
+                            {!! Form::textarea('attribute', null,['class' => 'form-control']) !!}
+                        </div>
+
+                        <div class="form-group">
+                            {!! Form::submit('บันทึก', ['class'=>'btn btn-primary']) !!}
+                            {!! link_to(URL::route('condo_index'), 'ยกเลิก', ['class' => 'btn btn-default']) !!}
+                        </div>
+                        {!! Form::close() !!}
+                    </div>
+
                 </div>
             </div>
         </div>
