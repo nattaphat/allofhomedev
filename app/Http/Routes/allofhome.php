@@ -165,6 +165,14 @@ Route::get('post/add', [
     'uses' => 'AllofhomeController@createPost'
 ]);
 
+/*-------------------------------- Add New Topic -----------------------*/
+Route::get('topic/list', [
+    'as' => 'topic_list',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\TopicController@index'
+]);
+
+
 /*-------------------------------- Home -------------------------------*/
 Route::get('home/index', [
     'as' => 'home_index',
