@@ -16,7 +16,9 @@ class CreatSubAreaTable extends Migration {
         {
             $table->increments('id');
             $table->integer('area_id')->unsigned()->nullable(false);
+            $table->foreign('area_id')->references('id')->on('area');
             $table->string('subarea_name')->nullable(false);
+            $table->unique(['area_id', 'subarea_name']);
         });
 	}
 

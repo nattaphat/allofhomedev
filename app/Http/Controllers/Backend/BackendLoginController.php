@@ -75,6 +75,9 @@ class BackendLoginController extends Controller {
 
                 if(count($user) == 0 && count($user2) == 0)
                 {
+                    if (\Auth::check())
+                        \Auth::logout();
+
                     // User not allowed
                     return redirect('backend/login')
                         ->withErrors(['msg'=>'Permission, user is not allowed to access !'])
@@ -86,7 +89,7 @@ class BackendLoginController extends Controller {
                 }
             } else {
                 return redirect('backend/login')
-                    ->withErrors(['msg'=>'User not found or you not register yet.'])
+                    ->withErrors(['msg'=>'User not found or you are not allowed.'])
                     ->withInput(\Input::except('password'));
             }
         }

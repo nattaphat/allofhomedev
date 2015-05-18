@@ -16,6 +16,6 @@ return [
 	|
 	*/
 
-	'title' => 'All Of Home:ทุกเรื่องบ้าน',
+	'title' => 'All Of home:ทุกเรื่องบ้าน',
 
 ];

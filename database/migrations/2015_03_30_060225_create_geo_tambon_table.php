@@ -14,9 +14,9 @@ class CreateGeoTambonTable extends Migration {
 	{
         Schema::create('geo_tambon', function(Blueprint $table)
         {
-            $table->string('provid',2)->nullable(false);
+            $table->string('provid',2)->unsigned()->nullable(false);
             $table->foreign('provid')->references('provid')->on('geo_province');
-            $table->string('amphid',2)->nullable(false);
+            $table->string('amphid',2)->unsigned()->nullable(false);
             $table->foreign(['provid', 'amphid'])->references(['provid', 'amphid'])->on('geo_amphoe');
             $table->string('name')->nullable(false);
             $table->string('tambid',2)->nullable(false);

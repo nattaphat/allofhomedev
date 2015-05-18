@@ -2,6 +2,8 @@
 
 use Config;
 use App\Models\geoRegion;
+use Request;
+use Validator;
 
 class AllofhomeController extends Controller {
 
@@ -59,10 +61,10 @@ class AllofhomeController extends Controller {
     }
 
 
-    public function login()
-    {
-        return view('web.frontend.signin');
-    }
+//    public function login()
+//    {
+//        return view('web.frontend.signin');
+//    }
 
     public function about_ex()
     {
@@ -269,5 +271,75 @@ class AllofhomeController extends Controller {
     {
         return view('web.bs_mobilemenu');
     }
+
+    public function createPost()
+    {
+        return view('web.frontend.createPost');
+    }
+
+
+
+    ///// แก้ให้มองไม่เห็น Layout //////
+    public function login()
+    {
+        return view('web.frontend.login');
+    }
+
+    public function post_login()
+    {
+        $data = Request::all();
+
+        (isset($data['rememberme']))? $remember = true : $remember=false;
+
+        $rules = [
+            'email_or_username' => 'required',
+            'password' => 'required'
+        ];
+
+        $messages = [
+            'required' => 'The :attribute field is required.',
+        ];
+
+        $validator = Validator::make(
+            $data,
+            $rules,
+            $messages
+        );
+
+        if ($validator->fails())
+        {
+            return redirect('login')
+                ->withErrors($validator)
+                ->withInput(\Input::except('password'));
+        }
+        else{
+            if (\Auth::attempt(array(
+                    'email'     => $data['email_or_username'],
+                    'password'  => $data['password']
+                ),$remember) ||
+                \Auth::attempt(array(
+                    'username'  => $data['email_or_username'],
+                    'password'  => $data['password']
+                ),$remember)) {
+
+                return redirect('/');
+
+            } else {
+                return redirect('login')
+                    ->withErrors(['msg'=>'User is not found.'])
+                    ->withInput(\Input::except('password'));
+            }
+        }
+    }
+
+    public function logout()
+    {
+        if (\Auth::check())
+        {
+            \Auth::logout();
+        }
+        return redirect('login');
+    }
+
 }
 

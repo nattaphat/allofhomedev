@@ -1,6 +1,9 @@
 $( document ).ready(function() {
 
     setDatePicker();
+    fistPageSeclide();
+    topSlide();
+
     /**
      * For signup page
      * [setDatePicker description]
@@ -16,6 +19,55 @@ $( document ).ready(function() {
         });
     }
 
+    /**
+     * Slide on top first page
+     */
+    function topSlide()
+    {
+        $("#owl-demo").owlCarousel({
+
+            //navigation : true, // Show next and prev buttons
+            slideSpeed : 300,
+            paginationSpeed : 400,
+            singleItem:true,
+            autoPlay:true,
+            stopOnHover:true
+
+            // "singleItem:true" is a shortcut for:
+            // items : 1,
+            // itemsDesktop : false,
+            // itemsDesktopSmall : false,
+            // itemsTablet: false,
+            // itemsMobile : false
+
+        });
+    }
+
+    /**
+     * Second Slide in first page
+     */
+    function fistPageSeclide()
+    {
+        $('#carousel_allofhome').flexslider({
+            animation: "slide",
+            controlNav: false,
+            animationLoop: true,
+            slideshow: false,
+            itemWidth: 210,
+            itemMargin: 5,
+            asNavFor: '#slider_allofhome'
+        });
+
+        $('#slider_allofhome').flexslider({
+            animation: "slide",
+            controlNav: false,
+            animationLoop: true,
+            pausePlay: true,
+            animationSpeed: 400,
+            slideshow: true,
+            sync: "#carousel_allofhome"
+        });
+    }
     changeInfoPhoto();
     function changeInfoPhoto()
     {

@@ -22,4 +22,10 @@ body {
 	body {
 		background-color: green;
 	}
-} 
+}
+
+.slider { margin: 50px 0 10px!important;}
+#carousel_allofhome li {margin-right: 5px;}
+#carousel_allofhome img {display: block; opacity: .5; cursor: pointer;}
+#carousel_allofhome img:hover {opacity: 1;}
+#carousel_allofhome .flex-active-slide img {opacity: 1; cursor: default;}

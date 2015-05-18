@@ -15,12 +15,12 @@ class CreateBranchTable extends Migration {
         Schema::create('branch', function(Blueprint $table)
         {
             $table->increments('id');
-            $table->integer('shop_id')->unsigned()->nullable(false);
+            $table->integer('shop_id')->unsigned()->nullable(false)->unique();
             $table->foreign('shop_id')
                 ->references('id')
                 ->on('shop')
                 ->onDelete('cascade');
-            $table->string('branch_name')->nullable(false);
+            $table->string('branch_name')->nullable(false)->unique();
             $table->string('telephone')->nullable(true);
             $table->string('mobile_phone')->nullable(false);
             $table->string('fax')->nullable(true);
@@ -35,18 +35,19 @@ class CreateBranchTable extends Migration {
             $table->string('add_building')->nullable(false);
             $table->string('add_floor')->nullable(false);
             $table->string('add_street')->nullable(false);
-            $table->integer('tambon_id')->nullable(false);
-//            $table->foreign('tambon_id')->references('tambid')->on('geo_tambon');
-            $table->integer('amphoe_id')->nullable(false);
-//            $table->foreign('amphoe_id')->references('amphid')->on('geo_amphoe');
-            $table->integer('provice_id')->nullable(false);
-//            $table->foreign('provice_id')->references('provid')->on('geo_province');
-            $table->integer('region_id')->nullable(false);
+            $table->string('tambid',2)->nullable(false);
+            $table->string('amphid',2)->nullable(false);
+            $table->string('provid', 2)->nullable(false);
+            $table->foreign(['provid', 'amphid', 'tambid'])
+                ->references(['provid', 'amphid', 'tambid'])->on('geo_tambon');
+            $table->integer('region_id')->unsigned()->nullable(false);
             $table->foreign('region_id')->references('id')->on('geo_region');
             $table->integer('area_id')->unsigned()->nullable(true);
             $table->foreign('area_id')->references('id')->on('area');
-            $table->integer('subarea_id')->nullable(true);
+            $table->integer('subarea_id')->unsigned()->nullable(true);
             $table->foreign('subarea_id')->references('id')->on('subarea');
+            $table->text('map_url')->nullable(true);
+            $table->string('nearby_str')->nullable(true);
             $table->timestamps();
         });
 	}
