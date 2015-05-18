@@ -7,40 +7,45 @@
 @section('content')
 
     <div class="container">
-
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                ประกาศหมวดหมู่ XXXXXX
+        <div class="row">
+            <div class="col-md-3">
+                @include('layouts._partials.left_menu')
             </div>
-            <div class="panel-body">
+            <div class="col-md-9">
+                <div class="block features">
+                    <h2 class="title-divider" >
+                        <span style="color: #55a79a;">เพิ่มประกาศหมวดหมู่บ้านใหม่</span>
+                    </h2>
 
-                <div class="col-md-1"></div>
-                <div class="col-md-11">
-                    {!! Form::open() !!}
+                    <div class="row" style="padding-left: 50px;">
+                        {!! Form::open() !!}
 
-                    <div class="form-group">
-                        {!! Form::label('attribute', 'attribute:') !!}
-                        {!! Form::text('attribute', null,['class' => 'form-control short']) !!}
+                        <div class="form-group">
+                            {!! Form::label('attribute', 'attribute:') !!}
+                            {!! Form::text('attribute', null,['class' => 'form-control short']) !!}
+                        </div>
+
+                        <div class="form-group">
+                            {!! Form::label('attribute', 'attribute:') !!}
+                            {!! Form::text('attribute', null,['class' => 'form-control short']) !!}
+                        </div>
+
+                        <div class="form-group">
+                            {!! Form::label('attribute', 'attribute:') !!}
+                            {!! Form::textarea('attribute', null,['class' => 'form-control']) !!}
+                        </div>
+
+                        <div class="form-group">
+                            {!! Form::submit('บันทึก', ['class'=>'btn btn-primary']) !!}
+                            {!! link_to(URL::route('condo_index'), 'ยกเลิก', ['class' => 'btn btn-default']) !!}
+                        </div>
+                        {!! Form::close() !!}
                     </div>
 
-                    <div class="form-group">
-                        {!! Form::label('attribute', 'attribute:') !!}
-                        {!! Form::text('attribute', null,['class' => 'form-control short']) !!}
-                    </div>
-
-                    <div class="form-group">
-                        {!! Form::label('attribute', 'attribute:') !!}
-                        {!! Form::textarea('attribute', null,['class' => 'form-control']) !!}
-                    </div>
-
-                    <div class="form-group">
-                        {!! Form::submit('บันทึก', ['class'=>'btn btn-primary']) !!}
-                        {!! link_to(URL::route('home_index'), 'ยกเลิก', ['class' => 'btn btn-default']) !!}
-                    </div>
-                    {!! Form::close() !!}
                 </div>
             </div>
         </div>
-
     </div>
+
+
 @stop

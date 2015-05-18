@@ -161,11 +161,10 @@
     {{--@include('layouts._partials.carousel')--}}
 
     <!-- ======== @Region: #content ======== -->
-    <div class="row">
-        <div id="content">
-            @yield('content')
-        </div>
+    <div class="content">
+        @yield('content')
     </div>
+
     <!-- ======== @Region: #content-below ======== -->
     {{--<div id="content-below" class="wrapper">--}}
     {{--@include('layouts._partials.content_below')--}}
@@ -221,5 +220,6 @@
     <script src={{ asset('js/allofhome.js') }}></script>
 
     @yield('jsbody')
+
     </body>
 </html>
