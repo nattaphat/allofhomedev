@@ -18,7 +18,7 @@
                 <div class="row" style="padding-top: 10px; padding-bottom: 10px;">
                     <div class="col-md-6">
                         <a href="{{ URL::to("review/create") }}"><i class="fa fa-plus-square"></i>
-                            เพิ่มรีวิวบ้าน คอนโด ทาวน์โฮม</a>
+                            เพิ่มรีวิว</a>
                     </div>
                     <div class="input-group col-md-6">
                         <input type="text" class="form-control"
