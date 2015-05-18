@@ -24,7 +24,9 @@
 
                             <div class="row">
                                 {{--{!! Form::open(['url' => 'backend/user_editSave']) !!}--}}
-
+                                <div class="bs-callout bs-callout-success">
+                                    ข้อมูลทั่วไป
+                                </div>
                                 <div class="row">
                                     <div class="form-group @if ($errors->has('title')) {{ "has-error" }} @endif">
                                         <label class="col-md-2 control-label text-right">หัวข้อโพส</label>

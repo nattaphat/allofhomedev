@@ -186,6 +186,12 @@ Route::get('home/create', [
     'uses' => 'Frontend\HomeCategoryController@create'
 ]);
 
+Route::post('home/create', [
+    'as' => 'post_home_create',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\HomeCategoryController@post_create'
+]);
+
 Route::get('home/update', [
     'as' => 'home_update',
     'before' => 'frontend_auth',
