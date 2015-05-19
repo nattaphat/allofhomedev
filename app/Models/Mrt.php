@@ -13,8 +13,9 @@ class Mrt extends Model {
         return $this->belongsTo('App\Models\MrtRoute', 'route_id');
     }
 
-    public function project()
+    public function project_mrtable()
     {
-        return $this->belongsToMany('App\Models\Project', 'shop_project_mrt');
+        return $this->morphTo();
     }
+
 }

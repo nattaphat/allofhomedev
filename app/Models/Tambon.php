@@ -13,4 +13,9 @@ class Tambon extends Model {
         return $this->hasOne('App\Models\Branch', 'provid, amphid, tambid');
     }
 
+    public function project()
+    {
+        return $this->hasMany("App\Models\Project");
+    }
+
 }

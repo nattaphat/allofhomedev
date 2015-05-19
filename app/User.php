@@ -32,7 +32,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 
     public function project()
     {
-        return $this->hasOne("App\Models\Project");
+        return $this->hasMany("App\Models\Project");
     }
 
     public function catHome()

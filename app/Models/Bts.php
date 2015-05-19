@@ -13,9 +13,9 @@ class Bts extends Model {
         return $this->belongsTo('App\Models\BtsRoute', 'route_id');
     }
 
-    public function bts()
+    public function project_btsable()
     {
-        return $this->belongsToMany('App\Models\Project', 'shop_project_bts');
+        return $this->morphTo();
     }
 
 }

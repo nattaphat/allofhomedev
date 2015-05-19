@@ -10,8 +10,8 @@ class Facility extends Model {
 
     protected $fillable = array('fac_name');
 
-    public function project()
+    public function project_facilityable()
     {
-        return $this->belongsToMany('App\Models\Project', 'project_facility');
+        return $this->morphTo();
     }
 }

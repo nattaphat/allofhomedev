@@ -15,6 +15,10 @@ class Attachment extends Model {
         return $this->hasOne("App\Models\Banner");
     }
 
+    public function project()
+    {
+        return $this->hasOne("App\Models\Project");
+    }
 
 
 

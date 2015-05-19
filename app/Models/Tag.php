@@ -18,4 +18,10 @@ class Tag extends Model {
         return $this->belongsTo("App\Models\CatHome");
     }
 
+    // Morph
+    public function tagable()
+    {
+        return $this->morphTo();
+    }
+
 }

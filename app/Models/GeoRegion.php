@@ -11,4 +11,9 @@ class GeoRegion extends Model {
     {
         return $this->hasOne('App\Models\Provinces');
     }
+
+    public function project()
+    {
+        return $this->hasMany("App\Models\Project");
+    }
 }

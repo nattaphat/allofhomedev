@@ -8,49 +8,71 @@ class Project extends Model {
     protected $primaryKey = 'id';
     public $timestamps = true;
 
-    public function user()
+    // belongsTo
+    public function user()  // create_by
     {
         return $this->belongsTo("App\User");
     }
 
-    public function catHome()
- 	{
- 		return $this->hasMany('App\Models\CatHome');
- 	}
-
-    public function catReview()
+    public function attachment()
     {
-        return $this->hasMany('App\Models\CatReview');
+        return $this->belongsTo("App\Models\Attachment");
     }
 
-    public function promotion()
+    public function tambon()
     {
-        return $this->belongsToMany('App\Models\Promotion');
+        return $this->belongsTo("App\Models\Tambon");
+    }
+
+    public function region()
+    {
+        return $this->belongsTo("App\Models\GeoRegion");
+    }
+
+    public function area()
+    {
+        return $this->belongsTo("App\Models\Area");
+    }
+
+    public function subarea()
+    {
+        return $this->belongsTo("App\Models\SubArea");
+    }
+
+    // Morph
+    public function bts()
+    {
+        return $this->morphMany('App\Models\Bts', 'project_btsable');
+    }
+
+    public function mrt()
+    {
+        return $this->morphMany('App\Models\Mrt', 'project_mrtable');
+    }
+
+    public function airportRailLink()
+    {
+        return $this->morphMany('App\Models\AirportRailLink', 'project_aplinkable');
     }
 
     public function facility()
     {
-        return $this->belongsToMany('App\Models\Facility', 'project_facility');
+        return $this->morphMany('App\Models\Facility', 'project_facilityable');
     }
 
+    // Has
     public function projectRating()
     {
         return $this->hasMany('App\Models\ProjectRating');
     }
 
-    public function bts()
+    public function catHome()
     {
-        return $this->belongsToMany('App\Models\Bts', 'shop_project_bts');
+        return $this->hasMany('App\Models\CatHome');
     }
 
-    public function mrt()
+    public function catReview()
     {
-        return $this->belongsToMany('App\Models\Mrt', 'shop_project_mrt');
-    }
-
-    public function airportRailLink()
-    {
-        return $this->belongsToMany('App\Models\AirportRailLink',
-            'shop_project_aplink', 'project_id', 'apl_id');
+        return $this->hasMany('App\Models\CatReview');
     }
 }

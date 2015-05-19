@@ -15,4 +15,9 @@ class Area extends Model {
         return $this->hasMany('App\Models\SubArea');
  	}
 
+    public function project()
+    {
+        return $this->hasMany("App\Models\Project");
+    }
+
 }

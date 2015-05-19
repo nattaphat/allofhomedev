@@ -23,4 +23,10 @@ class Picture extends Model {
         return $this->belongsTo("App\Models\CatIdea");
     }
 
+    // Morph
+    public function pictureable()
+    {
+        return $this->morphTo();
+    }
+
 }

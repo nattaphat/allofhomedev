@@ -14,4 +14,9 @@ class SubArea extends Model {
  	{
         return $this->belongsTo('App\Models\Area');
  	}
+
+    public function project()
+    {
+        return $this->hasMany("App\Models\Project");
+    }
 }

@@ -619,7 +619,36 @@ Route::any('post/upload', [
 ]);
 /*------------------------------------------------------------------------------*/
 
+/*-------------------------------- Project -------------------------------*/
+Route::get('project/index', [
+    'as' => 'project_index',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\ProjectCategoryController@index'
+]);
 
+Route::get('project/create', [
+    'as' => 'project_create',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\ProjectCategoryController@create'
+]);
+
+Route::post('project/create', [
+    'as' => 'post_project_create',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\ProjectCategoryController@post_create'
+]);
+
+Route::get('project/update', [
+    'as' => 'project_update',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\ProjectCategoryController@update'
+]);
+
+Route::get('project/view', [
+    'as' => 'home_view',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\ProjectCategoryController@view'
+]);
 
 Route::get('fblogin', [
 	'as' => 'fblogin',

@@ -28,4 +28,11 @@ class Comment extends Model {
         return $this->belongsTo("App\Models\CatIdea");
     }
 
+
+    // Morph
+    public function commentable()
+    {
+        return $this->morphTo();
+    }
+
 }
