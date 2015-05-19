@@ -15,7 +15,7 @@ class CreateAirportLinkTable extends Migration {
         Schema::create('airport_link', function(Blueprint $table)
         {
             $table->increments('id');
-            $table->string('apl_name')->nullable(false);
+            $table->string('apl_name')->unique()->nullable(false);
             $table->string('apl_code')->nullable(false);
         });
 	}

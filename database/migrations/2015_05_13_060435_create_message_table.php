@@ -27,6 +27,7 @@ class CreateMessageTable extends Migration {
             $table->string('title')->nullable(false);
             $table->string('detail')->nullable(false);
             $table->boolean('status')->nullable(false);
+
             $table->timestamps();
         });
     }

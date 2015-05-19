@@ -20,8 +20,8 @@ class CreateNotificationTable extends Migration {
                 ->onDelete('cascade');
 
             $table->integer('type')->nullable(false);
-            $table->string('title')->nullable(false);
-            $table->string('content')->nullable(false);
+            $table->string('title')->nullable(true);
+            $table->string('content')->nullable(true);
             $table->boolean('status')->nullable(false);
             $table->timestamps();
         });

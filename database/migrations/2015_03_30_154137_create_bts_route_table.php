@@ -15,7 +15,7 @@ class CreateBtsRouteTable extends Migration {
         Schema::create('bts_route', function(Blueprint $table)
         {
             $table->increments('id');
-            $table->string('name')->nullable(false);
+            $table->string('name')->unique()->nullable(false);
             $table->string('memo')->nullable(true);
         });
 	}

@@ -24,7 +24,7 @@ class CreateBannerTable extends Migration {
                 ->onDelete('cascade');
 
             $table->integer('type')->nullable(false);
-            $table->string('path_url')->nullable(false);
+            $table->string('path')->nullable(false);
             $table->boolean('visible')->nullable(false);
             $table->string('remark')->nullable(true);
             $table->timestamps();

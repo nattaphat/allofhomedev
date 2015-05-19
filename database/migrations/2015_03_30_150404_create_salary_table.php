@@ -15,7 +15,7 @@ class CreateSalaryTable extends Migration {
         Schema::create('salary', function(Blueprint $table)
         {
             $table->increments('id');
-            $table->string('range')->nullable(false);
+            $table->string('range')->unique()->nullable(false);
         });
 	}
 

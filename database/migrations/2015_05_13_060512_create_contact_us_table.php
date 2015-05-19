@@ -23,6 +23,7 @@ class CreateContactUsTable extends Migration {
             $table->string('title')->nullable(false);
             $table->string('content')->nullable(false);
             $table->boolean('status')->nullable(false);
+
             $table->timestamps();
         });
     }

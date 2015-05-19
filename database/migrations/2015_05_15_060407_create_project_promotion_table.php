@@ -12,15 +12,17 @@ class CreateProjectPromotionTable extends Migration {
 	 */
     public function up()
     {
-        Schema::create('project_promotion', function(Blueprint $table)
+        Schema::create('cat_home_promotion', function(Blueprint $table)
         {
             $table->increments('id');
             $table->integer('promotion_id')->unsigned()->nullable(false);
             $table->foreign('promotion_id')->references('id')->on('promotion')
                 ->onDelete('cascade');
-            $table->integer('project_id')->unsigned()->nullable(false);
-            $table->foreign('project_id')->references('id')->on('project')
+            $table->integer('cat_home_id')->unsigned()->nullable(false);
+            $table->foreign('cat_home_id')->references('id')->on('cat_home')
                 ->onDelete('cascade');
+
+            $table->unique(['promotion_id', 'cat_home_id']);
         });
     }
 
@@ -31,7 +33,7 @@ class CreateProjectPromotionTable extends Migration {
      */
     public function down()
     {
-        Schema::drop('project_promotion');
+        Schema::drop('cat_home_promotion');
     }
 
 }

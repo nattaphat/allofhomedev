@@ -19,6 +19,9 @@ class CreateMrtTable extends Migration {
             $table->foreign('route_id')->references('id')->on('mrt_route');
             $table->string('mrt_code')->nullable(false);
             $table->string('mrt_name')->nullable(false);
+
+            $table->unique(['route_id','mrt_name']);
+
         });
 	}
 

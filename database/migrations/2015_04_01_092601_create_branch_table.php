@@ -15,12 +15,12 @@ class CreateBranchTable extends Migration {
         Schema::create('branch', function(Blueprint $table)
         {
             $table->increments('id');
-            $table->integer('shop_id')->unsigned()->nullable(false)->unique();
+            $table->integer('shop_id')->unsigned()->nullable(false);
             $table->foreign('shop_id')
                 ->references('id')
                 ->on('shop')
                 ->onDelete('cascade');
-            $table->string('branch_name')->nullable(false)->unique();
+            $table->string('branch_name')->nullable(false);
             $table->string('telephone')->nullable(true);
             $table->string('mobile_phone')->nullable(false);
             $table->string('fax')->nullable(true);
@@ -49,6 +49,8 @@ class CreateBranchTable extends Migration {
             $table->text('map_url')->nullable(true);
             $table->string('nearby_str')->nullable(true);
             $table->timestamps();
+
+            $table->unique(['shop_id','branch_name']);
         });
 	}
 

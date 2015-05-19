@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Grammars;
 
 class CreateProjectTable extends Migration {
 
@@ -15,10 +16,11 @@ class CreateProjectTable extends Migration {
         Schema::create('project', function(Blueprint $table)
         {
             $table->increments('id');
-            $table->integer('user_id')->unsigned()->nullable(false);
+            $table->integer('user_id')->unsigned()->nullable(false)
+                ->comment('create_by');
             $table->foreign('user_id')->references('id')->on('users');
-            $table->string('project_name')->nullable(false)->unique();
-            $table->string('project_company_owner')->nullable(false)->unique();
+            $table->string('project_name')->nullable(false);
+            $table->string('project_company_owner')->nullable(false);
             $table->integer('attachment_id')->unsigned()->nullable(false);
             $table->foreign('attachment_id')->references('id')->on('attachment');
             $table->string('lat')->nullable(false);
@@ -41,6 +43,8 @@ class CreateProjectTable extends Migration {
             $table->string('nearby_str')->nullable(true);
             $table->string('facility_str')->nullable(true);
             $table->timestamps();
+
+            $table->unique(['project_name','project_company_owner']);
         });
     }
 
