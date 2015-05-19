@@ -165,6 +165,14 @@ Route::get('post/add', [
     'uses' => 'AllofhomeController@createPost'
 ]);
 
+/*-------------------------------- Add New Topic -----------------------*/
+Route::get('topic/list', [
+    'as' => 'topic_list',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\TopicController@index'
+]);
+
+
 /*-------------------------------- Home -------------------------------*/
 Route::get('home/index', [
     'as' => 'home_index',
@@ -176,6 +184,12 @@ Route::get('home/create', [
     'as' => 'home_create',
     'before' => 'frontend_auth',
     'uses' => 'Frontend\HomeCategoryController@create'
+]);
+
+Route::post('home/create', [
+    'as' => 'post_home_create',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\HomeCategoryController@post_create'
 ]);
 
 Route::get('home/update', [
@@ -597,8 +611,13 @@ Route::get('2hand/view', [
 ]);
 /*------------------------------------------------------------------------------*/
 
-
-
+/*-------------------------------- 2hand -------------------------------*/
+Route::any('post/upload', [
+    'as' => 'post_upload',
+    'before' => 'frontend_auth',
+    'uses' => 'AllofhomeController@post_upload'
+]);
+/*------------------------------------------------------------------------------*/
 
 
 

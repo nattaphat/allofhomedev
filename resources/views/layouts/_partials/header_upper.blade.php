@@ -16,9 +16,9 @@
         <div class="navbar-collapse collapse pull-right">
             <!--@todo: replace with company social media details-->
             <ul class="nav navbar-nav">
-                <li>
-                    <a href="{{ URL::route('post_add') }}"><i class="glyphicon glyphicon-plus"></i> เพิ่มประกาศ</a>
-                </li>
+                {{--<li>--}}
+                    {{--<a href="{{ URL::route('topic_list') }}"><i class="glyphicon glyphicon-plus"></i> เพิ่มประกาศ</a>--}}
+                {{--</li>--}}
                 <li>
                     <a href="{{ URL::route('user_msg') }}" class="btn btn-link"> <i class="glyphicon glyphicon-envelope" title="ข้อความ"></i></a>
                 </li>

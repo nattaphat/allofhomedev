@@ -6,14 +6,27 @@
 
 @section('content')
 
+    {{-- #### Left Menu--}}
+    <div class="col-md-3">
+        @include('layouts._partials.left_menu')
+    </div>{{-- #### End Left Menu --}}
+
     <div class="container">
 
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                ประกาศหมวดหมู่ XXXXXX
-            </div>
-            <div class="panel-body">
+        {{-- #### Content--}}
+        <div class="col-md-9">
 
+            <div class="block features">
+                <div class="title-divider">
+                    <h2>
+                        <span style="color: #55a79a;">
+                            เพิ่มโครงการบ้านใหม่
+                        </span>
+                    </h2>
+                </div>
+            </div>
+
+            <div class="row">
                 <div class="col-md-1"></div>
                 <div class="col-md-11">
                     {!! Form::open() !!}
@@ -35,13 +48,14 @@
 
                     <div class="form-group">
                         {!! Form::submit('บันทึก', ['class'=>'btn btn-primary']) !!}
-                        {!! link_to(URL::route('home_index'), 'ยกเลิก', ['class' => 'btn btn-default']) !!}
+                        {!! link_to(URL::route('condo_index'), 'ยกเลิก', ['class' => 'btn btn-default']) !!}
                     </div>
-
                     {!! Form::close() !!}
                 </div>
             </div>
-        </div>
+
+        </div>{{-- #### End Content--}}
 
     </div>
+
 @stop
