@@ -650,6 +650,26 @@ Route::get('project/view', [
     'uses' => 'Frontend\ProjectCategoryController@view'
 ]);
 
+Route::get('project/getSubArea', [
+    'as' => 'project_getSubArea',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\ProjectCategoryController@getSubArea'
+]);
+
+Route::get('project/getAmphoe', [
+    'as' => 'project_getAmphoe',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\ProjectCategoryController@getAmphoe'
+]);
+
+Route::get('project/getTambon', [
+    'as' => 'project_getTambon',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\ProjectCategoryController@getTambon'
+]);
+
+/*------------------------------------------------------------------------------*/
+
 Route::get('fblogin', [
 	'as' => 'fblogin',
 	'uses' => 'Auth\AuthController@facebooklogin'

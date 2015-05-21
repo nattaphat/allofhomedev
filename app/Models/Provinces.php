@@ -19,7 +19,7 @@ class Provinces extends Model {
         return $this->belongsTo('App\Models\Amphoe');
     }
 
-    public function getAllProvince()
+    public static function getAllProvince()
     {
 //        $phone = Provinces::find(10)->region->name;
 //        dd($phone);exit;

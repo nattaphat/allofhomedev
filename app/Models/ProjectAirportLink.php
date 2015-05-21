@@ -2,19 +2,14 @@
 
 use Illuminate\Database\Eloquent\Model;
 
-class AirportRailLink extends Model {
+class ProjectAirportLink extends Model {
 
-    protected $table = 'airport_link';
+    protected $table = 'project_aplink';
     protected $primaryKey = 'id';
     public $timestamps = false;
 
     public function project_aplinkable()
     {
         return $this->morphTo();
-    }
-
-    public static function getAirportRailLink()
-    {
-        return AirportRailLink::where('status','=','true')->get();
     }
 }

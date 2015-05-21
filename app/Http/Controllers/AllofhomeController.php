@@ -5,6 +5,8 @@ use App\Models\geoRegion;
 use Request;
 use Validator;
 use Response;
+use Input;
+use File;
 
 class AllofhomeController extends Controller {
 
@@ -279,35 +281,14 @@ class AllofhomeController extends Controller {
     }
 
     ////// #### Upload Pictures with dropzone
-    public function post_upload(){
-
-        return Response::json('success', 200);
-
-//        $rules = array(
-//            'file' => 'image|max:3000',
-//        );
-//
-//        $validation = Validator::make($input, $rules);
-//
-//        if ($validation->fails())
-//        {
-//            return Response::make($validation->errors->first(), 400);
-//        }
-//
-//        $file = Input::file('file');
-//
-//        $extension = File::extension($file['name']);
-//
-//        $directory = asset('uploads/').sha1(time());
-//        $filename = sha1(time().time()).".{$extension}";
-//
-//        $upload_success = Input::upload('file', $directory, $filename);
-//
-//        if( $upload_success ) {
-//            return Response::json('success', 200);
-//        } else {
-//            return Response::json('error', 400);
-//        }
+    public function post_upload()
+    {
+        $extension = Input::file('file')->guessClientExtension();
+        $filename = sha1(time().time()).".{$extension}";
+        $directory = __DIR__.'/../../../public/uploads';
+        $filesize = Input::file('file')->getClientSize();
+        Input::file('file')->move($directory,$filename);
+        return $filesize."@@@".asset('uploads/')."/".$filename;  // return url path
     }
 
 

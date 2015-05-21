@@ -8,7 +8,7 @@ class Attachment extends Model {
     protected $primaryKey = 'id';
     public $timestamps = false;
 
-
+    protected $fillable = ['filename', 'path', 'filesize'];
 
     public function banner()
     {

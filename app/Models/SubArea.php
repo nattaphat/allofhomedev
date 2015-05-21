@@ -19,4 +19,9 @@ class SubArea extends Model {
     {
         return $this->hasMany("App\Models\Project");
     }
+
+    public static function getSubArea($id)
+    {
+        return SubArea::where('area_id', '=', $id)->orderBy('subarea_name')->get();
+    }
 }

@@ -20,4 +20,9 @@ class Area extends Model {
         return $this->hasMany("App\Models\Project");
     }
 
+    public static function getAllArea()
+    {
+        return Area::orderBy('area_name')->get();
+    }
+
 }

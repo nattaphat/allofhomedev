@@ -8,6 +8,12 @@ class Project extends Model {
     protected $primaryKey = 'id';
     public $timestamps = true;
 
+    protected  $fillable = [
+        'user_id','project_name','project_company_owner','attachment_id',
+        'lat','long','add_street','tambid','amphid','provid','region_id','area_id',
+        'subarea_id','map_url','facebook','nearby_str','facility_str'
+    ];
+
     // belongsTo
     public function user()  // create_by
     {
@@ -40,24 +46,24 @@ class Project extends Model {
     }
 
     // Morph
-    public function bts()
+    public function projectBts()
     {
-        return $this->morphMany('App\Models\Bts', 'project_btsable');
+        return $this->morphMany('App\Models\ProjectBts', 'project_btsable');
     }
 
-    public function mrt()
+    public function projectMrt()
     {
-        return $this->morphMany('App\Models\Mrt', 'project_mrtable');
+        return $this->morphMany('App\Models\ProjectMrt', 'project_mrtable');
     }
 
-    public function airportRailLink()
+    public function projectAplink()
     {
-        return $this->morphMany('App\Models\AirportRailLink', 'project_aplinkable');
+        return $this->morphMany('App\Models\ProjectAirportLink', 'project_aplinkable');
     }
 
-    public function facility()
+    public function projectFacility()
     {
-        return $this->morphMany('App\Models\Facility', 'project_facilityable');
+        return $this->morphMany('App\Models\ProjectFacility', 'project_facilityable');
     }
 
     // Has

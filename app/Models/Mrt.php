@@ -13,9 +13,8 @@ class Mrt extends Model {
         return $this->belongsTo('App\Models\MrtRoute', 'route_id');
     }
 
-    public function project_mrtable()
+    public static function getMrt()
     {
-        return $this->morphTo();
+        return Mrt::where('status','=','true')->get();
     }
-
 }

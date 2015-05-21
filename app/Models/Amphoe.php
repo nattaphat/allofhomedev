@@ -17,4 +17,9 @@ class Amphoe extends Model {
     {
         $rs = Amphoe::find(18);
     }
+
+    public static function getAmphoe($id)
+    {
+        return Amphoe::where('provid', '=', $id)->orderBy('name')->get();
+    }
 }
