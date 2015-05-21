@@ -113,10 +113,16 @@
                                             <div class="form-group input-group">
                                                 <input type="text" placeholder="Tags"
                                                        class="form-control">
-                                                <span class="input-group-btn">
-                                                    <button class="btn btn-primary" type="button"><i class="fa fa-plus"></i> เพิ่ม
-                                                    </button>
-                                                </span>
+                                                <select tabindex="-1" multiple="" class="populate" id="e19" style="width: 300px; display: none;">
+                                                    <optgroup label="Alaskan/Hawaiian Time Zone">
+                                                        <option value="AK">Alaska</option>
+                                                        <option value="HI">Hawaii</option>
+                                                    </optgroup>
+                                                </select>
+<!--                                                <span class="input-group-btn">-->
+<!--                                                    <button class="btn btn-primary" type="button"><i class="fa fa-plus"></i> เพิ่ม-->
+<!--                                                    </button>-->
+<!--                                                </span>-->
                                             </div>
                                             <div class="tag-cloud post-tag-cloud" style="margin-top: 0px; padding-bottom: 10px;">
                                                 <a href="#" class="tag">พฤกษา</a>

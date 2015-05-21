@@ -1,13 +1,23 @@
 <?php namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-
+//use DB;
 class TagSub extends Model {
 
     protected $table = 'tag_sub';
     protected $primaryKey = 'id';
     public $timestamps = false;
 
+    public function tagAll()
+    {
+
+        $rs = DB::table('tag_main')
+            ->join('tag_sub','tag_main.id','=','tag_sub.tag_main_id')
+            ->orderBy('tab_main.id')
+            ->get();
+
+        return $rs;
+    }
     public function tagMain()
     {
         return $this->belongsTo('App\Models\TagMain');
