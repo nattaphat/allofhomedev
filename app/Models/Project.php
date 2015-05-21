@@ -1,6 +1,10 @@
 <?php namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Tambon;
+use App\Models\Amphoe;
+use App\Models\Provinces;
+use App\User;
 
 class Project extends Model {
 
@@ -13,6 +17,29 @@ class Project extends Model {
         'lat','long','add_street','tambid','amphid','provid','region_id','area_id',
         'subarea_id','map_url','facebook','nearby_str','facility_str'
     ];
+
+    public static function getPrjAddress($project_id)
+    {
+        $project = Project::find($project_id);
+        $tambon = Tambon::where('tambid','=',$project->tambid)
+            ->where('amphid','=', $project->amphid)
+            ->where('provid','=', $project->provid)->get();
+        $amphoe = Amphoe::where('amphid','=', $project->amphid)
+            ->where('provid','=', $project->provid)->get();
+        $province = Provinces::where('provid','=', $project->provid)->get();
+
+//        return ($project->provid == 10? "แขวง" : "ตำบล").$tambon[0]->name." "
+//        .($project->provid == 10? "เขต" : "อำเภอ").$amphoe[0]->name." "
+//        ."จังหวัด".$province[0]->name;
+
+        return $tambon[0]->name." ".$amphoe[0]->name." ".$province[0]->name;
+    }
+
+    public static function getCreatedBy($user_id)
+    {
+        $user = User::find($user_id);
+        return $user->firstname . " " . $user->lastname;
+    }
 
     // belongsTo
     public function user()  // create_by

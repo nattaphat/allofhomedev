@@ -16,11 +16,11 @@
         <div class="navbar-collapse collapse pull-right">
             <!--@todo: replace with company social media details-->
             <ul class="nav navbar-nav">
-                {{--<li>--}}
-                    {{--<a href="{{ URL::route('topic_list') }}"><i class="glyphicon glyphicon-plus"></i> เพิ่มประกาศ</a>--}}
-                {{--</li>--}}
                 <li>
-                    <a href="{{ URL::route('user_msg') }}" class="btn btn-link"> <i class="glyphicon glyphicon-envelope" title="ข้อความ"></i></a>
+                    <a href="{{ URL::to('project/index') }}" style="color: #E7E7E8;">โครงการทั้งหมด</a>
+                </li>
+                <li>
+                    <a href="{{ URL::route('user_msg') }}" class="btn btn-link" style="color: #E7E7E8;"> <i class="glyphicon glyphicon-envelope" title="ข้อความ"></i></a>
                 </li>
                 <li class="dropdown">
                     <a
@@ -28,7 +28,9 @@
                             class="dropdown-toggle"
                             id="blog-drop"
                             data-toggle="dropdown"
-                            data-hover="dropdown">บัญชีผู้ใช้</a>
+                            data-hover="dropdown"
+                            style="color: #E7E7E8;"
+                            ><b>บัญชีผู้ใช้</b></a>
                     <!-- Dropdown Menu -->
                     <ul class="dropdown-menu" role="menu" aria-labelledby="blog-drop">
                         <li role="presentation">
