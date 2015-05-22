@@ -70,17 +70,23 @@ class ProjectCategoryController extends Controller {
         Gmaps::initialize($config);
 
         $marker =
-            [
-                'position' => '13.7646393,100.5378279',
-                'draggable' => true,
-                'title' => "เลื่อนเพื่อเลือกตำแหน่ง",
-                'ondragend' =>
-                    'debugger;
-                var latitude = document.getElementById("latitude");
-                var longitude = document.getElementById("longitude");
-                latitude.value = event.latLng.lat();
-                longitude.value = event.latLng.lng();'
-            ];
+        [
+            'position' => '13.7646393,100.5378279',
+            'draggable' => true,
+            'title' => "เลื่อนเพื่อเลือกตำแหน่ง",
+            'ondragend' =>
+                'debugger;
+            var latitude = document.getElementById("latitude");
+            var longitude = document.getElementById("longitude");
+            var map_url = document.getElementById("map_url");
+
+            latitude.value = event.latLng.lat();
+            longitude.value = event.latLng.lng();
+            map_url.value = "http://maps.google.com/maps?z=13&q=" + event.latLng.lat() + "," + event.latLng.lng();
+            '
+
+        ];
+
         Gmaps::add_marker($marker);
 
         $map = Gmaps::create_map();
@@ -182,6 +188,7 @@ class ProjectCategoryController extends Controller {
             if($input['subarea_id'] != "")
                 $project->subarea_id = $input['subarea_id'];
             $project->map_url = $input['map_url'];
+            $project->website = $input['website'];
             $project->facebook = $input['facebook'];
             $project->nearby_str = $input['nearby_str'];
             $project->facility_str = $input['facility_str'];
@@ -232,42 +239,7 @@ class ProjectCategoryController extends Controller {
             return redirect('project/index')
                 ->with('flash_message', 'บันทึกข้อมูลสำเร็จ')
                 ->with('flash_type', 'alert-success');
-//            }
-//            catch(\PDOException $exception)
-//            {
-//                return redirect('project/create')
-//                    ->withErrors($validator)
-//                    ->withInput(Input::all())
-//                    ->with('flash_message', 'บันทึกข้อมูลล้มเหลว')
-//                    ->with('flash_type', 'alert-danger');
-//            }
-
-
-
-
-
-
-
-//            if (\Auth::attempt(array(
-//                    'email'     => $data['email_or_username'],
-//                    'password'  => $data['password']
-//                ),$remember) ||
-//                \Auth::attempt(array(
-//                    'username'  => $data['email_or_username'],
-//                    'password'  => $data['password']
-//                ),$remember)) {
-//
-//                return redirect('/');
-//
-//            } else {
-//                return redirect('login')
-//                    ->withErrors(['msg'=>'User is not found.'])
-//                    ->withInput(\Input::except('password'));
-//            }
         }
-
-
-
     }
 
     public function update()
@@ -293,26 +265,71 @@ class ProjectCategoryController extends Controller {
             ->with('map',$map);
     }
 
-    public function view($id = 0)
+    public function view($id)
     {
-        $config = array();
-        $config['center'] = '13.7714348,100.5520891';
-        $config['onboundschanged'] = 'if (!centreGot) {
-            var mapCentre = map.getCenter();
-            marker_0.setOptions({
-                position: new google.maps.LatLng(mapCentre.lat(), mapCentre.lng())
-            });
-        }
-        centreGot = true;';
+        $project = Project::find($id);
+        $fac = $project->projectFacility()->get();
+        $bts = $project->projectBts()->get();
+        $mrt = $project->projectMrt()->get();
+        $apl = $project->projectAplink()->get();
 
+        $config =
+            [
+                'center' => $project->lat.','.$project->long,
+                'zoom' => '15',
+                'scrollwheel' => false,
+                'streetViewControl' => false
+            ];
         Gmaps::initialize($config);
 
-        $marker = array('position' => '13.7714348,100.5520891');
+        $marker =
+            [
+                'position' => $project->lat.','.$project->long,
+            ];
         Gmaps::add_marker($marker);
 
         $map = Gmaps::create_map();
 
         return view('web.frontend.project.view')
-            ->with('map',$map);
+            ->with('map',$map)
+            ->with('project', $project)
+            ->with('facility', $fac)
+            ->with('bts', $bts)
+            ->with('mrt', $mrt)
+            ->with('apl', $apl);
+    }
+
+    public function projectViewProject($id)
+    {
+        $project = Project::find($id);
+        $fac = $project->projectFacility()->get();
+        $bts = $project->projectBts()->get();
+        $mrt = $project->projectMrt()->get();
+        $apl = $project->projectAplink()->get();
+
+        $config =
+        [
+            'center' => $project->lat.','.$project->long,
+            'zoom' => '15',
+            'scrollwheel' => false,
+            'streetViewControl' => false
+        ];
+        Gmaps::initialize($config);
+
+        $marker =
+        [
+            'position' => $project->lat.','.$project->long,
+        ];
+        Gmaps::add_marker($marker);
+
+        $map = Gmaps::create_map();
+
+        return view('web.frontend.project.view_project')
+            ->with('map',$map)
+            ->with('project', $project)
+            ->with('facility', $fac)
+            ->with('bts', $bts)
+            ->with('mrt', $mrt)
+            ->with('apl', $apl);
     }
 }

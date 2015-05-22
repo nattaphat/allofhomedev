@@ -50,8 +50,7 @@
                             {name: 'project_name',orderable: true, searchable: true},
                             {name: 'project_company_owner',orderable: true, searchable: true},
                             {name: 'location',orderable: true, searchable: true},
-//                            {name: 'created_by',orderable: true, searchable: true},
-//                            {name: 'created_at',orderable: true, searchable: true}
+                            {name: 'operate', orderable: false, searchable: false}
                         ],
                         "fnRowCallback": function( nRow, aData, iDisplayIndex, iDisplayIndexFull ) {
                             var index = iDisplayIndex +1;
@@ -103,8 +102,7 @@
                                             <th>ชื่อโครงการ</th>
                                             <th>บริษัทเจ้าของโครงการ</th>
                                             <th>ที่ตั้งโครงการ</th>
-                                            {{--<th>สร้างโดย</th>--}}
-                                            {{--<th>สร้างเมื่อ</th>--}}
+                                            <th></th>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -114,8 +112,11 @@
                                                 <td>{{ $project->project_name }}</td>
                                                 <td>{{ $project->project_company_owner }}</td>
                                                 <td>{{ $project->getPrjAddress($project->id) }}</td>
-                                                {{--<td>{{ $project->getCreatedBy($project->user_id) }}</td>--}}
-                                                {{--<td>{{ $project->created_at }}</td>--}}
+                                                <td>
+                                                    <a href="{{ url('project/view/').'/'.$project->id }}">
+                                                        <i class="fa fa-eye"></i>
+                                                    </a>
+                                                </td>
                                             </tr>
                                         @endforeach
                                         </tbody>

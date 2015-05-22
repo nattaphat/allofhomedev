@@ -204,6 +204,12 @@ Route::get('home/view', [
     'uses' => 'Frontend\HomeCategoryController@view'
 ]);
 
+Route::get('home/searchProject', [
+    'as' => 'home_searchProject',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\HomeCategoryController@searchProject'
+]);
+
 /*-------------------------------- Condo -------------------------------*/
 Route::get('condo/index', [
     'as' => 'condo_index',
@@ -644,8 +650,8 @@ Route::get('project/update', [
     'uses' => 'Frontend\ProjectCategoryController@update'
 ]);
 
-Route::get('project/view', [
-    'as' => 'home_view',
+Route::get('project/view/{id}', [
+    'as' => 'project_view',
     'before' => 'frontend_auth',
     'uses' => 'Frontend\ProjectCategoryController@view'
 ]);
@@ -666,6 +672,12 @@ Route::get('project/getTambon', [
     'as' => 'project_getTambon',
     'before' => 'frontend_auth',
     'uses' => 'Frontend\ProjectCategoryController@getTambon'
+]);
+
+Route::get('project/view_project/{id}', [
+    'as' => 'project_view_project',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\ProjectCategoryController@projectViewProject'
 ]);
 
 /*------------------------------------------------------------------------------*/

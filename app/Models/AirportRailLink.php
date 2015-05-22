@@ -17,4 +17,10 @@ class AirportRailLink extends Model {
     {
         return AirportRailLink::where('status','=','true')->get();
     }
+
+    public static function getAplinkName($id)
+    {
+        $apl = AirportRailLink::find($id);
+        return $apl->apl_name;
+    }
 }

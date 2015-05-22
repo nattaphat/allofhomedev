@@ -89,106 +89,10 @@
     @show
     <a href="#content" class="sr-only">Skip to content</a>
 
-    <!-- ======== @Region: #navigation ======== -->
-    <div id="navigation" class="wrapper">
-        <div class="navbar-static-top">
-
-            <!--Hidden Header Region-->
-            <div class="header-hidden">
-                @include('layouts._partials.header_hidden_container')
-            </div>
-
-            <!--Header upper region-->
-            <div class="header-upper">
-                <div class="header-upper-inner container">
-                    @include('layouts._partials.header_upper')
-                </div>
-            </div>
-
-            <!--Header search region - hidden by default -->
-            <div class="header-search">
-                @include('layouts._partials.header_search')
-            </div>
-
-            <!--Header & Branding region-->
-            {{--<div class="header" data-toggle="clingify">--}}
-            <div class="header">
-                <div class="header-inner container">
-                    <div class="navbar">
-                        <div class="pull-left">
-                            <!--branding/logo-->
-                            <a class="navbar-brand" href="{{ URL::to('/') }}" title="Home">
-                                <h1>
-                                    <!-- <span>AllOf</span>home<span>.</span> -->
-                                    <img src="{{ asset('./img/logo_v2.png')}}">
-                                </h1>
-                            </a>
-                            <div class="slogan">ทุกเรื่องบ้านที่ ออล ออฟ โฮม</div>
-                        </div>
-
-                        <!--Search trigger -->
-                        <a href="#search" class="search-form-tigger"
-                           data-toggle="search-form" data-target=".header-search">
-                            </span>
-                            <i class="fa fa-search fa-flip-horizontal search-icon"></i>
-                        </a>
-
-                        <!-- mobile collapse menu button - data-toggle="toggle" = default BS menu - data-toggle="jpanel-menu" = jPanel Menu -->
-                        <a href="#top" class="navbar-btn"
-                           data-toggle="jpanel-menu"
-                           data-target=".navbar-collapse"
-                           data-direction="right"><i class="fa fa-bars"></i>
-                        </a>
-
-                        <!--everything within this div is collapsed on mobile-->
-                        <div class="navbar-collapse collapse">
-                            <!--main navigation-->
-                            @include('layouts._partials.main_menu')
-                        </div>
-
-                        <!--/.navbar-collapse -->
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </div>
-
-    <!-- ======== @Region: #highlighted ======== -->
-    <div id="highlighted">
-        <!--<div class="row">-->
-        @yield('slider')
-    </div>
-
-    <!-- ======== @Carousel ==========> -->
-    {{--@include('layouts._partials.carousel')--}}
-
     <!-- ======== @Region: #content ======== -->
     <div class="content">
         @yield('content')
     </div>
-
-    <!-- ======== @Region: #content-below ======== -->
-    {{--<div id="content-below" class="wrapper">--}}
-    {{--@include('layouts._partials.content_below')--}}
-    {{--</div>--}}
-
-    <!-- FOOTER -->
-
-    <!-- ======== @Region: #footer ======== -->
-    @include('layouts._partials.footer')
-
-    <!--Hidden elements - excluded from jPanel Menu on mobile-->
-    <div class="hidden-elements jpanel-menu-exclude">
-        <!--@modal - signup modal-->
-        @include('layouts._partials.modal_signup')
-        <!-- /.modal -->
-
-        <!--@modal - login modal-->
-        @include('layouts._partials.modal_login')
-        <!-- /.modal -->
-    </div>
-
 
     <!--Scripts -->
     <script src={{ asset('js/lib/jquery/dist/jquery.min.js') }}></script>

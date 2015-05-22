@@ -17,4 +17,10 @@ class Mrt extends Model {
     {
         return Mrt::where('status','=','true')->get();
     }
+
+    public static function getMrtName($id)
+    {
+        $mrt = Mrt::find($id);
+        return $mrt->mrt_name;
+    }
 }

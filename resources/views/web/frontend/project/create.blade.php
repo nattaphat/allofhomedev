@@ -349,7 +349,7 @@
                                     <label for="map_url" class="col-md-3 control-label">ลิงค์แผนที่</label>
                                     <div class="col-md-6">
                                         <input type="text" class="form-control" id="map_url" name="map_url"
-                                               placeholder="" value="{{Input::old('map_url')}}">
+                                               readonly="true" placeholder="" value="{{Input::old('map_url')}}">
                                     </div>
                                 </div>
                                 <div class="bs-callout bs-callout-success" style="margin-top: 40px;">

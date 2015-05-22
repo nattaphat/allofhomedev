@@ -5,8 +5,52 @@
 @stop
 
 @section('jshome')
-    {!! $map['js'] !!}
+
+    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+    <script type="text/javascript">
+
+        var map;
+        var lat_longs_map = new Array();
+        var markers_map = new Array();
+        var iw_map;
+
+        iw_map = new google.maps.InfoWindow();
+
+        function initialize_map() {
+
+            var myLatlng = new google.maps.LatLng(13.781978731601765,100.61164229208987);
+            var myOptions = {
+                zoom: 15,
+                center: myLatlng,
+                mapTypeId: google.maps.MapTypeId.ROADMAP,
+                scrollwheel: false}
+            map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+
+            var myLatlng = new google.maps.LatLng(13.781978731601765,100.61164229208987);
+
+            var markerOptions = {
+                map: map,
+                position: myLatlng
+            };
+            marker_0 = createMarker_map(markerOptions);
+
+
+        }
+
+
+        function createMarker_map(markerOptions) {
+            var marker = new google.maps.Marker(markerOptions);
+            markers_map.push(marker);
+            lat_longs_map.push(marker.getPosition());
+            return marker;
+        }
+
+        google.maps.event.addDomListener(window, "load", initialize_map);
+
+        //]]>
+    </script>"""
 @stop
+
 
 @section('jsbody')
     <script type="text/javascript">
@@ -26,6 +70,27 @@
                     console.log("File response :", response);
                 }
             });
+
+            $("#project_name").select2({
+                placeholder: "ค้นหาโครงการ",
+                data: [ <?php echo str_replace('[','', str_replace(']','',$project)); ?>]
+            }).on("change", function(e) {
+
+                $project_id = $("#project_name").val();
+                $('#project_id').val($project_id);
+
+                $.ajax({
+                    url: '{{ url('project/view_project') }}' + '/' + $project_id,
+                    dataType: 'html',
+                    success: function(data) {
+                        $('#project_detail').html($(data));
+                    }
+                });
+
+
+            });
+
+
         });
     </script>
 @stop
@@ -48,26 +113,28 @@
                             </div>
                             <div class="row">
                                 {{--{!! Form::open(array('url' => 'home/create','class' => 'form-horizontal', 'files' => true,--}}
-                                    {{--'enctype'=> 'multipart/form-data')) !!}﻿--}}
+                                {{--'enctype'=> 'multipart/form-data')) !!}﻿--}}
 
                                 <form action="" class="form-horizontal">
                                     <div class="bs-callout bs-callout-success">
                                         ข้อมูลทั่วไป
                                     </div>
+                                    <input type="hidden" id="user_id" name="user_id" value="{{ Auth::user()->id }}">
                                     <div class="form-group">
-                                        <label for="inputEmail3" class="col-sm-2 control-label">หัวข้อประกาศ</label>
-                                        <div class="col-sm-6">
-                                            <input type="text" class="form-control" id="inputEmail3" placeholder="หัวข้อประกาศ">
+                                        <label for="title" class="col-md-3 control-label">หัวข้อประกาศ</label>
+                                        <div class="col-md-6">
+                                            <input type="text" class="form-control"
+                                                   id="title" name="title" placeholder="">
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="inputPassword3" class="col-sm-2 control-label">เนื้อหาย่อ</label>
-                                        <div class="col-sm-8">
+                                        <label for="subtitle" class="col-md-3 control-label">เนื้อหาย่อ</label>
+                                        <div class="col-md-8">
                                             <textarea
                                                     id="subtitle"
                                                     name="subtitle"
                                                     class="form-control"
-                                                    placeholder="เนื้อหาย่อ"
+                                                    placeholder=""
                                                     rows="3"
                                                     value="{{Input::old('subtitle')}}"
                                                     ></textarea>
@@ -77,248 +144,184 @@
                                         ข้อมูลผู้ติดต่อ
                                     </div>
                                     <div class="form-group">
-                                        <label for="inputEmail3" class="col-sm-2 control-label">เบอร์ติดต่อโครงการ</label>
-                                        <div class="col-sm-6">
-                                            <input type="text" class="form-control" id="inputEmail3" placeholder="เบอร์ติดต่อโครงการ">
+                                        <label for="contact_company_name" class="col-md-3 control-label">ชื่อบริษัท</label>
+                                        <div class="col-md-6">
+                                            <input type="text" class="form-control"
+                                                   id="contact_company_name" name="contact_company_name" placeholder="">
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="inputPassword3" class="col-sm-2 control-label">อีเมล</label>
-                                        <div class="col-sm-6">
-                                            <input type="text" class="form-control" id="inputPassword3" placeholder="อีเมล">
+                                        <label for="contact_telephone" class="col-md-3 control-label">เบอร์ติดต่อโครงการ</label>
+                                        <div class="col-md-6">
+                                            <input type="text" class="form-control"
+                                                   id="contact_telephone" name="contact_telephone" placeholder="">
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="inputPassword3" class="col-sm-2 control-label">เว็บไซต์บริษัท</label>
-                                        <div class="col-sm-6">
-                                            <input type="text" class="form-control" id="inputPassword3" placeholder="เว็บไซต์บริษัท">
+                                        <label for="contact_email" class="col-md-3 control-label">อีเมล</label>
+                                        <div class="col-md-6">
+                                            <input type="text" class="form-control"
+                                                   id="contact_email" name="contact_email" placeholder="">
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="inputPassword3" class="col-sm-2 control-label">Line ID</label>
-                                        <div class="col-sm-6">
-                                            <input type="text" class="form-control" id="inputPassword3" placeholder="Line ID">
+                                        <label for="contact_website" class="col-md-3 control-label">เว็บไซต์บริษัท</label>
+                                        <div class="col-md-6">
+                                            <input type="text" class="form-control"
+                                                   id="contact_website" name="contact_website" placeholder="">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="contact_lineid" class="col-md-3 control-label">Line ID</label>
+                                        <div class="col-md-6">
+                                            <input type="text" class="form-control"
+                                                   id="contact_lineid" name="contact_lineid" placeholder="">
                                         </div>
                                     </div>
                                     <div class="bs-callout bs-callout-success" style="margin-top: 40px;">
                                         ข้อมูลเบื้องต้นโครงการ
                                     </div>
                                     <div class="form-group">
-                                        <label for="inputPassword3" class="col-sm-2 control-label">ชื่อโครงการ</label>
-                                        <div class="col-sm-6">
-                                            <input type="text" class="form-control" id="inputPassword3" placeholder="ค้นหาโครงการ">
+                                        <label for="project_name" class="col-md-3 control-label">ชื่อโครงการ</label>
+                                        <div class="col-md-6">
+                                            <select id="project_name" style="width:100%;">
+                                                <option value=""></option>
+                                            </select>
+                                            <input type="hidden" id="project_id" name="project_id" value="">
                                         </div>
-                                        <div call="col-sm-3 text-right">
-                                            <a href="#">
+                                        <div call="col-md-3 text-right">
+                                            <a href="{{ url('project/create') }}">
                                                 <i class="fa fa-plus-square"></i> เพิ่มโครงการใหม่</a>
                                         </div>
                                     </div>
-                                    <div class="row" style="padding: 10px 0px 20px 0px;">
-                                        <div class="col-sm-2"></div>
-                                        <div class="col-sm-10">
-                                            <div class="focus-box pull-right text-right"
-                                                 style="max-height:180px; max-width: 180px;">
-                                                <img src="../img/cat_home/sansiri.png" alt="company owner"
-                                                     style="max-height:150px; max-width: 150px;">
-                                            </div>
-                                            <strong>รายละเอียดโครงการ:</strong>
-                                            <ul class="list-inline">
-                                                <li>ชื่อโครงการ:</li>
-                                                <li>ชื่อโครงการ</li>
-                                            </ul>
-                                            <ul class="list-inline">
-                                                <li>บริษัทเจ้าของโครงการ:</li>
-                                                <li>บริษัทเจ้าของโครงการ</li>
-                                            </ul>
-                                            <ul class="list-inline">
-                                                <li>ที่ตั้งโครงการ:</li>
-                                                <li>ถนน ตำบล อำเภอ จังหวัด</li>
-                                            </ul>
-                                            <ul class="list-inline">
-                                                <li>ทำเล/ย่าน:</li>
-                                                <li>สุขุมวิท</li>
-                                            </ul>
-                                            <ul class="list-inline">
-                                                <li>เว็บไซต์โครงการ:</li>
-                                                <li>เว็บไซต์โครงการ</li>
-                                            </ul>
-                                            <ul class="list-inline">
-                                                <li>Facebook:</li>
-                                                <li>Facebook</li>
-                                            </ul>
-                                            <ul class="list-inline">
-                                                <li>สถานที่ใกล้เคียง:</li>
-                                            </ul>
-                                            <div class="row" style="padding-left: 30px;">
-                                                <em>สถานี BTS</em>
-                                            </div>
-                                            <div class="row" style="padding-left: 30px; padding-bottom: 10px;">
-                                                <div class="col-md-4"><i class="fa fa-caret-right"></i> &nbsp;&nbsp; ช่องนนทรีย์</div>
-                                                <div class="col-md-4"><i class="fa fa-caret-right"></i> &nbsp;&nbsp; ศาลาแดง</div>
-                                            </div>
-                                            <div class="row" style="padding-left: 30px;">
-                                                <em>สถานี MRT</em>
-                                            </div>
-                                            <div class="row" style="padding-left: 30px; padding-bottom: 10px;">
-                                                <div class="col-md-4"><i class="fa fa-caret-right"></i> &nbsp;&nbsp; สามย่าน</div>
-                                                <div class="col-md-4"><i class="fa fa-caret-right"></i> &nbsp;&nbsp; สีลม</div>
-                                                <div class="col-md-4"><i class="fa fa-caret-right"></i> &nbsp;&nbsp; ลุมพินี</div>
-                                            </div>
-                                            <div class="row" style="padding-left: 30px;">
-                                                <em>Airport Rail Link</em>
-                                            </div>
-                                            <div class="row" style="padding-left: 30px; padding-bottom: 10px;">
-                                                <div class="col-md-4"><i class="fa fa-caret-right"></i> &nbsp;&nbsp; มักกะสัน</div>
-                                            </div>
-                                            <ul class="list-inline">
-                                                <li>สิ่งอำนวยความสะดวก:</li>
-                                            </ul>
-                                            <div class="row" style="padding-left: 30px;  padding-bottom: 10px;">
-                                                <div class="col-md-4"><i class="fa fa-caret-right"></i> &nbsp;&nbsp; ลิฟท์โดยสาร</div>
-                                                <div class="col-md-4"><i class="fa fa-caret-right"></i> &nbsp;&nbsp; ลิฟท์ขนส่ง</div>
-                                                <div class="col-md-4"><i class="fa fa-caret-right"></i> &nbsp;&nbsp; ที่จอดรถ</div>
-                                                <div class="col-md-4"><i class="fa fa-caret-right"></i> &nbsp;&nbsp; ทางเข้าไม้กระดก</div>
-                                                <div class="col-md-4"><i class="fa fa-caret-right"></i> &nbsp;&nbsp; คีย์การ์ด</div>
-                                                <div class="col-md-4"><i class="fa fa-caret-right"></i> &nbsp;&nbsp; กล้องวงจรปิด</div>
-                                                <div class="col-md-4"><i class="fa fa-caret-right"></i> &nbsp;&nbsp; รปภ.</div>
-                                                <div class="col-md-4"><i class="fa fa-caret-right"></i> &nbsp;&nbsp; สระว่ายน้ำ</div>
-                                                <div class="col-md-4"><i class="fa fa-caret-right"></i> &nbsp;&nbsp; สวนสาธารณะ</div>
-                                                <div class="col-md-4"><i class="fa fa-caret-right"></i> &nbsp;&nbsp; สนามเด็กเล่น</div>
-                                                <div class="col-md-4"><i class="fa fa-caret-right"></i> &nbsp;&nbsp; ฟิตเนส</div>
-                                                <div class="col-md-4"><i class="fa fa-caret-right"></i> &nbsp;&nbsp; สตรีม</div>
-                                                <div class="col-md-4"><i class="fa fa-caret-right"></i> &nbsp;&nbsp; ซาวน่า</div>
-                                                <div class="col-md-4"><i class="fa fa-caret-right"></i> &nbsp;&nbsp; สปอร์ตคลับ</div>
-                                                <div class="col-md-4"><i class="fa fa-caret-right"></i> &nbsp;&nbsp; ร้านสะดวกซื้อ</div>
-                                            </div>
-                                            <ul class="list-inline">
-                                                <li>Latitude:</li>
-                                                <li>13.02</li>
-                                                <li>Longitude:</li>
-                                                <li>100.29</li>
-                                            </ul>
-                                            <ul class="list-inline">
-                                                <li>ลิงค์แผนที่:</li>
-                                                <li>http://map.google.com?lat=13.02&long=100.29&z=3</li>
-                                            </ul>
-                                            <div class="row" style="padding-right:50px;">
-                                                {!! $map['html'] !!}
-                                            </div>
-                                        </div>
+                                    <div class="row" style="padding: 20px 15px 30px 0px;">
+                                        <div id="project_detail"></div>
                                     </div>
+
                                     <div class="form-group">
-                                        <label for="inputPassword3" class="col-sm-2 control-label">รูปแบบบ้าน</label>
-                                        <div class="col-sm-6">
+                                        <label for="project_type" class="col-md-3 control-label">รูปแบบบ้าน</label>
+                                        <div class="col-md-6">
                                             <label class="checkbox-inline">
-                                                <input type="checkbox">บ้านเดี่ยว
+                                                <input type="checkbox" name="project_type[]" value="1">บ้านเดี่ยว
                                             </label>
                                             <label class="checkbox-inline">
-                                                <input type="checkbox">บ้านแฝด
-                                            </label>
-                                            <label class="checkbox-inline">
-                                                <input type="checkbox">ทาวน์โฮม
-                                            </label>
-                                            <label class="checkbox-inline">
-                                                <input type="checkbox">คอนโด
+                                                <input type="checkbox" name="project_type[]" value="2">บ้านแฝด
                                             </label>
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="inputPassword3" class="col-sm-2 control-label">พื้นที่โครงการ (ไร่)</label>
-                                        <div class="col-sm-6">
-                                            <input type="text" class="form-control" id="inputPassword3" placeholder="พื้นที่โครงการ (ไร่)">
+                                        <label for="project_area" class="col-md-3 control-label">พื้นที่โครงการ (ไร่)</label>
+                                        <div class="col-md-6">
+                                            <input type="text" class="form-control"
+                                                   id="project_area" name="project_area" placeholder="">
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="inputPassword3" class="col-sm-2 control-label">จำนวนยูนิต</label>
-                                        <div class="col-sm-6">
-                                            <input type="text" class="form-control" id="inputPassword3" placeholder="จำนวนยูนิต">
+                                        <label for="num_unit" class="col-md-3 control-label">จำนวนยูนิต</label>
+                                        <div class="col-md-6">
+                                            <input type="text" class="form-control"
+                                                   id="num_unit" name="num_unit" placeholder="">
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="inputPassword3" class="col-sm-2 control-label">รูปแบบบ้าน : ที่ดินเริ่มต้น</label>
-                                        <div class="col-sm-8">
-                                            <textarea class="form-control" id="inputPassword3"
-                                                      placeholder="เช่น ทาวน์โฮม : 18 ตร.ว." rows="3"></textarea>
+                                        <label for="home_type_per_area" class="col-md-3 control-label">รูปแบบบ้าน : พื้นที่เริ่มต้น</label>
+                                        <div class="col-md-8">
+                                            <textarea class="form-control"
+                                                      id="home_type_per_area" name="home_type_per_area"
+                                                      placeholder="เช่น บ้านเดี่ยว : 18 ตร.ว." rows="3"></textarea>
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="inputPassword3" class="col-sm-2 control-label">พื้นที่บ้านเริ่มต้น</label>
-                                        <div class="col-sm-8">
-                                            <textarea class="form-control" id="inputPassword3"
-                                                      placeholder="เช่น ทาวน์โฮม 130 ตร.ม." rows="3"></textarea>
+                                        <label for="home_area" class="col-md-3 control-label">พื้นที่บ้านเริ่มต้น</label>
+                                        <div class="col-md-8">
+                                            <textarea class="form-control"
+                                                      id="home_area" name="home_area"
+                                                      placeholder="เช่น บ้านเดี่ยว 130 ตร.ม." rows="3"></textarea>
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="inputPassword3" class="col-sm-2 control-label">การก่อสร้างตัวบ้าน</label>
-                                        <div class="col-sm-8">
-                                            <textarea class="form-control" id="inputPassword3"
-                                                      placeholder="เช่น อิฐแดง อิฐมวลเบา ระบบ tunel" rows="3"></textarea>
+                                        <label for="home_material" class="col-md-3 control-label">การก่อสร้างตัวบ้าน</label>
+                                        <div class="col-md-8">
+                                            <textarea class="form-control"
+                                                      id="home_material" name="home_material"
+                                                      placeholder="เช่น อิฐแดง อิฐมวลเบา ระบบ tunnel" rows="3"></textarea>
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="inputPassword3" class="col-sm-2 control-label">สไตล์การออกแบบ</label>
-                                        <div class="col-sm-8">
-                                            <textarea class="form-control" id="inputPassword3"
+                                        <label for="home_style" class="col-md-3 control-label">สไตล์การออกแบบ</label>
+                                        <div class="col-md-8">
+                                            <textarea class="form-control"
+                                                      id="home_style" name="home_style"
                                                       placeholder="เช่น Modern, Art Deco" rows="3"></textarea>
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="inputPassword3" class="col-sm-2 control-label">แผนผังโครงการ</label>
-                                        <div class="col-sm-8">
-                                            <textarea class="form-control" id="inputPassword3"
-                                                      placeholder="แผนผังโครงการ" rows="3"></textarea>
+                                        <label for="project_layout" class="col-md-3 control-label">แผนผังโครงการ</label>
+                                        <div class="col-md-8">
+                                            <textarea class="form-control"
+                                                      id="project_layout" name="project_layout"
+                                                      placeholder="" rows="3"></textarea>
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="inputPassword3" class="col-sm-2 control-label">สภาพแวดล้อมโครงการ</label>
-                                        <div class="col-sm-8">
-                                            <textarea class="form-control" id="inputPassword3"
-                                                      placeholder="สภาพแวดล้อมโครงการ" rows="3"></textarea>
+                                        <label for="project_env" class="col-md-3 control-label">สภาพแวดล้อมโครงการ</label>
+                                        <div class="col-md-8">
+                                            <textarea class="form-control"
+                                                      id="project_env" name="project_env"
+                                                      placeholder="" rows="3"></textarea>
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="inputPassword3" class="col-sm-2 control-label">บรรยากาศบ้านตกแต่ง</label>
-                                        <div class="col-sm-8">
-                                            <textarea class="form-control" id="inputPassword3"
-                                                      placeholder="บรรยากาศบ้านตกแต่ง" rows="3"></textarea>
+                                        <label for="project_scene" class="col-md-3 control-label">บรรยากาศบ้านตกแต่ง</label>
+                                        <div class="col-md-8">
+                                            <textarea class="form-control"
+                                                      id="project_scene" name="project_scene"
+                                                      placeholder="" rows="3"></textarea>
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="inputPassword3" class="col-sm-2 control-label">บรรยากาศบ้านจริงเมื่อรับมอบ</label>
-                                        <div class="col-sm-8">
-                                            <textarea class="form-control" id="inputPassword3"
-                                                      placeholder="บรรยากาศบ้านจริงเมื่อรับมอบ" rows="3"></textarea>
+                                        <label for="project_deliver" class="col-md-3 control-label">บรรยากาศบ้านจริงเมื่อรับมอบ</label>
+                                        <div class="col-md-8">
+                                            <textarea class="form-control"
+                                                      id="project_deliver" name="project_deliver"
+                                                      placeholder="" rows="3"></textarea>
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="inputPassword3" class="col-sm-2 control-label">โครงการผ่าน EIA</label>
-                                        <div class="col-sm-6">
+                                        <label for="eia" class="col-md-3 control-label">โครงการผ่าน EIA</label>
+                                        <div class="col-md-6">
                                             <label class="radio-inline">
-                                                <input type="radio" name="optionsRadiosInline"
-                                                       id="optionsRadiosInline1" value="option1" checked> ผ่าน
+                                                <input type="radio" name="eia[]"
+                                                       id="eia1" value="true" checked> ผ่าน
                                             </label>
                                             <label class="radio-inline">
-                                                <input type="radio" name="optionsRadiosInline"
-                                                       id="optionsRadiosInline2" value="option2"> ไม่ผ่าน
+                                                <input type="radio" name="eia[]"
+                                                       id="eia2" value="false"> ไม่ผ่าน
                                             </label>
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="inputPassword3" class="col-sm-2 control-label">ราคาขายเปิดโครงการ</label>
-                                        <div class="col-sm-6">
-                                            <input type="text" class="form-control" id="inputPassword3" placeholder="ราคาขายเปิดโครงการ">
+                                        <label for="sell_price" class="col-md-3 control-label">ราคาขายเปิดโครงการ</label>
+                                        <div class="col-md-6">
+                                            <input type="text" class="form-control"
+                                                   id="sell_price" name="sell_price"
+                                                   placeholder="">
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="inputPassword3" class="col-sm-2 control-label">เริ่มก่อสร้าง</label>
-                                        <div class="col-sm-6">
-                                            <input type="text" class="form-control" id="inputPassword3" placeholder="เริ่มก่อสร้าง">
+                                        <label for="construct_date" class="col-md-3 control-label">เริ่มก่อสร้าง</label>
+                                        <div class="col-md-6">
+                                            <input type="text" class="form-control"
+                                                   id="construct_date" name="construct_date"
+                                                   placeholder="">
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="inputPassword3" class="col-sm-2 control-label">คาดว่าแล้วเสร็จ</label>
-                                        <div class="col-sm-6">
-                                            <input type="text" class="form-control" id="inputPassword3" placeholder="คาดว่าแล้วเสร็จ">
+                                        <label for="finish_date" class="col-md-3 control-label">คาดว่าแล้วเสร็จ</label>
+                                        <div class="col-md-6">
+                                            <input type="text" class="form-control"
+                                                   id="finish_date" name="finish_date"
+                                                   placeholder="">
                                         </div>
                                     </div>
                                     <!-- รายละเอียดส่วนกลาง -->
@@ -326,15 +329,19 @@
                                         รายละเอียดส่วนกลาง
                                     </div>
                                     <div class="form-group">
-                                        <label for="inputPassword3" class="col-sm-2 control-label">กองทุนสำรอง (บ/ตร.ว.)</label>
-                                        <div class="col-sm-6">
-                                            <input type="text" class="form-control" id="inputPassword3" placeholder="กองทุนสำรอง (บ/ตร.ว.)">
+                                        <label for="spare_price" class="col-md-3 control-label">กองทุนสำรอง (บ/ตร.ว.)</label>
+                                        <div class="col-md-6">
+                                            <input type="text" class="form-control"
+                                                   id="spare_price" name="spare_price"
+                                                   placeholder="">
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="inputPassword3" class="col-sm-2 control-label">ค่าส่วนกลาง (บ/ตร.ว.)</label>
-                                        <div class="col-sm-6">
-                                            <input type="text" class="form-control" id="inputPassword3" placeholder="ค่าส่วนกลาง (บ/ตร.ว.)">
+                                        <label for="central_price" class="col-md-3 control-label">ค่าส่วนกลาง (บ/ตร.ว.)</label>
+                                        <div class="col-md-6">
+                                            <input type="text" class="form-control"
+                                                   id="central_price" name="central_price"
+                                                   placeholder="">
                                         </div>
                                     </div>
                                     <!-- การคำนวณเงินกู้ -->
@@ -342,10 +349,11 @@
                                         การคำนวณเงินกู้
                                     </div>
                                     <div class="form-group">
-                                        <label for="inputPassword3" class="col-sm-2 control-label">การคำนวณเงินกู้</label>
-                                        <div class="col-sm-8">
-                                            <textarea class="form-control" id="inputPassword3"
-                                                      placeholder="การคำนวณเงินกู้" rows="15"></textarea>
+                                        <label for="loan_detail" class="col-md-3 control-label">การคำนวณเงินกู้</label>
+                                        <div class="col-md-8">
+                                            <textarea class="form-control"
+                                                      id="loan_detail" name="loan_detail"
+                                                      placeholder="" rows="10"></textarea>
                                         </div>
                                     </div>
                                     <!-- ส่วนลดโปรโมชั่น -->
@@ -353,45 +361,34 @@
                                         ส่วนลดโปรโมชั่น
                                     </div>
                                     <div class="form-group">
-                                        <label for="inputPassword3" class="col-sm-2 control-label">ส่วนลดโปรโมชั่น</label>
-                                        <div class="col-sm-6">
-                                            <div class="checkbox">
-                                                <label>
-                                                    <input type="checkbox" value="">ส่วนลดเงินสด
-                                                </label>
-                                            </div>
-                                            <div class="checkbox">
-                                                <label>
-                                                    <input type="checkbox" value="">แถมเฟอร์นิเจอร์
-                                                </label>
-                                            </div>
-                                            <div class="checkbox">
-                                                <label>
-                                                    <input type="checkbox" value="">ฟรีค่าใช้จ่ายวันโอน
-                                                </label>
-                                            </div>
-                                            <div class="checkbox">
-                                                <label>
-                                                    <input type="checkbox" value="">ฟรีแอร์ทั้งหลัง
-                                                </label>
-                                            </div>
-                                            <div class="checkbox">
-                                                <label>
-                                                    <input type="checkbox" value="">ฟรีค่าส่วนกลาง
-                                                </label>
-                                            </div>
-                                            <div class="checkbox">
-                                                <label>
-                                                    <input type="checkbox" value="">ดอกเบี้ยถูกกว่าปกติ
-                                                </label>
-                                            </div>
+                                        <label for="inputPassword3" class="col-md-3 control-label">ส่วนลดโปรโมชั่น</label>
+                                        <div class="col-md-6">
+                                            @foreach($promotion as $item)
+                                                <div class="checkbox">
+                                                    <label>
+                                                        <input type="checkbox" name="promotion[]"
+                                                               value="{{ $item["id"] }}"
+                                                        <?php
+                                                                if (Input::old('promotion') != null) {
+                                                                    foreach(Input::old('promotion') as $key => $value)
+                                                                    {
+                                                                        if($value == $item["id"])
+                                                                            echo "checked";
+                                                                    }
+                                                                }
+                                                                ?>
+                                                                > {{ $item["promotion_name"] }}
+                                                    </label>
+                                                </div>
+                                            @endforeach
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="inputPassword3" class="col-sm-2 control-label">อื่นๆ โปรดระบุ</label>
-                                        <div class="col-sm-8">
-                                            <textarea class="form-control" id="inputPassword3"
-                                                      placeholder="อื่นๆ โปรดระบุ" rows="3"></textarea>
+                                        <label for="promotion_str" class="col-md-3 control-label">โปรโมชั่นอื่นๆ</label>
+                                        <div class="col-md-8">
+                                            <textarea class="form-control"
+                                                      id="promotion_str" name="promotion_str"
+                                                      placeholder="" rows="3"></textarea>
                                         </div>
                                     </div>
                                     <!-- รายละเอียดอื่นๆ -->
@@ -399,43 +396,29 @@
                                         รายละเอียดอื่นๆ
                                     </div>
                                     <div class="form-group">
-                                        <label for="inputPassword3" class="col-sm-2 control-label">รายละเอียดอื่นๆ</label>
-                                        <div class="col-sm-8">
-                                            <textarea class="form-control" id="inputPassword3"
-                                                      placeholder="รายละเอียดอื่นๆ" rows="15"></textarea>
+                                        <label for="other_detail" class="col-md-3 control-label">รายละเอียดอื่นๆ</label>
+                                        <div class="col-md-8">
+                                            <textarea class="form-control"
+                                                      id="other_detail" name="other_detail"
+                                                      placeholder="" rows="10"></textarea>
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="col-sm-2 control-label text-right">รูปภาพ</label>
-                                        <div class="col-sm-8">
-                                            <div id="dZUpload" class="dropzone">
-                                                {{--<div class="dz-default dz-message"></div>--}}
-                                                {{--<div class="dz-preview dz-file-preview"></div>--}}
-
-                                                {{--<div class="dz-default dz-preview">--}}
-                                                    {{--<div class="dz-details">--}}
-                                                        {{--<div class="dz-filename"><span data-dz-name></span></div>--}}
-                                                        {{--<div class="dz-size" data-dz-size></div>--}}
-                                                        {{--<img data-dz-thumbnail />--}}
-                                                    {{--</div>--}}
-                                                    {{--<div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div>--}}
-                                                    {{--<div class="dz-success-mark"><span>✔</span></div>--}}
-                                                    {{--<div class="dz-error-mark"><span>✘</span></div>--}}
-                                                    {{--<div class="dz-error-message"><span data-dz-errormessage></span></div>--}}
-                                                {{--</div>--}}
-
-                                            </div>
+                                        <label class="col-md-3 control-label text-right">รูปภาพ</label>
+                                        <div class="col-md-8">
+                                            <div id="dZUpload" class="dropzone"></div>
                                         </div>
+                                        <input type="hidden" id="file" name="file" value="">
                                     </div>
                                     <div class="form-group @if ($errors->has('video_url')) {{ "has-error" }} @endif">
-                                        <label class="col-md-2 control-label text-right">ลิงค์วิดีโอ Youtube</label>
+                                        <label class="col-md-3 control-label text-right">ลิงค์วิดีโอ Youtube</label>
                                         <div class="col-md-8">
                                             <input
                                                     type="text"
                                                     id="video_url"
                                                     name="video_url"
                                                     class="form-control"
-                                                    placeholder="ลิงค์วิดีโอ Youtube"
+                                                    placeholder=""
                                                     value="{{Input::old('title')}}">
                                             <p class="help-block">
                                                 {{ $errors->first('video_url') }}
@@ -444,15 +427,10 @@
                                     </div>
                                     <div class="row">
                                         <div class="form-group">
-                                            <label class="col-sm-2 control-label text-right">Tags</label>
-                                            <div class="col-sm-8">
+                                            <label class="col-md-3 control-label text-right">Tags</label>
+                                            <div class="col-md-8">
                                                 <div class="form-group input-group" style="padding: 6px 25px 6px 25px;">
-                                                    <input type="text" placeholder="Tags"
-                                                           class="form-control">
-                                                    <span class="input-group-btn">
-                                                        <button class="btn btn-primary" type="button"><i class="fa fa-plus"></i> เพิ่ม
-                                                        </button>
-                                                    </span>
+                                                    <input type="text" class="form-control" id="tag_search">
                                                 </div>
                                                 <div class="tag-cloud post-tag-cloud" style="margin-top: 0px; padding: 6px 25px 6px 25px;">
                                                     <a href="#" class="tag">พฤกษา</a>
@@ -463,23 +441,24 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label  class="col-sm-2 control-label text-right">แสดงผลหน้าเว็บไซต์</label>
-                                        <div class="col-sm-8">
+                                        <label  class="col-md-3 control-label text-right">แสดงผลหน้าเว็บไซต์</label>
+                                        <div class="col-md-8">
                                             <label class="radio-inline">
-                                                <input type="radio" name="optionsRadiosInline" id="optionsRadiosInline1"
-                                                       value="option1" checked> แสดงผล
+                                                <input type="radio" name="status[]" id="status1"
+                                                       value="1" checked> แสดงผล
                                             </label>
                                             <label class="radio-inline">
-                                                <input type="radio" name="optionsRadiosInline" id="optionsRadiosInline2"
-                                                       value="option2"> ไม่แสดงผล
+                                                <input type="radio" name="status[]" id="status2"
+                                                       value="0"> ไม่แสดงผล
                                             </label>
                                         </div>
                                     </div>
                                     <div class="form-group" style="padding: 20px 0px 20px 0;">
-                                        <div class="col-sm-2"></div>
-                                        <div class="col-sm-10">
+                                        <div class="col-md-3"></div>
+                                        <div class="col-md-9">
                                             <button type="submit" class="btn btn-primary">บันทึก</button>
-                                            <button type="button" class="btn btn-default">ยกเลิก</button>
+                                            <button type="button" class="btn btn-default">
+                                                <a href="{{ URL::previous() }}">ยกเลิก</a></button>
                                         </div>
                                     </div>
                                 </form>

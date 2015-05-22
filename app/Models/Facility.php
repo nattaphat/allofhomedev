@@ -14,4 +14,11 @@ class Facility extends Model {
     {
         return $this->morphTo();
     }
+
+    public static function getFacilityName($id)
+    {
+        $fac = Facility::find($id);
+        return $fac->fac_name;
+    }
+
 }
