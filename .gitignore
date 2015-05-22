@@ -13,4 +13,3 @@ auth.json
 *.iml
 .idea
 composer.lock
-/public/uploads/*
