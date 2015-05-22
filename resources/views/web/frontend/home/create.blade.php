@@ -101,16 +101,88 @@
                 method: "POST",
                 addRemoveLinks: true,
                 success: function (file, response) {
-                    var imgName = response;
+                    //var imgName = response;
                     file.previewElement.classList.add("dz-success");
-                    console.log("Successfully uploaded :" + imgName);
+                    //console.log("Successfully uploaded :" + imgName);
                 },
                 sending: function(file, xhr, formData) {
                     formData.append("_token", $('[name=_token]').val());
                 },
                 error: function (file, response) {
                     file.previewElement.classList.add("dz-error");
-                    console.log("File response :", response);
+//                    console.log("File response :", response);
+                }
+            });
+
+            $("#dZUpload1").dropzone({
+                url: "{{ URL::route('post_upload') }}",
+                method: "POST",
+                addRemoveLinks: true,
+                success: function (file, response) {
+                    //var imgName = response;
+                    file.previewElement.classList.add("dz-success");
+                    //console.log("Successfully uploaded :" + imgName);
+                },
+                sending: function(file, xhr, formData) {
+                    formData.append("_token", $('[name=_token]').val());
+                },
+                error: function (file, response) {
+                    file.previewElement.classList.add("dz-error");
+//                    console.log("File response :", response);
+                }
+            });
+
+            $("#dZUpload2").dropzone({
+                url: "{{ URL::route('post_upload') }}",
+                method: "POST",
+                addRemoveLinks: true,
+                success: function (file, response) {
+                    //var imgName = response;
+                    file.previewElement.classList.add("dz-success");
+                    //console.log("Successfully uploaded :" + imgName);
+                },
+                sending: function(file, xhr, formData) {
+                    formData.append("_token", $('[name=_token]').val());
+                },
+                error: function (file, response) {
+                    file.previewElement.classList.add("dz-error");
+//                    console.log("File response :", response);
+                }
+            });
+
+            $("#dZUpload3").dropzone({
+                url: "{{ URL::route('post_upload') }}",
+                method: "POST",
+                addRemoveLinks: true,
+                success: function (file, response) {
+                    //var imgName = response;
+                    file.previewElement.classList.add("dz-success");
+                    //console.log("Successfully uploaded :" + imgName);
+                },
+                sending: function(file, xhr, formData) {
+                    formData.append("_token", $('[name=_token]').val());
+                },
+                error: function (file, response) {
+                    file.previewElement.classList.add("dz-error");
+//                    console.log("File response :", response);
+                }
+            });
+
+            $("#dZUpload4").dropzone({
+                url: "{{ URL::route('post_upload') }}",
+                method: "POST",
+                addRemoveLinks: true,
+                success: function (file, response) {
+                    //var imgName = response;
+                    file.previewElement.classList.add("dz-success");
+                    //console.log("Successfully uploaded :" + imgName);
+                },
+                sending: function(file, xhr, formData) {
+                    formData.append("_token", $('[name=_token]').val());
+                },
+                error: function (file, response) {
+                    file.previewElement.classList.add("dz-error");
+//                    console.log("File response :", response);
                 }
             });
 
@@ -335,36 +407,46 @@
                                                       placeholder="เช่น Modern, Art Deco" rows="3"></textarea>
                                         </div>
                                     </div>
-                                    <div class="form-group">
+                                    <div class="form-group" style="padding-top:20px;">
                                         <label for="project_layout" class="col-md-3 control-label">แผนผังโครงการ</label>
+                                        <div class="col-md-8">
+                                            <div id="dZUpload1" class="dropzone uploadify"></div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="home_style" class="col-md-3 control-label"></label>
                                         <div class="col-md-8">
                                             <textarea class="form-control"
                                                       id="project_layout" name="project_layout"
-                                                      placeholder="" rows="3"></textarea>
+                                                      placeholder="คำบรรยายแผนผังโครงการ" rows="3"
+                                                      ></textarea>
                                         </div>
                                     </div>
-                                    <div class="form-group">
+                                    <div class="form-group" style="padding-top:20px;">
                                         <label for="project_env" class="col-md-3 control-label">สภาพแวดล้อมโครงการ</label>
                                         <div class="col-md-8">
+                                            <div id="dZUpload2" class="dropzone uploadify"></div><br>
                                             <textarea class="form-control"
                                                       id="project_env" name="project_env"
-                                                      placeholder="" rows="3"></textarea>
+                                                      placeholder="คำบรรยายสภาพแวดล้อมโครงการ" rows="3"></textarea>
                                         </div>
                                     </div>
-                                    <div class="form-group">
+                                    <div class="form-group" style="padding-top:20px;">
                                         <label for="project_scene" class="col-md-3 control-label">บรรยากาศบ้านตกแต่ง</label>
                                         <div class="col-md-8">
+                                            <div id="dZUpload3" class="dropzone uploadify"></div><br>
                                             <textarea class="form-control"
                                                       id="project_scene" name="project_scene"
-                                                      placeholder="" rows="3"></textarea>
+                                                      placeholder="คำบรรยายบรรยากาศบ้านตกแต่ง" rows="3"></textarea>
                                         </div>
                                     </div>
-                                    <div class="form-group">
+                                    <div class="form-group" style="padding-top:20px;">
                                         <label for="project_deliver" class="col-md-3 control-label">บรรยากาศบ้านจริงเมื่อรับมอบ</label>
                                         <div class="col-md-8">
+                                            <div id="dZUpload4" class="dropzone uploadify"></div><br>
                                             <textarea class="form-control"
                                                       id="project_deliver" name="project_deliver"
-                                                      placeholder="" rows="3"></textarea>
+                                                      placeholder="คำบรรยายบรรยากาศบ้านจริงเมื่อรับมอบ" rows="3"></textarea>
                                         </div>
                                     </div>
                                     <div class="form-group">

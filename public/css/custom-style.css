@@ -265,3 +265,12 @@ p {
 .bs-callout-info h4 {
     color: #5bc0de;
 }
+
+.uploadify {
+    background-color: #FDF9D6;
+    border-radius: 4px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border: 2px dashed #FCDEA5;
+    padding: 10px;
+}
