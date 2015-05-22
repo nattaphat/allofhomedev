@@ -231,7 +231,7 @@
                                 <div class="form-group @if ($errors->has('file')) {{ "has-error" }} @endif">
                                     <div class="col-md-3 control-label">Logo</div>
                                     <div class="col-md-3">
-                                        <div id="dZUpload" class="dropzone">
+                                        <div id="dZUpload" class="dropzone uploadify">
                                         </div>
                                     </div>
                                     <input type="hidden" id="file" name="file"
