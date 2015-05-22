@@ -43,7 +43,7 @@
     <link type="text/css" type="text/css" href="{{ asset('plugins/owl-carousel/owl-carousel/owl.theme.css') }}" rel="stylesheet">
 
     <!-- Select2 -->
-    <link type="text/css" type="text/css" href="{{ asset('js/lib/select2-dist/select2.css') }}" rel="stylesheet">
+    <link type="text/css" type="text/css" href="{{ asset('js/lib/select2-dist-louis/dist/css/select2.min.css') }}" rel="stylesheet">
 
     <!-- Plugins required on all pages NOTE: Additional non-required plugins are loaded ondemand as of AppStrap 2.5 -->
     <!-- Plugin: animate.css (animated effects) - http://daneden.github.io/animate.css/ -->
@@ -220,7 +220,7 @@
     <script src={{ asset('plugins/owl-carousel/owl-carousel/owl.carousel.min.js') }}></script>
 
     <!--select2 -->
-    <script src={{ asset('js/lib/select2-dist/select2.min.js') }}></script>
+    <script src={{ asset('js/lib/select2-dist-louis/dist/js/select2.min.js') }}></script>
 
     <!--Custom scripts mainly used to trigger libraries/plugins -->
     <script src={{ asset('js/script.min.js') }}></script>

@@ -204,12 +204,6 @@ Route::get('home/view', [
     'uses' => 'Frontend\HomeCategoryController@view'
 ]);
 
-Route::get('home/searchProject', [
-    'as' => 'home_searchProject',
-    'before' => 'frontend_auth',
-    'uses' => 'Frontend\HomeCategoryController@searchProject'
-]);
-
 /*-------------------------------- Condo -------------------------------*/
 Route::get('condo/index', [
     'as' => 'condo_index',
@@ -678,6 +672,12 @@ Route::get('project/view_project/{id}', [
     'as' => 'project_view_project',
     'before' => 'frontend_auth',
     'uses' => 'Frontend\ProjectCategoryController@projectViewProject'
+]);
+
+Route::any('project/get_project', [
+    'as' => 'project_get_project',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\ProjectCategoryController@get_project'
 ]);
 
 /*------------------------------------------------------------------------------*/
