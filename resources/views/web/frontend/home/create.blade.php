@@ -8,8 +8,8 @@
 
     <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
     <script type="text/javascript">
-
-        var map;
+        var centreGot = true;
+        var map; // Global declaration of the map
         var lat_longs_map = new Array();
         var markers_map = new Array();
         var iw_map;
@@ -18,25 +18,33 @@
 
         function initialize_map() {
 
-            var myLatlng = new google.maps.LatLng(13.781978731601765,100.61164229208987);
             var myOptions = {
                 zoom: 15,
-                center: myLatlng,
                 mapTypeId: google.maps.MapTypeId.ROADMAP,
                 scrollwheel: false}
+
             map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
 
-            var myLatlng = new google.maps.LatLng(13.781978731601765,100.61164229208987);
+            // Try W3C Geolocation (Preferred)
+            if(navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function(position) {
+                    map.setCenter(new google.maps.LatLng(position.coords.latitude,position.coords.longitude));
+                }, function() { alert("Unable to get your current position. Please try again. Geolocation service failed."); });
+                // Browser doesn't support Geolocation
+            }else{
+                alert('Your browser does not support geolocation.');
+            }
 
-            var markerOptions = {
-                map: map,
-                position: myLatlng
-            };
-            marker_0 = createMarker_map(markerOptions);
-
-
+            google.maps.event.addListener(map, "bounds_changed", function(event) {
+                if (!centreGot) {
+                    var mapCentre = map.getCenter();
+                    marker_0.setOptions({
+                        position: new google.maps.LatLng(mapCentre.lat(), mapCentre.lng())
+                    });
+                }
+                centreGot = true;
+            });
         }
-
 
         function createMarker_map(markerOptions) {
             var marker = new google.maps.Marker(markerOptions);
@@ -47,15 +55,47 @@
 
         google.maps.event.addDomListener(window, "load", initialize_map);
 
-        //]]>
-    </script>"""
-@stop
+        // My Function Change Location
+        function changeLocationMap(lat, long) {
 
+            var myLatlng = new google.maps.LatLng(lat,long);
+
+            var myOptions = {
+                zoom: 15,
+                center: myLatlng,
+                mapTypeId: google.maps.MapTypeId.ROADMAP,
+                scrollwheel: false}
+
+            map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+
+            google.maps.event.addListener(map, "bounds_changed", function(event) {
+                if (!centreGot) {
+                    var mapCentre = map.getCenter();
+                    marker_0.setOptions({
+                        position: new google.maps.LatLng(mapCentre.lat(), mapCentre.lng())
+                    });
+                }
+                centreGot = true;
+            });
+
+            var myLatlng = new google.maps.LatLng(lat, long);
+
+            var markerOptions = {
+                map: map,
+                position: myLatlng
+            };
+
+            marker_0 = createMarker_map(markerOptions);
+        }
+    </script>
+@stop
 
 @section('jsbody')
     <script type="text/javascript">
         $(document).ready(function(){
+
             Dropzone.autoDiscover = false;
+
             $("#dZUpload").dropzone({
                 url: "{{ URL::route('post_upload') }}",
                 method: "POST",
@@ -65,6 +105,9 @@
                     file.previewElement.classList.add("dz-success");
                     console.log("Successfully uploaded :" + imgName);
                 },
+                sending: function(file, xhr, formData) {
+                    formData.append("_token", $('[name=_token]').val());
+                },
                 error: function (file, response) {
                     file.previewElement.classList.add("dz-error");
                     console.log("File response :", response);
@@ -72,25 +115,58 @@
             });
 
             $("#project_name").select2({
-                placeholder: "ค้นหาโครงการ",
-                data: [ <?php echo str_replace('[','', str_replace(']','',$project)); ?>]
-            }).on("change", function(e) {
-
-                $project_id = $("#project_name").val();
-                $('#project_id').val($project_id);
-
-                $.ajax({
-                    url: '{{ url('project/view_project') }}' + '/' + $project_id,
-                    dataType: 'html',
-                    success: function(data) {
-                        $('#project_detail').html($(data));
-                    }
-                });
-
-
+                ajax: {
+                    url: "{{ url('project/get_project') }}",
+                    dataType: 'json',
+                    delay: 250,
+                    data: function (params) {
+                        return {
+                            term: params.term,
+                            page: params.page
+                        };
+                    },
+                    processResults: function (data, params) {
+                        params.page = params.page || 1;
+                        var ret = {
+                            results: data,
+                            pagination: {
+                                more: (params.page * 30) < data.total_count
+                            }
+                        };
+                        return ret;
+                    },
+                    cache: true
+                },
+                escapeMarkup: function (markup) { return markup; },
+                minimumInputLength: 1,
+                templateResult: formatRepo,
+                templateSelection: formatRepoSelection
             });
 
+            function formatRepo (repo) {
+                if (repo.loading) return repo.text;
+                var markup = repo.text;
+                return markup;
+            }
 
+            function formatRepoSelection (repo) {
+                $project_id = repo.id;
+                $('#project_id').val($project_id);
+
+                if($project_id != "")
+                {
+                    $.ajax({
+                        url: '{{ url('project/view_project') }}' + '/' + $project_id,
+                        dataType: 'html',
+                        success: function(data) {
+                            $('#project_detail').html($(data));
+                        }
+                    });
+
+                    changeLocationMap(repo.lat, repo.long);
+                }
+                return repo.text;
+            }
         });
     </script>
 @stop
@@ -194,10 +270,14 @@
                                                 <i class="fa fa-plus-square"></i> เพิ่มโครงการใหม่</a>
                                         </div>
                                     </div>
-                                    <div class="row" style="padding: 20px 15px 30px 0px;">
-                                        <div id="project_detail"></div>
+                                    <div class="row" style="padding: 15px 15px 20px 10px; margin-top:0px;">
+                                        <div class="col-md-12">
+                                            <div id="project_detail"></div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            {!! $map['html'] !!}
+                                        </div>
                                     </div>
-
                                     <div class="form-group">
                                         <label for="project_type" class="col-md-3 control-label">รูปแบบบ้าน</label>
                                         <div class="col-md-6">

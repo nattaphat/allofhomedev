@@ -10,6 +10,7 @@ use Gmaps;
 use Request;
 use Validator;
 use Input;
+use DB;
 
 use App\Models\Tambon;
 use App\Models\Amphoe;
@@ -307,29 +308,64 @@ class ProjectCategoryController extends Controller {
         $mrt = $project->projectMrt()->get();
         $apl = $project->projectAplink()->get();
 
-        $config =
-        [
-            'center' => $project->lat.','.$project->long,
-            'zoom' => '15',
-            'scrollwheel' => false,
-            'streetViewControl' => false
-        ];
-        Gmaps::initialize($config);
-
-        $marker =
-        [
-            'position' => $project->lat.','.$project->long,
-        ];
-        Gmaps::add_marker($marker);
-
-        $map = Gmaps::create_map();
+//        $config =
+//        [
+//            'center' => $project->lat.','.$project->long,
+//            'zoom' => '15',
+//            'scrollwheel' => false,
+//            'streetViewControl' => false
+//        ];
+//        Gmaps::initialize($config);
+//
+//        $marker =
+//        [
+//            'position' => $project->lat.','.$project->long,
+//        ];
+//        Gmaps::add_marker($marker);
+//
+//        $map = Gmaps::create_map();
 
         return view('web.frontend.project.view_project')
-            ->with('map',$map)
+//            ->with('map',$map)
             ->with('project', $project)
             ->with('facility', $fac)
             ->with('bts', $bts)
             ->with('mrt', $mrt)
             ->with('apl', $apl);
     }
+
+    public function get_project()
+    {
+        $search_char = Request::get('term');
+
+        $project = DB::table('project')
+            ->join('geo_tambon', function ($join){
+                $join->on( 'project.tambid', '=', 'geo_tambon.tambid');
+                $join->on( 'project.amphid', '=', 'geo_tambon.amphid');
+                $join->on( 'project.provid', '=', 'geo_tambon.provid');
+            })
+            ->join('geo_amphoe', function ($join){
+                $join->on( 'project.amphid', '=', 'geo_amphoe.amphid');
+                $join->on( 'project.provid', '=', 'geo_amphoe.provid');
+            })
+            ->join('geo_province', function ($join){
+                $join->on( 'project.provid', '=', 'geo_province.provid');
+            })
+            ->select(DB::raw('project.id,project.project_name || \' - \' || geo_tambon.name
+                || \' \' || geo_amphoe.name || \' \' || geo_province.name as text,
+                project.lat, project.long'))
+            ->whereRaw('project.project_name like \'%'.$search_char.'%\' or
+                geo_tambon.name like \'%'.$search_char.'%\' or
+                geo_amphoe.name like \'%'.$search_char.'%\' or
+                geo_province.name like \'%'.$search_char.'%\'
+                ')
+            ->orderBy('project.project_name')
+            ->orderBy('geo_tambon.name')
+            ->orderBy('geo_amphoe.name')
+            ->orderBy('geo_province.name')
+            ->get();
+
+        return json_encode($project);
+    }
+
 }

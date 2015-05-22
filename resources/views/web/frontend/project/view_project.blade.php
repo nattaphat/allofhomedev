@@ -1,10 +1,4 @@
-@extends('layouts.blank')
-
-@section('jshome')
-    {!! $map['js'] !!}
-@stop
-
-<div class="row" style="padding: 20px 0px 30px 0px;">
+<div class="row">
     <div class="col-md-1"></div>
     <div class="col-md-11">
         <div class="focus-box pull-right text-right"
@@ -96,8 +90,5 @@
             <li>ลิงค์แผนที่:</li>
             <li><a href="{{ $project->map_url }}" target="_blank">{{ $project->map_url }}</a></li>
         </ul>
-        <div class="row" style="padding-right:50px;">
-            {!! $map['html'] !!}
-        </div>
     </div>
 </div>
