@@ -288,7 +288,7 @@ class AllofhomeController extends Controller {
         $directory = __DIR__.'/../../../public/uploads';
         $filesize = Input::file('file')->getClientSize();
         Input::file('file')->move($directory,$filename);
-        return $filesize."@@@".asset('uploads/')."/".$filename;  // return url path
+        return asset('uploads/')."/".$filename;  // return url path
     }
 
 

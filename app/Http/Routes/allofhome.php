@@ -680,6 +680,20 @@ Route::any('project/get_project', [
     'uses' => 'Frontend\ProjectCategoryController@get_project'
 ]);
 
+Route::any('project/get_latlong', [
+    'as' => 'project_get_latlong',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\ProjectCategoryController@get_latlong'
+]);
+
+/*------------------------------------------------------------------------------*/
+
+/*-------------------------------- Tags -------------------------------*/
+Route::any('get_tag', [
+    'as' => 'get_tag',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\TagController@get_tag'
+]);
 /*------------------------------------------------------------------------------*/
 
 Route::get('fblogin', [

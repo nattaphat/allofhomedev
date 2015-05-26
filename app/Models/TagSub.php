@@ -23,6 +23,12 @@ class TagSub extends Model {
         return $this->belongsTo('App\Models\TagMain');
     }
 
+    public static function getTagSubName($tag_sub_id)
+    {
+        $ts = TagSub::find($tag_sub_id);
+        return $ts->tag_sub_name;
+    }
+
 
 
     public function tag()
