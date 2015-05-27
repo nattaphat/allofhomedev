@@ -950,6 +950,22 @@
                                         </select>
                                     </div>
                                 </div>
+                                <div class="form-group @if ($errors->has('vip')) {{ "has-error" }} @endif" style="padding-top:30px;">
+                                    <label for="vip" class="col-md-3 control-label">VIP</label>
+                                    <div class="col-md-6">
+                                        <label class="checkbox-inline">
+                                            <input type="checkbox" name="vip" value="true"
+                                            <?php
+                                                    if (Input::old('vip') != null && Input::old('vip') == true) {
+                                                        echo "checked";
+                                                    }
+                                                    ?>>ตั้งค่ากระทู้ VIP
+                                        </label>
+                                        <p class="help-block">
+                                            {{ $errors->first('vip') }}
+                                        </p>
+                                    </div>
+                                </div>
                                 <div class="form-group @if ($errors->has('status')) {{ "has-error" }} @endif">
                                     <label  class="col-md-3 control-label text-right">แสดงผลหน้าเว็บไซต์ *</label>
                                     <div class="col-md-8">

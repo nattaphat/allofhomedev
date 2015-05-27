@@ -39,7 +39,42 @@ class HomeCategoryController extends Controller {
 
     public function index()
     {
-        $catHome = CatHome::orderBy('created_at', 'desc')->paginate(10);
+
+        $prj_cat_home = AllFunction::getProjectCatHomeDistinct("โครงการบ้านใหม่");
+
+        // VIP 5 อัน Random
+        $catHomeVip = CatHome::where('status','=',1)
+            ->where('vip','=',true)
+            ->where('category','=','โครงการบ้านใหม่')
+            ->orderBy(DB::raw('random()'))
+            ->take(5)
+            ->get();
+
+        // post ทั่วไป กรองไม่เอาหัวข้อ vip 5 อัน มาแสดง
+        $str_not_in = null;
+        if($catHomeVip != null && count($catHomeVip) > 0)
+        {
+            foreach($catHomeVip as $item)
+            {
+                $str_not_in[] = $item->id;
+            }
+        }
+
+        if($str_not_in != null)
+        {
+            $catHome = CatHome::where('status','=',1)
+                ->where('category','=','โครงการบ้านใหม่')
+                ->whereNotIn('id', $str_not_in)
+                ->orderBy('created_at', 'desc')
+                ->paginate(10);
+        }
+        else
+        {
+            $catHome = CatHome::where('status','=',1)
+                ->where('category','=','โครงการบ้านใหม่')
+                ->orderBy('created_at', 'desc')
+                ->paginate(10);
+        }
 
         $config =
         [
@@ -50,32 +85,36 @@ class HomeCategoryController extends Controller {
 
         Gmaps::initialize($config);
 
-        $project = Project::all();
-
-        foreach($project as $item)
+        if($prj_cat_home != null && count($prj_cat_home) > 0)
         {
-            $attachment = Attachment::find($item->attachment_id);
-            $marker =
-            [
-                'position' => $item['lat'].','.$item['long'],
-                'draggable' => false,
-                'infowindow_content' =>
-                    '<div class="row" style="width: 100%;">'.
+            foreach($prj_cat_home as $item)
+            {
+                $pj = Project::find($item->project_id);
+                $ct = CatHome::find($item->cat_home_id);
+                $attachment = Attachment::find($pj->attachment_id);
+
+                $marker =
+                [
+                    'position' => $pj->lat.','.$pj->long,
+                    'draggable' => false,
+                    'infowindow_content' =>
+                        '<div class="row" style="width: 100%;">'.
                         '<div class="col-md-6">'.
-                            '<img src="'.$attachment->path.'"'.
-                                'alt="'.$attachment->filename.'" class=\'img-responsive\' '.
-                                'style="max-width: 100%;" />'.
+                        '<img src="'.$attachment->path.'"'.
+                        'alt="'.$attachment->filename.'" class=\'img-responsive\' '.
+                        'style="max-width: 100%;" />'.
                         '</div>'.
                         '<div class="col-md-6">'.
-                            '<h5><a href="#">'.$item["project_name"].'</a></h5>'.
-                            '<p><strong>บริษัทเจ้าของโครงการ</strong> : '.$item->project_company_owner.'</p>'.
-                            '<p><strong>ที่ตั้งโครงการ</strong> : '.(\App\Models\Project::getFullPrjAddress($item->id)).'</p>'.
-                            '<p><strong>ราคาเริ่มต้น</strong> : </p>'.
-                            '<p><strong>เบอร์ติดต่อ</strong> : </p>'.
+                        '<h5><a href="'.url('home/view/').'/'.$ct->id.'" target="_blank">'.$pj->project_name.'</a></h5>'.
+                        '<p><strong>บริษัทเจ้าของโครงการ</strong> : '.$pj->project_company_owner.'</p>'.
+                        '<p><strong>ที่ตั้งโครงการ</strong> : '.(\App\Models\Project::getFullPrjAddress($pj->id)).'</p>'.
+                        '<p><strong>ราคาเริ่มต้น</strong> : '.( \App\Models\AllFunction::getMoneyWithoutDecimal($ct->sell_price)).' &nbsp;&nbsp;บาท</p>'.
+                        '<p><strong>เบอร์ติดต่อ</strong> : '.$ct->contact_telephone.'</p>'.
                         '</div>'.
-                    '</div>'
-            ];
-            Gmaps::add_marker($marker);
+                        '</div>'
+                ];
+                Gmaps::add_marker($marker);
+            }
         }
 
         $map = Gmaps::create_map();
@@ -83,7 +122,8 @@ class HomeCategoryController extends Controller {
         return View::make('web.frontend.home.index',
         [
             'map' => $map,
-            'catHome' => $catHome
+            'catHome' => $catHome,
+            'catHomeVip' => $catHomeVip
         ]);
     }
 
@@ -206,6 +246,11 @@ class HomeCategoryController extends Controller {
                 $catHome->status = $input['status'][0];
             $catHome->sell_price_from = str_replace(",", "", $input['sell_price_from']);
             $catHome->sell_price_to = str_replace(",", "", $input['sell_price_to']);
+            $catHome->category = "โครงการบ้านใหม่";
+            if(Input::has('vip'))
+                $catHome->vip = $input['vip'];
+            else
+                $catHome->vip = false;
             $catHome->save();
 
             if(Input::has('promotion'))
