@@ -8,6 +8,32 @@
     {!! $map['js'] !!}
 @stop
 
+@section('jsbody')
+    <style>
+        .divTable {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 250px;;
+            color: #B0BEC5;
+            display: table;
+            font-weight: 100;
+            font-family: 'Lato';
+        }
+
+        .divTableCell {
+            text-align: center;
+            display: table-cell;
+            vertical-align: middle;
+        }
+
+        .titleTableCell {
+            font-size: 18px;
+
+        }
+    </style>
+@stop
+
 @section('content')
 
     <div class="container">
@@ -395,6 +421,16 @@
                             </div>
                         </div>
                     @endforeach
+
+                    @if($catHome == null || count($catHome) == 0)
+                        <div class="well">
+                            <div class="divTable">
+                                <div class="divTableCell">
+                                    <div class="titleTableCell">ไม่มีข้อมูล</div>
+                                </div>
+                            </div>
+                        </div>
+                    @endif
 
                     {!! str_replace('/?', '?', $catHome->render()) !!}
 
