@@ -73,7 +73,7 @@
                                             {{--<div class="blog-media">--}}
                                             {{--<img src="../img/cat_home/picture1.jpg" alt="Picture of frog by Ben Fredericson" class="img-responsive" />--}}
                                             {{--</div>--}}
-                                            <p style="text-indent: 30px; padding-top: 10px;">{{ $catHome->subtitle }}</p>
+                                            <p style="text-indent: 30px; padding-top: 10px;">{!! str_replace("\n","<br>", $catHome->subtitle) !!}</p>
                                             <strong>รายละเอียดโครงการ:</strong>
                                             <div style="position: absolute; right: 0px; max-width: 180px;
                                                 max-height: 180px;">
@@ -100,7 +100,8 @@
                                                     \App\Models\SubArea::find($project->subarea_id)->subarea_name  }}</div>
                                                 </ul>
                                                 <div class="focus-box pull-right">
-                                                    @if($promotion != null && count($promotion) > 0)
+                                                    @if(($promotion != null && count($promotion) > 0) ||
+                                                        ($catHome->promotion_str != null && $catHome->promotion_str != ""))
                                                         <h5>
                                                             ส่วนลด โปรโมชั่น
                                                         </h5>
@@ -109,7 +110,11 @@
                                                                 <li><i class="fa-li fa fa-check primary-colour"></i> &nbsp;&nbsp;
                                                                     {{ \App\Models\Promotion::getPromotionName($item->promotion_id) }}</li>
                                                             @endforeach
-                                                        </ul><hr>
+                                                        </ul>
+                                                        @if($catHome->promotion_str != null && $catHome->promotion_str != "")
+                                                            <p style="text-indent: 20px;">{!! str_replace("\n","<br>", $catHome->promotion_str) !!}</p>
+                                                        @endif
+                                                        <hr>
                                                     @endif
                                                     <p class="text-center"><strong>ราคาเริ่มต้น:</strong><br>
                                                         <span class="font-md-x2" style="color: #55A79A">{{ \App\Models\AllFunction::getMoneyWithoutDecimal($catHome->sell_price) }}</span> บาท</p>
@@ -152,20 +157,20 @@
                                                 </ul>
                                                 <ul class="list-inline">
                                                     <li>รูปแบบบ้าน : พื้นที่เริ่มต้น:</li>
-                                                    <div style="text-indent: 30px;">{{ $catHome->home_type_per_area }}</div>
+                                                    <div style="text-indent: 30px;">{!! str_replace("\n","<br>", $catHome->home_type_per_area) !!}</div>
                                                 </ul>
                                                 <ul class="list-inline">
                                                     <li>พื้นที่บ้านเริ่มต้น:</li>
-                                                    <div style="text-indent: 30px;">{{ $catHome->home_area }}</div>
+                                                    <div style="text-indent: 30px;">{!! str_replace("\n","<br>", $catHome->home_area) !!}</div>
                                                 </ul>
 
                                                 <ul class="list-inline">
                                                     <li>การก่อสร้างตัวบ้าน:</li>
-                                                    <div style="text-indent: 30px;">{{ $catHome->home_material }}</div>
+                                                    <div style="text-indent: 30px;">{!! str_replace("\n","<br>", $catHome->home_material) !!}</div>
                                                 </ul>
                                                 <ul class="list-inline">
                                                     <li>สไตล์การออกแบบ:</li>
-                                                    <div style="text-indent: 30px;">{{ $catHome->home_style }}</div>
+                                                    <div style="text-indent: 30px;">{!! str_replace("\n","<br>", $catHome->home_style) !!}</div>
                                                 </ul>
                                                 <ul class="list-inline">
                                                     <li>โครงการผ่าน EIA:</li>
@@ -210,7 +215,7 @@
                                                     }
                                                 }
                                                 ?>
-                                                <p style="text-indent: 30px;">{{ $catHome->project_layout }}</p>
+                                                <p style="text-indent: 30px;">{!! str_replace("\n","<br>", $catHome->project_layout) !!}</p>
                                             </div>
                                             <ul class="list-inline" style="padding-top: 30px;">
                                                 <li><strong>สภาพแวดล้อมโครงการ:</strong></li>
@@ -228,7 +233,7 @@
                                                     }
                                                 }
                                                 ?>
-                                                <p style="text-indent: 30px;">{{ $catHome->project_env }}</p>
+                                                <p style="text-indent: 30px;">{!! str_replace("\n","<br>", $catHome->project_env) !!}</p>
                                             </div>
                                             <ul class="list-inline" style="padding-top: 30px;">
                                                 <li><strong>บรรยากาศบ้านตกแต่ง:</strong></li>
@@ -264,7 +269,7 @@
                                                     }
                                                 }
                                                 ?>
-                                                <p style="text-indent: 30px;">{{ $catHome->project_deliver }}</p>
+                                                <p style="text-indent: 30px;">{!! str_replace("\n","<br>", $catHome->project_deliver) !!}</p>
                                             </div>
                                             <ul class="list-inline" style="padding-top: 30px;">
                                                 <li><strong>รายละเอียดส่วนกลาง:</strong></li>
