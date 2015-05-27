@@ -42,28 +42,41 @@ class HomeCategoryController extends Controller {
         $catHome = CatHome::orderBy('created_at', 'desc')->paginate(10);
 
         $config =
-            [
-                'center' => '13.7646393,100.5378279',
-                'zoom' => '12',
-                'scrollwheel' => false,
-                'onboundschanged' =>
-                    'if (!centreGot) {
-                var mapCentre = map.getCenter();
-                marker_0.setOptions({
-                    position: new google.maps.LatLng(mapCentre.lat(), mapCentre.lng())
-                });
-            }
-            centreGot = true;'
-            ];
+        [
+            'center' => '13.7646393,100.5378279',
+            'zoom' => 'auto',
+            'scrollwheel' => false
+        ];
 
         Gmaps::initialize($config);
 
-        $marker =
+        $project = Project::all();
+
+        foreach($project as $item)
+        {
+            $attachment = Attachment::find($item->attachment_id);
+            $marker =
             [
-                'position' => '13.7646393,100.5378279',
-                'draggable' => false
+                'position' => $item['lat'].','.$item['long'],
+                'draggable' => false,
+                'infowindow_content' =>
+                    '<div class="row" style="width: 100%;">'.
+                        '<div class="col-md-6">'.
+                            '<img src="'.$attachment->path.'"'.
+                                'alt="'.$attachment->filename.'" class=\'img-responsive\' '.
+                                'style="max-width: 100%;" />'.
+                        '</div>'.
+                        '<div class="col-md-6">'.
+                            '<h5><a href="#">'.$item["project_name"].'</a></h5>'.
+                            '<p><strong>บริษัทเจ้าของโครงการ</strong> : '.$item->project_company_owner.'</p>'.
+                            '<p><strong>ที่ตั้งโครงการ</strong> : '.(\App\Models\Project::getFullPrjAddress($item->id)).'</p>'.
+                            '<p><strong>ราคาเริ่มต้น</strong> : </p>'.
+                            '<p><strong>เบอร์ติดต่อ</strong> : </p>'.
+                        '</div>'.
+                    '</div>'
             ];
-        Gmaps::add_marker($marker);
+            Gmaps::add_marker($marker);
+        }
 
         $map = Gmaps::create_map();
 
