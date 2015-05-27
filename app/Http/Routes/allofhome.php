@@ -217,13 +217,19 @@ Route::get('condo/create', [
     'uses' => 'Frontend\CondoCategoryController@create'
 ]);
 
+Route::post('condo/create', [
+    'as' => 'post_condo_create',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\CondoCategoryController@post_create'
+]);
+
 Route::get('condo/update', [
     'as' => 'condo_update',
     'before' => 'frontend_auth',
     'uses' => 'Frontend\CondoCategoryController@update'
 ]);
 
-Route::get('condo/view', [
+Route::get('condo/view/{id}', [
     'as' => 'condo_view',
     'before' => 'frontend_auth',
     'uses' => 'Frontend\CondoCategoryController@view'
@@ -242,13 +248,19 @@ Route::get('townhome/create', [
     'uses' => 'Frontend\TownHomeCategoryController@create'
 ]);
 
+Route::post('townhome/create', [
+    'as' => 'post_townhome_create',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\TownHomeCategoryController@post_create'
+]);
+
 Route::get('townhome/update', [
     'as' => 'townhome_update',
     'before' => 'frontend_auth',
     'uses' => 'Frontend\TownHomeCategoryController@update'
 ]);
 
-Route::get('townhome/view', [
+Route::get('townhome/view/{id}', [
     'as' => 'townhome_view',
     'before' => 'frontend_auth',
     'uses' => 'Frontend\TownHomeCategoryController@view'

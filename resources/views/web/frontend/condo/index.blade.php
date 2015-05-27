@@ -8,6 +8,32 @@
     {!! $map['js'] !!}
 @stop
 
+@section('jsbody')
+    <style>
+        .divTable {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 250px;;
+            color: #B0BEC5;
+            display: table;
+            font-weight: 100;
+            font-family: 'Lato';
+        }
+
+        .divTableCell {
+            text-align: center;
+            display: table-cell;
+            vertical-align: middle;
+        }
+
+        .titleTableCell {
+            font-size: 18px;
+
+        }
+    </style>
+@stop
+
 @section('content')
 
     <div class="container">
@@ -181,12 +207,12 @@
             <div class="row">
                 <div class="col-md-6">
                     <a href="{{ URL::to("condo/create") }}"><i class="fa fa-plus-square"></i>
-                        เพิ่มประกาศหมวดหมู่โครงการบ้านใหม่</a>
+                        เพิ่มประกาศหมวดหมู่โครงการคอนโดใหม่</a>
                 </div>
                 <div class="col-md-6">
                     <div class="input-group">
                         <input type="text" class="form-control"
-                               placeholder="ค้นหาประกาศหมวดหมู่บ้านใหม่">
+                               placeholder="ค้นหาประกาศหมวดหมู่คอนโดใหม่">
                     <span class="input-group-btn">
                         <button class="btn btn-default" type="button">ค้นหา</button>
                     </span>
@@ -198,14 +224,21 @@
             <div class="row">
                 <div class="pricing-stack">
                     {{--####VIP Post--}}
-                    @for($i=0; $i<5; $i++)
+                    @foreach($catHomeVip as $item)
                         <div class="well active">
                             <div class="row">
                                 <div class="col-md-3">
                                     <div class="blog-media" style="padding-top: 30px;">
-                                        <a href="{{ URL::route("condo_view", ["id" => 1]) }}">
-                                            <img src="http://www.home.co.th//images/img_v/BuyHome/57/2012_12_26_11_27_59.jpg"
-                                                 alt="Picture of frog by Ben Fredericson" class="img-responsive" />
+                                        <a href="{{ URL::route("condo_view", ["id" => $item->id]) }}">
+                                            <?php
+                                            $picEnv = App\Models\PicLayout::getPic($item->id,'env');
+                                            if($picEnv != null && count($picEnv) > 0)
+                                            {
+                                                echo '
+                                                    <img src="'.$picEnv[0]->filepath.'"
+                                                 alt="'.$picEnv[0]->filename.'" class="img-responsive" />';
+                                            }
+                                            ?>
                                         </a>
                                     </div>
                                 </div>
@@ -215,24 +248,24 @@
                                             <div clas="row" style="padding: 0px 10px 0px 10px;">
                                                 <div class="post-author">
                                                     <h4>
-                                                        <a href="{{ URL::route("condo_view", ["id" => 1]) }}">เรื่อง: หัวข้อประกาศ</a>
+                                                        <a href="{{ URL::route("condo_view", ["id" => $item->id]) }}">เรื่อง: {{ $item->title }}</a>
                                                     </h4>
                                                     <ul class="list-inline">
                                                         <li>
-                                                            <i class="fa fa-user"></i> Thitima Admin
+                                                            <i class="fa fa-user"></i> {{ App\User::getFullName($item->user_id) }}
                                                         </li>
                                                         <li>
-                                                            <i class="fa fa-calendar"></i> 02/08/2558
+                                                            <i class="fa fa-calendar"></i> {{ \App\Models\AllFunction::getDateTimeThai($item->created_at) }}
                                                         </li>
                                                     </ul>
                                                     <div class="row">
-                                                        <p>Consequat dolus facilisi persto. Esca et illum jumentum laoreet torqueo validus volutpat. Ad ille importunus singularis typicus. Consequat lenis praesent.</p>
+                                                        <p>{{ $item->subtitle }}</p>
                                                         <ul class="list-inline links" style="text-align: right">
                                                             <li>
-                                                                <a href="{{ URL::route("condo_view", ["id" => 1]) }}" class="btn btn-default btn-xs"><i class="fa fa-arrow-circle-right"></i> Read more</a>
+                                                                <a href="{{ URL::route("condo_view", ["id" => $item->id]) }}" class="btn btn-default btn-xs"><i class="fa fa-arrow-circle-right"></i> Read more</a>
                                                             </li>
                                                             <li>
-                                                                <a href="{{ URL::route("condo_view", ["id" => 1]) }}" class="btn btn-default btn-xs"><i class="fa fa-comment"></i> 76 Comments</a>
+                                                                <a href="{{ URL::route("condo_view", ["id" => $item->id]) }}" class="btn btn-default btn-xs"><i class="fa fa-comment"></i> 76 Comments</a>
                                                             </li>
                                                         </ul>
                                                     </div>
@@ -247,29 +280,37 @@
                                             <span class="em">ราคา</span> เริ่มต้น
                                         </h3>
                                         <p class="price">
-                                            <span class="digits">100,000</span>
+                                            <span class="digits">{{ \App\Models\AllFunction::getMoneyWithoutDecimal($item->sell_price) }}</span>
                                             <span class="term"> บาท</span>
                                         </p>
                                         <div style="text-align: center;">
                                             <address>
-                                                <strong>ติดต่อ:</strong> General Member<br>
-                                                <strong>เบอร์โทรศัพท์:</strong> 0812201110
+                                                <strong>ติดต่อ:</strong> {{ $item->contact_company_name }}<br>
+                                                <strong>เบอร์โทรศัพท์:</strong> {{ $item->contact_telephone }}
                                             </address>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    @endfor
-                    {{--#### Member Post--}}
-                    @for($i=0; $i<10; $i++)
+                    @endforeach
+
+                    <!-- Post ทั่วไป -->
+                    @foreach($catHome as $item)
                         <div class="well">
                             <div class="row">
                                 <div class="col-md-3">
                                     <div class="blog-media" style="padding-top: 30px;">
-                                        <a href="{{ URL::route("condo_view", ["id" => 1]) }}">
-                                            <img src="http://www.home.co.th//images/img_v/BuyHome/57/2012_12_26_11_27_59.jpg"
-                                                 alt="Picture of frog by Ben Fredericson" class="img-responsive" />
+                                        <a href="{{ URL::route("condo_view", ["id" => $item->id]) }}">
+                                            <?php
+                                            $picEnv = App\Models\PicLayout::getPic($item->id,'env');
+                                            if($picEnv != null && count($picEnv) > 0)
+                                            {
+                                                echo '
+                                                    <img src="'.$picEnv[0]->filepath.'"
+                                                 alt="'.$picEnv[0]->filename.'" class="img-responsive" />';
+                                            }
+                                            ?>
                                         </a>
                                     </div>
                                 </div>
@@ -279,24 +320,24 @@
                                             <div clas="row" style="padding: 0px 10px 0px 10px;">
                                                 <div class="post-author">
                                                     <h4>
-                                                        <a href="{{ URL::route("condo_view", ["id" => 1]) }}">เรื่อง: หัวข้อประกาศ</a>
+                                                        <a href="{{ URL::route("condo_view", ["id" => $item->id]) }}">เรื่อง: {{ $item->title }}</a>
                                                     </h4>
                                                     <ul class="list-inline">
                                                         <li>
-                                                            <i class="fa fa-user"></i> Thitima Admin
+                                                            <i class="fa fa-user"></i> {{ App\User::getFullName($item->user_id) }}
                                                         </li>
                                                         <li>
-                                                            <i class="fa fa-calendar"></i> 02/08/2558
+                                                            <i class="fa fa-calendar"></i> {{ \App\Models\AllFunction::getDateTimeThai($item->created_at) }}
                                                         </li>
                                                     </ul>
                                                     <div class="row">
-                                                        <p>Consequat dolus facilisi persto. Esca et illum jumentum laoreet torqueo validus volutpat. Ad ille importunus singularis typicus. Consequat lenis praesent.</p>
+                                                        <p>{{ $item->subtitle }}</p>
                                                         <ul class="list-inline links" style="text-align: right">
                                                             <li>
-                                                                <a href="{{ URL::route("condo_view", ["id" => 1]) }}" class="btn btn-default btn-xs"><i class="fa fa-arrow-circle-right"></i> Read more</a>
+                                                                <a href="{{ URL::route("condo_view", ["id" => $item->id]) }}" class="btn btn-default btn-xs"><i class="fa fa-arrow-circle-right"></i> Read more</a>
                                                             </li>
                                                             <li>
-                                                                <a href="{{ URL::route("condo_view", ["id" => 1]) }}" class="btn btn-default btn-xs"><i class="fa fa-comment"></i> 76 Comments</a>
+                                                                <a href="{{ URL::route("condo_view", ["id" => $item->id]) }}" class="btn btn-default btn-xs"><i class="fa fa-comment"></i> 76 Comments</a>
                                                             </li>
                                                         </ul>
                                                     </div>
@@ -311,20 +352,34 @@
                                             <span class="em">ราคา</span> เริ่มต้น
                                         </h3>
                                         <p class="price">
-                                            <span class="digits">100,000</span>
+                                            <span class="digits">{{ \App\Models\AllFunction::getMoneyWithoutDecimal($item->sell_price) }}</span>
                                             <span class="term"> บาท</span>
                                         </p>
                                         <div style="text-align: center;">
                                             <address>
-                                                <strong>ติดต่อ:</strong> VIP Member<br>
-                                                <strong>เบอร์โทรศัพท์:</strong> 0812201110
+                                                <strong>ติดต่อ:</strong> {{ $item->contact_company_name }}<br>
+                                                <strong>เบอร์โทรศัพท์:</strong> {{ $item->contact_telephone }}
                                             </address>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    @endfor
+                    @endforeach
+
+                    @if(($catHomeVip == null || count($catHomeVip) == 0) &&
+                        ($catHome == null || count($catHome) == 0))
+                        <div class="well">
+                            <div class="divTable">
+                                <div class="divTableCell">
+                                    <div class="titleTableCell">ไม่มีข้อมูล</div>
+                                </div>
+                            </div>
+                        </div>
+                    @endif
+
+                    {!! str_replace('/?', '?', $catHome->render()) !!}
+
                 </div>
             </div>
         </div>

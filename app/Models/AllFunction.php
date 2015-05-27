@@ -72,4 +72,30 @@ class AllFunction {
 
         return $datetime[0]->money;
     }
+
+    public static function getProjectCatHomeDistinct($category)
+    {
+        $result = DB::select(DB::raw("
+            select pj.id as project_id,
+            (
+                 select ct.id
+                 from cat_home ct
+                 where ct.project_id = pj.id
+                 and ct.status = 1
+                 and ct.category = '".$category."'
+                 order by updated_at desc
+                 LIMIT 1
+            ) as cat_home_id
+            from
+            (
+                 select distinct pj.id
+                 from project pj
+                 inner join cat_home ct on pj.id = ct.project_id
+                 where ct.status = 1
+                 and ct.category = '".$category."'
+            ) as pj
+        "));
+
+        return $result;
+    }
 }
