@@ -95,10 +95,6 @@
 @stop
 @section('jsbody')
 
-    <script src="{{ asset('js/lib/bootstrap-datepicker-thai-thai/js/bootstrap-datepicker-thai.js') }}"></script>
-    <script src="{{ asset('js/lib/bootstrap-datepicker-thai-thai/js/locales/bootstrap-datepicker.th.js') }}"></script>
-    <script src="{{ asset('js/lib/jQuery-Mask-Plugin-master/dist/jquery.mask.min.js') }}"></script>
-
     <script type="text/javascript">
         $(document).ready(function(){
 
@@ -114,6 +110,9 @@
             $('#sell_price_to').mask('000,000,000,000,000', {reverse: true});
             $('#spare_price').mask('000,000,000,000,000', {reverse: true});
             $('#central_price').mask('000,000,000,000,000', {reverse: true});
+
+            $('#project_area').mask('000,000,000,000,000', {reverse: true});
+            $('#num_unit').mask('000,000,000,000,000', {reverse: true});
 
             $("#finish_date").datepicker({
                 language:'th-th',
@@ -874,10 +873,10 @@
                                     </div>
                                 </div>
                                 <!-- การคำนวณเงินกู้ -->
-                                <div class="bs-callout bs-callout-success" style="margin-top: 40px;">
+                                <div class="bs-callout bs-callout-success" style="display:none; margin-top: 40px;">
                                     การคำนวณเงินกู้
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group" style="display:none;">
                                     <label for="loan_detail" class="col-md-3 control-label">การคำนวณเงินกู้</label>
                                     <div class="col-md-8">
                                             <textarea class="form-control"

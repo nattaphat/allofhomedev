@@ -198,7 +198,7 @@ Route::get('home/update', [
     'uses' => 'Frontend\HomeCategoryController@update'
 ]);
 
-Route::get('home/view', [
+Route::get('home/view/{id}', [
     'as' => 'home_view',
     'before' => 'frontend_auth',
     'uses' => 'Frontend\HomeCategoryController@view'

@@ -1,6 +1,7 @@
 <?php namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use DB;
 
 class PicLayout extends Model {
 
@@ -17,4 +18,12 @@ class PicLayout extends Model {
         return $this->belongsTo('App\Models\CatHome');
     }
 
+    public static function getPic($cat_home_id, $type)
+    {
+        $pic = DB::select(DB::raw("
+            select * from pic_layout where cat_home_id = ".$cat_home_id." and type = '".$type."'
+        "));
+
+        return $pic;
+    }
 }

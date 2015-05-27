@@ -47,6 +47,10 @@ class CatHome extends Model {
         return $this->hasMany('App\Models\PicLayout');
     }
 
+    public function catHomePromotion()
+    {
+        return $this->hasMany('App\Models\CatHomePromotion');
+    }
 
 
     public function tagSub()

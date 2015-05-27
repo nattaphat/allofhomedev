@@ -25,6 +25,12 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	 */
 	protected $hidden = ['password', 'remember_token'];
 
+    public static function getFullName($user_id)
+    {
+        $user = User::find($user_id);
+        return $user->firstname." ".$user->lastname;
+    }
+
     public function shop()
     {
         return $this->hasOne("App\Models\Shop");

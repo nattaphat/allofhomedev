@@ -9,4 +9,9 @@ class Promotion extends Model {
     public $timestamps = false;
 
     protected $fillable = array('promotion_name');
+
+    public static function getPromotionName($promotion_id)
+    {
+        return Promotion::find($promotion_id)->promotion_name;
+    }
 }

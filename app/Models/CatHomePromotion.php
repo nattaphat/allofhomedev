@@ -12,4 +12,8 @@ class CatHomePromotion extends Model {
         'promotion_id', 'cat_home_id'
     ];
 
+    public function catHome()
+    {
+        return $this->belongsTo('App\Models\CatHome');
+    }
 }

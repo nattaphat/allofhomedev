@@ -1,5 +1,6 @@
 <?php namespace App\Http\Controllers\Frontend;
 
+use App\Models\AllFunction;
 use App\Models\CatHome;
 use App\Models\CatHomePromotion;
 use App\Models\PicLayout;
@@ -12,6 +13,8 @@ use Request;
 use Validator;
 use Input;
 use DB;
+use Redirect;
+use View;
 
 use App\Models\Project;
 use App\Models\ProjectAirportLink;
@@ -36,34 +39,39 @@ class HomeCategoryController extends Controller {
 
     public function index()
     {
+        $catHome = CatHome::orderBy('created_at', 'desc')->paginate(10);
+
         $config =
-        [
-            'center' => '13.7646393,100.5378279',
-            'zoom' => '12',
-            'scrollwheel' => false,
-            'onboundschanged' =>
-                'if (!centreGot) {
+            [
+                'center' => '13.7646393,100.5378279',
+                'zoom' => '12',
+                'scrollwheel' => false,
+                'onboundschanged' =>
+                    'if (!centreGot) {
                 var mapCentre = map.getCenter();
                 marker_0.setOptions({
                     position: new google.maps.LatLng(mapCentre.lat(), mapCentre.lng())
                 });
             }
             centreGot = true;'
-        ];
+            ];
 
         Gmaps::initialize($config);
 
         $marker =
-        [
-            'position' => '13.7646393,100.5378279',
-            'draggable' => false
-        ];
+            [
+                'position' => '13.7646393,100.5378279',
+                'draggable' => false
+            ];
         Gmaps::add_marker($marker);
 
         $map = Gmaps::create_map();
 
-        return view('web.frontend.home.index')
-            ->with('map',$map);
+        return View::make('web.frontend.home.index',
+        [
+            'map' => $map,
+            'catHome' => $catHome
+        ]);
     }
 
     public function create()
@@ -184,7 +192,7 @@ class HomeCategoryController extends Controller {
             if(Input::has('status'))
                 $catHome->status = $input['status'][0];
             $catHome->sell_price_from = str_replace(",", "", $input['sell_price_from']);
-            $catHome->sell_price_from = str_replace(",", "", $input['sell_price_to']);
+            $catHome->sell_price_to = str_replace(",", "", $input['sell_price_to']);
             $catHome->save();
 
             if(Input::has('promotion'))
@@ -289,7 +297,7 @@ class HomeCategoryController extends Controller {
                 }
             }
 
-            return redirect('home/view')
+            return Redirect::to('home/view/'.$catHome->id)
                 ->with('flash_message', 'บันทึกข้อมูลสำเร็จ')
                 ->with('flash_type', 'alert-success');
         }
@@ -318,26 +326,61 @@ class HomeCategoryController extends Controller {
             ->with('map',$map);
     }
 
-    public function view($id = 0)
+    public function view($id)
     {
-        $config = array();
-        $config['center'] = '13.7714348,100.5520891';
-        $config['onboundschanged'] = 'if (!centreGot) {
-            var mapCentre = map.getCenter();
-            marker_0.setOptions({
-                position: new google.maps.LatLng(mapCentre.lat(), mapCentre.lng())
-            });
-        }
-        centreGot = true;';
+        $catHome = CatHome::find($id);
+        $project = Project::find($catHome->project_id);
+        $fac = $project->projectFacility()->get();
+        $bts = $project->projectBts()->get();
+        $mrt = $project->projectMrt()->get();
+        $apl = $project->projectAplink()->get();
+        $picLayout = PicLayout::getPic($id,'layout');
+        $picEnv = PicLayout::getPic($id,'env');
+        $picScene = PicLayout::getPic($id,'scene');
+        $picDeliver = PicLayout::getPic($id,'deliver');
+        $promotion = $catHome->catHomePromotion()->get();
+        $tag = $catHome->tag()->get();
+
+        $config =
+            [
+                'center' => $project->lat.','.$project->long,
+                'zoom' => '12',
+                'scrollwheel' => false,
+                'onboundschanged' =>
+                    'if (!centreGot) {
+                var mapCentre = map.getCenter();
+                marker_0.setOptions({
+                    position: new google.maps.LatLng(mapCentre.lat(), mapCentre.lng())
+                });
+            }
+            centreGot = true;'
+            ];
 
         Gmaps::initialize($config);
 
-        $marker = array('position' => '13.7714348,100.5520891');
+        $marker =
+            [
+                'position' => $project->lat.','.$project->long,
+                'draggable' => false
+            ];
         Gmaps::add_marker($marker);
 
         $map = Gmaps::create_map();
 
         return view('web.frontend.home.view')
-            ->with('map',$map);
+            ->with('map',$map)
+            ->with('catHome', $catHome)
+            ->with('project', $project)
+            ->with('facility', $fac)
+            ->with('bts', $bts)
+            ->with('mrt', $mrt)
+            ->with('apl', $apl)
+            ->with('picLayout', $picLayout)
+            ->with('picEnv', $picEnv)
+            ->with('picScene', $picScene)
+            ->with('picDeliver', $picDeliver)
+            ->with('promotion', $promotion)
+            ->with('tag', $tag);
+
     }
 }
