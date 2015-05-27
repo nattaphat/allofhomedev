@@ -5,6 +5,7 @@
 @stop
 
 @section('jshome')
+    <script type="text/javascript"> var centreGot = true; </script>
     {!! $map['js'] !!}
 @stop
 
@@ -12,14 +13,15 @@
 
     <script type="text/javascript">
         $(document).ready(function(){
-            checkPostBack();
-            initDropzone();
 
             Dropzone.autoDiscover = false;
 
+            var myDropzone = initDropzone();
+            checkPostBack();
+
             function initDropzone()
             {
-                new Dropzone("#dZUpload", {
+                return new Dropzone("#dZUpload", {
                     url: '{{ URL("post/upload") }}',
                     maxFiles: 1,
                     maxFilesize: 3, //mb
@@ -27,13 +29,14 @@
                     addRemoveLinks: true,
                     autoProcessQueue: true,
                     sending: function(file, xhr, formData) {
-                        // Pass token. You can use the same method to pass any other values as well such as a id to associate the image with for example.
-                        formData.append("_token", $('[name=_token]').val()); // Laravel expect the token post value to be named _token by default
+                        formData.append("_token", $('[name=_token]').val());
                     },
                     success: function (file, response) {
                         var filename = file.name;
+                        var filetype = file.type;
+                        var filesize = file.size;
                         var filepath = response;
-                        $("#file").val(filename + "@@@" + filepath);
+                        $("#file").val(filename + "@@@" + filetype + "@@@" + filesize + "@@@" + filepath);
                         file.previewElement.classList.add("dz-success");
                     },
                     error: function (file, response) {
@@ -162,17 +165,28 @@
 
                 if(file != null && file != '')
                 {
-                    {{--initDropzone();--}}
+                    var f = file.split("@@@");
+                    var filename = f[0];
+                    var filetype = f[1];
+                    var filesize = parseInt(f[2]);
+                    var filepath = f[3];
 
-                    {{--debugger;--}}
-                    {{--var f = file.split("@@@");--}}
-                    {{--var filename = f[0];--}}
-                    {{--var filesize = parseInt(f[1]);--}}
-                    {{--var filepath = f[2];--}}
+                    var mockFile = {
+                        name: filename,
+                        size: filesize,
+                        type: filetype,
+                        status: Dropzone.ADDED,
+                        url: filepath
+                    };
 
-                    {{--var mockFile = { name: filename, size: filesize };--}}
-                    {{--Dropzone.forElement("div#dZUpload").emit("addedfile", mockFile);--}}
-                    {{--Dropzone.forElement("div#dZUpload").emit("thumbnail", mockFile, filepath);--}}
+                    Dropzone.forElement("div#dZUpload").emit("addedfile", mockFile);
+                    Dropzone.forElement("div#dZUpload").emit("thumbnail", mockFile, filepath);
+                    Dropzone.forElement("div#dZUpload").emit("complete", mockFile);
+                    Dropzone.forElement("div#dZUpload").files.push(mockFile);
+
+                    //var existingFileCount = 1; // The number of files already uploaded
+                    //myDropzone.options.maxFiles = myDropzone.options.maxFiles - existingFileCount;
+                    myDropzone.options.maxFiles = 1;
                 }
             }
         });

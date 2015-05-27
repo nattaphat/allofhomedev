@@ -1,6 +1,11 @@
 <?php namespace App\Http\Controllers\Frontend;
 
+use App\Models\AllFunction;
+use App\Models\CatHome;
+use App\Models\CatHomePromotion;
+use App\Models\PicLayout;
 use App\Models\Promotion;
+use App\Models\Tag;
 use Config;
 use App\Http\Controllers\Controller;
 use Gmaps;
@@ -8,6 +13,8 @@ use Request;
 use Validator;
 use Input;
 use DB;
+use Redirect;
+use View;
 
 use App\Models\Project;
 use App\Models\ProjectAirportLink;
@@ -32,34 +39,39 @@ class HomeCategoryController extends Controller {
 
     public function index()
     {
+        $catHome = CatHome::orderBy('created_at', 'desc')->paginate(10);
+
         $config =
-        [
-            'center' => '13.7646393,100.5378279',
-            'zoom' => '12',
-            'scrollwheel' => false,
-            'onboundschanged' =>
-                'if (!centreGot) {
+            [
+                'center' => '13.7646393,100.5378279',
+                'zoom' => '12',
+                'scrollwheel' => false,
+                'onboundschanged' =>
+                    'if (!centreGot) {
                 var mapCentre = map.getCenter();
                 marker_0.setOptions({
                     position: new google.maps.LatLng(mapCentre.lat(), mapCentre.lng())
                 });
             }
             centreGot = true;'
-        ];
+            ];
 
         Gmaps::initialize($config);
 
         $marker =
-        [
-            'position' => '13.7646393,100.5378279',
-            'draggable' => false
-        ];
+            [
+                'position' => '13.7646393,100.5378279',
+                'draggable' => false
+            ];
         Gmaps::add_marker($marker);
 
         $map = Gmaps::create_map();
 
-        return view('web.frontend.home.index')
-            ->with('map',$map);
+        return View::make('web.frontend.home.index',
+        [
+            'map' => $map,
+            'catHome' => $catHome
+        ]);
     }
 
     public function create()
@@ -99,7 +111,196 @@ class HomeCategoryController extends Controller {
 
     public function post_create()
     {
-        return "Under Construction";
+        $input = Input::all();
+
+        $rules = [
+            'user_id' => 'required',
+            'project_id' => 'required',
+            'title' => 'required|max:100',
+            'subtitle' => 'required|max:255',
+            'contact_company_name' => 'required',
+            'contact_telephone' => 'required|max:50',
+            'contact_email' => 'max:50',
+            'contact_website' => 'max:50',
+            'contact_lineid' => 'max:50',
+            'project_type' => 'required',
+            'sell_price' => 'required',
+            'sell_price_from' => 'required',
+            'sell_price_to' => 'required',
+            'construct_date' => 'required',
+            'finish_date' => 'required',
+            'status' => 'required'
+        ];
+
+        $messages = [
+            'required' => 'This field is required.',
+            'unique' => 'This field has already been added.'
+        ];
+
+        $validator = Validator::make(
+            $input,
+            $rules,
+            $messages
+        );
+
+        if ($validator->fails())
+        {
+            return redirect('home/create')
+                ->withErrors($validator)
+                ->withInput(Input::all());
+        }
+        else{
+
+            $construct_date_array = explode("/", $input['construct_date']);
+            $construct_date = $construct_date_array[2].'-'.$construct_date_array[1].'-'.$construct_date_array[0];
+            $finish_date_array = explode("/", $input['finish_date']);
+            $finish_date = $finish_date_array[2].'-'.$finish_date_array[1].'-'.$finish_date_array[0];
+
+            $catHome = new CatHome();
+            $catHome->user_id = $input['user_id'];
+            $catHome->project_id = $input['project_id'];
+            $catHome->title = $input['title'];
+            $catHome->subtitle = $input['subtitle'];
+            $catHome->contact_company_name = $input['contact_company_name'];
+            $catHome->contact_telephone = $input['contact_telephone'];
+            $catHome->contact_email = $input['contact_email'];
+            $catHome->contact_website = $input['contact_website'];
+            $catHome->contact_lineid = $input['contact_lineid'];
+            $catHome->project_type = serialize($input['project_type']);
+            $catHome->project_area = $input['project_area'];
+            $catHome->num_unit = $input['num_unit'];
+            $catHome->home_type_per_area = $input['home_type_per_area'];
+            $catHome->home_area = $input['home_area'];
+            $catHome->home_material = $input['home_material'];
+            $catHome->home_style = $input['home_style'];
+            if(Input::has('eia'))
+                $catHome->eia = $input['eia'][0];
+            $catHome->sell_price = str_replace(",", "", $input['sell_price']);
+            $catHome->construct_date = $construct_date;
+            $catHome->finish_date = $finish_date;
+            if(Input::has('spare_price'))
+                $catHome->spare_price = str_replace(",", "", $input['spare_price']);
+            if(Input::has('central_price'))
+                $catHome->central_price = str_replace(",", "", $input['central_price']);
+            $catHome->project_layout = $input['project_layout'];
+            $catHome->project_env = $input['project_env'];
+            $catHome->project_scene = $input['project_scene'];
+            $catHome->project_deliver = $input['project_deliver'];
+            $catHome->loan_detail = $input['loan_detail'];
+            $catHome->video_url = $input['video_url'];
+            $catHome->promotion_str = $input['promotion_str'];
+            if(Input::has('status'))
+                $catHome->status = $input['status'][0];
+            $catHome->sell_price_from = str_replace(",", "", $input['sell_price_from']);
+            $catHome->sell_price_to = str_replace(",", "", $input['sell_price_to']);
+            $catHome->save();
+
+            if(Input::has('promotion'))
+            {
+                foreach($input['promotion'] as $key=>$value)
+                {
+                    CatHomePromotion::create(['promotion_id' => $value, 'cat_home_id' => $catHome->id]);
+                }
+            }
+
+            if(Input::has('tag'))
+            {
+                foreach($input['tag'] as $key=>$value)
+                {
+                    $tag = new Tag();
+                    $tag->tag_sub_id = $value;
+                    $catHome->tag()->save($tag);
+                }
+            }
+
+            if(Input::has('pic_layout'))
+            {
+                $files = explode("###", $input['pic_layout']);
+                foreach($files as $file)
+                {
+                    if($file != "")
+                    {
+                        $f = explode("@@@", $file);
+                        PicLayout::create
+                        ([
+                            'cat_home_id' => $catHome->id,
+                            'type' => 'layout',
+                            'filename' => $f[0],
+                            'filetype' => $f[1],
+                            'filesize' => $f[2],
+                            'filepath' => $f[3]
+                        ]);
+                    }
+                }
+            }
+
+            if(Input::has('pic_env'))
+            {
+                $files = explode("###", $input['pic_env']);
+                foreach($files as $file)
+                {
+                    if($file != "")
+                    {
+                        $f = explode("@@@", $file);
+                        PicLayout::create
+                        ([
+                            'cat_home_id' => $catHome->id,
+                            'type' => 'env',
+                            'filename' => $f[0],
+                            'filetype' => $f[1],
+                            'filesize' => $f[2],
+                            'filepath' => $f[3]
+                        ]);
+                    }
+                }
+            }
+
+            if(Input::has('pic_scene'))
+            {
+                $files = explode("###", $input['pic_scene']);
+                foreach($files as $file)
+                {
+                    if($file != "")
+                    {
+                        $f = explode("@@@", $file);
+                        PicLayout::create
+                        ([
+                            'cat_home_id' => $catHome->id,
+                            'type' => 'scene',
+                            'filename' => $f[0],
+                            'filetype' => $f[1],
+                            'filesize' => $f[2],
+                            'filepath' => $f[3]
+                        ]);
+                    }
+                }
+            }
+
+            if(Input::has('pic_deliver'))
+            {
+                $files = explode("###", $input['pic_deliver']);
+                foreach($files as $file)
+                {
+                    if($file != "")
+                    {
+                        $f = explode("@@@", $file);
+                        PicLayout::create
+                        ([
+                            'cat_home_id' => $catHome->id,
+                            'type' => 'deliver',
+                            'filename' => $f[0],
+                            'filetype' => $f[1],
+                            'filesize' => $f[2],
+                            'filepath' => $f[3]
+                        ]);
+                    }
+                }
+            }
+
+            return Redirect::to('home/view/'.$catHome->id)
+                ->with('flash_message', 'บันทึกข้อมูลสำเร็จ')
+                ->with('flash_type', 'alert-success');
+        }
     }
 
     public function update()
@@ -125,26 +326,61 @@ class HomeCategoryController extends Controller {
             ->with('map',$map);
     }
 
-    public function view($id = 0)
+    public function view($id)
     {
-        $config = array();
-        $config['center'] = '13.7714348,100.5520891';
-        $config['onboundschanged'] = 'if (!centreGot) {
-            var mapCentre = map.getCenter();
-            marker_0.setOptions({
-                position: new google.maps.LatLng(mapCentre.lat(), mapCentre.lng())
-            });
-        }
-        centreGot = true;';
+        $catHome = CatHome::find($id);
+        $project = Project::find($catHome->project_id);
+        $fac = $project->projectFacility()->get();
+        $bts = $project->projectBts()->get();
+        $mrt = $project->projectMrt()->get();
+        $apl = $project->projectAplink()->get();
+        $picLayout = PicLayout::getPic($id,'layout');
+        $picEnv = PicLayout::getPic($id,'env');
+        $picScene = PicLayout::getPic($id,'scene');
+        $picDeliver = PicLayout::getPic($id,'deliver');
+        $promotion = $catHome->catHomePromotion()->get();
+        $tag = $catHome->tag()->get();
+
+        $config =
+            [
+                'center' => $project->lat.','.$project->long,
+                'zoom' => '12',
+                'scrollwheel' => false,
+                'onboundschanged' =>
+                    'if (!centreGot) {
+                var mapCentre = map.getCenter();
+                marker_0.setOptions({
+                    position: new google.maps.LatLng(mapCentre.lat(), mapCentre.lng())
+                });
+            }
+            centreGot = true;'
+            ];
 
         Gmaps::initialize($config);
 
-        $marker = array('position' => '13.7714348,100.5520891');
+        $marker =
+            [
+                'position' => $project->lat.','.$project->long,
+                'draggable' => false
+            ];
         Gmaps::add_marker($marker);
 
         $map = Gmaps::create_map();
 
         return view('web.frontend.home.view')
-            ->with('map',$map);
+            ->with('map',$map)
+            ->with('catHome', $catHome)
+            ->with('project', $project)
+            ->with('facility', $fac)
+            ->with('bts', $bts)
+            ->with('mrt', $mrt)
+            ->with('apl', $apl)
+            ->with('picLayout', $picLayout)
+            ->with('picEnv', $picEnv)
+            ->with('picScene', $picScene)
+            ->with('picDeliver', $picDeliver)
+            ->with('promotion', $promotion)
+            ->with('tag', $tag);
+
     }
 }

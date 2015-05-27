@@ -165,7 +165,7 @@ class ProjectCategoryController extends Controller {
 //            {
             $f = explode("@@@", $input['file']);
             $attachment = Attachment::create([
-                'filename' => $f[0], 'path' => $f[2], 'filesize' => $f[1]
+                'filename' => $f[0], 'path' => $f[3], 'filesize' => $f[2], 'filetype' => $f[1]
             ]);
 
             $user_id = \Auth::user()->id;
@@ -366,6 +366,17 @@ class ProjectCategoryController extends Controller {
             ->get();
 
         return json_encode($project);
+    }
+
+    public function get_latlong()
+    {
+        $project_id = Request::get('project_id');
+        $project = Project::find($project_id);
+        $address = Project::getPrjAddress($project_id);
+
+        return json_encode(['lat' => $project->lat,
+            'long' => $project->long,
+            'project_full_name' => $project->project_name . ' - ' . $address]);
     }
 
 }

@@ -39,9 +39,18 @@ class CatHome extends Model {
 
     public function tag()
     {
-        return $this->hasMany('App\Models\Tag');
+        return $this->morphMany('App\Models\Tag', 'tagable');
     }
 
+    public function picLayout()
+    {
+        return $this->hasMany('App\Models\PicLayout');
+    }
+
+    public function catHomePromotion()
+    {
+        return $this->hasMany('App\Models\CatHomePromotion');
+    }
 
 
     public function tagSub()

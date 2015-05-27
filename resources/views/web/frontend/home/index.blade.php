@@ -198,78 +198,148 @@
             <div class="row">
                 <div class="pricing-stack">
                     {{--####VIP Post--}}
-                    @for($i=0; $i<5; $i++)
-                        <div class="well active">
-                            <div class="row">
-                                <div class="col-md-3">
-                                    <div class="blog-media" style="padding-top: 30px;">
-                                        <a href="{{ URL::route("home_view", ["id" => 1]) }}">
-                                            <img src="http://www.home.co.th//images/img_v/BuyHome/57/2012_12_26_11_27_59.jpg"
-                                                 alt="Picture of frog by Ben Fredericson" class="img-responsive" />
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="row">
-                                        <div class="block block-callout post-block" style="margin-top: 0px;">
-                                            <div clas="row" style="padding: 0px 10px 0px 10px;">
-                                                <div class="post-author">
-                                                    <h4>
-                                                        <a href="{{ URL::route("home_view", ["id" => 1]) }}">เรื่อง: หัวข้อประกาศ</a>
-                                                    </h4>
-                                                    <ul class="list-inline">
-                                                        <li>
-                                                            <i class="fa fa-user"></i> Thitima Admin
-                                                        </li>
-                                                        <li>
-                                                            <i class="fa fa-calendar"></i> 02/08/2558
-                                                        </li>
-                                                    </ul>
-                                                    <div class="row">
-                                                        <p>Consequat dolus facilisi persto. Esca et illum jumentum laoreet torqueo validus volutpat. Ad ille importunus singularis typicus. Consequat lenis praesent.</p>
-                                                        <ul class="list-inline links" style="text-align: right">
-                                                            <li>
-                                                                <a href="{{ URL::route("home_view", ["id" => 1]) }}" class="btn btn-default btn-xs"><i class="fa fa-arrow-circle-right"></i> Read more</a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="{{ URL::route("home_view", ["id" => 1]) }}" class="btn btn-default btn-xs"><i class="fa fa-comment"></i> 76 Comments</a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="well active">
-                                        <h3 class="title">
-                                            <span class="em">ราคา</span> เริ่มต้น
-                                        </h3>
-                                        <p class="price">
-                                            <span class="digits">100,000</span>
-                                            <span class="term"> บาท</span>
-                                        </p>
-                                        <div style="text-align: center;">
-                                            <address>
-                                                <strong>ติดต่อ:</strong> General Member<br>
-                                                <strong>เบอร์โทรศัพท์:</strong> 0812201110
-                                            </address>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    @endfor
+                    {{--@for($i=0; $i<5; $i++)--}}
+                        {{--<div class="well active">--}}
+                            {{--<div class="row">--}}
+                                {{--<div class="col-md-3">--}}
+                                    {{--<div class="blog-media" style="padding-top: 30px;">--}}
+                                        {{--<a href="{{ URL::route("home_view", ["id" => 1]) }}">--}}
+                                            {{--<img src="http://www.home.co.th//images/img_v/BuyHome/57/2012_12_26_11_27_59.jpg"--}}
+                                                 {{--alt="Picture of frog by Ben Fredericson" class="img-responsive" />--}}
+                                        {{--</a>--}}
+                                    {{--</div>--}}
+                                {{--</div>--}}
+                                {{--<div class="col-md-6">--}}
+                                    {{--<div class="row">--}}
+                                        {{--<div class="block block-callout post-block" style="margin-top: 0px;">--}}
+                                            {{--<div clas="row" style="padding: 0px 10px 0px 10px;">--}}
+                                                {{--<div class="post-author">--}}
+                                                    {{--<h4>--}}
+                                                        {{--<a href="{{ URL::route("home_view", ["id" => 1]) }}">เรื่อง: หัวข้อประกาศ</a>--}}
+                                                    {{--</h4>--}}
+                                                    {{--<ul class="list-inline">--}}
+                                                        {{--<li>--}}
+                                                            {{--<i class="fa fa-user"></i> Thitima Admin--}}
+                                                        {{--</li>--}}
+                                                        {{--<li>--}}
+                                                            {{--<i class="fa fa-calendar"></i> 02/08/2558--}}
+                                                        {{--</li>--}}
+                                                    {{--</ul>--}}
+                                                    {{--<div class="row">--}}
+                                                        {{--<p>Consequat dolus facilisi persto. Esca et illum jumentum laoreet torqueo validus volutpat. Ad ille importunus singularis typicus. Consequat lenis praesent.</p>--}}
+                                                        {{--<ul class="list-inline links" style="text-align: right">--}}
+                                                            {{--<li>--}}
+                                                                {{--<a href="{{ URL::route("home_view", ["id" => 1]) }}" class="btn btn-default btn-xs"><i class="fa fa-arrow-circle-right"></i> Read more</a>--}}
+                                                            {{--</li>--}}
+                                                            {{--<li>--}}
+                                                                {{--<a href="{{ URL::route("home_view", ["id" => 1]) }}" class="btn btn-default btn-xs"><i class="fa fa-comment"></i> 76 Comments</a>--}}
+                                                            {{--</li>--}}
+                                                        {{--</ul>--}}
+                                                    {{--</div>--}}
+                                                {{--</div>--}}
+                                            {{--</div>--}}
+                                        {{--</div>--}}
+                                    {{--</div>--}}
+                                {{--</div>--}}
+                                {{--<div class="col-md-3">--}}
+                                    {{--<div class="well active">--}}
+                                        {{--<h3 class="title">--}}
+                                            {{--<span class="em">ราคา</span> เริ่มต้น--}}
+                                        {{--</h3>--}}
+                                        {{--<p class="price">--}}
+                                            {{--<span class="digits">100,000</span>--}}
+                                            {{--<span class="term"> บาท</span>--}}
+                                        {{--</p>--}}
+                                        {{--<div style="text-align: center;">--}}
+                                            {{--<address>--}}
+                                                {{--<strong>ติดต่อ:</strong> General Member<br>--}}
+                                                {{--<strong>เบอร์โทรศัพท์:</strong> 0812201110--}}
+                                            {{--</address>--}}
+                                        {{--</div>--}}
+                                    {{--</div>--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                    {{--@endfor--}}
                     {{--#### Member Post--}}
-                    @for($i=0; $i<10; $i++)
+                    {{--@for($i=0; $i<10; $i++)--}}
+                        {{--<div class="well">--}}
+                            {{--<div class="row">--}}
+                                {{--<div class="col-md-3">--}}
+                                    {{--<div class="blog-media" style="padding-top: 30px;">--}}
+                                        {{--<a href="{{ URL::route("home_view", ["id" => 1]) }}">--}}
+                                            {{--<img src="http://www.home.co.th//images/img_v/BuyHome/57/2012_12_26_11_27_59.jpg"--}}
+                                                 {{--alt="Picture of frog by Ben Fredericson" class="img-responsive" />--}}
+                                        {{--</a>--}}
+                                    {{--</div>--}}
+                                {{--</div>--}}
+                                {{--<div class="col-md-6">--}}
+                                    {{--<div class="row">--}}
+                                        {{--<div class="block block-callout post-block" style="margin-top: 0px;">--}}
+                                            {{--<div clas="row" style="padding: 0px 10px 0px 10px;">--}}
+                                                {{--<div class="post-author">--}}
+                                                    {{--<h4>--}}
+                                                        {{--<a href="{{ URL::route("home_view", ["id" => 1]) }}">เรื่อง: หัวข้อประกาศ</a>--}}
+                                                    {{--</h4>--}}
+                                                    {{--<ul class="list-inline">--}}
+                                                        {{--<li>--}}
+                                                            {{--<i class="fa fa-user"></i> Thitima Admin--}}
+                                                        {{--</li>--}}
+                                                        {{--<li>--}}
+                                                            {{--<i class="fa fa-calendar"></i> 02/08/2558--}}
+                                                        {{--</li>--}}
+                                                    {{--</ul>--}}
+                                                    {{--<div class="row">--}}
+                                                        {{--<p>Consequat dolus facilisi persto. Esca et illum jumentum laoreet torqueo validus volutpat. Ad ille importunus singularis typicus. Consequat lenis praesent.</p>--}}
+                                                        {{--<ul class="list-inline links" style="text-align: right">--}}
+                                                            {{--<li>--}}
+                                                                {{--<a href="{{ URL::route("home_view", ["id" => 1]) }}" class="btn btn-default btn-xs"><i class="fa fa-arrow-circle-right"></i> Read more</a>--}}
+                                                            {{--</li>--}}
+                                                            {{--<li>--}}
+                                                                {{--<a href="{{ URL::route("home_view", ["id" => 1]) }}" class="btn btn-default btn-xs"><i class="fa fa-comment"></i> 76 Comments</a>--}}
+                                                            {{--</li>--}}
+                                                        {{--</ul>--}}
+                                                    {{--</div>--}}
+                                                {{--</div>--}}
+                                            {{--</div>--}}
+                                        {{--</div>--}}
+                                    {{--</div>--}}
+                                {{--</div>--}}
+                                {{--<div class="col-md-3">--}}
+                                    {{--<div class="well">--}}
+                                        {{--<h3 class="title">--}}
+                                            {{--<span class="em">ราคา</span> เริ่มต้น--}}
+                                        {{--</h3>--}}
+                                        {{--<p class="price">--}}
+                                            {{--<span class="digits">100,000</span>--}}
+                                            {{--<span class="term"> บาท</span>--}}
+                                        {{--</p>--}}
+                                        {{--<div style="text-align: center;">--}}
+                                            {{--<address>--}}
+                                                {{--<strong>ติดต่อ:</strong> VIP Member<br>--}}
+                                                {{--<strong>เบอร์โทรศัพท์:</strong> 0812201110--}}
+                                            {{--</address>--}}
+                                        {{--</div>--}}
+                                    {{--</div>--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                    {{--@endfor--}}
+                    @foreach($catHome as $item)
                         <div class="well">
                             <div class="row">
                                 <div class="col-md-3">
                                     <div class="blog-media" style="padding-top: 30px;">
-                                        <a href="{{ URL::route("home_view", ["id" => 1]) }}">
-                                            <img src="http://www.home.co.th//images/img_v/BuyHome/57/2012_12_26_11_27_59.jpg"
-                                                 alt="Picture of frog by Ben Fredericson" class="img-responsive" />
+                                        <a href="{{ URL::route("home_view", ["id" => $item->id]) }}">
+                                            <?php
+                                            $picEnv = App\Models\PicLayout::getPic($item->id,'env');
+                                            if($picEnv != null && count($picEnv) > 0)
+                                            {
+                                                echo '
+                                                    <img src="'.$picEnv[0]->filepath.'"
+                                                 alt="'.$picEnv[0]->filename.'" class="img-responsive" />';
+                                            }
+                                            ?>
                                         </a>
                                     </div>
                                 </div>
@@ -279,24 +349,24 @@
                                             <div clas="row" style="padding: 0px 10px 0px 10px;">
                                                 <div class="post-author">
                                                     <h4>
-                                                        <a href="{{ URL::route("home_view", ["id" => 1]) }}">เรื่อง: หัวข้อประกาศ</a>
+                                                        <a href="{{ URL::route("home_view", ["id" => $item->id]) }}">เรื่อง: {{ $item->title }}</a>
                                                     </h4>
                                                     <ul class="list-inline">
                                                         <li>
-                                                            <i class="fa fa-user"></i> Thitima Admin
+                                                            <i class="fa fa-user"></i> {{ App\User::getFullName($item->user_id) }}
                                                         </li>
                                                         <li>
-                                                            <i class="fa fa-calendar"></i> 02/08/2558
+                                                            <i class="fa fa-calendar"></i> {{ \App\Models\AllFunction::getDateTimeThai($item->created_at) }}
                                                         </li>
                                                     </ul>
                                                     <div class="row">
-                                                        <p>Consequat dolus facilisi persto. Esca et illum jumentum laoreet torqueo validus volutpat. Ad ille importunus singularis typicus. Consequat lenis praesent.</p>
+                                                        <p>{{ $item->subtitle }}</p>
                                                         <ul class="list-inline links" style="text-align: right">
                                                             <li>
-                                                                <a href="{{ URL::route("home_view", ["id" => 1]) }}" class="btn btn-default btn-xs"><i class="fa fa-arrow-circle-right"></i> Read more</a>
+                                                                <a href="{{ URL::route("home_view", ["id" => $item->id]) }}" class="btn btn-default btn-xs"><i class="fa fa-arrow-circle-right"></i> Read more</a>
                                                             </li>
                                                             <li>
-                                                                <a href="{{ URL::route("home_view", ["id" => 1]) }}" class="btn btn-default btn-xs"><i class="fa fa-comment"></i> 76 Comments</a>
+                                                                <a href="{{ URL::route("home_view", ["id" => $item->id]) }}" class="btn btn-default btn-xs"><i class="fa fa-comment"></i> 76 Comments</a>
                                                             </li>
                                                         </ul>
                                                     </div>
@@ -311,20 +381,23 @@
                                             <span class="em">ราคา</span> เริ่มต้น
                                         </h3>
                                         <p class="price">
-                                            <span class="digits">100,000</span>
+                                            <span class="digits">{{ \App\Models\AllFunction::getMoneyWithoutDecimal($item->sell_price) }}</span>
                                             <span class="term"> บาท</span>
                                         </p>
                                         <div style="text-align: center;">
                                             <address>
-                                                <strong>ติดต่อ:</strong> VIP Member<br>
-                                                <strong>เบอร์โทรศัพท์:</strong> 0812201110
+                                                <strong>ติดต่อ:</strong> {{ $item->contact_company_name }}<br>
+                                                <strong>เบอร์โทรศัพท์:</strong> {{ $item->contact_telephone }}
                                             </address>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    @endfor
+                    @endforeach
+
+                    {!! str_replace('/?', '?', $catHome->render()) !!}
+
                 </div>
             </div>
         </div>

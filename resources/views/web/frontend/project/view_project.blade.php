@@ -1,4 +1,15 @@
-<div class="row">
+<ul class="list-inline" style="padding-top: 0px;">
+    <li>Latitude:</li>
+    <li>{{ $project->lat }}</li>
+    <li>Longitude:</li>
+    <li>{{ $project->long }}</li>
+</ul>
+<ul class="list-inline">
+    <li>ลิงค์แผนที่:</li>
+    <li><a href="{{ $project->map_url }}" target="_blank">{{ $project->map_url }}</a></li>
+</ul>
+
+<div class="row" style="padding: 15px 15px 0px 10px; margin-top:0px;">
     <div class="col-md-1"></div>
     <div class="col-md-11">
         <div class="focus-box pull-right text-right"
@@ -80,15 +91,5 @@
         <div class="row" style="padding-left: 30px;">
             <em>อื่นๆ: </em> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{ $project->nearby_str }}
         </div>
-        <ul class="list-inline" style="padding-top: 30px;">
-            <li>Latitude:</li>
-            <li>{{ $project->lat }}</li>
-            <li>Longitude:</li>
-            <li>{{ $project->long }}</li>
-        </ul>
-        <ul class="list-inline">
-            <li>ลิงค์แผนที่:</li>
-            <li><a href="{{ $project->map_url }}" target="_blank">{{ $project->map_url }}</a></li>
-        </ul>
     </div>
 </div>
