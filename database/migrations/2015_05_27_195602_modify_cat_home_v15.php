@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class ModifyCatHome2 extends Migration {
+class ModifyCatHomeV15 extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -14,7 +14,7 @@ class ModifyCatHome2 extends Migration {
 	{
 		Schema::table('cat_home', function(Blueprint $table)
 		{
-			$table->boolean('vip')->nullable(false)->default(false);
+            $table->boolean('vip')->nullable(false)->default(false);
 		});
 	}
 
