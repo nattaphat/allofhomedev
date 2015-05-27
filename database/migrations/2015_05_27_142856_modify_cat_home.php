@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class ModifyCatHome extends Migration {
+class ModifyCatHome2 extends Migration {
 
 	/**
 	 * Run the migrations.
