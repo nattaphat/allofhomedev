@@ -251,7 +251,7 @@
                                                     }
                                                 }
                                                 ?>
-                                                <p style="text-indent: 30px;">{{ $catHome->project_scene }}</p>
+                                                <p style="text-indent: 30px;">{!! str_replace("\n","<br>", $catHome->project_scene) !!}</p>
                                             </div>
                                             <ul class="list-inline" style="padding-top: 30px;">
                                                 <li><strong>บรรยากาศบ้านจริงเมื่อรับมอบ:</strong></li>
