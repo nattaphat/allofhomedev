@@ -206,8 +206,6 @@ class CondoCategoryController extends Controller {
         }
         else{
 
-            dd($input);
-
             $construct_date_array = explode("/", $input['construct_date']);
             $construct_date = $construct_date_array[2].'-'.$construct_date_array[1].'-'.$construct_date_array[0];
             $finish_date_array = explode("/", $input['finish_date']);
