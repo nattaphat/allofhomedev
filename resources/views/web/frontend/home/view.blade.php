@@ -73,6 +73,11 @@
                                             {{--<div class="blog-media">--}}
                                             {{--<img src="../img/cat_home/picture1.jpg" alt="Picture of frog by Ben Fredericson" class="img-responsive" />--}}
                                             {{--</div>--}}
+                                            @if($catHome->video_url != null && $catHome->video_url != "")
+                                                <div class="blog-media" style="padding-top: 30px;">
+                                                    {!! \App\Models\AllFunction::convertYoutube($catHome->video_url) !!}
+                                                </div>
+                                            @endif
                                             <p style="text-indent: 30px; padding-top: 10px;">{!! str_replace("\n","<br>", $catHome->subtitle) !!}</p>
                                             <strong>รายละเอียดโครงการ:</strong>
                                             <div style="position: absolute; right: 0px; max-width: 180px;
