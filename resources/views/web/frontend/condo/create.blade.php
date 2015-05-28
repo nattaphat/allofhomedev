@@ -114,6 +114,13 @@
             $('#project_area').mask('000,000,000,000,000', {reverse: true});
             $('#num_unit').mask('000,000,000,000,000', {reverse: true});
 
+            $('#num_building').mask('000,000,000,000,000', {reverse: true});
+            $('#num_elev_person').mask('000,000,000,000,000', {reverse: true});
+            $('#num_elev_object').mask('000,000,000,000,000', {reverse: true});
+            $('#ratio_elev_per_unit').mask('000,000,000,000,000', {reverse: true});
+            $('#num_parking').mask('000,000,000,000,000', {reverse: true});
+            $('#percent_parking').mask('000,000,000,000,000', {reverse: true});
+
             $("#finish_date").datepicker({
                 language:'th-th',
                 format:'dd/mm/yyyy'
@@ -267,6 +274,7 @@
                     },
                     cache: true
                 },
+                placeholder: "ค้นหาโครงการ",
                 escapeMarkup: function (markup) { return markup; },
                 minimumInputLength: 1,
                 templateResult: formatRepo,
@@ -473,6 +481,7 @@
                             },
                             cache: true
                         },
+                        placeholder: "ค้นหา Tags",
                         escapeMarkup: function (markup) { return markup; },
                         templateSelection: function(repo)
                         {
@@ -606,7 +615,6 @@
                                     <label for="project_name" class="col-md-3 control-label">ชื่อโครงการ *</label>
                                     <div class="col-md-6">
                                         <select id="project_name" style="width:100%;">
-                                            <option value=""></option>
                                         </select>
                                         <input type="hidden" id="project_id" name="project_id"  value="{{Input::old('project_id')}}">
                                         <input type="hidden" id="prj_name" name="prj_name"  value="{{Input::old('prj_name')}}">
@@ -647,7 +655,7 @@
                                         </p>
                                     </div>
                                 </div>
-                                <div class="form-group  @if ($errors->has('project_area')) {{ "has-error" }} @endif">
+                                <div class="form-group @if ($errors->has('project_area')) {{ "has-error" }} @endif">
                                     <label for="project_area" class="col-md-3 control-label">พื้นที่โครงการ (ไร่)</label>
                                     <div class="col-md-6">
                                         <input type="text" class="form-control" value="{{Input::old('project_area')}}"
@@ -657,11 +665,24 @@
                                         </p>
                                     </div>
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group @if ($errors->has('num_building')) {{ "has-error" }} @endif">
+                                    <label for="num_building" class="col-md-3 control-label">จำนวนอาคาร</label>
+                                    <div class="col-md-6">
+                                        <input type="text" class="form-control" value="{{Input::old('num_building')}}"
+                                               id="num_building" name="num_building" placeholder="">
+                                        <p class="help-block">
+                                            {{ $errors->first('num_building') }}
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="form-group @if ($errors->has('num_unit')) {{ "has-error" }} @endif">
                                     <label for="num_unit" class="col-md-3 control-label">จำนวนยูนิต</label>
                                     <div class="col-md-6">
                                         <input type="text" class="form-control" value="{{Input::old('num_unit')}}"
                                                id="num_unit" name="num_unit" placeholder="">
+                                        <p class="help-block">
+                                            {{ $errors->first('num_unit') }}
+                                        </p>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -694,6 +715,56 @@
                                             <textarea class="form-control"
                                                       id="home_style" name="home_style"
                                                       placeholder="เช่น Modern, Art Deco" rows="3">{{Input::old('home_style')}}</textarea>
+                                    </div>
+                                </div>
+                                <div class="form-group @if ($errors->has('num_elev_person')) {{ "has-error" }} @endif">
+                                    <label for="num_elev_person" class="col-md-3 control-label">จำนวนลิฟต์โดยสาร</label>
+                                    <div class="col-md-6">
+                                        <input type="text" class="form-control" value="{{Input::old('num_elev_person')}}"
+                                               id="num_elev_person" name="num_elev_person" placeholder="">
+                                        <p class="help-block">
+                                            {{ $errors->first('num_elev_person') }}
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="form-group @if ($errors->has('num_elev_object')) {{ "has-error" }} @endif">
+                                    <label for="num_elev_object" class="col-md-3 control-label">จำนวนลิฟต์ขนส่ง</label>
+                                    <div class="col-md-6">
+                                        <input type="text" class="form-control" value="{{Input::old('num_elev_object')}}"
+                                               id="num_elev_object" name="num_elev_object" placeholder="">
+                                        <p class="help-block">
+                                            {{ $errors->first('num_elev_object') }}
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="form-group @if ($errors->has('ratio_elev_per_unit')) {{ "has-error" }} @endif">
+                                    <label for="ratio_elev_per_unit" class="col-md-3 control-label">อัตราส่วนของลิฟต์ : ยูนิตพักอาศัย</label>
+                                    <div class="col-md-6">
+                                        <input type="text" class="form-control" value="{{Input::old('ratio_elev_per_unit')}}"
+                                               id="ratio_elev_per_unit" name="ratio_elev_per_unit" placeholder="">
+                                        <p class="help-block">
+                                            {{ $errors->first('ratio_elev_per_unit') }}
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="form-group @if ($errors->has('num_parking')) {{ "has-error" }} @endif">
+                                    <label for="num_parking" class="col-md-3 control-label">จำนวนที่จอดรถ (คัน)</label>
+                                    <div class="col-md-6">
+                                        <input type="text" class="form-control" value="{{Input::old('num_parking')}}"
+                                               id="num_parking" name="num_parking" placeholder="">
+                                        <p class="help-block">
+                                            {{ $errors->first('num_parking') }}
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="form-group @if ($errors->has('percent_parking')) {{ "has-error" }} @endif">
+                                    <label for="percent_parking" class="col-md-3 control-label">จำนวนที่จอดรถ (เปอร์เซ็น)</label>
+                                    <div class="col-md-6">
+                                        <input type="text" class="form-control" value="{{Input::old('percent_parking')}}"
+                                               id="percent_parking" name="percent_parking" placeholder="">
+                                        <p class="help-block">
+                                            {{ $errors->first('percent_parking') }}
+                                        </p>
                                     </div>
                                 </div>
                                 <div class="form-group" style="padding-top:20px;">

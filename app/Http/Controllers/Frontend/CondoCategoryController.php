@@ -248,6 +248,14 @@ class CondoCategoryController extends Controller {
                 $catHome->status = $input['status'][0];
             $catHome->sell_price_from = str_replace(",", "", $input['sell_price_from']);
             $catHome->sell_price_to = str_replace(",", "", $input['sell_price_to']);
+
+            $catHome->num_building = $input['num_building'];
+            $catHome->num_elev_person = $input['num_elev_person'];
+            $catHome->num_elev_object = $input['num_elev_object'];
+            $catHome->ratio_elev_per_unit = $input['ratio_elev_per_unit'];
+            $catHome->num_parking = $input['num_parking'];
+            $catHome->percent_parking = $input['percent_parking'];
+
             $catHome->category = "โครงการคอนโดใหม่";
             if(Input::has('vip'))
                 $catHome->vip = $input['vip'];

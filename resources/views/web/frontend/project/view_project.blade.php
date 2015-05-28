@@ -39,11 +39,11 @@
             </ul>
             <ul class="list-inline">
                 <li>เว็บไซต์โครงการ:</li>
-                <li>{{ $project->website }}</li>
+                <li>{{ ($project->website == null)? "-" : $project->website }}</li>
             </ul>
             <ul class="list-inline">
                 <li>Facebook:</li>
-                <li>{{ $project->facebook }}</li>
+                <li>{{ ($project->facebook == null)? "-" : $project->facebook }}</li>
             </ul>
         </div>
         <ul class="list-inline" style="padding-top: 30px;">
@@ -56,13 +56,15 @@
             @endforeach
         </div>
         <div class="row" style="padding-left: 30px;">
-            <em>อื่นๆ: </em> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{ $project->facility_str }}
+            อื่นๆ: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            {{ ($project->facility_str == null || $project->facility_str == "")? "-" : $project->facility_str }}
         </div>
         <ul class="list-inline" style="padding-top: 30px;">
             <li><strong>สถานที่ใกล้เคียง:</strong></li>
         </ul>
         <div class="row" style="padding-left: 30px;">
-            <em>สถานี BTS</em>
+            สถานี BTS: @if($bts == null || count($bts) == 0)
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - <br> @endif
         </div>
         <div class="row" style="padding-left: 30px; padding-bottom: 10px;">
             @foreach($bts as $item)
@@ -71,7 +73,8 @@
             @endforeach
         </div>
         <div class="row" style="padding-left: 30px;">
-            <em>สถานี MRT</em>
+            สถานี MRT: @if($mrt == null || count($mrt) == 0)
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - <br> @endif
         </div>
         <div class="row" style="padding-left: 30px; padding-bottom: 10px;">
             @foreach($mrt as $item)
@@ -80,7 +83,8 @@
             @endforeach
         </div>
         <div class="row" style="padding-left: 30px;">
-            <em>Airport Rail Link</em>
+            Airport Rail Link: @if($apl == null || count($apl) == 0)
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - <br> @endif
         </div>
         <div class="row" style="padding-left: 30px; padding-bottom: 10px;">
             @foreach($apl as $item)
@@ -89,7 +93,7 @@
             @endforeach
         </div>
         <div class="row" style="padding-left: 30px;">
-            <em>อื่นๆ: </em> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{ $project->nearby_str }}
+            อื่นๆ: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{ ($project->nearby_str == "")? "-" : $project->nearby_str }}
         </div>
     </div>
 </div>

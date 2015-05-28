@@ -222,7 +222,7 @@
                                     ข้อมูลทั่วไป
                                 </div>
                                 <div class="form-group @if ($errors->has('project_name')) {{ "has-error" }} @endif">
-                                    <label for="project_name" class="col-md-3 control-label">ชื่อโครงการ</label>
+                                    <label for="project_name" class="col-md-3 control-label">ชื่อโครงการ *</label>
                                     <div class="col-md-6">
                                         <input type="text" class="form-control" id="project_name" name="project_name"
                                                placeholder="" value="{{Input::old('project_name')}}">
@@ -232,7 +232,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group @if ($errors->has('project_company_owner')) {{ "has-error" }} @endif">
-                                    <label for="project_company_owner" class="col-md-3 control-label">บริษัทเจ้าของโครงการ</label>
+                                    <label for="project_company_owner" class="col-md-3 control-label">บริษัทเจ้าของโครงการ *</label>
                                     <div class="col-md-6">
                                         <input type="text" class="form-control"
                                                id="project_company_owner" name="project_company_owner"
@@ -243,63 +243,63 @@
                                     </div>
                                 </div>
                                 <div class="form-group @if ($errors->has('file')) {{ "has-error" }} @endif">
-                                    <div class="col-md-3 control-label">Logo</div>
+                                    <div class="col-md-3 control-label">Logo *</div>
                                     <div class="col-md-3">
                                         <div id="dZUpload" class="dropzone uploadify">
                                         </div>
+                                        <p class="help-block">
+                                            {{ $errors->first('file') }}
+                                        </p>
                                     </div>
                                     <input type="hidden" id="file" name="file"
                                           value="{{ Input::old('file') }}">
-                                    <p class="help-block">
-                                        {{ $errors->first('file') }}
-                                    </p>
                                 </div>
                                 <div class="row" style="padding-top:20px;">
                                     <div class="col-md-3"></div>
-                                    <div class="col-md-9">ที่ตั้งโครงการ</div>
+                                    <div class="col-md-9">ที่ตั้งโครงการ *</div>
                                 </div>
                                 <div class="form-group @if ($errors->has('provid')) {{ "has-error" }} @endif">
-                                    <label for="provid" class="col-md-3 control-label">จังหวัด</label>
+                                    <label for="provid" class="col-md-3 control-label">จังหวัด *</label>
                                     <div class="col-md-6">
                                         {!! Form::select('provid', [null=>'-- กรุณาเลือก --']
                                             + $province->lists('name', 'provid'), Input::old('provid'),
-                                        ['id' => 'province', 'style' => 'min-width: 300px;']) !!}
+                                        ['id' => 'province', 'class' => 'form-control', 'style' => 'min-width: 300px;']) !!}
+                                        <p class="help-block">
+                                            {{ $errors->first('provid') }}
+                                        </p>
                                     </div>
-                                    <p class="help-block">
-                                        {{ $errors->first('provid') }}
-                                    </p>
                                 </div>
                                 <div class="form-group @if ($errors->has('amphid')) {{ "has-error" }} @endif">
-                                    <label for="amphid" class="col-md-3 control-label">อำเภอ</label>
+                                    <label for="amphid" class="col-md-3 control-label">อำเภอ/เขต *</label>
                                     <div class="col-md-6">
                                         {!! Form::select('amphid', [null=>'-- กรุณาเลือก --']
                                         + $amphoe->lists('name', 'amphid'), Input::old('amphid'),
-                                        ['id' => 'amphoe', 'style' => 'min-width: 300px;']) !!}
+                                        ['id' => 'amphoe', 'class' => 'form-control', 'style' => 'min-width: 300px;']) !!}
+                                        <p class="help-block">
+                                            {{ $errors->first('amphid') }}
+                                        </p>
                                     </div>
-                                    <p class="help-block">
-                                        {{ $errors->first('amphid') }}
-                                    </p>
                                 </div>
                                 <div class="form-group @if ($errors->has('tambid')) {{ "has-error" }} @endif">
-                                    <label for="tambid" class="col-md-3 control-label">ตำบล</label>
+                                    <label for="tambid" class="col-md-3 control-label">ตำบล/แขวง *</label>
                                     <div class="col-md-6">
                                         {!! Form::select('tambid', [null=>'-- กรุณาเลือก --']
                                         + $tambon->lists('name', 'tambid'), Input::old('tambid'),
-                                        ['id' => 'tambon', 'style' => 'min-width: 300px;']) !!}
+                                        ['id' => 'tambon', 'class' => 'form-control', 'style' => 'min-width: 300px;']) !!}
+                                        <p class="help-block">
+                                            {{ $errors->first('tambid') }}
+                                        </p>
                                     </div>
-                                    <p class="help-block">
-                                        {{ $errors->first('tambid') }}
-                                    </p>
                                 </div>
                                 <div class="form-group @if ($errors->has('add_street')) {{ "has-error" }} @endif">
-                                    <label for="add_street" class="col-md-3 control-label">ถนน</label>
+                                    <label for="add_street" class="col-md-3 control-label">ถนน *</label>
                                     <div class="col-md-6">
                                         <input type="text" class="form-control" id="add_street" name="add_street"
                                                placeholder="" value="{{Input::old('add_street')}}">
+                                        <p class="help-block">
+                                            {{ $errors->first('add_street') }}
+                                        </p>
                                     </div>
-                                    <p class="help-block">
-                                        {{ $errors->first('add_street') }}
-                                    </p>
                                 </div>
                                 <div class="form-group">
                                     <label for="area_id" class="col-md-3 control-label">ทำเล/ย่าน หลัก</label>
@@ -340,30 +340,33 @@
                                     <div class="col-md-1"></div>
                                 </div>
                                 <div class="form-group @if ($errors->has('lat')) {{ "has-error" }} @endif">
-                                    <label for="lat" class="col-md-3 control-label">Latitude</label>
+                                    <label for="lat" class="col-md-3 control-label">Latitude *</label>
                                     <div class="col-md-6">
                                         <input type="text" class="form-control" id="latitude" name="lat"
                                                readonly="true" placeholder="" value="{{Input::old('lat')}}">
+                                        <p class="help-block">
+                                            {{ $errors->first('lat') }}
+                                        </p>
                                     </div>
-                                    <p class="help-block">
-                                        {{ $errors->first('lat') }}
-                                    </p>
                                 </div>
                                 <div class="form-group @if ($errors->has('long')) {{ "has-error" }} @endif">
-                                    <label for="long" class="col-md-3 control-label">Longitude</label>
+                                    <label for="long" class="col-md-3 control-label">Longitude *</label>
                                     <div class="col-md-6">
                                         <input type="text" class="form-control" id="longitude" name="long"
                                                readonly="true" placeholder="" value="{{Input::old('long')}}">
+                                        <p class="help-block">
+                                            {{ $errors->first('long') }}
+                                        </p>
                                     </div>
-                                    <p class="help-block">
-                                        {{ $errors->first('long') }}
-                                    </p>
                                 </div>
-                                <div class="form-group">
-                                    <label for="map_url" class="col-md-3 control-label">ลิงค์แผนที่</label>
+                                <div class="form-group @if ($errors->has('map_url')) {{ "has-error" }} @endif">
+                                    <label for="map_url" class="col-md-3 control-label">ลิงค์แผนที่ *</label>
                                     <div class="col-md-6">
                                         <input type="text" class="form-control" id="map_url" name="map_url"
                                                readonly="true" placeholder="" value="{{Input::old('map_url')}}">
+                                        <p class="help-block">
+                                            {{ $errors->first('map_url') }}
+                                        </p>
                                     </div>
                                 </div>
                                 <div class="bs-callout bs-callout-success" style="margin-top: 40px;">

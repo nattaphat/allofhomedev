@@ -137,6 +137,7 @@ class ProjectCategoryController extends Controller {
             'file' => 'required',
             'lat' => 'required',
             'long' => 'required',
+            'map_url' => 'required',
             'add_street' => 'required',
             'tambid' => 'required',
             'amphid' => 'required',
