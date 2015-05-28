@@ -267,6 +267,7 @@
                     },
                     cache: true
                 },
+                placeholder: "ค้นหาโครงการ",
                 escapeMarkup: function (markup) { return markup; },
                 minimumInputLength: 1,
                 templateResult: formatRepo,
@@ -473,6 +474,7 @@
                             },
                             cache: true
                         },
+                        placeholder: "ค้นหา Tags",
                         escapeMarkup: function (markup) { return markup; },
                         templateSelection: function(repo)
                         {

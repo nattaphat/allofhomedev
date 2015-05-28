@@ -151,6 +151,7 @@ return [
 		'App\Providers\RouteServiceProvider',
 //        'yajra\Datatables\DatatablesServiceProvider',
         'Appitventures\Phpgmaps\PhpgmapsServiceProvider',
+        'Barryvdh\Elfinder\ElfinderServiceProvider'
 
 	],
 

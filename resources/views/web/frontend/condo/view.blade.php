@@ -149,32 +149,128 @@
                                                 </ul>
                                                 <ul class="list-inline">
                                                     <li>พื้นที่โครงการ:</li>
-                                                    <div style="text-indent: 30px;">{{ $catHome->project_area }} ไร่</div>
+                                                    <div style="text-indent: 30px;">
+                                                        @if($catHome->project_area != null && $catHome->project_area != "")
+                                                            {{ $catHome->project_area }} ไร่
+                                                        @else
+                                                            - &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ไร่
+                                                        @endif
+                                                    </div>
+                                                </ul>
+                                                <ul class="list-inline">
+                                                    <li>อาคาร:</li>
+                                                    <div style="text-indent: 30px;">
+                                                        @if($catHome->num_building != null && $catHome->num_building != "")
+                                                            {{ $catHome->num_building }} อาคาร
+                                                        @else
+                                                            - &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; อาคาร
+                                                        @endif
+                                                    </div>
                                                 </ul>
                                                 <ul class="list-inline">
                                                     <li>จำนวนยูนิต:</li>
-                                                    <div style="text-indent: 30px;">{{ $catHome->num_unit }} ยูนิต</div>
+                                                    <div style="text-indent: 30px;">
+                                                        @if($catHome->num_unit != null && $catHome->num_unit != "")
+                                                            {{ $catHome->num_unit }} ยูนิต
+                                                        @else
+                                                            - &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ยูนิต
+                                                        @endif
+                                                    </div>
                                                 </ul>
                                                 <ul class="list-inline">
                                                     <li>รูปแบบบ้าน : พื้นที่เริ่มต้น:</li>
-                                                    <div style="text-indent: 30px;">{!! str_replace("\n","<br>", $catHome->home_type_per_area) !!}</div>
+                                                    <div style="text-indent: 30px;">
+                                                        @if($catHome->home_type_per_area != null && $catHome->home_type_per_area != "")
+                                                            {!! str_replace("\n","<br>", $catHome->home_type_per_area) !!}
+                                                        @else
+                                                            -
+                                                        @endif
+                                                    </div>
                                                 </ul>
                                                 <ul class="list-inline">
                                                     <li>พื้นที่บ้านเริ่มต้น:</li>
-                                                    <div style="text-indent: 30px;">{!! str_replace("\n","<br>", $catHome->home_area) !!}</div>
+                                                    <div style="text-indent: 30px;">
+                                                        @if($catHome->home_area != null && $catHome->home_area != "")
+                                                            {!! str_replace("\n","<br>", $catHome->home_area) !!}
+                                                        @else
+                                                            -
+                                                        @endif
+                                                    </div>
                                                 </ul>
 
                                                 <ul class="list-inline">
                                                     <li>การก่อสร้างตัวบ้าน:</li>
-                                                    <div style="text-indent: 30px;">{!! str_replace("\n","<br>", $catHome->home_material) !!}</div>
+                                                    <div style="text-indent: 30px;">
+                                                        @if($catHome->home_material != null && $catHome->home_material != "")
+                                                            {!! str_replace("\n","<br>", $catHome->home_material) !!}
+                                                        @else
+                                                            -
+                                                        @endif
+                                                    </div>
                                                 </ul>
                                                 <ul class="list-inline">
                                                     <li>สไตล์การออกแบบ:</li>
-                                                    <div style="text-indent: 30px;">{!! str_replace("\n","<br>", $catHome->home_style) !!}</div>
+                                                    <div style="text-indent: 30px;">
+                                                        @if($catHome->home_style != null && $catHome->home_style != "")
+                                                            {!! str_replace("\n","<br>", $catHome->home_style) !!}
+                                                        @else
+                                                            -
+                                                        @endif
+                                                    </div>
+                                                </ul>
+                                                <ul class="list-inline">
+                                                    <li>จำนวนลิฟต์โดยสาร:</li>
+                                                    <div style="text-indent: 30px;">
+                                                        @if($catHome->num_elev_person != null && $catHome->num_elev_person != "")
+                                                            {{ $catHome->num_elev_person }} ตัว
+                                                        @else
+                                                            - &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ตัว
+                                                        @endif
+                                                    </div>
+                                                </ul>
+                                                <ul class="list-inline">
+                                                    <li>จำนวนลิฟต์ขนส่ง:</li>
+                                                    <div style="text-indent: 30px;">
+                                                        @if($catHome->num_elev_object != null && $catHome->num_elev_object != "")
+                                                            {{ $catHome->num_elev_object }} ตัว
+                                                        @else
+                                                            - &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ตัว
+                                                        @endif
+                                                    </div>
+                                                </ul>
+                                                <ul class="list-inline">
+                                                    <li>อัตราส่วนของลิฟต์ : ยูนิตพักอาศัย:</li>
+                                                    <div style="text-indent: 30px;">
+                                                        @if($catHome->ratio_elev_per_unit != null && $catHome->ratio_elev_per_unit != "")
+                                                            {{ $catHome->ratio_elev_per_unit }}
+                                                        @else
+                                                            - &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                        @endif
+                                                    </div>
+                                                </ul>
+                                                <ul class="list-inline">
+                                                    <li>จำนวนที่จอดรถ:</li>
+                                                    <div style="text-indent: 30px;">
+                                                        @if($catHome->num_parking != null && $catHome->num_parking != "")
+                                                            {{ $catHome->num_parking }} คัน
+                                                        @else
+                                                            - &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; คัน
+                                                        @endif
+                                                    </div>
+                                                </ul>
+                                                <ul class="list-inline">
+                                                    <li>เปอร์เซ็นที่จอดรถ:</li>
+                                                    <div style="text-indent: 30px;">
+                                                        @if($catHome->percent_parking != null && $catHome->percent_parking != "")
+                                                            {{ $catHome->percent_parking }} เปอร์เซ็น
+                                                        @else
+                                                            - &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; เปอร์เซ็น
+                                                        @endif
+                                                    </div>
                                                 </ul>
                                                 <ul class="list-inline">
                                                     <li>โครงการผ่าน EIA:</li>
-                                                    <div style="text-indent: 30px;">@if($catHome->eia) ผ่าน @else ไม่ผ่าน @endif</div>
+                                                    <div style="text-indent: 30px;">@if($catHome->eia == null) - @elseif($catHome->eia == true) ผ่าน @else ไม่ผ่าน @endif</div>
                                                 </ul>
                                                 <ul class="list-inline">
                                                     <li>ช่วงราคาขาย:</li>
@@ -192,11 +288,15 @@
                                                 </ul>
                                                 <ul class="list-inline">
                                                     <li>เว็บไซต์โครงการ:</li>
-                                                    <div style="text-indent: 30px;">{{ $project->website }}</div>
+                                                    <div style="text-indent: 30px;">
+                                                        {{ ($project->website == null)? "-" : $project->website }}
+                                                    </div>
                                                 </ul>
                                                 <ul class="list-inline">
                                                     <li>Facebook:</li>
-                                                    <div style="text-indent: 30px;">{{ $project->facebook }}</div>
+                                                    <div style="text-indent: 30px;">
+                                                        {{ ($project->facebook == null)? "-" : $project->facebook }}
+                                                    </div>
                                                 </ul>
                                             </div>
                                             <ul class="list-inline" style="padding-top: 30px;">
@@ -277,11 +377,23 @@
                                             <div style="padding-left: 20px;">
                                                 <ul class="list-inline">
                                                     <li>กองทุนสำรอง:</li>
-                                                    <li>{{ $catHome->spare_price }} บ/ตร.ว.</li>
+                                                    <li>
+                                                        @if($catHome->spare_price != null && $catHome->spare_price != "")
+                                                            {{ \App\Models\AllFunction::getMoneyWithoutDecimal($catHome->spare_price) }} &nbsp;&nbsp;&nbsp; บ/ตร.ว.
+                                                        @else
+                                                            - &nbsp;&nbsp;&nbsp; บ/ตร.ว.
+                                                        @endif
+                                                    </li>
                                                 </ul>
                                                 <ul class="list-inline">
                                                     <li>ค่าส่วนกลาง:</li>
-                                                    <li>{{ $catHome->central_price }} บ/ตร.ว.</li>
+                                                    <li>
+                                                        @if($catHome->spare_price != null && $catHome->spare_price != "")
+                                                            {{ \App\Models\AllFunction::getMoneyWithoutDecimal($catHome->central_price) }} &nbsp;&nbsp;&nbsp; บ/ตร.ว.
+                                                        @else
+                                                            - &nbsp;&nbsp;&nbsp; บ/ตร.ว.
+                                                        @endif
+                                                    </li>
                                                 </ul>
                                             </div>
                                             <ul class="list-inline" style="padding-top: 30px;">
@@ -294,40 +406,44 @@
                                                 @endforeach
                                             </div>
                                             <div class="row" style="padding-left: 30px;">
-                                                <em>อื่นๆ: </em> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{ $project->facility_str }}
+                                                อื่นๆ: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                {{ ($project->facility_str == null || $project->facility_str == "")? "-" : $project->facility_str }}
                                             </div>
                                             <ul class="list-inline" style="padding-top: 30px;">
                                                 <li><strong>สถานที่ใกล้เคียง:</strong></li>
                                             </ul>
                                             <div class="row" style="padding-left: 30px;">
-                                                <em>สถานี BTS</em>
+                                                สถานี BTS: @if($bts == null || count($bts) == 0)
+                                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - <br> @endif
                                             </div>
                                             <div class="row" style="padding-left: 30px; padding-bottom: 10px;">
                                                 @foreach($bts as $item)
-                                                    <div class="col-md-6"><i class="fa fa-caret-right"></i> &nbsp;&nbsp;
+                                                    <div class="col-md-4"><i class="fa fa-caret-right"></i> &nbsp;&nbsp;
                                                         {{ \App\Models\Bts::getBtsName($item->bts_id) }} </div>
                                                 @endforeach
                                             </div>
                                             <div class="row" style="padding-left: 30px;">
-                                                <em>สถานี MRT</em>
+                                                สถานี MRT: @if($mrt == null || count($mrt) == 0)
+                                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - <br> @endif
                                             </div>
                                             <div class="row" style="padding-left: 30px; padding-bottom: 10px;">
                                                 @foreach($mrt as $item)
-                                                    <div class="col-md-6"><i class="fa fa-caret-right"></i> &nbsp;&nbsp;
+                                                    <div class="col-md-4"><i class="fa fa-caret-right"></i> &nbsp;&nbsp;
                                                         {{ \App\Models\Mrt::getMrtName($item->mrt_id) }} </div>
                                                 @endforeach
                                             </div>
                                             <div class="row" style="padding-left: 30px;">
-                                                <em>Airport Rail Link</em>
+                                                Airport Rail Link: @if($apl == null || count($apl) == 0)
+                                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - <br> @endif
                                             </div>
                                             <div class="row" style="padding-left: 30px; padding-bottom: 10px;">
                                                 @foreach($apl as $item)
-                                                    <div class="col-md-6"><i class="fa fa-caret-right"></i> &nbsp;&nbsp;
+                                                    <div class="col-md-4"><i class="fa fa-caret-right"></i> &nbsp;&nbsp;
                                                         {{ \App\Models\AirportRailLink::getAplinkName($item->apl_id) }} </div>
                                                 @endforeach
                                             </div>
                                             <div class="row" style="padding-left: 30px;">
-                                                <em>อื่นๆ: </em> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{ $project->nearby_str }}
+                                                อื่นๆ: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{ ($project->nearby_str == "")? "-" : $project->nearby_str }}
                                             </div>
                                         </div>
                                         <!-- Post Tags -->
