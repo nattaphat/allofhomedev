@@ -164,16 +164,16 @@
                                                                         switch($value)
                                                                         {
                                                                             case "1":
-                                                                                echo "<i class='fa fa-check-square-o'></i> บ้านเดี่ยว";
+                                                                                echo "<i class='fa fa-check-square-o'></i> บ้านเดี่ยว &nbsp;&nbsp;";
                                                                                 break;
                                                                             case "2":
-                                                                                echo "<i class='fa fa-check-square-o'></i> บ้านแฝด";
+                                                                                echo "<i class='fa fa-check-square-o'></i> บ้านแฝด &nbsp;&nbsp;";
                                                                                 break;
                                                                             case "3":
-                                                                                echo "<i class='fa fa-check-square-o'></i> ทาวน์โฮม";
+                                                                                echo "<i class='fa fa-check-square-o'></i> ทาวน์โฮม &nbsp;&nbsp;";
                                                                                 break;
                                                                             case "4":
-                                                                                echo "<i class='fa fa-check-square-o'></i> คอนโด";
+                                                                                echo "<i class='fa fa-check-square-o'></i> คอนโด &nbsp;&nbsp;";
                                                                                 break;
                                                                         }
                                                                     }
