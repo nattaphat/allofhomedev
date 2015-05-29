@@ -4,7 +4,11 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
+<<<<<<< HEAD
     "hash": "784e94d8a1e016d8f40d39577179eb7c",
+=======
+    "hash": "148ff492e7cbecf5de3059c9c99ab627",
+>>>>>>> 4dfb41273c1ceceb5375f443261a78eea47be31f
     "packages": [
         {
             "name": "appitventures/phpgmaps",

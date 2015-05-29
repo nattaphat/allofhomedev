@@ -86,7 +86,7 @@
 <!-- ======== @Region: body ======== -->
 @section('body')
     <body class="page page-index">
-    @include('layouts._partials.facebook_share')
+    {{-- @include('layouts._partials.facebook_share') --}}
     @show
     <a href="#content" class="sr-only">Skip to content</a>
 
