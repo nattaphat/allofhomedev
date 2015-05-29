@@ -149,7 +149,8 @@ return [
 		'App\Providers\ConfigServiceProvider',
 		'App\Providers\EventServiceProvider',
 		'App\Providers\RouteServiceProvider',
-        'Appitventures\Phpgmaps\PhpgmapsServiceProvider'
+        'Appitventures\Phpgmaps\PhpgmapsServiceProvider',
+        'Barryvdh\Elfinder\ElfinderServiceProvider'
 
 	],
 

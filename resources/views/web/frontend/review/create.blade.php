@@ -6,6 +6,10 @@
 
 @section('jshome')
 
+    <!-- elFinder -->
+    <link rel="stylesheet" type="text/css" media="screen" href={{ asset('js/lib/elfinder/css/elfinder.min.css') }}>
+    <link rel="stylesheet" type="text/css" media="screen" href={{ asset('js/lib/elfinder/css/theme.css') }}>
+
 @stop
 
 @section('jsbody')
@@ -13,6 +17,9 @@
     <!-- Tiny MCE -->
     <script src={{ asset('js/lib/tinymce/js/tinymce/tinymce.min.js') }}></script>
     <script src={{ asset('js/lib/tinymce/js/tinymce/themes/modern/theme.min.js') }}></script>
+
+    <!-- elFinder -->
+    <script type="text/javascript" src={{ asset('js/lib/elfinder/js/elfinder.min.js') }}></script>
 
     <script type="text/javascript">
         $(document).ready(function(){
@@ -83,8 +90,44 @@
 
             <!-- Tiny MCE -->
             tinymce.init({
-                selector: "textarea#other_detail"
+                selector: "textarea#other_detail",
+                theme: "modern",
+                //width: 600,
+                height: 500,
+                file_browser_callback : elFinderBrowser,
+                plugins: [
+                    "advlist autolink link image lists charmap print preview hr anchor pagebreak spellchecker",
+                    "searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking",
+                    "save table contextmenu directionality emoticons template paste textcolor"
+                ],
+                content_css: "css/content.css",
+                toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | l      ink image | print preview media fullpage | forecolor backcolor emoticons",
+                style_formats: [
+                    {title: 'Bold text', inline: 'b'},
+                    {title: 'Red text', inline: 'span', styles: {color: '#ff0000'}},
+                    {title: 'Red header', block: 'h1', styles: {color: '#ff0000'}},
+                    {title: 'Example 1', inline: 'span', classes: 'example1'},
+                    {title: 'Example 2', inline: 'span', classes: 'example2'},
+                    {title: 'Table styles'},
+                    {title: 'Table row 1', selector: 'tr', classes: 'tablerow1'}
+                ]
             });
+
+            <!-- elFinder -->
+            function elFinderBrowser (field_name, url, type, win) {
+                tinymce.activeEditor.windowManager.open({
+                    file: '<?= route('elfinder.tinymce4') ?>',// use an absolute path!
+                    title: 'AllOfHome\'s Files',
+                    width: 900,
+                    height: 450,
+                    resizable: 'yes'
+                }, {
+                    setUrl: function (url) {
+                        win.document.getElementById(field_name).value = url;
+                    }
+                });
+                return false;
+            }
 
             <!-- Select 2 Search Project -->
             $("#project_id").select2({
@@ -124,24 +167,9 @@
             }
 
             function formatRepoSelection (repo) {
-                var old_project_id = '{{ Input::old('project_id') }}';
-                var old_prj_name = '{{ Input::old('prj_name') }}';
-
-                if(repo.id == "" && old_project_id != null && old_project_id != '')
-                {
-                    $('#project_id').val(old_project_id);
-                    $('#prj_name').val(old_prj_name);
-                    return old_prj_name;
-                }
-                else
-                {
-                    if(repo.id != "")
-                    {
-                        $('#project_id').val(repo.id);
-                        $('#prj_name').val(repo.text);
-                    }
+                if (repo.loading)
                     return repo.text;
-                }
+                return "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + repo.text;
             }
 
             <!-- Select 2 Tags -->
@@ -206,122 +234,123 @@
 @section('content')
     <div class="container">
         <div class="row">
-            <div class="col-md-2">
+            <div class="col-md-3">
                 @include('layouts._partials.left_menu')
             </div>
             <div class="col-md-9">
-                <div class="panel panel-success">
-                    <div class="panel-body" style="padding: 0px 50px 30px 50px;">
+                <div class="panel panel-success" style="padding: 20px 0px 20px 20px;">
+                    <div class="panel-body">
                         <div class="row">
-                            <div class="block features">
-                                <h2 class="title-divider" >
-                                    <span style="color: #55a79a;">เพิ่มรีวิว บ้าน/ทาวน์โฮม/คอนโด</span>
-                                </h2>
-                            </div>
-                        </div>
-                        <div class="row">
-                            {!! Form::open(array('url'=>'review/create', 'method' => 'POST',
-                            'data-ajax' => 'true', 'class' => 'form-horizontal')) !!}
-
-                            <!-- ข้อมูลทั่วไป -->
-                            <div class="bs-callout bs-callout-success">
-                                ข้อมูลทั่วไป
-                            </div>
-                            <input type="hidden" id="user_id" name="user_id" value="{{ Auth::user()->id }}">
-                            <div class="form-group">
-                                {!! Form::label('title', 'หัวข้อ *', [
-                                'class' => 'col-md-2 control-label']) !!}
-                                <div class="col-md-9">
-                                    {!! Form::text('title', null,['class' => 'form-control']) !!}
+                            <div>
+                                <div class="block features">
+                                    <h2 class="title-divider" >
+                                        <span style="color: #55a79a;">เพิ่มรีวิว บ้าน/ทาวน์โฮม/คอนโด</span>
+                                    </h2>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                {!! Form::label('subtitle', 'เนื้อหาย่อ *', [
-                                'class' => 'col-md-2 control-label']) !!}
-                                <div class="col-md-9">
-                                    {!! Form::textarea('subtitle', null,[
-                                    'class' => 'form-control',
-                                    'rows' => 3
-                                    ]) !!}
+                            <div>
+                                {!! Form::open(array('url'=>'review/create', 'method' => 'POST',
+                                'data-ajax' => 'true', 'class' => 'form-horizontal')) !!}
+
+                                <!-- ข้อมูลทั่วไป -->
+                                <div class="bs-callout bs-callout-success">
+                                    ข้อมูลทั่วไป
                                 </div>
-                            </div>
-
-                            <!-- รายละเอียดรีวิว -->
-                            <div class="bs-callout bs-callout-success" style="margin-top: 30px;">
-                                รายละเอียดรีวิว
-                            </div>
-
-                            <div class="form-group" style="margin: 30px 20px 0px 30px;">
-                                <ul class="list-inline">
-                                    <li><strong>ร้านค้า/โครงการ *</strong></li>
-                                    <li style="width: 70%;">
-                                        {!! Form::select('project_id', [], null, [
-                                        'class' => 'form-control span3',
-                                        'id' => 'project_id'
+                                <input type="hidden" id="user_id" name="user_id" value="{{ Auth::user()->id }}">
+                                <div class="form-group">
+                                    {!! Form::label('title', 'หัวข้อ *', [
+                                    'class' => 'col-md-2 control-label']) !!}
+                                    <div class="col-md-9">
+                                        {!! Form::text('title', null,['class' => 'form-control']) !!}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    {!! Form::label('subtitle', 'เนื้อหาย่อ *', [
+                                    'class' => 'col-md-2 control-label']) !!}
+                                    <div class="col-md-9">
+                                        {!! Form::textarea('subtitle', null,[
+                                        'class' => 'form-control',
+                                        'rows' => 3
                                         ]) !!}
-                                    </li>
-                                </ul>
-                            </div>
-
-                            <div class="form-group" style="margin: 30px 20px 0px 30px;">
-                                <strong>ให้คะแนน *</strong>
-
-                            </div>
-
-                            <div class="form-group" style="margin: 30px 20px 0px 30px;">
-                                <strong>เนื้อหา *</strong>
-                                {!! Form::textarea('other_detail', null,[
-                                'class' => 'form-control',
-                                'id' => 'other_detail',
-                                'style' => 'width: 100%'
-                                ]) !!}
-                            </div>
-
-                            <div class="form-group" style="margin: 30px 20px 0px 30px;">
-                                <strong>รูปภาพ *</strong>
-                                <div id="dZUpload1" name="dZUpload1" class="dropzone uploadify"></div>
-                                <input type="hidden" id="pics" name="pics"
-                                       value="{{ Input::old('pics') }}">
-                            </div>
-
-                            <!-- รายละเอียดอื่นๆ -->
-                            <div class="bs-callout bs-callout-success" style="margin-top: 30px;">
-                                รายละเอียดอื่นๆ
-                            </div>
-                            <div class="form-group">
-                                {!! Form::label('video_url', 'วิดีโอ Youtube', [
-                                'class' => 'col-md-2 control-label']) !!}
-                                <div class="col-md-7">
-                                    {!! Form::text('video_url', null,['class' => 'form-control']) !!}
+                                    </div>
                                 </div>
-                            </div>
 
-                            <div class="form-group">
-                                {!! Form::label('tags', 'Tags', [
-                                'class' => 'col-md-2 control-label']) !!}
-                                <div class="col-md-7">
-                                    {!! Form::select('tags', [], null, [
+                                <!-- รายละเอียดรีวิว -->
+                                <div class="bs-callout bs-callout-success" style="margin-top: 30px;">
+                                    รายละเอียดรีวิว
+                                </div>
+
+                                <div class="form-group" style="margin: 30px 20px 0px 30px;">
+                                    <ul class="list-inline">
+                                        <li><strong>ร้านค้า/โครงการ *</strong></li>
+                                        <li style="width: 70%;">
+                                            {!! Form::select('project_id', [], null, [
+                                            'class' => 'form-control span3',
+                                            'id' => 'project_id'
+                                            ]) !!}
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <div class="form-group" style="margin: 30px 20px 0px 30px;">
+                                    <strong>ให้คะแนน *</strong>
+
+                                </div>
+
+                                <div class="form-group" style="margin: 30px 20px 0px 30px;">
+                                    <strong>เนื้อหา *</strong>
+                                    {!! Form::textarea('other_detail', null,[
                                     'class' => 'form-control',
-                                    'multiple' => 'multiple',
-                                    'id' => 'tags'
+                                    'id' => 'other_detail',
+                                    'style' => 'width: 100%'
                                     ]) !!}
                                 </div>
-                            </div>
 
-                            <div class="form-group" style="padding-top: 30px;">
-                                <div class="col-md-3"></div>
-                                <div class="col-md-6">
-                                    {!! Form::submit('บันทึก', [
-                                    'class'=>'btn btn-primary',
-                                    'onclick' => 'alert("Under Construction!!"); return false;'
-
-                                    ]) !!}
-                                    {!! link_to(URL::route('condo_index'), 'ยกเลิก', ['class' => 'btn btn-default']) !!}
+                                <div class="form-group" style="margin: 30px 20px 0px 30px;">
+                                    <strong>รูปภาพ *</strong>
+                                    <div id="dZUpload1" name="dZUpload1" class="dropzone uploadify"></div>
+                                    <input type="hidden" id="pics" name="pics"
+                                           value="{{ Input::old('pics') }}">
                                 </div>
+
+                                <!-- รายละเอียดอื่นๆ -->
+                                <div class="bs-callout bs-callout-success" style="margin-top: 30px;">
+                                    รายละเอียดอื่นๆ
+                                </div>
+                                <div class="form-group">
+                                    {!! Form::label('video_url', 'วิดีโอ Youtube', [
+                                    'class' => 'col-md-2 control-label']) !!}
+                                    <div class="col-md-7">
+                                        {!! Form::text('video_url', null,['class' => 'form-control']) !!}
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    {!! Form::label('tags', 'Tags', [
+                                    'class' => 'col-md-2 control-label']) !!}
+                                    <div class="col-md-7">
+                                        {!! Form::select('tags[]', [], null, [
+                                            'class' => 'form-control',
+                                            'multiple' => 'multiple',
+                                            'id' => 'tags'
+                                        ]) !!}
+                                    </div>
+                                </div>
+
+                                <div class="form-group" style="padding-top: 30px;">
+                                    <div class="col-md-3"></div>
+                                    <div class="col-md-6">
+                                        {!! Form::submit('บันทึก', [
+                                            'class'=>'btn btn-primary',
+                                            'onclick' => 'return alert("Under Construction!!"); return false;'
+                                        ]) !!}
+                                        {!! link_to(URL::route('condo_index'), 'ยกเลิก', ['class' => 'btn btn-default']) !!}
+                                    </div>
+                                </div>
+
+                                {!! Form::close() !!}
+
                             </div>
-
-                            {!! Form::close() !!}
-
                         </div>
                     </div>
                 </div>

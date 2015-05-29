@@ -480,6 +480,12 @@ Route::get('review/create', [
     'uses' => 'Frontend\ReviewCategoryController@create'
 ]);
 
+Route::post('review/create', [
+    'as' => 'post_review_create',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\ReviewCategoryController@post_create'
+]);
+
 Route::get('review/update', [
     'as' => 'review_update',
     'before' => 'frontend_auth',
@@ -623,7 +629,7 @@ Route::get('2hand/view', [
 ]);
 /*------------------------------------------------------------------------------*/
 
-/*-------------------------------- 2hand -------------------------------*/
+/*-------------------------------- Public Route -------------------------------*/
 Route::any('post/upload', [
     'as' => 'post_upload',
     'before' => 'frontend_auth',
