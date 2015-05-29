@@ -34,18 +34,6 @@
                              alt="Banner 2" class="img-responsive" />
                     </a>
                 </div>
-                <div style="padding-top: 20px;">
-                    <a href="#">
-                        <img src="http://www.itgadgeteer.com/wp-content/uploads/2014/06/ad_300x250.png"
-                             alt="Banner 1" class="img-responsive" />
-                    </a>
-                </div>
-                <div style="padding-top: 20px;">
-                    <a href="#">
-                        <img src="http://www.itgadgeteer.com/wp-content/uploads/2014/06/ad_300x250.png"
-                             alt="Banner 2" class="img-responsive" />
-                    </a>
-                </div>
             </div>
 
             {{--#### Content ####--}}
@@ -68,9 +56,9 @@
                             <div class="row blog-post">
                                 <div class="col-md-12">
                                     <div class="media-body">
-                                        <div class="sections"><span class="type">โครงการคอนโดใหม่</span> / <a href="#" class="tag">{{ $project->project_name }}</a></div>
-                                        <h3 class="title media-heading" style="padding-top: 10px;">
-                                            {{ $catHome->title }}
+                                        <div class="sections"><span class="type">{{ $catHome->category }}</span> / <a href="#" class="tag">{{ $project->project_name }}</a></div>
+                                        <h3 class="title media-heading" style="text-indent:-64px; margin-left:64px; padding-top: 10px;">
+                                            เรื่อง: &nbsp; {{ $catHome->title }}
                                         </h3>
                                         <div class="sections">
                                             <ul class="list-inline">
@@ -99,219 +87,276 @@
                                                 $iframe = \App\Models\AllFunction::convertYoutube($catHome->video_url);
                                                 ?>
                                                 @if($iframe != "")
-                                                    <div class="blog-media" style="padding-top: 30px; text-align: center;">
-                                                        {!! $iframe !!}
+                                                    <div class="row">
+                                                        <div class="col-md-1"></div>
+                                                        <div class="blog-media col-md-10" style="padding-top: 30px; text-align: center;">
+                                                            <div class="embed-responsive embed-responsive-16by9">
+                                                                {!! $iframe !!}
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-1"></div>
                                                     </div>
                                                 @endif
                                             @endif
                                             <p style="text-indent: 30px; padding-top: 10px;">{!! str_replace("\n","<br>", $catHome->subtitle) !!}</p>
 
-                                            <div class="row">
-                                                <div class="row pricing-stack pricing-table margin-top-lg">
-                                                    <div class="col-md-3 pricing-table-features hidden-xs hidden-sm">
-                                                        <div class="well" style="margin-top: 0px;">
-                                                            <ul class="pricing-table-features-list">
-                                                                <li class="title" style="
-                                                                    padding-top: 15px !important;
-                                                                    padding-bottom: 10px !important;
-                                                                    font-size: 18px !important;
-                                                                    height: 50px;">
-                                                                    คุณสมบัติ</li>
-                                                                <li>ชื่อโครงการ</li>
-                                                                <li>บริษัทเจ้าของโครงการ</li>
-                                                                <li>ที่ตั้งโครงการ</li>
-                                                                <li>ทำเล/ย่าน</li>
-                                                                <li>รูปแบบบ้าน</li>
-                                                                <li>พื้นที่โครงการ</li>
-                                                                <li>จำนวนอาคาร</li>
-                                                                <li>จำนวนยูนิต</li>
-                                                                <li>รูปแบบบ้าน : พื้นที่เริ่มต้น</li>
-                                                                <li>พื้นที่บ้านเริ่มต้น</li>
-                                                                <li>การก่อสร้างตัวบ้าน</li>
-                                                                <li>สไตล์การออกแบบ</li>
-                                                                <li>จำนวนลิฟต์โดยสาร</li>
-                                                                <li>จำนวนลิฟต์ขนส่ง</li>
-                                                                <li><span style="font-size: 13px;">อัตราส่วนลิฟต์ : ยูนิตพักอาศัย</span></li>
-                                                                <li>จำนวนที่จอดรถ</li>
-                                                                <li>เปอร์เซ็นที่จอดรถ</li>
-                                                                <li>โครงการผ่าน EIA</li>
-                                                                <li>ช่วงราคาขาย</li>
-                                                                <li>เริ่มก่อสร้าง</li>
-                                                                <li>คาดว่าแล้วเสร็จ</li>
-                                                                <li>เว็บไซต์โครงการ</li>
-                                                                <li>Facebook</li>
-                                                                <li class="price last">ราคาเริ่มต้น</li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-9 pricing-table-plan">
-                                                        <div class="well"  style="margin-top: 0px;">
-                                                            <ul class="pricing-table-features-list">
-                                                                <li class="title" style="
-                                                                    padding-top: 15px !important;
-                                                                    padding-bottom: 10px !important;
-                                                                    font-size: 18px !important;
-                                                                    height: 50px;">
-                                                                    รายละเอียด</li>
-                                                                <li style="text-align: left"><span class="visible-xs visible-sm">
-                                                                        ชื่อโครงการ: </span>{{ $project->project_name }}</li>
-                                                                <li style="text-align: left"><span class="visible-xs visible-sm">
-                                                                        บริษัทเจ้าของโครงการ: </span>{{ $project->project_company_owner }}</li>
-                                                                <li style="text-align: left"><span class="visible-xs visible-sm">
-                                                                        ที่ตั้งโครงการ: </span>{{ $project->getFullPrjAddress($project->id) }}</li>
-                                                                <li style="text-align: left"><span class="visible-xs visible-sm">
-                                                                        ทำเล/ย่าน: </span>{{ ($project->subarea_id == null)? "-" :
-                                                                        \App\Models\SubArea::find($project->subarea_id)->subarea_name  }}</li>
-                                                                <li style="text-align: left"><span class="visible-xs visible-sm">
-                                                                        รูปแบบบ้าน: </span><?php
-                                                                    $project_type = unserialize($catHome->project_type);
-                                                                    foreach($project_type as $key=>$value)
-                                                                    {
-                                                                        switch($value)
-                                                                        {
-                                                                            case "1":
-                                                                                echo "<i class='fa fa-check-square-o'></i> บ้านเดี่ยว";
-                                                                                break;
-                                                                            case "2":
-                                                                                echo "<i class='fa fa-check-square-o'></i> บ้านแฝด";
-                                                                                break;
-                                                                            case "3":
-                                                                                echo "<i class='fa fa-check-square-o'></i> ทาวน์โฮม";
-                                                                                break;
-                                                                            case "4":
-                                                                                echo "<i class='fa fa-check-square-o'></i> คอนโด";
-                                                                                break;
-                                                                        }
-                                                                    }
-                                                                    ?></li>
-                                                                <li style="text-align: left"><span class="visible-xs visible-sm">
-                                                                        พื้นที่โครงการ: </span>
-                                                                    @if($catHome->project_area != null && $catHome->project_area != "")
-                                                                        {{ $catHome->project_area }} ไร่
-                                                                    @else
-                                                                        - &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ไร่
-                                                                    @endif</li>
-                                                                <li style="text-align: left"><span class="visible-xs visible-sm">
-                                                                        จำนวนอาคาร: </span>
-                                                                    @if($catHome->num_building != null && $catHome->num_building != "")
-                                                                        {{ $catHome->num_building }} อาคาร
-                                                                    @else
-                                                                        - &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; อาคาร
-                                                                    @endif</li>
-                                                                <li style="text-align: left"><span class="visible-xs visible-sm">
-                                                                        จำนวนยูนิต: </span>
-                                                                    @if($catHome->num_unit != null && $catHome->num_unit != "")
-                                                                        {{ $catHome->num_unit }} ยูนิต
-                                                                    @else
-                                                                        - &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ยูนิต
-                                                                    @endif
-                                                                </li>
-                                                                <li style="text-align: left"><span class="visible-xs visible-sm">
-                                                                        รูปแบบบ้าน : พื้นที่เริ่มต้น: </span>
-                                                                    @if($catHome->home_type_per_area != null && $catHome->home_type_per_area != "")
-                                                                        {!! str_replace("\n","<br>", $catHome->home_type_per_area) !!}
-                                                                    @else
-                                                                        -
-                                                                    @endif
-                                                                </li>
-                                                                <li style="text-align: left"><span class="visible-xs visible-sm">
-                                                                        พื้นที่บ้านเริ่มต้น: </span>
-                                                                    @if($catHome->home_area != null && $catHome->home_area != "")
-                                                                        {!! str_replace("\n","<br>", $catHome->home_area) !!}
-                                                                    @else
-                                                                        -
-                                                                    @endif
-                                                                </li>
-                                                                <li style="text-align: left"><span class="visible-xs visible-sm">
-                                                                        การก่อสร้างตัวบ้าน: </span>
-                                                                    @if($catHome->home_material != null && $catHome->home_material != "")
-                                                                        {!! str_replace("\n","<br>", $catHome->home_material) !!}
-                                                                    @else
-                                                                        -
-                                                                    @endif
-                                                                </li>
-                                                                <li style="text-align: left"><span class="visible-xs visible-sm">
-                                                                        สไตล์การออกแบบ: </span>
-                                                                    @if($catHome->home_style != null && $catHome->home_style != "")
-                                                                        {!! str_replace("\n","<br>", $catHome->home_style) !!}
-                                                                    @else
-                                                                        -
-                                                                    @endif
-                                                                </li>
-                                                                <li style="text-align: left"><span class="visible-xs visible-sm">
-                                                                        จำนวนลิฟต์โดยสาร: </span>
-                                                                    @if($catHome->num_elev_person != null && $catHome->num_elev_person != "")
-                                                                        {{ $catHome->num_elev_person }} ตัว
-                                                                    @else
-                                                                        - &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ตัว
-                                                                    @endif
-                                                                </li>
-                                                                <li style="text-align: left"><span class="visible-xs visible-sm">
-                                                                        จำนวนลิฟต์ขนส่ง: </span>
-                                                                    @if($catHome->num_elev_object != null && $catHome->num_elev_object != "")
-                                                                        {{ $catHome->num_elev_object }} ตัว
-                                                                    @else
-                                                                        - &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ตัว
-                                                                    @endif
-                                                                </li>
-                                                                <li style="text-align: left"><span class="visible-xs visible-sm">
-                                                                        อัตราส่วนของลิฟต์ : ยูนิตพักอาศัย: </span>
-                                                                    @if($catHome->ratio_elev_per_unit != null && $catHome->ratio_elev_per_unit != "")
-                                                                        {{ $catHome->ratio_elev_per_unit }}
-                                                                    @else
-                                                                        - &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                                    @endif
-                                                                </li>
-                                                                <li style="text-align: left"><span class="visible-xs visible-sm">
-                                                                        จำนวนที่จอดรถ: </span>
-                                                                    @if($catHome->num_parking != null && $catHome->num_parking != "")
-                                                                        {{ $catHome->num_parking }} คัน
-                                                                    @else
-                                                                        - &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; คัน
-                                                                    @endif
-                                                                </li>
-                                                                <li style="text-align: left"><span class="visible-xs visible-sm">
-                                                                        เปอร์เซ็นที่จอดรถ: </span>
-                                                                    @if($catHome->percent_parking != null && $catHome->percent_parking != "")
-                                                                        {{ $catHome->percent_parking }} เปอร์เซ็น
-                                                                    @else
-                                                                        - &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; เปอร์เซ็น
-                                                                    @endif
-                                                                </li>
-                                                                <li style="text-align: left"><span class="visible-xs visible-sm">
-                                                                        โครงการผ่าน EIA: </span>
-                                                                    @if($catHome->eia == null) - @elseif($catHome->eia == true) ผ่าน @else ไม่ผ่าน @endif
-                                                                </li>
-                                                                <li style="text-align: left"><span class="visible-xs visible-sm">
-                                                                        ช่วงราคาขาย: </span>
-                                                                    {{ \App\Models\AllFunction::getMoneyWithoutDecimal($catHome->sell_price_from) }} &nbsp;
-                                                                    ถึง &nbsp; {{ \App\Models\AllFunction::getMoneyWithoutDecimal($catHome->sell_price_to) }} &nbsp;&nbsp;&nbsp;บาท
-                                                                </li>
-                                                                <li style="text-align: left"><span class="visible-xs visible-sm">
-                                                                        เริ่มก่อสร้าง: </span>
-                                                                    {{ \App\Models\AllFunction::getDateThai($catHome->construct_date) }}
-                                                                </li>
-                                                                <li style="text-align: left"><span class="visible-xs visible-sm">
-                                                                        คาดว่าแล้วเสร็จ: </span>
-                                                                    {{ \App\Models\AllFunction::getDateThai($catHome->finish_date) }}
-                                                                </li>
-                                                                <li style="text-align: left"><span class="visible-xs visible-sm">
-                                                                        เว็บไซต์โครงการ: </span>
-                                                                    {{ ($project->website == null)? "-" : $project->website }}
-                                                                </li>
-                                                                <li style="text-align: left"><span class="visible-xs visible-sm">
-                                                                        Facebook: </span>
-                                                                    {{ ($project->facebook == null)? "-" : $project->facebook }}
-                                                                </li>
-
-                                                                <li class="price">
-                                                                    <span class="digits">
-                                                                        {{ \App\Models\AllFunction::getMoneyWithoutDecimal($catHome->sell_price) }}
-                                                                    </span> &nbsp; บาท</li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                            <div class="blog-media" style="margin: 30px 0px 10px 0px; border-top: 1px solid #E6E6E6; border-right: 1px solid #E6E6E6; border-bottom: 1px solid #E6E6E6;">
+                                                <table class="table table-striped table-responsive" style="margin-bottom: 0px;">
+                                                    <thead>
+                                                    <tr style="
+                                                        vertical-align: middle;
+                                                        padding-top: 15px !important;
+                                                        padding-bottom: 10px !important;
+                                                        font-size: 18px !important;
+                                                        height: 40px;">
+                                                        <td class="col-md-3 text-center" style="border-right: 1px solid #dddddd;">คุณสมบัติ</td>
+                                                        <td class="text-center">รายละเอียด</td>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    <tr>
+                                                        <td class="text-right" style="border-right: 1px solid #dddddd; padding: 10px 20px 10px 0px;">
+                                                            ชื่อโครงการ</td>
+                                                        <td style="border-right: 1px solid #dddddd; padding: 10px 20px 10px 20px;">
+                                                            {{ $project->project_name }}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="text-right" style="border-right: 1px solid #dddddd; padding: 10px 20px 10px 0px;">
+                                                            บริษัทเจ้าของโครงการ</td>
+                                                        <td style="border-right: 1px solid #dddddd; padding: 10px 20px 10px 20px;">
+                                                            {{ $project->project_company_owner }}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="text-right" style="border-right: 1px solid #dddddd; padding: 10px 20px 10px 0px;">
+                                                            ที่ตั้งโครงการ</td>
+                                                        <td style="border-right: 1px solid #dddddd; padding: 10px 20px 10px 20px;">
+                                                            {{ $project->getFullPrjAddress($project->id) }}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="text-right" style="border-right: 1px solid #dddddd; padding: 10px 20px 10px 0px;">
+                                                            ทำเล/ย่าน</td>
+                                                        <td style="border-right: 1px solid #dddddd; padding: 10px 20px 10px 20px;">
+                                                            {{ ($project->subarea_id == null)? "-" :
+                                                                        \App\Models\SubArea::find($project->subarea_id)->subarea_name  }}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="text-right" style="border-right: 1px solid #dddddd; padding: 10px 20px 10px 0px;">
+                                                            รูปแบบบ้าน</td>
+                                                        <td style="border-right: 1px solid #dddddd; padding: 10px 20px 10px 20px;">
+                                                            <?php
+                                                            $project_type = unserialize($catHome->project_type);
+                                                            foreach($project_type as $key=>$value)
+                                                            {
+                                                                switch($value)
+                                                                {
+                                                                    case "1":
+                                                                        echo "<i class='fa fa-check-square-o'></i> บ้านเดี่ยว";
+                                                                        break;
+                                                                    case "2":
+                                                                        echo "<i class='fa fa-check-square-o'></i> บ้านแฝด";
+                                                                        break;
+                                                                    case "3":
+                                                                        echo "<i class='fa fa-check-square-o'></i> ทาวน์โฮม";
+                                                                        break;
+                                                                    case "4":
+                                                                        echo "<i class='fa fa-check-square-o'></i> คอนโด";
+                                                                        break;
+                                                                }
+                                                            }
+                                                            ?>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="text-right" style="border-right: 1px solid #dddddd; padding: 10px 20px 10px 0px;">
+                                                            พื้นที่โครงการ</td>
+                                                        <td style="border-right: 1px solid #dddddd; padding: 10px 20px 10px 20px;">
+                                                            @if($catHome->project_area != null && $catHome->project_area != "")
+                                                                {{ $catHome->project_area }} ไร่
+                                                            @else
+                                                                -
+                                                            @endif
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="text-right" style="border-right: 1px solid #dddddd; padding: 10px 20px 10px 0px;">
+                                                            จำนวนอาคาร</td>
+                                                        <td style="border-right: 1px solid #dddddd; padding: 10px 20px 10px 20px;">
+                                                            @if($catHome->num_building != null && $catHome->num_building != "")
+                                                                {{ $catHome->num_building }} อาคาร
+                                                            @else
+                                                                -
+                                                            @endif
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="text-right" style="border-right: 1px solid #dddddd; padding: 10px 20px 10px 0px;">
+                                                            จำนวนยูนิต</td>
+                                                        <td style="border-right: 1px solid #dddddd; padding: 10px 20px 10px 20px;">
+                                                            @if($catHome->num_unit != null && $catHome->num_unit != "")
+                                                                {{ $catHome->num_unit }} ยูนิต
+                                                            @else
+                                                                -
+                                                            @endif
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="text-right" style="border-right: 1px solid #dddddd; padding: 10px 20px 10px 0px;">
+                                                            รูปแบบบ้าน : พื้นที่เริ่มต้น</td>
+                                                        <td style="border-right: 1px solid #dddddd; padding: 10px 20px 10px 20px;">
+                                                            @if($catHome->home_type_per_area != null && $catHome->home_type_per_area != "")
+                                                                {!! str_replace("\n","<br>", $catHome->home_type_per_area) !!}
+                                                            @else
+                                                                -
+                                                            @endif
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="text-right" style="border-right: 1px solid #dddddd; padding: 10px 20px 10px 0px;">
+                                                            พื้นที่บ้านเริ่มต้น</td>
+                                                        <td style="border-right: 1px solid #dddddd; padding: 10px 20px 10px 20px;">
+                                                            @if($catHome->home_area != null && $catHome->home_area != "")
+                                                                {!! str_replace("\n","<br>", $catHome->home_area) !!}
+                                                            @else
+                                                                -
+                                                            @endif
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="text-right" style="border-right: 1px solid #dddddd; padding: 10px 20px 10px 0px;">
+                                                            การก่อสร้างตัวบ้าน</td>
+                                                        <td style="border-right: 1px solid #dddddd; padding: 10px 20px 10px 20px;">
+                                                            @if($catHome->home_material != null && $catHome->home_material != "")
+                                                                {!! str_replace("\n","<br>", $catHome->home_material) !!}
+                                                            @else
+                                                                -
+                                                            @endif
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="text-right" style="border-right: 1px solid #dddddd; padding: 10px 20px 10px 0px;">
+                                                            สไตล์การออกแบบ</td>
+                                                        <td style="border-right: 1px solid #dddddd; padding: 10px 20px 10px 20px;">
+                                                            @if($catHome->home_style != null && $catHome->home_style != "")
+                                                                {!! str_replace("\n","<br>", $catHome->home_style) !!}
+                                                            @else
+                                                                -
+                                                            @endif
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="text-right" style="border-right: 1px solid #dddddd; padding: 10px 20px 10px 0px;">
+                                                            จำนวนลิฟต์โดยสาร</td>
+                                                        <td style="border-right: 1px solid #dddddd; padding: 10px 20px 10px 20px;">
+                                                            @if($catHome->num_elev_person != null && $catHome->num_elev_person != "")
+                                                                {{ $catHome->num_elev_person }} ตัว
+                                                            @else
+                                                                -
+                                                            @endif
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="text-right" style="border-right: 1px solid #dddddd; padding: 10px 20px 10px 0px;">
+                                                            จำนวนลิฟต์ขนส่ง</td>
+                                                        <td style="border-right: 1px solid #dddddd; padding: 10px 20px 10px 20px;">
+                                                            @if($catHome->num_elev_object != null && $catHome->num_elev_object != "")
+                                                                {{ $catHome->num_elev_object }} ตัว
+                                                            @else
+                                                                -
+                                                            @endif
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="text-right" style="border-right: 1px solid #dddddd; padding: 10px 20px 10px 0px;">
+                                                            อัตราส่วนลิฟต์ : ยูนิตพักอาศัย</td>
+                                                        <td style="border-right: 1px solid #dddddd; padding: 10px 20px 10px 20px;">
+                                                            @if($catHome->ratio_elev_per_unit != null && $catHome->ratio_elev_per_unit != "")
+                                                                {{ $catHome->ratio_elev_per_unit }}
+                                                            @else
+                                                                -
+                                                            @endif
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="text-right" style="border-right: 1px solid #dddddd; padding: 10px 20px 10px 0px;">
+                                                            จำนวนที่จอดรถ</td>
+                                                        <td style="border-right: 1px solid #dddddd; padding: 10px 20px 10px 20px;">
+                                                            @if($catHome->num_parking != null && $catHome->num_parking != "")
+                                                                {{ $catHome->num_parking }} คัน
+                                                            @else
+                                                                -
+                                                            @endif
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="text-right" style="border-right: 1px solid #dddddd; padding: 10px 20px 10px 0px;">
+                                                            เปอร์เซ็นที่จอดรถ</td>
+                                                        <td style="border-right: 1px solid #dddddd; padding: 10px 20px 10px 20px;">
+                                                            @if($catHome->percent_parking != null && $catHome->percent_parking != "")
+                                                                {{ $catHome->percent_parking }} เปอร์เซ็น
+                                                            @else
+                                                                -
+                                                            @endif
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="text-right" style="border-right: 1px solid #dddddd; padding: 10px 20px 10px 0px;">
+                                                            โครงการผ่าน EIA</td>
+                                                        <td style="border-right: 1px solid #dddddd; padding: 10px 20px 10px 20px;">
+                                                            @if($catHome->eia == null) - @elseif($catHome->eia == true) ผ่าน @else ไม่ผ่าน @endif
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="text-right" style="border-right: 1px solid #dddddd; padding: 10px 20px 10px 0px;">
+                                                            ช่วงราคาขาย</td>
+                                                        <td style="border-right: 1px solid #dddddd; padding: 10px 20px 10px 20px;">
+                                                            {{ \App\Models\AllFunction::getMoneyWithoutDecimal($catHome->sell_price_from) }} &nbsp;
+                                                            ถึง &nbsp; {{ \App\Models\AllFunction::getMoneyWithoutDecimal($catHome->sell_price_to) }} &nbsp;&nbsp;&nbsp;บาท
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="text-right" style="border-right: 1px solid #dddddd; padding: 10px 20px 10px 0px;">
+                                                            เริ่มก่อสร้าง</td>
+                                                        <td style="border-right: 1px solid #dddddd; padding: 10px 20px 10px 20px;">
+                                                            {{ \App\Models\AllFunction::getDateThai($catHome->construct_date) }}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="text-right" style="border-right: 1px solid #dddddd; padding: 10px 20px 10px 0px;">
+                                                            คาดว่าแล้วเสร็จ</td>
+                                                        <td style="border-right: 1px solid #dddddd; padding: 10px 20px 10px 20px;">
+                                                            {{ \App\Models\AllFunction::getDateThai($catHome->finish_date) }}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="text-right" style="border-right: 1px solid #dddddd; padding: 10px 20px 10px 0px;">
+                                                            เว็บไซต์โครงการ</td>
+                                                        <td style="border-right: 1px solid #dddddd; padding: 10px 20px 10px 20px;">
+                                                            {{ ($project->website == null)? "-" : $project->website }}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="text-right" style="border-right: 1px solid #dddddd; padding: 10px 20px 10px 0px;">
+                                                            Facebook</td>
+                                                        <td style="border-right: 1px solid #dddddd; padding: 10px 20px 10px 20px;">
+                                                            {{ ($project->facebook == null)? "-" : $project->facebook }}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="text-right" style="border-right: 1px solid #dddddd; padding: 10px 20px 10px 0px;">
+                                                            <span style="color: #55a79a; font-size:22px;">ราคาเริ่มต้น</span>
+                                                        </td>
+                                                        <td style="border-right: 1px solid #dddddd; padding: 10px 20px 10px 20px; vertical-align: bottom;">
+                                                            <span style="color: #55a79a; font-size:22px;">
+                                                                {{ \App\Models\AllFunction::getMoneyWithoutDecimal($catHome->sell_price) }}
+                                                            </span> &nbsp;<span style="color: #55a79a;"> บาท </span>
+                                                        </td>
+                                                    </tr>
+                                                    </tbody>
+                                                </table>
                                             </div>
 
                                             <ul class="list-inline" style="padding-top: 30px;">
