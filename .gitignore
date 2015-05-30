@@ -52,6 +52,7 @@
 /public/js/lib/jQuery-Mask-Plugin-master/*
 /public/js/lib/tinymce
 /public/js/lib/tinymce/*
+/public/packages/*
 /web
 _ide_helper.php
 composer.phar
