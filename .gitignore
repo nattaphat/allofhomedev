@@ -52,6 +52,8 @@
 /public/js/lib/jQuery-Mask-Plugin-master/*
 /public/js/lib/tinymce
 /public/js/lib/tinymce/*
+/public/js/lib/starrr
+/public/js/lib/starrr/*
 /public/packages/*
 /web
 _ide_helper.php
@@ -64,3 +66,4 @@ auth.json
 .idea
 composer.lock
 /public/uploads/*
+/public/files/*

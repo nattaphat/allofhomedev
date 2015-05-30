@@ -7,8 +7,11 @@
 @section('jshome')
 
     <!-- elFinder -->
-    <link rel="stylesheet" type="text/css" media="screen" href={{ asset('js/lib/elfinder/css/elfinder.min.css') }}>
-    <link rel="stylesheet" type="text/css" media="screen" href={{ asset('js/lib/elfinder/css/theme.css') }}>
+    <link rel="stylesheet" type="text/css" media="screen" href={{ asset('packages/barryvdh/elfinder/css/elfinder.min.css') }}>
+    <link rel="stylesheet" type="text/css" media="screen" href={{ asset('packages/barryvdh/elfinder/css/theme.css') }}>
+
+    <!-- Starrr -->
+    <link rel="stylesheet" type="text/css" media="screen" href={{ asset('js/lib/starrr/starrr.min.css') }}>
 
 @stop
 
@@ -19,7 +22,10 @@
     <script src={{ asset('js/lib/tinymce/js/tinymce/themes/modern/theme.min.js') }}></script>
 
     <!-- elFinder -->
-    <script type="text/javascript" src={{ asset('js/lib/elfinder/js/elfinder.min.js') }}></script>
+    <script type="text/javascript" src={{ asset('packages/barryvdh/elfinder/js/elfinder.min.js') }}></script>
+
+    <!-- Starrr -->
+    <script type="text/javascript" src={{ asset('js/lib/starrr/starrr.min.js') }}></script>
 
     <script type="text/javascript">
         $(document).ready(function(){
@@ -227,6 +233,13 @@
                             }
                         }
                     });
+
+            <!-- Starrr Rating -->
+            $('.starrr').on('starrr:change', function(e, value){
+                debugger;
+                //alert('new rating is ' + e);
+            });
+
         });
     </script>
 @stop
@@ -293,8 +306,15 @@
                                 </div>
 
                                 <div class="form-group" style="margin: 30px 20px 0px 30px;">
-                                    <strong>ให้คะแนน *</strong>
-
+                                    <div class="col-md-12" style="padding-left: 0px;"><strong>ให้คะแนน *</strong></div>
+                                    <div class="col-md-6">ด้านการให้บริการของพนักงาน</div>
+                                    <div class="col-md-6"><div class='starrr' id="rating_1" name="rating_1"></div></div>
+                                    <div class="col-md-6">ด้านคุณภาพสินค้า / บริการ</div>
+                                    <div class="col-md-6"><div class='starrr' id="rating_2" name="rating_2"></div></div>
+                                    <div class="col-md-6">ด้านความเหมาะสมของราคา</div>
+                                    <div class="col-md-6"><div class='starrr' id="rating_3" name="rating_3"></div></div>
+                                    <div class="col-md-6">ด้านความสะดวกในการเดินทาง</div>
+                                    <div class="col-md-6"><div class='starrr' id="rating_4" name="rating_4"></div></div>
                                 </div>
 
                                 <div class="form-group" style="margin: 30px 20px 0px 30px;">
@@ -342,7 +362,7 @@
                                     <div class="col-md-6">
                                         {!! Form::submit('บันทึก', [
                                             'class'=>'btn btn-primary',
-                                            'onclick' => 'return alert("Under Construction!!"); return false;'
+                                            'onclick' => 'alert("Under Construction!!"); return false;'
                                         ]) !!}
                                         {!! link_to(URL::route('condo_index'), 'ยกเลิก', ['class' => 'btn btn-default']) !!}
                                     </div>

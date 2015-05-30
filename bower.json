@@ -32,6 +32,7 @@
     "raphael": "~2.1.4",
     "morris.js": "~0.5.1",
     "select2-dist": "~3.5.2",
-    "dropzone": "~4.0.1"
+    "dropzone": "~4.0.1",
+    "starrr": "~0.2.0"
   }
 }
