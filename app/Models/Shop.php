@@ -13,9 +13,10 @@ class Shop extends Model {
         return $this->belongsTo("App\User");
     }
 
+    // Morph
     public function catReview()
     {
-        return $this->hasMany('App\Models\CatReview');
+        return $this->morphMany('App\Models\CatReview', 'reviewable');
     }
 
 }

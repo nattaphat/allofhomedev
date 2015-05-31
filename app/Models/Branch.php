@@ -13,9 +13,10 @@ class Branch extends Model {
         return $this->belongsTo("App\Models\Tambon", 'provid, amphid, tambid');
     }
 
+    // Morph
     public function catReview()
     {
-        return $this->hasMany('App\Models\CatReview');
+        return $this->morphMany('App\Models\CatReview', 'reviewable');
     }
 
 }

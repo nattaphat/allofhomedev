@@ -15,36 +15,30 @@ class CatReview extends Model {
         return $this->belongsTo("App\User");
     }
 
-    public function project()
+    public function tagSub()
     {
-        return $this->belongsTo('App\Models\Project');
+        return $this->belongsToMany('App\Models\TagSub', 'tag', 'cat_home_id', 'tag_sub_id' );
     }
 
-    public function shop()
+    // Morph
+    public function reviewable()
     {
-        return $this->belongsTo('App\Models\Shop');
+        return $this->morphTo();
     }
 
-    public function branch()
+    public function tag()
     {
-        return $this->belongsTo('App\Models\Branch');
-    }
-
-
-
-    public function comment()
-    {
-        return $this->hasMany('App\Models\Comment');
+        return $this->morphMany('App\Models\Tag', 'tagable');
     }
 
     public function picture()
     {
-        return $this->hasMany('App\Models\Picture');
+        return $this->morphMany('App\Models\Picture', 'pictureable');
     }
 
-    public function tagSub()
+    public function comment()
     {
-        return $this->belongsToMany('App\Models\TagSub', 'tag', 'cat_home_id', 'tag_sub_id' );
+        return $this->morphMany('App\Models\Comment', 'commentable');
     }
 
 }

@@ -698,6 +698,12 @@ Route::any('project/get_project', [
     'uses' => 'Frontend\ProjectCategoryController@get_project'
 ]);
 
+Route::any('project/get_shop_project', [
+    'as' => 'project_get_shop_project',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\ProjectCategoryController@get_shop_project'
+]);
+
 Route::any('project/get_latlong', [
     'as' => 'project_get_latlong',
     'before' => 'frontend_auth',

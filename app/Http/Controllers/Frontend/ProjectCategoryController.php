@@ -337,7 +337,7 @@ class ProjectCategoryController extends Controller {
 
     public function get_project()
     {
-        $search_char = Request::get('term');
+        $search_char = strtolower(Request::get('term'));
 
         $project = DB::table('project')
             ->join('geo_tambon', function ($join){
@@ -355,10 +355,44 @@ class ProjectCategoryController extends Controller {
             ->select(DB::raw('project.id,project.project_name || \' - \' || geo_tambon.name
                 || \' \' || geo_amphoe.name || \' \' || geo_province.name as text,
                 project.lat, project.long'))
-            ->whereRaw('project.project_name like \'%'.$search_char.'%\' or
-                geo_tambon.name like \'%'.$search_char.'%\' or
-                geo_amphoe.name like \'%'.$search_char.'%\' or
-                geo_province.name like \'%'.$search_char.'%\'
+            ->whereRaw('lower(project.project_name) like \'%'.$search_char.'%\' or
+                lower(geo_tambon.name) like \'%'.$search_char.'%\' or
+                lower(geo_amphoe.name) like \'%'.$search_char.'%\' or
+                lower(geo_province.name) like \'%'.$search_char.'%\'
+                ')
+            ->orderBy('project.project_name')
+            ->orderBy('geo_tambon.name')
+            ->orderBy('geo_amphoe.name')
+            ->orderBy('geo_province.name')
+            ->get();
+
+        return json_encode($project);
+    }
+
+    public function get_shop_project()
+    {
+        $search_char = strtolower(Request::get('term'));
+
+        $project = DB::table('project')
+            ->join('geo_tambon', function ($join){
+                $join->on( 'project.tambid', '=', 'geo_tambon.tambid');
+                $join->on( 'project.amphid', '=', 'geo_tambon.amphid');
+                $join->on( 'project.provid', '=', 'geo_tambon.provid');
+            })
+            ->join('geo_amphoe', function ($join){
+                $join->on( 'project.amphid', '=', 'geo_amphoe.amphid');
+                $join->on( 'project.provid', '=', 'geo_amphoe.provid');
+            })
+            ->join('geo_province', function ($join){
+                $join->on( 'project.provid', '=', 'geo_province.provid');
+            })
+            ->select(DB::raw('project.id,project.project_name || \' - \' || geo_tambon.name
+                || \' \' || geo_amphoe.name || \' \' || geo_province.name as text,
+                project.lat, project.long, \'project\' as type'))
+            ->whereRaw('lower(project.project_name) like \'%'.$search_char.'%\' or
+                lower(geo_tambon.name) like \'%'.$search_char.'%\' or
+                lower(geo_amphoe.name) like \'%'.$search_char.'%\' or
+                lower(geo_province.name) like \'%'.$search_char.'%\'
                 ')
             ->orderBy('project.project_name')
             ->orderBy('geo_tambon.name')
