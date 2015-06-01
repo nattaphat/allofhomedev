@@ -492,11 +492,12 @@ Route::get('review/update', [
     'uses' => 'Frontend\ReviewCategoryController@update'
 ]);
 
-Route::get('review/view', [
+Route::get('review/view/{id}', [
     'as' => 'review_view',
     'before' => 'frontend_auth',
     'uses' => 'Frontend\ReviewCategoryController@view'
 ]);
+
 /*------------------------------------------------------------------------------*/
 
 /*-------------------------------- Idea -------------------------------*/

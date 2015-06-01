@@ -33,6 +33,7 @@
     "morris.js": "~0.5.1",
     "select2-dist": "~3.5.2",
     "dropzone": "~4.0.1",
-    "starrr": "~0.2.0"
+    "starrr": "~0.2.0",
+    "bootstrap-star-rating" : "~3.5.2"
   }
 }

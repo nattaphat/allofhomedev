@@ -178,17 +178,17 @@
                 if (repo.loading == true)
                     return repo.text;
 
+                debugger;
+
                 var old_project_id = '{{ Input::old('project_id') }}';
                 var old_project_name = '{{ Input::old('project_name') }}';
                 var old_type = '{{ Input::old('type') }}';
 
                 // Postback
-                if(repo.id == "" && old_project_name != null && old_project_name != '')
+                if(repo.id == old_project_id && old_project_name != null && old_project_name != '')
                 {
-                    debugger;
-
-                    $('#project_id').val(old_project_id);
                     $('#project_name').val(old_project_name);
+                    $('#type').val(old_type);
 
                     setVisible(old_type);
 
@@ -434,10 +434,15 @@
                                     {!! Form::label('project_name', 'ร้านค้า/โครงการ *', [
                                         'class' => 'col-md-2 control-label']) !!}
                                     <div class="col-md-9">
-                                        {!! Form::select('project_id', [], null, [
-                                            'class' => 'form-control',
-                                            'id' => 'project_id'
-                                        ]) !!}
+                                        {{--{!! Form::select('project_id', [], null, [--}}
+                                            {{--'class' => 'form-control',--}}
+                                            {{--'id' => 'project_id'--}}
+                                        {{--]) !!}--}}
+                                        <select class="form-control" id="project_id" name="project_id">
+                                            @if(Input::old('project_id') != null)
+                                                <option value="{{ Input::old('project_id') }}" selected>{{ App\Models\Project::getFullPrjAddress(Input::old('project_id')) }}</option>
+                                            @endif
+                                        </select>
                                         {!! Form::hidden('type', null, ['id' => 'type']) !!}
                                         {!! Form::hidden('project_name', null, ['id' => 'project_name']) !!}
                                         <p class="help-block">

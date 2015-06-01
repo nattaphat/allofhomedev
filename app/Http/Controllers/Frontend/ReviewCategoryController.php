@@ -18,7 +18,11 @@ class ReviewCategoryController extends Controller {
 
     public function index()
     {
-        return view('web.frontend.review.index');
+        $catReview = CatReview::orderBy('created_at', 'desc')
+            ->paginate(10);
+
+        return view('web.frontend.review.index')
+            ->with('catReview', $catReview);
     }
 
     public function create()
@@ -37,7 +41,7 @@ class ReviewCategoryController extends Controller {
             'type' => 'required',
             'title' => 'required|max:255',
             'subtitle' => 'required|max:500',
-            'other_detail' => 'required|max:4000',
+            'other_detail' => 'required',
             'pics' => 'required'
         ];
 
@@ -136,8 +140,35 @@ class ReviewCategoryController extends Controller {
         return view('web.frontend.review.update');
     }
 
-    public function view($id = 0)
+    public function view($id)
     {
-        return view('web.frontend.review.view');
+        $catReview = CatReview::find($id);
+        $tag = $catReview->tag()->get();
+        $pic = $catReview->picture()->get();
+        $project_name = "";
+        $type = "";
+
+        $type = $catReview->reviewable_type;
+        if ($type == "App\\Models\\Project")
+        {
+            $project = Project::find($catReview->reviewable_id);
+            $project_name = $project->project_name;
+            $type = "project";
+        } else if ($type == "App\\Models\\Shop")
+        {
+            $shop = Shop::find($catReview->reviewable_id);
+            $type = "shop";
+        } else
+        {
+            $branch = Branch::find($catReview->reviewable_id);
+            $type = "branch";
+        }
+
+        return view('web.frontend.review.view')
+            ->with('catReview', $catReview)
+            ->with('tag', $tag)
+            ->with('pic', $pic)
+            ->with('project_name', $project_name)
+            ->with('type', $type);
     }
 }

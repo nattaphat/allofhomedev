@@ -8,6 +8,16 @@ class Picture extends Model {
     protected $primaryKey = 'id';
     public $timestamps = false;
 
+
+    public static function getUrlPicture($id, $model)
+    {
+        $picture = Picture::where('pictureable_type', '=', $model)
+            ->where('pictureable_type','=', $id)
+            ->get();
+        return $picture;
+    }
+
+
     public function catHome()
     {
         return $this->belongsTo("App\Models\CatHome");
