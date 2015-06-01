@@ -55,6 +55,8 @@
 /public/js/lib/starrr
 /public/js/lib/starrr/*
 /public/packages/*
+/public/js/lib/bootstrap-star-rating
+/public/js/lib/bootstrap-star-rating/*
 /web
 _ide_helper.php
 composer.phar
