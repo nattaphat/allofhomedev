@@ -1,5 +1,9 @@
 <?php namespace App\Http\Controllers\Frontend;
 
+use App\Models\CatHome;
+use App\Models\CatHomePic;
+use App\Models\CatHomePromotion;
+use App\Models\Picture;
 use App\Models\ProjectAirportLink;
 use App\Models\ProjectBts;
 use App\Models\ProjectFacility;
@@ -26,14 +30,17 @@ use App\Models\Mrt;
 use App\Models\AirportRailLink;
 use App\Models\Attachment;
 use App\User;
+use App\Models\Promotion;
+use JsValidator;
 
 class ProjectCategoryController extends Controller {
 
     public function index()
     {
-        $projects = Project::all();
+        $catHome = CatHome::orderBy('created_at','desc')->get();
+
         return view('web.frontend.project.index')
-            ->with('projects',$projects);
+            ->with('catHome',$catHome);
     }
 
     public function create()
@@ -50,6 +57,8 @@ class ProjectCategoryController extends Controller {
         $bts = Bts::getBts();
         $mrt = Mrt::getMrt();
         $apl = AirportRailLink::getAirportRailLink();
+
+        $promotion = Promotion::orderBy('promotion_name')->get();
 
         $config =
             [
@@ -102,7 +111,8 @@ class ProjectCategoryController extends Controller {
             ->with('facility',$facility)
             ->with('bts',$bts)
             ->with('mrt', $mrt)
-            ->with('apl', $apl);
+            ->with('apl', $apl)
+            ->with('promotion', $promotion);
     }
 
     public function getSubArea()
@@ -131,117 +141,188 @@ class ProjectCategoryController extends Controller {
     {
         $input = Input::all();
 
-        $rules = [
-            'project_name' => 'required|unique:project,project_name,NULL,id,project_company_owner,'. Input::get('project_company_owner'),
-            'project_company_owner' => 'required|unique:project,project_company_owner,NULL,id,project_name,'. Input::get('project_name'),
-            'file' => 'required',
-            'lat' => 'required',
-            'long' => 'required',
-            'map_url' => 'required',
-            'add_street' => 'required',
-            'tambid' => 'required',
-            'amphid' => 'required',
-            'provid' => 'required'
-        ];
+//        dd($input);
 
-        $messages = [
-            'required' => 'This field is required.',
-            'unique' => 'This field has already been added.'
-        ];
+        $f = explode("@@@", $input['project_owner_logo']);
+        $attachment = Attachment::create([
+            'filename' => $f[0], 'path' => $f[3], 'filesize' => $f[2], 'filetype' => $f[1]
+        ]);
 
-        $validator = Validator::make(
-            $input,
-            $rules,
-            $messages
-        );
+        $construct_date_array = explode("/", $input['construct_date']);
+        $construct_date = $construct_date_array[2].'-'.$construct_date_array[1].'-'.$construct_date_array[0];
+        $finish_date_array = explode("/", $input['finish_date']);
+        $finish_date = $finish_date_array[2].'-'.$finish_date_array[1].'-'.$finish_date_array[0];
 
-        if ($validator->fails())
+        $provine = Provinces::find($input['provid']);
+        $region_id = $provine->region_id;
+
+        $catHome = new CatHome();
+        $catHome->user_id = intval($input['user_id']);
+        $catHome->title = $input['title'];
+        $catHome->subtitle = $input['subtitle'];
+        $catHome->for_cat = serialize($input['for_cat']);
+        $catHome->project_name = $input['project_name'];
+        $catHome->project_owner = $input['project_owner'];
+        $catHome->project_owner_logo = $attachment->id;
+        $catHome->telephone = $input['telephone'];
+        $catHome->email = $input['email'];
+        $catHome->website = $input['website'];
+        $catHome->facebook = $input['facebook'];
+        $catHome->line = $input['line'];
+        $catHome->region_id = $region_id;
+        $catHome->provid = $input['provid'];
+        $catHome->amphid = $input['amphid'];
+        $catHome->tambid = $input['tambid'];
+        $catHome->add_street = $input['add_street'];
+        $catHome->latitude = $input['latitude'];
+        $catHome->longitude = $input['longitude'];
+        $catHome->map_url = $input['map_url'];
+
+        if($input['area_id'] != "")
+            $catHome->area_id = $input['area_id'];
+        if($input['subarea_id'] != "")
+            $catHome->subarea_id = $input['subarea_id'];
+
+        $catHome->area_1 = $input['area_1'];
+        $catHome->area_2 = $input['area_2'];
+        $catHome->area_3 = $input['area_3'];
+        $catHome->num_building = $input['num_building'];
+        $catHome->num_unit = $input['num_unit'];
+        $catHome->num_elev_person = $input['num_elev_person'];
+        $catHome->num_elev_object = $input['num_elev_object'];
+        $catHome->ratio_elev = $input['ratio_elev'];
+        $catHome->num_parking = $input['num_parking'];
+        $catHome->percent_parking = $input['percent_parking'];
+        $catHome->home_type_per_area = $input['home_type_per_area'];
+        $catHome->home_area = $input['home_area'];
+        $catHome->sell_price = $input['sell_price'];
+        $catHome->sell_price_from = $input['sell_price_from'];
+        $catHome->sell_price_to = $input['sell_price_to'];
+        $catHome->sell_price_detail = $input['sell_price_detail'];
+        $catHome->home_material = $input['home_material'];
+        $catHome->home_style = $input['home_style'];
+        $catHome->construct_date = $construct_date;
+        $catHome->finish_date = $finish_date;
+        $catHome->video_url = $input['video_url'];
+        $catHome->review_status = $input['review_status'][0];
+        $catHome->status = $input['status'][0];
+        $catHome->spare_price = $input['spare_price'];
+        $catHome->central_price = $input['central_price'];
+        $catHome->promotion_str = $input['promotion_str'];
+        $catHome->facility_str = $input['facility_str'];
+        $catHome->nearby_str = $input['nearby_str'];
+        $catHome->vip = (Input::has('vip'))? true : false;
+        $catHome->num_view = 0;
+        $catHome->num_shared = 0;
+        $catHome->num_comment = 0;
+        $catHome->num_rating = 0;
+        $catHome->save();
+
+        if(Input::has('bts'))
         {
-            return redirect('project/create')
-                ->withErrors($validator)
-                ->withInput(Input::all());
+            foreach($input['bts'] as $key=>$value)
+            {
+                $projectBts = new ProjectBts();
+                $projectBts->bts_id = $value;
+                $catHome->projectBts()->save($projectBts);
+            }
         }
-        else{
-//            try
-//            {
-            $f = explode("@@@", $input['file']);
-            $attachment = Attachment::create([
-                'filename' => $f[0], 'path' => $f[3], 'filesize' => $f[2], 'filetype' => $f[1]
-            ]);
 
-            $user_id = \Auth::user()->id;
-            $provine = Provinces::find($input['provid']);
-            $region_id = $provine->region_id;
-
-            $project = new Project();
-            $project->user_id = $user_id;
-            $project->project_name = $input['project_name'];
-            $project->project_company_owner = $input['project_company_owner'];
-            $project->attachment_id = $attachment->id;
-            $project->lat = $input['lat'];
-            $project->long = $input['long'];
-            $project->add_street = $input['add_street'];
-            $project->tambid = $input['tambid'];
-            $project->amphid = $input['amphid'];
-            $project->provid = $input['provid'];
-            $project->region_id = $region_id;
-            if($input['area_id'] != "")
-                $project->area_id = $input['area_id'];
-            if($input['subarea_id'] != "")
-                $project->subarea_id = $input['subarea_id'];
-            $project->map_url = $input['map_url'];
-            $project->website = $input['website'];
-            $project->facebook = $input['facebook'];
-            $project->nearby_str = $input['nearby_str'];
-            $project->facility_str = $input['facility_str'];
-
-            $project->save();
-
-            if(Input::has('bts'))
+        if(Input::has('mrt'))
+        {
+            foreach($input['mrt'] as $key=>$value)
             {
-                foreach($input['bts'] as $key=>$value)
-                {
-                    $projectBts = new ProjectBts();
-                    $projectBts->bts_id = $value;
-                    $project->projectBts()->save($projectBts);
-                }
+                $projectMrt = new ProjectMrt();
+                $projectMrt->mrt_id = $value;
+                $catHome->projectMrt()->save($projectMrt);
             }
-
-            if(Input::has('mrt'))
-            {
-                foreach($input['mrt'] as $key=>$value)
-                {
-                    $projectMrt = new ProjectMrt();
-                    $projectMrt->mrt_id = $value;
-                    $project->projectMrt()->save($projectMrt);
-                }
-            }
-
-            if(Input::has('apl'))
-            {
-                foreach($input['apl'] as $key=>$value)
-                {
-                    $projectAplink = new ProjectAirportLink();
-                    $projectAplink->apl_id = $value;
-                    $project->projectAplink()->save($projectAplink);
-                }
-            }
-
-            if(Input::has('facility'))
-            {
-                foreach($input['facility'] as $key=>$value)
-                {
-                    $projectFacility = new ProjectFacility();
-                    $projectFacility->facility_id = $value;
-                    $project->projectFacility()->save($projectFacility);
-                }
-            }
-
-
-            return redirect('project/index')
-                ->with('flash_message', 'บันทึกข้อมูลสำเร็จ')
-                ->with('flash_type', 'alert-success');
         }
+
+        if(Input::has('apl'))
+        {
+            foreach($input['apl'] as $key=>$value)
+            {
+                $projectAplink = new ProjectAirportLink();
+                $projectAplink->apl_id = $value;
+                $catHome->projectAplink()->save($projectAplink);
+            }
+        }
+
+        if(Input::has('facility'))
+        {
+            foreach($input['facility'] as $key=>$value)
+            {
+                $projectFacility = new ProjectFacility();
+                $projectFacility->facility_id = $value;
+                $catHome->projectFacility()->save($projectFacility);
+            }
+        }
+
+        if(Input::has('pics_filename')) {
+            $filename = $input['pics_filename'];
+            $filetype = $input['pics_filetype'];
+            $filesize = $input['pics_filesize'];
+            $filepath = $input['pics_filepath'];
+            $description = $input['pics_description'];
+
+            $count_pic = count($filename);
+            for($j=0; $j<$count_pic; $j++)
+            {
+                $pic = new Picture();
+                $pic->file_name = $filename[$j];
+                $pic->file_path = $filepath[$j];
+                $pic->file_size = $filesize[$j];
+                $pic->file_type = $filetype[$j];
+                $pic->description = $description[$j];
+
+                $catHome->picture()->save($pic);
+            }
+        }
+
+        for($i=3; $i<=43; $i++)
+        {
+            if(Input::has('pics_filename'.$i)) {
+                $filename = $input['pics_filename'.$i];
+                $filetype = $input['pics_filetype'.$i];
+                $filesize = $input['pics_filesize'.$i];
+                $filepath = $input['pics_filepath'.$i];
+                $description = $input['pics_description'.$i];
+
+                $count_pic = count($filename);
+                for($j=0; $j<$count_pic; $j++)
+                {
+                    $catHomePic = CatHomePic::create([
+                        'cat_home_id' => $catHome->id,
+                        'pic_for' => $i,
+                        'filename' => $filename[$j],
+                        'filesize' => $filesize[$j],
+                        'filetype' => $filetype[$j],
+                        'filepath' => $filepath[$j],
+                        'description' => $description[$j]
+                    ]);
+                }
+            }
+        }
+
+        if(Input::has('promotion')) {
+
+            $items = $input['promotion'];
+            foreach($items as $item)
+            {
+                CatHomePromotion::create(
+                [
+                    'promotion_id' => $item,
+                    'cat_home_id' => $catHome->id
+                ]
+                );
+            }
+        }
+
+        dd($catHome);
+
+//        return redirect('project/index')
+//            ->with('flash_message', 'บันทึกข้อมูลสำเร็จ')
+//            ->with('flash_type', 'alert-success');
     }
 
     public function update()

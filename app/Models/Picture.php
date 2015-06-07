@@ -8,6 +8,13 @@ class Picture extends Model {
     protected $primaryKey = 'id';
     public $timestamps = false;
 
+    protected  $fillable = [
+        'file_name',
+        'file_path',
+        'file_size',
+        'file_type',
+        'description'
+    ];
 
     public static function getUrlPicture($id, $model)
     {
@@ -15,22 +22,6 @@ class Picture extends Model {
             ->where('pictureable_type','=', $id)
             ->get();
         return $picture;
-    }
-
-
-    public function catHome()
-    {
-        return $this->belongsTo("App\Models\CatHome");
-    }
-
-    public function catReview()
-    {
-        return $this->belongsTo("App\Models\CatReview");
-    }
-
-    public function catIdea()
-    {
-        return $this->belongsTo("App\Models\CatIdea");
     }
 
     // Morph

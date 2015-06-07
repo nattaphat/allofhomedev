@@ -34,7 +34,7 @@ class CatHome extends Model {
 
     public function picture()
     {
-        return $this->hasMany('App\Models\Picture');
+        return $this->morphMany('App\Models\Picture', 'pictureable');
     }
 
     public function tag()
@@ -52,11 +52,36 @@ class CatHome extends Model {
         return $this->hasMany('App\Models\CatHomePromotion');
     }
 
+    public function catHomePic()
+    {
+        return $this->hasMany('App\Models\CatHomePic');
+    }
+
 
     public function tagSub()
     {
         return $this->belongsToMany('App\Models\TagSub', 'tag', 'cat_home_id', 'tag_sub_id' );
     }
 
+    // Morph
+    public function projectBts()
+    {
+        return $this->morphMany('App\Models\ProjectBts', 'project_btsable');
+    }
+
+    public function projectMrt()
+    {
+        return $this->morphMany('App\Models\ProjectMrt', 'project_mrtable');
+    }
+
+    public function projectAplink()
+    {
+        return $this->morphMany('App\Models\ProjectAirportLink', 'project_aplinkable');
+    }
+
+    public function projectFacility()
+    {
+        return $this->morphMany('App\Models\ProjectFacility', 'project_facilityable');
+    }
 
 }
