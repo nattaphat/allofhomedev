@@ -28,6 +28,7 @@ class ProjectRequest extends Request {
             'construct_date' => 'required|date_format:d/m/Y',
             'finish_date' => 'required|date_format:d/m/Y',
             'video_url' => 'url',
+            'website' => 'url',
             'status[]' => 'required'
         ];
     }

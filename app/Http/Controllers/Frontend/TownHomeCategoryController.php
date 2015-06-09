@@ -1,5 +1,7 @@
 <?php namespace App\Http\Controllers\Frontend;
 
+use App\Models\CatHomePic;
+use App\Models\Picture;
 use Config;
 use App\Http\Controllers\Controller;
 use Request;
@@ -41,13 +43,10 @@ class TownHomeCategoryController extends Controller {
 
     public function index()
     {
-
-        $prj_cat_home = AllFunction::getProjectCatHomeDistinct("โครงการทาวน์โฮมใหม่");
-
-        // VIP 5 อัน Random
+// VIP 5 อัน Random
         $catHomeVip = CatHome::where('status','=',1)
             ->where('vip','=',true)
-            ->where('category','=','โครงการทาวน์โฮมใหม่')
+            ->whereRaw('for_cat like \'%"2"%\'')
             ->orderBy(DB::raw('random()'))
             ->take(5)
             ->get();
@@ -65,7 +64,7 @@ class TownHomeCategoryController extends Controller {
         if($str_not_in != null)
         {
             $catHome = CatHome::where('status','=',1)
-                ->where('category','=','โครงการทาวน์โฮมใหม่')
+                ->whereRaw('for_cat like \'%"2"%\'')
                 ->whereNotIn('id', $str_not_in)
                 ->orderBy('created_at', 'desc')
                 ->paginate(10);
@@ -73,7 +72,7 @@ class TownHomeCategoryController extends Controller {
         else
         {
             $catHome = CatHome::where('status','=',1)
-                ->where('category','=','โครงการทาวน์โฮมใหม่')
+                ->whereRaw('for_cat like \'%"2"%\'')
                 ->orderBy('created_at', 'desc')
                 ->paginate(10);
         }
@@ -87,17 +86,15 @@ class TownHomeCategoryController extends Controller {
 
         Gmaps::initialize($config);
 
-        if($prj_cat_home != null && count($prj_cat_home) > 0)
+        if(($catHomeVip != null && count($catHomeVip) > 0) || ($catHome != null && count($catHome)))
         {
-            foreach($prj_cat_home as $item)
+            foreach($catHomeVip as $item)
             {
-                $pj = Project::find($item->project_id);
-                $ct = CatHome::find($item->cat_home_id);
-                $attachment = Attachment::find($pj->attachment_id);
+                $attachment = Attachment::find($item->project_owner_logo);
 
                 $marker =
                     [
-                        'position' => $pj->lat.','.$pj->long,
+                        'position' => $item->latitude.','.$item->longitude,
                         'draggable' => false,
                         'infowindow_content' =>
                             '<div class="row" style="width: 100%;">'.
@@ -107,11 +104,39 @@ class TownHomeCategoryController extends Controller {
                             'style="max-width: 100%;" />'.
                             '</div>'.
                             '<div class="col-md-6">'.
-                            '<h5><a href="'.url('townhome/view/').'/'.$ct->id.'" target="_blank">'.$pj->project_name.'</a></h5>'.
-                            '<p><strong>บริษัทเจ้าของโครงการ</strong> : '.$pj->project_company_owner.'</p>'.
-                            '<p><strong>ที่ตั้งโครงการ</strong> : '.(\App\Models\Project::getFullPrjAddress($pj->id)).'</p>'.
-                            '<p><strong>ราคาเริ่มต้น</strong> : '.( \App\Models\AllFunction::getMoneyWithoutDecimal($ct->sell_price)).' &nbsp;&nbsp;บาท</p>'.
-                            '<p><strong>เบอร์ติดต่อ</strong> : '.$ct->contact_telephone.'</p>'.
+                            '<h5><a href="'.url('condo/view/').'/'.$item->id.'" target="_blank">'.$item->project_name.'</a></h5>'.
+                            '<p><strong>บริษัทเจ้าของโครงการ</strong> : '.$item->project_owner.'</p>'.
+                            '<p><strong>ที่ตั้งโครงการ</strong> : '.(\App\Models\CatHome::getFullPrjAddress($item->id)).'</p>'.
+                            '<p><strong>ราคาเริ่มต้น</strong> : '.$item->sell_price.' &nbsp;&nbsp;บาท</p>'.
+                            '<p><strong>เบอร์ติดต่อ</strong> : '.$item->telephone.'</p>'.
+                            '<p><strong>เว็บไซต์</strong> : '.$item->website.'</p>'.
+                            '</div>'.
+                            '</div>'
+                    ];
+                Gmaps::add_marker($marker);
+            }
+            foreach($catHome as $item)
+            {
+                $attachment = Attachment::find($item->project_owner_logo);
+
+                $marker =
+                    [
+                        'position' => $item->latitude.','.$item->longitude,
+                        'draggable' => false,
+                        'infowindow_content' =>
+                            '<div class="row" style="width: 100%;">'.
+                            '<div class="col-md-6">'.
+                            '<img src="'.$attachment->path.'"'.
+                            'alt="'.$attachment->filename.'" class=\'img-responsive\' '.
+                            'style="max-width: 100%;" />'.
+                            '</div>'.
+                            '<div class="col-md-6">'.
+                            '<h5><a href="'.url('condo/view/').'/'.$item->id.'" target="_blank">'.$item->project_name.'</a></h5>'.
+                            '<p><strong>บริษัทเจ้าของโครงการ</strong> : '.$item->project_owner.'</p>'.
+                            '<p><strong>ที่ตั้งโครงการ</strong> : '.(\App\Models\CatHome::getFullPrjAddress($item->id)).'</p>'.
+                            '<p><strong>ราคาเริ่มต้น</strong> : '.$item->sell_price.' &nbsp;&nbsp;บาท</p>'.
+                            '<p><strong>เบอร์ติดต่อ</strong> : '.$item->telephone.'</p>'.
+                            '<p><strong>เว็บไซต์</strong> : '.$item->website.'</p>'.
                             '</div>'.
                             '</div>'
                     ];
@@ -389,21 +414,27 @@ class TownHomeCategoryController extends Controller {
     public function view($id)
     {
         $catHome = CatHome::find($id);
-        $project = Project::find($catHome->project_id);
-        $fac = $project->projectFacility()->get();
-        $bts = $project->projectBts()->get();
-        $mrt = $project->projectMrt()->get();
-        $apl = $project->projectAplink()->get();
-        $picLayout = PicLayout::getPic($id,'layout');
-        $picEnv = PicLayout::getPic($id,'env');
-        $picScene = PicLayout::getPic($id,'scene');
-        $picDeliver = PicLayout::getPic($id,'deliver');
+        $attachment = Attachment::find($catHome->project_owner_logo);
+
+        $fac = $catHome->projectFacility()->get();
+        $bts = $catHome->projectBts()->get();
+        $mrt = $catHome->projectMrt()->get();
+        $apl = $catHome->projectAplink()->get();
         $promotion = $catHome->catHomePromotion()->get();
         $tag = $catHome->tag()->get();
+        $pic = $catHome->picture()->get();
+
+        $catHomePic = null;
+        for($i=3; $i<=43; $i++)
+        {
+            $catHomePic[$i] = CatHomePic::where('cat_home_id', '=', $id)
+                ->where('pic_for', '=', $i)
+                ->get();
+        }
 
         $config =
             [
-                'center' => $project->lat.','.$project->long,
+                'center' => $catHome->latitude.','.$catHome->longitude,
                 'zoom' => '12',
                 'scrollwheel' => false,
                 'onboundschanged' =>
@@ -420,8 +451,24 @@ class TownHomeCategoryController extends Controller {
 
         $marker =
             [
-                'position' => $project->lat.','.$project->long,
-                'draggable' => false
+                'position' => $catHome->latitude.','.$catHome->longitude,
+                'draggable' => false,
+                'infowindow_content' =>
+                    '<div class="row" style="width: 100%;">'.
+                    '<div class="col-md-6">'.
+                    '<img src="'.$attachment->path.'"'.
+                    'alt="'.$attachment->filename.'" class=\'img-responsive\' '.
+                    'style="max-width: 100%;" />'.
+                    '</div>'.
+                    '<div class="col-md-6">'.
+                    '<h5><a href="'.url('condo/view/').'/'.$catHome->id.'" target="_blank">'.$catHome->project_name.'</a></h5>'.
+                    '<p><strong>บริษัทเจ้าของโครงการ</strong> : '.$catHome->project_owner.'</p>'.
+                    '<p><strong>ที่ตั้งโครงการ</strong> : '.(\App\Models\CatHome::getFullPrjAddress($catHome->id)).'</p>'.
+                    '<p><strong>ราคาเริ่มต้น</strong> : '.$catHome->sell_price.' &nbsp;&nbsp;บาท</p>'.
+                    '<p><strong>เบอร์ติดต่อ</strong> : '.$catHome->telephone.'</p>'.
+                    '<p><strong>เว็บไซต์</strong> : '.$catHome->website.'</p>'.
+                    '</div>'.
+                    '</div>'
             ];
         Gmaps::add_marker($marker);
 
@@ -430,17 +477,13 @@ class TownHomeCategoryController extends Controller {
         return view('web.frontend.townhome.view')
             ->with('map',$map)
             ->with('catHome', $catHome)
-            ->with('project', $project)
+            ->with('catHomePic', $catHomePic)
             ->with('facility', $fac)
             ->with('bts', $bts)
             ->with('mrt', $mrt)
             ->with('apl', $apl)
-            ->with('picLayout', $picLayout)
-            ->with('picEnv', $picEnv)
-            ->with('picScene', $picScene)
-            ->with('picDeliver', $picDeliver)
             ->with('promotion', $promotion)
-            ->with('tag', $tag);
-
+            ->with('tag', $tag)
+            ->with('pic',$pic);
     }
 }

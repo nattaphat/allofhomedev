@@ -274,3 +274,16 @@ p {
     border: 2px dashed #FCDEA5;
     padding: 10px;
 }
+
+.flex-caption {
+    width: 100%;
+    padding: 10px 10px 30px 10px;
+    margin: 0px 0px 0px 0px;
+    left: 0;
+    bottom: 0;
+    background: rgba(0,0,0,.5);
+    color: #fff;
+    text-shadow: 0 -1px 0 rgba(0,0,0,.3);
+    font-size: 14px;
+    line-height: 18px;
+}

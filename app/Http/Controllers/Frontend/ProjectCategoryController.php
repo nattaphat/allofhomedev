@@ -8,6 +8,7 @@ use App\Models\ProjectAirportLink;
 use App\Models\ProjectBts;
 use App\Models\ProjectFacility;
 use App\Models\ProjectMrt;
+use App\Models\Tag;
 use Config;
 use App\Http\Controllers\Controller;
 use Gmaps;
@@ -195,6 +196,10 @@ class ProjectCategoryController extends Controller {
         $catHome->percent_parking = $input['percent_parking'];
         $catHome->home_type_per_area = $input['home_type_per_area'];
         $catHome->home_area = $input['home_area'];
+
+        if(Input::has('eia'))
+            $catHome->eia = $input['eia'][0];
+
         $catHome->sell_price = $input['sell_price'];
         $catHome->sell_price_from = $input['sell_price_from'];
         $catHome->sell_price_to = $input['sell_price_to'];
@@ -318,11 +323,21 @@ class ProjectCategoryController extends Controller {
             }
         }
 
-        dd($catHome);
+        if(Input::has('tag'))
+        {
+            foreach($input['tag'] as $key=>$value)
+            {
+                $tag = new Tag();
+                $tag->tag_sub_id = $value;
+                $catHome->tag()->save($tag);
+            }
+        }
 
-//        return redirect('project/index')
-//            ->with('flash_message', 'บันทึกข้อมูลสำเร็จ')
-//            ->with('flash_type', 'alert-success');
+//        dd($catHome);
+
+        return redirect('project/index')
+            ->with('flash_message', 'บันทึกข้อมูลสำเร็จ')
+            ->with('flash_type', 'alert-success');
     }
 
     public function update()

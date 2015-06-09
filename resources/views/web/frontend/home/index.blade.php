@@ -186,17 +186,6 @@
                 <div class="col-md-12">
                     <div class="panel panel-default">
                         <div class="panel-body">
-                            {{--####Search--}}
-                            <div class="row col-md-12" style="padding-top: 10px; padding-bottom: 10px;">
-                                <div class="col-md-6"></div>
-                                <div class="input-group col-md-6">
-                                    <input type="text" class="form-control"
-                                           placeholder="ค้นหาตำแหน่งตามชื่อโครงการ">
-                                    <span class="input-group-btn">
-                                        <button class="btn btn-default" type="button">ค้นหา</button>
-                                    </span>
-                                </div>
-                            </div>
                             {{--####Map--}}
                             {!! $map['html'] !!}
                         </div>
@@ -206,8 +195,6 @@
             {{--####ค้นหาโครงการ--}}
             <div class="row">
                 <div class="col-md-6">
-                    <a href="{{ URL::to("home/create") }}"><i class="fa fa-plus-square"></i>
-                        เพิ่มประกาศหมวดหมู่โครงการบ้านใหม่</a>
                 </div>
                 <div class="col-md-6">
                     <div class="input-group">
@@ -231,12 +218,12 @@
                                     <div class="blog-media" style="padding-top: 30px;">
                                         <a href="{{ URL::route("home_view", ["id" => $item->id]) }}">
                                             <?php
-                                            $picEnv = App\Models\PicLayout::getPic($item->id,'env');
-                                            if($picEnv != null && count($picEnv) > 0)
+                                            $pic = $item->picture()->get();
+                                            if($pic != null && count($pic) > 0)
                                             {
                                                 echo '
-                                                    <img src="'.$picEnv[0]->filepath.'"
-                                                 alt="'.$picEnv[0]->filename.'" class="img-responsive" />';
+                                                    <img src="'.$pic[0]->file_path.'"
+                                                 alt="'.$pic[0]->file_name.'" class="img-responsive" />';
                                             }
                                             ?>
                                         </a>
@@ -248,25 +235,46 @@
                                             <div clas="row" style="padding: 0px 10px 0px 10px;">
                                                 <div class="post-author">
                                                     <h4>
-                                                        <a href="{{ URL::route("home_view", ["id" => $item->id]) }}">เรื่อง: {{ $item->title }}</a>
+                                                        <a href="{{ URL::route("home_view", ["id" => $item->id]) }}">เรื่อง : {{ $item->title }}</a>
                                                     </h4>
                                                     <ul class="list-inline">
                                                         <li>
-                                                            <i class="fa fa-user"></i> {{ App\User::getFullName($item->user_id) }}
+                                                            <i class="fa fa-calendar"></i> &nbsp; {{ \App\Models\AllFunction::getDateTimeThai($item->created_at) }}
                                                         </li>
                                                         <li>
-                                                            <i class="fa fa-calendar"></i> {{ \App\Models\AllFunction::getDateTimeThai($item->created_at) }}
+                                                            <i class="fa fa-comment"></i> &nbsp; {{ $item->num_comment }} Comments
                                                         </li>
+                                                        @if($item->num_comment = 0)
+                                                            <li>
+                                                                <i class="fa fa-star"></i> No rating
+                                                            </li>
+                                                        @endif
                                                     </ul>
+                                                    @if($item->num_comment > 0)
+                                                        <ul class="list-inline">
+                                                            <li>
+                                                                <span class="label label-default">Rating</span>
+                                                                <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
+                                                            </li>
+                                                            <li>
+                                                                <span class="label label-default">Score</span>
+                                                                {{ $item->avg_rating }} / 5
+                                                            </li>
+                                                            <li>
+                                                                <span class="label label-default">Rating by</span>
+                                                                {{ $item->num_rating }} users
+                                                            </li>
+                                                        </ul>
+                                                    @endif
                                                     <div class="row">
-                                                        <p>{{ $item->subtitle }}</p>
+                                                        <p style="text-indent: 30px;">{{ $item->subtitle }}</p>
                                                         <ul class="list-inline links" style="text-align: right">
                                                             <li>
                                                                 <a href="{{ URL::route("home_view", ["id" => $item->id]) }}" class="btn btn-default btn-xs"><i class="fa fa-arrow-circle-right"></i> Read more</a>
                                                             </li>
-                                                            <li>
-                                                                <a href="{{ URL::route("home_view", ["id" => $item->id]) }}" class="btn btn-default btn-xs"><i class="fa fa-comment"></i> 76 Comments</a>
-                                                            </li>
+                                                            {{--<li>--}}
+                                                            {{--<a href="{{ URL::route("home_view", ["id" => $item->id]) }}" class="btn btn-default btn-xs"><i class="fa fa-comment"></i> 76 Comments</a>--}}
+                                                            {{--</li>--}}
                                                         </ul>
                                                     </div>
                                                 </div>
@@ -280,105 +288,126 @@
                                             <span class="em">ราคา</span> เริ่มต้น
                                         </h3>
                                         <p class="price">
-                                            <span class="digits">{{ \App\Models\AllFunction::getMoneyWithoutDecimal($item->sell_price) }}</span>
+                                            <span class="digits">{{ $item->sell_price }}</span>
                                             <span class="term"> บาท</span>
                                         </p>
                                         <div style="text-align: center;">
                                             <address>
-                                                <strong>ติดต่อ:</strong> {{ $item->contact_company_name }}<br>
-                                                <strong>เบอร์โทรศัพท์:</strong> {{ $item->contact_telephone }}
+                                                <strong>ติดต่อ:</strong> {{ $item->project_owner }}<br>
+                                                <strong>เบอร์โทรศัพท์:</strong> {{ $item->telephone }}
                                             </address>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    @endforeach
+                        @endforeach
 
-                    <!-- Post ทั่วไป -->
-                    @foreach($catHome as $item)
-                        <div class="well">
-                            <div class="row">
-                                <div class="col-md-3">
-                                    <div class="blog-media" style="padding-top: 30px;">
-                                        <a href="{{ URL::route("home_view", ["id" => $item->id]) }}">
-                                            <?php
-                                            $picEnv = App\Models\PicLayout::getPic($item->id,'env');
-                                            if($picEnv != null && count($picEnv) > 0)
-                                            {
-                                                echo '
-                                                    <img src="'.$picEnv[0]->filepath.'"
-                                                 alt="'.$picEnv[0]->filename.'" class="img-responsive" />';
-                                            }
-                                            ?>
-                                        </a>
+                                <!-- Post ทั่วไป -->
+                        @foreach($catHome as $item)
+                            <div class="well">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <div class="blog-media" style="padding-top: 30px;">
+                                            <a href="{{ URL::route("home_view", ["id" => $item->id]) }}">
+                                                <?php
+                                                $pic = $item->picture()->get();
+                                                if($pic != null && count($pic) > 0)
+                                                {
+                                                    echo '
+                                                <img src="'.$pic[0]->file_path.'"
+                                             alt="'.$pic[0]->file_name.'" class="img-responsive" />';
+                                                }
+                                                ?>
+                                            </a>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="row">
-                                        <div class="block block-callout post-block" style="margin-top: 0px;">
-                                            <div clas="row" style="padding: 0px 10px 0px 10px;">
-                                                <div class="post-author">
-                                                    <h4>
-                                                        <a href="{{ URL::route("home_view", ["id" => $item->id]) }}">เรื่อง: {{ $item->title }}</a>
-                                                    </h4>
-                                                    <ul class="list-inline">
-                                                        <li>
-                                                            <i class="fa fa-user"></i> {{ App\User::getFullName($item->user_id) }}
-                                                        </li>
-                                                        <li>
-                                                            <i class="fa fa-calendar"></i> {{ \App\Models\AllFunction::getDateTimeThai($item->created_at) }}
-                                                        </li>
-                                                    </ul>
-                                                    <div class="row">
-                                                        <p>{{ $item->subtitle }}</p>
-                                                        <ul class="list-inline links" style="text-align: right">
+                                    <div class="col-md-6">
+                                        <div class="row">
+                                            <div class="block block-callout post-block" style="margin-top: 0px;">
+                                                <div clas="row" style="padding: 0px 10px 0px 10px;">
+                                                    <div class="post-author">
+                                                        <h4>
+                                                            <a href="{{ URL::route("home_view", ["id" => $item->id]) }}">เรื่อง : {{ $item->title }}</a>
+                                                        </h4>
+                                                        <ul class="list-inline">
                                                             <li>
-                                                                <a href="{{ URL::route("home_view", ["id" => $item->id]) }}" class="btn btn-default btn-xs"><i class="fa fa-arrow-circle-right"></i> Read more</a>
+                                                                <i class="fa fa-calendar"></i> &nbsp; {{ \App\Models\AllFunction::getDateTimeThai($item->created_at) }}
                                                             </li>
                                                             <li>
-                                                                <a href="{{ URL::route("home_view", ["id" => $item->id]) }}" class="btn btn-default btn-xs"><i class="fa fa-comment"></i> 76 Comments</a>
+                                                                <i class="fa fa-comment"></i> &nbsp; {{ $item->num_comment }} Comments
                                                             </li>
+                                                            @if($item->num_comment = 0)
+                                                                <li>
+                                                                    <i class="fa fa-star"></i> No rating
+                                                                </li>
+                                                            @endif
                                                         </ul>
+                                                        @if($item->num_comment > 0)
+                                                            <ul class="list-inline">
+                                                                <li>
+                                                                    <span class="label label-default">Rating</span>
+                                                                    <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
+                                                                </li>
+                                                                <li>
+                                                                    <span class="label label-default">Score</span>
+                                                                    {{ $item->avg_rating }} / 5
+                                                                </li>
+                                                                <li>
+                                                                    <span class="label label-default">Rating by</span>
+                                                                    {{ $item->num_rating }} users
+                                                                </li>
+                                                            </ul>
+                                                        @endif
+                                                        <div class="row">
+                                                            <p style="text-indent: 30px;">{{ $item->subtitle }}</p>
+                                                            <ul class="list-inline links" style="text-align: right">
+                                                                <li>
+                                                                    <a href="{{ URL::route("home_view", ["id" => $item->id]) }}" class="btn btn-default btn-xs"><i class="fa fa-arrow-circle-right"></i> Read more</a>
+                                                                </li>
+                                                                {{--<li>--}}
+                                                                {{--<a href="{{ URL::route("home_view", ["id" => $item->id]) }}" class="btn btn-default btn-xs"><i class="fa fa-comment"></i> 76 Comments</a>--}}
+                                                                {{--</li>--}}
+                                                            </ul>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="well">
-                                        <h3 class="title">
-                                            <span class="em">ราคา</span> เริ่มต้น
-                                        </h3>
-                                        <p class="price">
-                                            <span class="digits">{{ \App\Models\AllFunction::getMoneyWithoutDecimal($item->sell_price) }}</span>
-                                            <span class="term"> บาท</span>
-                                        </p>
-                                        <div style="text-align: center;">
-                                            <address>
-                                                <strong>ติดต่อ:</strong> {{ $item->contact_company_name }}<br>
-                                                <strong>เบอร์โทรศัพท์:</strong> {{ $item->contact_telephone }}
-                                            </address>
+                                    <div class="col-md-3">
+                                        <div class="well">
+                                            <h3 class="title">
+                                                <span class="em">ราคา</span> เริ่มต้น
+                                            </h3>
+                                            <p class="price">
+                                                <span class="digits">{{ $item->sell_price }}</span>
+                                                <span class="term"> บาท</span>
+                                            </p>
+                                            <div style="text-align: center;">
+                                                <address>
+                                                    <strong>ติดต่อ:</strong> {{ $item->project_owner }}<br>
+                                                    <strong>เบอร์โทรศัพท์:</strong> {{ $item->telephone }}
+                                                </address>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    @endforeach
+                        @endforeach
 
-                    @if(($catHomeVip == null || count($catHomeVip) == 0) &&
-                        ($catHome == null || count($catHome) == 0))
-                        <div class="well">
-                            <div class="divTable">
-                                <div class="divTableCell">
-                                    <div class="titleTableCell">ไม่มีข้อมูล</div>
+                        @if(($catHomeVip == null || count($catHomeVip) == 0) &&
+                            ($catHome == null || count($catHome) == 0))
+                            <div class="well">
+                                <div class="divTable">
+                                    <div class="divTableCell">
+                                        <div class="titleTableCell">ไม่มีข้อมูล</div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    @endif
+                        @endif
 
-                    {!! str_replace('/?', '?', $catHome->render()) !!}
+                        {!! str_replace('/?', '?', $catHome->render()) !!}
 
                 </div>
             </div>

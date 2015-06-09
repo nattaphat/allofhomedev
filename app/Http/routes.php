@@ -64,3 +64,7 @@ Route::get('testModel', function(){
     dd($comments);
 
 });
+
+Route::get('testPage', function(){
+    return view('test');
+});

@@ -8,7 +8,21 @@ class CatHome extends Model {
     protected $primaryKey = 'id';
     public $timestamps = true;
 
+    public static function getFullPrjAddress($cat_home_id)
+    {
+        $catHome = CatHome::find($cat_home_id);
+        $tambon = Tambon::where('tambid','=',$catHome->tambid)
+            ->where('amphid','=', $catHome->amphid)
+            ->where('provid','=', $catHome->provid)->get();
+        $amphoe = Amphoe::where('amphid','=', $catHome->amphid)
+            ->where('provid','=', $catHome->provid)->get();
+        $province = Provinces::where('provid','=', $catHome->provid)->get();
 
+        return "ถนน".$catHome->add_street." "
+        .($catHome->provid == 10? "แขวง" : "ตำบล").$tambon[0]->name." "
+        .($catHome->provid == 10? "เขต" : "อำเภอ").$amphoe[0]->name." "
+        ."จังหวัด".$province[0]->name;
+    }
 
     public function user()
     {

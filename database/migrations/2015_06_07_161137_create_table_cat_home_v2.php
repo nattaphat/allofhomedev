@@ -65,6 +65,7 @@ class CreateTableCatHomeV2 extends Migration {
             $table->string('percent_parking', 30)->nullable(true);
             $table->text('home_type_per_area')->nullable(true);
             $table->string('home_area', 100)->nullable(true);
+            $table->boolean('eia')->nullable(true);
             $table->string('sell_price', 30)->nullable(false);
             $table->string('sell_price_from', 30)->nullable(true);
             $table->string('sell_price_to', 30)->nullable(true);
