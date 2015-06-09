@@ -3,6 +3,7 @@ $( document ).ready(function() {
     setDatePicker();
     fistPageSeclide();
     topSlide();
+    carosel_pic_category();
 
     /**
      * For signup page
@@ -68,6 +69,7 @@ $( document ).ready(function() {
             sync: "#carousel_allofhome"
         });
     }
+
     changeInfoPhoto();
     function changeInfoPhoto()
     {
@@ -86,4 +88,20 @@ $( document ).ready(function() {
                 "uploadIcon": "<i class=\"glyphicon glyphicon-upload\"></i> "
             });
     }
+
+    /**
+     * Second Slide in first page
+     */
+    function carosel_pic_category()
+    {
+        $('#slider_category').flexslider({
+            animation: "fade",
+            controlNav: true,
+            animationLoop: true,
+            slideshow: false,
+            animationSpeed: 400,
+            singleItem:true
+        });
+    }
+
 });

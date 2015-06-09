@@ -15,19 +15,19 @@
         <a href="{{ URL::to('article/index') }}">บทความและข่าวสาร</a>
     </li>
 
-    <li class="dropdown">
-        <a href="#" class="dropdown-toggle" id="pages-drop" data-toggle="dropdown" data-hover="dropdown">เมนูอื่นๆ</a>
-        <!-- Menu -->
-        <ul class="dropdown-menu" role="menu" aria-labelledby="pages-drop">
-            <li class="dropdown">
-                <a href="{{ URL::to('buysellrent/index') }}">กระทู้ทั้งหมด (ซื้อ ขาย เช่า)</a>
-            </li>
-            <li class="dropdown">
-                <a href="{{ URL::to('2hand/index') }}">ของใช้ภายในบ้าน (มือสอง)</a>
-            </li>
-            <li class="dropdown">
-                <a href="{{ URL::to('job/index') }}">ประกาศรับสมัครงาน</a>
-            </li>
-        </ul>
-    </li>
+    {{--<li class="dropdown">--}}
+        {{--<a href="#" class="dropdown-toggle" id="pages-drop" data-toggle="dropdown" data-hover="dropdown">เมนูอื่นๆ</a>--}}
+        {{--<!-- Menu -->--}}
+        {{--<ul class="dropdown-menu" role="menu" aria-labelledby="pages-drop">--}}
+            {{--<li class="dropdown">--}}
+                {{--<a href="{{ URL::to('buysellrent/index') }}">กระทู้ทั้งหมด (ซื้อ ขาย เช่า)</a>--}}
+            {{--</li>--}}
+            {{--<li class="dropdown">--}}
+                {{--<a href="{{ URL::to('2hand/index') }}">ของใช้ภายในบ้าน (มือสอง)</a>--}}
+            {{--</li>--}}
+            {{--<li class="dropdown">--}}
+                {{--<a href="{{ URL::to('job/index') }}">ประกาศรับสมัครงาน</a>--}}
+            {{--</li>--}}
+        {{--</ul>--}}
+    {{--</li>--}}
 </ul>

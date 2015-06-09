@@ -38,110 +38,110 @@
                 <i class="fa fa-angle-right"></i>
             </a>
         </li>
-        <li
-        @if( Route::currentRouteName() == 'interiorDesign_index' ||
-                Route::currentRouteName() == 'interiorDesign_create' ||
-                Route::currentRouteName() == 'interiorDesign_update' ||
-                Route::currentRouteName() == 'interiorDesign_view')
-            class="active"
-                @endif
-                >
-            <a href="{{URL::route('interiorDesign_index')}}" class="first">
-                ออกแบบภายใน ภายนอก
-                <i class="fa fa-angle-right"></i>
-            </a>
-        </li>
-        <li
-        @if( Route::currentRouteName() == 'land_index' ||
-                Route::currentRouteName() == 'land_create' ||
-                Route::currentRouteName() == 'land_update' ||
-                Route::currentRouteName() == 'land_view')
-            class="active"
-                @endif
-                >
-            <a href="{{URL::route('land_index')}}" class="first">
-                ที่ดินเปล่า
-                <i class="fa fa-angle-right"></i>
-            </a>
-        </li>
-        <li
-        @if( Route::currentRouteName() == 'furniture_index' ||
-                Route::currentRouteName() == 'furniture_create' ||
-                Route::currentRouteName() == 'furniture_update' ||
-                Route::currentRouteName() == 'furniture_view')
-            class="active"
-                @endif
-                >
-            <a href="{{URL::route('furniture_index')}}" class="first">
-                เฟอร์นิเจอร์ ของตกแต่ง
-                <i class="fa fa-angle-right"></i>
-            </a>
-        </li>
-        <li
-        @if( Route::currentRouteName() == 'electric_index' ||
-                Route::currentRouteName() == 'electric_create' ||
-                Route::currentRouteName() == 'electric_update' ||
-                Route::currentRouteName() == 'electric_view')
-            class="active"
-                @endif
-                >
-            <a href="{{URL::route('electric_index')}}" class="first">
-                เครื่องใช้ไฟฟ้า
-                <i class="fa fa-angle-right"></i>
-            </a>
-        </li>
-        <li
-        @if( Route::currentRouteName() == 'kitchenware_index' ||
-                Route::currentRouteName() == 'kitchenware_create' ||
-                Route::currentRouteName() == 'kitchenware_update' ||
-                Route::currentRouteName() == 'kitchenware_view')
-            class="active"
-                @endif
-                >
-            <a href="{{URL::route('kitchenware_index')}}" class="first">
-                เครื่องครัว สุขภัณฑ์
-                <i class="fa fa-angle-right"></i>
-            </a>
-        </li>
-        <li
-        @if( Route::currentRouteName() == 'contractor_index' ||
-                Route::currentRouteName() == 'contractor_create' ||
-                Route::currentRouteName() == 'contractor_update' ||
-                Route::currentRouteName() == 'contractor_view')
-            class="active"
-                @endif
-                >
-            <a href="{{URL::route('contractor_index')}}" class="first">
-                วัสดุก่อสร้าง รับเหมา
-                <i class="fa fa-angle-right"></i>
-            </a>
-        </li>
-        <li
-        @if( Route::currentRouteName() == 'garden_index' ||
-                Route::currentRouteName() == 'garden_create' ||
-                Route::currentRouteName() == 'garden_update' ||
-                Route::currentRouteName() == 'garden_view')
-            class="active"
-                @endif
-                >
-            <a href="{{URL::route('garden_index')}}" class="first">
-                ดูแลสวน
-                <i class="fa fa-angle-right"></i>
-            </a>
-        </li>
-        <li
-        @if( Route::currentRouteName() == 'oldFurniture_index' ||
-                Route::currentRouteName() == 'oldFurniture_create' ||
-                Route::currentRouteName() == 'oldFurniture_update' ||
-                Route::currentRouteName() == 'oldFurniture_view')
-            class="active"
-                @endif
-                >
-            <a href="{{URL::route('oldFurniture_index')}}" class="first">
-                เฟอร์โบราณเก่าเก็บ
-                <i class="fa fa-angle-right"></i>
-            </a>
-        </li>
+        {{--<li--}}
+        {{--@if( Route::currentRouteName() == 'interiorDesign_index' ||--}}
+                {{--Route::currentRouteName() == 'interiorDesign_create' ||--}}
+                {{--Route::currentRouteName() == 'interiorDesign_update' ||--}}
+                {{--Route::currentRouteName() == 'interiorDesign_view')--}}
+            {{--class="active"--}}
+                {{--@endif--}}
+                {{-->--}}
+            {{--<a href="{{URL::route('interiorDesign_index')}}" class="first">--}}
+                {{--ออกแบบภายใน ภายนอก--}}
+                {{--<i class="fa fa-angle-right"></i>--}}
+            {{--</a>--}}
+        {{--</li>--}}
+        {{--<li--}}
+        {{--@if( Route::currentRouteName() == 'land_index' ||--}}
+                {{--Route::currentRouteName() == 'land_create' ||--}}
+                {{--Route::currentRouteName() == 'land_update' ||--}}
+                {{--Route::currentRouteName() == 'land_view')--}}
+            {{--class="active"--}}
+                {{--@endif--}}
+                {{-->--}}
+            {{--<a href="{{URL::route('land_index')}}" class="first">--}}
+                {{--ที่ดินเปล่า--}}
+                {{--<i class="fa fa-angle-right"></i>--}}
+            {{--</a>--}}
+        {{--</li>--}}
+        {{--<li--}}
+        {{--@if( Route::currentRouteName() == 'furniture_index' ||--}}
+                {{--Route::currentRouteName() == 'furniture_create' ||--}}
+                {{--Route::currentRouteName() == 'furniture_update' ||--}}
+                {{--Route::currentRouteName() == 'furniture_view')--}}
+            {{--class="active"--}}
+                {{--@endif--}}
+                {{-->--}}
+            {{--<a href="{{URL::route('furniture_index')}}" class="first">--}}
+                {{--เฟอร์นิเจอร์ ของตกแต่ง--}}
+                {{--<i class="fa fa-angle-right"></i>--}}
+            {{--</a>--}}
+        {{--</li>--}}
+        {{--<li--}}
+        {{--@if( Route::currentRouteName() == 'electric_index' ||--}}
+                {{--Route::currentRouteName() == 'electric_create' ||--}}
+                {{--Route::currentRouteName() == 'electric_update' ||--}}
+                {{--Route::currentRouteName() == 'electric_view')--}}
+            {{--class="active"--}}
+                {{--@endif--}}
+                {{-->--}}
+            {{--<a href="{{URL::route('electric_index')}}" class="first">--}}
+                {{--เครื่องใช้ไฟฟ้า--}}
+                {{--<i class="fa fa-angle-right"></i>--}}
+            {{--</a>--}}
+        {{--</li>--}}
+        {{--<li--}}
+        {{--@if( Route::currentRouteName() == 'kitchenware_index' ||--}}
+                {{--Route::currentRouteName() == 'kitchenware_create' ||--}}
+                {{--Route::currentRouteName() == 'kitchenware_update' ||--}}
+                {{--Route::currentRouteName() == 'kitchenware_view')--}}
+            {{--class="active"--}}
+                {{--@endif--}}
+                {{-->--}}
+            {{--<a href="{{URL::route('kitchenware_index')}}" class="first">--}}
+                {{--เครื่องครัว สุขภัณฑ์--}}
+                {{--<i class="fa fa-angle-right"></i>--}}
+            {{--</a>--}}
+        {{--</li>--}}
+        {{--<li--}}
+        {{--@if( Route::currentRouteName() == 'contractor_index' ||--}}
+                {{--Route::currentRouteName() == 'contractor_create' ||--}}
+                {{--Route::currentRouteName() == 'contractor_update' ||--}}
+                {{--Route::currentRouteName() == 'contractor_view')--}}
+            {{--class="active"--}}
+                {{--@endif--}}
+                {{-->--}}
+            {{--<a href="{{URL::route('contractor_index')}}" class="first">--}}
+                {{--วัสดุก่อสร้าง รับเหมา--}}
+                {{--<i class="fa fa-angle-right"></i>--}}
+            {{--</a>--}}
+        {{--</li>--}}
+        {{--<li--}}
+        {{--@if( Route::currentRouteName() == 'garden_index' ||--}}
+                {{--Route::currentRouteName() == 'garden_create' ||--}}
+                {{--Route::currentRouteName() == 'garden_update' ||--}}
+                {{--Route::currentRouteName() == 'garden_view')--}}
+            {{--class="active"--}}
+                {{--@endif--}}
+                {{-->--}}
+            {{--<a href="{{URL::route('garden_index')}}" class="first">--}}
+                {{--ดูแลสวน--}}
+                {{--<i class="fa fa-angle-right"></i>--}}
+            {{--</a>--}}
+        {{--</li>--}}
+        {{--<li--}}
+        {{--@if( Route::currentRouteName() == 'oldFurniture_index' ||--}}
+                {{--Route::currentRouteName() == 'oldFurniture_create' ||--}}
+                {{--Route::currentRouteName() == 'oldFurniture_update' ||--}}
+                {{--Route::currentRouteName() == 'oldFurniture_view')--}}
+            {{--class="active"--}}
+                {{--@endif--}}
+                {{-->--}}
+            {{--<a href="{{URL::route('oldFurniture_index')}}" class="first">--}}
+                {{--เฟอร์โบราณเก่าเก็บ--}}
+                {{--<i class="fa fa-angle-right"></i>--}}
+            {{--</a>--}}
+        {{--</li>--}}
     </ul>
 </div>
 

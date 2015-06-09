@@ -44,12 +44,12 @@
                                 "sortDescending": ": activate to sort column descending"
                             }
                         },
-                        "order": [[1,'asc']],
+                        //"order": [[1,'asc']],
                         "columns": [
                             {name: 'no', orderable: false, searchable: false},
                             {name: 'project_name',orderable: true, searchable: true},
                             {name: 'project_company_owner',orderable: true, searchable: true},
-                            {name: 'location',orderable: true, searchable: true},
+                            {name: 'category',orderable: true, searchable: true},
                             {name: 'operate', orderable: false, searchable: false}
                         ],
                         "fnRowCallback": function( nRow, aData, iDisplayIndex, iDisplayIndexFull ) {
@@ -101,21 +101,32 @@
                                             <th>ลำดับ</th>
                                             <th>ชื่อโครงการ</th>
                                             <th>บริษัทเจ้าของโครงการ</th>
-                                            <th>ที่ตั้งโครงการ</th>
+                                            <th>หมวดหมู่</th>
                                             <th></th>
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        @foreach ($projects as $project)
+                                        @foreach ($catHome as $item)
                                             <tr>
                                                 <td class="text-center"></td>
-                                                <td>{{ $project->project_name }}</td>
-                                                <td>{{ $project->project_company_owner }}</td>
-                                                <td>{{ $project->getPrjAddress($project->id) }}</td>
+                                                <td>{{ $item->project_name }}</td>
+                                                <td>{{ $item->project_owner }}</td>
+                                                <td><?php
+                                                        $cat = unserialize($item->for_cat);
+                                                        foreach($cat as $c)
+                                                        {
+                                                            if($c == "1")
+                                                                echo "บ้านใหม่&nbsp;&nbsp;";
+                                                            else if($c == "2")
+                                                                echo "ทาวน์โฮมใหม่&nbsp;&nbsp;";
+                                                            else if($c == "3")
+                                                                echo "คอนโดใหม่&nbsp;&nbsp;";
+                                                        }
+                                                    ?></td>
                                                 <td>
-                                                    <a href="{{ url('project/view/').'/'.$project->id }}">
-                                                        <i class="fa fa-eye"></i>
-                                                    </a>
+                                                    {{--<a href="{{ url('project/view/').'/'.$project->id }}">--}}
+                                                        {{--<i class="fa fa-eye"></i>--}}
+                                                    {{--</a>--}}
                                                 </td>
                                             </tr>
                                         @endforeach
