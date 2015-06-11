@@ -1,136 +1,88 @@
-{{--<!-- ======== @Region: Banner ======== -->--}}
-
-<div class="col-md-3">
-</div>
-
-<div class="col-md-9">
-    @include('layouts._partials.left_menu')
-</div>
-
-<div class="col-md-3" style="padding-top: 20px;">
-    <div>
-        <a href="#">
-            <img src="http://www.itgadgeteer.com/wp-content/uploads/2014/06/ad_300x250.png"
-                 alt="Banner 1" class="img-responsive" />
-        </a>
+<div class="row" style="margin-top: 20px;">
+    <div class="col-md-3">
+        @include('layouts._partials.left_menu')
     </div>
-    <div style="padding-top: 20px;">
-        <a href="#">
-            <img src="http://www.itgadgeteer.com/wp-content/uploads/2014/06/ad_300x250.png"
-                 alt="Banner 2" class="img-responsive" />
-        </a>
-    </div>
-    <div style="padding-top: 20px;">
-        <a href="#">
-            <img src="http://www.itgadgeteer.com/wp-content/uploads/2014/06/ad_300x250.png"
-                 alt="Banner 2" class="img-responsive" />
-        </a>
-    </div>
-</div>
 
-<div class="col-md-6">
-    <section class="slider">
-        <div class="panel panel-success">
-            <div class="panel-body">
+    <?php
+        //dd(url::current());
+
+        $catArticle = null;
+        if(url::current() == "http://localhost/allofhomedev/public")
+        {
+            $catArticle = \App\Models\CatArticle::whereRaw('for_cat like \'%"1"%\'')->get();
+        }
+        else if(strrpos(url::current(), "/home") > 0)
+        {
+            $catArticle = \App\Models\CatArticle::whereRaw('for_cat like \'%"2"%\'')->get();
+        }
+        else if(strrpos(url::current(), "/townhome") > 0)
+        {
+            $catArticle = \App\Models\CatArticle::whereRaw('for_cat like \'%"3"%\'')->get();
+        }
+        else if(strrpos(url::current(), "/condo") > 0)
+        {
+            $catArticle = \App\Models\CatArticle::whereRaw('for_cat like \'%"4"%\'')->get();
+        }
+        else if(strrpos(url::current(), "/review") > 0)
+        {
+            $catArticle = \App\Models\CatArticle::whereRaw('for_cat like \'%"5"%\'')->get();
+        }
+        else if(strrpos(url::current(), "/idea") > 0)
+        {
+            $catArticle = \App\Models\CatArticle::whereRaw('for_cat like \'%"6"%\'')->get();
+        }
+        else if(strrpos(url::current(), "/article") > 0)
+        {
+            $catArticle = \App\Models\CatArticle::whereRaw('for_cat like \'%"7"%\'')->get();
+        }
+        else
+        {
+            $catArticle = \App\Models\CatArticle::whereRaw('for_cat like \'%"1"%\'')->get();
+        }
+    ?>
+
+    <div class="col-md-6">
+        @if($catArticle != null && count($catArticle) > 0)
+            <section class="slider">
                 <div id="slider_allofhome" class="flexslider">
                     <ul class="slides">
-                        <li>
-                            <img src="http://www.olirip.com/wp-content/uploads/2015/03/best-small-living-room-design-with-picture-of-small-living-set-on-home-interior-design.jpg" />
-                            <div class="block block-callout post-block">
-                                <div class="post-author">
-                                    <h4>
-                                        <a href="#">เรื่อง: หัวข้อบทความและข่าวสาร</a>
-                                    </h4>
-                                    <div>
-                                        <p>Rhoncus adipiscing, magna integer cursus augue eros lacus porttitor magna. Dictumst, odio! Elementum tortor sociis in eu dis dictumst pulvinar lorem nec aliquam a nascetur.</p>
+                        @foreach($catArticle as $item)
+                            <?php
+                                $img = \App\Models\Picture::where("pictureable_type","=","App\\Models\\CatArticle")
+                                        ->where("pictureable_id", "=", $item->id)->get();
+                            ?>
+                            <li>
+                                <img src="{{ ($img != null && count($img) > 0)? $img[0]->file_path : "" }}" />
+                                <div class="flex-caption" style="margin-top:0px;">
+                                    <h5>
+                                        <a href="{{ url("article/view") }}/{{ $item->id }}" style="color: #FFFFFF">เรื่อง: {{ $item->title }}</a>
+                                    </h5>
+                                    <div style="text-indent: 20px;">
+                                        <p style="word-wrap: break-word;">{{ $item->subtitle }}</p>
                                     </div>
                                 </div>
-                            </div>
-                        </li>
-                        <li>
-                            <img src="http://www.metricon.com.au/Metricon/media/metricon/gallery/Thumbs/Living-Rooms.jpg?width=800&height=600&ext=.jpg" />
-                            <div class="block block-callout post-block">
-                                <div class="post-author">
-                                    <h4>
-                                        <a href="#">เรื่อง: หัวข้อบทความและข่าวสาร</a>
-                                    </h4>
-                                    <div>
-                                        <p>Rhoncus adipiscing, magna integer cursus augue eros lacus porttitor magna. Dictumst, odio! Elementum tortor sociis in eu dis dictumst pulvinar lorem nec aliquam a nascetur.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <img src="http://www.esnhome.net/wp-content/uploads/2015/03/contemporary-living-room-curtains-ideas-luxury-living-room-curtains-ideas-modern-furniture-design-blog-800x500.jpg" />
-                            <div class="block block-callout post-block">
-                                <div class="post-author">
-                                    <h4>
-                                        <a href="#">เรื่อง: หัวข้อบทความและข่าวสาร</a>
-                                    </h4>
-                                    <div>
-                                        <p>Rhoncus adipiscing, magna integer cursus augue eros lacus porttitor magna. Dictumst, odio! Elementum tortor sociis in eu dis dictumst pulvinar lorem nec aliquam a nascetur.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <img src="http://www.olirip.com/wp-content/uploads/2015/04/awesome-living-room-sets-with-tv-with-picture-of-living-room-photography-on-furniture-design.jpg" />
-                            <div class="block block-callout post-block">
-                                <div class="post-author">
-                                    <h4>
-                                        <a href="#">เรื่อง: หัวข้อบทความและข่าวสาร</a>
-                                    </h4>
-                                    <div>
-                                        <p>Rhoncus adipiscing, magna integer cursus augue eros lacus porttitor magna. Dictumst, odio! Elementum tortor sociis in eu dis dictumst pulvinar lorem nec aliquam a nascetur.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
+                            </li>
+                        @endforeach
                     </ul>
                 </div>
-            </div>
-        </div>
+            </section>
+        @endif
+    </div>
 
-        {{--<div class="panel panel-success">--}}
-            {{--<div class="panel-body">--}}
-                {{--<div id="carousel_allofhome" class="flexslider">--}}
-                    {{--<ul class="slides">--}}
-                        {{--<li>--}}
-                            {{--<img src="http://www.olirip.com/wp-content/uploads/2015/03/best-small-living-room-design-with-picture-of-small-living-set-on-home-interior-design.jpg" />--}}
-                        {{--</li>--}}
-                        {{--<li>--}}
-                            {{--<img src="http://www.metricon.com.au/Metricon/media/metricon/gallery/Thumbs/Living-Rooms.jpg?width=800&height=600&ext=.jpg" />--}}
-                        {{--</li>--}}
-                        {{--<li>--}}
-                            {{--<img src="http://www.esnhome.net/wp-content/uploads/2015/03/contemporary-living-room-curtains-ideas-luxury-living-room-curtains-ideas-modern-furniture-design-blog-800x500.jpg" />--}}
-                        {{--</li>--}}
-                        {{--<li>--}}
-                            {{--<img src="http://www.olirip.com/wp-content/uploads/2015/04/awesome-living-room-sets-with-tv-with-picture-of-living-room-photography-on-furniture-design.jpg" />--}}
-                        {{--</li>--}}
-                    {{--</ul>--}}
-                {{--</div>--}}
-            {{--</div>--}}
-        {{--</div>--}}
-    </section>
-</div>
-<!-- ======== @Region: Banner ======== -->
-<div class="col-md-3" style="padding-top: 20px;">
-    <div>
-        <a href="#">
-            <img src="http://www.itgadgeteer.com/wp-content/uploads/2014/06/ad_300x250.png"
-                 alt="Banner 1" class="img-responsive" />
-        </a>
-    </div>
-    <div style="padding-top: 20px;">
-        <a href="#">
-            <img src="http://www.itgadgeteer.com/wp-content/uploads/2014/06/ad_300x250.png"
-                 alt="Banner 2" class="img-responsive" />
-        </a>
-    </div>
-    <div style="padding-top: 20px;">
-        <a href="#">
-            <img src="http://www.itgadgeteer.com/wp-content/uploads/2014/06/ad_300x250.png"
-                 alt="Banner 2" class="img-responsive" />
-        </a>
+    <div class="col-md-3">
+        <div>
+            <a href="#">
+                <img src="{{ asset('img/ad_300x250.png') }}"
+                     alt="Banner 2" class="img-responsive img-center" style="height: 208px; width: 250px;" />
+            </a>
+        </div>
+        <div style="padding-top: 20px;">
+            <a href="#">
+                <img src="{{ asset('img/ad_300x250.png') }}"
+                     alt="Banner 2" class="img-responsive img-center" style="height: 208px; width: 250px;" />
+            </a>
+        </div>
     </div>
 </div>
+
+

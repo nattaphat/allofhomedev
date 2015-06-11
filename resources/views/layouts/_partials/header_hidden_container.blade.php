@@ -2,23 +2,30 @@
 
     <div class="row">
         <h3>Admin Control</h3>
-        <ul class="nav navbar-nav">
-            <li>
-                <a href="{{ URL::to('project/index') }}" style="color: #E7E7E8;">โครงการทั้งหมด</a>
-            </li>
-            <li>
-                <a href="{{ URL::to('shop/admin_index') }}" style="color: #E7E7E8;">ร้านค้าทั้งหมด</a>
-            </li>
-            <li>
-                <a href="{{ URL::to('article/admin_index') }}" style="color: #E7E7E8;">บทความและข่าวสาร</a>
-            </li>
-            <li>
-                <a href="{{ URL::to('review/admin_index') }}" style="color: #E7E7E8;">รีวิว</a>
-            </li>
-            <li>
-                <a href="{{ URL::to('idea/admin_index') }}" style="color: #E7E7E8;">ไอเดีย</a>
-            </li>
-        </ul>
+        <div class="col-md-12">
+            <a href="{{ URL::to('project/index') }}" style="color: #E7E7E8;">โครงการทั้งหมด</a> &nbsp;&nbsp;
+            <a href="{{ URL::to('shop/admin_index') }}" style="color: #E7E7E8;">ร้านค้าทั้งหมด</a> &nbsp;&nbsp;
+            <a href="{{ URL::to('article/admin_index') }}" style="color: #E7E7E8;">บทความและข่าวสาร</a> &nbsp;&nbsp;
+            <a href="{{ URL::to('review/admin_index') }}" style="color: #E7E7E8;">รีวิว</a> &nbsp;&nbsp;
+            <a href="{{ URL::to('idea/admin_index') }}" style="color: #E7E7E8;">ไอเดีย</a>
+        </div>
+        {{--<ul class="nav navbar-nav">--}}
+            {{--<li>--}}
+                {{--<a href="{{ URL::to('project/index') }}" style="color: #E7E7E8;">โครงการทั้งหมด</a>--}}
+            {{--</li>--}}
+            {{--<li>--}}
+                {{--<a href="{{ URL::to('shop/admin_index') }}" style="color: #E7E7E8;">ร้านค้าทั้งหมด</a>--}}
+            {{--</li>--}}
+            {{--<li>--}}
+                {{--<a href="{{ URL::to('article/admin_index') }}" style="color: #E7E7E8;">บทความและข่าวสาร</a>--}}
+            {{--</li>--}}
+            {{--<li>--}}
+                {{--<a href="{{ URL::to('review/admin_index') }}" style="color: #E7E7E8;">รีวิว</a>--}}
+            {{--</li>--}}
+            {{--<li>--}}
+                {{--<a href="{{ URL::to('idea/admin_index') }}" style="color: #E7E7E8;">ไอเดีย</a>--}}
+            {{--</li>--}}
+        {{--</ul>--}}
     </div>
 
     {{--<div class="row">--}}

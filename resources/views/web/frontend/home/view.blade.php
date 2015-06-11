@@ -38,14 +38,14 @@
             <div class="col-md-3"  style="margin-top: 30px;">
                 <div>
                     <a href="#">
-                        <img src="http://www.itgadgeteer.com/wp-content/uploads/2014/06/ad_300x250.png"
-                             alt="Banner 1" class="img-responsive" />
+                        <img src="{{ asset('img/ad_300x250.png') }}"
+                             alt="Banner 2" class="img-responsive img-center" style="height: 208px; width: 250px;" />
                     </a>
                 </div>
                 <div style="padding-top: 20px;">
                     <a href="#">
-                        <img src="http://www.itgadgeteer.com/wp-content/uploads/2014/06/ad_300x250.png"
-                             alt="Banner 2" class="img-responsive" />
+                        <img src="{{ asset('img/ad_300x250.png') }}"
+                             alt="Banner 2" class="img-responsive img-center" style="height: 208px; width: 250px;" />
                     </a>
                 </div>
             </div>{{--#### Banner ####--}}

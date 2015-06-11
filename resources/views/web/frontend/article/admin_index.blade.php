@@ -131,6 +131,8 @@
                                                             echo "รีวิว&nbsp;&nbsp;";
                                                         else if($c == "6")
                                                             echo "ไอเดีย&nbsp;&nbsp;";
+                                                        else if($c == "7")
+                                                            echo "บทความและข่าวสาร&nbsp;&nbsp;";
                                                     }
                                                     ?></td>
                                                 <td>

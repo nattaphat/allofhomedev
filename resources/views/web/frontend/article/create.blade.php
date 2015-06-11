@@ -267,6 +267,11 @@
                                                     {!! Form::checkbox('for_cat[]', '6') !!} &nbsp; ไอเดีย
                                                 </label>
                                             </div>
+                                            <div class="checkbox">
+                                                <label>
+                                                    {!! Form::checkbox('for_cat[]', '7') !!} &nbsp; บทความและข่าวสาร
+                                                </label>
+                                            </div>
                                         </div>
                                     </div>
 

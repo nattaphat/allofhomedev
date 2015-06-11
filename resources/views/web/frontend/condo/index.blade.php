@@ -51,14 +51,14 @@
                             <div class="col-md-3">
                                 <div class="row" style="padding-top: 20px; padding-left:10px; padding-right:10px;">
                                     <a href="#">
-                                        <img src="http://www.itgadgeteer.com/wp-content/uploads/2014/06/ad_300x250.png"
-                                             alt="Feature 1" class="img-responsive" />
+                                        <img src="{{ asset('img/ad_300x250.png') }}"
+                                             alt="Banner 2" class="img-responsive img-center" style="height: 208px; width: 250px;" />
                                     </a>
                                 </div>
                                 <div class="row" style="padding-top: 20px;  padding-left:10px; padding-right:10px;">
                                     <a href="#">
-                                        <img src="http://www.itgadgeteer.com/wp-content/uploads/2014/06/ad_300x250.png"
-                                             alt="Feature 1" class="img-responsive" />
+                                        <img src="{{ asset('img/ad_300x250.png') }}"
+                                             alt="Banner 2" class="img-responsive img-center" style="height: 208px; width: 250px;" />
                                     </a>
                                 </div>
                             </div>

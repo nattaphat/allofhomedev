@@ -4,15 +4,15 @@
     </li>
 
     <li class="dropdown">
-        <a href="{{ URL::to('review/index') }}">รีวิวทั้งหมด</a>
+        <a href="{{ URL::to('review/index') }}" style="font-size: 18px; font-weight: bold;">รีวิวทั้งหมด</a>
     </li>
 
     <li class="dropdown">
-        <a href="{{ URL::to('idea/index') }}">ไอเดียทั้งหมด</a>
+        <a href="{{ URL::to('idea/index') }}" style="font-size: 18px; font-weight: bold;">ไอเดียทั้งหมด</a>
     </li>
 
     <li class="dropdown">
-        <a href="{{ URL::to('article/index') }}">บทความและข่าวสาร</a>
+        <a href="{{ URL::to('article/index') }}" style="font-size: 18px; font-weight: bold;">บทความและข่าวสาร</a>
     </li>
 
     {{--<li class="dropdown">--}}
