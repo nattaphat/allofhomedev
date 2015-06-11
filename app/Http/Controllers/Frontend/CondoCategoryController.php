@@ -43,6 +43,9 @@ class CondoCategoryController extends Controller {
 
     public function index()
     {
+        $brand = \App\Models\CatHome::distinct()->select('project_owner')
+            ->groupBy('project_owner')->take(14)->get();
+
         // VIP 5 อัน Random
         $catHomeVip = CatHome::where('status','=',1)
             ->where('vip','=',true)
@@ -150,7 +153,8 @@ class CondoCategoryController extends Controller {
             [
                 'map' => $map,
                 'catHome' => $catHome,
-                'catHomeVip' => $catHomeVip
+                'catHomeVip' => $catHomeVip,
+                'brand' => $brand
             ]);
     }
 

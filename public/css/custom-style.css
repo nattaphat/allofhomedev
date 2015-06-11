@@ -295,3 +295,8 @@ p {
     margin-right: auto;
 }
 
+.showBorder
+{
+    border: 1px solid #000;
+}
+

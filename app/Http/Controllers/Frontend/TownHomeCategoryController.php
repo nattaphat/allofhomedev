@@ -43,7 +43,10 @@ class TownHomeCategoryController extends Controller {
 
     public function index()
     {
-// VIP 5 อัน Random
+        $brand = \App\Models\CatHome::distinct()->select('project_owner')
+            ->groupBy('project_owner')->take(14)->get();
+
+        // VIP 5 อัน Random
         $catHomeVip = CatHome::where('status','=',1)
             ->where('vip','=',true)
             ->whereRaw('for_cat like \'%"2"%\'')
@@ -150,7 +153,8 @@ class TownHomeCategoryController extends Controller {
             [
                 'map' => $map,
                 'catHome' => $catHome,
-                'catHomeVip' => $catHomeVip
+                'catHomeVip' => $catHomeVip,
+                'brand' => $brand
             ]);
     }
 

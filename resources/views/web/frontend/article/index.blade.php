@@ -12,8 +12,6 @@
 
     <div class="container-fluid">
 
-        @include('layouts._partials.articleSlide')
-
         <div class="row" style="margin-top: 30px;">
             <div class="col-md-3">
                 <div>

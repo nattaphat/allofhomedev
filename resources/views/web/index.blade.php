@@ -118,7 +118,7 @@
                         </div>
                     @endfor
                 </div>
-                {{--Read More--}}
+                Read More
                 <ul class="list-inline links" style="text-align: right; padding-top:10px;">
                     <li>
                         <a href="{{ URL::to('review/index') }}" class="btn btn-default btn-xs">
