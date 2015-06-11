@@ -38,7 +38,9 @@ class ProjectCategoryController extends Controller {
 
     public function index()
     {
-        $catHome = CatHome::orderBy('created_at','desc')->get();
+        $catHome = CatHome::orderBy('vip','desc')
+            ->orderBy('status', 'desc')
+            ->orderBy('created_at','desc')->get();
 
         return view('web.frontend.project.index')
             ->with('catHome',$catHome);

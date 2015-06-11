@@ -114,7 +114,7 @@
             <!--Header & Branding region-->
             {{--<div class="header" data-toggle="clingify">--}}
             <div class="header">
-                <div class="header-inner container">
+                <div class="header-inner container" style="margin-right: 0px; margin-right: 0px;">
                     <div class="navbar">
                         <div class="pull-left">
                             <!--branding/logo-->

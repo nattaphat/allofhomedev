@@ -1,6 +1,31 @@
 {{--<!-- ======== @Region: Banner ======== -->--}}
+
 <div class="col-md-3">
+</div>
+
+<div class="col-md-9">
     @include('layouts._partials.left_menu')
+</div>
+
+<div class="col-md-3" style="padding-top: 20px;">
+    <div>
+        <a href="#">
+            <img src="http://www.itgadgeteer.com/wp-content/uploads/2014/06/ad_300x250.png"
+                 alt="Banner 1" class="img-responsive" />
+        </a>
+    </div>
+    <div style="padding-top: 20px;">
+        <a href="#">
+            <img src="http://www.itgadgeteer.com/wp-content/uploads/2014/06/ad_300x250.png"
+                 alt="Banner 2" class="img-responsive" />
+        </a>
+    </div>
+    <div style="padding-top: 20px;">
+        <a href="#">
+            <img src="http://www.itgadgeteer.com/wp-content/uploads/2014/06/ad_300x250.png"
+                 alt="Banner 2" class="img-responsive" />
+        </a>
+    </div>
 </div>
 
 <div class="col-md-6">
@@ -94,6 +119,12 @@
         <a href="#">
             <img src="http://www.itgadgeteer.com/wp-content/uploads/2014/06/ad_300x250.png"
                  alt="Banner 1" class="img-responsive" />
+        </a>
+    </div>
+    <div style="padding-top: 20px;">
+        <a href="#">
+            <img src="http://www.itgadgeteer.com/wp-content/uploads/2014/06/ad_300x250.png"
+                 alt="Banner 2" class="img-responsive" />
         </a>
     </div>
     <div style="padding-top: 20px;">

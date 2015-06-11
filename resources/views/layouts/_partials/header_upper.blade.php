@@ -1,24 +1,24 @@
 <div class="row">
     <div class="col-xs-8 col-xs-push-4">
         <!--Show/hide trigger for #hidden-header -->
-        {{--<div id="header-hidden-link">--}}
-            {{--<a--}}
-                    {{--href="#"--}}
-                    {{--title="Click me you'll get a surprise"--}}
-                    {{--class="show-hide"--}}
-                    {{--data-toggle="show-hide"--}}
-                    {{--data-target=".header-hidden"--}}
-                    {{--data-callback="searchFormFocus"><i></i>Open</a>--}}
-        {{--</div>--}}
+
+        @if((Auth::check() || Auth::viaRemember()) && (Auth::user()->role == 1 || Auth::user()->role == 2) )
+        <div id="header-hidden-link">
+            <a
+                    href="#"
+                    title="Admin Control"
+                    class="show-hide"
+                    data-toggle="show-hide"
+                    data-target=".header-hidden"
+                    data-callback="searchFormFocus"><i></i>Open</a>
+        </div>
+        @endif
 
         <!--social media icons-->
         @if (Auth::check())
         <div class="navbar-collapse collapse pull-right">
             <!--@todo: replace with company social media details-->
             <ul class="nav navbar-nav">
-                <li>
-                    <a href="{{ URL::to('project/index') }}" style="color: #E7E7E8;">โครงการทั้งหมด</a>
-                </li>
                 <li>
                     <a href="{{ URL::route('user_msg') }}" class="btn btn-link" style="color: #E7E7E8;"> <i class="glyphicon glyphicon-envelope" title="ข้อความ"></i></a>
                 </li>

@@ -1,16 +1,26 @@
 <?php namespace App\Http\Controllers\Frontend;
 
+use App\Models\CatArticle;
+use App\Models\Picture;
+use App\Models\Tag;
 use Config;
 use App\Http\Controllers\Controller;
 use Request;
 use Validator;
 use Gmaps;
+use Input;
+use Redirect;
 
 class ArticleCategoryController extends Controller {
 
-    public function index()
+    public function admin_index()
     {
-        return view('web.frontend.article.index');
+        $cat = CatArticle::orderBy('suggest', 'desc')
+            ->orderBy('visible', 'desc')
+            ->orderBy('created_at','desc')->get();
+
+        return view('web.frontend.article.admin_index')
+            ->with('cat',$cat);
     }
 
     public function create()
@@ -18,13 +28,89 @@ class ArticleCategoryController extends Controller {
         return view('web.frontend.article.create');
     }
 
-    public function update()
+    public function post_create()
     {
-        return view('web.frontend.article.update');
+        $input = Input::all();
+//        dd($input);
+
+        $cat = new CatArticle();
+        $cat->user_id = $input['user_id'];
+        $cat->title = $input['title'];
+        $cat->subtitle = $input['subtitle'];
+
+        if(Input::has('for_cat'))
+            $cat->for_cat = serialize($input['for_cat']);
+
+        if(Input::has('other_detail'))
+            $cat->other_detail = $input['other_detail'];
+
+        if(Input::has('video_url'))
+            $cat->video_url = $input['video_url'];
+
+        if(Input::has('suggest'))
+            $cat->suggest = true;
+        else
+            $cat->suggest = false;
+
+        $cat->visible = $input['visible'][0];
+
+        $cat->num_view = 0;
+        $cat->num_shared = 0;
+        $cat->num_comment = 0;
+        $cat->save();
+
+        if(Input::has('pics_filename')) {
+            $filename = $input['pics_filename'];
+            $filetype = $input['pics_filetype'];
+            $filesize = $input['pics_filesize'];
+            $filepath = $input['pics_filepath'];
+            $description = $input['pics_description'];
+
+            $count_pic = count($filename);
+            for($j=0; $j<$count_pic; $j++)
+            {
+                $pic = new Picture();
+                $pic->file_name = $filename[$j];
+                $pic->file_path = $filepath[$j];
+                $pic->file_size = $filesize[$j];
+                $pic->file_type = $filetype[$j];
+                $pic->description = $description[$j];
+
+                $cat->picture()->save($pic);
+            }
+        }
+
+        if(Input::has('tags'))
+        {
+            foreach($input['tags'] as $key=>$value)
+            {
+                $tag = new Tag();
+                $tag->tag_sub_id = $value;
+                $cat->tag()->save($tag);
+            }
+        }
+
+        return redirect('article/admin_index')
+            ->with('flash_message', 'บันทึกข้อมูลสำเร็จ')
+            ->with('flash_type', 'alert-success');
     }
 
-    public function view()
+    public function index()
     {
-        return view('web.frontend.article.view');
+        $cat = CatArticle::where('visible','=','1')
+            ->orderBy('suggest', 'desc')
+            ->orderBy('created_at','desc')
+            ->paginate(10);
+
+        return view('web.frontend.article.index')
+            ->with('cat',$cat);
+    }
+
+    public function view($id)
+    {
+        $cat = CatArticle::find($id);
+
+        return view('web.frontend.article.view')
+            ->with('cat',$cat);
     }
 }

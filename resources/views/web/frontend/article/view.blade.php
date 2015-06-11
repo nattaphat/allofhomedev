@@ -20,6 +20,8 @@
                     </h2>
                 </div>
 
+                {{ $cat->num_view }}
+
             </div>
         </div>
     </div>

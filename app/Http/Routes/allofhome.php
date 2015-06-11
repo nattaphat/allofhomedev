@@ -498,6 +498,12 @@ Route::get('review/view/{id}', [
     'uses' => 'Frontend\ReviewCategoryController@view'
 ]);
 
+Route::get('review/admin_index', [
+    'as' => 'review_admin_index',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\ReviewCategoryController@admin_index'
+]);
+
 /*------------------------------------------------------------------------------*/
 
 /*-------------------------------- Idea -------------------------------*/
@@ -524,6 +530,13 @@ Route::get('idea/view', [
     'before' => 'frontend_auth',
     'uses' => 'Frontend\IdeaCategoryController@view'
 ]);
+
+Route::get('idea/admin_index', [
+    'as' => 'idea_admin_index',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\IdeaCategoryController@admin_index'
+]);
+
 /*------------------------------------------------------------------------------*/
 
 /*-------------------------------- Buysellrent -------------------------------*/
@@ -571,11 +584,24 @@ Route::get('article/update', [
     'uses' => 'Frontend\ArticleCategoryController@update'
 ]);
 
-Route::get('article/view', [
+Route::get('article/view/{id}', [
     'as' => 'article_view',
     'before' => 'frontend_auth',
     'uses' => 'Frontend\ArticleCategoryController@view'
 ]);
+
+Route::get('article/admin_index', [
+    'as' => 'article_admin_index',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\ArticleCategoryController@admin_index'
+]);
+
+Route::post('article/create', [
+    'as' => 'article_post_create',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\ArticleCategoryController@post_create'
+]);
+
 /*------------------------------------------------------------------------------*/
 
 /*-------------------------------- Job -------------------------------*/
@@ -711,6 +737,14 @@ Route::any('project/get_latlong', [
     'uses' => 'Frontend\ProjectCategoryController@get_latlong'
 ]);
 
+/*------------------------------------------------------------------------------*/
+
+/*-------------------------------- Shop -------------------------------*/
+Route::get('shop/admin_index', [
+    'as' => 'shop_admin_index',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\ShopCategoryController@admin_index'
+]);
 /*------------------------------------------------------------------------------*/
 
 /*-------------------------------- Tags -------------------------------*/

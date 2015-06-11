@@ -1,6 +1,5 @@
-<div class="tabbable tabs-left vertical-tabs bold-tabs row">
-    <ul class="nav nav-tabs nav-stacked">
-        <li class="nav-header">ประกาศหมวดหมู่</li>
+<div class="tabbable">
+    <ul id="myTab" class="nav nav-tabs">
         <li
         @if( Route::currentRouteName() == 'home_index' ||
                 Route::currentRouteName() == 'home_create' ||
@@ -9,7 +8,7 @@
             class="active"
                 @endif >
             <a href="{{URL::route('home_index')}}" class="first">
-                โครงการบ้านใหม่ <i class="fa fa-angle-right"></i>
+                โครงการบ้านใหม่
             </a>
         </li>
         <li
@@ -22,7 +21,6 @@
                 >
             <a href="{{URL::route('townhome_index')}}" class="first">
                 โครงการทาวน์โฮมใหม่
-                <i class="fa fa-angle-right"></i>
             </a>
         </li>
         <li
@@ -35,9 +33,55 @@
                 >
             <a href="{{URL::route('condo_index')}}" class="first">
                 โครงการคอนโดใหม่
-                <i class="fa fa-angle-right"></i>
             </a>
         </li>
+    </ul>
+</div>
+
+
+
+
+
+{{--<div class="tabbable tabs-left vertical-tabs bold-tabs row">--}}
+    {{--<ul class="nav nav-tabs nav-stacked">--}}
+        {{--<li class="nav-header">ประกาศหมวดหมู่</li>--}}
+        {{--<li--}}
+        {{--@if( Route::currentRouteName() == 'home_index' ||--}}
+                {{--Route::currentRouteName() == 'home_create' ||--}}
+                {{--Route::currentRouteName() == 'home_update' ||--}}
+                {{--Route::currentRouteName() == 'home_view')--}}
+            {{--class="active"--}}
+                {{--@endif >--}}
+            {{--<a href="{{URL::route('home_index')}}" class="first">--}}
+                {{--โครงการบ้านใหม่ <i class="fa fa-angle-right"></i>--}}
+            {{--</a>--}}
+        {{--</li>--}}
+        {{--<li--}}
+        {{--@if( Route::currentRouteName() == 'townhome_index' ||--}}
+                {{--Route::currentRouteName() == 'townhome_create' ||--}}
+                {{--Route::currentRouteName() == 'townhome_update' ||--}}
+                {{--Route::currentRouteName() == 'townhome_view')--}}
+            {{--class="active"--}}
+                {{--@endif--}}
+                {{-->--}}
+            {{--<a href="{{URL::route('townhome_index')}}" class="first">--}}
+                {{--โครงการทาวน์โฮมใหม่--}}
+                {{--<i class="fa fa-angle-right"></i>--}}
+            {{--</a>--}}
+        {{--</li>--}}
+        {{--<li--}}
+        {{--@if( Route::currentRouteName() == 'condo_index' ||--}}
+                {{--Route::currentRouteName() == 'condo_create' ||--}}
+                {{--Route::currentRouteName() == 'condo_update' ||--}}
+                {{--Route::currentRouteName() == 'condo_view')--}}
+            {{--class="active"--}}
+                {{--@endif--}}
+                {{-->--}}
+            {{--<a href="{{URL::route('condo_index')}}" class="first">--}}
+                {{--โครงการคอนโดใหม่--}}
+                {{--<i class="fa fa-angle-right"></i>--}}
+            {{--</a>--}}
+        {{--</li>--}}
         {{--<li--}}
         {{--@if( Route::currentRouteName() == 'interiorDesign_index' ||--}}
                 {{--Route::currentRouteName() == 'interiorDesign_create' ||--}}
@@ -142,11 +186,11 @@
                 {{--<i class="fa fa-angle-right"></i>--}}
             {{--</a>--}}
         {{--</li>--}}
-    </ul>
-</div>
+    {{--</ul>--}}
+{{--</div>--}}
 
-<div class="form-group">
-    <a class="btn btn-block btn-social btn-facebook">
-        <i class="fa fa-facebook fa-inverse"></i><font color="white"><b></b> Like Facebook<b></b></font>
-    </a>
-</div>
+{{--<div class="form-group">--}}
+    {{--<a class="btn btn-block btn-social btn-facebook">--}}
+        {{--<i class="fa fa-facebook fa-inverse"></i><font color="white"><b></b> Like Facebook<b></b></font>--}}
+    {{--</a>--}}
+{{--</div>--}}

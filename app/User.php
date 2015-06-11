@@ -56,6 +56,11 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
         return $this->hasOne("App\Models\CatIdea");
     }
 
+    public function catArticle()
+    {
+        return $this->hasOne("App\Models\CatArticle");
+    }
+
     public function comment()
     {
         return $this->hasOne("App\Models\Comment");

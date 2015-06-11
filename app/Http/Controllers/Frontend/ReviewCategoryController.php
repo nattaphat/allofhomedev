@@ -171,4 +171,10 @@ class ReviewCategoryController extends Controller {
             ->with('project_name', $project_name)
             ->with('type', $type);
     }
+
+    public function admin_index()
+    {
+        return view('web.frontend.review.admin_index');
+    }
+
 }

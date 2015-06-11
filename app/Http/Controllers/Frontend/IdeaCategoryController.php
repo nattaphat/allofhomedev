@@ -36,4 +36,10 @@ class IdeaCategoryController extends Controller {
     {
         return view('web.frontend.idea.view');
     }
+
+    public function admin_index()
+    {
+        return view('web.frontend.idea.admin_index');
+    }
+
 }
