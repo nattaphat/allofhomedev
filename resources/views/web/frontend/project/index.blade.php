@@ -1,4 +1,4 @@
-@extends('layouts.main')
+@extends('layouts.blank')
 
 @section('jshome')
     <!-- DataTables CSS -->
@@ -62,14 +62,10 @@
 
 @section('content')
 
-    <div class="container nomargin">
+    <div class="container-fluid">
         <div class="row">
-            <div class="col-md-3">
-                @include('layouts._partials.left_menu')
-            </div>
-
             {{--Content--}}
-            <div class="col-md-9">
+            <div class="col-md-12">
 
                 <div class="row">
                     <div class="col-md-12">

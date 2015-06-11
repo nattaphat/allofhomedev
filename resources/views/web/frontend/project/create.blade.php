@@ -1,4 +1,4 @@
-@extends('layouts.main')
+@extends('layouts.blank')
 
 @section('jshome')
     <script type="text/javascript"> var centreGot = true; </script>
@@ -415,12 +415,9 @@
 
 @section('content')
 
-    <div class="container nomargin">
+    <div class="container-fluid">
         <div class="row">
-            <div class="col-md-3">
-                @include('layouts._partials.left_menu')
-            </div>
-            <div class="col-md-9">
+            <div class="col-md-12">
 
                 <div class="row">
                     <div class="col-md-12">

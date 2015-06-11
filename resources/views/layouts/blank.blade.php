@@ -43,7 +43,7 @@
     <link type="text/css" type="text/css" href="{{ asset('plugins/owl-carousel/owl-carousel/owl.theme.css') }}" rel="stylesheet">
 
     <!-- Select2 -->
-    <link type="text/css" type="text/css" href="{{ asset('js/lib/select2-dist/select2.css') }}" rel="stylesheet">
+    <link type="text/css" type="text/css" href="{{ asset('js/lib/select2-dist-louis/dist/css/select2.min.css') }}" rel="stylesheet">
 
     <!-- Plugins required on all pages NOTE: Additional non-required plugins are loaded ondemand as of AppStrap 2.5 -->
     <!-- Plugin: animate.css (animated effects) - http://daneden.github.io/animate.css/ -->
@@ -86,13 +86,134 @@
 <!-- ======== @Region: body ======== -->
 @section('body')
     <body class="page page-index">
+    {{-- @include('layouts._partials.facebook_share') --}}
     @show
     <a href="#content" class="sr-only">Skip to content</a>
+
+    {{--<div class="container-fluid">--}}
+    {{--<div class="row" style="padding-top:0px; margin-top: 0px;">--}}
+    {{--<div class="col-md-12" style="padding: 0px 0px 0px 0px; margin: 0px 0px 0px 0px;">--}}
+    {{--<a href="{{ URL::to('/') }}" title="Home">--}}
+    {{--<img src="{{ asset('./img/logo_v2.png')}}" style="display: block; height: 90px; width: 12%;" />--}}
+    {{--</a>--}}
+    {{--<img src="{{ asset('./img/cat_home/1100x90.jpg')}}" style="display: block; height: 90px; width: 85%;" />--}}
+    {{--</div>--}}
+    {{--</div>--}}
+    {{--</div>--}}
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="md-col-12">
+                <div class="pull-left">
+                    <a href="{{ url("/") }}">
+                        <img src="{{ asset('./img/logo_v2.png')}}" style="padding-left: 30px; padding-top: 10px;" /></a>
+                </div>
+                <div class="pull-right">
+                    <a href="{{ url("/") }}">
+                        <img src="{{ asset('./img/cat_home/1100x90.jpg')}}" /></a>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="md-col-12">
+                <!-- ======== @Region: #navigation ======== -->
+                <div id="navigation" class="wrapper">
+                    <div class="navbar-static-top">
+
+                        <!--Hidden Admin Control -->
+                        {{--<div class="header-hidden" style="padding-top: 0px;">--}}
+                        {{--@include('layouts._partials.header_hidden_container')--}}
+                        {{--</div>--}}
+
+                        <!--Header Sigup Logout -->
+                        {{--<div class="header-upper">--}}
+                        {{--<div class="header-upper-inner container">--}}
+                        {{--@include('layouts._partials.header_upper')--}}
+                        {{--</div>--}}
+                        {{--</div>--}}
+
+                        <!--Header search region - hidden by default -->
+                        {{--<div class="header-search">--}}
+                        {{--@include('layouts._partials.header_search')--}}
+                        {{--</div>--}}
+
+                        <!--Header & Branding region-->
+                        <div class="header" data-toggle="clingify" style="padding-top: 0px; padding-bottom: 0px;">
+                            <div class="header" style="padding-top: 0px; padding-bottom: 0px; border-top: 1px solid #55a79a;">
+                                <div class="header-inner container">
+                                    <div class="navbar">
+                                        {{--<div class="pull-left">--}}
+                                        {{--<!--branding/logo-->--}}
+                                        {{--<a class="navbar-brand" href="{{ URL::to('/') }}" title="Home">--}}
+                                        {{--<h1>--}}
+                                        {{--<!-- <span>AllOf</span>home<span>.</span> -->--}}
+                                        {{--<img src="{{ asset('./img/logo_v2.png')}}">--}}
+                                        {{--</h1>--}}
+                                        {{--</a>--}}
+                                        {{--<div class="slogan">ทุกเรื่องบ้านที่ ออล ออฟ โฮม</div>--}}
+                                        {{--</div>--}}
+
+                                        <!--Search trigger -->
+                                        {{--<a href="#search" class="search-form-tigger"--}}
+                                        {{--data-toggle="search-form" data-target=".header-search">--}}
+                                        {{--</span>--}}
+                                        {{--<i class="fa fa-search fa-flip-horizontal search-icon"></i>--}}
+                                        {{--</a>--}}
+
+                                        <!-- mobile collapse menu button - data-toggle="toggle" = default BS menu - data-toggle="jpanel-menu" = jPanel Menu -->
+                                        {{--<a href="#top" class="navbar-btn"--}}
+                                        {{--data-toggle="jpanel-menu"--}}
+                                        {{--data-target=".navbar-collapse"--}}
+                                        {{--data-direction="right"><i class="fa fa-bars"></i>--}}
+                                        {{--</a>--}}
+
+                                        <!--everything within this div is collapsed on mobile-->
+                                        <div class="navbar-collapse collapse pull-right">
+                                            <!--main navigation-->
+                                            @include('layouts._partials.main_menu')
+                                        </div>
+
+                                        <!--/.navbar-collapse -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>​
 
     <!-- ======== @Region: #content ======== -->
     <div class="content">
         @yield('content')
     </div>
+
+    <!-- ======== @Carousel ==========> -->
+    {{--@include('layouts._partials.carousel')--}}
+
+    <!-- ======== @Region: #content-below ======== -->
+    {{--<div id="content-below" class="wrapper">--}}
+    {{--@include('layouts._partials.content_below')--}}
+    {{--</div>--}}
+
+    <!-- FOOTER -->
+
+    <!-- ======== @Region: #footer ======== -->
+    @include('layouts._partials.footer')
+
+    <!--Hidden elements - excluded from jPanel Menu on mobile-->
+    <div class="hidden-elements jpanel-menu-exclude">
+        <!--@modal - signup modal-->
+        @include('layouts._partials.modal_signup')
+        <!-- /.modal -->
+
+        <!--@modal - login modal-->
+        @include('layouts._partials.modal_login')
+        <!-- /.modal -->
+    </div>
+
 
     <!--Scripts -->
     <script src={{ asset('js/lib/jquery/dist/jquery.min.js') }}></script>
@@ -102,6 +223,11 @@
 
     <!-- Datepicker JS -->
     <script src={{ asset('js/lib/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js') }}></script>
+    <script src="{{ asset('js/lib/bootstrap-datepicker-thai-thai/js/bootstrap-datepicker-thai.js') }}"></script>
+    <script src="{{ asset('js/lib/bootstrap-datepicker-thai-thai/js/locales/bootstrap-datepicker.th.js') }}"></script>
+
+    <!-- Jquery Mask plugin -->
+    <script src="{{ asset('js/lib/jQuery-Mask-Plugin-master/dist/jquery.mask.min.js') }}"></script>
 
     <!-- Bootstrap JS -->
     <script src={{ asset('js/lib/bootstrap/dist/js/bootstrap.min.js') }}></script>
@@ -124,7 +250,7 @@
     <script src={{ asset('plugins/owl-carousel/owl-carousel/owl.carousel.min.js') }}></script>
 
     <!--select2 -->
-    <script src={{ asset('js/lib/select2-dist/select2.min.js') }}></script>
+    <script src={{ asset('js/lib/select2-dist-louis/dist/js/select2.min.js') }}></script>
 
     <!--Custom scripts mainly used to trigger libraries/plugins -->
     <script src={{ asset('js/script.min.js') }}></script>

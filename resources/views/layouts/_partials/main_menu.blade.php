@@ -15,19 +15,25 @@
         <a href="{{ URL::to('article/index') }}" style="font-size: 18px; font-weight: bold;">บทความและข่าวสาร</a>
     </li>
 
-    {{--<li class="dropdown">--}}
-        {{--<a href="#" class="dropdown-toggle" id="pages-drop" data-toggle="dropdown" data-hover="dropdown">เมนูอื่นๆ</a>--}}
-        {{--<!-- Menu -->--}}
-        {{--<ul class="dropdown-menu" role="menu" aria-labelledby="pages-drop">--}}
+    @if((Auth::check() || Auth::viaRemember()) && (Auth::user()->role == 1 || Auth::user()->role == 2) )
+    <li class="dropdown">
+        <a href="#" class="dropdown-toggle" id="pages-drop" data-toggle="dropdown" data-hover="dropdown" style="font-size: 18px; font-weight: bold;">ตั้งค่า</a>
+        <!-- Menu -->
+        <ul class="dropdown-menu" role="menu" aria-labelledby="pages-drop">
+            <li class="dropdown">
+                <a href="{{ URL::to('project/index') }}">โครงการทั้งหมด</a>
+            </li>
+            <li class="dropdown">
+                <a href="{{ URL::to('article/admin_index') }}">บทความและข่าวสาร</a>
+            </li>
             {{--<li class="dropdown">--}}
-                {{--<a href="{{ URL::to('buysellrent/index') }}">กระทู้ทั้งหมด (ซื้อ ขาย เช่า)</a>--}}
+                {{--<a href="{{ URL::to('review/admin_index') }}">รีวิว</a>--}}
             {{--</li>--}}
             {{--<li class="dropdown">--}}
-                {{--<a href="{{ URL::to('2hand/index') }}">ของใช้ภายในบ้าน (มือสอง)</a>--}}
+                {{--<a href="{{ URL::to('idea/admin_index') }}">ไอเดีย</a>--}}
             {{--</li>--}}
-            {{--<li class="dropdown">--}}
-                {{--<a href="{{ URL::to('job/index') }}">ประกาศรับสมัครงาน</a>--}}
-            {{--</li>--}}
-        {{--</ul>--}}
-    {{--</li>--}}
+        </ul>
+    </li>
+    @endif
+
 </ul>
