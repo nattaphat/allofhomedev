@@ -33,9 +33,9 @@
         </div>
 
 
-        <div class="row">
+        <div class="row" style="margin-top: 30px;">
             {{--#### Banner ####--}}
-            <div class="col-md-3">
+            <div class="col-md-3" style="margin-top: 30px;">
                 <div>
                     <a href="#">
                         <img src="http://www.itgadgeteer.com/wp-content/uploads/2014/06/ad_300x250.png"
@@ -49,6 +49,7 @@
                     </a>
                 </div>
             </div>{{--#### Banner ####--}}
+
             {{--#### Content ####--}}
             <div class="col-md-9">
                 {{--#### Google Map + Table Specification ####--}}
