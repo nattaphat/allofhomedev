@@ -142,6 +142,7 @@
             parallelUploads: 1,
             acceptedFiles: 'image/*',
             autoProcessQueue: true,
+            dictDefaultMessage: "Drop file size 622 x 389 pixel",
             sending: function(file, xhr, formData) {
                 formData.append("_token", $('[name=_token]').val());
             },
@@ -152,29 +153,31 @@
                 var filesize = file.size;
                 var filepath = response;
 
+                debugger;
+
                 var input_hidden = document.createElement('input');
                 input_hidden.setAttribute('name', 'pics_filename[]');
                 input_hidden.setAttribute('type', 'hidden');
                 input_hidden.setAttribute('value', filename);
-                document.forms[1].appendChild(input_hidden);
+                document.forms[0].appendChild(input_hidden);
 
                 var input_hidden = document.createElement('input');
                 input_hidden.setAttribute('name', 'pics_filetype[]');
                 input_hidden.setAttribute('type', 'hidden');
                 input_hidden.setAttribute('value', filetype);
-                document.forms[1].appendChild(input_hidden);
+                document.forms[0].appendChild(input_hidden);
 
                 var input_hidden = document.createElement('input');
                 input_hidden.setAttribute('name', 'pics_filesize[]');
                 input_hidden.setAttribute('type', 'hidden');
                 input_hidden.setAttribute('value', filesize);
-                document.forms[1].appendChild(input_hidden);
+                document.forms[0].appendChild(input_hidden);
 
                 var input_hidden = document.createElement('input');
                 input_hidden.setAttribute('name', 'pics_filepath[]');
                 input_hidden.setAttribute('type', 'hidden');
                 input_hidden.setAttribute('value', filepath);
-                document.forms[1].appendChild(input_hidden);
+                document.forms[0].appendChild(input_hidden);
             },
             error: function (file, response) {
                 this.removeFile(file);

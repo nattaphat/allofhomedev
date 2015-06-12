@@ -322,25 +322,25 @@
                 input_hidden.setAttribute('name', 'pics_filename[]');
                 input_hidden.setAttribute('type', 'hidden');
                 input_hidden.setAttribute('value', filename);
-                document.forms[1].appendChild(input_hidden);
+                document.forms[0].appendChild(input_hidden);
 
                 var input_hidden = document.createElement('input');
                 input_hidden.setAttribute('name', 'pics_filetype[]');
                 input_hidden.setAttribute('type', 'hidden');
                 input_hidden.setAttribute('value', filetype);
-                document.forms[1].appendChild(input_hidden);
+                document.forms[0].appendChild(input_hidden);
 
                 var input_hidden = document.createElement('input');
                 input_hidden.setAttribute('name', 'pics_filesize[]');
                 input_hidden.setAttribute('type', 'hidden');
                 input_hidden.setAttribute('value', filesize);
-                document.forms[1].appendChild(input_hidden);
+                document.forms[0].appendChild(input_hidden);
 
                 var input_hidden = document.createElement('input');
                 input_hidden.setAttribute('name', 'pics_filepath[]');
                 input_hidden.setAttribute('type', 'hidden');
                 input_hidden.setAttribute('value', filepath);
-                document.forms[1].appendChild(input_hidden);
+                document.forms[0].appendChild(input_hidden);
             },
             error: function (file, response) {
                 this.removeFile(file);
@@ -380,25 +380,25 @@
                     input_hidden.setAttribute('name', 'pics_filename{{ $i }}[]');
                     input_hidden.setAttribute('type', 'hidden');
                     input_hidden.setAttribute('value', filename);
-                    document.forms[1].appendChild(input_hidden);
+                    document.forms[0].appendChild(input_hidden);
 
                     var input_hidden = document.createElement('input');
                     input_hidden.setAttribute('name', 'pics_filetype{{ $i }}[]');
                     input_hidden.setAttribute('type', 'hidden');
                     input_hidden.setAttribute('value', filetype);
-                    document.forms[1].appendChild(input_hidden);
+                    document.forms[0].appendChild(input_hidden);
 
                     var input_hidden = document.createElement('input');
                     input_hidden.setAttribute('name', 'pics_filesize{{ $i }}[]');
                     input_hidden.setAttribute('type', 'hidden');
                     input_hidden.setAttribute('value', filesize);
-                    document.forms[1].appendChild(input_hidden);
+                    document.forms[0].appendChild(input_hidden);
 
                     var input_hidden = document.createElement('input');
                     input_hidden.setAttribute('name', 'pics_filepath{{ $i }}[]');
                     input_hidden.setAttribute('type', 'hidden');
                     input_hidden.setAttribute('value', filepath);
-                    document.forms[1].appendChild(input_hidden);
+                    document.forms[0].appendChild(input_hidden);
                 },
                 error: function (file, response) {
                     this.removeFile(file);
