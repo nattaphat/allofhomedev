@@ -69,16 +69,16 @@ class ProjectCategoryController extends Controller {
                 'zoom' => '7',
                 'panControl' => false,
                 'zoomControl' => false,
-                'scaleControl' => true,
+                'scaleControl' => true
                 //'scrollwheel' => false
-                'onboundschanged' =>
-                    'if (!centreGot) {
-                    var mapCentre = map.getCenter();
-                    marker_0.setOptions({
-                        position: new google.maps.LatLng(mapCentre.lat(), mapCentre.lng())
-                    });
-                }
-                centreGot = true;'
+                //'onboundschanged' =>
+                //    'if (!centreGot) {
+                //    var mapCentre = map.getCenter();
+                //    marker_0.setOptions({
+                //        position: new google.maps.LatLng(mapCentre.lat(), mapCentre.lng())
+                //    });
+                //}
+                //centreGot = true;'
             ];
         Gmaps::initialize($config);
 

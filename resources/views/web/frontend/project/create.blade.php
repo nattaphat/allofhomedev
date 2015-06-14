@@ -1,7 +1,6 @@
 @extends('layouts.blank')
 
 @section('jshome')
-    <script type="text/javascript"> var centreGot = true; </script>
     {!! $map['js'] !!}
 @stop
 
