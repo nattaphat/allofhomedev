@@ -65,20 +65,11 @@ class ProjectCategoryController extends Controller {
 
         $config =
             [
-                'center' => 'auto',
+                'center' => '13.7646393,100.5378279',
                 'zoom' => '7',
                 'panControl' => false,
                 'zoomControl' => false,
                 'scaleControl' => true
-                //'scrollwheel' => false
-                //'onboundschanged' =>
-                //    'if (!centreGot) {
-                //    var mapCentre = map.getCenter();
-                //    marker_0.setOptions({
-                //        position: new google.maps.LatLng(mapCentre.lat(), mapCentre.lng())
-                //    });
-                //}
-                //centreGot = true;'
             ];
         Gmaps::initialize($config);
 
@@ -97,7 +88,6 @@ class ProjectCategoryController extends Controller {
             longitude.value = event.latLng.lng();
             map_url.value = "http://maps.google.com/maps?z=13&q=" + event.latLng.lat() + "," + event.latLng.lng();
             '
-
         ];
 
         Gmaps::add_marker($marker);
