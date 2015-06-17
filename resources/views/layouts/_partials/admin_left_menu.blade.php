@@ -50,10 +50,10 @@
                 <a href="#"><i class="fa fa-tag fa-fw"></i> ข้อมูล Tag<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li>
-                        <a href="{{ URL::to('backend/tag') }}">Tag หลัก</a>
+                        <a href="{{ URL::to('backend/tag') }}">หมวดหมู่ Tag</a>
                     </li>
                     <li>
-                        <a href="{{ URL::to('backend/subTag') }}">Tag ย่อย</a>
+                        <a href="{{ URL::to('backend/subTag') }}">ข้อมูล Tag</a>
                     </li>
                 </ul>
             </li>

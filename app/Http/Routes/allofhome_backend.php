@@ -150,17 +150,66 @@
         'uses' => 'Backend\BackendDiscountController@discount'
     ]);
 
-//    Tag
+    //    Tag Main
     Route::get('backend/tag', [
         'before' => 'backend_auth',
         'as' => 'backend_tag',
         'uses' => 'Backend\BackendTagController@tag'
     ]);
 
+    Route::get('backend/tag_new', [
+        'before' => 'backend_auth',
+        'as' => 'backend_tag_new',
+        'uses' => 'Backend\BackendTagController@tag_new'
+    ]);
+
+    Route::post('backend/tag_store', [
+        'before' => 'backend_auth',
+        'as' => 'backend_tag_store',
+        'uses' => 'Backend\BackendTagController@tag_store'
+    ]);
+
+    Route::get('backend/tag_edit/{id}', [
+        'before' => 'backend_auth',
+        'as' => 'backend_tag_edit',
+        'uses' => 'Backend\BackendTagController@tag_edit'
+    ]);
+
+    Route::post('backend/tag_update', [
+        'before' => 'backend_auth',
+        'as' => 'backend_tag_update',
+        'uses' => 'Backend\BackendTagController@tag_update'
+    ]);
+
+    //    Tag Sub
     Route::get('backend/subTag', [
         'before' => 'backend_auth',
         'as' => 'backend_subTag',
         'uses' => 'Backend\BackendTagController@subTag'
+    ]);
+
+    Route::get('backend/subTag_new', [
+        'before' => 'backend_auth',
+        'as' => 'backend_subTag_new',
+        'uses' => 'Backend\BackendTagController@subTag_new'
+    ]);
+
+    Route::post('backend/subTag_store', [
+        'before' => 'backend_auth',
+        'as' => 'backend_subTag_store',
+        'uses' => 'Backend\BackendTagController@subTag_store'
+    ]);
+
+    Route::get('backend/subTag_edit/{id}', [
+        'before' => 'backend_auth',
+        'as' => 'backend_subTag_edit',
+        'uses' => 'Backend\BackendTagController@subTag_edit'
+    ]);
+
+    Route::post('backend/subTag_update', [
+        'before' => 'backend_auth',
+        'as' => 'backend_subTag_update',
+        'uses' => 'Backend\BackendTagController@subTag_update'
     ]);
 
 /* ----- ## backend ## ----- */

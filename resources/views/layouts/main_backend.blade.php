@@ -10,7 +10,7 @@
     <meta name="author" content="">
 
     <title>
-        Backend | All of Home ทุกเรื่องบ้าน
+        Admin Control - All of Home ทุกเรื่องบ้าน
     </title>
 
     <!-- Bootstrap Core CSS -->
@@ -59,7 +59,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <div class="navbar-brand">Backend &nbsp; | &nbsp; All of Home ทุกเรื่องบ้าน</div>
+            <div class="navbar-brand">Admin Control &nbsp; | &nbsp; All of Home ทุกเรื่องบ้าน</div>
         </div>
         <!-- /.navbar-header -->
 

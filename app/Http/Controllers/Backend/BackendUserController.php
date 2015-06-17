@@ -3,7 +3,6 @@
 use Config;
 use App\Http\Controllers\Controller;
 use App\User;
-use yajra\Datatables\Datatables;
 use Input;
 use Redirect;
 
@@ -11,7 +10,7 @@ class BackendUserController extends Controller {
 
     public function index()
     {
-        $users = User::all();
+        $users = User::orderBy('firstname')->orderBy('lastname')->get();
         return view('web.backend.user')->with('users', $users);
     }
 
