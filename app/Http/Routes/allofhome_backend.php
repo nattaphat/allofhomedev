@@ -150,6 +150,30 @@
         'uses' => 'Backend\BackendDiscountController@discount'
     ]);
 
+    Route::get('backend/discount_new', [
+        'before' => 'backend_auth',
+        'as' => 'backend_discount_new',
+        'uses' => 'Backend\BackendDiscountController@discount_new'
+    ]);
+
+    Route::post('backend/discount_store', [
+        'before' => 'backend_auth',
+        'as' => 'backend_discount_store',
+        'uses' => 'Backend\BackendDiscountController@discount_store'
+    ]);
+
+    Route::get('backend/discount_edit/{id}', [
+        'before' => 'backend_auth',
+        'as' => 'backend_discount_edit',
+        'uses' => 'Backend\BackendDiscountController@discount_edit'
+    ]);
+
+    Route::post('backend/discount_update', [
+        'before' => 'backend_auth',
+        'as' => 'backend_discount_update',
+        'uses' => 'Backend\BackendDiscountController@discount_update'
+    ]);
+
     //    Tag Main
     Route::get('backend/tag', [
         'before' => 'backend_auth',

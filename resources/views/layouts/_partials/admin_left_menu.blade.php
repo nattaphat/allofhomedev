@@ -44,7 +44,7 @@
                 <a href="{{ URL::to('backend/facility') }}"><i class="fa fa-heart fa-fw"></i> สิ่งอำนวยความสะดวก</a>
             </li>
             <li>
-                <a href="{{ URL::to('backend/discount') }}"><i class="fa fa-star fa-fw"></i> ส่วนลด โปรโมชั่น</a>
+                <a href="{{ URL::to('backend/discount') }}"><i class="fa fa-star fa-fw"></i> ส่วนลด/โปรโมชั่น</a>
             </li>
             <li>
                 <a href="#"><i class="fa fa-tag fa-fw"></i> ข้อมูล Tag<span class="fa arrow"></span></a>
