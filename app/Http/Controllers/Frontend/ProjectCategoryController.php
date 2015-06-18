@@ -270,7 +270,7 @@ class ProjectCategoryController extends Controller {
                 $pic->file_path = $filepath[$j];
                 $pic->file_size = $filesize[$j];
                 $pic->file_type = $filetype[$j];
-                $pic->description = $description[$j];
+                $pic->description = $description[$j] == null? "" : $description[$j];
 
                 $catHome->picture()->save($pic);
             }
