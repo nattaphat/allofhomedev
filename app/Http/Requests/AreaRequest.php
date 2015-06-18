@@ -11,7 +11,9 @@ class AreaRequest extends Request {
     public function rules()
     {
         return [
-            'area_name' => 'required|max:100'
+            'area_name' => 'required|max:100',
+            'area_id' => 'required',
+            'subarea_name' => 'required|max:100',
         ];
     }
 

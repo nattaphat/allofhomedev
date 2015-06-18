@@ -109,8 +109,11 @@ class BackendLocationController extends Controller {
 
     public function subArea_edit($id)
     {
-        $area = Area::find($id);
-        return view('web.backend.subArea_edit')->with("area",$area);
+        $areas = ['' => '-- กรุณาเลือก --'] + Area::all()->lists('area_name', 'id');
+        $subArea = SubArea::find($id);
+
+        return view('web.backend.subArea_edit')->with("areas",$areas)
+            ->with('subArea',$subArea);
     }
 
     public function subArea_update()
@@ -118,9 +121,10 @@ class BackendLocationController extends Controller {
         $input = Input::all();
 
         try{
-            $area = Area::find($input['id']);
-            $area->area_name = $input['area_name'];
-            $area->save();
+            $subArea = SubArea::find($input['id']);
+            $subArea->area_id = $input['area_id'];
+            $subArea->subarea_name = $input['subarea_name'];
+            $subArea->save();
         }
         catch(\Exception $e)
         {
