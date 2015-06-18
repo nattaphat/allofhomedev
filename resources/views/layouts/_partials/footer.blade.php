@@ -44,6 +44,7 @@
                 <a href="#"><small>ร้านค้า/สาขา ทั้งหมด</small></a><br/>
                 <a href="#">โครงการทั้งหมด</a><br/>
                 <a href="#">บทความที่น่าสนใจ</a><br/>
+                <a href="backend/login" target="_blank">Admin Control</a><br/>
             </p>
         </div>
     </div>
