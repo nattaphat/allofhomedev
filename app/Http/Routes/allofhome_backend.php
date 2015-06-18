@@ -89,6 +89,18 @@
         'uses' => 'Backend\BackendCategoryController@category'
     ]);
 
+    Route::get('backend/category_edit/{id}', [
+        'before' => 'backend_auth',
+        'as' => 'backend_category_edit',
+        'uses' => 'Backend\BackendCategoryController@category_edit'
+    ]);
+
+    Route::post('backend/category_update', [
+        'before' => 'backend_auth',
+        'as' => 'backend_category_update',
+        'uses' => 'Backend\BackendCategoryController@category_update'
+    ]);
+
 //    Business Shop
     Route::get('backend/businessShop', [
         'before' => 'backend_auth',

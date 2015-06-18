@@ -3,44 +3,42 @@
 use Config;
 use App\Http\Controllers\Controller;
 use App\User;
+use App\Models\Category;
+use Input;
+use Redirect;
 
 class BackendCategoryController extends Controller {
 
     public function category()
     {
-        //$cat =
-        //return view('web.backend.category');
+        $cats = Category::orderBy('id')->get();
+        return view('web.backend.category')->with('cats', $cats);
     }
 
-    public function facility()
+    public function category_edit($id)
     {
-        $facs = Facility::orderBy('fac_name')->get();
-        return view('web.backend.facility')->with('facs', $facs);
+        $cat = Category::find($id);
+        return view('web.backend.category_edit')->with("cat",$cat);
     }
 
-    public function facility_edit($id)
-    {
-        $fac = Facility::find($id);
-        return view('web.backend.facility_edit')->with("fac",$fac);
-    }
-
-    public function facility_update()
+    public function category_update()
     {
         $input = Input::all();
 
         try{
-            $fac = Facility::find($input['id']);
-            $fac->fac_name = $input['fac_name'];
-            $fac->save();
+            $cat = Category::find($input['id']);
+            $cat->category_name = $input['category_name'];
+            $cat->visible = $input['visible'][0];
+            $cat->save();
         }
         catch(\Exception $e)
         {
-            return Redirect::route('backend_facility')
+            return Redirect::route('backend_category')
                 ->with('flash_message', 'แก้ไขข้อมูลล้มเหลว')
                 ->with('flash_type', 'alert-danger');
         }
 
-        return Redirect::route('backend_facility')
+        return Redirect::route('backend_category')
             ->with('flash_message', 'แก้ไขข้อมูลสำเร็จ')
             ->with('flash_type', 'alert-success');
 

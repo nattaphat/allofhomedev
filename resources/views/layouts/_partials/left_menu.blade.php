@@ -37,10 +37,14 @@
         {{--</li>--}}
     {{--</ul>--}}
 {{--</div>--}}
+<?php
+    $catLeftMenu = App\Models\Category::orderBy('id')->get();
+?>
 
 <div class="tabbable tabs-left vertical-tabs bold-tabs row">
     <ul class="nav nav-tabs nav-stacked">
         <li class="nav-header">ประกาศหมวดหมู่</li>
+        @if($catLeftMenu[0]->visible)
         <li
         @if( Route::currentRouteName() == 'home_index' ||
                 Route::currentRouteName() == 'home_create' ||
@@ -49,9 +53,11 @@
             class="active"
                 @endif >
             <a href="{{URL::route('home_index')}}" class="first" style="padding-top: 5px; font-size: 14px;">
-                โครงการบ้านใหม่ <i class="fa fa-angle-right"></i>
+                {{ $catLeftMenu[0]->category_name }} <i class="fa fa-angle-right"></i>
             </a>
         </li>
+        @endif
+        @if($catLeftMenu[1]->visible)
         <li
         @if( Route::currentRouteName() == 'townhome_index' ||
                 Route::currentRouteName() == 'townhome_create' ||
@@ -61,10 +67,12 @@
                 @endif
                 >
             <a href="{{URL::route('townhome_index')}}" class="first" style="padding-top: 5px; font-size: 14px;">
-                โครงการทาวน์โฮมใหม่
+                {{ $catLeftMenu[1]->category_name }}
                 <i class="fa fa-angle-right"></i>
             </a>
         </li>
+        @endif
+        @if($catLeftMenu[2]->visible)
         <li
         @if( Route::currentRouteName() == 'condo_index' ||
                 Route::currentRouteName() == 'condo_create' ||
@@ -74,10 +82,12 @@
                 @endif
                 >
             <a href="{{URL::route('condo_index')}}" class="first" style="padding-top: 5px; font-size: 14px;">
-                โครงการคอนโดใหม่
+                {{ $catLeftMenu[2]->category_name }}
                 <i class="fa fa-angle-right"></i>
             </a>
         </li>
+        @endif
+        @if($catLeftMenu[3]->visible)
         <li
         @if( Route::currentRouteName() == 'interiorDesign_index' ||
                 Route::currentRouteName() == 'interiorDesign_create' ||
@@ -87,10 +97,12 @@
                 @endif
                 >
             <a href="{{URL::route('interiorDesign_index')}}" class="first" style="padding-top: 5px; font-size: 14px;">
-                ออกแบบภายใน ภายนอก
+                {{ $catLeftMenu[3]->category_name }}
                 <i class="fa fa-angle-right"></i>
             </a>
         </li>
+        @endif
+        @if($catLeftMenu[4]->visible)
         <li
         @if( Route::currentRouteName() == 'land_index' ||
                 Route::currentRouteName() == 'land_create' ||
@@ -100,10 +112,12 @@
                 @endif
                 >
             <a href="{{URL::route('land_index')}}" class="first" style="padding-top: 5px; font-size: 14px;">
-                ที่ดินเปล่า
+                {{ $catLeftMenu[4]->category_name }}
                 <i class="fa fa-angle-right"></i>
             </a>
         </li>
+        @endif
+        @if($catLeftMenu[5]->visible)
         <li
         @if( Route::currentRouteName() == 'furniture_index' ||
                 Route::currentRouteName() == 'furniture_create' ||
@@ -113,10 +127,12 @@
                 @endif
                 >
             <a href="{{URL::route('furniture_index')}}" class="first" style="padding-top: 5px; font-size: 14px;">
-                เฟอร์นิเจอร์ ของตกแต่ง
+                {{ $catLeftMenu[5]->category_name }}
                 <i class="fa fa-angle-right"></i>
             </a>
         </li>
+        @endif
+        @if($catLeftMenu[6]->visible)
         <li
         @if( Route::currentRouteName() == 'electric_index' ||
                 Route::currentRouteName() == 'electric_create' ||
@@ -126,10 +142,12 @@
                 @endif
                 >
             <a href="{{URL::route('electric_index')}}" class="first" style="padding-top: 5px; font-size: 14px;">
-                เครื่องใช้ไฟฟ้า
+                {{ $catLeftMenu[6]->category_name }}
                 <i class="fa fa-angle-right"></i>
             </a>
         </li>
+        @endif
+        @if($catLeftMenu[7]->visible)
         <li
         @if( Route::currentRouteName() == 'kitchenware_index' ||
                 Route::currentRouteName() == 'kitchenware_create' ||
@@ -139,10 +157,12 @@
                 @endif
                 >
             <a href="{{URL::route('kitchenware_index')}}" class="first" style="padding-top: 5px; font-size: 14px;">
-                เครื่องครัว สุขภัณฑ์
+                {{ $catLeftMenu[7]->category_name }}
                 <i class="fa fa-angle-right"></i>
             </a>
         </li>
+        @endif
+        @if($catLeftMenu[8]->visible)
         <li
         @if( Route::currentRouteName() == 'contractor_index' ||
                 Route::currentRouteName() == 'contractor_create' ||
@@ -152,10 +172,12 @@
                 @endif
                 >
             <a href="{{URL::route('contractor_index')}}" class="first" style="padding-top: 5px; font-size: 14px;">
-                วัสดุก่อสร้าง รับเหมา
+                {{ $catLeftMenu[8]->category_name }}
                 <i class="fa fa-angle-right"></i>
             </a>
         </li>
+        @endif
+        @if($catLeftMenu[9]->visible)
         <li
         @if( Route::currentRouteName() == 'garden_index' ||
                 Route::currentRouteName() == 'garden_create' ||
@@ -165,10 +187,12 @@
                 @endif
                 >
             <a href="{{URL::route('garden_index')}}" class="first" style="padding-top: 5px; font-size: 14px;">
-                ดูแลสวน
+                {{ $catLeftMenu[9]->category_name }}
                 <i class="fa fa-angle-right"></i>
             </a>
         </li>
+        @endif
+        @if($catLeftMenu[10]->visible)
         <li
         @if( Route::currentRouteName() == 'oldFurniture_index' ||
                 Route::currentRouteName() == 'oldFurniture_create' ||
@@ -178,10 +202,11 @@
                 @endif
                 >
             <a href="{{URL::route('oldFurniture_index')}}" class="first" style="padding-top: 5px; font-size: 14px;">
-                เฟอร์โบราณเก่าเก็บ
+                {{ $catLeftMenu[10]->category_name }}
                 <i class="fa fa-angle-right"></i>
             </a>
         </li>
+        @endif
     </ul>
 </div>
 

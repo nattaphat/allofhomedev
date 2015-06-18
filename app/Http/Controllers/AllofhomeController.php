@@ -1,5 +1,6 @@
 <?php namespace App\Http\Controllers;
 
+use App\Models\Category;
 use Config;
 use App\Models\geoRegion;
 use Request;
