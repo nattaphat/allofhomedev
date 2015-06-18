@@ -13,10 +13,10 @@ class TagMainTableSeeder extends Seeder
 
         $items =[
 
-            ['id' => 1, "tag_main_name" => "รูปแบบบ้าน"],
-            ['id' => 2, "tag_main_name" => "รูปแบบประกาศ"],
-            ['id' => 3, "tag_main_name" => "สิ่งอำนวยความสะดวก"],
-            ['id' => 4, "tag_main_name" => "ทำเล/ย่าน"],
+            ["tag_main_name" => "รูปแบบบ้าน"],
+            ["tag_main_name" => "รูปแบบประกาศ"],
+            ["tag_main_name" => "สิ่งอำนวยความสะดวก"],
+            ["tag_main_name" => "ทำเล/ย่าน"],
 
 
 

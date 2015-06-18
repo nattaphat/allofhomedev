@@ -15,31 +15,24 @@ class PromotionTableSeeder extends Seeder
         $items =[
 
             [
-                'id'  => 1,
                 "promotion_name"  => "ส่วนลดเงินสด"
             ],
             [
-                'id'  => 2,
                 "promotion_name"  => "แถมเฟอร์นิเจอร์"
             ],
             [
-                'id'  => 3,
                 "promotion_name"  => "ฟรีค่าใช้จ่ายวันโอน"
             ],
             [
-                'id'  => 4,
                 "promotion_name"  => "ฟรีแอร์ทั้งหลัง"
             ],
             [
-                'id'  => 5,
                 "promotion_name"  => "ฟรีผ้าม่านทั้งหลัง"
             ],
             [
-                'id'  => 6,
                 "promotion_name"  => "ฟรีค่าส่วนกลาง"
             ],
             [
-                'id'  => 7,
                 "promotion_name"  => "ดอกเบี้ยถูกกว่าปกติ"
             ]
         ];

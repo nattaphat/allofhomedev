@@ -10,6 +10,12 @@ class Area extends Model {
 
     protected $fillable = array('area_name');
 
+    public static function getAreaName($area_id)
+    {
+        $area = Area::find($area_id);
+        return $area->area_name;
+    }
+
     public function subArea()
  	{
         return $this->hasMany('App\Models\SubArea');

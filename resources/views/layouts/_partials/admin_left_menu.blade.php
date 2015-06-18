@@ -35,8 +35,16 @@
                     <li>
                         <a href="{{ URL::to('backend/airportLink') }}">Airport Link</a>
                     </li>
+                </ul>
+            </li>
+            <li>
+                <a href="#"><i class="fa fa-tag fa-fw"></i> ทำเล/ย่าน<span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
                     <li>
-                        <a href="{{ URL::to('backend/location') }}">ทำเล/ย่าน</a>
+                        <a href="{{ URL::to('backend/location') }}">หมวดหมู่ ทำเล/ย่าน</a>
+                    </li>
+                    <li>
+                        <a href="{{ URL::to('backend/subArea') }}">ข้อมูล ทำเล/ย่าน</a>
                     </li>
                 </ul>
             </li>

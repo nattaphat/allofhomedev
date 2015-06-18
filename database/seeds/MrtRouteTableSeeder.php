@@ -15,32 +15,26 @@ class MrtRouteTableSeeder extends Seeder
         $mrt_routes =[
 
             [
-                'id'  => 1,
                 "name"  => "สายสีน้ำเงิน",
                 "memo" => ""
             ],
             [
-                'id'  => 2,
                 "name"  => "สายสีม่วง",
                 "memo" => ""
             ],
             [
-                'id'  => 3,
                 "name"  => "สายสีส้ม",
                 "memo" => ""
             ],
             [
-                'id'  => 4,
                 "name"  => "สายสีชมพู",
                 "memo" => ""
             ],
             [
-                'id'  => 5,
                 "name"  => "สายสีเหลือง",
                 "memo" => ""
             ],
             [
-                'id'  => 6,
                 "name"  => "สายสีน้ำตาล",
                 "memo" => ""
             ]

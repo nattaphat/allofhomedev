@@ -117,23 +117,66 @@
         'uses' => 'Backend\BackendAirportLinkController@airportLink'
     ]);
 
-//    ทำเล / ย่าน
+//    หมวดหมู่ ทำเล / ย่าน
     Route::get('backend/location', [
         'before' => 'backend_auth',
         'as' => 'backend_location',
         'uses' => 'Backend\BackendLocationController@location'
     ]);
 
-    Route::get('backend/mainLocation', [
+    Route::get('backend/location_new', [
         'before' => 'backend_auth',
-        'as' => 'backend_mainLocation',
-        'uses' => 'Backend\BackendLocationController@mainLocation'
+        'as' => 'backend_location_new',
+        'uses' => 'Backend\BackendLocationController@location_new'
     ]);
 
-    Route::get('backend/subLocation', [
+    Route::post('backend/location_store', [
         'before' => 'backend_auth',
-        'as' => 'backend_subLocation',
-        'uses' => 'Backend\BackendLocationController@subLocation'
+        'as' => 'backend_location_store',
+        'uses' => 'Backend\BackendLocationController@location_store'
+    ]);
+
+    Route::get('backend/location_edit/{id}', [
+        'before' => 'backend_auth',
+        'as' => 'backend_location_edit',
+        'uses' => 'Backend\BackendLocationController@location_edit'
+    ]);
+
+    Route::post('backend/location_update', [
+        'before' => 'backend_auth',
+        'as' => 'backend_location_update',
+        'uses' => 'Backend\BackendLocationController@location_update'
+    ]);
+
+// Sub Area
+    Route::get('backend/subArea', [
+        'before' => 'backend_auth',
+        'as' => 'backend_subArea',
+        'uses' => 'Backend\BackendLocationController@subArea'
+    ]);
+
+    Route::get('backend/subArea_new', [
+        'before' => 'backend_auth',
+        'as' => 'backend_subArea_new',
+        'uses' => 'Backend\BackendLocationController@subArea_new'
+    ]);
+
+    Route::post('backend/subArea_store', [
+        'before' => 'backend_auth',
+        'as' => 'backend_subArea_store',
+        'uses' => 'Backend\BackendLocationController@subArea_store'
+    ]);
+
+    Route::get('backend/subArea_edit/{id}', [
+        'before' => 'backend_auth',
+        'as' => 'backend_subArea_edit',
+        'uses' => 'Backend\BackendLocationController@subArea_edit'
+    ]);
+
+    Route::post('backend/subArea_update', [
+        'before' => 'backend_auth',
+        'as' => 'backend_subArea_update',
+        'uses' => 'Backend\BackendLocationController@subArea_update'
     ]);
 
 //    สิ่งอำนวยความสะดวก

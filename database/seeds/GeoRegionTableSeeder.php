@@ -25,23 +25,18 @@ class GeoRegionTableSeeder extends Seeder
         $regions =[
 
             [
-                'id'  => 1,
                 "name"  => "ภาคกลาง"
             ],
             [
-                'id'  => 2,
                 "name"  => "ภาคตะวันออก"
             ],
             [
-                'id'  => 3,
                 "name"  => "ภาคตะวันออกเฉียงเหนือ"
             ],
             [
-                'id'  => 4,
                 "name"  => "ภาคเหนือ"
             ],
             [
-                'id'  => 5,
                 "name"  => "ภาคใต้"
             ]
         ];

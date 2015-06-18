@@ -14,7 +14,7 @@ class DatabaseSeeder extends Seeder {
 	{
 		Model::unguard();
 
-		$this->call('GeoRegionTableSeeder');
+		//$this->call('GeoRegionTableSeeder');
         $this->call('AplTableSeeder');
         $this->call('BtsRouteTableSeeder');
         $this->call('MrtRouteTableSeeder');

@@ -29,10 +29,11 @@
                                 "sortDescending": ": activate to sort column descending"
                             }
                         },
-                        "order": [[1,'asc']],
+                        //"order": [[1,'asc']],
                         "columns": [
                             {name: 'no', orderable: false, searchable: false},
-                            {name: 'tagmain', orderable: true, searchable: true},
+                            {name: 'subarea', orderable: true, searchable: true},
+                            {name: 'area', orderable: true, searchable: true},
                             {name: 'operation', orderable: false, searchable: false}
                         ],
                         "fnRowCallback": function( nRow, aData, iDisplayIndex, iDisplayIndexFull ) {
@@ -49,7 +50,7 @@
 @section('content')
     <div class="row">
         <div class="col-lg-12">
-            <h3 class="page-header">หมวดหมู่ ทำเล/ย่าน</h3>
+            <h3 class="page-header">ข้อมูล ทำเล/ย่าน</h3>
         </div>
     </div>
 
@@ -57,8 +58,8 @@
         <div class="col-lg-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <a href="{{ URL::to('backend/location_new') }}">
-                        <i class="fa fa-plus-square"></i> เพิ่มหมวดหมู่ ทำเล/ย่าน
+                    <a href="{{ URL::to('backend/subArea_new') }}">
+                        <i class="fa fa-plus-square"></i> เพิ่มข้อมูล ทำเล/ย่าน
                     </a>
                 </div>
                 <!-- /.panel-heading -->
@@ -76,17 +77,19 @@
                             <thead>
                             <tr>
                                 <th>ลำดับ</th>
+                                <th>ข้อมูล ทำเล/ย่าน</th>
                                 <th>หมวดหมู่ ทำเล/ย่าน</th>
                                 <th></th>
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach ($areas as $item)
+                            @foreach ($subAreas as $item)
                                 <tr>
                                     <td class="text-center"></td>
-                                    <td>{{ $item->area_name }}</td>
+                                    <td>{{ $item->subarea_name }}</td>
+                                    <td>{{ App\Models\Area::getAreaName($item->area_id) }}</td>
                                     <td class="text-center">
-                                        <a href="{{ URL::to('backend/location_edit') }}/{{ $item->id }}"
+                                        <a href="{{ URL::to('backend/subArea_edit') }}/{{ $item->id }}"
                                            data-toggle="tooltip" title="แก้ไข">
                                             <i class="fa fa-edit fa-fw"></i></a>
                                     </td>
