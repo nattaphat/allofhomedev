@@ -24,16 +24,13 @@ class PromotionTableSeeder extends Seeder
                 "promotion_name"  => "ฟรีค่าใช้จ่ายวันโอน"
             ],
             [
-                "promotion_name"  => "ฟรีแอร์ทั้งหลัง"
+                "promotion_name"  => "ฟรีแอร์"
             ],
             [
-                "promotion_name"  => "ฟรีผ้าม่านทั้งหลัง"
+                "promotion_name"  => "ฟรีผ้าม่าน"
             ],
             [
                 "promotion_name"  => "ฟรีค่าส่วนกลาง"
-            ],
-            [
-                "promotion_name"  => "ดอกเบี้ยถูกกว่าปกติ"
             ]
         ];
 
