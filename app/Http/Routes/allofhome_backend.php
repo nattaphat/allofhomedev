@@ -143,6 +143,30 @@
         'uses' => 'Backend\BackendFacilityController@facility'
     ]);
 
+    Route::get('backend/facility_new', [
+        'before' => 'backend_auth',
+        'as' => 'backend_facility_new',
+        'uses' => 'Backend\BackendFacilityController@facility_new'
+    ]);
+
+    Route::post('backend/facility_store', [
+        'before' => 'backend_auth',
+        'as' => 'backend_facility_store',
+        'uses' => 'Backend\BackendFacilityController@facility_store'
+    ]);
+
+    Route::get('backend/facility_edit/{id}', [
+        'before' => 'backend_auth',
+        'as' => 'backend_facility_edit',
+        'uses' => 'Backend\BackendFacilityController@facility_edit'
+    ]);
+
+    Route::post('backend/facility_update', [
+        'before' => 'backend_auth',
+        'as' => 'backend_facility_update',
+        'uses' => 'Backend\BackendFacilityController@facility_update'
+    ]);
+
 //    ส่วนลด โปรโมชั่น
     Route::get('backend/discount', [
         'before' => 'backend_auth',

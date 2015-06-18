@@ -28,9 +28,17 @@ class BackendTagController extends Controller {
     {
         $input = Input::all();
 
-        $tag = new TagMain();
-        $tag->tag_main_name = $input['tag_main_name'];
-        $tag->save();
+        try{
+            $tag = new TagMain();
+            $tag->tag_main_name = $input['tag_main_name'];
+            $tag->save();
+        }
+        catch(\Exception $e)
+        {
+            return Redirect::route('backend_tag')
+                ->with('flash_message', 'บันทึกข้อมูลล้มเหลว')
+                ->with('flash_type', 'alert-danger');
+        }
 
         return Redirect::route('backend_tag')
             ->with('flash_message', 'บันทึกข้อมูลสำเร็จ')
@@ -47,11 +55,17 @@ class BackendTagController extends Controller {
     {
         $input = Input::all();
 
-        $tag = TagMain::find($input['id']);
-        $tag->tag_main_name = $input['tag_main_name'];
-        $tag->save();
-
-        $tags = TagMain::orderBy('tag_main_name')->get();
+        try{
+            $tag = TagMain::find($input['id']);
+            $tag->tag_main_name = $input['tag_main_name'];
+            $tag->save();
+        }
+        catch(\Exception $e)
+        {
+            return Redirect::route('backend_tag')
+                ->with('flash_message', 'บันทึกข้อมูลล้มเหลว')
+                ->with('flash_type', 'alert-danger');
+        }
 
         return Redirect::route('backend_tag')
             ->with('flash_message', 'แก้ไขข้อมูลสำเร็จ')
@@ -76,10 +90,18 @@ class BackendTagController extends Controller {
     {
         $input = Input::all();
 
-        $tagSub = new TagSub();
-        $tagSub->tag_main_id = $input['tag_main_id'];
-        $tagSub->tag_sub_name = $input['tag_sub_name'];
-        $tagSub->save();
+        try{
+            $tagSub = new TagSub();
+            $tagSub->tag_main_id = $input['tag_main_id'];
+            $tagSub->tag_sub_name = $input['tag_sub_name'];
+            $tagSub->save();
+        }
+        catch(\Exception $e)
+        {
+            return Redirect::route('backend_subTag')
+                ->with('flash_message', 'บันทึกข้อมูลล้มเหลว')
+                ->with('flash_type', 'alert-danger');
+        }
 
         return Redirect::route('backend_subTag')
             ->with('flash_message', 'บันทึกข้อมูลสำเร็จ')
@@ -100,10 +122,19 @@ class BackendTagController extends Controller {
 
 //        dd($input);
 
-        $tagSub = TagSub::find($input['id']);
-        $tagSub->tag_main_id = $input['tag_main_id'];
-        $tagSub->tag_sub_name = $input['tag_sub_name'];
-        $tagSub->save();
+        try
+        {
+            $tagSub = TagSub::find($input['id']);
+            $tagSub->tag_main_id = $input['tag_main_id'];
+            $tagSub->tag_sub_name = $input['tag_sub_name'];
+            $tagSub->save();
+        }
+        catch(\Exception $e)
+        {
+            return Redirect::route('backend_subTag')
+                ->with('flash_message', 'แก้ไขข้อมูลล้มเหลว')
+                ->with('flash_type', 'alert-danger');
+        }
 
         return Redirect::route('backend_subTag')
             ->with('flash_message', 'แก้ไขข้อมูลสำเร็จ')

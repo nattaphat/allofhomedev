@@ -24,9 +24,17 @@ class BackendDiscountController extends Controller {
     {
         $input = Input::all();
 
-        $promotion = new Promotion();
-        $promotion->promotion_name = $input['promotion_name'];
-        $promotion->save();
+        try {
+            $promotion = new Promotion();
+            $promotion->promotion_name = $input['promotion_name'];
+            $promotion->save();
+        }
+        catch(\Exception $e)
+        {
+            return Redirect::route('backend_discount')
+                ->with('flash_message', 'บันทึกข้อมูลล้มเหลว')
+                ->with('flash_type', 'alert-danger');
+        }
 
         return Redirect::route('backend_discount')
             ->with('flash_message', 'บันทึกข้อมูลสำเร็จ')
@@ -43,9 +51,18 @@ class BackendDiscountController extends Controller {
     {
         $input = Input::all();
 
-        $promotion = Promotion::find($input['id']);
-        $promotion->promotion_name = $input['promotion_name'];
-        $promotion->save();
+        try
+        {
+            $promotion = Promotion::find($input['id']);
+            $promotion->promotion_name = $input['promotion_name'];
+            $promotion->save();
+        }
+        catch(\Exception $e)
+        {
+            return Redirect::route('backend_discount')
+                ->with('flash_message', 'แก้ไขข้อมูลล้มเหลว')
+                ->with('flash_type', 'alert-danger');
+        }
 
         return Redirect::route('backend_discount')
             ->with('flash_message', 'แก้ไขข้อมูลสำเร็จ')

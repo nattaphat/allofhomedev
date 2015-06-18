@@ -69,7 +69,7 @@ class BackendUserController extends Controller {
         }
         else{
             return Redirect::route('backend_user')
-                ->with('flash_message', 'แก้ไขข้อมูลสำเร็จ')
+                ->with('flash_message', 'แก้ไขข้อมูลล้มเหลว')
                 ->with('flash_type', 'alert-danger');
         }
     }
