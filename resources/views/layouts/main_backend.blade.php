@@ -37,6 +37,15 @@
     <!-- DataTables Responsive CSS -->
     <link href="{{ asset('js/lib/datatables-responsive/css/dataTables.responsive.css') }}" rel="stylesheet">
 
+    <!-- Dropzone -->
+    <link type="text/css" type="text/css" href="{{ asset('js/lib/dropzone/dist/min/dropzone.min.css') }}" rel="stylesheet">
+
+    <!-- Select2 -->
+    <link type="text/css" type="text/css" href="{{ asset('js/lib/select2-dist-louis/dist/css/select2.min.css') }}" rel="stylesheet">
+
+    <!-- Your custom override -->
+    <link type="text/css" href="{{ asset('css/custom-style.css') }}" rel="stylesheet">
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -172,6 +181,12 @@
 <!-- DataTables JavaScript -->
 <script src="{{ asset('js/lib/datatables/media/js/jquery.dataTables.min.js') }}"></script>
 <script src="{{ asset('js/lib/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.js') }}"></script>
+
+<!--Dropzone -->
+<script src={{ asset('js/lib/dropzone/dist/min/dropzone.min.js') }}></script>
+
+<!--select2 -->
+<script src={{ asset('js/lib/select2-dist-louis/dist/js/select2.min.js') }}></script>
 
 @yield('jsbody')
 

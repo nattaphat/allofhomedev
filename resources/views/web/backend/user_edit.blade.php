@@ -15,7 +15,7 @@
 @section('content')
     <div class="row">
         <div class="col-lg-12">
-            <h3 class="page-header">จัดการผู้ใช้งานระบบ</h3>
+            <h3 class="page-header">ผู้ใช้งานระบบ</h3>
         </div>
     </div>
 

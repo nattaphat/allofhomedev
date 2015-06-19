@@ -18,7 +18,8 @@
         "guzzlehttp/guzzle": "5.2.*",
         "appitventures/phpgmaps": "2.0.*@dev",
 		"barryvdh/laravel-elfinder": "^0.3.3",
-        "proengsoft/laravel-jsvalidation": "1.0.*"
+        "proengsoft/laravel-jsvalidation": "1.0.*",
+		"intervention/image": "^2.2"
 	},
 	"require-dev": {
 		"phpunit/phpunit": "~4.0",

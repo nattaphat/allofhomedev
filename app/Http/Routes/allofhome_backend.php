@@ -314,5 +314,37 @@
         'as' => 'backend_subTag_update',
         'uses' => 'Backend\BackendTagController@subTag_update'
     ]);
+    
+    // Brand
+    Route::get('backend/brand', [
+        'before' => 'backend_auth',
+        'as' => 'backend_brand',
+        'uses' => 'Backend\BackendBrandController@brand'
+    ]);
+
+    Route::get('backend/brand_new', [
+        'before' => 'backend_auth',
+        'as' => 'backend_brand_new',
+        'uses' => 'Backend\BackendBrandController@brand_new'
+    ]);
+
+    Route::post('backend/brand_store', [
+        'before' => 'backend_auth',
+        'as' => 'backend_brand_store',
+        'uses' => 'Backend\BackendBrandController@brand_store'
+    ]);
+
+    Route::get('backend/brand_edit/{id}', [
+        'before' => 'backend_auth',
+        'as' => 'backend_brand_edit',
+        'uses' => 'Backend\BackendBrandController@brand_edit'
+    ]);
+
+    Route::post('backend/brand_update', [
+        'before' => 'backend_auth',
+        'as' => 'backend_brand_update',
+        'uses' => 'Backend\BackendBrandController@brand_update'
+    ]);
+
 
 /* ----- ## backend ## ----- */
