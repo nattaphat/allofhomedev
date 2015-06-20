@@ -346,5 +346,34 @@
         'uses' => 'Backend\BackendBrandController@brand_update'
     ]);
 
+    // Project
+    Route::get('backend/project', [
+        'before' => 'backend_auth',
+        'as' => 'backend_project',
+        'uses' => 'Backend\BackendProjectController@project'
+    ]);
 
+    Route::get('backend/project_new', [
+        'before' => 'backend_auth',
+        'as' => 'backend_project_new',
+        'uses' => 'Backend\BackendProjectController@project_new'
+    ]);
+
+    Route::post('backend/project_store', [
+        'before' => 'backend_auth',
+        'as' => 'backend_project_store',
+        'uses' => 'Backend\BackendProjectController@project_store'
+    ]);
+
+    Route::get('backend/project_edit/{id}', [
+        'before' => 'backend_auth',
+        'as' => 'backend_project_edit',
+        'uses' => 'Backend\BackendProjectController@project_edit'
+    ]);
+
+    Route::post('backend/project_update', [
+        'before' => 'backend_auth',
+        'as' => 'backend_project_update',
+        'uses' => 'Backend\BackendProjectController@project_update'
+    ]);
 /* ----- ## backend ## ----- */

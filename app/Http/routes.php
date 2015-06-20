@@ -68,3 +68,50 @@ Route::get('testModel', function(){
 Route::get('testPage', function(){
     return view('test');
 });
+
+Form::macro('dropzoneRegion', function($id) {
+    return '
+    <div class="form-group">
+        <label class="col-md-1 control-label text-right"></label>
+        <div class="col-md-10">
+            <div id="dZUpload'.$id.'" class="dropzone uploadify"></div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+            <div class="table table-striped" class="files" id="previews'.$id.'" style="padding-top: 20px;">
+                <div id="template'.$id.'" class="file-row" style="margin-top: 20px;">
+                    <div class="row well active">
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <img data-dz-thumbnail />
+                                </div>
+                                <div class="col-md-9">
+                                    <textarea name="pics_description'.$id.'[]" rows="5" style="width: 100%;"></textarea>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    &nbsp;&nbsp;&nbsp;
+                                    <a href="#" data-dz-remove>
+                                        <i class="glyphicon glyphicon-trash"></i>
+                                        <span>Delete</span>
+                                    </a>
+                                </div>
+                                <div class="col-md-9">
+                                    <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+                                        <div class="progress-bar" style="width: 0%;" data-dz-uploadprogress></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-1"></div>
+    </div>
+    ';
+});

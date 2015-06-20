@@ -53,6 +53,7 @@
     <script src="{{ asset('plugins/respond/respond.min.js') }}"></script>
     <![endif]-->
 
+    @yield('jshome')
 </head>
 
 <body>
@@ -187,6 +188,14 @@
 
 <!--select2 -->
 <script src={{ asset('js/lib/select2-dist-louis/dist/js/select2.min.js') }}></script>
+
+<!-- Datepicker JS -->
+<script src={{ asset('js/lib/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js') }}></script>
+<script src="{{ asset('js/lib/bootstrap-datepicker-thai-thai/js/bootstrap-datepicker-thai.js') }}"></script>
+<script src="{{ asset('js/lib/bootstrap-datepicker-thai-thai/js/locales/bootstrap-datepicker.th.js') }}"></script>
+
+<!-- Jquery Mask plugin -->
+<script src="{{ asset('js/lib/jQuery-Mask-Plugin-master/dist/jquery.mask.min.js') }}"></script>
 
 @yield('jsbody')
 
