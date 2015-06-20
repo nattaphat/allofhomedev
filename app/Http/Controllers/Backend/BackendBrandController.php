@@ -1,11 +1,13 @@
 <?php namespace App\Http\Controllers\Backend;
 
+use App\Models\AllFunction;
 use App\Models\Attachment;
 use Config;
 use App\Http\Controllers\Controller;
 use App\User;
 use App\Models\Brand;
 use Input;
+use Intervention\Image\Facades\Image;
 use Redirect;
 
 class BackendBrandController extends Controller {
@@ -68,14 +70,17 @@ class BackendBrandController extends Controller {
     {
         $brand = Brand::find($id);
         $attachment = null;
+        $logo = null;
 
         if($brand->attachment_id != null)
         {
             $attachment = Attachment::find($brand->attachment_id);
+            $logo = AllFunction::createThumbnailAutoHeight($attachment->path, 115);
         }
 
         return view('web.backend.brand_edit')->with("brand",$brand)
-            ->with('attachment', $attachment);
+            ->with('attachment', $attachment)
+            ->with('logo', $logo);
     }
 
     public function brand_update()

@@ -43,7 +43,7 @@
                 @if($attachment != null)
                     var mockFile = { name: '{{ $attachment->filename }}', size: '{{ $attachment->filesize }}', accepted: true };
                     this.emit("addedfile", mockFile);
-                    this.emit("thumbnail", mockFile, '{{ $attachment->path }}');
+                    this.emit("thumbnail", mockFile, '{{ $logo }}');
                     this.emit("complete", mockFile);
                     var existingFileCount = 1; // The number of files already uploaded
                     this.options.maxFiles = this.options.maxFiles - existingFileCount;

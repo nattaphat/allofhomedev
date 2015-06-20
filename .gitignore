@@ -16,3 +16,4 @@ auth.json
 composer.lock
 /public/uploads/*
 /public/files/*
+/public/temp/*

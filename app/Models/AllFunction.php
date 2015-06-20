@@ -1,6 +1,7 @@
 <?php namespace App\Models;
 
 use DB;
+use Intervention\Image\Facades\Image;
 
 class AllFunction {
 
@@ -110,6 +111,58 @@ class AllFunction {
             return "";
         else
             return $iframe;
+    }
+
+    ///// #### สร้าง Thumbnail #### //////
+    public static function createThumbnailAutoHeight($url, $width)
+    {
+        try{
+            $filename = sha1(time().time()).".png";
+
+            $logo = Image::make($url)->resize($width, null, function ($constraint) {
+                $constraint->aspectRatio();
+            });
+
+            $logo->save(__DIR__."/../../public/temp/".$filename);
+            return asset('temp/')."/".$filename;  // return url path
+        }
+        catch(\Exception $e)
+        {
+            return "";
+        }
+    }
+
+    public static function createThumbnailAutoWidth($url, $height)
+    {
+        try{
+            $filename = sha1(time().time()).".png";
+
+            $logo = Image::make($url)->resize(null, $height, function ($constraint) {
+                $constraint->aspectRatio();
+            });
+
+            $logo->save(__DIR__."/../../public/temp/".$filename);
+            return asset('temp/')."/".$filename;  // return url path
+        }
+        catch(\Exception $e)
+        {
+            return "";
+        }
+    }
+
+    public static function createThumbnailFix($url, $width, $height)
+    {
+        try{
+            $filename = sha1(time().time()).".png";
+
+            $logo = Image::make($url)->resize($width, $height);
+            $logo->save(__DIR__."/../../public/temp/".$filename);
+            return asset('temp/')."/".$filename;  // return url path
+        }
+        catch(\Exception $e)
+        {
+            return "";
+        }
     }
 
 }

@@ -151,7 +151,8 @@ return [
 		'App\Providers\RouteServiceProvider',
         'Appitventures\Phpgmaps\PhpgmapsServiceProvider',
         'Barryvdh\Elfinder\ElfinderServiceProvider',
-        'Proengsoft\JsValidation\JsValidationServiceProvider'
+        'Proengsoft\JsValidation\JsValidationServiceProvider',
+        'Intervention\Image\ImageServiceProvider'
 
 	],
 
@@ -206,7 +207,8 @@ return [
         'Form'      => 'Illuminate\Html\FormFacade',
         'Recaptcha' => 'Greggilbert\Recaptcha\Facades\Recaptcha',
         'Gmaps' => 'Appitventures\Phpgmaps\Facades\Phpgmaps',
-        'JsValidator' => 'Proengsoft\JsValidation\Facades\JsValidatorFacade'
+        'JsValidator' => 'Proengsoft\JsValidation\Facades\JsValidatorFacade',
+        'Image' => 'Intervention\Image\Facades\Image'
 
 	],
 
