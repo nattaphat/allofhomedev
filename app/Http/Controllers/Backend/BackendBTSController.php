@@ -2,12 +2,9 @@
 
 use App\Models\Bts;
 use App\Models\BtsRoute;
-use Config;
 use App\Http\Controllers\Controller;
-use App\User;
 use Input;
 use Redirect;
-use Request;
 
 class BackendBTSController extends Controller {
 
@@ -15,7 +12,6 @@ class BackendBTSController extends Controller {
     {
         $bts = Bts::orderBy('route_id')
             ->orderBy('bts_code')->get();
-
 
         return view('web.backend.bts')->with('bts', $bts);
     }

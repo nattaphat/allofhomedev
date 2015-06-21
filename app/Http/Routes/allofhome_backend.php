@@ -134,6 +134,18 @@
         'uses' => 'Backend\BackendMRTController@mrt'
     ]);
 
+    Route::get('backend/mrt_edit/{id}', [
+        'before' => 'backend_auth',
+        'as' => 'backend_mrt_edit',
+        'uses' => 'Backend\BackendMrtController@mrt_edit'
+    ]);
+
+    Route::post('backend/mrt_update', [
+        'before' => 'backend_auth',
+        'as' => 'backend_mrt_update',
+        'uses' => 'Backend\BackendMrtController@mrt_update'
+    ]);
+
 //    Airport Link
     Route::get('backend/airportLink', [
         'before' => 'backend_auth',

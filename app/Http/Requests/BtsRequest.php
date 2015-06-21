@@ -12,6 +12,7 @@ class BtsRequest extends Request {
     {
         return [
             'bts_name' => 'required|max:100',
+            'mrt_name' => 'required|max:100',
             'route_id' => 'required',
             'status' => 'required'
         ];
