@@ -115,6 +115,18 @@
         'uses' => 'Backend\BackendBTSController@bts'
     ]);
 
+    Route::get('backend/bts_edit/{id}', [
+        'before' => 'backend_auth',
+        'as' => 'backend_bts_edit',
+        'uses' => 'Backend\BackendBtsController@bts_edit'
+    ]);
+
+    Route::post('backend/bts_update', [
+        'before' => 'backend_auth',
+        'as' => 'backend_bts_update',
+        'uses' => 'Backend\BackendBtsController@bts_update'
+    ]);
+
 //    MRT
     Route::get('backend/mrt', [
         'before' => 'backend_auth',

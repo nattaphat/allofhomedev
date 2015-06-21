@@ -6,6 +6,7 @@
             var table = $('#dt-users').DataTable({
                         //stateSave: true,
                         responsive: true,
+                        "pageLength": 25,
                         "language": {
                             "emptyTable":     "ไม่มีข้อมูล",
                             "info":           "แสดงข้อมูล จาก _START_ ถึง _END_ รายการ",
