@@ -5,14 +5,16 @@
             <li>
                 <a href="{{ URL::to('backend/index') }}"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
             </li>
-            <li style="display:none;">
+            @if(\Auth::getUser()->role == "1")
+            <li>
                 <a href="{{ URL::to('backend/newPost') }}" onclick="alert('under construction'); return false;"><i class="fa fa-legal fa-fw"></i> พิจารณาอนุมัติกระทู้ใหม่</a>
             </li>
+            @endif
             <li>
                 <a href="{{ URL::to('backend/brand') }}"> แบรนด์</a>
             </li>
             <li>
-                <a href="{{ URL::to('#') }}"> โครงการทั้งหมด</a>
+                <a href="{{ URL::to('backend/project') }}"> โครงการทั้งหมด</a>
             </li>
             <li style="display:none;">
                 <a href="{{ URL::to('#') }}"> ร้านค้าทั้งหมด</a>

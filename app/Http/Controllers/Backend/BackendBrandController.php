@@ -6,9 +6,11 @@ use Config;
 use App\Http\Controllers\Controller;
 use App\User;
 use App\Models\Brand;
+use DB;
 use Input;
 use Intervention\Image\Facades\Image;
 use Redirect;
+use Request;
 
 class BackendBrandController extends Controller {
 
@@ -75,7 +77,7 @@ class BackendBrandController extends Controller {
         if($brand->attachment_id != null)
         {
             $attachment = Attachment::find($brand->attachment_id);
-            $logo = AllFunction::createThumbnailAutoHeight($attachment->path, 115);
+            $logo = AllFunction::createThumbnailAutoHeight($attachment->path, 115, 'temp');
         }
 
         return view('web.backend.brand_edit')->with("brand",$brand)
@@ -140,5 +142,21 @@ class BackendBrandController extends Controller {
         return Redirect::route('backend_brand')
             ->with('flash_message', 'แก้ไขข้อมูลสำเร็จ')
             ->with('flash_type', 'alert-success');
+    }
+
+    public function get_brand()
+    {
+        $search_char = strtolower(Request::get('term'));
+        $brand = DB::table('brand')
+            ->leftjoin('attachment', function ($join){
+                $join->on( 'brand.attachment_id', '=', 'attachment.id');
+            })
+            ->select(DB::raw('brand.id,brand.brand_name, brand.telephone, brand.facebook, brand.email, brand.line,
+                attachment.filename, attachment.filesize, attachment.path'))
+            ->whereRaw('lower(brand.brand_name) like \'%'.$search_char.'%\'')
+            ->orderBy('brand.brand_name')
+            ->get();
+
+        return json_encode($brand);
     }
 }

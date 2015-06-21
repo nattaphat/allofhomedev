@@ -13,6 +13,163 @@
     <script type="text/javascript">
         $(document).ready(function(){
 
+            initial();
+
+            <!-- Area Change -->
+            $("#area").change(function(){
+                var id = this.value;
+                areaOnChange(id);
+            });
+
+            <!-- Province Change -->
+            $("#province").change(function(){
+                var id = this.value;
+                provinceOnChange(id);
+            });
+
+            <!-- Amphoe Change -->
+            $("#amphoe").change(function(){
+                var amphid = this.value;
+                var province = $("#province");
+                var provid = province.val();
+                amphoeOnChange(provid, amphid);
+            });
+
+            <!-- Save Button -->
+            $('#btn_save').click(function(){
+                if($('#latitude').val() == "")
+                {
+                    alert("กรุณากำหนดที่ตั้งโครงการบนแผนที่");
+                    return false;
+                }
+            });
+
+            <!-- Brand -->
+            $("#brand_id").select2(
+            {
+                ajax: {
+                    url: "{{ url('get_brand') }}",
+                    dataType: 'json',
+                    delay: 250,
+                    data: function (params) {
+                        return {
+                            term: params.term,
+                            page: params.page
+                        };
+                    },
+                    processResults: function (data, params) {
+                        params.page = params.page || 1;
+                        var ret = {
+                            results: data,
+                            pagination: {
+                                more: (params.page * 30) < data.total_count
+                            }
+                        };
+                        return ret;
+                    },
+                    cache: true
+                },
+                placeholder: "ค้นหาแบรนด์",
+                escapeMarkup: function (markup) { return markup; },
+                templateSelection: function(repo)
+                {
+                    if(repo.text != null && repo.text != "")
+                        return repo.text;
+                    else{
+                        debugger;
+                        $('#telephone').val(repo.telephone);
+                        $('#email').val(repo.email);
+                        $('#facebook').val(repo.facebook);
+                        $('#line').val(repo.line);
+
+                        if(repo.path != null)
+                        {
+                            $('#img_brand').attr('src', repo.path);
+                            $('#img_brand').attr('style', 'max-width: 75px; max-height: 75px;');
+                        }
+                        else
+                        {
+                            $('#img_brand').removeAttr('src');
+                            $('#img_brand').attr('style', 'display:none;');
+                        }
+
+                        return repo.brand_name;
+                    }
+                },
+                templateResult: function(repo)
+                {
+                    if (repo.loading) return repo.text;
+
+                    return repo.brand_name;
+                }
+            });
+
+            <!-- Tags -->
+            var tag_main_name = "";
+            $("#tag").select2(
+            {
+                ajax: {
+                    url: "{{ url('get_tag') }}",
+                    dataType: 'json',
+                    delay: 250,
+                    data: function (params) {
+                        return {
+                            term: params.term,
+                            page: params.page
+                        };
+                    },
+                    processResults: function (data, params) {
+                        params.page = params.page || 1;
+                        var ret = {
+                            results: data,
+                            pagination: {
+                                more: (params.page * 30) < data.total_count
+                            }
+                        };
+                        return ret;
+                    },
+                    cache: true
+                },
+                placeholder: "ค้นหา Tags",
+                escapeMarkup: function (markup) { return markup; },
+                templateSelection: function(repo)
+                {
+                    if(repo.text != null && repo.text != "")
+                        return repo.text;
+                    else
+                        return repo.tag_sub_name;
+                },
+                templateResult: function(repo)
+                {
+                    if (repo.loading) return repo.text;
+
+                    if(tag_main_name == "")
+                    {
+                        tag_main_name = repo.tag_main_name;
+                        return "<strong>" + repo.tag_main_name + "</strong><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + repo.tag_sub_name;
+                    }
+                    else if(tag_main_name != repo.tag_main_name)
+                    {
+                        tag_main_name = repo.tag_main_name;
+                        return "<strong>" + repo.tag_main_name + "</strong><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + repo.tag_sub_name;
+                    }
+                    else
+                    {
+                        return "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + repo.tag_sub_name;
+                    }
+                }
+            });
+
+        });
+    </script>
+
+    <script type="text/javascript">
+
+        function initial()
+        {
+            <!-- Dropzone -->
+            Dropzone.autoDiscover = false;
+
             $("#construct_date").datepicker({
                 language:'th-th',
                 format:'dd/mm/yyyy'
@@ -33,268 +190,101 @@
             $('#spare_price').mask('000,000,000,000,000', {reverse: true});
             $('#central_price').mask('000,000,000,000,000', {reverse: true});
 
-            $('#area_1').mask('000,000,000,000,000', {reverse: true});
-            $('#area_2').mask('000,000,000,000,000', {reverse: true});
-            $('#area_3').mask('000,000,000,000,000', {reverse: true});
+            $('#area_1').mask('000,000,000,000,000.00', {reverse: true});
+            $('#area_2').mask('000,000,000,000,000.00', {reverse: true});
+            $('#area_3').mask('000,000,000,000,000.00', {reverse: true});
 
             $('#num_unit').mask('000,000,000,000,000', {reverse: true});
             $('#num_building').mask('000,000,000,000,000', {reverse: true});
             $('#num_parking').mask('000,000,000,000,000', {reverse: true});
-            $('#percent_parking').mask('000,000,000,000,000', {reverse: true});
+            $('#percent_parking').mask('000,000,000,000,000.00', {reverse: true});
             $('#num_elev_person').mask('000,000,000,000,000', {reverse: true});
             $('#num_elev_object').mask('000,000,000,000,000', {reverse: true});
+        }
 
-            <!-- Dropzone -->
-            Dropzone.autoDiscover = false;
-
-            var myDropzone = initDropzone();
-            checkPostBack();
-
-            function initDropzone()
-            {
-                return new Dropzone("#dZUpload", {
-                    url: '{{ URL("post/upload") }}',
-                    maxFiles: 1,
-                    maxFilesize: 3, //mb
-                    acceptedFiles: 'image/*',
-                    addRemoveLinks: true,
-                    autoProcessQueue: true,
-                    sending: function(file, xhr, formData) {
-                        formData.append("_token", $('[name=_token]').val());
-                    },
-                    success: function (file, response) {
-                        var filename = file.name;
-                        var filetype = file.type;
-                        var filesize = file.size;
-                        var filepath = response;
-                        $("#project_owner_logo").val(filename + "@@@" + filetype + "@@@" + filesize + "@@@" + filepath);
-                        file.previewElement.classList.add("dz-success");
-                    },
-                    error: function (file, response) {
-                        this.removeFile(file);
-                        alert(response);
-                    }
-                });
-            }
-
-            myDropzone.on("removedfile", function()
-            {
-                $("#project_owner_logo").val("");
-            });
-
-            <!-- Area Change -->
-            $("#area").change(function(){
-                var id = this.value;
-                areaOnChange(id);
-            });
-
-            function areaOnChange(id)
-            {
-                $.ajax({
-                    url: '{{ URL::route('project_getSubArea') }}',
-                    data: { id: id },
-                    success: function(data, message){
-                        var subArea = $('#subarea');
-                        subArea.empty();
-                        subArea.append("<option value=''>-- กรุณาเลือก --</option>");
-                        $.each(data, function(key, element) {
-                            if(element.id == '{{ Input::old('subarea_id') }}')
-                            {
-                                subArea.append("<option value='"+ element.id +"' selected>"
-                                + element.subarea_name + "</option>");
-                            }
-                            else
-                            {
-                                subArea.append("<option value='"+ element.id +"'>"
-                                + element.subarea_name + "</option>");
-                            }
-                        });
-
-                    }
-                });
-            }
-
-            <!-- Province Change -->
-            $("#province").change(function(){
-                var id = this.value;
-                provinceOnChange(id);
-            });
-
-            function provinceOnChange(id)
-            {
-                $.ajax({
-                    url: '{{ URL::route('project_getAmphoe') }}',
-                    data: { provid: id },
-                    success: function(data, message){
-                        var amphoe = $('#amphoe');
-                        amphoe.empty();
-                        amphoe.append("<option>-- กรุณาเลือก --</option>");
-                        var tambon = $('#tambon');
-                        tambon.empty();
-                        tambon.append("<option>-- กรุณาเลือก --</option>");
-                        $.each(data, function(key, element) {
-                            if(element.amphid == '{{ Input::old('amphid') }}') {
-                                amphoe.append("<option value='"+ element.amphid +"' selected>"
-                                + element.name + "</option>");
-                            }
-                            else
-                            {
-                                amphoe.append("<option value='"+ element.amphid +"'>"
-                                + element.name + "</option>");
-                            }
-                        });
-                    }
-                });
-            }
-
-            <!-- Amphoe Change -->
-            $("#amphoe").change(function(){
-                var amphid = this.value;
-                var province = $("#province");
-                var provid = province.val();
-                amphoeOnChange(provid, amphid);
-            });
-
-            function amphoeOnChange(provid, amphid)
-            {
-                $.ajax({
-                    url: '{{ URL::route('project_getTambon') }}',
-                    data: { amphid: amphid, provid: provid },
-                    success: function(data, message){
-                        var tambon = $('#tambon');
-                        tambon.empty();
-                        tambon.append("<option>-- กรุณาเลือก --</option>");
-                        $.each(data, function(key, element) {
-                            if(element.tambid == '{{ Input::old('tambid') }}'){
-                                tambon.append("<option value='"+ element.tambid +"' selected>"
-                                + element.name + "</option>");
-                            }
-                            else
-                            {
-                                tambon.append("<option value='"+ element.tambid +"'>"
-                                + element.name + "</option>");
-                            }
-                        });
-                    }
-                });
-            }
-
-            <!-- Postback -->
-            function checkPostBack()
-            {
-                var provid = '{{ Input::old('provid') }}';
-                var amphid = '{{ Input::old('amphid') }}';
-                var area_id = '{{ Input::old('area_id') }}';
-                var file = '{{ Input::old('file') }}';
-
-                if(provid != null && provid != '')
-                {
-                    provinceOnChange(provid);
-                }
-
-                if(amphid != null && amphid != '')
-                {
-                    amphoeOnChange(amphid);
-                }
-
-                if(area_id != null && area_id != '')
-                {
-                    areaOnChange(area_id);
-                }
-
-                if(file != null && file != '')
-                {
-                    var f = file.split("@@@");
-                    var filename = f[0];
-                    var filetype = f[1];
-                    var filesize = parseInt(f[2]);
-                    var filepath = f[3];
-
-                    var mockFile = {
-                        name: filename,
-                        size: filesize,
-                        type: filetype,
-                        status: Dropzone.ADDED,
-                        url: filepath
-                    };
-
-                    Dropzone.forElement("div#dZUpload").emit("addedfile", mockFile);
-                    Dropzone.forElement("div#dZUpload").emit("thumbnail", mockFile, filepath);
-                    Dropzone.forElement("div#dZUpload").emit("complete", mockFile);
-                    Dropzone.forElement("div#dZUpload").files.push(mockFile);
-
-                    myDropzone.options.maxFiles = 1;
-                }
-            }
-
-            <!-- Tags -->
-            var tag_main_name = "";
-            $("#tag").select2(
-                    {
-                        ajax: {
-                            url: "{{ url('get_tag') }}",
-                            dataType: 'json',
-                            delay: 250,
-                            data: function (params) {
-                                return {
-                                    term: params.term,
-                                    page: params.page
-                                };
-                            },
-                            processResults: function (data, params) {
-                                params.page = params.page || 1;
-                                var ret = {
-                                    results: data,
-                                    pagination: {
-                                        more: (params.page * 30) < data.total_count
-                                    }
-                                };
-                                return ret;
-                            },
-                            cache: true
-                        },
-                        placeholder: "ค้นหา Tags",
-                        escapeMarkup: function (markup) { return markup; },
-                        templateSelection: function(repo)
+        function areaOnChange(id)
+        {
+            $.ajax({
+                url: '{{ URL::route('project_getSubArea') }}',
+                data: { id: id },
+                success: function(data, message){
+                    var subArea = $('#subarea');
+                    subArea.empty();
+                    subArea.append("<option value=''>-- กรุณาเลือก --</option>");
+                    $.each(data, function(key, element) {
+                        if(element.id == '{{ Input::old('subarea_id') }}')
                         {
-                            if(repo.text != null && repo.text != "")
-                                return repo.text;
-                            else
-                                return repo.tag_sub_name;
-                        },
-                        templateResult: function(repo)
+                            subArea.append("<option value='"+ element.id +"' selected>"
+                            + element.subarea_name + "</option>");
+                        }
+                        else
                         {
-                            if (repo.loading) return repo.text;
-
-                            if(tag_main_name == "")
-                            {
-                                tag_main_name = repo.tag_main_name;
-                                return "<strong>" + repo.tag_main_name + "</strong><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + repo.tag_sub_name;
-                            }
-                            else if(tag_main_name != repo.tag_main_name)
-                            {
-                                tag_main_name = repo.tag_main_name;
-                                return "<strong>" + repo.tag_main_name + "</strong><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + repo.tag_sub_name;
-                            }
-                            else
-                            {
-                                return "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + repo.tag_sub_name;
-                            }
+                            subArea.append("<option value='"+ element.id +"'>"
+                            + element.subarea_name + "</option>");
                         }
                     });
 
-            $('#btn_save').click(function(){
-                if($('#latitude').val() == "")
-                {
-                    alert("กรุณากำหนดที่ตั้งโครงการบนแผนที่");
-                    return false;
                 }
             });
-        });
+        }
+
+        function amphoeOnChange(provid, amphid)
+        {
+            $.ajax({
+                url: '{{ URL::route('project_getTambon') }}',
+                data: { amphid: amphid, provid: provid },
+                success: function(data, message){
+                    var tambon = $('#tambon');
+                    tambon.empty();
+                    tambon.append("<option>-- กรุณาเลือก --</option>");
+                    $.each(data, function(key, element) {
+                        if(element.tambid == '{{ Input::old('tambid') }}'){
+                            tambon.append("<option value='"+ element.tambid +"' selected>"
+                            + element.name + "</option>");
+                        }
+                        else
+                        {
+                            tambon.append("<option value='"+ element.tambid +"'>"
+                            + element.name + "</option>");
+                        }
+                    });
+                }
+            });
+        }
+
+        function provinceOnChange(id)
+        {
+            $.ajax({
+                url: '{{ URL::route('project_getAmphoe') }}',
+                data: { provid: id },
+                success: function(data, message){
+                    var amphoe = $('#amphoe');
+                    amphoe.empty();
+                    amphoe.append("<option>-- กรุณาเลือก --</option>");
+                    var tambon = $('#tambon');
+                    tambon.empty();
+                    tambon.append("<option>-- กรุณาเลือก --</option>");
+                    $.each(data, function(key, element) {
+                        if(element.amphid == '{{ Input::old('amphid') }}') {
+                            amphoe.append("<option value='"+ element.amphid +"' selected>"
+                            + element.name + "</option>");
+                        }
+                        else
+                        {
+                            amphoe.append("<option value='"+ element.amphid +"'>"
+                            + element.name + "</option>");
+                        }
+                    });
+                }
+            });
+        }
+
     </script>
 
     @for($i=2; $i<=43; $i++)
         <script type="text/javascript">
+
+            <!-- Dropzone -->
 
             // Get the template HTML and remove it from the doument
             var previewNode = document.querySelector("#template{{ $i }}");
@@ -370,7 +360,7 @@
                 <div class="panel-body">
                     <div class="col-md-12">
 
-                        {!! Form::open(['route' => ['backend_brand_store'],
+                        {!! Form::open(['route' => ['backend_project_store'],
                             'id'=> 'my-form', 'data-ajax' => 'true',
                             'class' => 'form-horizontal']) !!}
 
@@ -445,33 +435,30 @@
                                             </p>
                                         </div>
                                     </div>
-                                    <div class="form-group @if ($errors->has('project_owner')) {{ "has-error" }} @endif">
-                                        {!! Form::label('project_owner', 'บริษัทเจ้าของโครงการ', [
+
+
+                                    <div class="form-group">
+                                        {!! Form::label('brand_id', 'บริษัทเจ้าของโครงการ', [
                                         'class' => 'col-md-3 control-label']) !!}
                                         <div class="col-md-6">
-                                            {!! Form::text('project_owner', null,
-                                            ['class' => 'form-control']) !!}
-                                            <p class="help-block">
-                                                {{ $errors->first('project_owner') }}
-                                            </p>
+                                            <select class="form-control" id="brand_id" name="brand_id"></select>
                                         </div>
                                     </div>
-                                    <div class="form-group @if ($errors->has('project_owner_logo')) {{ "has-error" }} @endif">
-                                        <div class="col-md-3 control-label">โลโก้บริษัทเจ้าของโครงการ</div>
-                                        <div class="col-md-3">
-                                            <div id="dZUpload" class="dropzone uploadify"></div>
-                                            <input type="hidden" id="project_owner_logo" name="project_owner_logo"
-                                                   value="{{ Input::old('project_owner_logo') }}">
-                                            <p class="help-block">
-                                                {{ $errors->first('project_owner_logo') }}
-                                            </p>
+
+                                    <div class="form-group">
+                                        <div class="col-md-3"></div>
+                                        <div class="col-md-6">
+                                            <div class="thumbnail" style="width: 85px; height: 85px;">
+                                                <img id="img_brand" style="max-width: 75px; max-height: 75px;" />
+                                            </div>
                                         </div>
                                     </div>
+
                                     <div class="form-group @if ($errors->has('telephone')) {{ "has-error" }} @endif">
                                         <label class="col-md-3 control-label">เบอร์โทรติดต่อ</label>
                                         <div class="col-md-6">
                                             {!! Form::text('telephone', null,
-                                            ['class' => 'form-control']) !!}
+                                            ['id'=>'telephone', 'class' => 'form-control', 'readonly' => 'readonly']) !!}
                                             <p class="help-block">
                                                 {{ $errors->first('telephone') }}
                                             </p>
@@ -481,19 +468,9 @@
                                         <label class="col-md-3 control-label">อีเมล</label>
                                         <div class="col-md-6">
                                             {!! Form::text('email', null,
-                                            ['class' => 'form-control']) !!}
+                                            ['id'=>'email', 'class' => 'form-control', 'readonly' => 'readonly']) !!}
                                             <p class="help-block">
                                                 {{ $errors->first('email') }}
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="form-group @if ($errors->has('website')) {{ "has-error" }} @endif">
-                                        <label class="col-md-3 control-label">เว็บไซต์</label>
-                                        <div class="col-md-6">
-                                            {!! Form::text('website', null,
-                                            ['class' => 'form-control']) !!}
-                                            <p class="help-block">
-                                                {{ $errors->first('website') }}
                                             </p>
                                         </div>
                                     </div>
@@ -501,16 +478,26 @@
                                         <label class="col-md-3 control-label">Facebook</label>
                                         <div class="col-md-6">
                                             <input type="text" class="form-control" id="facebook" name="facebook"
-                                                   placeholder="" value="{{Input::old('facebook')}}">
+                                                   placeholder="" value="{{Input::old('facebook')}}" readonly>
                                         </div>
                                     </div>
                                     <div class="form-group @if ($errors->has('line')) {{ "has-error" }} @endif">
                                         <label class="col-md-3 control-label">LINE</label>
                                         <div class="col-md-6">
                                             {!! Form::text('line', null,
-                                            ['class' => 'form-control']) !!}
+                                            ['id'=>'line', 'class' => 'form-control', 'readonly' => 'readonly']) !!}
                                             <p class="help-block">
                                                 {{ $errors->first('line') }}
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="form-group @if ($errors->has('website')) {{ "has-error" }} @endif">
+                                        <label class="col-md-3 control-label">เว็บไซต์</label>
+                                        <div class="col-md-6">
+                                            {!! Form::text('website', null,
+                                            ['id'=>'website', 'class' => 'form-control']) !!}
+                                            <p class="help-block">
+                                                {{ $errors->first('website') }}
                                             </p>
                                         </div>
                                     </div>
@@ -925,19 +912,19 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="form-group @if ($errors->has('status')) {{ "has-error" }} @endif">
-                                        <label  class="col-md-3 control-label text-right">แสดงผลหน้าเว็บไซต์</label>
-                                        <div class="col-md-8">
-                                            <label class="radio-inline">
-                                                <input type="radio" name="status[]" id="status1"
-                                                       value="1"> แสดงผล
-                                            </label>
-                                            <label class="radio-inline">
-                                                <input type="radio" name="status[]" id="status2"
-                                                       value="0" checked> ไม่แสดงผล
-                                            </label>
-                                        </div>
-                                    </div>
+                                    {{--<div class="form-group @if ($errors->has('status')) {{ "has-error" }} @endif">--}}
+                                        {{--<label  class="col-md-3 control-label text-right">แสดงผลหน้าเว็บไซต์</label>--}}
+                                        {{--<div class="col-md-8">--}}
+                                            {{--<label class="radio-inline">--}}
+                                                {{--<input type="radio" name="status[]" id="status1"--}}
+                                                       {{--value="1"> แสดงผล--}}
+                                            {{--</label>--}}
+                                            {{--<label class="radio-inline">--}}
+                                                {{--<input type="radio" name="status[]" id="status2"--}}
+                                                       {{--value="0" checked> ไม่แสดงผล--}}
+                                            {{--</label>--}}
+                                        {{--</div>--}}
+                                    {{--</div>--}}
                                 </div><!-- ข้อมูลเบื้องต้นโครงการ -->
                                 <!-- สภาพแวดล้อมโครงการ -->
                                 <div class="tab-pane fade" id="tab2">

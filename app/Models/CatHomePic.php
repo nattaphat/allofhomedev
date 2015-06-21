@@ -15,7 +15,8 @@ class CatHomePic extends Model {
         'filesize',
         'filetype',
         'filepath',
-        'description'
+        'description',
+        'thumbnail'
     ];
 
     public function catHome()

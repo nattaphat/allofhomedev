@@ -98,7 +98,9 @@
 
                                     </td>
                                     <td style="vertical-align: middle;">
-                                        owner
+                                        @if($item->brand_id != null)
+                                            {{ \App\Models\Brand::getBrandName($item->brand_id) }}
+                                        @endif
                                     </td>
                                     <td style="vertical-align: middle;"><?php
                                         $cat = unserialize($item->for_cat);

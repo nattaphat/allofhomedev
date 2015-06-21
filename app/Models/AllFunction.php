@@ -114,16 +114,16 @@ class AllFunction {
     }
 
     ///// #### สร้าง Thumbnail #### //////
-    public static function createThumbnailAutoHeight($url, $width)
+    public static function createThumbnailAutoHeight($url, $width, $folder = 'thumbnail')
     {
         try{
-            $filename = sha1(time().time()).".png";
+            $filename = sha1(date('YmdHisu').rand(0, 99).rand(0, 99)).".png";
 
             $logo = Image::make($url)->resize($width, null, function ($constraint) {
                 $constraint->aspectRatio();
             });
 
-            $logo->save(__DIR__."/../../public/temp/".$filename);
+            $logo->save(__DIR__."/../../public/".$folder."/".$filename);
             return asset('temp/')."/".$filename;  // return url path
         }
         catch(\Exception $e)
@@ -132,16 +132,16 @@ class AllFunction {
         }
     }
 
-    public static function createThumbnailAutoWidth($url, $height)
+    public static function createThumbnailAutoWidth($url, $height, $folder = 'thumbnail')
     {
         try{
-            $filename = sha1(time().time()).".png";
+            $filename = sha1(date('YmdHisu').rand(0, 99).rand(0, 99)).".png";
 
             $logo = Image::make($url)->resize(null, $height, function ($constraint) {
                 $constraint->aspectRatio();
             });
 
-            $logo->save(__DIR__."/../../public/temp/".$filename);
+            $logo->save(__DIR__."/../../public/".$folder."/".$filename);
             return asset('temp/')."/".$filename;  // return url path
         }
         catch(\Exception $e)
@@ -150,13 +150,30 @@ class AllFunction {
         }
     }
 
-    public static function createThumbnailFix($url, $width, $height)
+    public static function createThumbnailFix($url, $width, $height, $folder = 'thumbnail')
     {
         try{
-            $filename = sha1(time().time()).".png";
+            $filename = sha1(date('YmdHisu').rand(0, 99).rand(0, 99)).".png";
 
-            $logo = Image::make($url)->resize($width, $height);
-            $logo->save(__DIR__."/../../public/temp/".$filename);
+            $logo = Image::make($url);
+
+            $h = $logo->height();
+            $w = $logo->width();
+
+            if($h > $w)
+            {
+                $logo->resize(null, $height, function ($constraint) {
+                    $constraint->aspectRatio();
+                });
+            }
+            else
+            {
+                $logo->resize($width, null, function ($constraint) {
+                    $constraint->aspectRatio();
+                });
+            }
+
+            $logo->save(__DIR__."/../../public/".$folder."/".$filename);
             return asset('temp/')."/".$filename;  // return url path
         }
         catch(\Exception $e)

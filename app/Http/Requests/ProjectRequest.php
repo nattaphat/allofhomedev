@@ -15,21 +15,24 @@ class ProjectRequest extends Request {
             'subtitle' => 'required|max:500',
             'for_cat[]' => 'required',
             'project_name' => 'required|max:100',
-            'project_owner' => 'required|max:100',
-            'project_owner_logo' => 'required',
-            'telephone' => 'required|max:100',
+            //'project_owner' => 'required|max:100',
+            //'project_owner_logo' => 'required',
+            //'telephone' => 'required|max:100',
             'add_street' => 'required',
             'tambid' => 'required',
             'amphid' => 'required',
             'provid' => 'required',
             'sell_price' => 'required',
-            'sell_price_from' => 'required',
-            'sell_price_to' => 'required',
-            'construct_date' => 'required|date_format:d/m/Y',
-            'finish_date' => 'required|date_format:d/m/Y',
+//            'sell_price_from' => 'required',
+//            'sell_price_to' => 'required',
+//            'construct_date' => 'required|date_format:d/m/Y',
+//            'finish_date' => 'required|date_format:d/m/Y',
+            'construct_date' => 'date_format:d/m/Y',
+            'finish_date' => 'date_format:d/m/Y',
             'video_url' => 'url',
             'website' => 'url',
-            'status[]' => 'required'
+            'status[]' => 'required',
+            'brand_id' => 'required'
         ];
     }
 

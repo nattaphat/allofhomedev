@@ -99,7 +99,7 @@
                                         {
                                             $attachment = App\Models\Attachment::find($item->attachment_id);
                                         ?>
-                                        <div class="thumbnail" style="width: 85px;">
+                                        <div class="thumbnail" style="width: 85px; margin: 0px;">
                                             <img src="{{ $attachment->path }}" alt="{{ $attachment->filename }}"
                                                  width="80px" height="auto" />
                                         </div>

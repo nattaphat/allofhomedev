@@ -17,3 +17,4 @@ composer.lock
 /public/uploads/*
 /public/files/*
 /public/temp/*
+/public/thumbnail/*

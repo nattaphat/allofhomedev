@@ -346,6 +346,12 @@
         'uses' => 'Backend\BackendBrandController@brand_update'
     ]);
 
+    Route::any('get_brand', [
+        'before' => 'backend_auth',
+        'as' => 'get_brand',
+        'uses' => 'Backend\BackendBrandController@get_brand'
+    ]);
+
     // Project
     Route::get('backend/project', [
         'before' => 'backend_auth',
