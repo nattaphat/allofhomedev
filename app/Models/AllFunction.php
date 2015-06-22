@@ -124,7 +124,7 @@ class AllFunction {
             });
 
             $logo->save(__DIR__."/../../public/".$folder."/".$filename);
-            return asset('temp/')."/".$filename;  // return url path
+            return asset('/').$folder."/".$filename;  // return url path
         }
         catch(\Exception $e)
         {
@@ -142,7 +142,7 @@ class AllFunction {
             });
 
             $logo->save(__DIR__."/../../public/".$folder."/".$filename);
-            return asset('temp/')."/".$filename;  // return url path
+            return asset('/').$folder."/".$filename;  // return url path
         }
         catch(\Exception $e)
         {
@@ -174,7 +174,7 @@ class AllFunction {
             }
 
             $logo->save(__DIR__."/../../public/".$folder."/".$filename);
-            return asset('temp/')."/".$filename;  // return url path
+            return asset('/').$folder."/".$filename;  // return url path
         }
         catch(\Exception $e)
         {

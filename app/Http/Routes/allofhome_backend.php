@@ -153,6 +153,18 @@
         'uses' => 'Backend\BackendAirportLinkController@airportLink'
     ]);
 
+    Route::get('backend/airportLink_edit/{id}', [
+        'before' => 'backend_auth',
+        'as' => 'backend_airportLink_edit',
+        'uses' => 'Backend\BackendAirportLinkController@airportLink_edit'
+    ]);
+
+    Route::post('backend/airportLink_update', [
+        'before' => 'backend_auth',
+        'as' => 'backend_airportLink_update',
+        'uses' => 'Backend\BackendAirportLinkController@airportLink_update'
+    ]);
+
 //    หมวดหมู่ ทำเล / ย่าน
     Route::get('backend/location', [
         'before' => 'backend_auth',
