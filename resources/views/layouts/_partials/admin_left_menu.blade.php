@@ -20,13 +20,13 @@
                 <a href="{{ URL::to('#') }}"> ร้านค้าทั้งหมด</a>
             </li>
             <li>
-                <a href="{{ URL::to('#') }}"> บทความและข่าวสาร</a>
+                <a href="{{ URL::to('backend/article') }}"> บทความและข่าวสาร</a>
             </li>
             <li>
-                <a href="{{ URL::to('#') }}"> รีวิวทั้งหมด</a>
+                <a href="{{ URL::to('backend/review') }}"> รีวิวทั้งหมด</a>
             </li>
             <li>
-                <a href="{{ URL::to('#') }}"> ไอเดียทั้งหมด</a>
+                <a href="{{ URL::to('backend/idea') }}"> ไอเดียทั้งหมด</a>
             </li>
             <li style="display:none;">
                 <a href="{{ URL::to('backend/news') }}" onclick="alert('under construction'); return false;"> ข้อมูลข่าวสารสมาชิก</a>

@@ -61,7 +61,7 @@ class AllofhomeController extends Controller {
         // echo $user->getEmail();
         // $user->getAvatar();
 
-        return view('web.index');
+        return view('web.frontend.index');
     }
 
 

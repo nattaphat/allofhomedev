@@ -418,4 +418,24 @@
         'as' => 'backend_project_update',
         'uses' => 'Backend\BackendProjectController@project_update'
     ]);
+
+    // Article
+    Route::get('backend/article', [
+        'before' => 'backend_auth',
+        'as' => 'backend_article',
+        'uses' => 'Backend\BackendArticleController@article'
+    ]);
+
+    Route::get('backend/article_new', [
+        'before' => 'backend_auth',
+        'as' => 'backend_article_new',
+        'uses' => 'Backend\BackendArticleController@article_new'
+    ]);
+
+    Route::post('backend/article_store', [
+        'before' => 'backend_auth',
+        'as' => 'backend_article_store',
+        'uses' => 'Backend\BackendArticleController@article_store'
+    ]);
+
 /* ----- ## backend ## ----- */
