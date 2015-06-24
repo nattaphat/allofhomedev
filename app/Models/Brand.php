@@ -20,4 +20,9 @@ class Brand extends Model {
         return $attachment->path;
     }
 
+    public function catHome()
+    {
+        return $this->hasMany('App\Models\CatHome');
+    }
+
 }

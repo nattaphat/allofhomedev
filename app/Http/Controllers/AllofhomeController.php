@@ -1,6 +1,7 @@
 <?php namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\CatHome;
 use Config;
 use App\Models\geoRegion;
 use Request;
@@ -8,6 +9,7 @@ use Validator;
 use Response;
 use Input;
 use File;
+use DB;
 
 class AllofhomeController extends Controller {
 
@@ -61,7 +63,34 @@ class AllofhomeController extends Controller {
         // echo $user->getEmail();
         // $user->getAvatar();
 
-        return view('web.frontend.index');
+        $catHome = DB::table('cat_home as ch')
+            ->leftJoin(DB::raw('
+                (
+                        select id
+                          from cat_home
+                          where vip = true
+                          ORDER BY random() limit 5
+                ) as vip
+            '), function ($join){
+                $join->on( 'ch.id', '=', 'vip.id');
+            })
+            ->join(DB::raw('
+                (
+                    select distinct pictureable_id, pictureable_type from picture
+                    where pictureable_type = \'App\\Models\\CatHome\'
+                ) pic
+            '), function($join){
+                $join->on( 'ch.id', '=', 'pic.pictureable_id');
+            })
+            ->orderBy('vip.id')
+            ->orderBy('ch.created_at', 'desc')
+            ->take(5)
+            ->get();
+
+//        dd($catHome);
+
+        return view('web.frontend.index')
+            ->with('catHome', $catHome);
     }
 
 

@@ -34,7 +34,10 @@ class CatHome extends Model {
         return $this->belongsTo('App\Models\Project');
     }
 
-
+    public function brand()
+    {
+        return $this->belongsTo('App\Models\Brand');
+    }
 
     public function comment()
     {

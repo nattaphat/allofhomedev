@@ -30,7 +30,7 @@ class BackendProjectController extends Controller {
 
     public function project()
     {
-        $catHome = CatHome::orderBy('vip', 'desc')->orderBy('project_name')->get();
+        $catHome = CatHome::orderBy('vip', 'desc')->orderBy('created_at', 'desc')->get();
         return view('web.backend.project')->with('catHome', $catHome);
     }
 
@@ -169,7 +169,7 @@ class BackendProjectController extends Controller {
 
         $catHome->video_url = $input['video_url'];
         $catHome->review_status = $input['review_status'][0];
-        $catHome->status = 0;  // รอพิจารณาอนุมัติ
+        $catHome->status = 1;  // 0 = รอพิจารณาอนุมัติ, 1 = อนุมัติผลแล้ว
         $catHome->spare_price = $input['spare_price'];
         $catHome->central_price = $input['central_price'];
         $catHome->promotion_str = $input['promotion_str'];

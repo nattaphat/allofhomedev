@@ -43,6 +43,23 @@ class CondoCategoryController extends Controller {
 
     public function index()
     {
+//        $catHome = DB::table('cat_home as ch')
+//            ->leftJoin(DB::raw('
+//                (
+//                        select id
+//                          from cat_home
+//                          where vip = true
+//                          ORDER BY random() limit 5
+//                ) as vip
+//            '), function ($join){
+//                $join->on( 'ch.id', '=', 'vip.id');
+//            })
+//            ->orderBy('vip.id')
+//            ->orderBy('ch.created_at', 'desc')
+//            ->get();
+//
+//        dd($catHome);
+
         $brand = \App\Models\CatHome::distinct()->select('project_owner')
             ->groupBy('project_owner')->take(14)->get();
 
