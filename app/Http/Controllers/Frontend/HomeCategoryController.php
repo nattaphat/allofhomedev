@@ -65,8 +65,7 @@ class HomeCategoryController extends Controller {
                 ->whereRaw('ch.for_cat like \'%"1"%\'')
                 ->orderBy('vip.id')
                 ->orderBy('ch.created_at', 'desc')
-                ->take(5)
-                ->get();
+                ->paginate(1);
         }
         catch(\Exception $e)
         {

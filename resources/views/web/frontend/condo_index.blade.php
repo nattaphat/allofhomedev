@@ -93,7 +93,7 @@
                     @endforeach
                 @endif
             </ul>
-
+            {!! str_replace('/?', '?', $catHome->render()) !!}
         </div>
     </div>
 
