@@ -7,7 +7,7 @@
             {{ Config::get('allofhome.title') }}
         @show
     </title>
-    <link href="css/style.css" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet" type="text/css" />
 
     @yield('jshome')
 
@@ -18,7 +18,7 @@
     <div class="wrap">
         <h1><a href="{{ url('/') }}">www.allofhome.com</a></h1>
         <!-- Banner A -->
-        <div class="banner-top"><img src="images/test/banner-1.jpg" alt="" /></div>
+        <div class="banner-top"><img src="{{ asset('images/test/banner-1.jpg') }}" alt="" /></div>
         <div class="navigator">
             <ul>
                 <li><a href="{{ url('/') }}" class="home active"></a></li>
@@ -42,7 +42,7 @@
             <a href="#" class="next"></a>
             <div class="pic-slide">
                 <ul>
-                    <li><a href="#"><img src="images/test/banner-2.jpg" alt="" /></a></li>
+                    <li><a href="#"><img src="{{ asset('images/test/banner-2.jpg') }}" alt="" /></a></li>
                 </ul>
             </div>
             <div class="pagin">
@@ -62,7 +62,7 @@
         <div class="boxleft">
             <div class="newregister">
                 <h2>ลงทะเบียนโครงการใหม่</h2>
-                <p><img src="images/test/pic-1.jpg" alt="" /></p>
+                <p><img src="{{ asset('images/test/pic-1.jpg')}}" alt="" /></p>
                 <div class="text">
                     <h3>Life Asoke (ไลฟ์ อโศก)</h3>
                     <p>ลงทะเบียนส่วนลดสูงสุด <span>100,000</span> บาท</p>
@@ -71,18 +71,18 @@
             </div>
             <a href="#" class="btn-likefb"></a>
             <!-- Banner E, F, G -->
-            <div class="side-banner"><img src="images/test/pic-10.jpg" alt="" /></div>
-            <div class="side-banner"><img src="images/test/pic-14.jpg" alt="" /></div>
-            <div class="side-banner"><img src="images/test/pic-3.jpg" alt="" /></div>
+            <div class="side-banner"><img src="{{ asset('images/test/pic-10.jpg') }}" alt="" /></div>
+            <div class="side-banner"><img src="{{ asset('images/test/pic-14.jpg') }}" alt="" /></div>
+            <div class="side-banner"><img src="{{ asset('images/test/pic-3.jpg') }}" alt="" /></div>
             <div class="clipvdo">
                 <h2>คลิปวีดีโอ </h2>
-                <div class="vdo"><img src="images/test/pic-15.jpg" alt="" /></div>
-                <div class="vdo"><img src="images/test/pic-15.jpg" alt="" /></div>
-                <div class="vdo"><img src="images/test/pic-15.jpg" alt="" /></div>
-                <div class="vdo"><img src="images/test/pic-15.jpg" alt="" /></div>
+                <div class="vdo"><img src="{{ asset('images/test/pic-15.jpg') }}" alt="" /></div>
+                <div class="vdo"><img src="{{ asset('images/test/pic-15.jpg') }}" alt="" /></div>
+                <div class="vdo"><img src="{{ asset('images/test/pic-15.jpg') }}" alt="" /></div>
+                <div class="vdo"><img src="{{ asset('images/test/pic-15.jpg') }}" alt="" /></div>
                 <div class="follow">
                     <span>ติดตามรายการบน </span>
-                    <a href="#"><img src="images/button/youtube.jpg" alt="" /></a>
+                    <a href="#"><img src="{{ asset('images/button/youtube.jpg') }}" alt="" /></a>
                 </div>
             </div>
         </div>
@@ -93,7 +93,7 @@
                 <div class="left">
                     <ul>
                         <li>
-                            <div class="pic"><img src="images/test/pic-2.jpg" alt="" /></div>
+                            <div class="pic"><img src="{{ asset('images/test/pic-2.jpg') }}" alt="" /></div>
                             <div class="tag-day">
                                 <p>02</p>
                                 <p>มีค 2558</p>
@@ -104,7 +104,7 @@
                             </div>
                         </li>
                         <li>
-                            <div class="pic"><img src="images/test/pic-2.jpg" alt="" /></div>
+                            <div class="pic"><img src="{{ asset('images/test/pic-2.jpg') }}" alt="" /></div>
                             <div class="tag-day">
                                 <p>02</p>
                                 <p>มีค 2558</p>
@@ -125,8 +125,8 @@
                 </div>
                 <div class="right">
                     <!-- Banner C, D -->
-                    <div class="side-banner"><img src="images/test/pic-3.jpg" alt="" /></div>
-                    <div class="side-banner"><img src="images/test/pic-4.jpg" alt="" /></div>
+                    <div class="side-banner"><img src="{{ asset('images/test/pic-3.jpg') }}" alt="" /></div>
+                    <div class="side-banner"><img src="{{ asset('images/test/pic-4.jpg') }}" alt="" /></div>
                 </div>
                 <div class="clear"></div>
             </div>

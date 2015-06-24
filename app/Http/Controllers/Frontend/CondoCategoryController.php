@@ -60,119 +60,154 @@ class CondoCategoryController extends Controller {
 //
 //        dd($catHome);
 
-        $brand = \App\Models\CatHome::distinct()->select('project_owner')
-            ->groupBy('project_owner')->take(14)->get();
+//        $brand = \App\Models\CatHome::distinct()->select('project_owner')
+//            ->groupBy('project_owner')->take(14)->get();
+//
+//        // VIP 5 อัน Random
+//        $catHomeVip = CatHome::where('status','=',1)
+//            ->where('vip','=',true)
+//            ->whereRaw('for_cat like \'%"3"%\'')
+//            ->orderBy(DB::raw('random()'))
+//            ->take(5)
+//            ->get();
+//
+//        // post ทั่วไป กรองไม่เอาหัวข้อ vip 5 อัน มาแสดง
+//        $str_not_in = null;
+//        if($catHomeVip != null && count($catHomeVip) > 0)
+//        {
+//            foreach($catHomeVip as $item)
+//            {
+//                $str_not_in[] = $item->id;
+//            }
+//        }
+//
+//        if($str_not_in != null)
+//        {
+//            $catHome = CatHome::where('status','=',1)
+//                ->whereRaw('for_cat like \'%"3"%\'')
+//                ->whereNotIn('id', $str_not_in)
+//                ->orderBy('created_at', 'desc')
+//                ->paginate(10);
+//        }
+//        else
+//        {
+//            $catHome = CatHome::where('status','=',1)
+//                ->whereRaw('for_cat like \'%"3"%\'')
+//                ->orderBy('created_at', 'desc')
+//                ->paginate(10);
+//        }
+//
+//        $config =
+//            [
+//                'center' => '13.7646393,100.5378279',
+//                'zoom' => 'auto',
+//                'scrollwheel' => false
+//            ];
+//
+//        Gmaps::initialize($config);
+//
+//        if(($catHomeVip != null && count($catHomeVip) > 0) || ($catHome != null && count($catHome)))
+//        {
+//            foreach($catHomeVip as $item)
+//            {
+//                $attachment = Attachment::find($item->project_owner_logo);
+//
+//                $marker =
+//                    [
+//                        'position' => $item->latitude.','.$item->longitude,
+//                        'draggable' => false,
+//                        'infowindow_content' =>
+//                            '<div class="row" style="width: 100%;">'.
+//                            '<div class="col-md-6">'.
+//                            '<img src="'.$attachment->path.'"'.
+//                            'alt="'.$attachment->filename.'" class=\'img-responsive\' '.
+//                            'style="max-width: 100%;" />'.
+//                            '</div>'.
+//                            '<div class="col-md-6">'.
+//                            '<h5><a href="'.url('condo/view/').'/'.$item->id.'" target="_blank">'.$item->project_name.'</a></h5>'.
+//                            '<p><strong>บริษัทเจ้าของโครงการ</strong> : '.$item->project_owner.'</p>'.
+//                            '<p><strong>ที่ตั้งโครงการ</strong> : '.(\App\Models\CatHome::getFullPrjAddress($item->id)).'</p>'.
+//                            '<p><strong>ราคาเริ่มต้น</strong> : '.$item->sell_price.' &nbsp;&nbsp;บาท</p>'.
+//                            '<p><strong>เบอร์ติดต่อ</strong> : '.$item->telephone.'</p>'.
+//                            '<p><strong>เว็บไซต์</strong> : '.$item->website.'</p>'.
+//                            '</div>'.
+//                            '</div>'
+//                    ];
+//                Gmaps::add_marker($marker);
+//            }
+//            foreach($catHome as $item)
+//            {
+//                $attachment = Attachment::find($item->project_owner_logo);
+//
+//                $marker =
+//                    [
+//                        'position' => $item->latitude.','.$item->longitude,
+//                        'draggable' => false,
+//                        'infowindow_content' =>
+//                            '<div class="row" style="width: 100%;">'.
+//                            '<div class="col-md-6">'.
+//                            '<img src="'.$attachment->path.'"'.
+//                            'alt="'.$attachment->filename.'" class=\'img-responsive\' '.
+//                            'style="max-width: 100%;" />'.
+//                            '</div>'.
+//                            '<div class="col-md-6">'.
+//                            '<h5><a href="'.url('condo/view/').'/'.$item->id.'" target="_blank">'.$item->project_name.'</a></h5>'.
+//                            '<p><strong>บริษัทเจ้าของโครงการ</strong> : '.$item->project_owner.'</p>'.
+//                            '<p><strong>ที่ตั้งโครงการ</strong> : '.(\App\Models\CatHome::getFullPrjAddress($item->id)).'</p>'.
+//                            '<p><strong>ราคาเริ่มต้น</strong> : '.$item->sell_price.' &nbsp;&nbsp;บาท</p>'.
+//                            '<p><strong>เบอร์ติดต่อ</strong> : '.$item->telephone.'</p>'.
+//                            '<p><strong>เว็บไซต์</strong> : '.$item->website.'</p>'.
+//                            '</div>'.
+//                            '</div>'
+//                    ];
+//                Gmaps::add_marker($marker);
+//            }
+//        }
+//
+//        $map = Gmaps::create_map();
+//
+//        return View::make('web.frontend.condo.index',
+//            [
+//                'map' => $map,
+//                'catHome' => $catHome,
+//                'catHomeVip' => $catHomeVip,
+//                'brand' => $brand
+//            ]);
 
-        // VIP 5 อัน Random
-        $catHomeVip = CatHome::where('status','=',1)
-            ->where('vip','=',true)
-            ->whereRaw('for_cat like \'%"3"%\'')
-            ->orderBy(DB::raw('random()'))
-            ->take(5)
-            ->get();
-
-        // post ทั่วไป กรองไม่เอาหัวข้อ vip 5 อัน มาแสดง
-        $str_not_in = null;
-        if($catHomeVip != null && count($catHomeVip) > 0)
+        $catHome = null;
+        try{
+            $catHome = DB::table('cat_home as ch')
+                ->leftJoin(DB::raw('
+                (
+                        select id
+                          from cat_home
+                          where vip = true
+                          ORDER BY random() limit 5
+                ) as vip
+            '), function ($join){
+                    $join->on( 'ch.id', '=', 'vip.id');
+                })
+                ->join(DB::raw('
+                    (
+                        select distinct pictureable_id, pictureable_type from picture
+                        where pictureable_type = \'App\\Models\\CatHome\'
+                    ) pic
+                '), function($join){
+                    $join->on( 'ch.id', '=', 'pic.pictureable_id');
+                })
+                ->whereRaw('ch.for_cat like \'%"3"%\'')
+                ->orderBy('vip.id')
+                ->orderBy('ch.created_at', 'desc')
+                ->take(5)
+                ->get();
+        }
+        catch(\Exception $e)
         {
-            foreach($catHomeVip as $item)
-            {
-                $str_not_in[] = $item->id;
-            }
+
         }
 
-        if($str_not_in != null)
-        {
-            $catHome = CatHome::where('status','=',1)
-                ->whereRaw('for_cat like \'%"3"%\'')
-                ->whereNotIn('id', $str_not_in)
-                ->orderBy('created_at', 'desc')
-                ->paginate(10);
-        }
-        else
-        {
-            $catHome = CatHome::where('status','=',1)
-                ->whereRaw('for_cat like \'%"3"%\'')
-                ->orderBy('created_at', 'desc')
-                ->paginate(10);
-        }
-
-        $config =
-            [
-                'center' => '13.7646393,100.5378279',
-                'zoom' => 'auto',
-                'scrollwheel' => false
-            ];
-
-        Gmaps::initialize($config);
-
-        if(($catHomeVip != null && count($catHomeVip) > 0) || ($catHome != null && count($catHome)))
-        {
-            foreach($catHomeVip as $item)
-            {
-                $attachment = Attachment::find($item->project_owner_logo);
-
-                $marker =
-                    [
-                        'position' => $item->latitude.','.$item->longitude,
-                        'draggable' => false,
-                        'infowindow_content' =>
-                            '<div class="row" style="width: 100%;">'.
-                            '<div class="col-md-6">'.
-                            '<img src="'.$attachment->path.'"'.
-                            'alt="'.$attachment->filename.'" class=\'img-responsive\' '.
-                            'style="max-width: 100%;" />'.
-                            '</div>'.
-                            '<div class="col-md-6">'.
-                            '<h5><a href="'.url('condo/view/').'/'.$item->id.'" target="_blank">'.$item->project_name.'</a></h5>'.
-                            '<p><strong>บริษัทเจ้าของโครงการ</strong> : '.$item->project_owner.'</p>'.
-                            '<p><strong>ที่ตั้งโครงการ</strong> : '.(\App\Models\CatHome::getFullPrjAddress($item->id)).'</p>'.
-                            '<p><strong>ราคาเริ่มต้น</strong> : '.$item->sell_price.' &nbsp;&nbsp;บาท</p>'.
-                            '<p><strong>เบอร์ติดต่อ</strong> : '.$item->telephone.'</p>'.
-                            '<p><strong>เว็บไซต์</strong> : '.$item->website.'</p>'.
-                            '</div>'.
-                            '</div>'
-                    ];
-                Gmaps::add_marker($marker);
-            }
-            foreach($catHome as $item)
-            {
-                $attachment = Attachment::find($item->project_owner_logo);
-
-                $marker =
-                    [
-                        'position' => $item->latitude.','.$item->longitude,
-                        'draggable' => false,
-                        'infowindow_content' =>
-                            '<div class="row" style="width: 100%;">'.
-                            '<div class="col-md-6">'.
-                            '<img src="'.$attachment->path.'"'.
-                            'alt="'.$attachment->filename.'" class=\'img-responsive\' '.
-                            'style="max-width: 100%;" />'.
-                            '</div>'.
-                            '<div class="col-md-6">'.
-                            '<h5><a href="'.url('condo/view/').'/'.$item->id.'" target="_blank">'.$item->project_name.'</a></h5>'.
-                            '<p><strong>บริษัทเจ้าของโครงการ</strong> : '.$item->project_owner.'</p>'.
-                            '<p><strong>ที่ตั้งโครงการ</strong> : '.(\App\Models\CatHome::getFullPrjAddress($item->id)).'</p>'.
-                            '<p><strong>ราคาเริ่มต้น</strong> : '.$item->sell_price.' &nbsp;&nbsp;บาท</p>'.
-                            '<p><strong>เบอร์ติดต่อ</strong> : '.$item->telephone.'</p>'.
-                            '<p><strong>เว็บไซต์</strong> : '.$item->website.'</p>'.
-                            '</div>'.
-                            '</div>'
-                    ];
-                Gmaps::add_marker($marker);
-            }
-        }
-
-        $map = Gmaps::create_map();
-
-        return View::make('web.frontend.condo.index',
-            [
-                'map' => $map,
-                'catHome' => $catHome,
-                'catHomeVip' => $catHomeVip,
-                'brand' => $brand
-            ]);
+        return view('web.frontend.condo_index')
+            ->with('catHome', $catHome);
     }
 
     public function create()
