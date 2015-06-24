@@ -171,41 +171,36 @@
         <h2>บทความและสาระน่ารู้</h2>
         <div class="list-article">
             <ul>
+                @foreach($catArticle as $item)
                 <li>
-                    <p class="pic"><a href="#"><img src="images/test/pic-16.jpg" alt="" /></a></p>
+                    <?php
+                    if($item->id == null)
+                    {
+                        $pics = \App\Models\Picture::where('pictureable_id', '=', $item->pictureable_id)
+                                ->where('pictureable_type', '=', 'App\\Models\\CatArticle')
+                                ->get();
+                    }
+                    else
+                    {
+                        $pics = \App\Models\Picture::where('pictureable_id', '=', $item->id)
+                                ->where('pictureable_type', '=', 'App\\Models\\CatArticle')
+                                ->get();
+                    }
+                    ?>
+                    <p class="pic">
+                        <img src="{{ $pics[0]->file_path }}" alt="{{ $pics[0]->file_name }}"
+                             style="width: 250px; height: 150px;" />
+                    </p>
                     <div class="text">
-                        <h3><a href="#">เทคนิค ไอเดียการแต่งบ้านให้ดูดีมีสไตล์</a></h3>
-                        <p class="update">Thitima Admin  วันที่ลงประกาศ  25 06 2558</p>
-                        <p><a href="#">Rhoncus adipiscing, magna integer cursus augue eros lacus porttitor magna.
-                                Dictumst, odio! Elementum tortor sociis in eu dis dictumst pulvinar lorem nec
-                                aliquam a nascetur.</a></p>
+                        <h3><a href="#">{{ $item->title }}</a></h3>
+                        <p class="update">วันที่ลงประกาศ  {{ \App\Models\AllFunction::getDateTimeThai($item->created_at) }}</p>
+                        <p>{{ $item->subtitle }}</p>
                     </div>
                     <div class="clear"></div>
                 </li>
-                <li>
-                    <p class="pic"><a href="#"><img src="images/test/pic-16.jpg" alt="" /></a></p>
-                    <div class="text">
-                        <h3><a href="#">เทคนิค ไอเดียการแต่งบ้านให้ดูดีมีสไตล์</a></h3>
-                        <p class="update">Thitima Admin  วันที่ลงประกาศ  25 06 2558</p>
-                        <p><a href="#">Rhoncus adipiscing, magna integer cursus augue eros lacus porttitor magna.
-                                Dictumst, odio! Elementum tortor sociis in eu dis dictumst pulvinar lorem nec
-                                aliquam a nascetur.</a></p>
-                    </div>
-                    <div class="clear"></div>
-                </li>
-                <li>
-                    <p class="pic"><a href="#"><img src="images/test/pic-16.jpg" alt="" /></a></p>
-                    <div class="text">
-                        <h3><a href="#">เทคนิค ไอเดียการแต่งบ้านให้ดูดีมีสไตล์</a></h3>
-                        <p class="update">Thitima Admin  วันที่ลงประกาศ  25 06 2558</p>
-                        <p><a href="#">Rhoncus adipiscing, magna integer cursus augue eros lacus porttitor magna.
-                                Dictumst, odio! Elementum tortor sociis in eu dis dictumst pulvinar lorem nec
-                                aliquam a nascetur.</a></p>
-                    </div>
-                    <div class="clear"></div>
-                </li>
+                @endforeach
             </ul>
-            <a class="btn-viewmore" href="#">ดูเพิ่มเติม</a>
+            <a class="btn-viewmore" href="{{ url('article/index') }}">ดูเพิ่มเติม</a>
         </div>
     </div>
 
@@ -214,41 +209,36 @@
         <h2>ไอเดียตกแต่งบ้าน</h2>
         <div class="list-diy">
             <ul>
+                @foreach($catIdea as $item)
                 <li>
-                    <p class="pic"><a href="#"><img src="images/test/pic-17.jpg" alt="" /></a></p>
+                    <?php
+                        if($item->id == null)
+                        {
+                            $pics = \App\Models\Picture::where('pictureable_id', '=', $item->pictureable_id)
+                                    ->where('pictureable_type', '=', 'App\\Models\\CatIdea')
+                                    ->get();
+                        }
+                        else
+                        {
+                            $pics = \App\Models\Picture::where('pictureable_id', '=', $item->id)
+                                    ->where('pictureable_type', '=', 'App\\Models\\CatIdea')
+                                    ->get();
+                        }
+                    ?>
+                    <p class="pic">
+                        <img src="{{ $pics[0]->file_path }}" alt="{{ $pics[0]->file_name }}"
+                             style="width: 250px; height: 150px;" />
+                    </p>
                     <div class="text">
-                        <h3><a href="#">ESTA BLISS (เอสต้า บลีซ)</a></h3>
-                        <p class="update">Thitima Admin  วันที่ลงประกาศ  25 06 2558</p>
-                        <p><a href="#">Rhoncus adipiscing, magna integer cursus augue eros lacus porttitor magna.
-                                Dictumst, odio! Elementum tortor sociis in eu dis dictumst pulvinar lorem nec
-                                aliquam a nascetur.</a></p>
+                        <h3><a href="#">{{ $item->title }}</a></h3>
+                        <p class="update">วันที่ลงประกาศ  {{ \App\Models\AllFunction::getDateTimeThai($item->created_at) }}</p>
+                        <p>{{ $item->subtitle }}</p>
                     </div>
                     <div class="clear"></div>
                 </li>
-                <li>
-                    <p class="pic"><a href="#"><img src="images/test/pic-17.jpg" alt="" /></a></p>
-                    <div class="text">
-                        <h3><a href="#">ESTA BLISS (เอสต้า บลีซ)</a></h3>
-                        <p class="update">Thitima Admin  วันที่ลงประกาศ  25 06 2558</p>
-                        <p><a href="#">Rhoncus adipiscing, magna integer cursus augue eros lacus porttitor magna.
-                                Dictumst, odio! Elementum tortor sociis in eu dis dictumst pulvinar lorem nec
-                                aliquam a nascetur.</a></p>
-                    </div>
-                    <div class="clear"></div>
-                </li>
-                <li>
-                    <p class="pic"><a href="#"><img src="images/test/pic-17.jpg" alt="" /></a></p>
-                    <div class="text">
-                        <h3><a href="#">ESTA BLISS (เอสต้า บลีซ)</a></h3>
-                        <p class="update">Thitima Admin  วันที่ลงประกาศ  25 06 2558</p>
-                        <p><a href="#">Rhoncus adipiscing, magna integer cursus augue eros lacus porttitor magna.
-                                Dictumst, odio! Elementum tortor sociis in eu dis dictumst pulvinar lorem nec
-                                aliquam a nascetur.</a></p>
-                    </div>
-                    <div class="clear"></div>
-                </li>
+                @endforeach
             </ul>
-            <a class="btn-viewmore" href="#">ดูเพิ่มเติม</a>
+            <a class="btn-viewmore" href="{{ url('idea/index') }}">ดูเพิ่มเติม</a>
         </div>
 
     </div>

@@ -1,7 +1,10 @@
 <?php namespace App\Http\Controllers;
 
+use App\Models\CatArticle;
 use App\Models\Category;
 use App\Models\CatHome;
+use App\Models\CatIdea;
+use App\Models\CatReview;
 use Config;
 use App\Models\geoRegion;
 use Request;
@@ -87,10 +90,36 @@ class AllofhomeController extends Controller {
             ->take(5)
             ->get();
 
-//        dd($catHome);
+        $catArticle = DB::table('cat_article as ch')
+            ->join(DB::raw('
+                (
+                    select distinct pictureable_id, pictureable_type from picture
+                    where pictureable_type = \'App\\Models\\CatArticle\'
+                ) pic
+            '), function($join){
+                $join->on( 'ch.id', '=', 'pic.pictureable_id');
+            })
+            ->orderBy('ch.created_at', 'desc')
+            ->take(5)
+            ->get();
+
+        $catIdea = DB::table('cat_idea as ch')
+            ->join(DB::raw('
+                (
+                    select distinct pictureable_id, pictureable_type from picture
+                    where pictureable_type = \'App\\Models\\CatIdea\'
+                ) pic
+            '), function($join){
+                $join->on( 'ch.id', '=', 'pic.pictureable_id');
+            })
+            ->orderBy('ch.created_at', 'desc')
+            ->take(5)
+            ->get();
 
         return view('web.frontend.index')
-            ->with('catHome', $catHome);
+            ->with('catHome', $catHome)
+            ->with('catArticle', $catArticle)
+            ->with('catIdea', $catIdea);
     }
 
 
