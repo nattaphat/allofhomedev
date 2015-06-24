@@ -24,6 +24,7 @@
         <h2>รีวิวโครงการ</h2>
         <div class="list-review">
             <ul>
+                @if($catHome != null)
                 @foreach($catHome as $item)
                 <li>
                     @if($item->vip)
@@ -99,6 +100,7 @@
                     <div class="clear"></div>
                 </li>
                 @endforeach
+                @endif
             </ul>
             <a href="{{ url('/home/index') }}" class="btn-viewmore">ดูเพิ่มเติม</a>
         </div>
@@ -171,6 +173,7 @@
         <h2>บทความและสาระน่ารู้</h2>
         <div class="list-article">
             <ul>
+                @if($catArticle != null)
                 @foreach($catArticle as $item)
                 <li>
                     <?php
@@ -199,6 +202,7 @@
                     <div class="clear"></div>
                 </li>
                 @endforeach
+                @endif
             </ul>
             <a class="btn-viewmore" href="{{ url('article/index') }}">ดูเพิ่มเติม</a>
         </div>
@@ -209,6 +213,7 @@
         <h2>ไอเดียตกแต่งบ้าน</h2>
         <div class="list-diy">
             <ul>
+                @if($catIdea != null)
                 @foreach($catIdea as $item)
                 <li>
                     <?php
@@ -237,6 +242,7 @@
                     <div class="clear"></div>
                 </li>
                 @endforeach
+                @endif
             </ul>
             <a class="btn-viewmore" href="{{ url('idea/index') }}">ดูเพิ่มเติม</a>
         </div>
