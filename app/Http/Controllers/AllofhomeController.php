@@ -66,8 +66,10 @@ class AllofhomeController extends Controller {
         // echo $user->getEmail();
         // $user->getAvatar();
 
-        $catHome = DB::table('cat_home as ch')
-            ->leftJoin(DB::raw('
+        $catHome = null;
+        try{
+            $catHome = DB::table('cat_home as ch')
+                ->leftJoin(DB::raw('
                 (
                         select id
                           from cat_home
@@ -75,46 +77,65 @@ class AllofhomeController extends Controller {
                           ORDER BY random() limit 5
                 ) as vip
             '), function ($join){
-                $join->on( 'ch.id', '=', 'vip.id');
-            })
-            ->join(DB::raw('
+                    $join->on( 'ch.id', '=', 'vip.id');
+                })
+                ->join(DB::raw('
                 (
                     select distinct pictureable_id, pictureable_type from picture
                     where pictureable_type = \'App\\Models\\CatHome\'
                 ) pic
             '), function($join){
-                $join->on( 'ch.id', '=', 'pic.pictureable_id');
-            })
-            ->orderBy('vip.id')
-            ->orderBy('ch.created_at', 'desc')
-            ->take(5)
-            ->get();
+                    $join->on( 'ch.id', '=', 'pic.pictureable_id');
+                })
+                ->orderBy('vip.id')
+                ->orderBy('ch.created_at', 'desc')
+                ->take(5)
+                ->get();
+        }
+        catch(\Exception $e)
+        {
 
-        $catArticle = DB::table('cat_article as ch')
-            ->join(DB::raw('
-                (
-                    select distinct pictureable_id, pictureable_type from picture
-                    where pictureable_type = \'App\\Models\\CatArticle\'
-                ) pic
-            '), function($join){
-                $join->on( 'ch.id', '=', 'pic.pictureable_id');
-            })
-            ->orderBy('ch.created_at', 'desc')
-            ->take(5)
-            ->get();
+        }
 
-        $catIdea = DB::table('cat_idea as ch')
-            ->join(DB::raw('
-                (
-                    select distinct pictureable_id, pictureable_type from picture
-                    where pictureable_type = \'App\\Models\\CatIdea\'
-                ) pic
-            '), function($join){
-                $join->on( 'ch.id', '=', 'pic.pictureable_id');
-            })
-            ->orderBy('ch.created_at', 'desc')
-            ->take(5)
-            ->get();
+        $catArticle = null;
+        try{
+            $catArticle = DB::table('cat_article as ch')
+                ->join(DB::raw('
+                    (
+                        select distinct pictureable_id, pictureable_type from picture
+                        where pictureable_type = \'App\\Models\\CatArticle\'
+                    ) pic
+                '), function($join){
+                    $join->on( 'ch.id', '=', 'pic.pictureable_id');
+                })
+                ->orderBy('ch.created_at', 'desc')
+                ->take(5)
+                ->get();
+        }
+        catch(\Exception $e)
+        {
+
+        }
+
+        $catIdea = null;
+        try{
+            $catIdea = DB::table('cat_idea as ch')
+                ->join(DB::raw('
+                    (
+                        select distinct pictureable_id, pictureable_type from picture
+                        where pictureable_type = \'App\\Models\\CatIdea\'
+                    ) pic
+                '), function($join){
+                    $join->on( 'ch.id', '=', 'pic.pictureable_id');
+                })
+                ->orderBy('ch.created_at', 'desc')
+                ->take(5)
+                ->get();
+        }
+        catch(\Exception $e)
+        {
+
+        }
 
         return view('web.frontend.index')
             ->with('catHome', $catHome)
