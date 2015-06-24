@@ -34,6 +34,7 @@
                         "columns": [
                             {name: 'no', orderable: false, searchable: false},
                             {name: 'title', orderable: true, searchable: true},
+                            {name: 'for', orderable: true, searchable: true},
                             {name: 'display', orderable: true, searchable: true},
                             {name: 'operation', orderable: false, searchable: false}
                         ],

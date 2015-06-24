@@ -419,6 +419,12 @@
         'uses' => 'Backend\BackendProjectController@project_update'
     ]);
 
+    Route::any('get_cat_home', [
+        'before' => 'backend_auth',
+        'as' => 'get_cat_home',
+        'uses' => 'Backend\BackendProjectController@get_cat_home'
+    ]);
+
     // Article
     Route::get('backend/article', [
         'before' => 'backend_auth',
@@ -436,6 +442,25 @@
         'before' => 'backend_auth',
         'as' => 'backend_article_store',
         'uses' => 'Backend\BackendArticleController@article_store'
+    ]);
+
+    // Review
+    Route::get('backend/review', [
+        'before' => 'backend_auth',
+        'as' => 'backend_review',
+        'uses' => 'Backend\BackendReviewController@review'
+    ]);
+
+    Route::get('backend/review_new', [
+        'before' => 'backend_auth',
+        'as' => 'backend_review_new',
+        'uses' => 'Backend\BackendReviewController@review_new'
+    ]);
+
+    Route::post('backend/review_store', [
+        'before' => 'backend_auth',
+        'as' => 'backend_review_store',
+        'uses' => 'Backend\BackendReviewController@review_store'
     ]);
 
 /* ----- ## backend ## ----- */

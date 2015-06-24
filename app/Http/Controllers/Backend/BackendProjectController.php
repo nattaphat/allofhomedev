@@ -4,7 +4,6 @@ use App\Models\AirportRailLink;
 use App\Models\AllFunction;
 use App\Models\Amphoe;
 use App\Models\Area;
-use App\Models\Attachment;
 use App\Models\Bts;
 use App\Models\CatHome;
 use App\Models\CatHomePic;
@@ -21,12 +20,11 @@ use App\Models\Provinces;
 use App\Models\SubArea;
 use App\Models\Tag;
 use App\Models\Tambon;
-use Config;
 use App\Http\Controllers\Controller;
-use App\User;
 use Gmaps;
 use Input;
-use Redirect;
+use Request;
+use DB;
 
 class BackendProjectController extends Controller {
 
@@ -335,5 +333,39 @@ class BackendProjectController extends Controller {
 //        return Redirect::route('backend_project')
 //            ->with('flash_message', 'แก้ไขข้อมูลสำเร็จ')
 //            ->with('flash_type', 'alert-success');
+    }
+
+    public  function get_cat_home()
+    {
+        $search_char = strtolower(Request::get('term'));
+
+        $catHome = DB::table('cat_home')
+            ->join('geo_tambon', function ($join){
+                $join->on( 'cat_home.tambid', '=', 'geo_tambon.tambid');
+                $join->on( 'cat_home.amphid', '=', 'geo_tambon.amphid');
+                $join->on( 'cat_home.provid', '=', 'geo_tambon.provid');
+            })
+            ->join('geo_amphoe', function ($join){
+                $join->on( 'cat_home.amphid', '=', 'geo_amphoe.amphid');
+                $join->on( 'cat_home.provid', '=', 'geo_amphoe.provid');
+            })
+            ->join('geo_province', function ($join){
+                $join->on( 'cat_home.provid', '=', 'geo_province.provid');
+            })
+            ->select(DB::raw('cat_home.id,cat_home.project_name || \' - \' || geo_tambon.name
+                || \' \' || geo_amphoe.name || \' \' || geo_province.name as text,
+                cat_home.latitude, cat_home.longitude'))
+            ->whereRaw('lower(cat_home.project_name) like \'%'.$search_char.'%\' or
+                lower(geo_tambon.name) like \'%'.$search_char.'%\' or
+                lower(geo_amphoe.name) like \'%'.$search_char.'%\' or
+                lower(geo_province.name) like \'%'.$search_char.'%\'
+                ')
+            ->orderBy('cat_home.project_name')
+            ->orderBy('geo_tambon.name')
+            ->orderBy('geo_amphoe.name')
+            ->orderBy('geo_province.name')
+            ->get();
+
+        return json_encode($catHome);
     }
 }
