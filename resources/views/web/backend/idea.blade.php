@@ -51,7 +51,7 @@
 @section('content')
     <div class="row">
         <div class="col-lg-12">
-            <h3 class="page-header">รีวิวทั้งหมด</h3>
+            <h3 class="page-header">ไอเดียทั้งหมด</h3>
         </div>
     </div>
 
@@ -59,8 +59,8 @@
         <div class="col-lg-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <a href="{{ URL::to('backend/review_new') }}">
-                        <i class="fa fa-plus-square"></i> เพิ่มรีวิว
+                    <a href="{{ URL::to('backend/idea_new') }}">
+                        <i class="fa fa-plus-square"></i> เพิ่มไอเดีย
                     </a>
                 </div>
                 <!-- /.panel-heading -->
@@ -84,7 +84,7 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach ($reviews as $item)
+                            @foreach ($ideas as $item)
                                 <tr>
                                     <td class="text-center" style="vertical-align: middle;"></td>
                                     <td  style="vertical-align: middle;">
@@ -98,7 +98,7 @@
                                         {{ $item->visible == 1? "แสดงบนเว็บไซต์" : "ซ่อน" }}
                                     </td>
                                     <td class="text-center"  style="vertical-align: middle;">
-                                        <a href="{{ URL::to('backend/review_edit') }}/{{ $item->id }}"
+                                        <a href="{{ URL::to('backend/idea_edit') }}/{{ $item->id }}"
                                            data-toggle="tooltip" title="แก้ไข">
                                             <i class="fa fa-edit fa-fw"></i></a>
                                     </td>

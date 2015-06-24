@@ -463,4 +463,23 @@
         'uses' => 'Backend\BackendReviewController@review_store'
     ]);
 
+    // Idea
+    Route::get('backend/idea', [
+        'before' => 'backend_auth',
+        'as' => 'backend_idea',
+        'uses' => 'Backend\BackendIdeaController@idea'
+    ]);
+
+    Route::get('backend/idea_new', [
+        'before' => 'backend_auth',
+        'as' => 'backend_idea_new',
+        'uses' => 'Backend\BackendIdeaController@idea_new'
+    ]);
+
+    Route::post('backend/idea_store', [
+        'before' => 'backend_auth',
+        'as' => 'backend_idea_store',
+        'uses' => 'Backend\BackendIdeaController@idea_store'
+    ]);
+
 /* ----- ## backend ## ----- */
