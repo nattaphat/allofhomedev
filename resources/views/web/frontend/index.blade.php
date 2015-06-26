@@ -48,8 +48,10 @@
                             ?>
                             @if(count($pics) >= 5)
                                 <p class="pic-hilight">
-                                    <img src="{{ $pics[0]->file_path }}" alt="{{ $pics[0]->file_name }}"
-                                         style="width: 256px; height: 156px;" />
+                                    <a href="{{ url("condo/view/")."/".$item->id }}">
+                                        <img src="{{ $pics[0]->file_path }}" alt="{{ $pics[0]->file_name }}"
+                                             style="width: 256px; height: 156px;" />
+                                    </a>
                                 </p>
                                 <div class="other">
                                     <img src="{{ $pics[1]->file_path }}" alt="{{ $pics[1]->file_name }}"
@@ -63,8 +65,10 @@
                                 </div>
                             @else
                                 <p class="pic-hilight">
-                                    <img src="{{ $pics[0]->file_path }}" alt="{{ $pics[0]->file_name }}"
-                                         style="width: 256px; height: 156px;" />
+                                    <a href="{{ url("condo/view/")."/".$item->id }}">
+                                        <img src="{{ $pics[0]->file_path }}" alt="{{ $pics[0]->file_name }}"
+                                             style="width: 256px; height: 156px;" />
+                                    </a>
                                     <div class="other">
                                         <?php $count = count($pics); ?>
                                         @for($i=1; $i<$count; $i++)
@@ -76,7 +80,7 @@
                             @endif
                             <div class="clear"></div>
                         </div>
-                        <h3>{{ $item->title }}</h3>
+                        <a href="{{ url("condo/view/")."/".$item->id }}"><h3>{{ $item->title }}</h3></a>
                         <p class="update">วันที่ลงประกาศ  {{ \App\Models\AllFunction::getDateTimeThai($item->created_at) }}</p>
                         <p>{{ $item->subtitle }}</p>
                     </div>

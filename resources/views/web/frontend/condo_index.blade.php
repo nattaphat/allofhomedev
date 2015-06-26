@@ -37,37 +37,41 @@
                                                 ->get();
                                     }
                                     ?>
-                                    @if(count($pics) >= 5)
-                                        <p class="pic-hilight">
-                                            <img src="{{ $pics[0]->file_path }}" alt="{{ $pics[0]->file_name }}"
-                                                 style="width: 256px; height: 156px;" />
-                                        </p>
-                                        <div class="other">
-                                            <img src="{{ $pics[1]->file_path }}" alt="{{ $pics[1]->file_name }}"
-                                                 style="width: 80px; height: 70px;" />
-                                            <img src="{{ $pics[2]->file_path }}" alt="{{ $pics[2]->file_name }}"
-                                                 style="width: 80px; height: 70px;" />
-                                            <img src="{{ $pics[3]->file_path }}" alt="{{ $pics[3]->file_name }}"
-                                                 style="width: 80px; height: 70px;" />
-                                            <img src="{{ $pics[4]->file_path }}" alt="{{ $pics[4]->file_name }}"
-                                                 style="width: 80px; height: 70px;" />
-                                        </div>
-                                    @else
-                                        <p class="pic-hilight">
-                                            <img src="{{ $pics[0]->file_path }}" alt="{{ $pics[0]->file_name }}"
-                                                 style="width: 256px; height: 156px;" />
-                                        <div class="other">
-                                            <?php $count = count($pics); ?>
-                                            @for($i=1; $i<$count; $i++)
-                                                <img src="{{ $pics[$i]->file_path }}" alt="{{ $pics[$i]->file_name }}"
+                                        @if(count($pics) >= 5)
+                                            <p class="pic-hilight">
+                                                <a href="{{ url("condo/view/")."/".$item->id }}">
+                                                    <img src="{{ $pics[0]->file_path }}" alt="{{ $pics[0]->file_name }}"
+                                                         style="width: 256px; height: 156px;" />
+                                                </a>
+                                            </p>
+                                            <div class="other">
+                                                <img src="{{ $pics[1]->file_path }}" alt="{{ $pics[1]->file_name }}"
                                                      style="width: 80px; height: 70px;" />
-                                            @endfor
-                                        </div>
-                                        </p>
-                                    @endif
+                                                <img src="{{ $pics[2]->file_path }}" alt="{{ $pics[2]->file_name }}"
+                                                     style="width: 80px; height: 70px;" />
+                                                <img src="{{ $pics[3]->file_path }}" alt="{{ $pics[3]->file_name }}"
+                                                     style="width: 80px; height: 70px;" />
+                                                <img src="{{ $pics[4]->file_path }}" alt="{{ $pics[4]->file_name }}"
+                                                     style="width: 80px; height: 70px;" />
+                                            </div>
+                                        @else
+                                            <p class="pic-hilight">
+                                                <a href="{{ url("condo/view/")."/".$item->id }}">
+                                                    <img src="{{ $pics[0]->file_path }}" alt="{{ $pics[0]->file_name }}"
+                                                         style="width: 256px; height: 156px;" />
+                                                </a>
+                                            <div class="other">
+                                                <?php $count = count($pics); ?>
+                                                @for($i=1; $i<$count; $i++)
+                                                    <img src="{{ $pics[$i]->file_path }}" alt="{{ $pics[$i]->file_name }}"
+                                                         style="width: 80px; height: 70px;" />
+                                                @endfor
+                                            </div>
+                                            </p>
+                                        @endif
                                     <div class="clear"></div>
                                 </div>
-                                <h3>{{ $item->title }}</h3>
+                                <a href="{{ url("condo/view/")."/".$item->id }}"><h3>{{ $item->title }}</h3></a>
                                 <p class="update">วันที่ลงประกาศ  {{ \App\Models\AllFunction::getDateTimeThai($item->created_at) }}</p>
                                 <p>{{ $item->subtitle }}</p>
                             </div>

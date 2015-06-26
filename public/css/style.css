@@ -385,6 +385,7 @@ body{
 	font-size:32px;
 	font-weight:normal;
 	margin-top:25px;
+    line-height: 25px
 }
 .update{
 	font-size:18px;
@@ -614,7 +615,7 @@ body{
 .boxJob .list-job ul li .info .text h3 a{
 	font-size:30px;
 	font-weight:normal;
-	color:#000;	
+	color:#000;
 }
 .boxJob .list-job ul li .info:nth-child(even){ margin-left:60px;}
 .h-review-inner{	margin:0 0 20px !important; }

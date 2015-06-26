@@ -196,6 +196,7 @@ class CondoCategoryController extends Controller {
                     $join->on( 'ch.id', '=', 'pic.pictureable_id');
                 })
                 ->whereRaw('ch.for_cat like \'%"1"%\'')
+                ->select('ch.*')
                 ->orderByRaw('case when vip.id is not null then 1 else 0 end desc')
                 ->orderBy('ch.created_at', 'desc')
                 ->paginate(15);
@@ -476,77 +477,79 @@ class CondoCategoryController extends Controller {
 
     public function view($id)
     {
-        $catHome = CatHome::find($id);
-        $attachment = Attachment::find($catHome->project_owner_logo);
+//        $catHome = CatHome::find($id);
+//        $attachment = Attachment::find($catHome->project_owner_logo);
+//
+//        $fac = $catHome->projectFacility()->get();
+//        $bts = $catHome->projectBts()->get();
+//        $mrt = $catHome->projectMrt()->get();
+//        $apl = $catHome->projectAplink()->get();
+//        $promotion = $catHome->catHomePromotion()->get();
+//        $tag = $catHome->tag()->get();
+//        $pic = $catHome->picture()->get();
+//
+//        $catHomePic = null;
+//        for($i=3; $i<=43; $i++)
+//        {
+//            $catHomePic[$i] = CatHomePic::where('cat_home_id', '=', $id)
+//                ->where('pic_for', '=', $i)
+//                ->get();
+//        }
+//
+//        $config =
+//            [
+//                'center' => $catHome->latitude.','.$catHome->longitude,
+//                'zoom' => '12',
+//                'scrollwheel' => false,
+//                'onboundschanged' =>
+//                    'if (!centreGot) {
+//                var mapCentre = map.getCenter();
+//                marker_0.setOptions({
+//                    position: new google.maps.LatLng(mapCentre.lat(), mapCentre.lng())
+//                });
+//            }
+//            centreGot = true;'
+//            ];
+//
+//        Gmaps::initialize($config);
+//
+//        $marker =
+//        [
+//            'position' => $catHome->latitude.','.$catHome->longitude,
+//            'draggable' => false,
+//            'infowindow_content' =>
+//                '<div class="row" style="width: 100%;">'.
+//                '<div class="col-md-6">'.
+//                '<img src="'.$attachment->path.'"'.
+//                'alt="'.$attachment->filename.'" class=\'img-responsive\' '.
+//                'style="max-width: 100%;" />'.
+//                '</div>'.
+//                '<div class="col-md-6">'.
+//                '<h5><a href="'.url('condo/view/').'/'.$catHome->id.'" target="_blank">'.$catHome->project_name.'</a></h5>'.
+//                '<p><strong>บริษัทเจ้าของโครงการ</strong> : '.$catHome->project_owner.'</p>'.
+//                '<p><strong>ที่ตั้งโครงการ</strong> : '.(\App\Models\CatHome::getFullPrjAddress($catHome->id)).'</p>'.
+//                '<p><strong>ราคาเริ่มต้น</strong> : '.$catHome->sell_price.' &nbsp;&nbsp;บาท</p>'.
+//                '<p><strong>เบอร์ติดต่อ</strong> : '.$catHome->telephone.'</p>'.
+//                '<p><strong>เว็บไซต์</strong> : '.$catHome->website.'</p>'.
+//                '</div>'.
+//                '</div>'
+//        ];
+//        Gmaps::add_marker($marker);
+//
+//        $map = Gmaps::create_map();
+//
+//        return view('web.frontend.condo.view')
+//            ->with('map',$map)
+//            ->with('catHome', $catHome)
+//            ->with('catHomePic', $catHomePic)
+//            ->with('facility', $fac)
+//            ->with('bts', $bts)
+//            ->with('mrt', $mrt)
+//            ->with('apl', $apl)
+//            ->with('promotion', $promotion)
+//            ->with('tag', $tag)
+//            ->with('pic',$pic);
 
-        $fac = $catHome->projectFacility()->get();
-        $bts = $catHome->projectBts()->get();
-        $mrt = $catHome->projectMrt()->get();
-        $apl = $catHome->projectAplink()->get();
-        $promotion = $catHome->catHomePromotion()->get();
-        $tag = $catHome->tag()->get();
-        $pic = $catHome->picture()->get();
-
-        $catHomePic = null;
-        for($i=3; $i<=43; $i++)
-        {
-            $catHomePic[$i] = CatHomePic::where('cat_home_id', '=', $id)
-                ->where('pic_for', '=', $i)
-                ->get();
-        }
-
-        $config =
-            [
-                'center' => $catHome->latitude.','.$catHome->longitude,
-                'zoom' => '12',
-                'scrollwheel' => false,
-                'onboundschanged' =>
-                    'if (!centreGot) {
-                var mapCentre = map.getCenter();
-                marker_0.setOptions({
-                    position: new google.maps.LatLng(mapCentre.lat(), mapCentre.lng())
-                });
-            }
-            centreGot = true;'
-            ];
-
-        Gmaps::initialize($config);
-
-        $marker =
-        [
-            'position' => $catHome->latitude.','.$catHome->longitude,
-            'draggable' => false,
-            'infowindow_content' =>
-                '<div class="row" style="width: 100%;">'.
-                '<div class="col-md-6">'.
-                '<img src="'.$attachment->path.'"'.
-                'alt="'.$attachment->filename.'" class=\'img-responsive\' '.
-                'style="max-width: 100%;" />'.
-                '</div>'.
-                '<div class="col-md-6">'.
-                '<h5><a href="'.url('condo/view/').'/'.$catHome->id.'" target="_blank">'.$catHome->project_name.'</a></h5>'.
-                '<p><strong>บริษัทเจ้าของโครงการ</strong> : '.$catHome->project_owner.'</p>'.
-                '<p><strong>ที่ตั้งโครงการ</strong> : '.(\App\Models\CatHome::getFullPrjAddress($catHome->id)).'</p>'.
-                '<p><strong>ราคาเริ่มต้น</strong> : '.$catHome->sell_price.' &nbsp;&nbsp;บาท</p>'.
-                '<p><strong>เบอร์ติดต่อ</strong> : '.$catHome->telephone.'</p>'.
-                '<p><strong>เว็บไซต์</strong> : '.$catHome->website.'</p>'.
-                '</div>'.
-                '</div>'
-        ];
-        Gmaps::add_marker($marker);
-
-        $map = Gmaps::create_map();
-
-        return view('web.frontend.condo.view')
-            ->with('map',$map)
-            ->with('catHome', $catHome)
-            ->with('catHomePic', $catHomePic)
-            ->with('facility', $fac)
-            ->with('bts', $bts)
-            ->with('mrt', $mrt)
-            ->with('apl', $apl)
-            ->with('promotion', $promotion)
-            ->with('tag', $tag)
-            ->with('pic',$pic);
+        return view('web.frontend.condo_view');
     }
 }
