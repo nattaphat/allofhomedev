@@ -87,10 +87,11 @@ class AllofhomeController extends Controller {
             '), function($join){
                     $join->on( 'ch.id', '=', 'pic.pictureable_id');
                 })
-                ->orderBy('vip.id')
+                ->orderByRaw('case when vip.id is not null then 1 else 0 end desc')
                 ->orderBy('ch.created_at', 'desc')
                 ->take(5)
                 ->get();
+
         }
         catch(\Exception $e)
         {

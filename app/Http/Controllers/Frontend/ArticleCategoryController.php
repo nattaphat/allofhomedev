@@ -3,15 +3,44 @@
 use App\Models\CatArticle;
 use App\Models\Picture;
 use App\Models\Tag;
-use Config;
 use App\Http\Controllers\Controller;
-use Request;
-use Validator;
-use Gmaps;
+use DB;
 use Input;
-use Redirect;
 
 class ArticleCategoryController extends Controller {
+
+    public function index()
+    {
+//        $cat = CatArticle::where('visible','=','1')
+//            ->orderBy('suggest', 'desc')
+//            ->orderBy('created_at','desc')
+//            ->paginate(10);
+//
+//        return view('web.frontend.article.index')
+//            ->with('cat',$cat);
+
+        $catArticle = null;
+        try{
+            $catArticle = DB::table('cat_article as ch')
+                ->join(DB::raw('
+                    (
+                        select distinct pictureable_id, pictureable_type from picture
+                        where pictureable_type = \'App\\Models\\CatArticle\'
+                    ) pic
+                '), function($join){
+                    $join->on( 'ch.id', '=', 'pic.pictureable_id');
+                })
+                ->orderBy('ch.created_at', 'desc')
+                ->paginate(15);
+        }
+        catch(\Exception $e)
+        {
+
+        }
+
+        return view('web.frontend.article_index')
+            ->with('catArticle', $catArticle);
+    }
 
     public function admin_index()
     {
@@ -93,17 +122,6 @@ class ArticleCategoryController extends Controller {
         return redirect('article/admin_index')
             ->with('flash_message', 'บันทึกข้อมูลสำเร็จ')
             ->with('flash_type', 'alert-success');
-    }
-
-    public function index()
-    {
-        $cat = CatArticle::where('visible','=','1')
-            ->orderBy('suggest', 'desc')
-            ->orderBy('created_at','desc')
-            ->paginate(10);
-
-        return view('web.frontend.article.index')
-            ->with('cat',$cat);
     }
 
     public function view($id)

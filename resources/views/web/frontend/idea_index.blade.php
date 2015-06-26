@@ -46,9 +46,11 @@
                     @endforeach
                 @endif
             </ul>
-            {!! str_replace('/?', '?', $catIdea->render()) !!}
         </div>
+    </div>
 
+    <div class="page_link">
+        {!! str_replace('/?', '?', $catIdea->render()) !!}
     </div>
 
 @stop

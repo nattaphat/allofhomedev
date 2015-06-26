@@ -1,14 +1,11 @@
 <?php namespace App\Http\Controllers\Frontend;
 
 use App\Models\CatHomePic;
-use App\Models\Picture;
-use App\Models\AllFunction;
 use App\Models\CatHome;
 use App\Models\CatHomePromotion;
 use App\Models\PicLayout;
 use App\Models\Promotion;
 use App\Models\Tag;
-use Config;
 use App\Http\Controllers\Controller;
 use Gmaps;
 use Request;
@@ -17,25 +14,7 @@ use Input;
 use DB;
 use Redirect;
 use View;
-
-use App\Models\Project;
-use App\Models\ProjectAirportLink;
-use App\Models\ProjectBts;
-use App\Models\ProjectFacility;
-use App\Models\ProjectMrt;
-use App\Models\Tambon;
-use App\Models\Amphoe;
-use App\Models\Provinces;
-use App\Models\GeoRegion;
-use App\Models\Area;
-use App\Models\SubArea;
-use App\Models\ProjectRating;
-use App\Models\Facility;
-use App\Models\Bts;
-use App\Models\Mrt;
-use App\Models\AirportRailLink;
 use App\Models\Attachment;
-use App\User;
 
 class HomeCategoryController extends Controller {
 
@@ -45,13 +24,13 @@ class HomeCategoryController extends Controller {
         try{
             $catHome = DB::table('cat_home as ch')
                 ->leftJoin(DB::raw('
-                (
-                        select id
-                          from cat_home
-                          where vip = true
-                          ORDER BY random() limit 5
-                ) as vip
-            '), function ($join){
+                    (
+                            select id
+                              from cat_home
+                              where vip = true
+                              ORDER BY random() limit 5
+                    ) as vip
+                '), function ($join){
                     $join->on( 'ch.id', '=', 'vip.id');
                 })
                 ->join(DB::raw('
@@ -63,9 +42,10 @@ class HomeCategoryController extends Controller {
                     $join->on( 'ch.id', '=', 'pic.pictureable_id');
                 })
                 ->whereRaw('ch.for_cat like \'%"1"%\'')
-                ->orderBy('vip.id')
+                ->orderByRaw('case when vip.id is not null then 1 else 0 end desc')
                 ->orderBy('ch.created_at', 'desc')
-                ->paginate(1);
+                ->paginate(15);
+
         }
         catch(\Exception $e)
         {

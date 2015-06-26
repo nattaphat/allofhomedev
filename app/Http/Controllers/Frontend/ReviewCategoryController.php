@@ -8,6 +8,7 @@ use App\Models\Shop;
 use App\Models\Tag;
 use Config;
 use App\Http\Controllers\Controller;
+use DB;
 use Request;
 use Validator;
 use Gmaps;
@@ -18,10 +19,32 @@ class ReviewCategoryController extends Controller {
 
     public function index()
     {
-        $catReview = CatReview::orderBy('created_at', 'desc')
-            ->paginate(10);
+//        $catReview = CatReview::orderBy('created_at', 'desc')
+//            ->paginate(15);
+//
+//        return view('web.frontend.review.index')
+//            ->with('catReview', $catReview);
 
-        return view('web.frontend.review.index')
+        $catReview = null;
+        try{
+            $catReview = DB::table('cat_review as ch')
+                ->join(DB::raw('
+                    (
+                        select distinct pictureable_id, pictureable_type from picture
+                        where pictureable_type = \'App\\Models\\CatReview\'
+                    ) pic
+                '), function($join){
+                    $join->on( 'ch.id', '=', 'pic.pictureable_id');
+                })
+                ->orderBy('ch.created_at', 'desc')
+                ->paginate(15);
+        }
+        catch(\Exception $e)
+        {
+
+        }
+
+        return view('web.frontend.review_index')
             ->with('catReview', $catReview);
     }
 

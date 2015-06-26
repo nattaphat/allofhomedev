@@ -195,8 +195,8 @@ class CondoCategoryController extends Controller {
                 '), function($join){
                     $join->on( 'ch.id', '=', 'pic.pictureable_id');
                 })
-                ->whereRaw('ch.for_cat like \'%"3"%\'')
-                ->orderBy('vip.id')
+                ->whereRaw('ch.for_cat like \'%"1"%\'')
+                ->orderByRaw('case when vip.id is not null then 1 else 0 end desc')
                 ->orderBy('ch.created_at', 'desc')
                 ->paginate(15);
         }
