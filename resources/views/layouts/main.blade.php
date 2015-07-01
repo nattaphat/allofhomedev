@@ -255,9 +255,6 @@
     <!--OWL Carousel -->
     <script src={{ asset('plugins/owl-carousel/owl-carousel/owl.carousel.min.js') }}></script>
 
-
-    <script src={{ asset('plugins/owl-carousel/owl-carousel/owl.carousel.min.js') }}></script>
-
     <!--select2 -->
     <script src={{ asset('js/lib/select2-dist-louis/dist/js/select2.min.js') }}></script>
 

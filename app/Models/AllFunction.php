@@ -182,4 +182,136 @@ class AllFunction {
         }
     }
 
+    public static function getTitleCatHomePic($for_type)
+    {
+        $ret = "";
+        switch($for_type)
+        {
+            case "3":
+                $ret = "การเดินทางเข้าโครงการ";
+                break;
+            case "4":
+                $ret = "ภาพรวมรอบโครงการ";
+                break;
+            case "5":
+                $ret = "ตลาดสด";
+                break;
+            case "6":
+                $ret = "ห้างสรรพสินค้า";
+                break;
+            case "7":
+                $ret = "ถนนทางเข้าโครงการ";
+                break;
+            case "8":
+                $ret = "ระยะทางจากทางด่วน";
+                break;
+            case "9":
+                $ret = "ระยะทางจาก BTS";
+                break;
+            case "10":
+                $ret = "ระยะทางจาก MRT";
+                break;
+            case "11":
+                $ret = "ทางเข้าโครงการ";
+                break;
+            case "12":
+                $ret = "สวนสาธารณะ";
+                break;
+            case "13":
+                $ret = "สระว่ายน้ำ";
+                break;
+            case "14":
+                $ret = "ฟิตเนส";
+                break;
+            case "15":
+                $ret = "ซาวน่า";
+                break;
+            case "16":
+                $ret = "สตรีม";
+                break;
+            case "17":
+                $ret = "ลิฟต์";
+                break;
+            case "18":
+                $ret = "อื่นๆ";
+                break;
+            case "19":
+                $ret = "ผังโครงการ";
+                break;
+            case "20":
+                $ret = "Plan บ้าน";
+                break;
+            case "21":
+                $ret = "หน้าบ้าน";
+                break;
+            case "22":
+                $ret = "ห้องนั่งเล่น";
+                break;
+            case "23":
+                $ret = "ห้องนอน 1";
+                break;
+            case "24":
+                $ret = "ห้องนอน 2";
+                break;
+            case "25":
+                $ret = "ห้องนอน 3";
+                break;
+            case "26":
+                $ret = "ห้องนอน 4";
+                break;
+            case "27":
+                $ret = "ห้องอเนกประสงค์";
+                break;
+            case "28":
+                $ret = "ห้องครัว";
+                break;
+            case "29":
+                $ret = "ห้องน้ำ";
+                break;
+            case "30":
+                $ret = "ห้องอื่นๆ";
+                break;
+            case "31":
+                $ret = "รอบรั้วตัวบ้าน";
+                break;
+            case "32":
+                $ret = "Plan บ้าน";
+                break;
+            case "33":
+                $ret = "หน้าบ้าน";
+                break;
+            case "34":
+                $ret = "ห้องนั่งเล่น";
+                break;
+            case "35":
+                $ret = "ห้องนอน 1";
+                break;
+            case "36":
+                $ret = "ห้องนอน 2";
+                break;
+            case "37":
+                $ret = "ห้องนอน 3";
+                break;
+            case "38":
+                $ret = "ห้องนอน 4";
+                break;
+            case "39":
+                $ret = "ห้องอเนกประสงค์";
+                break;
+            case "40":
+                $ret = "ห้องครัว";
+                break;
+            case "41":
+                $ret = "ห้องน้ำ";
+                break;
+            case "42":
+                $ret = "ห้องอื่นๆ";
+                break;
+            case "43":
+                $ret = "รอบรั้วตัวบ้าน";
+                break;
+        }
+        return $ret;
+    }
+
 }

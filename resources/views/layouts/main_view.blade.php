@@ -118,6 +118,9 @@
     </div>
 </div>
 
+<!--JQuery -->
+<script src={{ asset('js/lib/jquery/dist/jquery.min.js') }}></script>
+
 @yield('jsbody')
 
 </body>

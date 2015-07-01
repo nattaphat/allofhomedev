@@ -639,6 +639,7 @@ body{
 .pic-project .list-preview{
 	float:left;
 	width:230px;
+    margin-top: 3px;
 }
 .pic-project .list-preview ul li{
 	float:left;
@@ -828,9 +829,9 @@ body{
 .boxVdoReview .contact-detail .right .branch ul li a{ color:#aeaeae; }
 
 .boxVdoReview .location ul li .title{ color:#000; }
-.boxVdoReview .contact-detail .left ul li .info{ width:345px; margin-left:10px; text-align:center; }
+.boxVdoReview .contact-detail .left ul li .info{ width:345px; margin-left:10px; text-align:left; }
 .boxVdoReview .other-detail{  border-bottom:1px solid #f2f2f2; color:#000; font-size:20px; padding:20px 0 0;  }
-.boxVdoReview .other-detail ul li .info{ color:#aeaeae; width:480px; margin-left:10px; }
+.boxVdoReview .other-detail ul li .info{ color:#aeaeae; width:640px; margin-left:10px; }
 .boxVdoReview .location{ font-size:20px; padding:20px 0 10px;}
 .boxVdoReview .location .description{ margin:0 20px 10px;}
 .boxVdoReview .location ul li .info{
@@ -839,7 +840,7 @@ body{
 }
 .data-project{}
 .data-project ul{ margin-left:1px;}
-.data-project ul li{ cursor:pointer; font-size:20px; margin-bottom:2px; }
+.data-project ul li{ /*cursor:pointer;*/ font-size:20px; margin-bottom:2px; }
 .data-project ul li .head-data{
 	background:url(../images/bg/hide.jpg) no-repeat;
 	color:#a4a4a4;
@@ -865,6 +866,29 @@ body{
 	font-size:18px; 
 	margin:10px 0 0 20px; 
 }
+.data-project .title
+{
+    color: #5cc5c1;
+    font-size: 28px;
+    margin-top: 20px;
+}
+.data-project .description
+{
+    text-indent: 50px;
+    margin-top: 5px;
+}
+.data-project img
+{
+    border: 1px solid lightgray;
+    max-width: 90%;
+    height: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 15px;
+    margin-top: 15px;
+}
+
 .boxContactProject, .boxTag{
 	border-left:1px solid #f2f2f2;
 	border-right:1px solid #f2f2f2;
@@ -989,4 +1013,58 @@ body{
     margin-right: 2px;
     background-image: -webkit-gradient(linear, left top, left bottom, from(#5f5f5f), to(#5c5c5c));
     color: #f2f2f2;
+}
+/*  Vedio Responsive */
+.video-container {
+    position:relative;
+    padding-bottom:56.25%;
+    padding-top:30px;
+    height:0;
+    overflow:hidden;
+}
+
+.video-container iframe, .video-container object, .video-container embed {
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+}
+
+#collapsible-panels{
+    font-size:20px;
+    margin-bottom:2px;
+    margin-top: 40px;
+}
+#collapsible-panels .detail{
+    padding: 0 20px 0 20px;
+}
+#collapsible-panels .detail .title{
+    color: #5cc5c1;
+    font-size: 28px;
+    margin-top: 20px;
+}
+#collapsible-panels a, #collapsible-panels a:visited {
+    background: url(../images/bg/hide.jpg) no-repeat;
+    display: block;
+    height: 42px;
+    margin: 0 0 0 0px;
+    color: #a4a4a4;
+    font-size: 28px;
+    padding: 12px 0 0 20px;
+    text-decoration:none;
+}
+#collapsible-panels a:hover, #collapsible-panels a.active {
+    background:url(../images/bg/data.jpg) no-repeat;
+    display: block;
+    height: 42px;
+    margin: 0 0 0 0px;
+    color:#FFF;
+    font-size: 28px;
+    padding: 12px 0 0 20px;
+    text-decoration:none;
+}
+#collapsible-panels .detail {
+    display:block;
+    padding:20px;
 }
