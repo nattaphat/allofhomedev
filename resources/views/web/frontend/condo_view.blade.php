@@ -39,7 +39,6 @@
                     <div class="pic-profile">
                         <p><img src="{{ \App\Models\Brand::getPathLogo($brand->id) }}" alt="" width="150" height="150"
                                     style="border: 1px solid lightgray"/></p>
-                        <p class="name">{{ $brand->brand_name }}</p>
                     </div>
                     <div class="info-profile">
                         <ul>
@@ -57,6 +56,10 @@
                             </li>
                         </ul>
 
+                    </div>
+                    <div style="color: #000; font-size: 22px; font-weight: normal; width: 100%;
+                    clear: both; display: inline-block; overflow: hidden; white-space: nowrap;">
+                        {{ $brand->brand_name }}
                     </div>
                     <div class="clear"></div>
                 </div>
