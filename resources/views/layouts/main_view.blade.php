@@ -7,7 +7,11 @@
             {{ Config::get('allofhome.title') }}
         @show
     </title>
+    <!-- Custom -->
     <link href="{{ asset('css/style.css') }}" rel="stylesheet" type="text/css" />
+
+    <!-- Font Awesome -->
+    <link type="text/css" href="{{ asset('js/lib/fontawesome/css/font-awesome.min.css') }}" rel="stylesheet">
 
     @yield('jshome')
 

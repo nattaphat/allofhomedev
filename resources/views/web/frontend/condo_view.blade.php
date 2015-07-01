@@ -4,7 +4,19 @@
     {!! $map['js'] !!}
 
     <!-- Flexslider -->
-    <link type="text/css" type="text/css" href="{{ asset('plugins/flexslider/flexslider.css') }}" rel="stylesheet">
+    <link type="text/css" href="{{ asset('plugins/flexslider/flexslider.css') }}" rel="stylesheet">
+
+    <style type="text/css">
+
+        #share-buttons img {
+            width: 35px;
+            padding: 5px;
+            border: 0;
+            box-shadow: 0;
+            display: inline;
+        }
+
+    </style>
 @stop
 
 @section('jsbody')
@@ -63,12 +75,50 @@
             <input type="button" value="" class="btn-cancel" />
         </div>
         <div class="clear"></div>
+        <!--
         <div class="button">
             <a href="#" class="btn-likepage"></a>
             <a href="#" class="btn-share"></a>
+        </div>
+        -->
+        <div class="button">
+            <div id="share-buttons">
+                <!-- Email -->
+                <a href="mailto:?Subject={{ $catHome->title }}&amp;Body=I%20saw%20this%20and%20thought%20of%20you!%20 {{ Request::fullUrl() }}">
+                    <img src="{{ asset('images/logo/email.png') }}" alt="Email" />
+                </a>
+
+                <!-- Facebook -->
+                <a href="http://www.facebook.com/sharer.php?u={{ Request::fullUrl() }}" target="_blank">
+                    <img src="{{ asset('images/logo/facebook.png') }}" alt="Facebook" />
+                </a>
+
+                <!-- Google+ -->
+                <a href="https://plus.google.com/share?url={{ Request::fullUrl() }}" target="_blank">
+                    <img src="{{ asset('images/logo/google.png') }}" alt="Google" />
+                </a>
+
+                <!-- LinkedIn -->
+                <a href="http://www.linkedin.com/shareArticle?mini=true&amp;url={{ Request::fullUrl() }}" target="_blank">
+                    <img src="{{ asset('images/logo/linkedin.png') }}" alt="LinkedIn" />
+                </a>
+
+                <!-- Print -->
+                <a href="javascript:;" onclick="window.print()">
+                    <img src="{{ asset('images/logo/print.png') }}" alt="Print" />
+                </a>
+                <!-- Tumblr-->
+                <a href="http://www.tumblr.com/share/link?url={{ Request::fullUrl() }}&amp;title={{ $catHome->title }}" target="_blank">
+                    <img src="{{ asset('images/logo/tumblr.png') }}" alt="Tumblr" />
+                </a>
+
+                <!-- Twitter -->
+                <a href="https://twitter.com/share?url={{ Request::fullUrl() }}&amp;name={{ $catHome->title }}&amp;hashtags=allofhome" target="_blank">
+                    <img src="{{ asset('images/logo/twitter.png') }}" alt="Twitter" />
+                </a>
+            </div>
             <a href="#" class="btn-favorite">เพิ่มเป็นรายการโปรด</a>
         </div>
-
     </div>
 
     <div class="boxMap">

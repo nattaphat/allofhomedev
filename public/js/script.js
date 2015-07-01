@@ -1,7 +1,5 @@
 $( document ).ready(function() {
 
-    debugger;
-
     $('#collapsible-panels .detail').slideUp();
 
     picture_preview_slider();
