@@ -2,14 +2,9 @@
 
 use App\Models\Brand;
 use App\Models\CatHomePic;
-use App\Models\Picture;
-use Config;
 use App\Http\Controllers\Controller;
-use Request;
 use Validator;
 use Gmaps;
-
-use App\Models\AllFunction;
 use App\Models\CatHome;
 use App\Models\CatHomePromotion;
 use App\Models\PicLayout;
@@ -18,27 +13,6 @@ use App\Models\Tag;
 use Input;
 use DB;
 use Redirect;
-use View;
-
-use App\Models\Project;
-use App\Models\ProjectAirportLink;
-use App\Models\ProjectBts;
-use App\Models\ProjectFacility;
-use App\Models\ProjectMrt;
-use App\Models\Tambon;
-use App\Models\Amphoe;
-use App\Models\Provinces;
-use App\Models\GeoRegion;
-use App\Models\Area;
-use App\Models\SubArea;
-use App\Models\ProjectRating;
-use App\Models\Facility;
-use App\Models\Bts;
-use App\Models\Mrt;
-use App\Models\AirportRailLink;
-use App\Models\Attachment;
-use App\User;
-
 
 class CondoCategoryController extends Controller {
 
@@ -211,6 +185,10 @@ class CondoCategoryController extends Controller {
             ->with('catHome', $catHome);
     }
 
+    /**
+     * @param $id
+     * @return mixed
+     */
     public function view($id)
     {
         $catHome = CatHome::find($id);

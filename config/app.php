@@ -153,7 +153,6 @@ return [
         'Barryvdh\Elfinder\ElfinderServiceProvider',
         'Proengsoft\JsValidation\JsValidationServiceProvider',
         'Intervention\Image\ImageServiceProvider'
-
 	],
 
 	/*
@@ -209,7 +208,6 @@ return [
         'Gmaps' => 'Appitventures\Phpgmaps\Facades\Phpgmaps',
         'JsValidator' => 'Proengsoft\JsValidation\Facades\JsValidatorFacade',
         'Image' => 'Intervention\Image\Facades\Image'
-
 	],
 
 ];

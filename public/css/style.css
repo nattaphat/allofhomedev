@@ -876,11 +876,13 @@ body{
 {
     text-indent: 50px;
     margin-top: 5px;
+    margin-left: 20px;
+    margin-right: 20px;
 }
 .data-project img
 {
     border: 1px solid lightgray;
-    max-width: 90%;
+    max-width: 85%;
     height: auto;
     display: block;
     margin-left: auto;

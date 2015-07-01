@@ -69,6 +69,14 @@ Route::get('testPage', function(){
     return view('test');
 });
 
+Route::get('/facebook/login', function(SammyK\LaravelFacebookSdk\LaravelFacebookSdk $fb) {
+    $login_link = $fb
+        ->getRedirectLoginHelper()
+        ->getLoginUrl('https://exmaple.com/facebook/callback', ['email', 'user_events']);
+
+    echo '<a href="' . $login_link . '">Log in with Facebook</a>';
+});
+
 Form::macro('dropzoneRegion', function($id) {
     return '
     <div class="form-group">
