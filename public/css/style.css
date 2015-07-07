@@ -74,43 +74,287 @@ body{
 	text-indent:-9999px; 
 }
 .banner-top{ padding-left:200px;}
+
+/*
+
+nav {
+    position: relative;
+    padding:10px 0;
+    margin-top: 10px;
+    z-index: 1;
+}
+nav ul {
+    background-color: #5cc5c1;
+    list-style-type:none;
+    margin:0;
+    padding:0;
+}
+nav ul li {
+    background:url(../images/bg/line.jpg) no-repeat right center;
+    display:inline-block;
+    position:relative;
+}
+
+nav li ul {
+    background-color: #3B9996;
+    position:absolute;
+    left:0;
+    top:45px;
+    width:180px;
+}
+
+nav li li {
+    position:relative;
+    margin:0;
+    display:block;
+    background: none;
+}
+
+nav a {
+    line-height:40px;
+    padding:0 12px;
+    margin:0 12px;
+    font-family: 'psl_kittithada_probold';
+    font-size:26px;
+}
+nav a {
+    color:#fff;
+    text-decoration:none;
+    display:block;
+}
+nav a:hover,
+nav a:focus,
+nav a:active {
+    color:rgb(50,50,50);
+}
+
+nav li li a {
+    border-bottom:solid 1px #5cc5c1;
+    margin:0 10px;
+    padding: 0 0 0 10px;
+    font-family: 'psl_kittithada_probold';
+    font-size:20px;
+}
+nav li li:last-child a {
+    border-bottom:none;
+}
+
+ul.sub-menu {
+    display:none;
+}
+
+nav li.dropdown > a {
+    background-image:url('../images/arrow-down.png');
+    background-position:right 20px;
+    background-repeat:no-repeat;
+}
+
+nav li li.dropdown > a {
+    background-image:url('../images/arrow-right.png');
+    background-position:right 16px;
+    background-repeat:no-repeat;
+}
+
+nav li.home > a {
+    background-image:url('../images/button/home.png');
+    background-repeat:no-repeat;
+    padding:0 25px;
+    margin:0 0;
+}
+*/
+
+
+/*
 .navigator{
-	background:url(../images/bg/navigator.png) no-repeat 58px 0;
-	height:65px; 
-	margin-top:20px;
+    background:url(../images/bg/navigator.png) no-repeat 58px 0;
+    height:65px;
+    margin-top:20px;
 }
 .navigator ul li{
-	background:url(../images/bg/line.jpg) no-repeat right center;
-	float:left;
-	height:65px;
-	padding:0 25px;
+    background:url(../images/bg/line.jpg) no-repeat right center;
+    float:left;
+    height:65px;
+    padding:0 25px;
 }
-.navigator ul li:first-child, .navigator ul li:last-child{ 
-	background:none; 
-	padding:0;
+.navigator ul li:first-child, .navigator ul li:last-child{
+    background:none;
+    padding:0;
 }
 .navigator ul li:nth-child(7){
     background:none;
     padding:0 30px;
 }
-.navigator ul li a{ 
-	display:block; 
-	color:#FFF;
-	font-family: 'psl_kittithada_probold';
-	font-size:28px;
-	padding:18px 0 0;
-	height:50px; 
+.navigator ul li a{
+    display:block;
+    color:#FFF;
+    font-family: 'psl_kittithada_probold';
+    font-size:28px;
+    padding:18px 0 0;
+    height:50px;
 }
-.navigator ul li a.home{ 
-	background:url(../images/button/home.png) no-repeat;
-	width:58px;
-	height:65px; 
+.navigator ul li:hover a {
+    color: darkslategray;
+}
+.navigator ul li a.home{
+    background:url(../images/button/home.png) no-repeat;
+    width:58px;
+    height:65px;
 }
 .navigator ul li a.login{
-	background:url(../images/bg/login.png) no-repeat;
-	width:177px;
-	text-align:center;
-	margin-left:6px;
+    background:url(../images/bg/login.png) no-repeat;
+    width:177px;
+    text-align:center;
+    margin-left:6px;
+}
+
+.navigator li ul {
+    background-color:rgb(225,75,75);
+    position:absolute;
+    left:0;
+    top:40px;
+    width:200px;
+}
+.navigator li li {
+    position:relative;
+    margin:0;
+    display:block;
+}
+*/
+
+nav {
+    position: relative;
+    padding:10px 0;
+    margin-top: 10px;
+    z-index: 1;
+}
+nav ul {
+    background-color: #5cc5c1;
+    list-style-type:none;
+    margin:0;
+    padding:0;
+}
+nav ul li {
+    background:url(../images/bg/line.jpg) no-repeat right center;
+    display:inline-block;
+    position:relative;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+/* sub navigation */
+nav li ul {
+    background-color: #3B9996;
+    position:absolute;
+    left:0;
+    top:55px;
+}
+
+nav li li {
+    position:relative;
+    margin:0;
+    display:block;
+    background: none;
+}
+
+/* style all links */
+nav a {
+    padding: 0 10px;
+    margin: 0 10px;
+    font-family: 'psl_kittithada_probold';
+    font-size:26px;
+    color:#fff;
+    text-decoration:none;
+    display:block;
+    text-align: center;
+}
+nav a:hover,
+nav a:focus,
+nav a:active {
+    color: #2E2E2E;
+}
+
+/* style sub level links */
+ul.sub-menu li {
+    border-bottom:solid 1px #5cc5c1;
+    width: 100%;
+}
+ul.sub-menu li a {
+    margin:0 10px;
+    padding: 5px 0 5px 10px;
+    font-size:22px;
+    text-align: left;
+}
+nav li li:last-child a {
+    border-bottom:none;
+}
+
+ /*hide sub menu links*/
+ul.sub-menu {
+    display:none;
+}
+
+/* show arrows for dropdowns */
+nav li.dropdown > a {
+    background-image:url('../images/arrow-down.png');
+    background-position:right 13px;
+    background-repeat:no-repeat;
+}
+
+nav li li.dropdown > a {
+    background-image:url('../images/arrow-right.png');
+    background-position:right 16px;
+    background-repeat:no-repeat;
+}
+
+/* Home */
+nav li.home {
+    padding-top: 0;
+    padding-bottom: 0;
+    background: none;
+    width: 58px;
+}
+nav li.home > a {
+    line-height:65px;
+    background-image:url('../images/button/home.png');
+    background-repeat:no-repeat;
+    padding:0 25px;
+    margin:0 0;
+}
+
+/* Login */
+nav li.login {
+    padding-top: 0;
+    padding-bottom: 0;
+    background: none;
+    width: 177px;
+    float: right;
+}
+nav li.login > a, nav li.login > a:hover {
+    line-height:65px;
+    background-image:url('../images/bg/login.png');
+    background-repeat:no-repeat;
+    padding-top:0;
+    /*padding-left: 60px;*/
+    margin:0 0;
+    color: #FFF;
+}
+
+/*set width each element*/
+nav ul li:nth-child(2), nav ul li:nth-child(2) ul li {
+    width: 185px;
+}
+nav ul li:nth-child(3), nav ul li:nth-child(3) ul li {
+    width: 235px;
+}
+nav ul li:nth-child(4), nav ul li:nth-child(4) ul li {
+    width: 165px;
+}
+nav ul li:nth-child(5), nav ul li:nth-child(5) ul li {
+    width: 165px;
+}
+nav ul li:nth-child(6), nav ul li:nth-child(6) ul li {
+    width: 170px;
+    background: none;
 }
 /*--------------------------------------------------- footer
 ------------------------------------------------------------------------------*/

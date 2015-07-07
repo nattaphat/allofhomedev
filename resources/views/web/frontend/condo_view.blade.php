@@ -3,9 +3,6 @@
 @section('jshome')
     {!! $map['js'] !!}
 
-    <!-- Flexslider -->
-    <link type="text/css" href="{{ asset('plugins/flexslider/flexslider.css') }}" rel="stylesheet">
-
     <style type="text/css">
 
         #share-buttons img {
@@ -20,11 +17,7 @@
 @stop
 
 @section('jsbody')
-    <!--Flex slider -->
-    <script src={{ asset('plugins/flexslider/jquery.flexslider-min.js') }}></script>
 
-    <!--Custom scripts for allofhome -->
-    <script src={{ asset('js/script.js') }}></script>
 @stop
 
 @section('content')

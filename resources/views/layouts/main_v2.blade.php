@@ -7,6 +7,14 @@
             {{ Config::get('allofhome.title') }}
         @show
     </title>
+
+    <!-- Flexslider -->
+    <link type="text/css" href="{{ asset('plugins/flexslider/flexslider.css') }}" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link type="text/css" href="{{ asset('js/lib/fontawesome/css/font-awesome.min.css') }}" rel="stylesheet">
+
+    <!-- Custom -->
     <link href="{{ asset('css/style.css') }}" rel="stylesheet" type="text/css" />
 
     @yield('jshome')
@@ -16,24 +24,10 @@
 <body>
 <div class="header">
     <div class="wrap">
-        <h1><a href="{{ url('/') }}">www.allofhome.com</a></h1>
-        <!-- Banner A -->
-        <div class="banner-top"><img src="{{ asset('images/test/banner-1.jpg') }}" alt="" /></div>
-        <div class="navigator">
-            <ul>
-                <li><a href="{{ url('/') }}" class="home active"></a></li>
-                <li><a href="{{ url('/home/index') }}">โครงการบ้านใหม่</a></li>
-                <li><a href="{{ url('/townhome/index') }}">โครงการทาวน์โฮมใหม่</a></li>
-                <li><a href="{{ url('/condo/index') }}">โครงการคอนโดใหม่</a></li>
-                <li><a href="{{ url('/review/index') }}">รีวิว</a></li>
-                <li><a href="{{ url('/idea/index') }}">ไอเดีย</a></li>
-                <li><a href="{{ url('/article/index') }}">บทความและข่าวสาร</a></li>
-                <li><a href="#" class="login">เข้าสู่ระบบ</a></li>
-            </ul>
-        </div>
+        @include('layouts._partials.header')
     </div>
 </div>
-<div class="containner">
+<div class="containner nodropdown">
 
     <div class="wrap">
         <!-- Banner B -->
@@ -162,6 +156,12 @@
 
 <!--JQuery -->
 <script src={{ asset('js/lib/jquery/dist/jquery.min.js') }}></script>
+
+<!--Flex slider -->
+<script src={{ asset('plugins/flexslider/jquery.flexslider-min.js') }}></script>
+
+<!--Custom scripts for allofhome -->
+<script src={{ asset('js/script.js') }}></script>
 
 @yield('jsbody')
 
