@@ -252,127 +252,29 @@
                     <span class="title">ที่ตั้งร้านค้า :</span>
                     <span class="info">{{ $catConstruct->getFullPrjAddress($catConstruct->id) }}</span>
                 </li>
-                @if($catConstruct->subarea_id != null && $catConstruct->subarea_id != "")
-                <li>
-                    <span class="title">ทำเล/ย่าน :</span>
-                    <span class="info">{{ \App\Models\SubArea::find($catConstruct->subarea_id)->subarea_name  }}</span>
-                </li>
-                @endif
-                @if(($catConstruct->area_1 != null && $catConstruct->area_1 != "") ||
-                    ($catConstruct->area_2 != null && $catConstruct->area_2 != "") ||
-                    ($catConstruct->area_3 != null && $catConstruct->area_3 != ""))
-                <li>
-                    <span class="title">พื้นที่ร้านค้า :</span>
-                    <span class="info">
-                        @if($catConstruct->area_1 != "" && $catConstruct->area_2 != "" && $catConstruct->area_3 != "")
-                            {{ $catConstruct->area_1 }} - {{ $catConstruct->area_2 }} - {{ $catConstruct->area_3 }} ไร่
-                        @else
-                            @if($catConstruct->area_1 != "")
-                                {{ $catConstruct->area_1 }} ไร่ &nbsp;
-                            @endif
-                            @if($catConstruct->area_2 != "")
-                                {{ $catConstruct->area_2 }} งาน &nbsp;
-                            @endif
-                            @if($catConstruct->area_3 != "")
-                                {{ $catConstruct->area_3 }} วา &nbsp;
-                            @endif
-                        @endif
-                    </span>
-                </li>
-                @endif
-                @if($catConstruct->num_building != null && $catConstruct->num_building != "")
+
+
+                @if($catConstruct->service_day_time != null && $catConstruct->service_day_time != "")
                     <li>
-                        <span class="title">จำนวนอาคาร :</span>
-                    <span class="info">{{ $catConstruct->num_building }} อาคาร</span>
+                        <span class="title">วันเวลาเปิดบริการ :</span>
+                        <span class="info">{!! str_replace("\n","<br>", $catConstruct->service_day_time) !!}</span>
                     </li>
                 @endif
-                @if($catConstruct->num_unit != null && $catConstruct->num_unit != "")
+
+                @if($catConstruct->credit_card != null && $catConstruct->credit_card != "")
                     <li>
-                        <span class="title">จำนวนยูนิต :</span>
-                    <span class="info">{{ $catConstruct->num_unit }} ยูนิต</span>
+                        <span class="title">บริการบัตรเครดิต :</span>
+                        <span class="info">{{ ($catConstruct->credit_card) == true? "มี" : "ไม่มี"  }}</span>
                     </li>
                 @endif
-                @if($catConstruct->num_elev_person != null && $catConstruct->num_elev_person != "")
+
+                @if($catConstruct->parking != null && $catConstruct->parking != "")
                     <li>
-                        <span class="title">จำนวนลิฟต์โดยสาร :</span>
-                        <span class="info">{{ $catConstruct->num_elev_person }} ตัว</span>
+                        <span class="title">ที่จอดรถ :</span>
+                        <span class="info">{{ ($catConstruct->parking) == true? "มี" : "ไม่มี" }}</span>
                     </li>
                 @endif
-                @if($catConstruct->num_elev_object != null && $catConstruct->num_elev_object != "")
-                    <li>
-                        <span class="title">จำนวนลิฟต์ขนส่ง :</span>
-                        <span class="info">{{ $catConstruct->num_elev_object }} ตัว</span>
-                    </li>
-                @endif
-                @if($catConstruct->ratio_elev != null && $catConstruct->ratio_elev != "")
-                    <li>
-                        <span class="title">อัตราส่วนลิฟต์ : ยูนิตพักอาศัย :</span>
-                        <span class="info">{{ $catConstruct->ratio_elev }}</span>
-                    </li>
-                @endif
-                @if($catConstruct->num_parking != null && $catConstruct->num_parking != "")
-                    <li>
-                        <span class="title">จำนวนที่จอดรถ :</span>
-                        <span class="info">{{ $catConstruct->num_parking }} คัน</span>
-                    </li>
-                @endif
-                @if($catConstruct->percent_parking != null && $catConstruct->percent_parking != "")
-                    <li>
-                        <span class="title">เปอร์เซ็นที่จอดรถ :</span>
-                        <span class="info">{{ $catConstruct->percent_parking }} เปอร์เซ็น</span>
-                    </li>
-                @endif
-                @if($catConstruct->home_type_per_area != null && $catConstruct->home_type_per_area != "")
-                    <li>
-                        <span class="title">รูปแบบบ้าน : พื้นที่เริ่มต้น :</span>
-                        <span class="info">{!! str_replace("\n","<br>", $catConstruct->home_type_per_area) !!}</span>
-                    </li>
-                @endif
-                @if($catConstruct->home_area != null && $catConstruct->home_area != "")
-                    <li>
-                        <span class="title">พื้นที่บ้านเริ่มต้น :</span>
-                        <span class="info">{!! str_replace("\n","<br>", $catConstruct->home_area) !!}</span>
-                    </li>
-                @endif
-                @if($catConstruct->home_material != null && $catConstruct->home_material != "")
-                    <li>
-                        <span class="title">การก่อสร้างตัวบ้าน :</span>
-                        <span class="info">{!! str_replace("\n","<br>", $catConstruct->home_material) !!}</span>
-                    </li>
-                @endif
-                @if($catConstruct->home_style != null && $catConstruct->home_style != "")
-                    <li>
-                        <span class="title">สไตล์การออกแบบ :</span>
-                        <span class="info">{!! str_replace("\n","<br>", $catConstruct->home_style) !!}</span>
-                    </li>
-                @endif
-                @if($catConstruct->eia != null && $catConstruct->eia != "")
-                    <li>
-                        <span class="title">ร้านค้าผ่าน EIA :</span>
-                        <span class="info">@if($catConstruct->eia == null) - @elseif($catConstruct->eia == true) ผ่าน @else ไม่ผ่าน @endif</span>
-                    </li>
-                @endif
-                @if($catConstruct->sell_price_from != null && $catConstruct->sell_price_from != ""
-                    && $catConstruct->sell_price_to != null && $catConstruct->sell_price_to != "")
-                    <li>
-                        <span class="title">ช่วงราคาขาย :</span>
-                        <span class="info">
-                            {{ $catConstruct->sell_price_from }} &nbsp; ถึง &nbsp; {{ $catConstruct->sell_price_to }} &nbsp;&nbsp;&nbsp;บาท
-                        </span>
-                    </li>
-                @endif
-                @if($catConstruct->construct_date != null && $catConstruct->construct_date != "")
-                    <li>
-                        <span class="title">เริ่มก่อสร้าง :</span>
-                        <span class="info">{{ \App\Models\AllFunction::getDateThai($catConstruct->construct_date) }}</span>
-                    </li>
-                @endif
-                @if($catConstruct->finish_date != null && $catConstruct->finish_date != "")
-                    <li>
-                        <span class="title">คาดว่าแล้วเสร็จ :</span>
-                        <span class="info">{{ \App\Models\AllFunction::getDateThai($catConstruct->finish_date) }}</span>
-                    </li>
-                @endif
+
                 @if($catConstruct->website != null && $catConstruct->website != "")
                     <li>
                         <span class="title">เว็บไซต์ร้านค้า :</span>
@@ -385,20 +287,7 @@
                         <span class="info">{{ $brand->facebook }}</span>
                     </li>
                 @endif
-                @if($catConstruct->sell_price != null && $catConstruct->sell_price != "")
-                    <li>
-                        <span class="title">ราคาเริ่มต้น :</span>
-                        <span class="info">
-                            <span style="color: #55a79a; font-size:22px;">{{ $catConstruct->sell_price }}</span> &nbsp;<span style="color: #55a79a;"> บาท </span>
-                        </span>
-                    </li>
-                @endif
-                @if($catConstruct->sell_price_detail != null && $catConstruct->sell_price_detail != "")
-                    <li>
-                        <span class="title">รายละเอียดราคา :</span>
-                        <span class="info">{!! str_replace("\n","<br>", $catConstruct->sell_price_detail) !!}</span>
-                    </li>
-                @endif
+
             </ul>
         </div>
 
