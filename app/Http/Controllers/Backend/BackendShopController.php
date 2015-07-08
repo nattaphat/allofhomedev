@@ -2,31 +2,28 @@
 
 use App\Models\AllFunction;
 use App\Models\Attachment;
-use Config;
 use App\Http\Controllers\Controller;
-use App\User;
 use App\Models\Brand;
 use DB;
 use Input;
-use Intervention\Image\Facades\Image;
 use Redirect;
 use Request;
 
-class BackendBrandController extends Controller {
+class BackendShopController extends Controller {
 
-    public function brand()
+    public function shop()
     {
-        $brands = Brand::where('type','=','brand')
+        $shops = Brand::where('type','=','shop')
             ->orderBy('suggest', 'desc')->orderBy('brand_name', 'asc')->get();
-        return view('web.backend.brand')->with('brands', $brands);
+        return view('web.backend.shop')->with('shops', $shops);
     }
 
-    public function brand_new()
+    public function shop_new()
     {
-        return view('web.backend.brand_new');
+        return view('web.backend.shop_new');
     }
 
-    public function brand_store()
+    public function shop_store()
     {
         $input = Input::all();
 
@@ -34,10 +31,10 @@ class BackendBrandController extends Controller {
 
         try
         {
-            $brand = new Brand();
-            $brand->user_id = \Auth::getUser()->id;
-            $brand->brand_name = $input['brand_name'];
-            $brand->type = "brand";
+            $shop = new Brand();
+            $shop->user_id = \Auth::getUser()->id;
+            $shop->brand_name = $input['shop_name'];
+            $shop->type = "shop";
 
             if(Input::has('filename') && $input['filename'] != "")
             {
@@ -47,46 +44,46 @@ class BackendBrandController extends Controller {
                 $attachment->filesize = $input['filesize'];
                 $attachment->path = $input['filepath'];
                 $attachment->save();
-                $brand->attachment_id = $attachment->id;
+                $shop->attachment_id = $attachment->id;
             }
 
-            $brand->telephone = $input['telephone'];
-            $brand->email = $input['email'];
-            $brand->facebook = $input['facebook'];
-            $brand->line = $input['line'];
-            $brand->suggest = $input['suggest'][0];
-            $brand->save();
+            $shop->telephone = $input['telephone'];
+            $shop->email = $input['email'];
+            $shop->facebook = $input['facebook'];
+            $shop->line = $input['line'];
+            $shop->suggest = $input['suggest'][0];
+            $shop->save();
         }
         catch(\Exception $e)
         {
-            return Redirect::route('backend_brand')
+            return Redirect::route('backend_shop')
                 ->with('flash_message', 'บันทึกข้อมูลล้มเหลว')
                 ->with('flash_type', 'alert-danger');
         }
 
-        return Redirect::route('backend_brand')
+        return Redirect::route('backend_shop')
             ->with('flash_message', 'บันทึกข้อมูลสำเร็จ')
             ->with('flash_type', 'alert-success');
     }
 
-    public function brand_edit($id)
+    public function shop_edit($id)
     {
-        $brand = Brand::find($id);
+        $shop = Brand::find($id);
         $attachment = null;
         $logo = null;
 
-        if($brand->attachment_id != null)
+        if($shop->attachment_id != null)
         {
-            $attachment = Attachment::find($brand->attachment_id);
+            $attachment = Attachment::find($shop->attachment_id);
             $logo = AllFunction::createThumbnailAutoHeight($attachment->path, 115, 'temp');
         }
 
-        return view('web.backend.brand_edit')->with("brand",$brand)
+        return view('web.backend.shop_edit')->with("shop",$shop)
             ->with('attachment', $attachment)
             ->with('logo', $logo);
     }
 
-    public function brand_update()
+    public function shop_update()
     {
         $input = Input::all();
 
@@ -94,16 +91,16 @@ class BackendBrandController extends Controller {
 
         try
         {
-            $brand = Brand::find($input['id']);
-            $brand->user_id = \Auth::getUser()->id;
-            $brand->brand_name = $input['brand_name'];
-            $brand->type = "brand";
+            $shop = Brand::find($input['id']);
+            $shop->user_id = \Auth::getUser()->id;
+            $shop->brand_name = $input['shop_name'];
+            $shop->type = "shop";
 
             if($input['filename'] != "")
             {
-                if($brand->attachment_id != null)
+                if($shop->attachment_id != null)
                 {
-                    $attachment = Attachment::find($brand->attachment_id);
+                    $attachment = Attachment::find($shop->attachment_id);
                     $attachment->filename = $input['filename'];
                     $attachment->filetype = $input['filetype'];
                     $attachment->filesize = $input['filesize'];
@@ -118,47 +115,47 @@ class BackendBrandController extends Controller {
                     $attachment->filesize = $input['filesize'];
                     $attachment->path = $input['filepath'];
                     $attachment->save();
-                    $brand->attachment_id = $attachment->id;
+                    $shop->attachment_id = $attachment->id;
                 }
             }
             else
             {
-                $brand->attachment_id = null;
+                $shop->attachment_id = null;
             }
 
-            $brand->telephone = $input['telephone'];
-            $brand->email = $input['email'];
-            $brand->facebook = $input['facebook'];
-            $brand->line = $input['line'];
-            $brand->suggest = $input['suggest'][0];
-            $brand->save();
+            $shop->telephone = $input['telephone'];
+            $shop->email = $input['email'];
+            $shop->facebook = $input['facebook'];
+            $shop->line = $input['line'];
+            $shop->suggest = $input['suggest'][0];
+            $shop->save();
         }
         catch(\Exception $e)
         {
-            return Redirect::route('backend_brand')
+            return Redirect::route('backend_shop')
                 ->with('flash_message', 'แก้ไขข้อมูลล้มเหลว')
                 ->with('flash_type', 'alert-danger');
         }
 
-        return Redirect::route('backend_brand')
+        return Redirect::route('backend_shop')
             ->with('flash_message', 'แก้ไขข้อมูลสำเร็จ')
             ->with('flash_type', 'alert-success');
     }
 
-    public function get_brand()
+    public function get_shop()
     {
         $search_char = strtolower(Request::get('term'));
-        $brand = DB::table('brand')
+        $shop = DB::table('brand')
             ->leftjoin('attachment', function ($join){
                 $join->on( 'brand.attachment_id', '=', 'attachment.id');
             })
-            ->where('brand.type','=','brand')
+            ->where('brand.type','=','shop')
             ->select(DB::raw('brand.id,brand.brand_name, brand.telephone, brand.facebook, brand.email, brand.line,
                 attachment.filename, attachment.filesize, attachment.path'))
             ->whereRaw('lower(brand.brand_name) like \'%'.$search_char.'%\'')
             ->orderBy('brand.brand_name')
             ->get();
 
-        return json_encode($brand);
+        return json_encode($shop);
     }
 }

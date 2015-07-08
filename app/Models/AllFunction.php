@@ -314,4 +314,34 @@ class AllFunction {
         return $ret;
     }
 
+    public static function getShopForType($for_type)
+    {
+        $ret = "";
+        switch($for_type)
+        {
+            case "1":
+                $ret = "รับสร้างบ้าน";
+                break;
+            case "2":
+                $ret = "ค้นหาช่างซ่อม/ต่อเติม";
+                break;
+            case "3":
+                $ret = "ผู้รับเหมาก่อสร้าง";
+                break;
+            case "4":
+                $ret = "ร้านค้าต่างๆ";
+                break;
+            case "5":
+                $ret = "บริการจัดสวน";
+                break;
+            case "6":
+                $ret = "บริการทำความสะอาด";
+                break;
+            case "7":
+                $ret = "ออกแบบภายใน/ภายนอก";
+                break;
+        }
+        return $ret;
+    }
+
 }

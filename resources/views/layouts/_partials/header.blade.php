@@ -11,17 +11,17 @@
         <li class="dropdown">
             <a href="#">โครงการบ้านใหม่</a>
             <ul class="sub-menu">
-                <li><a href="#">รีวิวทั้งหมด</a></li>
-                <li><a href="#">พรีวิวโครงการใหม่</a></li>
-                <li><a href="#">ลงทะเบียนโครงการใหม่</a></li>
+                <li><a href="{{ url('review') }}">รีวิวทั้งหมด</a></li>
+                <li><a href="{{ url('preview') }}">พรีวิวโครงการใหม่</a></li>
+                <li><a href="{{ url('register') }}">ลงทะเบียนโครงการใหม่</a></li>
             </ul>
         </li>
         <li class="dropdown">
             <a href="#">รับสร้างบ้าน / ช่างซ่อม</a>
             <ul class="sub-menu">
-                <li><a href="#">รับสร้างบ้าน</a></li>
-                <li><a href="#">ค้นหาช่างซ่อม / ต่อเติม</a></li>
-                <li><a href="#">ผู้รับเหมาก่อสร้าง</a></li>
+                <li><a href="{{ url('construct') }}">รับสร้างบ้าน</a></li>
+                <li><a href="{{ url('enlarge') }}">ค้นหาช่างซ่อม / ต่อเติม</a></li>
+                <li><a href="{{ url('constructor') }}">ผู้รับเหมาก่อสร้าง</a></li>
             </ul>
         </li>
         <li class="dropdown">

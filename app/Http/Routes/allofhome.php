@@ -468,41 +468,41 @@ Route::get('oldFurniture/view', [
 /*------------------------------------------------------------------------------*/
 
 /*-------------------------------- Review -------------------------------*/
-Route::get('review/index', [
-    'as' => 'review_index',
-    'before' => 'frontend_auth',
-    'uses' => 'Frontend\ReviewCategoryController@index'
-]);
-
-Route::get('review/create', [
-    'as' => 'review_create',
-    'before' => 'frontend_auth',
-    'uses' => 'Frontend\ReviewCategoryController@create'
-]);
-
-Route::post('review/create', [
-    'as' => 'post_review_create',
-    'before' => 'frontend_auth',
-    'uses' => 'Frontend\ReviewCategoryController@post_create'
-]);
-
-Route::get('review/update', [
-    'as' => 'review_update',
-    'before' => 'frontend_auth',
-    'uses' => 'Frontend\ReviewCategoryController@update'
-]);
-
-Route::get('review/view/{id}', [
-    'as' => 'review_view',
-    'before' => 'frontend_auth',
-    'uses' => 'Frontend\ReviewCategoryController@view'
-]);
-
-Route::get('review/admin_index', [
-    'as' => 'review_admin_index',
-    'before' => 'frontend_auth',
-    'uses' => 'Frontend\ReviewCategoryController@admin_index'
-]);
+//Route::get('review/index', [
+//    'as' => 'review_index',
+//    'before' => 'frontend_auth',
+//    'uses' => 'Frontend\ReviewCategoryController@index'
+//]);
+//
+//Route::get('review/create', [
+//    'as' => 'review_create',
+//    'before' => 'frontend_auth',
+//    'uses' => 'Frontend\ReviewCategoryController@create'
+//]);
+//
+//Route::post('review/create', [
+//    'as' => 'post_review_create',
+//    'before' => 'frontend_auth',
+//    'uses' => 'Frontend\ReviewCategoryController@post_create'
+//]);
+//
+//Route::get('review/update', [
+//    'as' => 'review_update',
+//    'before' => 'frontend_auth',
+//    'uses' => 'Frontend\ReviewCategoryController@update'
+//]);
+//
+//Route::get('review/view/{id}', [
+//    'as' => 'review_view',
+//    'before' => 'frontend_auth',
+//    'uses' => 'Frontend\ReviewCategoryController@view'
+//]);
+//
+//Route::get('review/admin_index', [
+//    'as' => 'review_admin_index',
+//    'before' => 'frontend_auth',
+//    'uses' => 'Frontend\ReviewCategoryController@admin_index'
+//]);
 
 /*------------------------------------------------------------------------------*/
 
@@ -963,4 +963,227 @@ Route::get('colours', [
 Route::get('bs_mobilemenu', [
 	'as' => 'bs_mobilemenu',
 	'uses' => 'AllofhomeController@bs_mobilemenu'
+]);
+
+/*-------------------------------- รีวิวทั้งหมด -------------------------------*/
+Route::get('review', [
+    'as' => 'review',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\ReviewController@index'
+]);
+
+Route::get('review/create', [
+    'as' => 'review/create',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\ReviewController@create'
+]);
+
+Route::post('review/store', [
+    'as' => 'review/store',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\ReviewController@store'
+]);
+
+Route::get('review/edit/{id}', [
+    'as' => 'review/edit',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\ReviewController@edit'
+]);
+
+Route::post('review/update', [
+    'as' => 'review/update',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\ReviewController@update'
+]);
+
+Route::get('review/{id}', [
+    'as' => 'review/show',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\ReviewController@show'
+]);
+
+/*-------------------------------- พรีวิวทั้งหมด -------------------------------*/
+Route::get('preview', [
+    'as' => 'preview',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\PreviewController@index'
+]);
+
+Route::get('preview/create', [
+    'as' => 'preview/create',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\PreviewController@create'
+]);
+
+Route::post('preview/store', [
+    'as' => 'preview/store',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\PreviewController@store'
+]);
+
+Route::get('preview/edit/{id}', [
+    'as' => 'preview/edit',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\PreviewController@edit'
+]);
+
+Route::post('preview/update', [
+    'as' => 'preview/update',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\PreviewController@update'
+]);
+
+Route::get('preview/{id}', [
+    'as' => 'preview/show',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\PreviewController@show'
+]);
+
+/*-------------------------------- ลงทะเบียนบ้านใหม่ -------------------------------*/
+Route::get('register', [
+    'as' => 'register',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\RegisterController@index'
+]);
+
+Route::get('register/create', [
+    'as' => 'register/create',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\RegisterController@create'
+]);
+
+Route::post('register/store', [
+    'as' => 'register/store',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\RegisterController@store'
+]);
+
+Route::get('register/edit/{id}', [
+    'as' => 'register/edit',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\RegisterController@edit'
+]);
+
+Route::post('register/update', [
+    'as' => 'register/update',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\RegisterController@update'
+]);
+
+Route::get('register/{id}', [
+    'as' => 'register/show',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\RegisterController@show'
+]);
+
+
+/*-------------------------------- รับสร้างบ้าน -------------------------------*/
+Route::get('construct', [
+    'as' => 'construct',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\ConstructController@index'
+]);
+
+Route::get('construct/create', [
+    'as' => 'construct/create',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\ConstructController@create'
+]);
+
+Route::post('construct/store', [
+    'as' => 'construct/store',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\ConstructController@store'
+]);
+
+Route::get('construct/edit/{id}', [
+    'as' => 'construct/edit',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\ConstructController@edit'
+]);
+
+Route::post('construct/update', [
+    'as' => 'construct/update',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\ConstructController@update'
+]);
+
+Route::get('construct/{id}', [
+    'as' => 'construct/show',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\ConstructController@show'
+]);
+
+/*-------------------------------- ต่อเติมบ้าน -------------------------------*/
+Route::get('enlarge', [
+    'as' => 'enlarge',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\EnlargeController@index'
+]);
+
+Route::get('enlarge/create', [
+    'as' => 'enlarge/create',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\EnlargeController@create'
+]);
+
+Route::post('enlarge/store', [
+    'as' => 'enlarge/store',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\EnlargeController@store'
+]);
+
+Route::get('enlarge/edit/{id}', [
+    'as' => 'enlarge/edit',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\EnlargeController@edit'
+]);
+
+Route::post('enlarge/update', [
+    'as' => 'enlarge/update',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\EnlargeController@update'
+]);
+
+Route::get('enlarge/{id}', [
+    'as' => 'enlarge/show',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\EnlargeController@show'
+]);
+
+/*-------------------------------- รับเหมาก่อสร้าง -------------------------------*/
+Route::get('constructor', [
+    'as' => 'constructor',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\ConstructorController@index'
+]);
+
+Route::get('constructor/create', [
+    'as' => 'constructor/create',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\ConstructorController@create'
+]);
+
+Route::post('constructor/store', [
+    'as' => 'constructor/store',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\ConstructorController@store'
+]);
+
+Route::get('constructor/edit/{id}', [
+    'as' => 'constructor/edit',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\ConstructorController@edit'
+]);
+
+Route::post('constructor/update', [
+    'as' => 'constructor/update',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\ConstructorController@update'
+]);
+
+Route::get('constructor/{id}', [
+    'as' => 'constructor/show',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\ConstructorController@show'
 ]);

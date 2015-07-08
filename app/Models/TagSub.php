@@ -53,4 +53,9 @@ class TagSub extends Model {
         return $this->belongsToMany('App\Models\CatIdea', 'tag', 'tag_sub_id', 'cat_idea_id' );
     }
 
+    public function catConstruct()
+    {
+        return $this->belongsToMany('App\Models\CatConstruct', 'tag', 'tag_sub_id', 'cat_construct_id' );
+    }
+
 }

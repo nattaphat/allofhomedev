@@ -19,4 +19,21 @@ class Shop extends Model {
         return $this->morphMany('App\Models\CatReview', 'reviewable');
     }
 
+    public static function getPathLogo($id)
+    {
+        $shop = Shop::find($id);
+        if($shop->attachment_id == null)
+            return "";
+        else
+        {
+            $attachment = Attachment::find($shop->attachment_id);
+            return $attachment->path;
+        }
+    }
+
+    public function catConstruct()
+    {
+        return $this->hasMany('App\Models\CatConstruct');
+    }
+
 }

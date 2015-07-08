@@ -14,10 +14,13 @@
                 <a href="{{ URL::to('backend/brand') }}"> แบรนด์</a>
             </li>
             <li>
+                <a href="{{ URL::to('backend/shop') }}"> ร้านค้า</a>
+            </li>
+            <li>
                 <a href="{{ URL::to('backend/project') }}"> โครงการทั้งหมด</a>
             </li>
-            <li style="display:none;">
-                <a href="{{ URL::to('#') }}"> ร้านค้าทั้งหมด</a>
+            <li>
+                <a href="{{ URL::to('backend/catConstruct') }}"> ร้านค้าทั้งหมด</a>
             </li>
             <li>
                 <a href="{{ URL::to('backend/article') }}"> บทความและข่าวสาร</a>

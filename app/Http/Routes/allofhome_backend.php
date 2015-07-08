@@ -482,4 +482,79 @@
         'uses' => 'Backend\BackendIdeaController@idea_store'
     ]);
 
+    // Shop
+    Route::get('backend/shop', [
+        'before' => 'backend_auth',
+        'as' => 'backend_shop',
+        'uses' => 'Backend\BackendShopController@shop'
+    ]);
+
+    Route::get('backend/shop_new', [
+        'before' => 'backend_auth',
+        'as' => 'backend_shop_new',
+        'uses' => 'Backend\BackendShopController@shop_new'
+    ]);
+
+    Route::post('backend/shop_store', [
+        'before' => 'backend_auth',
+        'as' => 'backend_shop_store',
+        'uses' => 'Backend\BackendShopController@shop_store'
+    ]);
+
+    Route::get('backend/shop_edit/{id}', [
+        'before' => 'backend_auth',
+        'as' => 'backend_shop_edit',
+        'uses' => 'Backend\BackendShopController@shop_edit'
+    ]);
+
+    Route::post('backend/shop_update', [
+        'before' => 'backend_auth',
+        'as' => 'backend_shop_update',
+        'uses' => 'Backend\BackendShopController@shop_update'
+    ]);
+
+    Route::any('get_shop', [
+        'before' => 'backend_auth',
+        'as' => 'get_shop',
+        'uses' => 'Backend\BackendShopController@get_shop'
+    ]);
+
+    // CatConstruct
+    Route::get('backend/catConstruct', [
+        'before' => 'backend_auth',
+        'as' => 'backend_catConstruct',
+        'uses' => 'Backend\BackendCatConstructController@catConstruct'
+    ]);
+
+    Route::get('backend/catConstruct_new', [
+        'before' => 'backend_auth',
+        'as' => 'backend_catConstruct_new',
+        'uses' => 'Backend\BackendCatConstructController@catConstruct_new'
+    ]);
+
+    Route::post('backend/catConstruct_store', [
+        'before' => 'backend_auth',
+        'as' => 'backend_catConstruct_store',
+        'uses' => 'Backend\BackendCatConstructController@catConstruct_store'
+    ]);
+
+    Route::get('backend/catConstruct_edit/{id}', [
+        'before' => 'backend_auth',
+        'as' => 'backend_catConstruct_edit',
+        'uses' => 'Backend\BackendCatConstructController@catConstruct_edit'
+    ]);
+
+    Route::post('backend/catConstruct_update', [
+        'before' => 'backend_auth',
+        'as' => 'backend_catConstruct_update',
+        'uses' => 'Backend\BackendCatConstructController@catConstruct_update'
+    ]);
+
+    Route::any('get_cat_home', [
+        'before' => 'backend_auth',
+        'as' => 'get_cat_home',
+        'uses' => 'Backend\BackendCatConstructController@get_cat_home'
+    ]);
+
+
 /* ----- ## backend ## ----- */

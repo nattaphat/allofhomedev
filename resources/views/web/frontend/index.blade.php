@@ -1,20 +1,11 @@
 @extends('layouts.main_v2')
 
 @section('jshome')
-    <!-- Starrr -->
-    <link rel="stylesheet" type="text/css" media="screen" href={{ asset('js/lib/bootstrap-star-rating/css/star-rating.min.css') }}>
-
-    <style type="text/css">
-        .rating-xs {
-            font-size: 14px;
-        }
-    </style>
 
 @stop
 
 @section('jsbody')
-    <!-- Starrr -->
-    <script type="text/javascript" src={{ asset('js/lib/bootstrap-star-rating/js/star-rating.min.js') }}></script>
+
 @stop
 
 @section('content')
@@ -48,7 +39,7 @@
                             ?>
                             @if(count($pics) >= 5)
                                 <p class="pic-hilight">
-                                    <a href="{{ url("condo/view/")."/".$item->id }}">
+                                    <a href="@if($item->review_status == 0) {{ url("preview/")."/".$item->id }} @else {{ url("review/")."/".$item->id }} @endif">
                                         <img src="{{ $pics[0]->file_path }}" alt="{{ $pics[0]->file_name }}"
                                              style="width: 256px; height: 156px;" />
                                     </a>
@@ -65,7 +56,7 @@
                                 </div>
                             @else
                                 <p class="pic-hilight">
-                                    <a href="{{ url("condo/view/")."/".$item->id }}">
+                                    <a href="@if($item->review_status == 0) {{ url("preview/")."/".$item->id }} @else {{ url("review/")."/".$item->id }} @endif">
                                         <img src="{{ $pics[0]->file_path }}" alt="{{ $pics[0]->file_name }}"
                                              style="width: 256px; height: 156px;" />
                                     </a>
@@ -80,7 +71,7 @@
                             @endif
                             <div class="clear"></div>
                         </div>
-                        <a href="{{ url("condo/view/")."/".$item->id }}"><h3>{{ $item->title }}</h3></a>
+                        <a href="@if($item->review_status == 0) {{ url("preview/")."/".$item->id }} @else {{ url("review/")."/".$item->id }} @endif"><h3>{{ $item->title }}</h3></a>
                         <p class="update">วันที่ลงประกาศ  {{ \App\Models\AllFunction::getDateTimeThai($item->created_at) }}</p>
                         <p>{{ $item->subtitle }}</p>
                     </div>
@@ -106,7 +97,7 @@
                 @endforeach
                 @endif
             </ul>
-            <a href="{{ url('/home/index') }}" class="btn-viewmore">ดูเพิ่มเติม</a>
+            <a href="{{ url('review') }}" class="btn-viewmore">ดูเพิ่มเติม</a>
         </div>
     </div>
 
@@ -208,7 +199,7 @@
                 @endforeach
                 @endif
             </ul>
-            <a class="btn-viewmore" href="{{ url('article/index') }}">ดูเพิ่มเติม</a>
+            <a class="btn-viewmore" href="#">ดูเพิ่มเติม</a>
         </div>
     </div>
 
@@ -248,7 +239,7 @@
                 @endforeach
                 @endif
             </ul>
-            <a class="btn-viewmore" href="{{ url('idea/index') }}">ดูเพิ่มเติม</a>
+            <a class="btn-viewmore" href="#">ดูเพิ่มเติม</a>
         </div>
 
     </div>

@@ -37,7 +37,12 @@ php artisan db:seed --class GeoRegionTableSeeder
 
 ## Create models by command line
 ```
-php artisan make:model --no-migration geoRegion
+php artisan make:model --no-migration App\\Models\\geoRegion
+```
+
+## Create Controller
+```
+php artisan controller:make Frontend\\PhotoController
 ```
 
 แท็ก

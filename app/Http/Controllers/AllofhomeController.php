@@ -87,6 +87,7 @@ class AllofhomeController extends Controller {
             '), function($join){
                     $join->on( 'ch.id', '=', 'pic.pictureable_id');
                 })
+                ->whereRaw('ch.status = 1')
                 ->select('ch.*')
                 ->orderByRaw('case when vip.id is not null then 1 else 0 end desc')
                 ->orderBy('ch.created_at', 'desc')
