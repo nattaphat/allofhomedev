@@ -13,7 +13,7 @@
             <ul class="sub-menu">
                 <li><a href="{{ url('review') }}">รีวิวทั้งหมด</a></li>
                 <li><a href="{{ url('preview') }}">พรีวิวโครงการใหม่</a></li>
-                <li><a href="{{ url('register') }}">ลงทะเบียนโครงการใหม่</a></li>
+                <li><a href="#">ลงทะเบียนโครงการใหม่</a></li>
             </ul>
         </li>
         <li class="dropdown">

@@ -93,20 +93,13 @@
                                         @if($item->vip)
                                             <span class="label label-success">vip</span>
                                         @endif
-                                        @if($item->brand_id != null)
-                                            {{ \App\Models\Brand::getBrandName($item->brand_id) }}
-                                        @endif
+                                        {{ $item->title }}
                                     </td>
                                     <td style="vertical-align: middle;"><?php
                                         $cat = unserialize($item->for_type);
                                         foreach($cat as $c)
                                         {
-                                            if($c == "1")
-                                                echo "บ้านใหม่&nbsp;&nbsp;";
-                                            else if($c == "2")
-                                                echo "ทาวน์โฮมใหม่&nbsp;&nbsp;";
-                                            else if($c == "3")
-                                                echo "คอนโดใหม่&nbsp;&nbsp;";
+                                            echo \App\Models\AllFunction::getShopForType($c)."&nbsp;&nbsp;";
                                         }
                                         ?></td>
                                     <td style="vertical-align: middle;">

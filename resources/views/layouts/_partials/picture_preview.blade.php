@@ -1,7 +1,22 @@
 <div class="boxreview">
-    @if($pic != null && count($pic) > 0)
-    <h2 class="h-review-inner">รีวิวโครงการ</h2>
+
+    @if( strpos(URL::current(),"constructor") != false)
+        <h2>ผู้รับเหมาก่อสร้าง</h2>
+        <h2 class="lineColor"></h2>
+        <div class="clear"></div>
+        <span class="lineDescription">ข้อมูลบริษัทผู้รับเหมาก่อสร้างชั้นนำ</span>
+    @elseif( strpos(URL::current(),"enlarge") != false)
+        <h2>ค้นหาช่างซ่อม / ต่อเติม</h2>
+        <h2 class="lineColor"></h2>
+        <div class="clear"></div>
+        <span class="lineDescription">ค้นหาข้อมูล ซ่อมบ้าน ต่อเติมบ้าน</span>
+    @elseif( strpos(URL::current(),"construct") != false)
+        <h2>รับสร้างบ้าน</h2>
+        <h2 class="lineColor"></h2>
+        <div class="clear"></div>
+        <span class="lineDescription">รับสร้างบ้านโดยบริษัทชั้นนำมืออาชีพ</span>
     @endif
+
     <div class="pic-project">
         @if($pic != null && count($pic) > 0)
         <div class="preview">
@@ -31,8 +46,14 @@
         <div class="clear"></div>
         @endif
         <div class="text-preview">
-            <h3>{{ $catHome->title }}</h3>
-            <p style="text-indent: 20px;">{{ $catHome->subtitle }}</p>
+            @if(isset($catHome) && $catHome != null)
+                <h3>{{ $catHome->title }}</h3>
+                <p style="text-indent: 20px;">{{ $catHome->subtitle }}</p>
+            @endif
+            @if(isset($catConstruct) && $catConstruct != null)
+                <h3>{{ $catConstruct->title }}</h3>
+                <p style="text-indent: 20px;">{{ $catConstruct->subtitle }}</p>
+            @endif
         </div>
     </div>
 </div>

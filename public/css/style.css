@@ -765,7 +765,7 @@ nav ul li:nth-child(6), nav ul li:nth-child(6) ul li {
 	width:250px;
 }
 .boxArticle .list-article ul li:hover, .boxDiy .list-diy ul li:hover{
-	cursor:pointer;
+	/*cursor:pointer;*/
 }
 .boxArticle .list-article ul li:hover img, .boxDiy .list-diy ul li:hover img{
 	border:3px solid #5cc5c1;
@@ -916,7 +916,7 @@ nav ul li:nth-child(6), nav ul li:nth-child(6) ul li {
 	float:left;
 	width:364px;
 	margin-left:18px;
-	height:335px;
+	min-height:345px;
 	padding:20px 23px 0;
 }
 .boxMember .left .profile h2, .boxMember .right h2{

@@ -1,7 +1,31 @@
 @extends('layouts.main_v2')
 
 @section('jshome')
-
+<style type="text/css">
+    .boxArticle h2{
+        background:none;
+        height:46px;
+        text-indent:0;
+        margin-bottom:0px;
+        color: #5cc5c1;
+        display: block;
+        padding-right: 20px;
+        float: left;
+    }
+    .boxArticle h2.lineColor {
+        display: inline;
+        width: 733px;
+        padding-right: 0px;
+        margin-top: 20px;
+        background-color: #5cc5c1;
+        height: 6px;
+    }
+    .lineDescription
+    {
+        position: relative;
+        top: -15px;
+    }
+</style>
 @stop
 
 @section('jsbody')
@@ -9,34 +33,39 @@
 @stop
 
 @section('content')
-    <!-- Article -->
+    <!-- Construct -->
     <div class="boxArticle">
-        <h2>บทความและสาระน่ารู้</h2>
+        <h2>รับสร้างบ้าน</h2>
+        <h2 class="lineColor"></h2>
+        <div class="clear"></div>
+        <span class="lineDescription">รับสร้างบ้านโดยบริษัทชั้นนำมืออาชีพ</span>
+        
         <div class="list-article">
             <ul>
-                @if($catArticle != null)
-                    @foreach($catArticle as $item)
+                @if($cat != null)
+                    @foreach($cat as $item)
                         <li>
                             <?php
                             if($item->id == null)
                             {
                                 $pics = \App\Models\Picture::where('pictureable_id', '=', $item->pictureable_id)
-                                        ->where('pictureable_type', '=', 'App\\Models\\CatArticle')
+                                        ->where('pictureable_type', '=', 'App\\Models\\CatConstruct')
                                         ->get();
                             }
                             else
                             {
                                 $pics = \App\Models\Picture::where('pictureable_id', '=', $item->id)
-                                        ->where('pictureable_type', '=', 'App\\Models\\CatArticle')
+                                        ->where('pictureable_type', '=', 'App\\Models\\CatConstruct')
                                         ->get();
                             }
                             ?>
                             <p class="pic">
+                                <a href="{{ url("construct")."/".$item->id }}">
                                 <img src="{{ $pics[0]->file_path }}" alt="{{ $pics[0]->file_name }}"
-                                     style="width: 250px; height: 150px;" />
+                                     style="width: 250px; height: 150px;" /></a>
                             </p>
                             <div class="text">
-                                <h3><a href="#">{{ $item->title }}</a></h3>
+                                <h3><a href="{{ url("construct")."/".$item->id }}">{{ $item->title }}</a></h3>
                                 <p class="update">วันที่ลงประกาศ  {{ \App\Models\AllFunction::getDateTimeThai($item->created_at) }}</p>
                                 <p>{{ $item->subtitle }}</p>
                             </div>
@@ -45,8 +74,11 @@
                     @endforeach
                 @endif
             </ul>
-            <a class="btn-viewmore" href="{{ url('article/index') }}">ดูเพิ่มเติม</a>
         </div>
+    </div>
+
+    <div class="page_link">
+        {!! str_replace('/?', '?', $cat->render()) !!}
     </div>
 
 @stop
