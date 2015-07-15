@@ -105,7 +105,7 @@
         $iframe = \App\Models\AllFunction::convertYoutube($catHome->video_url);
         ?>
         @if($iframe != "")
-            <h2>วิีดิโอรีวิว :</h2>
+            <h2>วิดีโอรีวิว :</h2>
             <div class="video-container">
                 <div class="vdo-review">
                     {!! $iframe !!}

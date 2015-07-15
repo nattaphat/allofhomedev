@@ -655,14 +655,17 @@ nav ul li:nth-child(6), nav ul li:nth-child(6) ul li {
 }
 .boxreview .right .price{
     background:url(../images/bg/price.png) no-repeat;
-    font-size:72px;
+    font-size:50px;
     color:#FFF;
     position:absolute;
     width:317px;
     height:91px;
     left:-37px;
     top:45px;
-    padding-left:40px;
+    /*padding-left:40px;*/
+    padding-top: 15px;
+    padding-left: 0px;
+    text-align: center;
 }
 .boxreview .right .rating{ margin:90px 0 0 0;}
 .boxreview .right .call, .boxContactProject .call{

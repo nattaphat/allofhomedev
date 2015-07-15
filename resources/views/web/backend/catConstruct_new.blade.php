@@ -163,6 +163,8 @@
         {
             <!-- Dropzone -->
             Dropzone.autoDiscover = false;
+
+            $('#sell_price').mask('000,000,000,000,000', {reverse: true});
         }
 
         function areaOnChange(id)
@@ -607,6 +609,24 @@
                                             <label class="radio-inline">
                                                 <input type="radio" name="parking[]" value="false"> ไม่มี
                                             </label>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">ราคาขายเริ่มต้น</label>
+                                        <div class="col-md-3">
+                                            {!! Form::text('sell_price', null,
+                                            ['class' => 'form-control', 'id' => 'sell_price']) !!}
+                                        </div>
+                                        <label class="col-md-1 control-label" style="text-align:left;">บาท</label>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">รายละเอียดราคาขาย</label>
+                                        <div class="col-md-8">
+                                            {!! Form::textarea('sell_price_detail', null,
+                                            ['class' => 'form-control',
+                                            'rows' => '3']) !!}
                                         </div>
                                     </div>
 

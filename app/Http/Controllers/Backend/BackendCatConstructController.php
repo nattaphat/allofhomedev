@@ -124,6 +124,13 @@ class BackendCatConstructController extends Controller {
         $catConstruct->num_comment = 0;
         $catConstruct->num_rating = 0;
         $catConstruct->brand_id = $input['brand_id'];
+
+        if(Input::has('sell_price'))
+            $catConstruct->sell_price = $input['sell_price'];
+
+        if(Input::has('sell_price_detail'))
+            $catConstruct->sell_price_detail = $input['sell_price_detail'];
+
         $catConstruct->save();
 
 //        dd($catConstruct);
@@ -288,6 +295,18 @@ class BackendCatConstructController extends Controller {
 
         $catConstruct->vip = (Input::has('vip'))? true : false;
         $catConstruct->brand_id = $input['brand_id'];
+
+        if(Input::has('sell_price'))
+            $catConstruct->sell_price = $input['sell_price'];
+        else
+            $catConstruct->sell_price = null;
+
+        if(Input::has('sell_price_detail'))
+            $catConstruct->sell_price_detail = $input['sell_price_detail'];
+        else
+            $catConstruct->sell_price_detail;
+
+
         $catConstruct->update();
 
 //        dd($catConstruct);
