@@ -122,6 +122,9 @@
 <!--Custom scripts for allofhome -->
 <script src={{ asset('js/script.js') }}></script>
 
+<!--Dotdotdot -->
+<script src={{ asset('js/jquery.dotdotdot.min.js') }}></script>
+
 @yield('jsbody')
 
 </body>

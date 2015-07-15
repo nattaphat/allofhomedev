@@ -1,20 +1,18 @@
 <?php namespace App\Http\Controllers\Frontend;
 
+use App\Models\Brand;
 use App\Models\CatHomePic;
+use App\Http\Controllers\Controller;
+use Validator;
+use Gmaps;
 use App\Models\CatHome;
 use App\Models\CatHomePromotion;
 use App\Models\PicLayout;
 use App\Models\Promotion;
 use App\Models\Tag;
-use App\Http\Controllers\Controller;
-use Gmaps;
-use Request;
-use Validator;
 use Input;
 use DB;
 use Redirect;
-use View;
-use App\Models\Attachment;
 
 class HomeCategoryController extends Controller {
 
@@ -317,7 +315,7 @@ class HomeCategoryController extends Controller {
     public function view($id)
     {
         $catHome = CatHome::find($id);
-        $attachment = Attachment::find($catHome->project_owner_logo);
+        $brand = Brand::find($catHome->brand_id);
 
         $fac = $catHome->projectFacility()->get();
         $bts = $catHome->projectBts()->get();
@@ -339,15 +337,7 @@ class HomeCategoryController extends Controller {
             [
                 'center' => $catHome->latitude.','.$catHome->longitude,
                 'zoom' => '12',
-                'scrollwheel' => false,
-                'onboundschanged' =>
-                    'if (!centreGot) {
-                var mapCentre = map.getCenter();
-                marker_0.setOptions({
-                    position: new google.maps.LatLng(mapCentre.lat(), mapCentre.lng())
-                });
-            }
-            centreGot = true;'
+                'scrollwheel' => false
             ];
 
         Gmaps::initialize($config);
@@ -357,18 +347,17 @@ class HomeCategoryController extends Controller {
                 'position' => $catHome->latitude.','.$catHome->longitude,
                 'draggable' => false,
                 'infowindow_content' =>
-                    '<div class="row" style="width: 100%;">'.
-                    '<div class="col-md-6">'.
-                    '<img src="'.$attachment->path.'"'.
-                    'alt="'.$attachment->filename.'" class=\'img-responsive\' '.
-                    'style="max-width: 100%;" />'.
+                    '<div style="width: 100%; padding-top: 20px; padding-bottom: 20px;">'.
+                    '<div style="width: 50%; float:left;">'.
+                    '<img src="'.Brand::getPathLogo($brand->id).'"'.
+                    'alt="" style="max-width: 90%; height: auto;" />'.
                     '</div>'.
-                    '<div class="col-md-6">'.
+                    '<div style="width: 50%; float:left;">'.
                     '<h5><a href="'.url('condo/view/').'/'.$catHome->id.'" target="_blank">'.$catHome->project_name.'</a></h5>'.
-                    '<p><strong>บริษัทเจ้าของโครงการ</strong> : '.$catHome->project_owner.'</p>'.
+                    '<p><strong>บริษัทเจ้าของโครงการ</strong> : '.$brand->brand_name.'</p>'.
                     '<p><strong>ที่ตั้งโครงการ</strong> : '.(\App\Models\CatHome::getFullPrjAddress($catHome->id)).'</p>'.
                     '<p><strong>ราคาเริ่มต้น</strong> : '.$catHome->sell_price.' &nbsp;&nbsp;บาท</p>'.
-                    '<p><strong>เบอร์ติดต่อ</strong> : '.$catHome->telephone.'</p>'.
+                    '<p><strong>เบอร์ติดต่อ</strong> : '.$brand->telephone.'</p>'.
                     '<p><strong>เว็บไซต์</strong> : '.$catHome->website.'</p>'.
                     '</div>'.
                     '</div>'
@@ -377,7 +366,7 @@ class HomeCategoryController extends Controller {
 
         $map = Gmaps::create_map();
 
-        return view('web.frontend.home.view')
+        return view('web.frontend.home_view')
             ->with('map',$map)
             ->with('catHome', $catHome)
             ->with('catHomePic', $catHomePic)
@@ -387,6 +376,7 @@ class HomeCategoryController extends Controller {
             ->with('apl', $apl)
             ->with('promotion', $promotion)
             ->with('tag', $tag)
-            ->with('pic',$pic);
+            ->with('pic',$pic)
+            ->with('brand', $brand);
     }
 }

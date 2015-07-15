@@ -4,15 +4,12 @@ use App\Models\AirportRailLink;
 use App\Models\AllFunction;
 use App\Models\Amphoe;
 use App\Models\Area;
+use App\Models\Brand;
 use App\Models\Bts;
 use App\Models\CatConstruct;
 use App\Models\Facility;
 use App\Models\Mrt;
 use App\Models\Picture;
-use App\Models\ProjectAirportLink;
-use App\Models\ProjectBts;
-use App\Models\ProjectFacility;
-use App\Models\ProjectMrt;
 use App\Models\Promotion;
 use App\Models\Provinces;
 use App\Models\SubArea;
@@ -34,20 +31,9 @@ class BackendCatConstructController extends Controller {
 
     public function catConstruct_new()
     {
-        $area = Area::getAllArea();
-        $subarea = SubArea::where('id','=','-1')->get();
-
         $province = Provinces::getAllProvince();
         $amphoe = Amphoe::where('amphid','=','-1')->get();
         $tambon = Tambon::where('tambid','=','-1')->get();
-
-        $facility = Facility::orderBy('fac_name')->get()->toArray();
-
-        $bts = Bts::getBts();
-        $mrt = Mrt::getMrt();
-        $apl = AirportRailLink::getAirportRailLink();
-
-        $promotion = Promotion::orderBy('promotion_name')->get();
 
         $config =
             [
@@ -82,16 +68,9 @@ class BackendCatConstructController extends Controller {
 
         return view('web.backend.catConstruct_new')
             ->with('map',$map)
-            ->with('area', $area)
-            ->with('subarea', $subarea)
             ->with('province', $province)
             ->with('amphoe', $amphoe)
-            ->with('tambon', $tambon)
-            ->with('facility',$facility)
-            ->with('bts',$bts)
-            ->with('mrt', $mrt)
-            ->with('apl', $apl)
-            ->with('promotion', $promotion);
+            ->with('tambon', $tambon);
     }
 
     public function catConstruct_store()
@@ -192,63 +171,172 @@ class BackendCatConstructController extends Controller {
 
     public function catConstruct_edit($id)
     {
-//        $fac = Project::find($id);
-//        return view('web.backend.catConstruct_edit')->with("fac",$fac);
+        $catConstruct = CatConstruct::find($id);
+        $brand = Brand::find($catConstruct->brand_id);
+        $province = Provinces::getAllProvince();
+        $tag = $catConstruct->tag()->get();
+        $pic = $catConstruct->picture()->get();
+
+        $config =
+            [
+                'center' => $catConstruct->latitude.','.$catConstruct->longitude,
+                'zoom' => '7',
+                'panControl' => false,
+                'zoomControl' => false,
+                'scaleControl' => true
+            ];
+
+        Gmaps::initialize($config);
+
+        $marker =
+            [
+                'position' => $catConstruct->latitude.','.$catConstruct->longitude,
+                'draggable' => true,
+                'title' => "เลื่อนเพื่อเลือกตำแหน่ง",
+                'ondragend' =>
+                    '
+                    var latitude = document.getElementById("latitude");
+                    var longitude = document.getElementById("longitude");
+                    var map_url = document.getElementById("map_url");
+
+                    latitude.value = event.latLng.lat();
+                    longitude.value = event.latLng.lng();
+                    map_url.value = "http://maps.google.com/maps?z=13&q=" + event.latLng.lat() + "," + event.latLng.lng();
+                    '
+            ];
+        Gmaps::add_marker($marker);
+
+        $map = Gmaps::create_map();
+
+        return view('web.backend.catConstruct_edit')
+            ->with('map',$map)
+            ->with('catConstruct', $catConstruct)
+            ->with('tag', $tag)
+            ->with('pic',$pic)
+            ->with('brand', $brand)
+            ->with('province', $province);
     }
 
     public function catConstruct_update()
     {
-//        $input = Input::all();
-//
-//        try{
-//            $fac = Project::find($input['id']);
-//            $fac->fac_name = $input['fac_name'];
-//            $fac->save();
-//        }
-//        catch(\Exception $e)
-//        {
-//            return Redirect::route('backend_catConstruct')
-//                ->with('flash_message', 'แก้ไขข้อมูลล้มเหลว')
-//                ->with('flash_type', 'alert-danger');
-//        }
-//
-//        return Redirect::route('backend_catConstruct')
-//            ->with('flash_message', 'แก้ไขข้อมูลสำเร็จ')
-//            ->with('flash_type', 'alert-success');
-    }
+        $input = Input::all();
 
-    public  function get_cat_home()
-    {
-        $search_char = strtolower(Request::get('term'));
+//        dd($input);
 
-        $catConstruct = DB::table('cat_home')
-            ->join('geo_tambon', function ($join){
-                $join->on( 'cat_home.tambid', '=', 'geo_tambon.tambid');
-                $join->on( 'cat_home.amphid', '=', 'geo_tambon.amphid');
-                $join->on( 'cat_home.provid', '=', 'geo_tambon.provid');
-            })
-            ->join('geo_amphoe', function ($join){
-                $join->on( 'cat_home.amphid', '=', 'geo_amphoe.amphid');
-                $join->on( 'cat_home.provid', '=', 'geo_amphoe.provid');
-            })
-            ->join('geo_province', function ($join){
-                $join->on( 'cat_home.provid', '=', 'geo_province.provid');
-            })
-            ->select(DB::raw('cat_home.id,cat_home.catConstruct_name || \' - \' || geo_tambon.name
-                || \' \' || geo_amphoe.name || \' \' || geo_province.name as text,
-                cat_home.latitude, cat_home.longitude'))
-            ->whereRaw('lower(cat_home.catConstruct_name) like \'%'.$search_char.'%\' or
-                lower(geo_tambon.name) like \'%'.$search_char.'%\' or
-                lower(geo_amphoe.name) like \'%'.$search_char.'%\' or
-                lower(geo_province.name) like \'%'.$search_char.'%\'
-                ')
-            ->orderBy('cat_home.catConstruct_name')
-            ->orderBy('geo_tambon.name')
-            ->orderBy('geo_amphoe.name')
-            ->orderBy('geo_province.name')
-            ->get();
+        $provine = Provinces::find($input['provid']);
+        $region_id = $provine->region_id;
 
-        return json_encode($catConstruct);
+        $catConstruct = CatConstruct::find($input['id']);
+        $catConstruct->user_id = intval($input['user_id']);
+        $catConstruct->title = $input['title'];
+        $catConstruct->subtitle = $input['subtitle'];
+        $catConstruct->for_type = serialize($input['for_cat']);
+
+        if(Input::has('website'))
+            $catConstruct->website = $input['website'];
+        else
+            $catConstruct->website = null;
+
+        $catConstruct->region_id = $region_id;
+        $catConstruct->provid = $input['provid'];
+        $catConstruct->amphid = $input['amphid'];
+        $catConstruct->tambid = $input['tambid'];
+
+        if(Input::has('add_street'))
+            $catConstruct->add_street = $input['add_street'];
+        else
+            $catConstruct->add_street = null;
+
+        if(Input::has('add_no'))
+            $catConstruct->add_no = $input['add_no'];
+        else
+            $catConstruct->add_no = null;
+
+        if(Input::has('add_building'))
+            $catConstruct->add_building = $input['add_building'];
+        else
+            $catConstruct->add_building = null;
+
+        if(Input::has('add_floor'))
+            $catConstruct->add_floor = $input['add_floor'];
+        else
+            $catConstruct->add_floor = null;
+
+        $catConstruct->latitude = $input['latitude'];
+        $catConstruct->longitude = $input['longitude'];
+        $catConstruct->map_url = $input['map_url'];
+
+        if(Input::has('service_day_time'))
+            $catConstruct->service_day_time = $input['service_day_time'];
+        else
+            $catConstruct->service_day_time = null;
+
+        if(Input::has('credit_card'))
+            $catConstruct->credit_card = $input['credit_card'][0];
+        else
+            $catConstruct->credit_card = null;
+
+        if(Input::has('parking'))
+            $catConstruct->parking = $input['parking'][0];
+        else
+            $catConstruct->parking = null;
+
+        if(Input::has('video_url'))
+            $catConstruct->video_url = $input['video_url'];
+        else
+            $catConstruct->video_url = null;
+
+        $catConstruct->vip = (Input::has('vip'))? true : false;
+        $catConstruct->brand_id = $input['brand_id'];
+        $catConstruct->update();
+
+//        dd($catConstruct);
+
+        $catConstruct->picture()->delete();
+
+//        dd($catConstruct->picture());
+
+        if(Input::has('pics_filename2')) {
+            $filename = $input['pics_filename2'];
+            $filetype = $input['pics_filetype2'];
+            $filesize = $input['pics_filesize2'];
+            $filepath = $input['pics_filepath2'];
+            $description = $input['pics_description2'];
+
+            $count_pic = count($filename);
+            for($j=0; $j<$count_pic; $j++)
+            {
+                $pic = new Picture();
+                $pic->file_name = $filename[$j];
+                $pic->file_path = $filepath[$j];
+                $pic->file_size = $filesize[$j];
+                $pic->file_type = $filetype[$j];
+                $pic->description = $description[$j] == null? "" : $description[$j];
+                $thumbnail = AllFunction::createThumbnailFix($filepath[$j], 80, 70);
+
+                $pic->thumbnail = $thumbnail;
+
+                $catConstruct->picture()->save($pic);
+            }
+        }
+
+        $catConstruct->tag()->delete();
+
+        if(Input::has('tag'))
+        {
+            foreach($input['tag'] as $key=>$value)
+            {
+                $tag = new Tag();
+                $tag->tag_sub_id = $value;
+                $catConstruct->tag()->save($tag);
+            }
+        }
+
+//        dd($catConstruct);
+
+        return redirect('backend/catConstruct')
+            ->with('flash_message', 'บันทึกข้อมูลสำเร็จ')
+            ->with('flash_type', 'alert-success');
     }
 
 }

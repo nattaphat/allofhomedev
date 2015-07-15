@@ -294,7 +294,7 @@
 
         @if($pic != null && count($pic) > 0)
             <div id="collapsible-panels" class="data-project">
-                <a href="#" class="head-data">ผลงาน</a>
+                <a href="#" class="head-data active">ผลงาน</a>
                 <div class="detail">
                     @foreach($pic as $p)
                         <div>

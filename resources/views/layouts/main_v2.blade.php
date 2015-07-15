@@ -160,6 +160,9 @@
 <!--Flex slider -->
 <script src={{ asset('plugins/flexslider/jquery.flexslider-min.js') }}></script>
 
+<!--Dotdotdot -->
+<script src={{ asset('js/jquery.dotdotdot.min.js') }}></script>
+
 <!--Custom scripts for allofhome -->
 <script src={{ asset('js/script.js') }}></script>
 

@@ -73,7 +73,7 @@
                                 </div>
                                 <a href="{{ url("condo/view/")."/".$item->id }}"><h3>{{ $item->title }}</h3></a>
                                 <p class="update">วันที่ลงประกาศ  {{ \App\Models\AllFunction::getDateTimeThai($item->created_at) }}</p>
-                                <p>{{ $item->subtitle }}</p>
+                                <p class="p-subtitle">{{ $item->subtitle }}</p>
                             </div>
                             <div class="right">
                                 <p class="text-price">ราคาเริ่มต้น</p>

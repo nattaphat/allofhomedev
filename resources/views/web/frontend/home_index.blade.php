@@ -39,7 +39,7 @@
                                     ?>
                                         @if(count($pics) >= 5)
                                             <p class="pic-hilight">
-                                                <a href="{{ url("condo/view/")."/".$item->id }}">
+                                                <a href="{{ url("home/view/")."/".$item->id }}">
                                                     <img src="{{ $pics[0]->file_path }}" alt="{{ $pics[0]->file_name }}"
                                                          style="width: 256px; height: 156px;" />
                                                 </a>
@@ -56,7 +56,7 @@
                                             </div>
                                         @else
                                             <p class="pic-hilight">
-                                                <a href="{{ url("condo/view/")."/".$item->id }}">
+                                                <a href="{{ url("home/view/")."/".$item->id }}">
                                                     <img src="{{ $pics[0]->file_path }}" alt="{{ $pics[0]->file_name }}"
                                                          style="width: 256px; height: 156px;" />
                                                 </a>
@@ -71,9 +71,9 @@
                                         @endif
                                     <div class="clear"></div>
                                 </div>
-                                <a href="{{ url("condo/view/")."/".$item->id }}"><h3>{{ $item->title }}</h3></a>
+                                <a href="{{ url("home/view/")."/".$item->id }}"><h3>{{ $item->title }}</h3></a>
                                 <p class="update">วันที่ลงประกาศ  {{ \App\Models\AllFunction::getDateTimeThai($item->created_at) }}</p>
-                                <p>{{ $item->subtitle }}</p>
+                                <p class="p-subtitle">{{ $item->subtitle }}</p>
                             </div>
                             <div class="right">
                                 <p class="text-price">ราคาเริ่มต้น</p>

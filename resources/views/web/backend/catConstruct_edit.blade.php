@@ -39,7 +39,7 @@
             });
 
             <!-- Brand -->
-            $("#brand_id").select2(
+            var brand = $("#brand_id").select2(
             {
                 ajax: {
                     url: "{{ url('get_shop') }}",
@@ -70,7 +70,6 @@
                     if(repo.text != null && repo.text != "")
                         return repo.text;
                     else{
-                        debugger;
                         $('#telephone').val(repo.telephone);
                         $('#email').val(repo.email);
                         $('#facebook').val(repo.facebook);
@@ -96,6 +95,11 @@
 
                     return repo.brand_name;
                 }
+            });
+
+            brand.on("change", function(e) {
+                var opt = $(".brand-init");
+                opt.remove();
             });
 
             <!-- Tags -->
@@ -163,32 +167,7 @@
         {
             <!-- Dropzone -->
             Dropzone.autoDiscover = false;
-        }
-
-        function areaOnChange(id)
-        {
-            $.ajax({
-                url: '{{ URL::route('project_getSubArea') }}',
-                data: { id: id },
-                success: function(data, message){
-                    var subArea = $('#subarea');
-                    subArea.empty();
-                    subArea.append("<option value=''>-- กรุณาเลือก --</option>");
-                    $.each(data, function(key, element) {
-                        if(element.id == '{{ Input::old('subarea_id') }}')
-                        {
-                            subArea.append("<option value='"+ element.id +"' selected>"
-                            + element.subarea_name + "</option>");
-                        }
-                        else
-                        {
-                            subArea.append("<option value='"+ element.id +"'>"
-                            + element.subarea_name + "</option>");
-                        }
-                    });
-
-                }
-            });
+            provinceOnChange({{ $catConstruct->provid }});
         }
 
         function amphoeOnChange(provid, amphid)
@@ -211,6 +190,10 @@
                             + element.name + "</option>");
                         }
                     });
+
+                    @if($catConstruct->tambid != null)
+                        $('#tambon').val({{ $catConstruct->tambid }});
+                    @endif
                 }
             });
         }
@@ -238,6 +221,10 @@
                             + element.name + "</option>");
                         }
                     });
+                    @if($catConstruct->amphid != null)
+                        $('#amphoe').val({{ $catConstruct->amphid }});
+                        amphoeOnChange('{{$catConstruct->provid}}', '{{$catConstruct->amphid}}');
+                    @endif
                 }
             });
         }
@@ -246,49 +233,58 @@
 
     @for($i=2; $i<=2; $i++)
         <script type="text/javascript">
-
             <!-- Dropzone -->
 
             // Get the template HTML and remove it from the doument
-            var previewNode = document.querySelector("#template{{ $i }}");
-            previewNode.id = "";
-            var previewTemplate = previewNode.parentNode.innerHTML;
-            previewNode.parentNode.removeChild(previewNode);
+            var previewNode{{ $i }} = document.querySelector("#template{{ $i }}");
+            previewNode{{ $i }}.id = "";
+            var previewTemplate{{ $i }} = previewNode{{ $i }}.parentNode.innerHTML;
+            previewNode{{ $i }}.parentNode.removeChild(previewNode{{ $i }});
+            var id{{ $i }} = 0;
 
-            var myDropzone2 = new Dropzone("#dZUpload{{ $i }}", {
+            var myDropzone{{ $i }} = new Dropzone("#dZUpload{{ $i }}", {
                 url: '{{ URL("post/upload") }}',
                 maxFilesize: 3, //mb
                 parallelUploads: 1,
                 acceptedFiles: 'image/*',
                 autoProcessQueue: true,
+                thumbnailWidth: 120,
+                thumbnailHeight: 120,
                 sending: function(file, xhr, formData) {
                     formData.append("_token", $('[name=_token]').val());
                 },
-                success: function (file, response) {
+                success: function (file, response)
+                {
+                    file.id = id{{ $i }}++;
+
                     var filename = file.name;
                     var filetype = file.type;
                     var filesize = file.size;
                     var filepath = response;
 
                     var input_hidden = document.createElement('input');
+                    input_hidden.setAttribute('id', 'pics_filename_id_' + file.id);
                     input_hidden.setAttribute('name', 'pics_filename{{ $i }}[]');
                     input_hidden.setAttribute('type', 'hidden');
                     input_hidden.setAttribute('value', filename);
                     document.forms[0].appendChild(input_hidden);
 
                     var input_hidden = document.createElement('input');
+                    input_hidden.setAttribute('id', 'pics_filetype_id_' + file.id);
                     input_hidden.setAttribute('name', 'pics_filetype{{ $i }}[]');
                     input_hidden.setAttribute('type', 'hidden');
                     input_hidden.setAttribute('value', filetype);
                     document.forms[0].appendChild(input_hidden);
 
                     var input_hidden = document.createElement('input');
+                    input_hidden.setAttribute('id', 'pics_filesize_id_' + file.id);
                     input_hidden.setAttribute('name', 'pics_filesize{{ $i }}[]');
                     input_hidden.setAttribute('type', 'hidden');
                     input_hidden.setAttribute('value', filesize);
                     document.forms[0].appendChild(input_hidden);
 
                     var input_hidden = document.createElement('input');
+                    input_hidden.setAttribute('id', 'pics_filepath_id_' + file.id);
                     input_hidden.setAttribute('name', 'pics_filepath{{ $i }}[]');
                     input_hidden.setAttribute('type', 'hidden');
                     input_hidden.setAttribute('value', filepath);
@@ -298,8 +294,64 @@
                     this.removeFile(file);
                     alert(response);
                 },
-                previewTemplate: previewTemplate,
-                previewsContainer: "#previews{{ $i }}"
+                previewTemplate: previewTemplate{{ $i }},
+                previewsContainer: "#previews{{ $i }}",
+                init : function()
+                {
+                    @if($pic != null)
+                        @foreach($pic as $p)
+                            var mockFile = { name: '{{ $p->file_name }}', size: '{{ $p->file_size }}', accepted: true,
+                                id: id{{ $i }}++, description: '{{ $p->description }}' };
+                            this.emit("addedfile", mockFile);
+                            this.emit("thumbnail", mockFile, '{{ $p->thumbnail }}');
+                            this.emit("complete", mockFile);
+
+                            var input_hidden = document.createElement('input');
+                            input_hidden.setAttribute('id', 'pics_filename_id_' + mockFile.id);
+                            input_hidden.setAttribute('name', 'pics_filename{{ $i }}[]');
+                            input_hidden.setAttribute('type', 'hidden');
+                            input_hidden.setAttribute('value', '{{ $p->file_name }}');
+                            document.forms[0].appendChild(input_hidden);
+
+                            var input_hidden = document.createElement('input');
+                            input_hidden.setAttribute('id', 'pics_filetype_id_' + mockFile.id);
+                            input_hidden.setAttribute('name', 'pics_filetype{{ $i }}[]');
+                            input_hidden.setAttribute('type', 'hidden');
+                            input_hidden.setAttribute('value', '{{ $p->file_type }}');
+                            document.forms[0].appendChild(input_hidden);
+
+                            var input_hidden = document.createElement('input');
+                            input_hidden.setAttribute('id', 'pics_filesize_id_' + mockFile.id);
+                            input_hidden.setAttribute('name', 'pics_filesize{{ $i }}[]');
+                            input_hidden.setAttribute('type', 'hidden');
+                            input_hidden.setAttribute('value', '{{ $p->file_size }}');
+                            document.forms[0].appendChild(input_hidden);
+
+                            var input_hidden = document.createElement('input');
+                            input_hidden.setAttribute('id', 'pics_filepath_id_' + mockFile.id);
+                            input_hidden.setAttribute('name', 'pics_filepath{{ $i }}[]');
+                            input_hidden.setAttribute('type', 'hidden');
+                            input_hidden.setAttribute('value', '{{ $p->file_path }}');
+                            document.forms[0].appendChild(input_hidden);
+                        @endforeach
+                    @endif
+                },
+                complete: function(file) {
+                    if (file.description != null) {
+                        if (file.previewElement) {
+                            var textbox = file.previewElement.children[0].children[0].children[0].children[1].children[0];
+                            textbox.value = file.description;
+                        }
+                    }
+                }
+            });
+
+            myDropzone{{ $i }}.on("removedfile", function(file){
+                var id = file.id;
+                $('#pics_filename_id_'+id).remove();
+                $('#pics_filetype_id_'+id).remove();
+                $('#pics_filesize_id_'+id).remove();
+                $('#pics_filepath_id_'+id).remove();
             });
 
         </script>
@@ -323,9 +375,11 @@
                 <div class="panel-body">
                     <div class="col-md-12">
 
-                        {!! Form::open(['route' => ['backend_catConstruct_store'],
+                        {!! Form::open(['route' => ['backend_catConstruct_update'],
                             'id'=> 'my-form', 'data-ajax' => 'true',
                             'class' => 'form-horizontal']) !!}
+
+                        {!! Form::hidden('id', $catConstruct->id) !!}
 
                         <div class="tabbable">
                             <ul id="myTab" class="nav nav-tabs">
@@ -344,7 +398,7 @@
                                         {!! Form::label('title', 'หัวข้อ', [
                                         'class' => 'col-md-3 control-label']) !!}
                                         <div class="col-md-8">
-                                            {!! Form::text('title', null,
+                                            {!! Form::text('title', $catConstruct->title,
                                             ['class' => 'form-control']) !!}
                                             <p class="help-block">
                                                 {{ $errors->first('title') }}
@@ -356,7 +410,7 @@
                                         {!! Form::label('subtitle', 'เนื้อหาย่อ', [
                                         'class' => 'col-md-3 control-label']) !!}
                                         <div class="col-md-8">
-                                            {!! Form::textarea('subtitle', null,[
+                                            {!! Form::textarea('subtitle', $catConstruct->subtitle,[
                                             'class' => 'form-control',
                                             'rows' => 3
                                             ]) !!}
@@ -365,42 +419,107 @@
                                             </p>
                                         </div>
                                     </div>
+
+                                    <?php
+                                        $for_type = null;
+                                        if($catConstruct->for_type != null && $catConstruct->for_type != "")
+                                        {
+                                            $for_type = unserialize($catConstruct->for_type);
+                                        }
+                                    ?>
+
                                     <div class="form-group">
                                         <label class="col-md-3 control-label">สำหรับหมวดหมู่</label>
                                         <div class="col-md-9">
                                             <div class="checkbox">
                                                 <label>
-                                                    <input type="checkbox" name="for_cat[]" value="1">{{ \App\Models\AllFunction::getShopForType(1) }}
+                                                    <input type="checkbox" name="for_cat[]" value="1"
+                                                            @if($for_type != null)
+                                                                @foreach($for_type as $val)
+                                                                    @if($val == "1")
+                                                                        checked
+                                                                    @endif
+                                                                @endforeach
+                                                            @endif
+                                                        >{{ \App\Models\AllFunction::getShopForType(1) }}
                                                 </label>
                                             </div>
                                             <div class="checkbox">
                                                 <label>
-                                                    <input type="checkbox" name="for_cat[]" value="2">{{ \App\Models\AllFunction::getShopForType(2) }}
+                                                    <input type="checkbox" name="for_cat[]" value="2"
+                                                        @if($for_type != null)
+                                                            @foreach($for_type as $val)
+                                                                @if($val == "2")
+                                                                    checked
+                                                                @endif
+                                                            @endforeach
+                                                        @endif
+                                                            >{{ \App\Models\AllFunction::getShopForType(2) }}
                                                 </label>
                                             </div>
                                             <div class="checkbox">
                                                 <label>
-                                                    <input type="checkbox" name="for_cat[]" value="3">{{ \App\Models\AllFunction::getShopForType(3) }}
+                                                    <input type="checkbox" name="for_cat[]" value="3"
+                                                        @if($for_type != null)
+                                                            @foreach($for_type as $val)
+                                                                @if($val == "3")
+                                                                    checked
+                                                                @endif
+                                                            @endforeach
+                                                        @endif
+                                                            >{{ \App\Models\AllFunction::getShopForType(3) }}
                                                 </label>
                                             </div>
                                             <div class="checkbox">
                                                 <label>
-                                                    <input type="checkbox" name="for_cat[]" value="4">{{ \App\Models\AllFunction::getShopForType(4) }}
+                                                    <input type="checkbox" name="for_cat[]" value="4"
+                                                        @if($for_type != null)
+                                                            @foreach($for_type as $val)
+                                                                @if($val == "4")
+                                                                    checked
+                                                                @endif
+                                                            @endforeach
+                                                        @endif
+                                                            >{{ \App\Models\AllFunction::getShopForType(4) }}
                                                 </label>
                                             </div>
                                             <div class="checkbox">
                                                 <label>
-                                                    <input type="checkbox" name="for_cat[]" value="5">{{ \App\Models\AllFunction::getShopForType(5) }}
+                                                    <input type="checkbox" name="for_cat[]" value="5"
+                                                        @if($for_type != null)
+                                                            @foreach($for_type as $val)
+                                                                @if($val == "5")
+                                                                    checked
+                                                                @endif
+                                                            @endforeach
+                                                        @endif
+                                                            >{{ \App\Models\AllFunction::getShopForType(5) }}
                                                 </label>
                                             </div>
                                             <div class="checkbox">
                                                 <label>
-                                                    <input type="checkbox" name="for_cat[]" value="6">{{ \App\Models\AllFunction::getShopForType(6) }}
+                                                    <input type="checkbox" name="for_cat[]" value="6"
+                                                        @if($for_type != null)
+                                                            @foreach($for_type as $val)
+                                                                @if($val == "6")
+                                                                    checked
+                                                                @endif
+                                                            @endforeach
+                                                        @endif
+                                                            >{{ \App\Models\AllFunction::getShopForType(6) }}
                                                 </label>
                                             </div>
                                             <div class="checkbox">
                                                 <label>
-                                                    <input type="checkbox" name="for_cat[]" value="7">{{ \App\Models\AllFunction::getShopForType(7) }}
+                                                    <input type="checkbox" name="for_cat[]" value="7"
+                                                        @if($for_type != null)
+                                                            @foreach($for_type as $val)
+                                                                @if($val == "7")
+                                                                    checked
+                                                                @endif
+                                                            @endforeach
+                                                        @endif
+                                                            >{{ \App\Models\AllFunction::getShopForType(7) }}
                                                 </label>
                                             </div>
                                         </div>
@@ -413,7 +532,11 @@
                                         {!! Form::label('brand_id', 'ชื่อร้านค้า', [
                                         'class' => 'col-md-3 control-label']) !!}
                                         <div class="col-md-6">
-                                            <select class="form-control" id="brand_id" name="brand_id"></select>
+                                            <select class="form-control" id="brand_id" name="brand_id">
+                                                @if($brand != null)
+                                                    <option class="brand-init" value="{{ $brand->id }}" selected>{{ $brand->brand_name }}</option>
+                                                @endif
+                                            </select>
                                         </div>
                                     </div>
 
@@ -421,7 +544,9 @@
                                         <div class="col-md-3"></div>
                                         <div class="col-md-6">
                                             <div class="thumbnail" style="width: 85px; height: 85px;">
-                                                <img id="img_brand" style="max-width: 75px; max-height: 75px;" />
+                                                <img id="img_brand" style="max-width: 75px; max-height: 75px;"
+                                                    src="{{ \App\Models\Brand::getPathLogo($brand->id) }}"
+                                                        />
                                             </div>
                                         </div>
                                     </div>
@@ -429,7 +554,7 @@
                                     <div class="form-group @if ($errors->has('telephone')) {{ "has-error" }} @endif">
                                         <label class="col-md-3 control-label">เบอร์โทรติดต่อ</label>
                                         <div class="col-md-6">
-                                            {!! Form::text('telephone', null,
+                                            {!! Form::text('telephone', $brand->telephone,
                                             ['id'=>'telephone', 'class' => 'form-control', 'readonly' => 'readonly']) !!}
                                             <p class="help-block">
                                                 {{ $errors->first('telephone') }}
@@ -439,7 +564,7 @@
                                     <div class="form-group @if ($errors->has('email')) {{ "has-error" }} @endif">
                                         <label class="col-md-3 control-label">อีเมล</label>
                                         <div class="col-md-6">
-                                            {!! Form::text('email', null,
+                                            {!! Form::text('email', $brand->email,
                                             ['id'=>'email', 'class' => 'form-control', 'readonly' => 'readonly']) !!}
                                             <p class="help-block">
                                                 {{ $errors->first('email') }}
@@ -450,13 +575,13 @@
                                         <label class="col-md-3 control-label">Facebook</label>
                                         <div class="col-md-6">
                                             <input type="text" class="form-control" id="facebook" name="facebook"
-                                                   placeholder="" value="{{Input::old('facebook')}}" readonly>
+                                                   placeholder="" value="{{ $brand->facebook }}" readonly>
                                         </div>
                                     </div>
                                     <div class="form-group @if ($errors->has('line')) {{ "has-error" }} @endif">
                                         <label class="col-md-3 control-label">LINE</label>
                                         <div class="col-md-6">
-                                            {!! Form::text('line', null,
+                                            {!! Form::text('line', $brand->line,
                                             ['id'=>'line', 'class' => 'form-control', 'readonly' => 'readonly']) !!}
                                             <p class="help-block">
                                                 {{ $errors->first('line') }}
@@ -466,7 +591,7 @@
                                     <div class="form-group @if ($errors->has('website')) {{ "has-error" }} @endif">
                                         <label class="col-md-3 control-label">เว็บไซต์</label>
                                         <div class="col-md-6">
-                                            {!! Form::text('website', null,
+                                            {!! Form::text('website', $catConstruct->website,
                                             ['id'=>'website', 'class' => 'form-control']) !!}
                                             <p class="help-block">
                                                 {{ $errors->first('website') }}
@@ -481,7 +606,7 @@
                                         <label class="col-md-3 control-label">จังหวัด</label>
                                         <div class="col-md-6">
                                             {!! Form::select('provid', [null=>'-- กรุณาเลือก --']
-                                            + $province->lists('name', 'provid'), Input::old('provid'),
+                                            + $province->lists('name', 'provid'), $catConstruct->provid,
                                             ['id' => 'province', 'class' => 'form-control', 'style' => 'min-width: 300px;']) !!}
                                             <p class="help-block">
                                                 {{ $errors->first('provid') }}
@@ -492,7 +617,7 @@
                                         <label class="col-md-3 control-label">อำเภอ / เขต</label>
                                         <div class="col-md-6">
                                             {!! Form::select('amphid', [null=>'-- กรุณาเลือก --']
-                                            + $amphoe->lists('name', 'amphid'), Input::old('amphid'),
+                                            + $province->lists('name', 'provid'), null,
                                             ['id' => 'amphoe', 'class' => 'form-control', 'style' => 'min-width: 300px;']) !!}
                                             <p class="help-block">
                                                 {{ $errors->first('amphid') }}
@@ -503,7 +628,7 @@
                                         <label class="col-md-3 control-label">ตำบล / แขวง</label>
                                         <div class="col-md-6">
                                             {!! Form::select('tambid', [null=>'-- กรุณาเลือก --']
-                                            + $tambon->lists('name', 'tambid'), Input::old('tambid'),
+                                            + $province->lists('name', 'provid'), null,
                                             ['id' => 'tambon', 'class' => 'form-control', 'style' => 'min-width: 300px;']) !!}
                                             <p class="help-block">
                                                 {{ $errors->first('tambid') }}
@@ -514,7 +639,7 @@
                                         <label class="col-md-3 control-label">ถนน</label>
                                         <div class="col-md-6">
                                             <input type="text" class="form-control" id="add_street" name="add_street"
-                                                   placeholder="" value="{{Input::old('add_street')}}">
+                                                   placeholder="" value="{{ $catConstruct->add_street }}">
                                             <p class="help-block">
                                                 {{ $errors->first('add_street') }}
                                             </p>
@@ -525,7 +650,7 @@
                                         <label class="col-md-3 control-label">ชั้น</label>
                                         <div class="col-md-6">
                                             <input type="text" class="form-control" id="add_floor" name="add_floor"
-                                                   placeholder="" value="{{Input::old('add_floor')}}">
+                                                   placeholder="" value="{{ $catConstruct->add_floor }}">
                                         </div>
                                     </div>
 
@@ -533,7 +658,7 @@
                                         <label class="col-md-3 control-label">ตึก/อาคาร</label>
                                         <div class="col-md-6">
                                             <input type="text" class="form-control" id="add_building" name="add_building"
-                                                   placeholder="" value="{{Input::old('add_building')}}">
+                                                   placeholder="" value="{{ $catConstruct->add_building }}">
                                         </div>
                                     </div>
 
@@ -541,7 +666,7 @@
                                         <label class="col-md-3 control-label">เลขที่</label>
                                         <div class="col-md-6">
                                             <input type="text" class="form-control" id="add_no" name="add_no"
-                                                   placeholder="" value="{{Input::old('add_no')}}">
+                                                   placeholder="" value="{{ $catConstruct->add_no }}">
                                         </div>
                                     </div>
 
@@ -556,7 +681,7 @@
                                     <div class="form-group">
                                         <label class="col-md-3 control-label">Latitude</label>
                                         <div class="col-md-6">
-                                            {!! Form::text('latitude', null,
+                                            {!! Form::text('latitude', $catConstruct->latitude,
                                             ['class' => 'form-control', 'id' => 'latitude',
                                             'readonly', 'required']) !!}
                                         </div>
@@ -564,7 +689,7 @@
                                     <div class="form-group">
                                         <label class="col-md-3 control-label">Longitude</label>
                                         <div class="col-md-6">
-                                            {!! Form::text('longitude', null,
+                                            {!! Form::text('longitude', $catConstruct->longitude,
                                             ['class' => 'form-control', 'id' => 'longitude',
                                             'readonly', 'required']) !!}
                                         </div>
@@ -572,7 +697,7 @@
                                     <div class="form-group">
                                         <label class="col-md-3 control-label">ลิงค์แผนที่</label>
                                         <div class="col-md-6">
-                                            {!! Form::text('map_url', null,
+                                            {!! Form::text('map_url', $catConstruct->map_url,
                                             ['class' => 'form-control', 'id' => 'map_url',
                                             'readonly', 'required']) !!}
                                         </div>
@@ -581,7 +706,7 @@
                                     <div class="form-group">
                                         <label class="col-md-3 control-label">วันเวลาเปิดบริการ</label>
                                         <div class="col-md-6">
-                                            {!! Form::textarea('service_day_time', null,
+                                            {!! Form::textarea('service_day_time', $catConstruct->service_day_time,
                                             ['id'=>'service_day_time', 'class' => 'form-control', 'rows'=> 3]) !!}
                                         </div>
                                     </div>
@@ -590,10 +715,18 @@
                                         <label class="col-md-3 control-label">บัตรเครดิต</label>
                                         <div class="col-md-6">
                                             <label class="radio-inline">
-                                                <input type="radio" name="credit_card[]" value="true"> มี
+                                                <input type="radio" name="credit_card[]" value="true"
+                                                    @if(isset($catConstruct->credit_card) && $catConstruct->credit_card == true)
+                                                        checked
+                                                    @endif
+                                                        > มี
                                             </label>
                                             <label class="radio-inline">
-                                                <input type="radio" name="credit_card[]" value="false"> ไม่มี
+                                                <input type="radio" name="credit_card[]" value="false"
+                                                    @if(isset($catConstruct->credit_card) && $catConstruct->credit_card == false)
+                                                        checked
+                                                    @endif
+                                                        > ไม่มี
                                             </label>
                                         </div>
                                     </div>
@@ -602,10 +735,18 @@
                                         <label class="col-md-3 control-label">ที่จอดรถ</label>
                                         <div class="col-md-6">
                                             <label class="radio-inline">
-                                                <input type="radio" name="parking[]" value="true"> มี
+                                                <input type="radio" name="parking[]" value="true"
+                                                    @if(isset($catConstruct->parking) && $catConstruct->parking == true)
+                                                        checked
+                                                    @endif
+                                                        > มี
                                             </label>
                                             <label class="radio-inline">
-                                                <input type="radio" name="parking[]" value="false"> ไม่มี
+                                                <input type="radio" name="parking[]" value="false"
+                                                    @if(isset($catConstruct->parking) && $catConstruct->parking == false)
+                                                        checked
+                                                    @endif
+                                                        > ไม่มี
                                             </label>
                                         </div>
                                     </div>
@@ -622,7 +763,7 @@
                                                     name="video_url"
                                                     class="form-control"
                                                     placeholder=""
-                                                    value="{{Input::old('video_url')}}">
+                                                    value="{{ $catConstruct->video_url }}">
                                             <p class="help-block">
                                                 {{ $errors->first('video_url') }}
                                             </p>
@@ -632,9 +773,9 @@
                                         <label for="tag" class="col-md-3 control-label">Tags</label>
                                         <div class="col-md-8">
                                             <select class="form-control" multiple="multiple" id="tag" name="tag[]">
-                                                @if(Input::old('tag') != null)
-                                                    @foreach(Input::old('tag') as $key=>$value)
-                                                        <option value="{{ $value }}" selected>{{ App\Models\TagSub::getTagSubName($value) }}</option>
+                                                @if($tag != null)
+                                                    @foreach($tag as $key=>$value)
+                                                        <option value="{{ $value->id }}" selected>{{ App\Models\TagSub::getTagSubName($value->id) }}</option>
                                                     @endforeach
                                                 @endif
                                             </select>
@@ -646,7 +787,7 @@
                                             <label class="checkbox-inline">
                                                 <input type="checkbox" name="vip" value="true"
                                                 <?php
-                                                        if (Input::old('vip') != null && Input::old('vip') == true) {
+                                                        if ($catConstruct->vip != null && $catConstruct->vip == true) {
                                                             echo "checked";
                                                         }
                                                         ?>>ตั้งค่ากระทู้ VIP

@@ -1,14 +1,10 @@
 <?php namespace App\Http\Controllers\Frontend;
 
+use App\Models\Brand;
 use App\Models\CatHomePic;
-use App\Models\Picture;
-use Config;
 use App\Http\Controllers\Controller;
-use Request;
 use Validator;
 use Gmaps;
-
-use App\Models\AllFunction;
 use App\Models\CatHome;
 use App\Models\CatHomePromotion;
 use App\Models\PicLayout;
@@ -17,26 +13,6 @@ use App\Models\Tag;
 use Input;
 use DB;
 use Redirect;
-use View;
-
-use App\Models\Project;
-use App\Models\ProjectAirportLink;
-use App\Models\ProjectBts;
-use App\Models\ProjectFacility;
-use App\Models\ProjectMrt;
-use App\Models\Tambon;
-use App\Models\Amphoe;
-use App\Models\Provinces;
-use App\Models\GeoRegion;
-use App\Models\Area;
-use App\Models\SubArea;
-use App\Models\ProjectRating;
-use App\Models\Facility;
-use App\Models\Bts;
-use App\Models\Mrt;
-use App\Models\AirportRailLink;
-use App\Models\Attachment;
-use App\User;
 
 
 class TownHomeCategoryController extends Controller {
@@ -339,7 +315,7 @@ class TownHomeCategoryController extends Controller {
     public function view($id)
     {
         $catHome = CatHome::find($id);
-        $attachment = Attachment::find($catHome->project_owner_logo);
+        $brand = Brand::find($catHome->brand_id);
 
         $fac = $catHome->projectFacility()->get();
         $bts = $catHome->projectBts()->get();
@@ -361,15 +337,7 @@ class TownHomeCategoryController extends Controller {
             [
                 'center' => $catHome->latitude.','.$catHome->longitude,
                 'zoom' => '12',
-                'scrollwheel' => false,
-                'onboundschanged' =>
-                    'if (!centreGot) {
-                var mapCentre = map.getCenter();
-                marker_0.setOptions({
-                    position: new google.maps.LatLng(mapCentre.lat(), mapCentre.lng())
-                });
-            }
-            centreGot = true;'
+                'scrollwheel' => false
             ];
 
         Gmaps::initialize($config);
@@ -379,18 +347,17 @@ class TownHomeCategoryController extends Controller {
                 'position' => $catHome->latitude.','.$catHome->longitude,
                 'draggable' => false,
                 'infowindow_content' =>
-                    '<div class="row" style="width: 100%;">'.
-                    '<div class="col-md-6">'.
-                    '<img src="'.$attachment->path.'"'.
-                    'alt="'.$attachment->filename.'" class=\'img-responsive\' '.
-                    'style="max-width: 100%;" />'.
+                    '<div style="width: 100%; padding-top: 20px; padding-bottom: 20px;">'.
+                    '<div style="width: 50%; float:left;">'.
+                    '<img src="'.Brand::getPathLogo($brand->id).'"'.
+                    'alt="" style="max-width: 90%; height: auto;" />'.
                     '</div>'.
-                    '<div class="col-md-6">'.
+                    '<div style="width: 50%; float:left;">'.
                     '<h5><a href="'.url('condo/view/').'/'.$catHome->id.'" target="_blank">'.$catHome->project_name.'</a></h5>'.
-                    '<p><strong>บริษัทเจ้าของโครงการ</strong> : '.$catHome->project_owner.'</p>'.
+                    '<p><strong>บริษัทเจ้าของโครงการ</strong> : '.$brand->brand_name.'</p>'.
                     '<p><strong>ที่ตั้งโครงการ</strong> : '.(\App\Models\CatHome::getFullPrjAddress($catHome->id)).'</p>'.
                     '<p><strong>ราคาเริ่มต้น</strong> : '.$catHome->sell_price.' &nbsp;&nbsp;บาท</p>'.
-                    '<p><strong>เบอร์ติดต่อ</strong> : '.$catHome->telephone.'</p>'.
+                    '<p><strong>เบอร์ติดต่อ</strong> : '.$brand->telephone.'</p>'.
                     '<p><strong>เว็บไซต์</strong> : '.$catHome->website.'</p>'.
                     '</div>'.
                     '</div>'
@@ -399,7 +366,7 @@ class TownHomeCategoryController extends Controller {
 
         $map = Gmaps::create_map();
 
-        return view('web.frontend.townhome.view')
+        return view('web.frontend.townhome_view')
             ->with('map',$map)
             ->with('catHome', $catHome)
             ->with('catHomePic', $catHomePic)
@@ -409,6 +376,7 @@ class TownHomeCategoryController extends Controller {
             ->with('apl', $apl)
             ->with('promotion', $promotion)
             ->with('tag', $tag)
-            ->with('pic',$pic);
+            ->with('pic',$pic)
+            ->with('brand', $brand);
     }
 }

@@ -174,7 +174,7 @@ Route::get('topic/list', [
 
 
 /*-------------------------------- Home -------------------------------*/
-Route::get('home/index', [
+Route::get('home', [
     'as' => 'home_index',
     'before' => 'frontend_auth',
     'uses' => 'Frontend\HomeCategoryController@index'
@@ -205,7 +205,7 @@ Route::get('home/view/{id}', [
 ]);
 
 /*-------------------------------- Condo -------------------------------*/
-Route::get('condo/index', [
+Route::get('condo', [
     'as' => 'condo_index',
     'before' => 'frontend_auth',
     'uses' => 'Frontend\CondoCategoryController@index'
@@ -236,7 +236,7 @@ Route::get('condo/view/{id}', [
 ]);
 
 /*-------------------------------- Townhome -------------------------------*/
-Route::get('townhome/index', [
+Route::get('townhome', [
     'as' => 'townhome_index',
     'before' => 'frontend_auth',
     'uses' => 'Frontend\TownHomeCategoryController@index'

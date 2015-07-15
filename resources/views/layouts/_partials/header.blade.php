@@ -11,9 +11,9 @@
         <li class="dropdown">
             <a href="#">โครงการบ้านใหม่</a>
             <ul class="sub-menu">
-                <li><a href="{{ url('review') }}">รีวิวทั้งหมด</a></li>
-                <li><a href="{{ url('preview') }}">พรีวิวโครงการใหม่</a></li>
-                <li><a href="#">ลงทะเบียนโครงการใหม่</a></li>
+                <li><a href="{{ url('home') }}">บ้านเดี่ยว</a></li>
+                <li><a href="{{ url('townhome') }}">ทาวน์โฮม</a></li>
+                <li><a href="{{ url('condo') }}">คอนโด</a></li>
             </ul>
         </li>
         <li class="dropdown">

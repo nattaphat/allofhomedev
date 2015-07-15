@@ -487,7 +487,7 @@
             @endif
 
             <div id="collapsible-panels" class="data-project">
-                <a href="#" class="head-data">รีวิวทำเลและการเดินทาง</a>
+                <a href="#" class="head-data active">รีวิวทำเลและการเดินทาง</a>
                 <div class="detail">
                     @for($i=3; $i<=10; $i++)
                         @if($catHomePic[$i] != null && count($catHomePic[$i]) > 0)
@@ -522,7 +522,7 @@
                     @endfor
                 </div>
 
-                <a href="#" class="head-data">รีวิวส่วนกลาง</a>
+                <a href="#" class="head-data active">รีวิวส่วนกลาง</a>
                 <div class="detail">
                     @for($i=11; $i<=18; $i++)
                         @if($catHomePic[$i] != null && count($catHomePic[$i]) > 0)
@@ -557,7 +557,7 @@
                     @endfor
                 </div>
 
-                <a href="#" class="head-data">รีวิวผังโครงการ</a>
+                <a href="#" class="head-data active">รีวิวผังโครงการ</a>
                 <div class="detail">
                     @for($i=19; $i<=19; $i++)
                         @if($catHomePic[$i] != null && count($catHomePic[$i]) > 0)
@@ -592,7 +592,7 @@
                     @endfor
                 </div>
 
-                <a href="#" class="head-data">รีวิวบ้านตัวอย่าง</a>
+                <a href="#" class="head-data active">รีวิวบ้านตัวอย่าง</a>
                 <div class="detail">
                     @for($i=20; $i<=31; $i++)
                         @if($catHomePic[$i] != null && count($catHomePic[$i]) > 0)
@@ -627,7 +627,7 @@
                     @endfor
                 </div>
 
-                <a href="#" class="head-data">รีวิวบ้านรับมอบ</a>
+                <a href="#" class="head-data active">รีวิวบ้านรับมอบ</a>
                 <div class="detail">
                     @for($i=32; $i<=43; $i++)
                         @if($catHomePic[$i] != null && count($catHomePic[$i]) > 0)

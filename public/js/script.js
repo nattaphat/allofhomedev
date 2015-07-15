@@ -1,6 +1,6 @@
 $( document ).ready(function() {
 
-    $('#collapsible-panels .detail').slideUp();
+    $('#collapsible-panels .detail').slideDown();
 
     picture_preview_slider();
     toggle_preview();
@@ -43,6 +43,12 @@ $( document ).ready(function() {
             $(this).slideUp(200);
         }
     );
+
+    $('.p-subtitle').dotdotdot({
+        ellipsis: '...', /* The HTML to add as ellipsis. */
+        wrap : 'word', /* How to cut off the text/html: 'word'/'letter'/'children' */
+        watch : true /* Whether to update the ellipsis: true/'window' */
+    });
 
 });
 

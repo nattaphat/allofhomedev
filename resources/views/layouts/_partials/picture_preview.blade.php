@@ -20,12 +20,28 @@
     <div class="pic-project">
         @if($pic != null && count($pic) > 0)
         <div class="preview">
-            <div id="slider" class="flexslider" style="margin: 0 0 0 0px; background: #5fc4c2; border: 2px solid #5fc4c2;">
+            <div id="slider" class="flexslider" style="margin: 0 0 0 0px;
+            /*background: #5fc4c2; */
+            /*border: 2px solid #5fc4c2;*/
+            border: none;
+            box-shadow: none;
+            ">
                 <ul class="slides">
                     <?php $k = 0; ?>
                     @foreach($pic as $p)
-                        <li>
-                            <img src="{{ $p->file_path }}" alt="{{ $p->file_name }}" width="642" height="402" />
+                        <li style="height: 402px;">
+                            <table style="height:100%;
+                               width: 100%;
+                               margin: 0;
+                               padding: 0;
+                               border: none;">
+                                <tr>
+                                    <td style="vertical-align: middle;
+                                       text-align: center;">
+                                        <img src="{{ $p->file_path }}" alt="{{ $p->file_name }}" />
+                                    </td>
+                                </tr>
+                            </table>
                         </li>
                         <?php $k++; if($k == 8){ break; } ?>
                     @endforeach
@@ -45,14 +61,26 @@
         </div>
         <div class="clear"></div>
         @endif
-        <div class="text-preview">
+        <div class="text-preview" style="margin-top: 20px;">
             @if(isset($catHome) && $catHome != null)
-                <h3>{{ $catHome->title }}</h3>
-                <p style="text-indent: 20px;">{{ $catHome->subtitle }}</p>
+                <h3 style="line-height: 28px; letter-spacing: 1.25px;">{{ $catHome->title }}</h3>
+                <p style="
+                    line-height: 23px;
+                    text-indent: 30px;
+                    text-align: justify;
+                    letter-spacing: 0.8px;
+                    margin-top: 10px;
+                    ">{{ $catHome->subtitle }}</p>
             @endif
             @if(isset($catConstruct) && $catConstruct != null)
-                <h3>{{ $catConstruct->title }}</h3>
-                <p style="text-indent: 20px;">{{ $catConstruct->subtitle }}</p>
+                <h3 style="line-height: 28px; letter-spacing: 1.25px;">{{ $catConstruct->title }}</h3>
+                <p style="
+                    line-height: 23px;
+                    text-indent: 30px;
+                    text-align: justify;
+                    letter-spacing: 0.8px;
+                    margin-top: 10px;
+                    ">{{ $catConstruct->subtitle }}</p>
             @endif
         </div>
     </div>

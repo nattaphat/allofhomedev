@@ -537,7 +537,7 @@ nav ul li:nth-child(6), nav ul li:nth-child(6) ul li {
 .boxright{
 	width:875px;
 	float:left;
-	margin-left:25px; 
+	margin-left:25px;
 }
 .boxright .hilight-content .left{
 	border-bottom:3px solid #f2f2f2;
@@ -629,7 +629,8 @@ nav ul li:nth-child(6), nav ul li:nth-child(6) ul li {
 	font-size:32px;
 	font-weight:normal;
 	margin-top:25px;
-    line-height: 25px
+    line-height: 28px;
+    letter-spacing: 1.25px;
 }
 .update{
 	font-size:18px;
@@ -781,6 +782,8 @@ nav ul li:nth-child(6), nav ul li:nth-child(6) ul li {
 	font-size:32px;
 	font-weight: normal;
 	color:#5cc5c1;
+    line-height: 28px;
+    letter-spacing: 1.25px;
 }
 .boxConversation{	margin:30px 0 0; font-size:22px; }
 .boxConversation h2{
@@ -863,7 +866,9 @@ nav ul li:nth-child(6), nav ul li:nth-child(6) ul li {
 }
 .boxJob .list-job ul li .info:nth-child(even){ margin-left:60px;}
 .h-review-inner{	margin:0 0 20px !important; }
-.pic-project{ background:#5fc4c2; }
+.pic-project{
+    /*background:#5fc4c2; */
+}
 .pic-project .preview{
 	float:left;
 	width:642px;
@@ -1119,20 +1124,23 @@ nav ul li:nth-child(6), nav ul li:nth-child(6) ul li {
 .data-project .description
 {
     text-indent: 50px;
-    margin-top: 5px;
+    margin-top: 10px;
     margin-left: 20px;
     margin-right: 20px;
+    letter-spacing: 0.8px;
+    line-height: 23px;
 }
 .data-project img
 {
     border: 1px solid lightgray;
-    max-width: 85%;
     height: auto;
     display: block;
     margin-left: auto;
     margin-right: auto;
     margin-top: 15px;
     margin-top: 15px;
+    max-width: 700px;
+    max-height: 450px;
 }
 
 .boxContactProject, .boxTag{
@@ -1278,7 +1286,7 @@ nav ul li:nth-child(6), nav ul li:nth-child(6) ul li {
 }
 
 #collapsible-panels{
-    font-size:20px;
+    font-size:22px;
     margin-bottom:2px;
     margin-top: 40px;
 }
@@ -1313,4 +1321,21 @@ nav ul li:nth-child(6), nav ul li:nth-child(6) ul li {
 #collapsible-panels .detail {
     display:block;
     padding:20px;
+}
+
+.p-subtitle
+{
+    line-height: 23px;
+    height:69px;
+    overflow: hidden;
+    text-indent: 30px;
+}
+
+.flexslider .slides img {
+    display: block;
+    width: auto;
+    max-width: 642px;
+    max-height: 402px;
+    margin-left: auto;
+    margin-right: auto;
 }

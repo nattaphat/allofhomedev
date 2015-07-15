@@ -25,9 +25,9 @@
             <li>
                 <a href="{{ URL::to('backend/article') }}"> บทความและข่าวสาร</a>
             </li>
-            <li>
-                <a href="{{ URL::to('backend/review') }}"> รีวิวทั้งหมด</a>
-            </li>
+            {{--<li>--}}
+                {{--<a href="{{ URL::to('backend/review') }}"> รีวิวทั้งหมด</a>--}}
+            {{--</li>--}}
             <li>
                 <a href="{{ URL::to('backend/idea') }}"> ไอเดียทั้งหมด</a>
             </li>
@@ -40,12 +40,12 @@
             <li>
                 <a href="{{ URL::to('backend/banner') }}"> ข้อมูล Banner</a>
             </li>
-            <li>
-                <a href="{{ URL::to('backend/category') }}"> ประกาศหมวดหมู่</a>
-            </li>
-            <li style="display:none;">
-                <a href="{{ URL::to('backend/businessShop') }}" onclick="alert('under construction'); return false;"> ประเภทธุรกิจร้านค้า</a>
-            </li>
+            {{--<li>--}}
+                {{--<a href="{{ URL::to('backend/category') }}"> ประกาศหมวดหมู่</a>--}}
+            {{--</li>--}}
+            {{--<li style="display:none;">--}}
+                {{--<a href="{{ URL::to('backend/businessShop') }}" onclick="alert('under construction'); return false;"> ประเภทธุรกิจร้านค้า</a>--}}
+            {{--</li>--}}
             <li>
                 <a href="{{ URL::to('backend/facility') }}"> สิ่งอำนวยความสะดวก</a>
             </li>

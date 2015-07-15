@@ -97,7 +97,7 @@ Form::macro('dropzoneRegion', function($id) {
                                     <img data-dz-thumbnail />
                                 </div>
                                 <div class="col-md-9">
-                                    <textarea name="pics_description'.$id.'[]" rows="5" style="width: 100%;"></textarea>
+                                    <textarea class="pics_description" name="pics_description'.$id.'[]" rows="5" style="width: 100%;"></textarea>
                                 </div>
                             </div>
                             <div class="row">
