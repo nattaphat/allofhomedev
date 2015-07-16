@@ -43,7 +43,7 @@
             </ul>
         </li>
         <li class="nodropdown">
-            <a href="#">บทความ / ไอเดีย</a>
+            <a href="{{ url('article_idea') }}">บทความ / ไอเดีย</a>
         </li>
         <li class="login nodropdown">
             <a href="#" class="login">เข้าสู่ระบบ</a>

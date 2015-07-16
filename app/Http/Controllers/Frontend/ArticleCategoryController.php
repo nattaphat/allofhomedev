@@ -131,4 +131,49 @@ class ArticleCategoryController extends Controller {
         return view('web.frontend.article.view')
             ->with('cat',$cat);
     }
+
+    public function article_idea_index()
+    {
+        $catArticle = null;
+        try{
+            $catArticle = DB::table('cat_article as ch')
+                ->join(DB::raw('
+                    (
+                        select distinct pictureable_id, pictureable_type from picture
+                        where pictureable_type = \'App\\Models\\CatArticle\'
+                    ) pic
+                '), function($join){
+                    $join->on( 'ch.id', '=', 'pic.pictureable_id');
+                })
+                ->orderBy('ch.created_at', 'desc')
+                ->paginate(15);
+        }
+        catch(\Exception $e)
+        {
+
+        }
+
+        $catIdea = null;
+        try{
+            $catIdea = DB::table('cat_idea as ch')
+                ->join(DB::raw('
+                    (
+                        select distinct pictureable_id, pictureable_type from picture
+                        where pictureable_type = \'App\\Models\\CatIdea\'
+                    ) pic
+                '), function($join){
+                    $join->on( 'ch.id', '=', 'pic.pictureable_id');
+                })
+                ->orderBy('ch.created_at', 'desc')
+                ->paginate(15);
+        }
+        catch(\Exception $e)
+        {
+
+        }
+
+        return view('web.frontend.article_idea_index')
+            ->with('catArticle', $catArticle)
+            ->with('catIdea', $catIdea);
+    }
 }

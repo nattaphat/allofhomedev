@@ -1459,3 +1459,16 @@ Route::get('apartment/{id}', [
     'before' => 'frontend_auth',
     'uses' => 'Frontend\ShopCategoryController@apartment_show'
 ]);
+
+/*-------------------------------- บทความ / ไอเดีย -------------------------------*/
+Route::get('article_idea', [
+    'as' => 'article_idea',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\ArticleCategoryController@article_idea_index'
+]);
+
+Route::get('article_idea/{id}', [
+    'as' => 'article_idea/show',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\ArticleCategoryController@article_idea_show'
+]);
