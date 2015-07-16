@@ -847,7 +847,7 @@
                                             <select class="form-control" multiple="multiple" id="tag" name="tag[]">
                                                 @if($tag != null)
                                                     @foreach($tag as $key=>$value)
-                                                        <option value="{{ $value->id }}" selected>{{ App\Models\TagSub::getTagSubName($value->id) }}</option>
+                                                        {{ dd($value) }}
                                                     @endforeach
                                                 @endif
                                             </select>
