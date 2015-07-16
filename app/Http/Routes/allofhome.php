@@ -1187,3 +1187,275 @@ Route::get('constructor/{id}', [
     'before' => 'frontend_auth',
     'uses' => 'Frontend\ConstructorController@show'
 ]);
+
+/*-------------------------------- ร้านค้าต่างๆ -------------------------------*/
+Route::get('shop', [
+    'as' => 'shop',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\ShopCategoryController@shop_index'
+]);
+
+Route::get('shop/{id}', [
+    'as' => 'shop/show',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\ShopCategoryController@shop_show'
+]);
+
+/*-------------------------------- บริการจัดสวน -------------------------------*/
+Route::get('garden', [
+    'as' => 'garden',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\ShopCategoryController@garden_index'
+]);
+
+Route::get('garden/create', [
+    'as' => 'garden/create',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\ShopCategoryController@garden_create'
+]);
+
+Route::post('garden/store', [
+    'as' => 'garden/store',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\ShopCategoryController@garden_store'
+]);
+
+Route::get('garden/edit/{id}', [
+    'as' => 'garden/edit',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\ShopCategoryController@garden_edit'
+]);
+
+Route::post('garden/update', [
+    'as' => 'garden/update',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\ShopCategoryController@garden_update'
+]);
+
+Route::get('garden/{id}', [
+    'as' => 'garden/show',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\ShopCategoryController@garden_show'
+]);
+
+/*-------------------------------- บริการทำความสะอาด -------------------------------*/
+Route::get('clean', [
+    'as' => 'clean',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\ShopCategoryController@clean_index'
+]);
+
+Route::get('clean/create', [
+    'as' => 'clean/create',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\ShopCategoryController@clean_create'
+]);
+
+Route::post('clean/store', [
+    'as' => 'clean/store',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\ShopCategoryController@clean_store'
+]);
+
+Route::get('clean/edit/{id}', [
+    'as' => 'clean/edit',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\ShopCategoryController@clean_edit'
+]);
+
+Route::post('clean/update', [
+    'as' => 'clean/update',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\ShopCategoryController@clean_update'
+]);
+
+Route::get('clean/{id}', [
+    'as' => 'clean/show',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\ShopCategoryController@clean_show'
+]);
+
+/*-------------------------------- ออกแบบภายใน ภายนอก -------------------------------*/
+Route::get('interior', [
+    'as' => 'interior',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\ShopCategoryController@interior_index'
+]);
+
+Route::get('interior/create', [
+    'as' => 'interior/create',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\ShopCategoryController@interior_create'
+]);
+
+Route::post('interior/store', [
+    'as' => 'interior/store',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\ShopCategoryController@interior_store'
+]);
+
+Route::get('interior/edit/{id}', [
+    'as' => 'interior/edit',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\ShopCategoryController@interior_edit'
+]);
+
+Route::post('interior/update', [
+    'as' => 'interior/update',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\ShopCategoryController@interior_update'
+]);
+
+Route::get('interior/{id}', [
+    'as' => 'interior/show',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\ShopCategoryController@interior_show'
+]);
+
+/*-------------------------------- ที่ดิน -------------------------------*/
+Route::get('land', [
+    'as' => 'land',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\ShopCategoryController@land_index'
+]);
+
+Route::get('land/create', [
+    'as' => 'land/create',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\ShopCategoryController@land_create'
+]);
+
+Route::post('land/store', [
+    'as' => 'land/store',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\ShopCategoryController@land_store'
+]);
+
+Route::get('land/edit/{id}', [
+    'as' => 'land/edit',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\ShopCategoryController@land_edit'
+]);
+
+Route::post('land/update', [
+    'as' => 'land/update',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\ShopCategoryController@land_update'
+]);
+
+Route::get('land/{id}', [
+    'as' => 'land/show',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\ShopCategoryController@land_show'
+]);
+
+/*-------------------------------- ที่อยู่อาศัยมือสอง -------------------------------*/
+Route::get('secondhand', [
+    'as' => 'secondhand',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\ShopCategoryController@secondhand_index'
+]);
+
+Route::get('secondhand/create', [
+    'as' => 'secondhand/create',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\ShopCategoryController@secondhand_create'
+]);
+
+Route::post('secondhand/store', [
+    'as' => 'secondhand/store',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\ShopCategoryController@secondhand_store'
+]);
+
+Route::get('secondhand/edit/{id}', [
+    'as' => 'secondhand/edit',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\ShopCategoryController@secondhand_edit'
+]);
+
+Route::post('secondhand/update', [
+    'as' => 'secondhand/update',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\ShopCategoryController@secondhand_update'
+]);
+
+Route::get('secondhand/{id}', [
+    'as' => 'secondhand/show',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\ShopCategoryController@secondhand_show'
+]);
+
+/*-------------------------------- ปล่อยเช่า -------------------------------*/
+Route::get('rent', [
+    'as' => 'rent',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\ShopCategoryController@rent_index'
+]);
+
+Route::get('rent/create', [
+    'as' => 'rent/create',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\ShopCategoryController@rent_create'
+]);
+
+Route::post('rent/store', [
+    'as' => 'rent/store',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\ShopCategoryController@rent_store'
+]);
+
+Route::get('rent/edit/{id}', [
+    'as' => 'rent/edit',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\ShopCategoryController@rent_edit'
+]);
+
+Route::post('rent/update', [
+    'as' => 'rent/update',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\ShopCategoryController@rent_update'
+]);
+
+Route::get('rent/{id}', [
+    'as' => 'rent/show',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\ShopCategoryController@rent_show'
+]);
+
+/*-------------------------------- อพาร์ทเม้นต์ -------------------------------*/
+Route::get('apartment', [
+    'as' => 'apartment',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\ShopCategoryController@apartment_index'
+]);
+
+Route::get('apartment/create', [
+    'as' => 'apartment/create',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\ShopCategoryController@apartment_create'
+]);
+
+Route::post('apartment/store', [
+    'as' => 'apartment/store',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\ShopCategoryController@apartment_store'
+]);
+
+Route::get('apartment/edit/{id}', [
+    'as' => 'apartment/edit',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\ShopCategoryController@apartment_edit'
+]);
+
+Route::post('apartment/update', [
+    'as' => 'apartment/update',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\ShopCategoryController@apartment_update'
+]);
+
+Route::get('apartment/{id}', [
+    'as' => 'apartment/show',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\ShopCategoryController@apartment_show'
+]);

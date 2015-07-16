@@ -340,6 +340,18 @@ class AllFunction {
             case "7":
                 $ret = "ออกแบบภายใน/ภายนอก";
                 break;
+            case "8":
+                $ret = "ที่ดิน";
+                break;
+            case "9":
+                $ret = "ที่อยู่อาศัยมือสอง";
+                break;
+            case "10":
+                $ret = "ปล่อยเช่า";
+                break;
+            case "11":
+                $ret = "อพาร์ทเม้นท์";
+                break;
         }
         return $ret;
     }

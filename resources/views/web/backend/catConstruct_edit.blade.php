@@ -524,6 +524,58 @@
                                                             >{{ \App\Models\AllFunction::getShopForType(7) }}
                                                 </label>
                                             </div>
+                                            <div class="checkbox">
+                                                <label>
+                                                    <input type="checkbox" name="for_cat[]" value="8"
+                                                    @if($for_type != null)
+                                                        @foreach($for_type as $val)
+                                                            @if($val == "8")
+                                                           checked
+                                                                    @endif
+                                                                @endforeach
+                                                            @endif
+                                                            >{{ \App\Models\AllFunction::getShopForType(8) }}
+                                                </label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label>
+                                                    <input type="checkbox" name="for_cat[]" value="9"
+                                                    @if($for_type != null)
+                                                        @foreach($for_type as $val)
+                                                            @if($val == "9")
+                                                           checked
+                                                                    @endif
+                                                                @endforeach
+                                                            @endif
+                                                            >{{ \App\Models\AllFunction::getShopForType(9) }}
+                                                </label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label>
+                                                    <input type="checkbox" name="for_cat[]" value="10"
+                                                    @if($for_type != null)
+                                                        @foreach($for_type as $val)
+                                                            @if($val == "10")
+                                                           checked
+                                                                    @endif
+                                                                @endforeach
+                                                            @endif
+                                                            >{{ \App\Models\AllFunction::getShopForType(10) }}
+                                                </label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label>
+                                                    <input type="checkbox" name="for_cat[]" value="11"
+                                                    @if($for_type != null)
+                                                        @foreach($for_type as $val)
+                                                            @if($val == "11")
+                                                           checked
+                                                                    @endif
+                                                                @endforeach
+                                                            @endif
+                                                            >{{ \App\Models\AllFunction::getShopForType(11) }}
+                                                </label>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="bs-callout bs-callout-success" style="margin-top: 50px;">

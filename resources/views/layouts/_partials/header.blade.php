@@ -27,19 +27,19 @@
         <li class="dropdown">
             <a href="#">ร้านค้าและบริการ</a>
             <ul class="sub-menu">
-                <li><a href="#">ร้านค้าต่างๆ</a></li>
-                <li><a href="#">บริการจัดสวน</a></li>
-                <li><a href="#">บริการทำความสะอาด</a></li>
-                <li><a href="#">ออกแบบภายใน / ภายนอก</a></li>
+                <li><a href="{{ url('shop') }}">ร้านค้าต่างๆ</a></li>
+                <li><a href="{{ url('garden') }}">บริการจัดสวน</a></li>
+                <li><a href="{{ url('clean') }}">บริการทำความสะอาด</a></li>
+                <li><a href="{{ url('interior') }}">ออกแบบภายใน / ภายนอก</a></li>
             </ul>
         </li>
         <li class="dropdown">
             <a href="#">ซื้อ / ขาย / เช่า</a>
             <ul class="sub-menu">
-                <li><a href="#">ที่ดิน</a></li>
-                <li><a href="#">ที่อยู่อาศัยมือสอง</a></li>
-                <li><a href="#">ปล่อยเช่า</a></li>
-                <li><a href="#">อพาร์ทเม้นท์</a></li>
+                <li><a href="{{ url('land') }}">ที่ดิน</a></li>
+                <li><a href="{{ url('secondhand') }}">ที่อยู่อาศัยมือสอง</a></li>
+                <li><a href="{{ url('rent') }}">ปล่อยเช่า</a></li>
+                <li><a href="{{ url('apartment') }}">อพาร์ทเม้นท์</a></li>
             </ul>
         </li>
         <li class="nodropdown">

@@ -405,6 +405,26 @@
                                                     <input type="checkbox" name="for_cat[]" value="7">{{ \App\Models\AllFunction::getShopForType(7) }}
                                                 </label>
                                             </div>
+                                            <div class="checkbox">
+                                                <label>
+                                                    <input type="checkbox" name="for_cat[]" value="8">{{ \App\Models\AllFunction::getShopForType(8) }}
+                                                </label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label>
+                                                    <input type="checkbox" name="for_cat[]" value="9">{{ \App\Models\AllFunction::getShopForType(9) }}
+                                                </label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label>
+                                                    <input type="checkbox" name="for_cat[]" value="10">{{ \App\Models\AllFunction::getShopForType(10) }}
+                                                </label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label>
+                                                    <input type="checkbox" name="for_cat[]" value="11">{{ \App\Models\AllFunction::getShopForType(11) }}
+                                                </label>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="bs-callout bs-callout-success" style="margin-top: 50px;">
