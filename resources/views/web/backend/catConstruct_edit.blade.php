@@ -844,12 +844,15 @@
                                     <div class="form-group">
                                         <label for="tag" class="col-md-3 control-label">Tags</label>
                                         <div class="col-md-8">
+                                            @if($tag != null)
+                                                @foreach($tag as $key=>$value)
+                                                    {{ dd($value) }}
+                                                    <option value="{{ $value->id }}" selected>{{ App\Models\TagSub::getTagSubName($value->id) }}</option>
+                                                @endforeach
+                                            @endif
+
                                             <select class="form-control" multiple="multiple" id="tag" name="tag[]">
-                                                @if($tag != null)
-                                                    @foreach($tag as $key=>$value)
-                                                        {{ dd($value) }}
-                                                    @endforeach
-                                                @endif
+
                                             </select>
                                         </div>
                                     </div>
