@@ -2,6 +2,14 @@
 
 @section('jshome')
     {!! $map['js'] !!}
+
+    <style type="text/css">
+        img{
+            max-width: 100px;
+            max-height: 100px;
+        }
+    </style>
+
 @stop
 
 @section('jsbody')
