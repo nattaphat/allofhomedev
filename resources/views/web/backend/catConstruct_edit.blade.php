@@ -314,8 +314,9 @@
                 {
                     @if($pic != null)
                         @foreach($pic as $p)
+
                             var mockFile = { name: '{{ $p->file_name }}', size: '{{ $p->file_size }}', accepted: true,
-                                id: id{{ $i }}++, description: '{{ $p->description }}' };
+                                id: id{{ $i }}++, description: '{{ str_replace("\r\n", '##@@##', $p->description) }}' };
                             this.emit("addedfile", mockFile);
                             this.emit("thumbnail", mockFile, '{{ $p->thumbnail }}');
                             this.emit("complete", mockFile);
@@ -353,8 +354,13 @@
                 complete: function(file) {
                     if (file.description != null) {
                         if (file.previewElement) {
+
+                            var str= file.description;
+                            var regex = new RegExp('##@@##', 'g');
+                            str = str.replace(regex, '\r\n');
+
                             var textbox = file.previewElement.children[0].children[0].children[0].children[1].children[0];
-                            textbox.value = file.description;
+                            textbox.value = str;
                         }
                     }
                 }
