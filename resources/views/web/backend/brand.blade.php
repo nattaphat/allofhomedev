@@ -1,5 +1,14 @@
 @extends('layouts.main_backend')
 
+@section('jshome')
+    <style type="text/css">
+        img{
+            max-width: 80px;
+            max-height: 80px;
+        }
+    </style>
+@stop
+
 @section('jsbody')
     <script type="text/javascript">
         $(document).ready(function(){
@@ -102,7 +111,7 @@
                                         ?>
                                         <div class="thumbnail" style="width: 85px; margin: 0px;">
                                             <img src="{{ $attachment->path }}" alt="{{ $attachment->filename }}"
-                                                 width="80px" height="auto" />
+                                                  />
                                         </div>
                                         <?php
                                         }
