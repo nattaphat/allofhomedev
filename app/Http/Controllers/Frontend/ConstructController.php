@@ -130,28 +130,32 @@ class ConstructController extends Controller {
 
         }
 
-        dd($catVip);
+//        dd($catVip);
 
         // #### General (Not include vip)
         $cat = null;
         if($catVip != null && count($catVip) > 0)
         {
+            foreach($catVip as $item)
+            {
+                $vip[] = $item->id;
+            }
+
             $cat = CatConstruct::where('status','=','1')
-                ->where('for_type','like','\'%"1"%\'')
-                ->whereNotIn('book_price', [100,200])->get();
+                ->whereRaw('for_type like \'%"1"%\'')
+                ->whereNotIn('id', $vip)
+                ->orderBy('created_at', 'desc')
+                ->paginate(15);
+
+//            dd($cat);
         }
         else
         {
-
+            $cat = CatConstruct::where('status','=','1')
+                ->whereRaw('for_type like \'%"1"%\'')
+                ->orderBy('created_at', 'desc')
+                ->paginate(15);
         }
-
-
-
-
-
-
-
-
 
         $config =
             [
@@ -162,9 +166,52 @@ class ConstructController extends Controller {
 
         Gmaps::initialize($config);
 
+        // ### VIP
         if($catVip != null && count($catVip) > 0)
         {
             foreach($catVip as $item)
+            {
+                if($item->latitude != null && $item->latitude != "" &&
+                    $item->longitude != null && $item->longitude != "")
+                {
+                    $path_logo = "";
+                    $brand = null;
+                    if($item->brand_id != null && $item->brand_id != "")
+                    {
+                        $path_logo = Brand::getPathLogo($item->brand_id);
+                        $brand = Brand::find($item->brand_id);
+                    }
+
+                    $marker =
+                        [
+                            'position' => $item->latitude.','.$item->longitude,
+                            'draggable' => false,
+                            'infowindow_content' =>
+                                '<div class="row" style="width: 100%; margin-top: 5px; margin-bottom: 20px;">'.
+                                '<div class="col-md-6">'.
+                                '<img src="'.$path_logo.'"'.
+                                'alt="" class=\'img-responsive\' '.
+                                'style="max-width: 100%;" />'.
+                                '</div>'.
+                                '<div class="col-md-6">'.
+                                '<h5><a href="'.url('construct/').'/'.$item->id.'" target="_blank">'.$item->title.'</a></h5>'.
+                                '<p><strong>บริษัทเจ้าของโครงการ</strong> : '.($brand == null? "" : $brand->brand_name).'</p>'.
+                                '<p><strong>ที่ตั้งโครงการ</strong> : '.(\App\Models\CatConstruct::getFullPrjAddress($item->id)).'</p>'.
+                                '<p><strong>ราคาเริ่มต้น</strong> : '.$item->sell_price.' &nbsp;&nbsp;บาท</p>'.
+                                '<p><strong>เบอร์ติดต่อ</strong> : '.(($brand == null? "" : $brand->telephone)).'</p>'.
+                                '<p><strong>เว็บไซต์</strong> : '.$item->website.'</p>'.
+                                '</div>'.
+                                '</div>'
+                        ];
+                    Gmaps::add_marker($marker);
+                }
+            }
+        }
+
+        // General
+        if($cat != null && count($cat) > 0)
+        {
+            foreach($cat as $item)
             {
                 if($item->latitude != null && $item->latitude != "" &&
                     $item->longitude != null && $item->longitude != "")
@@ -207,6 +254,7 @@ class ConstructController extends Controller {
 
         return view('web.frontend.construct_index')
             ->with('catVip', $catVip)
+            ->with('cat', $cat)
             ->with('map', $map);
 	}
 
