@@ -30,12 +30,24 @@
             });
 
             <!-- Save Button -->
-            $('#btn_save').click(function(){
-                if($('#latitude').val() == "")
-                {
-                    alert("กรุณากำหนดที่ตั้งร้านค้าบนแผนที่");
-                    return false;
-                }
+//            $('#btn_save').click(function(){
+//                if($('#latitude').val() == "")
+//                {
+//                    alert("กรุณากำหนดที่ตั้งร้านค้าบนแผนที่");
+//                    return false;
+//                }
+//            });
+
+            $('#btnClearLat').click(function(){
+                $('#latitude').val("");
+            });
+
+            $('#btnClearLong').click(function(){
+                $('#longitude').val("");
+            });
+
+            $('#btnClearMapUrl').click(function(){
+                $('#map_url').val("");
             });
 
             <!-- Brand -->
@@ -578,28 +590,51 @@
                                     <div class="form-group">
                                         <label class="col-md-3 control-label">Latitude</label>
                                         <div class="col-md-6">
-                                            {!! Form::text('latitude', null,
-                                            ['class' => 'form-control', 'id' => 'latitude',
-                                            'readonly', 'required']) !!}
+                                            <div class="row col-md-12">
+                                                <div class="input-group">
+                                                    {!! Form::text('latitude', null,
+                                                    ['class' => 'form-control', 'id' => 'latitude',
+                                                    'readonly', 'required']) !!}
+                                                    <span class="input-group-btn">
+                                                        <button class="btn btn-default" type="button" id="btnClearLat"><i class="fa fa-trash-o"></i>
+                                                        </button>
+                                                    </span>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-md-3 control-label">Longitude</label>
                                         <div class="col-md-6">
-                                            {!! Form::text('longitude', null,
-                                            ['class' => 'form-control', 'id' => 'longitude',
-                                            'readonly', 'required']) !!}
+                                            <div class="row col-md-12">
+                                                <div class="input-group">
+                                                    {!! Form::text('longitude', null,
+                                                    ['class' => 'form-control', 'id' => 'longitude',
+                                                    'readonly', 'required']) !!}
+                                                    <span class="input-group-btn">
+                                                        <button class="btn btn-default" type="button" id="btnClearLong"><i class="fa fa-trash-o"></i>
+                                                        </button>
+                                                    </span>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-md-3 control-label">ลิงค์แผนที่</label>
                                         <div class="col-md-6">
-                                            {!! Form::text('map_url', null,
-                                            ['class' => 'form-control', 'id' => 'map_url',
-                                            'readonly', 'required']) !!}
+                                            <div class="row col-md-12">
+                                                <div class="input-group">
+                                                    {!! Form::text('map_url', null,
+                                                    ['class' => 'form-control', 'id' => 'map_url',
+                                                    'readonly', 'required']) !!}
+                                                    <span class="input-group-btn">
+                                                        <button class="btn btn-default" type="button" id="btnClearMapUrl"><i class="fa fa-trash-o"></i>
+                                                        </button>
+                                                    </span>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-
                                     <div class="form-group">
                                         <label class="col-md-3 control-label">วันเวลาเปิดบริการ</label>
                                         <div class="col-md-6">
@@ -642,7 +677,7 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label class="col-md-3 control-label">รายละเอียดราคาขาย</label>
+                                        <label class="col-md-3 control-label">รายละเอียด</label>
                                         <div class="col-md-8">
                                             {!! Form::textarea('sell_price_detail', null,
                                             ['class' => 'form-control',

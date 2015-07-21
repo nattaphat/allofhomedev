@@ -79,9 +79,6 @@ class BackendCatConstructController extends Controller {
 
 //        dd($input);
 
-        $provine = Provinces::find($input['provid']);
-        $region_id = $provine->region_id;
-
         $catConstruct = new catConstruct();
         $catConstruct->user_id = intval($input['user_id']);
         $catConstruct->title = $input['title'];
@@ -91,10 +88,20 @@ class BackendCatConstructController extends Controller {
         if(Input::has('website'))
             $catConstruct->website = $input['website'];
 
-        $catConstruct->region_id = $region_id;
-        $catConstruct->provid = $input['provid'];
-        $catConstruct->amphid = $input['amphid'];
-        $catConstruct->tambid = $input['tambid'];
+        if(Input::has('provid'))
+        {
+            $provine = Provinces::find($input['provid']);
+            $region_id = $provine->region_id;
+
+            $catConstruct->region_id = $region_id;
+            $catConstruct->provid = $input['provid'];
+        }
+
+        if(Input::has('amphid'))
+            $catConstruct->amphid = $input['amphid'];
+
+        if(Input::has('tambid'))
+            $catConstruct->tambid = $input['tambid'];
 
         if(Input::has('add_street'))
             $catConstruct->add_street = $input['add_street'];
@@ -105,9 +112,12 @@ class BackendCatConstructController extends Controller {
         if(Input::has('add_floor'))
             $catConstruct->add_floor = $input['add_floor'];
 
-        $catConstruct->latitude = $input['latitude'];
-        $catConstruct->longitude = $input['longitude'];
-        $catConstruct->map_url = $input['map_url'];
+        if(Input::has('latitude'))
+            $catConstruct->latitude = $input['latitude'];
+        if(Input::has('longitude'))
+            $catConstruct->longitude = $input['longitude'];
+        if(Input::has('map_url'))
+            $catConstruct->map_url = $input['map_url'];
 
         if(Input::has('service_day_time'))
             $catConstruct->service_day_time = $input['service_day_time'];
@@ -117,6 +127,7 @@ class BackendCatConstructController extends Controller {
             $catConstruct->parking = $input['parking'][0];
         if(Input::has('video_url'))
             $catConstruct->video_url = $input['video_url'];
+
         $catConstruct->status = 1;  // 0 = รอพิจารณาอนุมัติ, 1 = อนุมัติผลแล้ว
         $catConstruct->vip = (Input::has('vip'))? true : false;
         $catConstruct->num_view = 0;
@@ -184,24 +195,46 @@ class BackendCatConstructController extends Controller {
         $tag = $catConstruct->tag()->get();
         $pic = $catConstruct->picture()->get();
 
-        $config =
-            [
-                'center' => $catConstruct->latitude.','.$catConstruct->longitude,
-                'zoom' => '7',
-                'panControl' => false,
-                'zoomControl' => false,
-                'scaleControl' => true
-            ];
+        $config = null;
+
+        if($catConstruct->latitude != null && $catConstruct->longitude != null
+            && $catConstruct->latitude != "" && $catConstruct->longitude != "")
+        {
+            $config =
+                [
+                    'center' => $catConstruct->latitude.','.$catConstruct->longitude,
+                    'zoom' => '7',
+                    'panControl' => false,
+                    'zoomControl' => false,
+                    'scaleControl' => true
+                ];
+        }
+        else
+        {
+            $config =
+                [
+                    'center' => '13.7646393,100.5378279',
+                    'zoom' => '7',
+                    'panControl' => false,
+                    'zoomControl' => false,
+                    'scaleControl' => true
+                ];
+        }
 
         Gmaps::initialize($config);
 
-        $marker =
-            [
-                'position' => $catConstruct->latitude.','.$catConstruct->longitude,
-                'draggable' => true,
-                'title' => "เลื่อนเพื่อเลือกตำแหน่ง",
-                'ondragend' =>
-                    '
+        $marker = null;
+
+        if($catConstruct->latitude != null && $catConstruct->longitude != null
+            && $catConstruct->latitude != "" && $catConstruct->longitude != "")
+        {
+            $marker =
+                [
+                    'position' => $catConstruct->latitude.','.$catConstruct->longitude,
+                    'draggable' => true,
+                    'title' => "เลื่อนเพื่อเลือกตำแหน่ง",
+                    'ondragend' =>
+                        '
                     var latitude = document.getElementById("latitude");
                     var longitude = document.getElementById("longitude");
                     var map_url = document.getElementById("map_url");
@@ -210,7 +243,28 @@ class BackendCatConstructController extends Controller {
                     longitude.value = event.latLng.lng();
                     map_url.value = "http://maps.google.com/maps?z=13&q=" + event.latLng.lat() + "," + event.latLng.lng();
                     '
-            ];
+                ];
+        }
+        else
+        {
+            $marker =
+                [
+                    'position' => '13.7646393,100.5378279',
+                    'draggable' => true,
+                    'title' => "เลื่อนเพื่อเลือกตำแหน่ง",
+                    'ondragend' =>
+                        '
+                    var latitude = document.getElementById("latitude");
+                    var longitude = document.getElementById("longitude");
+                    var map_url = document.getElementById("map_url");
+
+                    latitude.value = event.latLng.lat();
+                    longitude.value = event.latLng.lng();
+                    map_url.value = "http://maps.google.com/maps?z=13&q=" + event.latLng.lat() + "," + event.latLng.lng();
+                    '
+                ];
+        }
+
         Gmaps::add_marker($marker);
 
         $map = Gmaps::create_map();
@@ -230,9 +284,6 @@ class BackendCatConstructController extends Controller {
 
 //        dd($input);
 
-        $provine = Provinces::find($input['provid']);
-        $region_id = $provine->region_id;
-
         $catConstruct = CatConstruct::find($input['id']);
         $catConstruct->user_id = intval($input['user_id']);
         $catConstruct->title = $input['title'];
@@ -244,10 +295,29 @@ class BackendCatConstructController extends Controller {
         else
             $catConstruct->website = null;
 
-        $catConstruct->region_id = $region_id;
-        $catConstruct->provid = $input['provid'];
-        $catConstruct->amphid = $input['amphid'];
-        $catConstruct->tambid = $input['tambid'];
+        if(Input::has('provid'))
+        {
+            $provine = Provinces::find($input['provid']);
+            $region_id = $provine->region_id;
+
+            $catConstruct->region_id = $region_id;
+            $catConstruct->provid = $input['provid'];
+        }
+        else
+        {
+            $catConstruct->region_id = null;
+            $catConstruct->provid = null;
+        }
+
+        if(Input::has('amphid') && $input['amphid'] != "-- กรุณาเลือก --")
+            $catConstruct->amphid = $input['amphid'];
+        else
+            $catConstruct->amphid = null;
+
+        if(Input::has('tambid') && $input['tambid'] != "-- กรุณาเลือก --")
+            $catConstruct->tambid = $input['tambid'];
+        else
+            $catConstruct->tambid = null;
 
         if(Input::has('add_street'))
             $catConstruct->add_street = $input['add_street'];
@@ -269,9 +339,20 @@ class BackendCatConstructController extends Controller {
         else
             $catConstruct->add_floor = null;
 
-        $catConstruct->latitude = $input['latitude'];
-        $catConstruct->longitude = $input['longitude'];
-        $catConstruct->map_url = $input['map_url'];
+        if(Input::has('latitude'))
+            $catConstruct->latitude = $input['latitude'];
+        else
+            $catConstruct->latitude = null;
+
+        if(Input::has('longitude'))
+            $catConstruct->longitude = $input['longitude'];
+        else
+            $catConstruct->longitude = null;
+
+        if(Input::has('map_url'))
+            $catConstruct->map_url = $input['map_url'];
+        else
+            $catConstruct->map_url = null;
 
         if(Input::has('service_day_time'))
             $catConstruct->service_day_time = $input['service_day_time'];
@@ -304,8 +385,7 @@ class BackendCatConstructController extends Controller {
         if(Input::has('sell_price_detail'))
             $catConstruct->sell_price_detail = $input['sell_price_detail'];
         else
-            $catConstruct->sell_price_detail;
-
+            $catConstruct->sell_price_detail = "";
 
         $catConstruct->update();
 

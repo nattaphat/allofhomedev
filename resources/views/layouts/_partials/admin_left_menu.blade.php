@@ -37,8 +37,19 @@
             <li>
                 <a href="{{ URL::to('backend/user') }}"> ผู้ใช้งานระบบ</a>
             </li>
-            <li>
-                <a href="{{ URL::to('backend/banner') }}"> ข้อมูล Banner</a>
+            <li style="display:none;">
+                <a href="#"> ข้อมูล Banner<span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li>
+                        <a href="#">Type A (ส่วนหัวบนสุด)</a>
+                    </li>
+                    <li>
+                        <a href="#">Type B (ส่วนหัว Slider)</a>
+                    </li>
+                    <li>
+                        <a href="{{ URL::to('backend/airportLink') }}">Type C (ลงทะเบียนโครงการใหม่)</a>
+                    </li>
+                </ul>
             </li>
             {{--<li>--}}
                 {{--<a href="{{ URL::to('backend/category') }}"> ประกาศหมวดหมู่</a>--}}
@@ -84,7 +95,7 @@
                         <a href="{{ URL::to('backend/tag') }}">หมวดหมู่ Tag</a>
                     </li>
                     <li>
-                        <a href="{{ URL::to('backend/subTag') }}">ข้อมูล Tag</a>
+                        <a href="{{ URL::to('backend/subTag') }}">รายการ Tag</a>
                     </li>
                 </ul>
             </li>

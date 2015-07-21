@@ -51,7 +51,7 @@
 @section('content')
     <div class="row">
         <div class="col-lg-12">
-            <h3 class="page-header">ข้อมูล Tag</h3>
+            <h3 class="page-header">รายการ Tag</h3>
         </div>
     </div>
 
@@ -60,7 +60,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <a href="{{ URL::to('backend/subTag_new') }}">
-                        <i class="fa fa-plus-square"></i> เพิ่มข้อมูล Tag
+                        <i class="fa fa-plus-square"></i> เพิ่มรายการ Tag
                     </a>
                 </div>
                 <!-- /.panel-heading -->

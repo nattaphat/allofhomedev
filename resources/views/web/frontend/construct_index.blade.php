@@ -62,62 +62,11 @@
 
         <div class="list-review">
             <ul>
-                @if($cat != null)
-                    @foreach($cat as $item)
+                @if($catVip != null)
+                    @foreach($catVip as $item)
                         <li>
-                            @if($item->vip)
-                                <p class="tag-vip"><img src="{{ asset('images/blulet/vip.png') }}" alt="" /></p>
-                            @endif
+                            <p class="tag-vip"><img src="{{ asset('images/blulet/vip.png') }}" alt="" /></p>
                             <div class="left">
-                                <div class="showpic">
-                                    <?php
-                                    if($item->id == null)
-                                    {
-                                        $pics = \App\Models\Picture::where('pictureable_id', '=', $item->pictureable_id)
-                                                ->where('pictureable_type', '=', 'App\\Models\\CatConstruct')
-                                                ->get();
-                                    }
-                                    else
-                                    {
-                                        $pics = \App\Models\Picture::where('pictureable_id', '=', $item->id)
-                                                ->where('pictureable_type', '=', 'App\\Models\\CatConstruct')
-                                                ->get();
-                                    }
-                                    ?>
-                                    @if(count($pics) >= 5)
-                                        <p class="pic-hilight">
-                                            <a href="{{ url("construct/")."/".$item->id }}">
-                                                <img src="{{ $pics[0]->file_path }}" alt="{{ $pics[0]->file_name }}"
-                                                     style="width: 256px; height: 156px;" />
-                                            </a>
-                                        </p>
-                                        <div class="other">
-                                            <img src="{{ $pics[1]->file_path }}" alt="{{ $pics[1]->file_name }}"
-                                                 style="width: 80px; height: 70px;" />
-                                            <img src="{{ $pics[2]->file_path }}" alt="{{ $pics[2]->file_name }}"
-                                                 style="width: 80px; height: 70px;" />
-                                            <img src="{{ $pics[3]->file_path }}" alt="{{ $pics[3]->file_name }}"
-                                                 style="width: 80px; height: 70px;" />
-                                            <img src="{{ $pics[4]->file_path }}" alt="{{ $pics[4]->file_name }}"
-                                                 style="width: 80px; height: 70px;" />
-                                        </div>
-                                    @else
-                                        <p class="pic-hilight">
-                                            <a href="{{ url("construct/")."/".$item->id }}">
-                                                <img src="{{ $pics[0]->file_path }}" alt="{{ $pics[0]->file_name }}"
-                                                     style="width: 256px; height: 156px;" />
-                                            </a>
-                                        <div class="other">
-                                            <?php $count = count($pics); ?>
-                                            @for($i=1; $i<$count; $i++)
-                                                <img src="{{ $pics[$i]->file_path }}" alt="{{ $pics[$i]->file_name }}"
-                                                     style="width: 80px; height: 70px;" />
-                                            @endfor
-                                        </div>
-                                        </p>
-                                    @endif
-                                    <div class="clear"></div>
-                                </div>
                                 <a href="{{ url("construct/")."/".$item->id }}"><h3>{{ $item->title }}</h3></a>
                                 <p class="update">วันที่ลงประกาศ  {{ \App\Models\AllFunction::getDateTimeThai($item->created_at) }}</p>
                                 <p class="p-subtitle">{{ $item->subtitle }}</p>
@@ -151,12 +100,14 @@
                                 </div>
                             </div>
 
-                                <div class="clear"></div>
+                            <div class="clear"></div>
                         </li>
                     @endforeach
                 @endif
             </ul>
-            {!! str_replace('/?', '?', $cat->render()) !!}
+
+
+
         </div>
     </div>
 
