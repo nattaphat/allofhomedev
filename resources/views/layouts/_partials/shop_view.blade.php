@@ -91,13 +91,16 @@
     </div>
 </div>
 
-<div class="boxMap">
-    <h2>พิกัดที่ตั้งร้านค้า :</h2>
-    <div class="map-google">
-        {!! $map['html'] !!}
+@if($catConstruct->latitude != null && $catConstruct->latitude != ""
+    && $catConstruct->longitude != null && $catConstruct->longitude != "")
+    <div class="boxMap">
+        <h2>พิกัดที่ตั้งร้านค้า :</h2>
+        <div class="map-google">
+            {!! $map['html'] !!}
+        </div>
+        <a href="#" class="btn-searchggm">ค้าหาเส้นทางจาก Google Map</a>
     </div>
-    <a href="#" class="btn-searchggm">ค้าหาเส้นทางจาก Google Map</a>
-</div>
+@endif
 
 <div class="boxVdoReview">
     @if($catConstruct->video_url != null && $catConstruct->video_url != "")
