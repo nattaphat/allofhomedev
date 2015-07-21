@@ -318,7 +318,7 @@
                             var mockFile = { name: '{{ $p->file_name }}', size: '{{ $p->file_size }}', accepted: true,
                                 id: id{{ $i }}++, description: '{{ str_replace("\r\n", '##@@##', $p->description) }}' };
                             this.emit("addedfile", mockFile);
-                            this.emit("thumbnail", mockFile, '{{ $p->thumbnail }}');
+                            this.emit("thumbnail", mockFile, '{{ $p->file_path }}');
                             this.emit("complete", mockFile);
 
                             var input_hidden = document.createElement('input');
