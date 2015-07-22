@@ -411,9 +411,9 @@ class BackendCatConstructController extends Controller {
                 $pic->file_size = $filesize[$j];
                 $pic->file_type = $filetype[$j];
                 $pic->description = $description[$j] == null? "" : $description[$j];
-                $thumbnail = AllFunction::createThumbnailFix($filepath[$j], 80, 70);
+                //$thumbnail = AllFunction::createThumbnailFix($filepath[$j], 80, 70);
 
-                $pic->thumbnail = $thumbnail;
+                //$pic->thumbnail = $thumbnail;
 
                 $catConstruct->picture()->save($pic);
             }
