@@ -1467,8 +1467,14 @@ Route::get('article_idea', [
     'uses' => 'Frontend\ArticleCategoryController@article_idea_index'
 ]);
 
-Route::get('article_idea/{id}', [
-    'as' => 'article_idea/show',
+Route::get('article/{id}', [
+    'as' => 'article/show',
     'before' => 'frontend_auth',
-    'uses' => 'Frontend\ArticleCategoryController@article_idea_show'
+    'uses' => 'Frontend\ArticleCategoryController@article_show'
+]);
+
+Route::get('idea/{id}', [
+    'as' => 'idea/show',
+    'before' => 'frontend_auth',
+    'uses' => 'Frontend\ArticleCategoryController@idea_show'
 ]);

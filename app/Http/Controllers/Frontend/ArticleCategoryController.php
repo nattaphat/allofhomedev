@@ -1,6 +1,7 @@
 <?php namespace App\Http\Controllers\Frontend;
 
 use App\Models\CatArticle;
+use App\Models\CatIdea;
 use App\Models\Picture;
 use App\Models\Tag;
 use App\Http\Controllers\Controller;
@@ -134,46 +135,181 @@ class ArticleCategoryController extends Controller {
 
     public function article_idea_index()
     {
+//        $catArticle = null;
+//        try{
+//            $catArticle = DB::table('cat_article as ch')
+//                ->join(DB::raw('
+//                    (
+//                        select distinct pictureable_id, pictureable_type from picture
+//                        where pictureable_type = \'App\\Models\\CatArticle\'
+//                    ) pic
+//                '), function($join){
+//                    $join->on( 'ch.id', '=', 'pic.pictureable_id');
+//                })
+//                ->orderBy('ch.created_at', 'desc')
+//                ->paginate(15);
+//        }
+//        catch(\Exception $e)
+//        {
+//
+//        }
+//
+//        $catIdea = null;
+//        try{
+//            $catIdea = DB::table('cat_idea as ch')
+//                ->join(DB::raw('
+//                    (
+//                        select distinct pictureable_id, pictureable_type from picture
+//                        where pictureable_type = \'App\\Models\\CatIdea\'
+//                    ) pic
+//                '), function($join){
+//                    $join->on( 'ch.id', '=', 'pic.pictureable_id');
+//                })
+//                ->orderBy('ch.created_at', 'desc')
+//                ->paginate(15);
+//        }
+//        catch(\Exception $e)
+//        {
+//
+//        }
+//
+//        return view('web.frontend.article_idea_index')
+//            ->with('catArticle', $catArticle)
+//            ->with('catIdea', $catIdea);
+
+        // ############## Ariticle ################ //
+        // #### VIP
+        $catArticleVip = null;
+        try{
+            $catArticleVip = DB::table('cat_article as ch')
+                ->join(DB::raw('
+                (
+                    select id
+                      from cat_article
+                      where visible = true
+                      and suggest = true
+                      ORDER BY random() limit 5
+                ) as vip'), function ($join){
+                    $join->on( 'ch.id', '=', 'vip.id');
+                })
+                ->select('ch.*')
+                ->orderByRaw('random()')
+                ->get();
+        }
+        catch(\Exception $e)
+        {
+
+        }
+
+//        dd($catArticleVip);
+
+        // #### General (Not include vip)
         $catArticle = null;
-        try{
-            $catArticle = DB::table('cat_article as ch')
-                ->join(DB::raw('
-                    (
-                        select distinct pictureable_id, pictureable_type from picture
-                        where pictureable_type = \'App\\Models\\CatArticle\'
-                    ) pic
-                '), function($join){
-                    $join->on( 'ch.id', '=', 'pic.pictureable_id');
-                })
-                ->orderBy('ch.created_at', 'desc')
+        if($catArticleVip != null && count($catArticleVip) > 0)
+        {
+            foreach($catArticleVip as $item)
+            {
+                $vip[] = $item->id;
+            }
+
+            $catArticle = CatArticle::where('visible','=','true')
+                ->whereNotIn('id', $vip)
+                ->orderBy('created_at', 'desc')
                 ->paginate(15);
+        }
+        else
+        {
+            $catArticle = CatArticle::where('visible','=','true')
+                ->orderBy('created_at', 'desc')
+                ->paginate(15);
+        }
+
+//        dd($catArticle);
+
+
+        // ############## Idea ################ //
+        // #### VIP
+        $catIdeaVip = null;
+        try{
+            $catIdeaVip = DB::table('cat_idea as ch')
+                ->join(DB::raw('
+                (
+                    select id
+                      from cat_idea
+                      where visible = true
+                      and suggest = true
+                      ORDER BY random() limit 5
+                ) as vip'), function ($join){
+                    $join->on( 'ch.id', '=', 'vip.id');
+                })
+                ->select('ch.*')
+                ->orderByRaw('random()')
+                ->get();
         }
         catch(\Exception $e)
         {
 
         }
 
+//        dd($catIdeaVip);
+
+        // #### General (Not include vip)
         $catIdea = null;
-        try{
-            $catIdea = DB::table('cat_idea as ch')
-                ->join(DB::raw('
-                    (
-                        select distinct pictureable_id, pictureable_type from picture
-                        where pictureable_type = \'App\\Models\\CatIdea\'
-                    ) pic
-                '), function($join){
-                    $join->on( 'ch.id', '=', 'pic.pictureable_id');
-                })
-                ->orderBy('ch.created_at', 'desc')
+        if($catIdeaVip != null && count($catIdeaVip) > 0)
+        {
+            foreach($catIdeaVip as $item)
+            {
+                $vip[] = $item->id;
+            }
+
+            $catIdea = CatIdea::where('visible','=','true')
+                ->whereNotIn('id', $vip)
+                ->orderBy('created_at', 'desc')
                 ->paginate(15);
         }
-        catch(\Exception $e)
+        else
         {
-
+            $catIdea = CatIdea::where('visible','=','true')
+                ->orderBy('created_at', 'desc')
+                ->paginate(15);
         }
+
+//        dd($catArticle);
 
         return view('web.frontend.article_idea_index')
+            ->with('catArticleVip', $catArticleVip)
             ->with('catArticle', $catArticle)
+            ->with('catIdeaVip', $catIdeaVip)
             ->with('catIdea', $catIdea);
+
     }
+
+    public function article_show($id)
+    {
+        $catArticle = CatArticle::find($id);
+
+        $tag = $catArticle->tag()->get();
+        $pic = $catArticle->picture()->get();
+
+        return view('web.frontend.article_view')
+            ->with('catArticle', $catArticle)
+            ->with('tag', $tag)
+            ->with('pic',$pic);
+    }
+
+    public function idea_show($id)
+    {
+        $catIdea = CatIdea::find($id);
+
+//        dd($catIdea);
+
+        $tag = $catIdea->tag()->get();
+        $pic = $catIdea->picture()->get();
+
+        return view('web.frontend.idea_view')
+            ->with('catIdea', $catIdea)
+            ->with('tag', $tag)
+            ->with('pic',$pic);
+    }
+
 }
