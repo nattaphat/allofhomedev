@@ -28,6 +28,8 @@
                                     <a href="{{ url('article')."/".$item->id }}">
                                     <img src="{{ $pics[0]->file_path }}" alt="{{ $pics[0]->file_name }}"
                                          style="width: 250px; height: 150px;" /></a>
+                                @else
+                                    &nbsp;
                                 @endif
                             </p>
                             <div class="text">
@@ -52,6 +54,8 @@
                                     <a href="{{ url('article')."/".$item->id }}">
                                     <img src="{{ $pics[0]->file_path }}" alt="{{ $pics[0]->file_name }}"
                                          style="width: 250px; height: 150px;" /></a>
+                                @else
+                                    &nbsp;
                                 @endif
                             </p>
                             <div class="text">
@@ -90,6 +94,8 @@
                                     <a href="{{ url('idea')."/".$item->id }}">
                                     <img src="{{ $pics[0]->file_path }}" alt="{{ $pics[0]->file_name }}"
                                          style="width: 250px; height: 150px;" /></a>
+                                @else
+                                    &nbsp;
                                 @endif
                             </p>
                             <div class="text">
@@ -114,6 +120,8 @@
                                     <a href="{{ url('idea')."/".$item->id }}">
                                     <img src="{{ $pics[0]->file_path }}" alt="{{ $pics[0]->file_name }}"
                                          style="width: 250px; height: 150px;" /></a>
+                                @else
+                                    &nbsp;
                                 @endif
                             </p>
                             <div class="text">

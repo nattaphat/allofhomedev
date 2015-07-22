@@ -100,19 +100,108 @@ class AllofhomeController extends Controller {
 
         }
 
+//        $catArticle = null;
+//        try{
+//            $catArticle = DB::table('cat_article as ch')
+//                ->join(DB::raw('
+//                    (
+//                        select distinct pictureable_id, pictureable_type from picture
+//                        where pictureable_type = \'App\\Models\\CatArticle\'
+//                    ) pic
+//                '), function($join){
+//                    $join->on( 'ch.id', '=', 'pic.pictureable_id');
+//                })
+//                ->orderBy('ch.created_at', 'desc')
+//                ->take(5)
+//                ->get();
+//        }
+//        catch(\Exception $e)
+//        {
+//
+//        }
+//
+//        $catIdea = null;
+//        try{
+//            $catIdea = DB::table('cat_idea as ch')
+//                ->join(DB::raw('
+//                    (
+//                        select distinct pictureable_id, pictureable_type from picture
+//                        where pictureable_type = \'App\\Models\\CatIdea\'
+//                    ) pic
+//                '), function($join){
+//                    $join->on( 'ch.id', '=', 'pic.pictureable_id');
+//                })
+//                ->orderBy('ch.created_at', 'desc')
+//                ->take(5)
+//                ->get();
+//        }
+//        catch(\Exception $e)
+//        {
+//
+//        }
+
+        // ############## Ariticle ################ //
+        // #### VIP
+        $catArticleVip = null;
+        try{
+            $catArticleVip = DB::table('cat_article as ch')
+                ->join(DB::raw('
+                (
+                    select id
+                      from cat_article
+                      where visible = true
+                      and suggest = true
+                      ORDER BY random() limit 5
+                ) as vip'), function ($join){
+                    $join->on( 'ch.id', '=', 'vip.id');
+                })
+                ->select('ch.*')
+                ->orderByRaw('random()')
+                ->get();
+        }
+        catch(\Exception $e)
+        {
+
+        }
+
+        // #### General (Not include vip)
         $catArticle = null;
+        if($catArticleVip != null && count($catArticleVip) > 0)
+        {
+            foreach($catArticleVip as $item)
+            {
+                $vip[] = $item->id;
+            }
+
+            $catArticle = CatArticle::where('visible','=','true')
+                ->whereNotIn('id', $vip)
+                ->orderBy('created_at', 'desc')
+                ->paginate(15);
+        }
+        else
+        {
+            $catArticle = CatArticle::where('visible','=','true')
+                ->orderBy('created_at', 'desc')
+                ->paginate(15);
+        }
+
+        // ############## Idea ################ //
+        // #### VIP
+        $catIdeaVip = null;
         try{
-            $catArticle = DB::table('cat_article as ch')
+            $catIdeaVip = DB::table('cat_idea as ch')
                 ->join(DB::raw('
-                    (
-                        select distinct pictureable_id, pictureable_type from picture
-                        where pictureable_type = \'App\\Models\\CatArticle\'
-                    ) pic
-                '), function($join){
-                    $join->on( 'ch.id', '=', 'pic.pictureable_id');
+                (
+                    select id
+                      from cat_idea
+                      where visible = true
+                      and suggest = true
+                      ORDER BY random() limit 5
+                ) as vip'), function ($join){
+                    $join->on( 'ch.id', '=', 'vip.id');
                 })
-                ->orderBy('ch.created_at', 'desc')
-                ->take(5)
+                ->select('ch.*')
+                ->orderByRaw('random()')
                 ->get();
         }
         catch(\Exception $e)
@@ -120,29 +209,32 @@ class AllofhomeController extends Controller {
 
         }
 
+        // #### General (Not include vip)
         $catIdea = null;
-        try{
-            $catIdea = DB::table('cat_idea as ch')
-                ->join(DB::raw('
-                    (
-                        select distinct pictureable_id, pictureable_type from picture
-                        where pictureable_type = \'App\\Models\\CatIdea\'
-                    ) pic
-                '), function($join){
-                    $join->on( 'ch.id', '=', 'pic.pictureable_id');
-                })
-                ->orderBy('ch.created_at', 'desc')
-                ->take(5)
-                ->get();
-        }
-        catch(\Exception $e)
+        if($catIdeaVip != null && count($catIdeaVip) > 0)
         {
+            foreach($catIdeaVip as $item)
+            {
+                $vip[] = $item->id;
+            }
 
+            $catIdea = CatIdea::where('visible','=','true')
+                ->whereNotIn('id', $vip)
+                ->orderBy('created_at', 'desc')
+                ->paginate(15);
+        }
+        else
+        {
+            $catIdea = CatIdea::where('visible','=','true')
+                ->orderBy('created_at', 'desc')
+                ->paginate(15);
         }
 
         return view('web.frontend.index')
             ->with('catHome', $catHome)
+            ->with('catArticleVip', $catArticleVip)
             ->with('catArticle', $catArticle)
+            ->with('catIdeaVip', $catIdeaVip)
             ->with('catIdea', $catIdea);
     }
 
