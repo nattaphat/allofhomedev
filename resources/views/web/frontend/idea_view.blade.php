@@ -35,7 +35,7 @@
             top: -15px;
         }
 
-        .detail p{
+        .other_detail p{
             text-indent: 50px;
             margin-top: 10px;
             margin-left: 20px;
@@ -176,7 +176,7 @@
         @endif
 
         @if($catIdea->other_detail != null && $catIdea->other_detail != "")
-            <div>
+            <div class="other_detail">
                 {!! $catIdea->other_detail !!}
             </div><br>
         @endif
