@@ -13,7 +13,7 @@
 
     <!-- Laravel Javascript Validation -->
     <script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script>
-    {!! JsValidator::formRequest('App\Http\Requests\ReviewRequest', '#my-form'); !!}
+    {!! JsValidator::formRequest('App\Http\Requests\ArticleRequest', '#my-form'); !!}
 
     <!-- Tiny MCE -->
     <script src={{ asset('js/lib/tinymce/js/tinymce/tinymce.min.js') }}></script>
@@ -168,6 +168,7 @@
         previewNode.id = "";
         var previewTemplate = previewNode.parentNode.innerHTML;
         previewNode.parentNode.removeChild(previewNode);
+        var id = 0;
 
         var myDropzone = new Dropzone("#dZUpload", {
             url: '{{ URL("post/upload") }}',
@@ -180,6 +181,7 @@
                 formData.append("_token", $('[name=_token]').val());
             },
             success: function (file, response) {
+                file.id = id++;
 
                 var filename = file.name;
                 var filetype = file.type;
@@ -189,24 +191,28 @@
                 debugger;
 
                 var input_hidden = document.createElement('input');
+                input_hidden.setAttribute('id', 'pics_filename_id_' + file.id);
                 input_hidden.setAttribute('name', 'pics_filename[]');
                 input_hidden.setAttribute('type', 'hidden');
                 input_hidden.setAttribute('value', filename);
                 document.forms[0].appendChild(input_hidden);
 
                 var input_hidden = document.createElement('input');
+                input_hidden.setAttribute('id', 'pics_filetype_id_' + file.id);
                 input_hidden.setAttribute('name', 'pics_filetype[]');
                 input_hidden.setAttribute('type', 'hidden');
                 input_hidden.setAttribute('value', filetype);
                 document.forms[0].appendChild(input_hidden);
 
                 var input_hidden = document.createElement('input');
+                input_hidden.setAttribute('id', 'pics_filesize_id_' + file.id);
                 input_hidden.setAttribute('name', 'pics_filesize[]');
                 input_hidden.setAttribute('type', 'hidden');
                 input_hidden.setAttribute('value', filesize);
                 document.forms[0].appendChild(input_hidden);
 
                 var input_hidden = document.createElement('input');
+                input_hidden.setAttribute('id', 'pics_filepath_id_' + file.id);
                 input_hidden.setAttribute('name', 'pics_filepath[]');
                 input_hidden.setAttribute('type', 'hidden');
                 input_hidden.setAttribute('value', filepath);
@@ -220,17 +226,12 @@
             previewsContainer: "#previews"
         });
 
-        myDropzone.on('removedfile', function(file)
-        {
-            debugger;
-        });
-
-        <!-- Starrr Rating -->
-        $('.starrr').on('starrr:change', function(e, value){
-            if(value == undefined)
-                value = 0;
-
-            $('#rating_score').val(value);
+        myDropzone.on("removedfile", function(file){
+            var id = file.id;
+            $('#pics_filename_id_'+id).remove();
+            $('#pics_filetype_id_'+id).remove();
+            $('#pics_filesize_id_'+id).remove();
+            $('#pics_filepath_id_'+id).remove();
         });
 
     </script>
@@ -329,19 +330,19 @@
                             </div>
                         </div>
 
-                        @if(\Auth::getUser()->role == '1')
-                            <div class="form-group">
-                                {!! Form::label('visible[]', 'สถานะ', ['class' => 'col-md-2 control-label']) !!}
-                                <div class="col-md-8">
-                                    <label class="radio-inline">
-                                        <input type="radio" name="visible[]" value="1"> แสดงบนเว็บไซต์
-                                    </label>
-                                    <label class="radio-inline">
-                                        <input type="radio" name="visible[]" value="0" checked> ซ่อน
-                                    </label>
-                                </div>
-                            </div>
-                        @endif
+                        {{--@if(\Auth::getUser()->role == '1')--}}
+                            {{--<div class="form-group">--}}
+                                {{--{!! Form::label('visible[]', 'สถานะ', ['class' => 'col-md-2 control-label']) !!}--}}
+                                {{--<div class="col-md-8">--}}
+                                    {{--<label class="radio-inline">--}}
+                                        {{--<input type="radio" name="visible[]" value="1"> แสดงบนเว็บไซต์--}}
+                                    {{--</label>--}}
+                                    {{--<label class="radio-inline">--}}
+                                        {{--<input type="radio" name="visible[]" value="0" checked> ซ่อน--}}
+                                    {{--</label>--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
+                        {{--@endif--}}
 
                         <div class="form-group" style="padding: 20px 0px 20px 0;">
                             <div class="col-md-2"></div>

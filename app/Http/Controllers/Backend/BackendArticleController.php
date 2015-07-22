@@ -76,8 +76,8 @@ class BackendArticleController extends Controller {
                 $pic->file_type = $filetype[$j];
                 $pic->description = $description[$j];
 
-                $thumbnail = AllFunction::createThumbnailFix($filepath[$j], 106, 93);
-                $pic->thumbnail = $thumbnail;
+                //$thumbnail = AllFunction::createThumbnailFix($filepath[$j], 106, 93);
+                //$pic->thumbnail = $thumbnail;
 
                 $cat->picture()->save($pic);
             }

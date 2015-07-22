@@ -494,6 +494,18 @@
         'uses' => 'Backend\BackendIdeaController@idea_store'
     ]);
 
+    Route::get('backend/idea_edit/{id}', [
+        'before' => 'backend_auth',
+        'as' => 'backend_idea_edit',
+        'uses' => 'Backend\BackendIdeaController@idea_edit'
+    ]);
+
+    Route::post('backend/idea_update', [
+        'before' => 'backend_auth',
+        'as' => 'backend_idea_update',
+        'uses' => 'Backend\BackendIdeaController@idea_update'
+    ]);
+
     // Shop
     Route::get('backend/shop', [
         'before' => 'backend_auth',
