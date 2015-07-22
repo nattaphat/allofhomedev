@@ -35,6 +35,10 @@
             top: -15px;
         }
 
+        .other_detail{
+            margin-top: 20px;
+        }
+
         .other_detail p{
             text-indent: 50px;
             margin-top: 10px;
