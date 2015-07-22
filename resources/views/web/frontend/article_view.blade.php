@@ -175,15 +175,17 @@
             @endif
         @endif
 
+        @if($catArticle->other_detail != null && $catArticle->other_detail != "")
+            <div>
+                {!! $catArticle->other_detail !!}
+            </div><br>
+        @endif
+
         @if($pic != null && count($pic) > 0)
             <div id="collapsible-panels" class="data-project">
                 <a href="#" class="head-data active">รายละเอียด</a>
                 <div class="detail">
-                    @if($catArticle->other_detail != null && $catArticle->other_detail != "")
-                    <div>
-                        {!! $catArticle->other_detail !!}
-                    </div><br>
-                    @endif
+
                     @foreach($pic as $p)
                         <div>
                             <div>
