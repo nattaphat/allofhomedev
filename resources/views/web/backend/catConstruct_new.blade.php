@@ -272,12 +272,13 @@
             <!-- Dropzone -->
 
             // Get the template HTML and remove it from the doument
-            var previewNode = document.querySelector("#template{{ $i }}");
-            previewNode.id = "";
-            var previewTemplate = previewNode.parentNode.innerHTML;
-            previewNode.parentNode.removeChild(previewNode);
+            var previewNode{{ $i }} = document.querySelector("#template{{ $i }}");
+            previewNode{{ $i }}.id = "";
+            var previewTemplate{{ $i }} = previewNode{{ $i }}.parentNode.innerHTML;
+            previewNode{{ $i }}.parentNode.removeChild(previewNode{{ $i }});
+            var id{{ $i }} = 0;
 
-            var myDropzone2 = new Dropzone("#dZUpload{{ $i }}", {
+            var myDropzone{{ $i }} = new Dropzone("#dZUpload{{ $i }}", {
                 url: '{{ URL("post/upload") }}',
                 maxFilesize: 3, //mb
                 parallelUploads: 1,
@@ -287,30 +288,36 @@
                     formData.append("_token", $('[name=_token]').val());
                 },
                 success: function (file, response) {
+                    file.id = id{{ $i }}++;
+
                     var filename = file.name;
                     var filetype = file.type;
                     var filesize = file.size;
                     var filepath = response;
 
                     var input_hidden = document.createElement('input');
+                    input_hidden.setAttribute('id', 'pics_filename_id_' + file.id);
                     input_hidden.setAttribute('name', 'pics_filename{{ $i }}[]');
                     input_hidden.setAttribute('type', 'hidden');
                     input_hidden.setAttribute('value', filename);
                     document.forms[0].appendChild(input_hidden);
 
                     var input_hidden = document.createElement('input');
+                    input_hidden.setAttribute('id', 'pics_filetype_id_' + file.id);
                     input_hidden.setAttribute('name', 'pics_filetype{{ $i }}[]');
                     input_hidden.setAttribute('type', 'hidden');
                     input_hidden.setAttribute('value', filetype);
                     document.forms[0].appendChild(input_hidden);
 
                     var input_hidden = document.createElement('input');
+                    input_hidden.setAttribute('id', 'pics_filesize_id_' + file.id);
                     input_hidden.setAttribute('name', 'pics_filesize{{ $i }}[]');
                     input_hidden.setAttribute('type', 'hidden');
                     input_hidden.setAttribute('value', filesize);
                     document.forms[0].appendChild(input_hidden);
 
                     var input_hidden = document.createElement('input');
+                    input_hidden.setAttribute('id', 'pics_filepath_id_' + file.id);
                     input_hidden.setAttribute('name', 'pics_filepath{{ $i }}[]');
                     input_hidden.setAttribute('type', 'hidden');
                     input_hidden.setAttribute('value', filepath);
@@ -320,8 +327,16 @@
                     this.removeFile(file);
                     alert(response);
                 },
-                previewTemplate: previewTemplate,
+                previewTemplate: previewTemplate{{ $i }},
                 previewsContainer: "#previews{{ $i }}"
+            });
+
+            myDropzone{{ $i }}.on("removedfile", function(file){
+                var id = file.id;
+                $('#pics_filename_id_'+id).remove();
+                $('#pics_filetype_id_'+id).remove();
+                $('#pics_filesize_id_'+id).remove();
+                $('#pics_filepath_id_'+id).remove();
             });
 
         </script>
