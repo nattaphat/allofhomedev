@@ -102,19 +102,37 @@
                                         foreach($forcat as $c)
                                         {
                                             if($c == "1")
-                                                echo "หน้าแรก&nbsp;&nbsp;";
+                                                echo \App\Models\AllFunction::getArticleForType(1)."&nbsp;&nbsp;";
                                             else if($c == "2")
-                                                echo "บ้านใหม่&nbsp;&nbsp;";
+                                                echo \App\Models\AllFunction::getArticleForType(2)."&nbsp;&nbsp;";
                                             else if($c == "3")
-                                                echo "ทาวน์โฮมใหม่&nbsp;&nbsp;";
+                                                echo \App\Models\AllFunction::getArticleForType(3)."&nbsp;&nbsp;";
                                             else if($c == "4")
-                                                echo "คอนโดใหม่&nbsp;&nbsp;";
+                                                echo \App\Models\AllFunction::getArticleForType(4)."&nbsp;&nbsp;";
                                             else if($c == "5")
-                                                echo "รีวิว&nbsp;&nbsp;";
+                                                echo \App\Models\AllFunction::getArticleForType(5)."&nbsp;&nbsp;";
                                             else if($c == "6")
-                                                echo "ไอเดีย&nbsp;&nbsp;";
+                                                echo \App\Models\AllFunction::getArticleForType(6)."&nbsp;&nbsp;";
                                             else if($c == "7")
-                                                echo "บทความ&nbsp;&nbsp;";
+                                                echo \App\Models\AllFunction::getArticleForType(7)."&nbsp;&nbsp;";
+                                            else if($c == "8")
+                                                echo \App\Models\AllFunction::getArticleForType(8)."&nbsp;&nbsp;";
+                                            else if($c == "9")
+                                                echo \App\Models\AllFunction::getArticleForType(9)."&nbsp;&nbsp;";
+                                            else if($c == "10")
+                                                echo \App\Models\AllFunction::getArticleForType(10)."&nbsp;&nbsp;";
+                                            else if($c == "11")
+                                                echo \App\Models\AllFunction::getArticleForType(11)."&nbsp;&nbsp;";
+                                            else if($c == "12")
+                                                echo \App\Models\AllFunction::getArticleForType(12)."&nbsp;&nbsp;";
+                                            else if($c == "13")
+                                                echo \App\Models\AllFunction::getArticleForType(13)."&nbsp;&nbsp;";
+                                            else if($c == "14")
+                                                echo \App\Models\AllFunction::getArticleForType(14)."&nbsp;&nbsp;";
+                                            else if($c == "15")
+                                                echo \App\Models\AllFunction::getArticleForType(15)."&nbsp;&nbsp;";
+                                            else if($c == "16")
+                                                echo \App\Models\AllFunction::getArticleForType(16)."&nbsp;&nbsp;";
                                         }
                                         ?>
                                     </td>

@@ -13,6 +13,7 @@ class ArticleRequest extends Request {
         return [
             'title' => 'required|max:100',
             'subtitle' => 'required|max:500',
+            'for_cat[]' => 'required',
             'video_url' => 'url'
         ];
     }

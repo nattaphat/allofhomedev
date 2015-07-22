@@ -133,6 +133,7 @@
         previewNode.id = "";
         var previewTemplate = previewNode.parentNode.innerHTML;
         previewNode.parentNode.removeChild(previewNode);
+        var id = 0;
 
         var myDropzone = new Dropzone("#dZUpload", {
             url: '{{ URL("post/upload") }}',
@@ -145,6 +146,7 @@
                 formData.append("_token", $('[name=_token]').val());
             },
             success: function (file, response) {
+                file.id = id++;
 
                 var filename = file.name;
                 var filetype = file.type;
@@ -154,24 +156,28 @@
                 debugger;
 
                 var input_hidden = document.createElement('input');
+                input_hidden.setAttribute('id', 'pics_filename_id_' + file.id);
                 input_hidden.setAttribute('name', 'pics_filename[]');
                 input_hidden.setAttribute('type', 'hidden');
                 input_hidden.setAttribute('value', filename);
                 document.forms[0].appendChild(input_hidden);
 
                 var input_hidden = document.createElement('input');
+                input_hidden.setAttribute('id', 'pics_filetype_id_' + file.id);
                 input_hidden.setAttribute('name', 'pics_filetype[]');
                 input_hidden.setAttribute('type', 'hidden');
                 input_hidden.setAttribute('value', filetype);
                 document.forms[0].appendChild(input_hidden);
 
                 var input_hidden = document.createElement('input');
+                input_hidden.setAttribute('id', 'pics_filesize_id_' + file.id);
                 input_hidden.setAttribute('name', 'pics_filesize[]');
                 input_hidden.setAttribute('type', 'hidden');
                 input_hidden.setAttribute('value', filesize);
                 document.forms[0].appendChild(input_hidden);
 
                 var input_hidden = document.createElement('input');
+                input_hidden.setAttribute('id', 'pics_filepath_id_' + file.id);
                 input_hidden.setAttribute('name', 'pics_filepath[]');
                 input_hidden.setAttribute('type', 'hidden');
                 input_hidden.setAttribute('value', filepath);
@@ -183,6 +189,14 @@
             },
             previewTemplate: previewTemplate,
             previewsContainer: "#previews"
+        });
+
+        myDropzone.on("removedfile", function(file){
+            var id = file.id;
+            $('#pics_filename_id_'+id).remove();
+            $('#pics_filetype_id_'+id).remove();
+            $('#pics_filesize_id_'+id).remove();
+            $('#pics_filepath_id_'+id).remove();
         });
 
     </script>
@@ -230,37 +244,82 @@
                             <div class="col-md-8">
                                 <div class="checkbox">
                                     <label>
-                                        {!! Form::checkbox('for_cat[]', '1') !!} &nbsp; หน้าแรก
+                                        {!! Form::checkbox('for_cat[]', '1') !!} &nbsp; {{ \App\Models\AllFunction::getArticleForType(1) }}
                                     </label>
                                 </div>
                                 <div class="checkbox">
                                     <label>
-                                        {!! Form::checkbox('for_cat[]', '2') !!} &nbsp; โครงการบ้านใหม่
+                                        {!! Form::checkbox('for_cat[]', '2') !!} &nbsp; {{ \App\Models\AllFunction::getArticleForType(2) }}
                                     </label>
                                 </div>
                                 <div class="checkbox">
                                     <label>
-                                        {!! Form::checkbox('for_cat[]', '3') !!} &nbsp; โครงการทาวน์โฮมใหม่
+                                        {!! Form::checkbox('for_cat[]', '3') !!} &nbsp; {{ \App\Models\AllFunction::getArticleForType(3) }}
                                     </label>
                                 </div>
                                 <div class="checkbox">
                                     <label>
-                                        {!! Form::checkbox('for_cat[]', '4') !!} &nbsp; โครงการคอนโดใหม่
+                                        {!! Form::checkbox('for_cat[]', '4') !!} &nbsp; {{ \App\Models\AllFunction::getArticleForType(4) }}
                                     </label>
                                 </div>
                                 <div class="checkbox">
                                     <label>
-                                        {!! Form::checkbox('for_cat[]', '5') !!} &nbsp; รีวิว
+                                        {!! Form::checkbox('for_cat[]', '5') !!} &nbsp; {{ \App\Models\AllFunction::getArticleForType(5) }}
                                     </label>
                                 </div>
                                 <div class="checkbox">
                                     <label>
-                                        {!! Form::checkbox('for_cat[]', '6') !!} &nbsp; ไอเดีย
+                                        {!! Form::checkbox('for_cat[]', '6') !!} &nbsp; {{ \App\Models\AllFunction::getArticleForType(6) }}
                                     </label>
                                 </div>
                                 <div class="checkbox">
                                     <label>
-                                        {!! Form::checkbox('for_cat[]', '7') !!} &nbsp; บทความและข่าวสาร
+                                        {!! Form::checkbox('for_cat[]', '7') !!} &nbsp; {{ \App\Models\AllFunction::getArticleForType(7) }}
+                                    </label>
+                                </div>
+                                <div class="checkbox">
+                                    <label>
+                                        {!! Form::checkbox('for_cat[]', '8') !!} &nbsp; {{ \App\Models\AllFunction::getArticleForType(8) }}
+                                    </label>
+                                </div>
+                                <div class="checkbox">
+                                    <label>
+                                        {!! Form::checkbox('for_cat[]', '9') !!} &nbsp; {{ \App\Models\AllFunction::getArticleForType(9) }}
+                                    </label>
+                                </div>
+                                <div class="checkbox">
+                                    <label>
+                                        {!! Form::checkbox('for_cat[]', '10') !!} &nbsp; {{ \App\Models\AllFunction::getArticleForType(10) }}
+                                    </label>
+                                </div>
+                                <div class="checkbox">
+                                    <label>
+                                        {!! Form::checkbox('for_cat[]', '11') !!} &nbsp; {{ \App\Models\AllFunction::getArticleForType(11) }}
+                                    </label>
+                                </div>
+                                <div class="checkbox">
+                                    <label>
+                                        {!! Form::checkbox('for_cat[]', '12') !!} &nbsp; {{ \App\Models\AllFunction::getArticleForType(12) }}
+                                    </label>
+                                </div>
+                                <div class="checkbox">
+                                    <label>
+                                        {!! Form::checkbox('for_cat[]', '13') !!} &nbsp; {{ \App\Models\AllFunction::getArticleForType(13) }}
+                                    </label>
+                                </div>
+                                <div class="checkbox">
+                                    <label>
+                                        {!! Form::checkbox('for_cat[]', '14') !!} &nbsp; {{ \App\Models\AllFunction::getArticleForType(14) }}
+                                    </label>
+                                </div>
+                                <div class="checkbox">
+                                    <label>
+                                        {!! Form::checkbox('for_cat[]', '15') !!} &nbsp; {{ \App\Models\AllFunction::getArticleForType(15) }}
+                                    </label>
+                                </div>
+                                <div class="checkbox">
+                                    <label>
+                                        {!! Form::checkbox('for_cat[]', '16') !!} &nbsp; {{ \App\Models\AllFunction::getArticleForType(16) }}
                                     </label>
                                 </div>
                             </div>
@@ -322,19 +381,19 @@
                             </div>
                         </div>
 
-                        @if(\Auth::getUser()->role == '1')
-                        <div class="form-group">
-                            {!! Form::label('visible[]', 'สถานะ', ['class' => 'col-md-2 control-label']) !!}
-                            <div class="col-md-8">
-                                <label class="radio-inline">
-                                    <input type="radio" name="visible[]" value="1"> แสดงบนเว็บไซต์
-                                </label>
-                                <label class="radio-inline">
-                                    <input type="radio" name="visible[]" value="0" checked> ซ่อน
-                                </label>
-                            </div>
-                        </div>
-                        @endif
+                        {{--@if(\Auth::getUser()->role == '1')--}}
+                        {{--<div class="form-group">--}}
+                            {{--{!! Form::label('visible[]', 'สถานะ', ['class' => 'col-md-2 control-label']) !!}--}}
+                            {{--<div class="col-md-8">--}}
+                                {{--<label class="radio-inline">--}}
+                                    {{--<input type="radio" name="visible[]" value="1"> แสดงบนเว็บไซต์--}}
+                                {{--</label>--}}
+                                {{--<label class="radio-inline">--}}
+                                    {{--<input type="radio" name="visible[]" value="0" checked> ซ่อน--}}
+                                {{--</label>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                        {{--@endif--}}
 
                         <div class="form-group" style="padding: 20px 0px 20px 0;">
                             <div class="col-md-2"></div>

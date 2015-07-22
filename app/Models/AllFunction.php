@@ -356,6 +356,63 @@ class AllFunction {
         return $ret;
     }
 
+    public static function getArticleForType($for_type)
+    {
+        $ret = "";
+        switch($for_type)
+        {
+            case "1":
+                $ret = "หน้าแรก";
+                break;
+            case "2":
+                $ret = "โครงการบ้านใหม่";
+                break;
+            case "3":
+                $ret = "โครงการทาวน์โฮมใหม่";
+                break;
+            case "4":
+                $ret = "โครงการคอนโดใหม่";
+                break;
+            case "5":
+                $ret = "รับสร้างบ้าน";
+                break;
+            case "6":
+                $ret = "ค้นหาช่างซ่อม/ต่อเติม";
+                break;
+            case "7":
+                $ret = "ผู้รับเหมาก่อสร้าง";
+                break;
+            case "8":
+                $ret = "ร้านค้าต่างๆ";
+                break;
+            case "9":
+                $ret = "บริการจัดสวน";
+                break;
+            case "10":
+                $ret = "บริการทำความสะอาด";
+                break;
+            case "11":
+                $ret = "ออกแบบภายใน/ภายนอก";
+                break;
+            case "12":
+                $ret = "ที่ดิน";
+                break;
+            case "13":
+                $ret = "ที่อยู่อาศัยมือสอง";
+                break;
+            case "14":
+                $ret = "ปล่อยเช่า";
+                break;
+            case "15":
+                $ret = "อพาร์ทเม้นท์";
+                break;
+            case "16":
+                $ret = "บทความ/ไอเดีย";
+                break;
+        }
+        return $ret;
+    }
+
     public static function debug_to_console($data) {
         if(is_array($data) || is_object($data))
         {

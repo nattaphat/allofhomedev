@@ -444,6 +444,18 @@
         'uses' => 'Backend\BackendArticleController@article_store'
     ]);
 
+    Route::get('backend/article_edit/{id}', [
+        'before' => 'backend_auth',
+        'as' => 'backend_article_edit',
+        'uses' => 'Backend\BackendArticleController@article_edit'
+    ]);
+
+    Route::post('backend/article_update', [
+        'before' => 'backend_auth',
+        'as' => 'backend_article_update',
+        'uses' => 'Backend\BackendArticleController@article_update'
+    ]);
+
     // Review
     Route::get('backend/review', [
         'before' => 'backend_auth',
