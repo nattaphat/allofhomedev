@@ -182,7 +182,7 @@
         @if($catArticle->other_detail != null && $catArticle->other_detail != "")
             <div class="other_detail">
                 {!! $catArticle->other_detail !!}
-            </div><br>
+            </div>
         @endif
 
         @if($pic != null && count($pic) > 0)
