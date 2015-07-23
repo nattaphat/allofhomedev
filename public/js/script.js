@@ -86,7 +86,7 @@ function toggle_preview()
 function articleSlider()
 {
     $('#articleSlider').flexslider({
-        slideshow: true,
+        slideshow: false,
         animation: "slide",
         slideshowSpeed: 6000,
         pauseOnHover: true,
