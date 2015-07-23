@@ -83,47 +83,7 @@
 
         <div class="boxright">
             <!-- บทความและข่าวสาร -->
-            <div class="hilight-content">
-                <div class="left">
-                    <ul>
-                        <li>
-                            <div class="pic"><img src="{{ asset('images/test/pic-2.jpg') }}" alt="" /></div>
-                            <div class="tag-day">
-                                <p>02</p>
-                                <p>มีค 2558</p>
-                            </div>
-                            <div class="text-hilight">
-                                <h2>เรื่อง: Furniture Show 2015 วันที่ 13-21 มิ.ย. 58</h2>
-                                <p>Furniture Show 2015 ระหว่างวันที่ 13-21 มิถุนายน 2558 ศูนย์แสดงสินค้าและการประชุม อิมแพ็ค เมืองทองธานี</p>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="pic"><img src="{{ asset('images/test/pic-2.jpg') }}" alt="" /></div>
-                            <div class="tag-day">
-                                <p>02</p>
-                                <p>มีค 2558</p>
-                            </div>
-                            <div class="text-hilight">
-                                <h2>เรื่อง: Furniture Show 2015 วันที่ 13-21 มิ.ย. 58</h2>
-                                <p>Furniture Show 2015 ระหว่างวันที่ 13-21 มิถุนายน 2558 ศูนย์แสดงสินค้าและการประชุม อิมแพ็ค เมืองทองธานี</p>
-                            </div>
-                        </li>
-                    </ul>
-                    <div class="pagin">
-                        <a href="#" class="active"></a>
-                        <a href="#"></a>
-                        <a href="#"></a>
-                        <a href="#"></a>
-                        <a href="#"></a>
-                    </div>
-                </div>
-                <div class="right">
-                    <!-- Banner C, D -->
-                    <div class="side-banner"><img src="{{ asset('images/test/pic-3.jpg') }}" alt="" /></div>
-                    <div class="side-banner"><img src="{{ asset('images/test/pic-4.jpg') }}" alt="" /></div>
-                </div>
-                <div class="clear"></div>
-            </div>
+            @include('layouts._partials.article_header')
 
             @yield('content')
 

@@ -1,6 +1,7 @@
 <?php namespace App\Http\Controllers\Frontend;
 
 use App\Models\Brand;
+use App\Models\CatArticle;
 use App\Models\CatHomePic;
 use App\Http\Controllers\Controller;
 use Validator;
@@ -229,9 +230,16 @@ class CondoCategoryController extends Controller {
 
         $map = Gmaps::create_map();
 
+        // ###################  Article #######################
+        $articleItems = CatArticle::whereRaw('for_cat like \'%"4"%\'')  // 4 = คอนโด
+        ->orderBy('created_at', 'desc')
+            ->take(5)
+            ->get();
+
         return view('web.frontend.condo_index')
             ->with('catHome', $catHome)
-            ->with('map', $map);
+            ->with('map', $map)
+            ->with('articleItems',$articleItems);
     }
 
     /**

@@ -230,12 +230,19 @@ class AllofhomeController extends Controller {
                 ->paginate(15);
         }
 
+        // ###################  Article #######################
+        $articleItems = CatArticle::whereRaw('for_cat like \'%"1"%\'')  // 1 = หน้าแรก
+        ->orderBy('created_at', 'desc')
+            ->take(5)
+            ->get();
+
         return view('web.frontend.index')
             ->with('catHome', $catHome)
             ->with('catArticleVip', $catArticleVip)
             ->with('catArticle', $catArticle)
             ->with('catIdeaVip', $catIdeaVip)
-            ->with('catIdea', $catIdea);
+            ->with('catIdea', $catIdea)
+            ->with('articleItems',$articleItems);
     }
 
 

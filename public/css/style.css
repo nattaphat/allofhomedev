@@ -1342,3 +1342,31 @@ nav ul li:nth-child(6), nav ul li:nth-child(6) ul li {
     margin-left: auto;
     margin-right: auto;
 }
+
+#articleSlider img {
+    display: block;
+    width: auto;
+    max-width: 555px;
+    max-height: 402px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.text-hilight h3.article-title
+{
+    color:#5cc5c1;
+    font-weight:normal;
+    margin-bottom:5px;
+    font-size: 28px;
+    line-height: 23px;
+    height:23px;
+    overflow: hidden;
+}
+
+.article-subtitle
+{
+    line-height: 23px;
+    height:46px;
+    overflow: hidden;
+    text-indent: 30px;
+}

@@ -19,7 +19,7 @@ class Picture extends Model {
     public static function getUrlPicture($id, $model)
     {
         $picture = Picture::where('pictureable_type', '=', $model)
-            ->where('pictureable_type','=', $id)
+            ->where('pictureable_id','=', $id)
             ->get();
         return $picture;
     }

@@ -276,11 +276,18 @@ class ArticleCategoryController extends Controller {
 
 //        dd($catArticle);
 
+        // ###################  Article #######################
+        $articleItems = CatArticle::whereRaw('for_cat like \'%"16"%\'')  // 16 = บทความ ไอเดีย
+        ->orderBy('created_at', 'desc')
+            ->take(5)
+            ->get();
+
         return view('web.frontend.article_idea_index')
             ->with('catArticleVip', $catArticleVip)
             ->with('catArticle', $catArticle)
             ->with('catIdeaVip', $catIdeaVip)
-            ->with('catIdea', $catIdea);
+            ->with('catIdea', $catIdea)
+            ->with('articleItems',$articleItems);
 
     }
 

@@ -1,6 +1,7 @@
 <?php namespace App\Http\Controllers\Frontend;
 
 use App\Models\Brand;
+use App\Models\CatArticle;
 use App\Models\CatHomePic;
 use App\Http\Controllers\Controller;
 use Validator;
@@ -99,9 +100,16 @@ class TownHomeCategoryController extends Controller {
 
         $map = Gmaps::create_map();
 
+        // ###################  Article #######################
+        $articleItems = CatArticle::whereRaw('for_cat like \'%"3"%\'')  // 3 = ทาวน์โฮม
+        ->orderBy('created_at', 'desc')
+            ->take(5)
+            ->get();
+
         return view('web.frontend.townhome_index')
             ->with('catHome', $catHome)
-            ->with('map', $map);
+            ->with('map', $map)
+            ->with('articleItems',$articleItems);
     }
 
     public function create()

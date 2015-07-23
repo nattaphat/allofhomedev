@@ -1,6 +1,7 @@
 <?php namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\CatArticle;
 use Gmaps;
 use App\Models\Brand;
 use App\Models\CatConstruct;
@@ -245,10 +246,17 @@ class ShopCategoryController extends Controller {
 
         $map = Gmaps::create_map();
 
+        // ###################  Article #######################
+        $articleItems = CatArticle::whereRaw('for_cat like \'%"8"%\'')  // 8 = ร้านค้าต่างๆ
+        ->orderBy('created_at', 'desc')
+            ->take(5)
+            ->get();
+
         return view('web.frontend.shop_index')
             ->with('catVip', $catVip)
             ->with('cat', $cat)
-            ->with('map', $map);
+            ->with('map', $map)
+            ->with('articleItems', $articleItems);
 
     }
 
@@ -531,10 +539,17 @@ class ShopCategoryController extends Controller {
 
         $map = Gmaps::create_map();
 
+        // ###################  Article #######################
+        $articleItems = CatArticle::whereRaw('for_cat like \'%"9"%\'')  // 9 = จัดสวน
+        ->orderBy('created_at', 'desc')
+            ->take(5)
+            ->get();
+
         return view('web.frontend.garden_index')
             ->with('catVip', $catVip)
             ->with('cat', $cat)
-            ->with('map', $map);
+            ->with('map', $map)
+            ->with('articleItems',$articleItems);
     }
 
     public function garden_show($id)
@@ -816,10 +831,17 @@ class ShopCategoryController extends Controller {
 
         $map = Gmaps::create_map();
 
+        // ###################  Article #######################
+        $articleItems = CatArticle::whereRaw('for_cat like \'%"10"%\'')  // 10 = ทำความสะอาด
+        ->orderBy('created_at', 'desc')
+            ->take(5)
+            ->get();
+
         return view('web.frontend.clean_index')
             ->with('catVip', $catVip)
             ->with('cat', $cat)
-            ->with('map', $map);
+            ->with('map', $map)
+            ->with('articleItems', $articleItems);
 
     }
 
@@ -1102,10 +1124,17 @@ class ShopCategoryController extends Controller {
 
         $map = Gmaps::create_map();
 
+        // ###################  Article #######################
+        $articleItems = CatArticle::whereRaw('for_cat like \'%"11"%\'')  // 11 = ออกแบบภายใน ภายนอก
+        ->orderBy('created_at', 'desc')
+            ->take(5)
+            ->get();
+
         return view('web.frontend.interior_index')
             ->with('catVip', $catVip)
             ->with('cat', $cat)
-            ->with('map', $map);
+            ->with('map', $map)
+            ->with('articleItems', $articleItems);
     }
 
     public function interior_show($id)
@@ -1387,10 +1416,17 @@ class ShopCategoryController extends Controller {
 
         $map = Gmaps::create_map();
 
+        // ###################  Article #######################
+        $articleItems = CatArticle::whereRaw('for_cat like \'%"12"%\'')  // 12 = ที่ดินเปล่า
+        ->orderBy('created_at', 'desc')
+            ->take(5)
+            ->get();
+
         return view('web.frontend.land_index')
             ->with('catVip', $catVip)
             ->with('cat', $cat)
-            ->with('map', $map);
+            ->with('map', $map)
+            ->with('articleItems', $articleItems);
 
     }
 
@@ -1673,10 +1709,17 @@ class ShopCategoryController extends Controller {
 
         $map = Gmaps::create_map();
 
+        // ###################  Article #######################
+        $articleItems = CatArticle::whereRaw('for_cat like \'%"13"%\'')  // 13 = มือสอง
+        ->orderBy('created_at', 'desc')
+            ->take(5)
+            ->get();
+
         return view('web.frontend.secondhand_index')
             ->with('catVip', $catVip)
             ->with('cat', $cat)
-            ->with('map', $map);
+            ->with('map', $map)
+            ->with('articleItems', $articleItems);
 
     }
 
@@ -1959,10 +2002,17 @@ class ShopCategoryController extends Controller {
 
         $map = Gmaps::create_map();
 
+        // ###################  Article #######################
+        $articleItems = CatArticle::whereRaw('for_cat like \'%"14"%\'')  // 14 = ปล่อยเช่า
+        ->orderBy('created_at', 'desc')
+            ->take(5)
+            ->get();
+
         return view('web.frontend.rent_index')
             ->with('catVip', $catVip)
             ->with('cat', $cat)
-            ->with('map', $map);
+            ->with('map', $map)
+            ->with('articleItems',$articleItems);
 
     }
 
@@ -2245,10 +2295,17 @@ class ShopCategoryController extends Controller {
 
         $map = Gmaps::create_map();
 
+        // ###################  Article #######################
+        $articleItems = CatArticle::whereRaw('for_cat like \'%"15"%\'')  // 15 = อพาร์ทเม้นท์
+        ->orderBy('created_at', 'desc')
+            ->take(5)
+            ->get();
+
         return view('web.frontend.apartment_index')
             ->with('catVip', $catVip)
             ->with('cat', $cat)
-            ->with('map', $map);
+            ->with('map', $map)
+            ->with('articleItems', $articleItems);
 
     }
 

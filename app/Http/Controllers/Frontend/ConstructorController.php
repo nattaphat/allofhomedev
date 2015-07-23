@@ -3,6 +3,7 @@
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Models\Brand;
+use App\Models\CatArticle;
 use App\Models\CatConstruct;
 use DB;
 use Gmaps;
@@ -248,10 +249,17 @@ class ConstructorController extends Controller {
 
         $map = Gmaps::create_map();
 
+        // ###################  Article #######################
+        $articleItems = CatArticle::whereRaw('for_cat like \'%"7"%\'')  // 7 = ผู้รับเหมา
+        ->orderBy('created_at', 'desc')
+            ->take(5)
+            ->get();
+
         return view('web.frontend.constructor_index')
             ->with('catVip', $catVip)
             ->with('cat', $cat)
-            ->with('map', $map);
+            ->with('map', $map)
+            ->with('articleItems',$articleItems);
 
 	}
 

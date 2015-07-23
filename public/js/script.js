@@ -4,6 +4,7 @@ $( document ).ready(function() {
 
     picture_preview_slider();
     toggle_preview();
+    articleSlider();
 
     $( '.dropdown' ).hover(
         function(){
@@ -50,6 +51,12 @@ $( document ).ready(function() {
         watch : true /* Whether to update the ellipsis: true/'window' */
     });
 
+    $('.article-subtitle').dotdotdot({
+        ellipsis: '...', /* The HTML to add as ellipsis. */
+        wrap : 'word', /* How to cut off the text/html: 'word'/'letter'/'children' */
+        watch : true /* Whether to update the ellipsis: true/'window' */
+    });
+
 });
 
 function picture_preview_slider()
@@ -57,7 +64,7 @@ function picture_preview_slider()
     $('#slider').flexslider({
         slideshow: true,
         animation: "fade",
-        slideshowSpeed: 3000,
+        slideshowSpeed: 6000,
         pauseOnHover: true,
         smoothHeight: true,
         manualControls: ".list-preview-ul li",
@@ -73,6 +80,18 @@ function toggle_preview()
         div.slideToggle('slow');
         a.toggleClass('active');
         e.preventDefault();
+    });
+}
+
+function articleSlider()
+{
+    $('#articleSlider').flexslider({
+        slideshow: true,
+        animation: "slide",
+        slideshowSpeed: 6000,
+        pauseOnHover: true,
+        smoothHeight: true,
+        useCSS: false
     });
 }
 
