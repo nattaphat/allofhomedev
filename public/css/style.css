@@ -1345,11 +1345,9 @@ nav ul li:nth-child(6), nav ul li:nth-child(6) ul li {
 
 #articleSlider img {
     display: block;
+    width: 100%;
+    height: 402px;
     width: auto;
-    max-width: 555px;
-    max-height: 402px;
-    margin-left: auto;
-    margin-right: auto;
 }
 
 .text-hilight h3.article-title

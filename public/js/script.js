@@ -86,12 +86,14 @@ function toggle_preview()
 function articleSlider()
 {
     $('#articleSlider').flexslider({
-        slideshow: false,
+        slideshow: true,
         animation: "slide",
         slideshowSpeed: 6000,
         pauseOnHover: true,
         smoothHeight: true,
-        useCSS: false
+        useCSS: true,
+        controlNav: false,
+        directionNav: true
     });
 }
 

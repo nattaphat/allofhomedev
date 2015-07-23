@@ -35,13 +35,7 @@
                         <li>
                             <div class="pic">
                                 @if($pics != null && count($pics) > 0)
-                                    <table style="height: 402px; width: 555px; margin: 0; padding: 0; border: none;">
-                                        <tr>
-                                            <td style="vertical-align: middle; text-align: center;">
-                                                <img src="{{ $pics[0]->file_path }}" alt="" />
-                                            </td>
-                                        </tr>
-                                    </table>
+                                    <img src="{{ $pics[0]->file_path }}" alt="" />
                                 @endif
                             </div>
                             <div class="text-hilight">
