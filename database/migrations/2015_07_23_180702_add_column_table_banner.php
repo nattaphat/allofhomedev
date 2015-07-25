@@ -20,6 +20,7 @@ class AddColumnTableBanner extends Migration {
             $table->string('file_size', 15)->nullable(true);
             $table->string('file_path', 255)->nullable(true);
             $table->string('url', 255)->nullable(true);
+            $table->boolean('default')->nullable(true);
         });
 	}
 

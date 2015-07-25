@@ -19,5 +19,9 @@ class Banner extends Model {
         return $this->belongsTo("App\Models\Attachment");
     }
 
+    public function tag()
+    {
+        return $this->morphMany('App\Models\Tag', 'tagable');
+    }
 
 }

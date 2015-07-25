@@ -43,7 +43,7 @@
                         <a href="{{ url('backend/bannerB') }}">Type B (ส่วน Slide)</a>
                     </li>
                     <li>
-                        <a href="#{{ url('backend/bannerC') }}">Type C (ลงทะเบียนโครงการ)</a>
+                        <a href="{{ url('backend/bannerC') }}">Type C (ลงทะเบียนโครงการ)</a>
                     </li>
                     <li>
                         <a href="{{ url('backend/bannerD') }}">Type D</a>
