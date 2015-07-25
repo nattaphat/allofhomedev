@@ -22,10 +22,11 @@
                 formData.append("_token", $('[name=_token]').val());
             },
             success: function (file, response) {
+
                 var filename = file.name;
                 var filetype = file.type;
                 var filesize = file.size;
-                var filepath = response;
+                var filepath = (response == undefined ? file.path : response);
 
                 file.previewElement.classList.add("dz-success");
 
@@ -41,10 +42,12 @@
             init : function()
             {
                 @if($attachment != null)
-                    var mockFile = { name: '{{ $attachment->filename }}', size: '{{ $attachment->filesize }}', accepted: true,
-                        status: Dropzone.ADDED, url: '{{ $attachment->path }}'};
+                    var mockFile = { name: '{{ $attachment->filename }}', size: '{{ $attachment->filesize }}',
+                        type: '{{ $attachment->filetype }}', path: '{{ $attachment->path }}',
+                        accepted: true, status: Dropzone.ADDED};
                     this.emit("addedfile", mockFile);
                     this.emit("thumbnail", mockFile, '{{ $logo }}');
+                    this.emit("success", mockFile);
                     this.emit("complete", mockFile);
                     this.files.push(mockFile);
                 @endif

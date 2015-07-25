@@ -4,12 +4,12 @@
     <style type="text/css">
 
         img{
-            max-width: 500px;
-            max-height: 45px;
+            max-width: 300px;
+            max-height: 100px;
         }
 
         .dropzone .dz-preview .dz-image {
-            width: 500px;
+            width: 300px;
             border-radius: 0;
         }
 
@@ -34,9 +34,9 @@
             acceptedFiles: 'image/*',
             autoProcessQueue: true,
             addRemoveLinks: true,
-            dictDefaultMessage: "อัพโหลดไฟล์ขนาด 1000 x 90 pixel",
-            thumbnailWidth: 500,
-            thumbnailHeight: 45,
+            dictDefaultMessage: "อัพโหลดไฟล์ขนาด 1200 x 400 pixel",
+            thumbnailWidth: 300,
+            thumbnailHeight: 100,
             sending: function(file, xhr, formData) {
                 formData.append("_token", $('[name=_token]').val());
             },
@@ -44,7 +44,7 @@
                 var filename = file.name;
                 var filetype = file.type;
                 var filesize = file.size;
-                var filepath = (response == undefined ? file.path : response);
+                var filepath = response;
 
                 file.previewElement.classList.add("dz-success");
 
@@ -79,19 +79,6 @@
             error: function (file, response) {
                 this.removeFile(file);
                 alert(response);
-            },
-            init : function()
-            {
-                @if($banner->file_path != null)
-                    var mockFile = { name: '{{ $banner->file_name }}', size: '{{ $banner->file_size }}',
-                        type: '{{ $banner->file_type }}', path: '{{ $banner->file_path }}',
-                        accepted: true, status: Dropzone.ADDED };
-                    this.emit("addedfile", mockFile);
-                    this.emit("thumbnail", mockFile, '{{ $banner->file_path }}');
-                    this.emit("success", mockFile);
-                    this.emit("complete", mockFile);
-                    this.files.push(mockFile);
-                @endif
             }
         });
 
@@ -109,7 +96,7 @@
 @section('content')
     <div class="row">
         <div class="col-lg-12">
-            <h3 class="page-header">ข้อมูล Banner (Type A)</h3>
+            <h3 class="page-header">ข้อมูล Banner (Type B)</h3>
         </div>
     </div>
 
@@ -117,23 +104,22 @@
         <div class="col-lg-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    แก้ไข Banner (Type A)
+                    เพิ่ม Banner (Type B)
                 </div>
                 <div class="panel-body">
                     <div class="col-md-12">
 
-                        {!! Form::open(['route' => ['backend_bannerA_update'],
+                        {!! Form::open(['route' => ['backend_bannerB_store'],
                             'id'=> 'my-form', 'data-ajax' => 'true',
                             'class' => 'form-horizontal']) !!}
 
                         {!! Form::hidden('user_id', Auth::user()->id) !!}
-                        {!! Form::hidden('id', $banner->id) !!}
 
                         <div class="form-group">
                             {!! Form::label('banner_name', 'ชื่อ Banner', [
                                 'class' => 'col-md-2 control-label']) !!}
                             <div class="col-md-8">
-                                {!! Form::text('banner_name', $banner->banner_name,[
+                                {!! Form::text('banner_name', null,[
                                     'class' => 'form-control'
                                     ]) !!}
                             </div>
@@ -151,7 +137,7 @@
                             {!! Form::label('url', 'ลิงค์ URL', [
                             'class' => 'col-md-2 control-label']) !!}
                             <div class="col-md-8">
-                                {!! Form::text('url', $banner->url,[
+                                {!! Form::text('url', null,[
                                 'class' => 'form-control'
                                 ]) !!}
                             </div>
@@ -161,7 +147,7 @@
                             {!! Form::label('remark', 'หมายเหตุ', [
                             'class' => 'col-md-2 control-label']) !!}
                             <div class="col-md-8">
-                                {!! Form::textarea('remark', $banner->remark,[
+                                {!! Form::textarea('remark', null,[
                                 'class' => 'form-control',
                                 'rows' => '3'
                                 ]) !!}
@@ -173,18 +159,10 @@
                             'class' => 'col-md-2 control-label']) !!}
                             <div class="col-md-8">
                                 <label class="radio-inline">
-                                    <input type="radio" name="visible[]" value="true"
-                                        @if($banner->visible)
-                                            checked
-                                        @endif
-                                        > แสดงผล
+                                    <input type="radio" name="visible[]" value="true"> แสดงผล
                                 </label>
                                 <label class="radio-inline">
-                                    <input type="radio" name="visible[]" value="false"
-                                        @if(!$banner->visible)
-                                           checked
-                                        @endif
-                                        > ซ่อน
+                                    <input type="radio" name="visible[]" value="false" checked> ซ่อน
                                 </label>
                             </div>
                         </div>

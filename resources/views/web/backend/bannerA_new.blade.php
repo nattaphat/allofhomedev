@@ -35,8 +35,8 @@
             autoProcessQueue: true,
             addRemoveLinks: true,
             dictDefaultMessage: "อัพโหลดไฟล์ขนาด 1000 x 90 pixel",
-//            thumbnailWidth: 500,
-//            thumbnailHeight: 45,
+            thumbnailWidth: 500,
+            thumbnailHeight: 45,
             sending: function(file, xhr, formData) {
                 formData.append("_token", $('[name=_token]').val());
             },

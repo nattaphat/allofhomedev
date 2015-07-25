@@ -33,7 +33,7 @@
             <li>
                 <a href="{{ URL::to('backend/user') }}"> ผู้ใช้งานระบบ</a>
             </li>
-            <li style="display:none;">
+            <li>
                 <a href="#"> ข้อมูล Banner<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li>

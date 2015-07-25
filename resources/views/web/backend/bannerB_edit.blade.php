@@ -4,12 +4,12 @@
     <style type="text/css">
 
         img{
-            max-width: 500px;
-            max-height: 45px;
+            max-width: 300px;
+            max-height: 100px;
         }
 
         .dropzone .dz-preview .dz-image {
-            width: 500px;
+            width: 300px;
             border-radius: 0;
         }
 
@@ -34,13 +34,14 @@
             acceptedFiles: 'image/*',
             autoProcessQueue: true,
             addRemoveLinks: true,
-            dictDefaultMessage: "อัพโหลดไฟล์ขนาด 1000 x 90 pixel",
-            thumbnailWidth: 500,
-            thumbnailHeight: 45,
+            dictDefaultMessage: "อัพโหลดไฟล์ขนาด 1200 x 400 pixel",
+            thumbnailWidth: 300,
+            thumbnailHeight: 100,
             sending: function(file, xhr, formData) {
                 formData.append("_token", $('[name=_token]').val());
             },
             success: function (file, response) {
+
                 var filename = file.name;
                 var filetype = file.type;
                 var filesize = file.size;
@@ -122,7 +123,7 @@
                 <div class="panel-body">
                     <div class="col-md-12">
 
-                        {!! Form::open(['route' => ['backend_bannerA_update'],
+                        {!! Form::open(['route' => ['backend_bannerB_update'],
                             'id'=> 'my-form', 'data-ajax' => 'true',
                             'class' => 'form-horizontal']) !!}
 
