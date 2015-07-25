@@ -52,6 +52,13 @@
                 ->orderBy('created_at', 'desc')
                 ->take(5)
                 ->get();
+
+        $bannerC = \App\Models\Banner::where('type','=','C')
+                ->where('visible', '=', 'true')
+                ->whereNotNull('file_path')
+                ->orderBy('created_at', 'desc')
+                ->take(3)
+                ->get();
         ?>
 
         @if($bannerB != null && count($bannerB) > 0)
@@ -80,15 +87,58 @@
 
         <!-- Box Left -->
         <div class="boxleft">
-            <div class="newregister">
-                <h2>ลงทะเบียนโครงการใหม่</h2>
-                <p><img src="{{ asset('images/test/pic-1.jpg')}}" alt="" /></p>
-                <div class="text">
-                    <h3>Life Asoke (ไลฟ์ อโศก)</h3>
-                    <p>ลงทะเบียนส่วนลดสูงสุด <span>100,000</span> บาท</p>
+            <!-- Banner Type C -->
+            {{--<div class="newregister">--}}
+                {{--<h2>ลงทะเบียนโครงการใหม่</h2>--}}
+                {{--<p><img src="{{ asset('images/test/pic-1.jpg')}}" alt="" /></p>--}}
+                {{--<div class="text">--}}
+                    {{--<h3>Life Asoke (ไลฟ์ อโศก)</h3>--}}
+                    {{--<p>ลงทะเบียนส่วนลดสูงสุด <span>100,000</span> บาท</p>--}}
+                {{--</div>--}}
+                {{--<a href="#" class="btn-register">ลงทะเบียนที่นี่</a>--}}
+            {{--</div>--}}
+
+            @if($bannerC != null && count($bannerC) > 0)
+                <div class="newregister">
+                    <h2>ลงทะเบียนโครงการใหม่</h2>
+                    <div id="bannerC_Slider" class="flexslider">
+                        <ul class="slides">
+                            @foreach($bannerC as $item)
+                                <li>
+                                    <p>
+                                        <img src="{{ $item->file_path }}" alt="{{ $item->file_name }}" />
+                                    </p>
+                                    <div class="text">
+                                        <h3 style="
+                                            line-height: 25px;
+                                            height: 50px;
+                                            overflow: hidden;
+                                            margin-bottom: 10px;
+                                            ">
+                                            {{ $item->banner_name }}
+                                        </h3>
+                                        <?php $pieces = explode("<p>", $item->remark); ?>
+
+                                        @foreach($pieces as $pdesc)
+                                            @if($pdesc != "")
+                                                <p style="
+                                                line-height: 25px;
+                                                height: 50px;
+                                                overflow: hidden;
+                                                ">
+                                                    {!! str_replace("</p>", "", $pdesc) !!}
+                                                </p>
+                                            @endif
+                                        @endforeach
+                                    </div>
+                                    <a href="{{ $item->url }}" target="_blank" class="btn-register">ลงทะเบียนที่นี่</a>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </div>
                 </div>
-                <a href="#" class="btn-register">ลงทะเบียนที่นี่</a>
-            </div>
+            @endif
+
             <a href="#" class="btn-likefb"></a>
             <!-- Banner E, F, G -->
             <div class="side-banner"><img src="{{ asset('images/test/pic-10.jpg') }}" alt="" /></div>

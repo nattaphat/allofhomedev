@@ -46,7 +46,8 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
 body{
 	font-family: 'psl_kittithada_probold';,Tahoma, Geneva, sans-serif;
 	font-size:24px;
-	/*color:#aeaeae;	*/
+	/*color:#aeaeae;*/
+    color: #646464;
 }
 .clear{
 	clear:both;	
@@ -486,7 +487,7 @@ nav ul li:nth-child(6), nav ul li:nth-child(6) ul li {
 .boxleft .newregister .text{
 	border-left:1px solid #CCC;
 	border-right:1px solid #CCC;
-	color:#a2a2a2;
+	color: #8c8c8c;
 	padding:15px;
 	font-size:24px;
 }
@@ -1079,12 +1080,19 @@ nav ul li:nth-child(6), nav ul li:nth-child(6) ul li {
 .boxVdoReview .contact-detail .right .scoll ul li span{ display: inline-block; } 
 .boxVdoReview .contact-detail .right .branch{ font-size:20px; margin-top:20px;}
 .boxVdoReview .contact-detail .right .branch ul li{ float:left; width:125px; margin-bottom:5px; }
-.boxVdoReview .contact-detail .right .branch ul li a{ color:#aeaeae; }
+.boxVdoReview .contact-detail .right .branch ul li a{
+    /*color:#aeaeae;*/
+    color:#646464;
+}
 
 .boxVdoReview .location ul li .title{ color:#000; }
 .boxVdoReview .contact-detail .left ul li .info{ width:345px; margin-left:10px; text-align:left; }
 .boxVdoReview .other-detail{  border-bottom:1px solid #f2f2f2; color:#000; font-size:20px; padding:20px 0 0;  }
-.boxVdoReview .other-detail ul li .info{ color:#aeaeae; width:640px; margin-left:10px; }
+.boxVdoReview .other-detail ul li .info{
+    /*color:#aeaeae; */
+    color:#646464;
+    width:640px; margin-left:10px;
+}
 .boxVdoReview .location{ font-size:20px; padding:20px 0 10px;}
 .boxVdoReview .location .description{ margin:0 20px 10px;}
 .boxVdoReview .location ul li .info{
@@ -1179,7 +1187,8 @@ nav ul li:nth-child(6), nav ul li:nth-child(6) ul li {
 .boxFinan .form-finan .left ul li .title{ width:125px; text-align:right; margin-right:5px;}
 .boxFinan .form-finan .left ul li input{ 
 	border:0; 	
-	color:#aeaeae;	
+	/*color:#aeaeae;	*/
+    color:#646464;
 	display:inline-block; 
 	font-family: 'psl_kittithada_probold';
 	font-size:24px;
@@ -1346,17 +1355,24 @@ nav ul li:nth-child(6), nav ul li:nth-child(6) ul li {
 
 #articleSlider img {
     display: block;
-    width: 100%;
-    height: 402px;
     width: auto;
+    height: 402px;
 }
 
 #bannerB_Slider .slides img {
     display: block;
     width: 1200px;
     height: 400px;
-     max-width: none;
-     max-height: none;
+    max-width: none;
+    max-height: none;
+}
+
+#bannerC_Slider .slides img {
+    display: block;
+    width: 294px;
+    height: 322px;
+    max-width: none;
+    max-height: none;
 }
 
 .text-hilight h3.article-title
@@ -1376,4 +1392,5 @@ nav ul li:nth-child(6), nav ul li:nth-child(6) ul li {
     height:46px;
     overflow: hidden;
     text-indent: 30px;
+    color: #646464;
 }

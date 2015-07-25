@@ -33,12 +33,12 @@
                         $pics = \App\Models\Picture::getUrlPicture($item->id, 'App\\Models\\CatArticle');
                         ?>
                         <li>
-                            <div class="pic">
+                            <div class="pic" style="width: 555px;">
                                 @if($pics != null && count($pics) > 0)
                                     <img src="{{ $pics[0]->file_path }}" alt="" />
                                 @endif
                             </div>
-                            <div class="text-hilight">
+                            <div class="text-hilight" style="width: 500px;">
                                 <a href="{{ url('article')."/".$item->id }}"><h3 class="article-title">
                                     {{ $item->title }}
                                 </h3></a>

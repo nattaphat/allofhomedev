@@ -6,6 +6,7 @@ $( document ).ready(function() {
     toggle_preview();
     articleSlider();
     bannerB_Slider();
+    bannerC_Slider();
 
     $( '.dropdown' ).hover(
         function(){
@@ -88,9 +89,9 @@ function articleSlider()
 {
     $('#articleSlider').flexslider({
         slideshow: true,
-        animation: "slide",
+        animation: "fade",
         slideshowSpeed: 6000,
-        pauseOnHover: false,
+        pauseOnHover: true,
         smoothHeight: true,
         useCSS: true,
         controlNav: false,
@@ -112,5 +113,18 @@ function bannerB_Slider()
     });
 }
 
+function bannerC_Slider()
+{
+    $('#bannerC_Slider').flexslider({
+        slideshow: true,
+        animation: "fade",
+        slideshowSpeed: 6000,
+        pauseOnHover: true,
+        smoothHeight: true,
+        useCSS: true,
+        controlNav: false,
+        directionNav: true
+    });
+}
 
 
