@@ -2,17 +2,24 @@
 
 @section('jshome')
     <style type="text/css">
+
         img{
-            max-width: 100px;
-            max-height: 100px;
+            max-width: 500px;
+            max-height: 45px;
         }
+
+        .dropzone .dz-preview .dz-image {
+            width: 500px;
+            border-radius: 0;
+        }
+
     </style>
 @stop
 
 @section('jsbody')
     <!-- Laravel Javascript Validation -->
     <script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script>
-    {!! JsValidator::formRequest('App\Http\Requests\BrandRequest', '#my-form'); !!}
+    {!! JsValidator::formRequest('App\Http\Requests\BannerARequest', '#my-form'); !!}
 
     <script type="text/javascript">
 
@@ -27,6 +34,9 @@
             acceptedFiles: 'image/*',
             autoProcessQueue: true,
             addRemoveLinks: true,
+            dictDefaultMessage: "อัพโหลดไฟล์ขนาด 1000 x 90 pixel",
+//            thumbnailWidth: 500,
+//            thumbnailHeight: 45,
             sending: function(file, xhr, formData) {
                 formData.append("_token", $('[name=_token]').val());
             },
@@ -38,10 +48,33 @@
 
                 file.previewElement.classList.add("dz-success");
 
-                $('#filename').val(filename);
-                $('#filetype').val(filetype);
-                $('#filesize').val(filesize);
-                $('#filepath').val(filepath);
+                var input_hidden = document.createElement('input');
+                input_hidden.setAttribute('name', 'filename');
+                input_hidden.setAttribute('id', 'filename');
+                input_hidden.setAttribute('type', 'hidden');
+                input_hidden.setAttribute('value', filename);
+                document.forms[0].appendChild(input_hidden);
+
+                var input_hidden = document.createElement('input');
+                input_hidden.setAttribute('name', 'filetype');
+                input_hidden.setAttribute('id', 'filetype');
+                input_hidden.setAttribute('type', 'hidden');
+                input_hidden.setAttribute('value', filetype);
+                document.forms[0].appendChild(input_hidden);
+
+                var input_hidden = document.createElement('input');
+                input_hidden.setAttribute('name', 'filesize');
+                input_hidden.setAttribute('id', 'filesize');
+                input_hidden.setAttribute('type', 'hidden');
+                input_hidden.setAttribute('value', filesize);
+                document.forms[0].appendChild(input_hidden);
+
+                var input_hidden = document.createElement('input');
+                input_hidden.setAttribute('name', 'filepath');
+                input_hidden.setAttribute('id', 'filepath');
+                input_hidden.setAttribute('type', 'hidden');
+                input_hidden.setAttribute('value', filepath);
+                document.forms[0].appendChild(input_hidden);
             },
             error: function (file, response) {
                 this.removeFile(file);
@@ -49,11 +82,11 @@
             },
             init : function()
             {
-                @if($attachment != null)
-                    var mockFile = { name: '{{ $attachment->filename }}', size: '{{ $attachment->filesize }}', accepted: true,
-                        status: Dropzone.ADDED, url: '{{ $attachment->path }}'};
+                @if($banner->file_path != null)
+                    var mockFile = { name: '{{ $banner->file_name }}', size: '{{ $banner->file_size }}', accepted: true,
+                        status: Dropzone.ADDED, url: '{{ $banner->file_path }}' };
                     this.emit("addedfile", mockFile);
-                    this.emit("thumbnail", mockFile, '{{ $attachment->path }}');
+                    this.emit("thumbnail", mockFile, '{{ $banner->file_path }}');
                     this.emit("complete", mockFile);
                     this.files.push(mockFile);
                 @endif
@@ -74,7 +107,7 @@
 @section('content')
     <div class="row">
         <div class="col-lg-12">
-            <h3 class="page-header">แบรนด์</h3>
+            <h3 class="page-header">ข้อมูล Banner (Type A)</h3>
         </div>
     </div>
 
@@ -82,33 +115,30 @@
         <div class="col-lg-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    เพิ่มแบรนด์
+                    แก้ไข Banner (Type A)
                 </div>
                 <div class="panel-body">
                     <div class="col-md-12">
 
-                        {!! Form::open(['route' => ['backend_brand_update'],
+                        {!! Form::open(['route' => ['backend_bannerA_update'],
                             'id'=> 'my-form', 'data-ajax' => 'true',
                             'class' => 'form-horizontal']) !!}
 
-                        {!! Form::hidden('id', $brand->id) !!}
-                        {!! Form::hidden('filename', $attachment == null? "" : $attachment->filename, ['id'=> 'filename']) !!}
-                        {!! Form::hidden('filesize', $attachment == null? "" : $attachment->filesize, ['id'=> 'filesize']) !!}
-                        {!! Form::hidden('filetype', $attachment == null? "" : $attachment->filetype, ['id'=> 'filetype']) !!}
-                        {!! Form::hidden('filepath', $attachment == null? "" : $attachment->path, ['id'=> 'filepath']) !!}
+                        {!! Form::hidden('user_id', Auth::user()->id) !!}
+                        {!! Form::hidden('id', $banner->id) !!}
 
                         <div class="form-group">
-                            {!! Form::label('brand_name', 'ชื่อแบรนด์', [
+                            {!! Form::label('banner_name', 'ชื่อ Banner', [
                                 'class' => 'col-md-2 control-label']) !!}
                             <div class="col-md-8">
-                                {!! Form::text('brand_name', $brand->brand_name,[
+                                {!! Form::text('banner_name', $banner->banner_name,[
                                     'class' => 'form-control'
                                     ]) !!}
                             </div>
                         </div>
 
                         <div class="form-group">
-                            {!! Form::label('dZUpload', 'โลโก้', [
+                            {!! Form::label('dZUpload', 'รูปภาพ', [
                                 'class' => 'col-md-2 control-label']) !!}
                             <div class="col-md-8">
                                 <div id="dZUpload" name="dZUpload" class="dropzone uploadify"></div>
@@ -116,54 +146,43 @@
                         </div>
 
                         <div class="form-group">
-                            {!! Form::label('telephone', 'โทรศัพท์', [
+                            {!! Form::label('url', 'ลิงค์ URL', [
                             'class' => 'col-md-2 control-label']) !!}
                             <div class="col-md-8">
-                                {!! Form::text('telephone', $brand->telephone,[
+                                {!! Form::text('url', $banner->url,[
                                 'class' => 'form-control'
                                 ]) !!}
                             </div>
                         </div>
 
                         <div class="form-group">
-                            {!! Form::label('email', 'อีเมล', [
+                            {!! Form::label('remark', 'หมายเหตุ', [
                             'class' => 'col-md-2 control-label']) !!}
                             <div class="col-md-8">
-                                {!! Form::text('email', $brand->email,[
-                                'class' => 'form-control'
+                                {!! Form::textarea('remark', $banner->remark,[
+                                'class' => 'form-control',
+                                'rows' => '3'
                                 ]) !!}
                             </div>
                         </div>
 
                         <div class="form-group">
-                            {!! Form::label('facebook', 'เฟสบุ๊ค', [
+                            {!! Form::label('visible', 'แสดงผลบนเว็บไซต์', [
                             'class' => 'col-md-2 control-label']) !!}
-                            <div class="col-md-8">
-                                {!! Form::text('facebook', $brand->facebook,[
-                                'class' => 'form-control'
-                                ]) !!}
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            {!! Form::label('line', 'ไลน์', [
-                            'class' => 'col-md-2 control-label']) !!}
-                            <div class="col-md-8">
-                                {!! Form::text('line', $brand->line,[
-                                'class' => 'form-control'
-                                ]) !!}
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            {!! Form::label('suggest', 'แสดงผลบนเว็บไซต์', [
-                                'class' => 'col-md-2 control-label']) !!}
                             <div class="col-md-8">
                                 <label class="radio-inline">
-                                    <input type="radio" name="suggest[]" value="true" @if($brand->suggest) checked @endif> สำคัญ
+                                    <input type="radio" name="visible[]" value="true"
+                                        @if($banner->visible)
+                                            checked
+                                        @endif
+                                        > แสดงผล
                                 </label>
                                 <label class="radio-inline">
-                                    <input type="radio" name="suggest[]" value="false" @if(!$brand->suggest) checked @endif> ธรรมดา
+                                    <input type="radio" name="visible[]" value="false"
+                                        @if(!$banner->visible)
+                                           checked
+                                        @endif
+                                        > ซ่อน
                                 </label>
                             </div>
                         </div>

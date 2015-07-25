@@ -68,11 +68,128 @@
         'uses' => 'Backend\BackendNewPostController@newPost'
     ]);
 
-//    Banner
-    Route::get('backend/banner', [
+    //    Banner A
+    Route::get('backend/bannerA', [
         'before' => 'backend_auth',
-        'as' => 'backend_banner',
-        'uses' => 'Backend\BackendBannerController@banner'
+        'as' => 'backend_bannerA',
+        'uses' => 'Backend\BackendBannerController@bannerA'
+    ]);
+
+    Route::get('backend/bannerA_new', [
+        'before' => 'backend_auth',
+        'as' => 'backend_bannerA_new',
+        'uses' => 'Backend\BackendBannerController@bannerA_new'
+    ]);
+
+    Route::post('backend/bannerA_store', [
+        'before' => 'backend_auth',
+        'as' => 'backend_bannerA_store',
+        'uses' => 'Backend\BackendBannerController@bannerA_store'
+    ]);
+
+    Route::get('backend/bannerA_edit/{id}', [
+        'before' => 'backend_auth',
+        'as' => 'backend_bannerA_edit',
+        'uses' => 'Backend\BackendBannerController@bannerA_edit'
+    ]);
+
+    Route::post('backend/bannerA_update', [
+        'before' => 'backend_auth',
+        'as' => 'backend_bannerA_update',
+        'uses' => 'Backend\BackendBannerController@bannerA_update'
+    ]);
+
+    //    Banner B
+    Route::get('backend/bannerB', [
+        'before' => 'backend_auth',
+        'as' => 'backend_bannerB',
+        'uses' => 'Backend\BackendBannerController@bannerB'
+    ]);
+
+    Route::get('backend/bannerB_new', [
+        'before' => 'backend_auth',
+        'as' => 'backend_bannerB_new',
+        'uses' => 'Backend\BackendBannerController@bannerB_new'
+    ]);
+
+    Route::post('backend/bannerB_store', [
+        'before' => 'backend_auth',
+        'as' => 'backend_bannerB_store',
+        'uses' => 'Backend\BackendBannerController@bannerB_store'
+    ]);
+
+    Route::get('backend/bannerB_edit/{id}', [
+        'before' => 'backend_auth',
+        'as' => 'backend_bannerB_edit',
+        'uses' => 'Backend\BackendBannerController@bannerB_edit'
+    ]);
+
+    Route::post('backend/bannerB_update', [
+        'before' => 'backend_auth',
+        'as' => 'backend_bannerB_update',
+        'uses' => 'Backend\BackendBannerController@bannerB_update'
+    ]);
+
+    //    Banner C
+    Route::get('backend/bannerC', [
+        'before' => 'backend_auth',
+        'as' => 'backend_bannerC',
+        'uses' => 'Backend\BackendBannerController@bannerC'
+    ]);
+
+    Route::get('backend/bannerC_new', [
+        'before' => 'backend_auth',
+        'as' => 'backend_bannerC_new',
+        'uses' => 'Backend\BackendBannerController@bannerC_new'
+    ]);
+
+    Route::post('backend/bannerC_store', [
+        'before' => 'backend_auth',
+        'as' => 'backend_bannerC_store',
+        'uses' => 'Backend\BackendBannerController@bannerC_store'
+    ]);
+
+    Route::get('backend/bannerC_edit/{id}', [
+        'before' => 'backend_auth',
+        'as' => 'backend_bannerC_edit',
+        'uses' => 'Backend\BackendBannerController@bannerC_edit'
+    ]);
+
+    Route::post('backend/bannerC_update', [
+        'before' => 'backend_auth',
+        'as' => 'backend_bannerC_update',
+        'uses' => 'Backend\BackendBannerController@bannerC_update'
+    ]);
+
+    //    Banner D
+    Route::get('backend/bannerD', [
+        'before' => 'backend_auth',
+        'as' => 'backend_bannerD',
+        'uses' => 'Backend\BackendBannerController@bannerD'
+    ]);
+
+    Route::get('backend/bannerD_new', [
+        'before' => 'backend_auth',
+        'as' => 'backend_bannerD_new',
+        'uses' => 'Backend\BackendBannerController@bannerD_new'
+    ]);
+
+    Route::post('backend/bannerD_store', [
+        'before' => 'backend_auth',
+        'as' => 'backend_bannerD_store',
+        'uses' => 'Backend\BackendBannerController@bannerD_store'
+    ]);
+
+    Route::get('backend/bannerD_edit/{id}', [
+        'before' => 'backend_auth',
+        'as' => 'backend_bannerD_edit',
+        'uses' => 'Backend\BackendBannerController@bannerD_edit'
+    ]);
+
+    Route::post('backend/bannerD_update', [
+        'before' => 'backend_auth',
+        'as' => 'backend_bannerD_update',
+        'uses' => 'Backend\BackendBannerController@bannerD_update'
     ]);
 
 //    News

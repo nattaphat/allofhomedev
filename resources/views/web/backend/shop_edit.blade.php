@@ -41,12 +41,12 @@
             init : function()
             {
                 @if($attachment != null)
-                    var mockFile = { name: '{{ $attachment->filename }}', size: '{{ $attachment->filesize }}', accepted: true };
+                    var mockFile = { name: '{{ $attachment->filename }}', size: '{{ $attachment->filesize }}', accepted: true,
+                        status: Dropzone.ADDED, url: '{{ $attachment->path }}'};
                     this.emit("addedfile", mockFile);
                     this.emit("thumbnail", mockFile, '{{ $logo }}');
                     this.emit("complete", mockFile);
-                    var existingFileCount = 1; // The number of files already uploaded
-                    this.options.maxFiles = this.options.maxFiles - existingFileCount;
+                    this.files.push(mockFile);
                 @endif
             }
         });
@@ -56,7 +56,6 @@
             $('#filetype').val("");
             $('#filesize').val("");
             $('#filepath').val("");
-            this.options.maxFiles = 1;
         });
 
     </script>

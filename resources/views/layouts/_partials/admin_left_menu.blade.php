@@ -1,7 +1,6 @@
 <div class="navbar-default sidebar" role="navigation">
     <div class="sidebar-nav navbar-collapse">
         <ul class="nav" id="side-menu">
-
             <li>
                 <a href="{{ URL::to('backend/index') }}"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
             </li>
@@ -25,9 +24,6 @@
             <li>
                 <a href="{{ URL::to('backend/article') }}"> บทความและข่าวสาร</a>
             </li>
-            {{--<li>--}}
-                {{--<a href="{{ URL::to('backend/review') }}"> รีวิวทั้งหมด</a>--}}
-            {{--</li>--}}
             <li>
                 <a href="{{ URL::to('backend/idea') }}"> ไอเดียทั้งหมด</a>
             </li>
@@ -41,22 +37,19 @@
                 <a href="#"> ข้อมูล Banner<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li>
-                        <a href="#">Type A (ส่วนหัวบนสุด)</a>
+                        <a href="{{ url('backend/bannerA') }}">Type A (ด้านบนสุด)</a>
                     </li>
                     <li>
-                        <a href="#">Type B (ส่วนหัว Slider)</a>
+                        <a href="{{ url('backend/bannerB') }}">Type B (ส่วน Slide)</a>
                     </li>
                     <li>
-                        <a href="{{ URL::to('backend/airportLink') }}">Type C (ลงทะเบียนโครงการใหม่)</a>
+                        <a href="#{{ url('backend/bannerC') }}">Type C (ลงทะเบียนโครงการ)</a>
+                    </li>
+                    <li>
+                        <a href="{{ url('backend/bannerD') }}">Type D</a>
                     </li>
                 </ul>
             </li>
-            {{--<li>--}}
-                {{--<a href="{{ URL::to('backend/category') }}"> ประกาศหมวดหมู่</a>--}}
-            {{--</li>--}}
-            {{--<li style="display:none;">--}}
-                {{--<a href="{{ URL::to('backend/businessShop') }}" onclick="alert('under construction'); return false;"> ประเภทธุรกิจร้านค้า</a>--}}
-            {{--</li>--}}
             <li>
                 <a href="{{ URL::to('backend/facility') }}"> สิ่งอำนวยความสะดวก</a>
             </li>
