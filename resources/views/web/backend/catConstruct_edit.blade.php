@@ -4,7 +4,7 @@
     {!! $map['js'] !!}
 
     <style type="text/css">
-        img{
+        img#img_brand {
             max-width: 100px;
             max-height: 100px;
         }
