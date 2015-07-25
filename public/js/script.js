@@ -5,6 +5,7 @@ $( document ).ready(function() {
     picture_preview_slider();
     toggle_preview();
     articleSlider();
+    bannerB_Slider();
 
     $( '.dropdown' ).hover(
         function(){
@@ -96,4 +97,20 @@ function articleSlider()
         directionNav: true
     });
 }
+
+function bannerB_Slider()
+{
+    $('#bannerB_Slider').flexslider({
+        slideshow: true,
+        animation: "slide",
+        slideshowSpeed: 6000,
+        pauseOnHover: true,
+        smoothHeight: true,
+        useCSS: true,
+        controlNav: false,
+        directionNav: true
+    });
+}
+
+
 

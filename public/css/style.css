@@ -1351,6 +1351,14 @@ nav ul li:nth-child(6), nav ul li:nth-child(6) ul li {
     width: auto;
 }
 
+#bannerB_Slider .slides img {
+    display: block;
+    width: 1200px;
+    height: 400px;
+     max-width: none;
+     max-height: none;
+}
+
 .text-hilight h3.article-title
 {
     color:#5cc5c1;

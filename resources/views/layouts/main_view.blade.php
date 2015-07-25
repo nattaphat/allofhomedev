@@ -31,20 +31,45 @@
 <div class="containner nodropdown">
     <div class="wrap">
         <!-- Banner B -->
-        <div class="hilight">
-            <a href="#" class="prev"></a>
-            <a href="#" class="next"></a>
-            <div class="pic-slide">
-                <ul>
-                    <li><a href="#"><img src="{{ asset('images/test/banner-2.jpg') }}" alt="" /></a></li>
-                </ul>
+        {{--<div class="hilight">--}}
+            {{--<a href="#" class="prev"></a>--}}
+            {{--<a href="#" class="next"></a>--}}
+            {{--<div class="pic-slide">--}}
+                {{--<ul>--}}
+                    {{--<li><a href="#"><img src="{{ asset('images/test/banner-2.jpg') }}" alt="" /></a></li>--}}
+                {{--</ul>--}}
+            {{--</div>--}}
+            {{--<div class="pagin">--}}
+                {{--<a href="#" class="active"></a>--}}
+                {{--<a href="#"></a>--}}
+                {{--<a href="#"></a>--}}
+            {{--</div>--}}
+        {{--</div>--}}
+        <?php
+        $bannerB = \App\Models\Banner::where('type','=','B')
+                ->where('visible', '=', 'true')
+                ->whereNotNull('file_path')
+                ->orderBy('created_at', 'desc')
+                ->take(5)
+                ->get();
+        ?>
+        @if($bannerB != null && count($bannerB) > 0)
+            <div class="hilight">
+                <div class="pic-slide">
+                    <div id="bannerB_Slider" class="flexslider">
+                        <ul class="slides">
+                            @foreach($bannerB as $item)
+                                <li>
+                                    <a href="{{ $item->url }}" target="_blank">
+                                        <img src="{{ $item->file_path }}" alt="{{ $item->file_name }}" width="1200" height="400" />
+                                    </a>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </div>
+                </div>
             </div>
-            <div class="pagin">
-                <a href="#" class="active"></a>
-                <a href="#"></a>
-                <a href="#"></a>
-            </div>
-        </div>
+        @endif
 
         <!-- ค้นหาทั้งหมดในเว็บ -->
         <div class="search">

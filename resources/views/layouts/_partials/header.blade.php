@@ -1,7 +1,22 @@
 <h1 class="nodropdown"><a href="{{ url('/') }}">www.allofhome.com</a></h1>
 
+<?php
+    $bannerA = \App\Models\Banner::where('type','=','A')
+        ->where('visible', '=', 'true')
+        ->whereNotNull('file_path')
+        ->orderBy('created_at', 'desc')
+        ->take(1)
+        ->get();
+?>
+
 <!-- Banner A -->
-<div class="banner-top nodropdown"><img src="{{ asset('images/test/banner-1.jpg') }}" alt="" /></div>
+@if($bannerA != null && count($bannerA) == 1)
+<div class="banner-top nodropdown">
+    <a href="{{ $bannerA[0]->url }}" target="_blank">
+        <img src="{{ $bannerA[0]->file_path }}" alt="{{ $bannerA[0]->file_name }}" width="1000" height="90" />
+    </a>
+</div>
+@endif
 
 <nav>
     <ul>
