@@ -682,7 +682,7 @@ nav ul li:nth-child(6), nav ul li:nth-child(6) ul li {
 	border-left:1px solid #f2f2f2;
 	border-right:1px solid #f2f2f2;
 	border-bottom:1px solid #f2f2f2;
-	color:#d0d0d0;
+	/*color:#d0d0d0;*/
 	font-size:24px;
 	display:block;
 	text-align:center;
@@ -801,7 +801,7 @@ nav ul li:nth-child(6), nav ul li:nth-child(6) ul li {
 	font-size:30px;
 }
 .boxConversation .head span{ color:#FFF;}
-.boxConversation span, .boxConversation .list-conver a{ display:inline-block; color:#a2a2a2; }
+.boxConversation span, .boxConversation .list-conver a{ display:inline-block; /*color:#a2a2a2;*/ }
 .boxConversation .list-conver a{ cursor:pointer;}
 .boxConversation .topic{ width:500px; margin-left:20px; }
 .boxConversation .read{ width:65px; text-align:center;}
@@ -860,7 +860,8 @@ nav ul li:nth-child(6), nav ul li:nth-child(6) ul li {
 	padding:10px 0 0;
 }
 .boxJob .list-job ul li .info .text a{
-	color:#d2d2d2;
+	/*color:#d2d2d2;*/
+    color:#000;
 }
 .boxJob .list-job ul li .info .text h3 a{
 	font-size:30px;
