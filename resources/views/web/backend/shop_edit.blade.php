@@ -89,7 +89,7 @@
         <div class="col-lg-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    เพิ่มข้อมูลติดต่อร้านค้า
+                    แก้ไขข้อมูลติดต่อร้านค้า
                 </div>
                 <div class="panel-body">
                     <div class="col-md-12">
@@ -159,6 +159,47 @@
                                 {!! Form::text('line', $shop->line,[
                                 'class' => 'form-control'
                                 ]) !!}
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            {!! Form::label('line_url', 'ลิงค์ LINE', [
+                            'class' => 'col-md-2 control-label']) !!}
+                            <div class="col-md-8">
+                                {!! Form::text('line_url', $shop->line_url,[
+                                'class' => 'form-control'
+                                ]) !!}
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            {!! Form::label('display_button', 'แสดงปุ่มกด', [
+                            'class' => 'col-md-2 control-label']) !!}
+                            <div class="col-md-8">
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="display_button[]" value="line"
+                                            @if($shop->display_button == "line") checked @endif> Line
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="display_button[]" value="facebook"
+                                            @if($shop->display_button == "facebook") checked @endif> Facebook
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="display_button[]" value="website"
+                                            @if($shop->display_button == "website") checked @endif> Website
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="display_button[]" value="telephone"
+                                            @if($shop->display_button == "telephone") checked @endif> Telephone
+                                    </label>
+                                </div>
                             </div>
                         </div>
 

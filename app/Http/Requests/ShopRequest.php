@@ -12,6 +12,7 @@ class ShopRequest extends Request {
     {
         return [
             'shop_name' => 'required|max:100',
+            'telephone' => 'required',
             'email' => 'email'
         ];
     }

@@ -51,6 +51,8 @@ class BackendShopController extends Controller {
             $shop->email = $input['email'];
             $shop->facebook = $input['facebook'];
             $shop->line = $input['line'];
+            $shop->line_url = $input['line_url'];
+            $shop->display_button = $input['display_button'][0];
             $shop->suggest = $input['suggest'][0];
             $shop->save();
         }
@@ -127,6 +129,8 @@ class BackendShopController extends Controller {
             $shop->email = $input['email'];
             $shop->facebook = $input['facebook'];
             $shop->line = $input['line'];
+            $shop->line_url = $input['line_url'];
+            $shop->display_button = $input['display_button'][0];
             $shop->suggest = $input['suggest'][0];
             $shop->save();
         }
