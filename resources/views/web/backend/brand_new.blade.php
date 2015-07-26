@@ -143,12 +143,49 @@
                         </div>
 
                         <div class="form-group">
-                            {!! Form::label('line', 'ไลน์', [
+                            {!! Form::label('line', 'LINE ID', [
                             'class' => 'col-md-2 control-label']) !!}
                             <div class="col-md-8">
                                 {!! Form::text('line', null,[
                                 'class' => 'form-control'
                                 ]) !!}
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            {!! Form::label('line_url', 'ลิงค์ LINE', [
+                            'class' => 'col-md-2 control-label']) !!}
+                            <div class="col-md-8">
+                                {!! Form::text('line_url', null,[
+                                'class' => 'form-control'
+                                ]) !!}
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            {!! Form::label('display_button', 'แสดงปุ่มกด', [
+                            'class' => 'col-md-2 control-label']) !!}
+                            <div class="col-md-8">
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="display_button[]" value="line" checked> Line
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="display_button[]" value="facebook"> Facebook
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="display_button[]" value="website"> Website
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="display_button[]" value="telephone"> Telephone
+                                    </label>
+                                </div>
                             </div>
                         </div>
 

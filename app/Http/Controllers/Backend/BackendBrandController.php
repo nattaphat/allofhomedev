@@ -54,6 +54,8 @@ class BackendBrandController extends Controller {
             $brand->email = $input['email'];
             $brand->facebook = $input['facebook'];
             $brand->line = $input['line'];
+            $brand->line_url = $input['line_url'];
+            $brand->display_button = $input['display_button'][0];
             $brand->suggest = $input['suggest'][0];
             $brand->save();
         }
@@ -130,6 +132,8 @@ class BackendBrandController extends Controller {
             $brand->email = $input['email'];
             $brand->facebook = $input['facebook'];
             $brand->line = $input['line'];
+            $brand->line_url = $input['line_url'];
+            $brand->display_button = $input['display_button'][0];
             $brand->suggest = $input['suggest'][0];
             $brand->save();
         }

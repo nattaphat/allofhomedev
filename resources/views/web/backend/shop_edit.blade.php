@@ -153,7 +153,7 @@
                         </div>
 
                         <div class="form-group">
-                            {!! Form::label('line', 'ไลน์', [
+                            {!! Form::label('line', 'LINE ID', [
                             'class' => 'col-md-2 control-label']) !!}
                             <div class="col-md-8">
                                 {!! Form::text('line', $shop->line,[

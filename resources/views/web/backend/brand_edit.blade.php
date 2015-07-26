@@ -154,12 +154,53 @@
                         </div>
 
                         <div class="form-group">
-                            {!! Form::label('line', 'ไลน์', [
+                            {!! Form::label('line', 'LINE ID', [
                             'class' => 'col-md-2 control-label']) !!}
                             <div class="col-md-8">
                                 {!! Form::text('line', $brand->line,[
                                 'class' => 'form-control'
                                 ]) !!}
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            {!! Form::label('line_url', 'ลิงค์ LINE', [
+                            'class' => 'col-md-2 control-label']) !!}
+                            <div class="col-md-8">
+                                {!! Form::text('line_url', $brand->line_url,[
+                                'class' => 'form-control'
+                                ]) !!}
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            {!! Form::label('display_button', 'แสดงปุ่มกด', [
+                            'class' => 'col-md-2 control-label']) !!}
+                            <div class="col-md-8">
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="display_button[]" value="line"
+                                        @if($brand->display_button == "line") checked @endif> Line
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="display_button[]" value="facebook"
+                                        @if($brand->display_button == "facebook") checked @endif> Facebook
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="display_button[]" value="website"
+                                        @if($brand->display_button == "website") checked @endif> Website
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="display_button[]" value="telephone"
+                                        @if($brand->display_button == "telephone") checked @endif> Telephone
+                                    </label>
+                                </div>
                             </div>
                         </div>
 
