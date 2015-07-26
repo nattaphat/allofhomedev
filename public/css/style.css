@@ -926,7 +926,7 @@ nav ul li:nth-child(6), nav ul li:nth-child(6) ul li {
 	float:left;
 	width:364px;
 	margin-left:18px;
-	min-height:345px;
+	min-height:393px;
 	padding:20px 23px 0;
 }
 .boxMember .left .profile h2, .boxMember .right h2{
@@ -938,6 +938,7 @@ nav ul li:nth-child(6), nav ul li:nth-child(6) ul li {
 .boxMember .left .detail{
 	background:#FFF;
 	padding:8px;
+    min-height: 242px;
 }
 .boxMember .left .detail .pic-profile{
 	float:left;

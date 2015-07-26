@@ -30,7 +30,15 @@
                 </div>
                 <div class="clear"></div>
             </div>
-            <a href="#" class="btn-addfriend"></a>
+            @if($brand->display_button == "line")
+                <a href="{{ $brand->line_url }}" target="_blank" class="btn-addfriend"></a>
+            @elseif($brand->display_button == "facebook")
+                <a href="{{ $brand->facebook }}" target="_blank" class="btn-addfriend"></a>
+            @elseif($brand->display_button == "website")
+                <a href="{{ $catHome->website }}" target="_blank" class="btn-addfriend"></a>
+            @elseif($brand->display_button == "telephone")
+                <a href="{{ $brand->telephone }}" target="_blank" class="btn-addfriend"></a>
+            @endif
         </div>
     </div>
 
@@ -39,6 +47,7 @@
         <div class="form">
             {!! Form::text('subject', null, ['placeholder' => 'หัวข้อ']) !!}
             {!! Form::textarea('body', null, ['placeholder' => 'ข้อความ']) !!}
+            {!! Form::text('name_contact_back', null, ['placeholder' => 'ชื่อติดต่อกลับ']) !!}
             {!! Form::text('telephone_contact_back', null, ['placeholder' => 'เบอร์ติดต่อกลับ']) !!}
         </div>
         <input type="submit" value="" class="btn-submit" />
