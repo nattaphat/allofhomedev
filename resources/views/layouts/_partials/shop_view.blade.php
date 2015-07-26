@@ -24,8 +24,7 @@
                     </ul>
 
                 </div>
-                <div style="color: #000; font-size: 22px; font-weight: normal; width: 100%;
-                    clear: both; display: inline-block; overflow: hidden; white-space: nowrap;">
+                <div style="clear: both; color: #646464; font-size: 22px; line-height: 23px; height:46px; overflow: hidden;">
                     {{ $brand->brand_name }}
                 </div>
                 <div class="clear"></div>
