@@ -41,6 +41,7 @@
             },
             init : function()
             {
+                debugger;
                 @if($attachment != null)
                     var mockFile = { name: '{{ $attachment->filename }}', size: '{{ $attachment->filesize }}',
                         type: '{{ $attachment->filetype }}', path: '{{ $attachment->path }}',
