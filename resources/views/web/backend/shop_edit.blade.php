@@ -49,7 +49,7 @@
                         type: '{{ $attachment->filetype }}', path: '{{ $attachment->path }}',
                         accepted: true, status: Dropzone.ADDED};
                     this.emit("addedfile", mockFile);
-                    this.emit("thumbnail", mockFile, '{{ $logo }}');
+                    this.emit("thumbnail", mockFile, '{{ $attachment->path }}');
                     this.emit("success", mockFile);
                     this.emit("complete", mockFile);
                     this.files.push(mockFile);
