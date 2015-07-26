@@ -23,6 +23,8 @@
             },
             success: function (file, response) {
 
+                debugger;
+
                 var filename = file.name;
                 var filetype = file.type;
                 var filesize = file.size;
