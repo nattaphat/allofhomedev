@@ -10,41 +10,54 @@ class CatConstruct extends Model {
 
     public static function getFullPrjAddress($cat_construct_id)
     {
-        return "";
+        $catHome = CatConstruct::find($cat_construct_id);
 
-//        $catHome = CatConstruct::find($cat_construct_id);
-//        $tambon = Tambon::where('tambid','=',$catHome->tambid)
-//            ->where('amphid','=', $catHome->amphid)
-//            ->where('provid','=', $catHome->provid)->get();
-//        $amphoe = Amphoe::where('amphid','=', $catHome->amphid)
-//            ->where('provid','=', $catHome->provid)->get();
-//        $province = Provinces::where('provid','=', $catHome->provid)->get();
-//
-//        $ret = ($catHome->provid == 10? "แขวง" : "ตำบล").$tambon[0]->name." "
-//            .($catHome->provid == 10? "เขต" : "อำเภอ").$amphoe[0]->name." "
-//            ."จังหวัด".$province[0]->name;
-//
-//        if($catHome->add_street != null && $catHome->add_street != "")
-//        {
-//            $ret = "ถนน".$catHome->add_street." ".$ret;
-//        }
-//
-//        if($catHome->add_floor != null && $catHome->add_floor != "")
-//        {
-//            $ret = "ชั้น ".$catHome->add_floor." ".$ret;
-//        }
-//
-//        if($catHome->add_building != null && $catHome->add_building != "")
-//        {
-//            $ret = "ตึก/อาคาร ".$catHome->add_building." ".$ret;
-//        }
-//
-//        if($catHome->add_no != null && $catHome->add_no != "")
-//        {
-//            $ret = "เลขที่".$catHome->add_no." ".$ret;
-//        }
-//
-//        return $ret;
+        $ret = "";
+        $tambon = null;
+        $amphoe = null;
+        $province = null;
+
+        if($catHome->tambid != null) {
+            $tambon = Tambon::where('tambid', '=', $catHome->tambid)
+                ->where('amphid', '=', $catHome->amphid)
+                ->where('provid', '=', $catHome->provid)->get();
+
+            $ret .= ($catHome->provid == 10? "แขวง" : "ตำบล").$tambon[0]->name." ";
+        }
+
+        if($catHome->amphid != null) {
+            $amphoe = Amphoe::where('amphid', '=', $catHome->amphid)
+                ->where('provid', '=', $catHome->provid)->get();
+
+            $ret .= ($catHome->provid == 10? "เขต" : "อำเภอ").$amphoe[0]->name." ";
+        }
+
+        if($catHome->provid != null) {
+            $province = Provinces::where('provid', '=', $catHome->provid)->get();
+            $ret .= "จังหวัด".$province[0]->name;
+        }
+
+        if($catHome->add_street != null && $catHome->add_street != "")
+        {
+            $ret = "ถนน".$catHome->add_street." ".$ret;
+        }
+
+        if($catHome->add_floor != null && $catHome->add_floor != "")
+        {
+            $ret = "ชั้น ".$catHome->add_floor." ".$ret;
+        }
+
+        if($catHome->add_building != null && $catHome->add_building != "")
+        {
+            $ret = "ตึก/อาคาร ".$catHome->add_building." ".$ret;
+        }
+
+        if($catHome->add_no != null && $catHome->add_no != "")
+        {
+            $ret = "เลขที่ ".$catHome->add_no." ".$ret;
+        }
+
+        return $ret;
     }
 
     public function shop()

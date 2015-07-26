@@ -135,11 +135,13 @@
                         <span class="info">{{ $brand->brand_name }}</span>
                     </li>
                 @endif
-                <li>
-                    <span class="title">ที่ตั้งร้านค้า :</span>
-                    <span class="info">{{ $catConstruct->getFullPrjAddress($catConstruct->id) }}</span>
-                </li>
-
+                <?php $location = $catConstruct->getFullPrjAddress($catConstruct->id); ?>
+                @if($location != null && $location != "")
+                    <li>
+                        <span class="title">ที่ตั้งร้านค้า :</span>
+                        <span class="info">{{ $location }}</span>
+                    </li>
+                @endif
                 @if($catConstruct->service_day_time != null && $catConstruct->service_day_time != "")
                     <li>
                         <span class="title">วันเวลาเปิดบริการ :</span>
