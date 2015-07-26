@@ -11,8 +11,8 @@ class ArticleRequest extends Request {
     public function rules()
     {
         return [
-            'title' => 'required|max:100',
-            'subtitle' => 'required|max:500',
+            'title' => 'required',
+            'subtitle' => 'required',
             'for_cat[]' => 'required',
             'video_url' => 'url'
         ];

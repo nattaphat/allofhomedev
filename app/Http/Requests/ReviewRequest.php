@@ -11,8 +11,8 @@ class ReviewRequest extends Request {
     public function rules()
     {
         return [
-            'title' => 'required|max:100',
-            'subtitle' => 'required|max:500',
+            'title' => 'required',
+            'subtitle' => 'required',
             'cat_home_id' => 'required',
             'video_url' => 'url'
         ];

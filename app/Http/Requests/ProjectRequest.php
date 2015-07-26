@@ -11,8 +11,8 @@ class ProjectRequest extends Request {
     public function rules()
     {
         return [
-            'title' => 'required|max:100',
-            'subtitle' => 'required|max:500',
+            'title' => 'required',
+            'subtitle' => 'required',
             'for_cat[]' => 'required',
             'project_name' => 'required|max:100',
             //'project_owner' => 'required|max:100',
