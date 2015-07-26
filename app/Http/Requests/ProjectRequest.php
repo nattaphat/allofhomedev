@@ -14,7 +14,7 @@ class ProjectRequest extends Request {
             'title' => 'required',
             'subtitle' => 'required',
             'for_cat[]' => 'required',
-            'project_name' => 'required|max:100',
+            'project_name' => 'required',
             //'project_owner' => 'required|max:100',
             //'project_owner_logo' => 'required',
             //'telephone' => 'required|max:100',
