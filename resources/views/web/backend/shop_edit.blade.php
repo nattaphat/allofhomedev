@@ -1,5 +1,16 @@
 @extends('layouts.main_backend')
 
+@section('jshome')
+
+    <style type="text/css">
+        img{
+            max-width: 120px;
+            max-height: 120px;
+        }
+    </style>
+
+@stop
+
 @section('jsbody')
     <!-- Laravel Javascript Validation -->
     <script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script>
@@ -18,6 +29,8 @@
             acceptedFiles: 'image/*',
             autoProcessQueue: true,
             addRemoveLinks: true,
+            thumbnailWidth: 120,
+            thumbnailHeight: 120,
             sending: function(file, xhr, formData) {
                 formData.append("_token", $('[name=_token]').val());
             },

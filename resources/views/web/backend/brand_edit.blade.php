@@ -1,12 +1,14 @@
 @extends('layouts.main_backend')
 
 @section('jshome')
+
     <style type="text/css">
         img{
-            max-width: 100px;
-            max-height: 100px;
+            max-width: 120px;
+            max-height: 120px;
         }
     </style>
+
 @stop
 
 @section('jsbody')
@@ -27,6 +29,8 @@
             acceptedFiles: 'image/*',
             autoProcessQueue: true,
             addRemoveLinks: true,
+            thumbnailWidth: 120,
+            thumbnailHeight: 120,
             sending: function(file, xhr, formData) {
                 formData.append("_token", $('[name=_token]').val());
             },
