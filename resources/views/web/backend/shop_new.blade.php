@@ -77,7 +77,7 @@
 @section('content')
     <div class="row">
         <div class="col-lg-12">
-            <h3 class="page-header">ร้านค้า</h3>
+            <h3 class="page-header">ข้อมูลติดต่อร้านค้า</h3>
         </div>
     </div>
 
@@ -85,7 +85,7 @@
         <div class="col-lg-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    เพิ่มร้านค้า
+                    เพิ่มข้อมูลติดต่อร้านค้า
                 </div>
                 <div class="panel-body">
                     <div class="col-md-12">

@@ -10,10 +10,10 @@
             </li>
             @endif
             <li>
-                <a href="{{ URL::to('backend/brand') }}"> แบรนด์</a>
+                <a href="{{ URL::to('backend/brand') }}"> ข้อมูลติดต่อแบรนด์</a>
             </li>
             <li>
-                <a href="{{ URL::to('backend/shop') }}"> ร้านค้า</a>
+                <a href="{{ URL::to('backend/shop') }}"> ข้อมูลติดต่อร้านค้า</a>
             </li>
             <li>
                 <a href="{{ URL::to('backend/project') }}"> โครงการทั้งหมด</a>
