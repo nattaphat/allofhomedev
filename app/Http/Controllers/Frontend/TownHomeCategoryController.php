@@ -101,7 +101,7 @@ class TownHomeCategoryController extends Controller {
         $map = Gmaps::create_map();
 
         // ###################  Article #######################
-        $articleItems = CatArticle::whereRaw('for_cat like \'%"3"%\'')  // 3 = ทาวน์โฮม
+        $articleItems = CatArticle::whereRaw('for_cat like \'%"3"%\'  and visible = true')  // 3 = ทาวน์โฮม
         ->orderBy('created_at', 'desc')
             ->take(5)
             ->get();

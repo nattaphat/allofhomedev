@@ -254,7 +254,7 @@ class ConstructController extends Controller {
         $map = Gmaps::create_map();
 
         // ###################  Article #######################
-        $articleItems = CatArticle::whereRaw('for_cat like \'%"5"%\'')  // 5 = รับสร้างบ้าน
+        $articleItems = CatArticle::whereRaw('for_cat like \'%"5"%\' and visible = true')  // 5 = รับสร้างบ้าน
             ->orderBy('created_at', 'desc')
             ->take(5)
             ->get();

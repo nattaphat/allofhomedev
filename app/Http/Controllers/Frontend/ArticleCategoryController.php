@@ -277,7 +277,7 @@ class ArticleCategoryController extends Controller {
 //        dd($catArticle);
 
         // ###################  Article #######################
-        $articleItems = CatArticle::whereRaw('for_cat like \'%"16"%\'')  // 16 = บทความ ไอเดีย
+        $articleItems = CatArticle::whereRaw('for_cat like \'%"16"%\' and visible = true')  // 16 = บทความ ไอเดีย
         ->orderBy('created_at', 'desc')
             ->take(5)
             ->get();

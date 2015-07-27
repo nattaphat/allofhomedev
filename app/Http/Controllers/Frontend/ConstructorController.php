@@ -250,7 +250,7 @@ class ConstructorController extends Controller {
         $map = Gmaps::create_map();
 
         // ###################  Article #######################
-        $articleItems = CatArticle::whereRaw('for_cat like \'%"7"%\'')  // 7 = ผู้รับเหมา
+        $articleItems = CatArticle::whereRaw('for_cat like \'%"7"%\'  and visible = true')  // 7 = ผู้รับเหมา
         ->orderBy('created_at', 'desc')
             ->take(5)
             ->get();

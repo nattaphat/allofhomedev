@@ -231,7 +231,7 @@ class AllofhomeController extends Controller {
         }
 
         // ###################  Article #######################
-        $articleItems = CatArticle::whereRaw('for_cat like \'%"1"%\'')  // 1 = หน้าแรก
+        $articleItems = CatArticle::whereRaw('for_cat like \'%"1"%\' and visible = true')  // 1 = หน้าแรก
         ->orderBy('created_at', 'desc')
             ->take(5)
             ->get();

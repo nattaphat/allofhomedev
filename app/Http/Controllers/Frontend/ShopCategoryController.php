@@ -247,7 +247,7 @@ class ShopCategoryController extends Controller {
         $map = Gmaps::create_map();
 
         // ###################  Article #######################
-        $articleItems = CatArticle::whereRaw('for_cat like \'%"8"%\'')  // 8 = ร้านค้าต่างๆ
+        $articleItems = CatArticle::whereRaw('for_cat like \'%"8"%\'  and visible = true')  // 8 = ร้านค้าต่างๆ
         ->orderBy('created_at', 'desc')
             ->take(5)
             ->get();
@@ -540,7 +540,7 @@ class ShopCategoryController extends Controller {
         $map = Gmaps::create_map();
 
         // ###################  Article #######################
-        $articleItems = CatArticle::whereRaw('for_cat like \'%"9"%\'')  // 9 = จัดสวน
+        $articleItems = CatArticle::whereRaw('for_cat like \'%"9"%\' and visible = true')  // 9 = จัดสวน
         ->orderBy('created_at', 'desc')
             ->take(5)
             ->get();
@@ -832,7 +832,7 @@ class ShopCategoryController extends Controller {
         $map = Gmaps::create_map();
 
         // ###################  Article #######################
-        $articleItems = CatArticle::whereRaw('for_cat like \'%"10"%\'')  // 10 = ทำความสะอาด
+        $articleItems = CatArticle::whereRaw('for_cat like \'%"10"%\' and visible = true')  // 10 = ทำความสะอาด
         ->orderBy('created_at', 'desc')
             ->take(5)
             ->get();
@@ -1125,7 +1125,7 @@ class ShopCategoryController extends Controller {
         $map = Gmaps::create_map();
 
         // ###################  Article #######################
-        $articleItems = CatArticle::whereRaw('for_cat like \'%"11"%\'')  // 11 = ออกแบบภายใน ภายนอก
+        $articleItems = CatArticle::whereRaw('for_cat like \'%"11"%\' and visible = true')  // 11 = ออกแบบภายใน ภายนอก
         ->orderBy('created_at', 'desc')
             ->take(5)
             ->get();
@@ -1417,7 +1417,7 @@ class ShopCategoryController extends Controller {
         $map = Gmaps::create_map();
 
         // ###################  Article #######################
-        $articleItems = CatArticle::whereRaw('for_cat like \'%"12"%\'')  // 12 = ที่ดินเปล่า
+        $articleItems = CatArticle::whereRaw('for_cat like \'%"12"%\' and visible = true')  // 12 = ที่ดินเปล่า
         ->orderBy('created_at', 'desc')
             ->take(5)
             ->get();
@@ -1710,7 +1710,7 @@ class ShopCategoryController extends Controller {
         $map = Gmaps::create_map();
 
         // ###################  Article #######################
-        $articleItems = CatArticle::whereRaw('for_cat like \'%"13"%\'')  // 13 = มือสอง
+        $articleItems = CatArticle::whereRaw('for_cat like \'%"13"%\' and visible = true')  // 13 = มือสอง
         ->orderBy('created_at', 'desc')
             ->take(5)
             ->get();
@@ -2003,7 +2003,7 @@ class ShopCategoryController extends Controller {
         $map = Gmaps::create_map();
 
         // ###################  Article #######################
-        $articleItems = CatArticle::whereRaw('for_cat like \'%"14"%\'')  // 14 = ปล่อยเช่า
+        $articleItems = CatArticle::whereRaw('for_cat like \'%"14"%\' and visible = true')  // 14 = ปล่อยเช่า
         ->orderBy('created_at', 'desc')
             ->take(5)
             ->get();
@@ -2296,7 +2296,7 @@ class ShopCategoryController extends Controller {
         $map = Gmaps::create_map();
 
         // ###################  Article #######################
-        $articleItems = CatArticle::whereRaw('for_cat like \'%"15"%\'')  // 15 = อพาร์ทเม้นท์
+        $articleItems = CatArticle::whereRaw('for_cat like \'%"15"%\' and visible = true')  // 15 = อพาร์ทเม้นท์
         ->orderBy('created_at', 'desc')
             ->take(5)
             ->get();

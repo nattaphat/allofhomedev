@@ -4,40 +4,86 @@
     </div>
 
     <?php
-        //dd(url::current());
-
         $catArticle = null;
-        if(url::current() == "http://localhost/allofhomedev/public")
+        if(strrpos(url::current(), "/home") > 0)
         {
-            $catArticle = \App\Models\CatArticle::whereRaw('for_cat like \'%"1"%\'')->get();
-        }
-        else if(strrpos(url::current(), "/home") > 0)
-        {
-            $catArticle = \App\Models\CatArticle::whereRaw('for_cat like \'%"2"%\'')->get();
+            $catArticle = \App\Models\CatArticle::whereRaw('for_cat like \'%"2"%\'')
+                    ->where('visible', '=', 'true')->take(5)->get();
         }
         else if(strrpos(url::current(), "/townhome") > 0)
         {
-            $catArticle = \App\Models\CatArticle::whereRaw('for_cat like \'%"3"%\'')->get();
+            $catArticle = \App\Models\CatArticle::whereRaw('for_cat like \'%"3"%\'')
+                    ->where('visible', '=', 'true')->take(5)->get();
         }
         else if(strrpos(url::current(), "/condo") > 0)
         {
-            $catArticle = \App\Models\CatArticle::whereRaw('for_cat like \'%"4"%\'')->get();
+            $catArticle = \App\Models\CatArticle::whereRaw('for_cat like \'%"4"%\'')
+                    ->where('visible', '=', 'true')->take(5)->get();
         }
-        else if(strrpos(url::current(), "/review") > 0)
+        else if(strrpos(url::current(), "/enlarge") > 0)
         {
-            $catArticle = \App\Models\CatArticle::whereRaw('for_cat like \'%"5"%\'')->get();
+            $catArticle = \App\Models\CatArticle::whereRaw('for_cat like \'%"6"%\'')
+                    ->where('visible', '=', '1')->take(5)->get();
         }
-        else if(strrpos(url::current(), "/idea") > 0)
+        else if(strrpos(url::current(), "/constructor") > 0)
         {
-            $catArticle = \App\Models\CatArticle::whereRaw('for_cat like \'%"6"%\'')->get();
+            $catArticle = \App\Models\CatArticle::whereRaw('for_cat like \'%"7"%\'')
+                    ->where('visible', '=', 'true')->take(5)->get();
         }
-        else if(strrpos(url::current(), "/article") > 0)
+        else if(strrpos(url::current(), "/construct") > 0)
         {
-            $catArticle = \App\Models\CatArticle::whereRaw('for_cat like \'%"7"%\'')->get();
+            $catArticle = \App\Models\CatArticle::whereRaw('for_cat like \'%"5"%\'')
+                    ->where('visible', '=', 'true')->take(5)->get();
+        }
+        else if(strrpos(url::current(), "/shop") > 0)
+        {
+            $catArticle = \App\Models\CatArticle::whereRaw('for_cat like \'%"8"%\'')
+                    ->where('visible', '=', 'true')->take(5)->get();
+        }
+        else if(strrpos(url::current(), "/garden") > 0)
+        {
+            $catArticle = \App\Models\CatArticle::whereRaw('for_cat like \'%"9"%\'')
+                    ->where('visible', '=', 'true')->take(5)->get();
+        }
+        else if(strrpos(url::current(), "/clean") > 0)
+        {
+            $catArticle = \App\Models\CatArticle::whereRaw('for_cat like \'%"10"%\'')
+                    ->where('visible', '=', 'true')->take(5)->get();
+        }
+        else if(strrpos(url::current(), "/interior") > 0)
+        {
+            $catArticle = \App\Models\CatArticle::whereRaw('for_cat like \'%"11"%\'')
+                    ->where('visible', '=', 'true')->take(5)->get();
+        }
+        else if(strrpos(url::current(), "/land") > 0)
+        {
+            $catArticle = \App\Models\CatArticle::whereRaw('for_cat like \'%"12"%\'')
+                    ->where('visible', '=', 'true')->take(5)->get();
+        }
+        else if(strrpos(url::current(), "/secondhand") > 0)
+        {
+            $catArticle = \App\Models\CatArticle::whereRaw('for_cat like \'%"13"%\'')
+                    ->where('visible', '=', 'true')->take(5)->get();
+        }
+        else if(strrpos(url::current(), "/rent") > 0)
+        {
+            $catArticle = \App\Models\CatArticle::whereRaw('for_cat like \'%"14"%\'')
+                    ->where('visible', '=', 'true')->take(5)->get();
+        }
+        else if(strrpos(url::current(), "/apartment") > 0)
+        {
+            $catArticle = \App\Models\CatArticle::whereRaw('for_cat like \'%"15"%\'')
+                    ->where('visible', '=', 'true')->take(5)->get();
+        }
+        else if(strrpos(url::current(), "/article_idea") > 0)
+        {
+            $catArticle = \App\Models\CatArticle::whereRaw('for_cat like \'%"16"%\'')
+                    ->where('visible', '=', 'true')->take(5)->get();
         }
         else
         {
-            $catArticle = \App\Models\CatArticle::whereRaw('for_cat like \'%"1"%\'')->get();
+            $catArticle = \App\Models\CatArticle::whereRaw('for_cat like \'%"1"%\'')
+                    ->where('visible', '=', 'true')->take(5)->get();
         }
     ?>
 

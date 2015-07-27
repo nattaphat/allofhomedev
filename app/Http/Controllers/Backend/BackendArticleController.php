@@ -52,7 +52,7 @@ class BackendArticleController extends Controller {
         else
             $cat->suggest = false;
 
-        $cat->visible = true;
+        $cat->visible = $input['visible'][0];
 
         $cat->num_view = 0;
         $cat->num_shared = 0;
@@ -137,6 +137,9 @@ class BackendArticleController extends Controller {
             $cat->suggest = true;
         else
             $cat->suggest = false;
+
+        if(Input::has('visible'))
+            $cat->visible = $input['visible'][0];
 
         $cat->update();
 

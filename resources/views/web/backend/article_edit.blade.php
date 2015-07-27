@@ -583,19 +583,19 @@
                             </div>
                         </div>
 
-                        {{--@if(\Auth::getUser()->role == '1')--}}
-                        {{--<div class="form-group">--}}
-                            {{--{!! Form::label('visible[]', 'สถานะ', ['class' => 'col-md-2 control-label']) !!}--}}
-                            {{--<div class="col-md-8">--}}
-                                {{--<label class="radio-inline">--}}
-                                    {{--<input type="radio" name="visible[]" value="1"> แสดงบนเว็บไซต์--}}
-                                {{--</label>--}}
-                                {{--<label class="radio-inline">--}}
-                                    {{--<input type="radio" name="visible[]" value="0" checked> ซ่อน--}}
-                                {{--</label>--}}
-                            {{--</div>--}}
-                        {{--</div>--}}
-                        {{--@endif--}}
+                        @if(\Auth::getUser()->role == '1')
+                            <div class="form-group">
+                                {!! Form::label('visible[]', 'สถานะ', ['class' => 'col-md-2 control-label']) !!}
+                                <div class="col-md-8">
+                                    <label class="radio-inline">
+                                        <input type="radio" name="visible[]" value="true" @if($catArticle->visible) checked @endif> แสดงบนเว็บไซต์
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input type="radio" name="visible[]" value="false" @if(!$catArticle->visible) checked @endif> ซ่อน
+                                    </label>
+                                </div>
+                            </div>
+                        @endif
 
                         <div class="form-group" style="padding: 20px 0px 20px 0;">
                             <div class="col-md-2"></div>

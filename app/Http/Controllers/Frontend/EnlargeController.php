@@ -250,7 +250,7 @@ class EnlargeController extends Controller {
         $map = Gmaps::create_map();
 
         // ###################  Article #######################
-        $articleItems = CatArticle::whereRaw('for_cat like \'%"6"%\'')  // 6 = ต่อเติมบ้าน
+        $articleItems = CatArticle::whereRaw('for_cat like \'%"6"%\'  and visible = true')  // 6 = ต่อเติมบ้าน
         ->orderBy('created_at', 'desc')
             ->take(5)
             ->get();

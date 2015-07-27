@@ -101,7 +101,7 @@ class HomeCategoryController extends Controller {
         $map = Gmaps::create_map();
 
         // ###################  Article #######################
-        $articleItems = CatArticle::whereRaw('for_cat like \'%"2"%\'')  // 2 = โครงการบ้านใหม่
+        $articleItems = CatArticle::whereRaw('for_cat like \'%"2"%\'  and visible = true')  // 2 = โครงการบ้านใหม่
         ->orderBy('created_at', 'desc')
             ->take(5)
             ->get();

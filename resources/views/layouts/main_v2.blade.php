@@ -140,10 +140,11 @@
             @endif
 
             <a href="#" class="btn-likefb"></a>
-            <!-- Banner E, F, G -->
+            <!-- Banner D -->
             <div class="side-banner"><img src="{{ asset('images/test/pic-10.jpg') }}" alt="" /></div>
             <div class="side-banner"><img src="{{ asset('images/test/pic-14.jpg') }}" alt="" /></div>
             <div class="side-banner"><img src="{{ asset('images/test/pic-3.jpg') }}" alt="" /></div>
+
             <div class="clipvdo">
                 <h2>คลิปวีดีโอ </h2>
                 <div class="vdo"><img src="{{ asset('images/test/pic-15.jpg') }}" alt="" /></div>

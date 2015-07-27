@@ -231,7 +231,7 @@ class CondoCategoryController extends Controller {
         $map = Gmaps::create_map();
 
         // ###################  Article #######################
-        $articleItems = CatArticle::whereRaw('for_cat like \'%"4"%\'')  // 4 = คอนโด
+        $articleItems = CatArticle::whereRaw('for_cat like \'%"4"%\'  and visible = true')  // 4 = คอนโด
         ->orderBy('created_at', 'desc')
             ->take(5)
             ->get();
