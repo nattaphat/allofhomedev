@@ -140,17 +140,168 @@
             <div class="side-banner"><img src="{{ asset('images/test/pic-10.jpg') }}" alt="" /></div>
             <div class="side-banner"><img src="{{ asset('images/test/pic-14.jpg') }}" alt="" /></div>
             <div class="side-banner"><img src="{{ asset('images/test/pic-3.jpg') }}" alt="" /></div>
-            <div class="clipvdo">
-                <h2>คลิปวีดีโอ </h2>
-                <div class="vdo"><img src="{{ asset('images/test/pic-15.jpg') }}" alt="" /></div>
-                <div class="vdo"><img src="{{ asset('images/test/pic-15.jpg') }}" alt="" /></div>
-                <div class="vdo"><img src="{{ asset('images/test/pic-15.jpg') }}" alt="" /></div>
-                <div class="vdo"><img src="{{ asset('images/test/pic-15.jpg') }}" alt="" /></div>
-                <div class="follow">
-                    <span>ติดตามรายการบน </span>
-                    <a href="#"><img src="{{ asset('images/button/youtube.jpg') }}" alt="" /></a>
-                </div>
-            </div>
+
+            <?php
+            $youtubes = null;
+            $youtubes2 = null;
+            if(strrpos(URL::current(), "/home") > 0)
+            {
+                $youtubes = \App\Models\CatHome::whereRaw('for_cat like \'%"1"%\' and video_url is not null and video_url <> \'\'')
+                        ->where('status', '=', '1')->orderByRaw('random()')->take(5)->get();
+            }
+            else if(strrpos(URL::current(), "/townhome") > 0)
+            {
+                $youtubes = \App\Models\CatHome::whereRaw('for_cat like \'%"2"%\' and video_url is not null and video_url <> \'\'')
+                        ->where('status', '=', '1')->orderByRaw('random()')->take(5)->get();
+            }
+            else if(strrpos(URL::current(), "/condo") > 0)
+            {
+                $youtubes = \App\Models\CatHome::whereRaw('for_cat like \'%"3"%\' and video_url is not null and video_url <> \'\'')
+                        ->where('status', '=', '1')->orderByRaw('random()')->take(5)->get();
+            }
+            else if(strrpos(URL::current(), "/enlarge") > 0)
+            {
+                $youtubes = \App\Models\CatConstruct::whereRaw('for_type like \'%"2"%\' and video_url is not null and video_url <> \'\'')
+                        ->where('status', '=', '1')->orderByRaw('random()')->take(5)->get();
+            }
+            else if(strrpos(URL::current(), "/constructor") > 0)
+            {
+                $youtubes = \App\Models\CatConstruct::whereRaw('for_type like \'%"3"%\' and video_url is not null and video_url <> \'\'')
+                        ->where('status', '=', '1')->orderByRaw('random()')->take(5)->get();
+            }
+            else if(strrpos(URL::current(), "/construct") > 0)
+            {
+                $youtubes = \App\Models\CatConstruct::whereRaw('for_type like \'%"1"%\' and video_url is not null and video_url <> \'\'')
+                        ->where('status', '=', '1')->orderByRaw('random()')->take(5)->get();
+            }
+            else if(strrpos(URL::current(), "/shop") > 0)
+            {
+                $youtubes = \App\Models\CatConstruct::whereRaw('for_type like \'%"4"%\' and video_url is not null and video_url <> \'\'')
+                        ->where('status', '=', '1')->orderByRaw('random()')->take(5)->get();
+            }
+            else if(strrpos(URL::current(), "/garden") > 0)
+            {
+                $youtubes = \App\Models\CatConstruct::whereRaw('for_type like \'%"5"%\' and video_url is not null and video_url <> \'\'')
+                        ->where('status', '=', '1')->orderByRaw('random()')->take(5)->get();
+            }
+            else if(strrpos(URL::current(), "/clean") > 0)
+            {
+                $youtubes = \App\Models\CatConstruct::whereRaw('for_type like \'%"6"%\' and video_url is not null and video_url <> \'\'')
+                        ->where('status', '=', '1')->orderByRaw('random()')->take(5)->get();
+            }
+            else if(strrpos(URL::current(), "/interior") > 0)
+            {
+                $youtubes = \App\Models\CatConstruct::whereRaw('for_type like \'%"7"%\' and video_url is not null and video_url <> \'\'')
+                        ->where('status', '=', '1')->orderByRaw('random()')->take(5)->get();
+            }
+            else if(strrpos(URL::current(), "/land") > 0)
+            {
+                $youtubes = \App\Models\CatConstruct::whereRaw('for_type like \'%"8"%\' and video_url is not null and video_url <> \'\'')
+                        ->where('status', '=', '1')->orderByRaw('random()')->take(5)->get();
+            }
+            else if(strrpos(URL::current(), "/secondhand") > 0)
+            {
+                $youtubes = \App\Models\CatConstruct::whereRaw('for_type like \'%"9"%\' and video_url is not null and video_url <> \'\'')
+                        ->where('status', '=', '1')->orderByRaw('random()')->take(5)->get();
+            }
+            else if(strrpos(URL::current(), "/rent") > 0)
+            {
+                $youtubes = \App\Models\CatConstruct::whereRaw('for_type like \'%"10"%\' and video_url is not null and video_url <> \'\'')
+                        ->where('status', '=', '1')->orderByRaw('random()')->take(5)->get();
+            }
+            else if(strrpos(URL::current(), "/apartment") > 0)
+            {
+                $youtubes = \App\Models\CatConstruct::whereRaw('for_type like \'%"11"%\' and video_url is not null and video_url <> \'\'')
+                        ->where('status', '=', '1')->orderByRaw('random()')->take(5)->get();
+            }
+            else if(strrpos(URL::current(), "/article_idea") > 0)
+            {
+                $youtubes = \App\Models\CatIdea::whereRaw('video_url is not null and video_url <> \'\'')
+                        ->where('visible', '=', 'true')->orderByRaw('random()')
+                        ->select('video_url')->take(2)->get();
+
+                $youtubes2 = \App\Models\CatArticle::whereRaw('video_url is not null and video_url <> \'\'')
+                        ->where('visible', '=', 'true')->orderByRaw('random()')
+                        ->select('video_url')->take(3)->get();
+            }
+            else
+            {
+                $youtube_cat_home = \DB::table('cat_home')
+                        ->select('video_url','created_at')
+                        ->whereRaw('video_url is not null and video_url <> \'\'')
+                        ->where('status', '=', '1');
+
+                $youtube_cat_construct = \DB::table('cat_construct')
+                        ->select('video_url','created_at')
+                        ->whereRaw('video_url is not null and video_url <> \'\'')
+                        ->where('status', '=', '1');
+
+                $youtube_cat_idea = \DB::table('cat_idea')
+                        ->select('video_url','created_at')
+                        ->whereRaw('video_url is not null and video_url <> \'\'')
+                        ->where('visible', '=', 'true');
+
+                $youtube_cat_article = \DB::table('cat_article')
+                        ->select('video_url','created_at')
+                        ->whereRaw('video_url is not null and video_url <> \'\'')
+                        ->where('visible', '=', 'true');
+
+                $union = $youtube_cat_home
+                        ->union($youtube_cat_construct)
+                        ->union($youtube_cat_idea)
+                        ->union($youtube_cat_article);
+
+                $youtubes = $union->orderBy('created_at', 'desc')->take(5)->get();
+            }
+
+            ?>
+
+            @if(strrpos(URL::current(), "/article_idea") > 0)
+                @if(($youtubes != null && count($youtubes) > 0) || ($youtubes2 != null && count($youtubes2) > 0))
+                    <div class="clipvdo">
+                        <h2>คลิปวีดีโอ </h2>
+                        @foreach($youtubes as $item)
+                            <?php
+                            $iframe = \App\Models\AllFunction::convertYoutube($item->video_url);
+                            ?>
+                            <div class="vdo">
+                                {!! $iframe !!}
+                            </div>
+                        @endforeach
+                        @foreach($youtubes2 as $item)
+                            <?php
+                            $iframe = \App\Models\AllFunction::convertYoutube($item->video_url);
+                            ?>
+                            <div class="vdo">
+                                {!! $iframe !!}
+                            </div>
+                        @endforeach
+                        <div class="follow">
+                            <span>ติดตามรายการบน </span>
+                            <a href="#"><img src="{{ asset('images/button/youtube.jpg') }}" alt="" /></a>
+                        </div>
+                    </div>
+                @endif
+            @else
+                @if($youtubes != null && count($youtubes) > 0)
+                    <div class="clipvdo">
+                        <h2>คลิปวีดีโอ </h2>
+                        @foreach($youtubes as $item)
+                            <?php
+                            $iframe = \App\Models\AllFunction::convertYoutube($item->video_url);
+                            ?>
+                            <div class="vdo">
+                                {!! $iframe !!}
+                            </div>
+                        @endforeach
+                        <div class="follow">
+                            <span>ติดตามรายการบน </span>
+                            <a href="#"><img src="{{ asset('images/button/youtube.jpg') }}" alt="" /></a>
+                        </div>
+                    </div>
+                @endif
+            @endif
+
         </div>
 
         <div class="boxright">
