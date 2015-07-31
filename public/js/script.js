@@ -109,7 +109,7 @@ function bannerB_Slider()
         smoothHeight: true,
         useCSS: true,
         controlNav: false,
-        directionNav: true
+        directionNav: false
     });
 }
 
@@ -119,11 +119,11 @@ function bannerC_Slider()
         slideshow: true,
         animation: "fade",
         slideshowSpeed: 6000,
-        pauseOnHover: true,
+        pauseOnHover: false,
         smoothHeight: true,
         useCSS: true,
         controlNav: false,
-        directionNav: true
+        directionNav: false
     });
 }
 

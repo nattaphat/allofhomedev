@@ -20,12 +20,21 @@
     <?php $urlTo =  url("rent/")."/"; ?>
 @elseif( strpos(URL::current(),"apartment") != false)
     <?php $urlTo =  url("apartment/")."/"; ?>
+@else
+    <?php $urlTo =  url("shop/")."/"; ?>
 @endif
 
 <div class="list-review">
     <ul>
         @if($catVip != null)
             @foreach($catVip as $item)
+                @if(isset($item->for_cat) && isset($item->for_type))
+                    @if($item->for_cat == "cat_home")
+                        <?php $urlTo =  url("home/view/")."/"; ?>
+                    @else
+                        <?php $urlTo =  url("shop/")."/"; ?>
+                    @endif
+                @endif
                 <li>
                     <p class="tag-vip"><img src="{{ asset('images/blulet/vip.png') }}" alt="" /></p>
                     <div class="left">
@@ -110,10 +119,14 @@
 
         @if($cat != null)
             @foreach($cat as $item)
-                <li>
-                    @if($item->vip)
-                        <p class="tag-vip"><img src="{{ asset('images/blulet/vip.png') }}" alt="" /></p>
+                @if(isset($item->for_cat) && isset($item->for_type))
+                    @if($item->for_cat == "cat_home")
+                        <?php $urlTo =  url("home/view/")."/"; ?>
+                    @else
+                        <?php $urlTo =  url("shop/")."/"; ?>
                     @endif
+                @endif
+                <li>
                     <div class="left">
                         <div class="showpic">
                             <?php

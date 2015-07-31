@@ -679,11 +679,11 @@ nav ul li:nth-child(6), nav ul li:nth-child(6) ul li {
 }
 .boxreview .right .call .number, .boxContactProject .call .number{ font-size:42px;}
 .btn-viewmore{
-	background:#f9f9f9;
+	background: #e6e6e6;
 	border-left:1px solid #f2f2f2;
 	border-right:1px solid #f2f2f2;
 	border-bottom:1px solid #f2f2f2;
-	/*color:#d0d0d0;*/
+	color:#646464;
 	font-size:24px;
 	display:block;
 	text-align:center;
@@ -1362,7 +1362,7 @@ nav ul li:nth-child(6), nav ul li:nth-child(6) ul li {
 
 #bannerB_Slider .slides img {
     display: block;
-    width: 1200px;
+    width: 1190px;
     height: 400px;
     max-width: none;
     max-height: none;
@@ -1370,7 +1370,7 @@ nav ul li:nth-child(6), nav ul li:nth-child(6) ul li {
 
 #bannerC_Slider .slides img {
     display: block;
-    width: 294px;
+    width: 290px;
     height: 322px;
     max-width: none;
     max-height: none;

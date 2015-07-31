@@ -28,8 +28,8 @@
     </div>
 </div>
 <div class="containner nodropdown">
-
     <div class="wrap">
+
         <!-- Banner B -->
         {{--<div class="hilight">--}}
             {{--<a href="#" class="prev"></a>--}}
@@ -45,6 +45,9 @@
                 {{--<a href="#"></a>--}}
             {{--</div>--}}
         {{--</div>--}}
+        {{--<br>--}}
+
+        <!-- Banner B -->
         <?php
         $bannerB = \App\Models\Banner::where('type','=','B')
                 ->where('visible', '=', 'true')
@@ -52,7 +55,6 @@
                 ->orderBy('created_at', 'desc')
                 ->take(5)
                 ->get();
-
         $bannerC = \App\Models\Banner::where('type','=','C')
                 ->where('visible', '=', 'true')
                 ->whereNotNull('file_path')
@@ -60,7 +62,6 @@
                 ->take(3)
                 ->get();
         ?>
-
         @if($bannerB != null && count($bannerB) > 0)
             <div class="hilight">
                 <div class="pic-slide">
@@ -77,75 +78,70 @@
                     </div>
                 </div>
             </div>
-        @endif
-
-        <!-- ค้นหาทั้งหมดในเว็บ -->
-        <div class="search">
-            <input type="text" value="คำที่ต้องการค้นหา" class="enter-text" />
-            <input type="submit" value="" class="btn-search" />
-        </div>
-
-        <!-- Box Left -->
-        <div class="boxleft">
-            <!-- Banner Type C -->
-            {{--<div class="newregister">--}}
+            @endif
+                    <!-- ค้นหาทั้งหมดในเว็บ -->
+            <div class="search">
+                <input type="text" value="คำที่ต้องการค้นหา" class="enter-text" />
+                <input type="submit" value="" class="btn-search" />
+            </div>
+            <!-- Box Left -->
+            <div class="boxleft">
+                <!-- Banner Type C -->
+                {{--<div class="newregister">--}}
                 {{--<h2>ลงทะเบียนโครงการใหม่</h2>--}}
                 {{--<p><img src="{{ asset('images/test/pic-1.jpg')}}" alt="" /></p>--}}
                 {{--<div class="text">--}}
-                    {{--<h3>Life Asoke (ไลฟ์ อโศก)</h3>--}}
-                    {{--<p>ลงทะเบียนส่วนลดสูงสุด <span>100,000</span> บาท</p>--}}
+                {{--<h3>Life Asoke (ไลฟ์ อโศก)</h3>--}}
+                {{--<p>ลงทะเบียนส่วนลดสูงสุด <span>100,000</span> บาท</p>--}}
                 {{--</div>--}}
                 {{--<a href="#" class="btn-register">ลงทะเบียนที่นี่</a>--}}
-            {{--</div>--}}
-
-            @if($bannerC != null && count($bannerC) > 0)
-                <div class="newregister">
-                    <h2>ลงทะเบียนโครงการใหม่</h2>
-                    <div id="bannerC_Slider" class="flexslider">
-                        <ul class="slides">
-                            @foreach($bannerC as $item)
-                                <li>
-                                    <p>
-                                        <img src="{{ $item->file_path }}" alt="{{ $item->file_name }}" />
-                                    </p>
-                                    <div class="text">
-                                        <h3 style="
+                {{--</div>--}}
+                @if($bannerC != null && count($bannerC) > 0)
+                    <div class="newregister">
+                        <h2>ลงทะเบียนโครงการใหม่</h2>
+                        <div id="bannerC_Slider" class="flexslider">
+                            <ul class="slides">
+                                @foreach($bannerC as $item)
+                                    <li>
+                                        <p>
+                                            <img src="{{ $item->file_path }}" alt="{{ $item->file_name }}" />
+                                        </p>
+                                        <div class="text">
+                                            <h3 style="
                                             line-height: 25px;
                                             height: 50px;
                                             overflow: hidden;
                                             margin-bottom: 10px;
                                             ">
-                                            {{ $item->banner_name }}
-                                        </h3>
-                                        <?php $pieces = explode("<p>", $item->remark); ?>
+                                                {{ $item->banner_name }}
+                                            </h3>
+                                            <?php $pieces = explode("<p>", $item->remark); ?>
 
-                                        @foreach($pieces as $pdesc)
-                                            @if($pdesc != "")
-                                                <p style="
+                                            @foreach($pieces as $pdesc)
+                                                @if($pdesc != "")
+                                                    <p style="
                                                 line-height: 25px;
                                                 height: 50px;
                                                 overflow: hidden;
                                                 ">
-                                                    {!! str_replace("</p>", "", $pdesc) !!}
-                                                </p>
-                                            @endif
-                                        @endforeach
-                                    </div>
-                                    <a href="{{ $item->url }}" target="_blank" class="btn-register">ลงทะเบียนที่นี่</a>
-                                </li>
-                            @endforeach
-                        </ul>
+                                                        {!! str_replace("</p>", "", $pdesc) !!}
+                                                    </p>
+                                                @endif
+                                            @endforeach
+                                        </div>
+                                        <a href="{{ $item->url }}" target="_blank" class="btn-register">ลงทะเบียนที่นี่</a>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </div>
                     </div>
-                </div>
-            @endif
-
-            <a href="#" class="btn-likefb"></a>
-            <!-- Banner D -->
-            <div class="side-banner"><img src="{{ asset('images/test/pic-10.jpg') }}" alt="" /></div>
-            <div class="side-banner"><img src="{{ asset('images/test/pic-14.jpg') }}" alt="" /></div>
-            <div class="side-banner"><img src="{{ asset('images/test/pic-3.jpg') }}" alt="" /></div>
-
-            <?php
+                @endif
+                <a href="#" class="btn-likefb"></a>
+                <!-- Banner D -->
+                <div class="side-banner"><img src="{{ asset('images/test/pic-10.jpg') }}" alt="" /></div>
+                <div class="side-banner"><img src="{{ asset('images/test/pic-14.jpg') }}" alt="" /></div>
+                <div class="side-banner"><img src="{{ asset('images/test/pic-3.jpg') }}" alt="" /></div>
+                <?php
                 $youtubes = null;
                 $youtubes2 = null;
                 if(strrpos(URL::current(), "/home") > 0)
@@ -257,69 +253,62 @@
 
                     $youtubes = $union->orderBy('created_at', 'desc')->take(5)->get();
                 }
-
-            ?>
-
-            @if(strrpos(URL::current(), "/article_idea") > 0)
-                @if(($youtubes != null && count($youtubes) > 0) || ($youtubes2 != null && count($youtubes2) > 0))
-                    <div class="clipvdo">
-                        <h2>คลิปวีดีโอ </h2>
-                        @foreach($youtubes as $item)
-                            <?php
-                            $iframe = \App\Models\AllFunction::convertYoutube($item->video_url);
-                            ?>
-                            <div class="vdo">
-                                {!! $iframe !!}
+                ?>
+                @if(strrpos(URL::current(), "/article_idea") > 0)
+                    @if(($youtubes != null && count($youtubes) > 0) || ($youtubes2 != null && count($youtubes2) > 0))
+                        <div class="clipvdo">
+                            <h2>คลิปวีดีโอ </h2>
+                            @foreach($youtubes as $item)
+                                <?php
+                                $iframe = \App\Models\AllFunction::convertYoutube($item->video_url);
+                                ?>
+                                <div class="vdo">
+                                    {!! $iframe !!}
+                                </div>
+                            @endforeach
+                            @foreach($youtubes2 as $item)
+                                <?php
+                                $iframe = \App\Models\AllFunction::convertYoutube($item->video_url);
+                                ?>
+                                <div class="vdo">
+                                    {!! $iframe !!}
+                                </div>
+                            @endforeach
+                            <div class="follow">
+                                <span>ติดตามรายการบน </span>
+                                <a href="#"><img src="{{ asset('images/button/youtube.jpg') }}" alt="" /></a>
                             </div>
-                        @endforeach
-                        @foreach($youtubes2 as $item)
-                            <?php
-                            $iframe = \App\Models\AllFunction::convertYoutube($item->video_url);
-                            ?>
-                            <div class="vdo">
-                                {!! $iframe !!}
-                            </div>
-                        @endforeach
-                        <div class="follow">
-                            <span>ติดตามรายการบน </span>
-                            <a href="#"><img src="{{ asset('images/button/youtube.jpg') }}" alt="" /></a>
                         </div>
-                    </div>
-                @endif
-            @else
-                @if($youtubes != null && count($youtubes) > 0)
-                    <div class="clipvdo">
-                        <h2>คลิปวีดีโอ </h2>
-                        @foreach($youtubes as $item)
-                            <?php
-                            $iframe = \App\Models\AllFunction::convertYoutube($item->video_url);
-                            ?>
-                            <div class="vdo">
-                                {!! $iframe !!}
+                    @endif
+                @else
+                    @if($youtubes != null && count($youtubes) > 0)
+                        <div class="clipvdo">
+                            <h2>คลิปวีดีโอ </h2>
+                            @foreach($youtubes as $item)
+                                <?php
+                                $iframe = \App\Models\AllFunction::convertYoutube($item->video_url);
+                                ?>
+                                <div class="vdo">
+                                    {!! $iframe !!}
+                                </div>
+                            @endforeach
+                            <div class="follow">
+                                <span>ติดตามรายการบน </span>
+                                <a href="#"><img src="{{ asset('images/button/youtube.jpg') }}" alt="" /></a>
                             </div>
-                        @endforeach
-                        <div class="follow">
-                            <span>ติดตามรายการบน </span>
-                            <a href="#"><img src="{{ asset('images/button/youtube.jpg') }}" alt="" /></a>
                         </div>
-                    </div>
+                    @endif
                 @endif
-            @endif
+            </div>
+            <div class="boxright">
+                <!-- บทความและข่าวสาร -->
+                @include('layouts._partials.article_header')
 
-        </div>
+                @yield('content')
 
-        <div class="boxright">
-            <!-- บทความและข่าวสาร -->
-            @include('layouts._partials.article_header')
-
-            @yield('content')
-
-        </div>
-
-        <div class="clear"></div>
-
+            </div>
+            <div class="clear"></div>
     </div>
-
 </div>
 <div class="footer">
     <div class="slide-up"></div>

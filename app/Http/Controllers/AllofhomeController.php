@@ -66,79 +66,148 @@ class AllofhomeController extends Controller {
         // echo $user->getEmail();
         // $user->getAvatar();
 
-        $catHome = null;
+
+//        $catHome = null;
+//        try{
+//            $catHome = DB::table('cat_home as ch')
+//                ->leftJoin(DB::raw('
+//                (
+//                        select id
+//                          from cat_home
+//                          where vip = true
+//                          ORDER BY random() limit 5
+//                ) as vip
+//            '), function ($join){
+//                    $join->on( 'ch.id', '=', 'vip.id');
+//                })
+//                ->join(DB::raw('
+//                (
+//                    select distinct pictureable_id, pictureable_type from picture
+//                    where pictureable_type = \'App\\Models\\CatHome\'
+//                ) pic
+//            '), function($join){
+//                    $join->on( 'ch.id', '=', 'pic.pictureable_id');
+//                })
+//                ->whereRaw('ch.status = 1')
+//                ->select('ch.*')
+//                ->orderByRaw('case when vip.id is not null then 1 else 0 end desc')
+//                ->orderBy('ch.created_at', 'desc')
+//                ->take(5)
+//                ->get();
+//
+//        }
+//        catch(\Exception $e)
+//        {
+//
+//        }
+
+
+        //// ### Cat Home ### ///
+        $temp = null;
         try{
-            $catHome = DB::table('cat_home as ch')
-                ->leftJoin(DB::raw('
-                (
-                        select id
-                          from cat_home
-                          where vip = true
-                          ORDER BY random() limit 5
-                ) as vip
-            '), function ($join){
-                    $join->on( 'ch.id', '=', 'vip.id');
-                })
+            $temp = DB::table('cat_home as ch')
                 ->join(DB::raw('
                 (
-                    select distinct pictureable_id, pictureable_type from picture
-                    where pictureable_type = \'App\\Models\\CatHome\'
-                ) pic
-            '), function($join){
-                    $join->on( 'ch.id', '=', 'pic.pictureable_id');
+                    select id
+                      from cat_home
+                      where status = 1
+                      and vip = true
+                      ORDER BY random() limit 2
+                ) as vip'), function ($join){
+                    $join->on( 'ch.id', '=', 'vip.id');
                 })
-                ->whereRaw('ch.status = 1')
                 ->select('ch.*')
-                ->orderByRaw('case when vip.id is not null then 1 else 0 end desc')
-                ->orderBy('ch.created_at', 'desc')
-                ->take(5)
+                ->orderByRaw('random()')
                 ->get();
-
         }
-        catch(\Exception $e)
+        catch(\Exception $e) {}
+
+        $temp_cat_home = null;
+        $temp_cat_home_vip = null;
+        if($temp != null && count($temp) > 0)
         {
+            foreach($temp as $item)
+            {
+                $vip[] = $item->id;
+            }
 
+            $temp_cat_home = \DB::table('cat_home')
+                ->select('id', 'title','subtitle', 'created_at', 'vip', 'sell_price', 'avg_rating', 'brand_id',
+                    DB::raw('\'cat_home\' as for_cat'), DB::raw('for_cat as for_type'))
+                ->where('status', '=', '1')
+                ->whereNotIn('id', $vip);
+
+            $temp_cat_home_vip = \DB::table('cat_home')
+                ->select('id', 'title','subtitle', 'created_at', 'vip', 'sell_price', 'avg_rating', 'brand_id',
+                    DB::raw('\'cat_home\' as for_cat'), DB::raw('for_cat as for_type'))
+                ->whereIn('id', $vip);
+        }
+        else
+        {
+            $temp_cat_home = \DB::table('cat_home')
+                ->select('id', 'title','subtitle', 'created_at', 'vip', 'sell_price', 'avg_rating', 'brand_id',
+                    DB::raw('\'cat_home\' as for_cat'), DB::raw('for_cat as for_type'))
+                ->where('status', '=', '1');
         }
 
-//        $catArticle = null;
-//        try{
-//            $catArticle = DB::table('cat_article as ch')
-//                ->join(DB::raw('
-//                    (
-//                        select distinct pictureable_id, pictureable_type from picture
-//                        where pictureable_type = \'App\\Models\\CatArticle\'
-//                    ) pic
-//                '), function($join){
-//                    $join->on( 'ch.id', '=', 'pic.pictureable_id');
-//                })
-//                ->orderBy('ch.created_at', 'desc')
-//                ->take(5)
-//                ->get();
-//        }
-//        catch(\Exception $e)
-//        {
-//
-//        }
-//
-//        $catIdea = null;
-//        try{
-//            $catIdea = DB::table('cat_idea as ch')
-//                ->join(DB::raw('
-//                    (
-//                        select distinct pictureable_id, pictureable_type from picture
-//                        where pictureable_type = \'App\\Models\\CatIdea\'
-//                    ) pic
-//                '), function($join){
-//                    $join->on( 'ch.id', '=', 'pic.pictureable_id');
-//                })
-//                ->orderBy('ch.created_at', 'desc')
-//                ->take(5)
-//                ->get();
-//        }
-//        catch(\Exception $e)
-//        {
-//
-//        }
+        //// ### Cat Construct ### ///
+        $temp = null;
+        try{
+            $temp = DB::table('cat_construct as ch')
+                ->join(DB::raw('
+                (
+                    select id
+                      from cat_construct
+                      where status = 1
+                      and vip = true
+                      ORDER BY random() limit 3
+                ) as vip'), function ($join){
+                    $join->on( 'ch.id', '=', 'vip.id');
+                })
+                ->select('ch.*')
+                ->orderByRaw('random()')
+                ->get();
+        }
+        catch(\Exception $e) {}
+
+        $temp_cat_construct = null;
+        $temp_cat_construct_vip = null;
+        $vip = null;
+        if($temp != null && count($temp) > 0)
+        {
+            foreach($temp as $item)
+            {
+                $vip[] = $item->id;
+            }
+
+            $temp_cat_construct = \DB::table('cat_construct')
+                ->select('id', 'title','subtitle', 'created_at', 'vip', 'sell_price', 'avg_rating', 'brand_id',
+                    DB::raw('\'cat_construct\' as for_cat'), DB::raw('for_type as for_type'))
+                ->where('status', '=', '1')
+                ->whereNotIn('id', $vip);
+
+            $temp_cat_construct_vip = \DB::table('cat_construct')
+                ->select('id', 'title','subtitle', 'created_at', 'vip', 'sell_price', 'avg_rating', 'brand_id',
+                    DB::raw('\'cat_construct\' as for_cat'), DB::raw('for_type as for_type'))
+                ->whereIn('id', $vip);
+        }
+        else
+        {
+            $temp_cat_construct = \DB::table('cat_construct')
+                ->select('id', 'title','subtitle', 'created_at', 'vip', 'sell_price', 'avg_rating', 'brand_id',
+                    DB::raw('\'cat_construct\' as for_cat'), DB::raw('for_type as for_type'))
+                ->where('status', '=', '1');
+        }
+
+        $catHomeVip = $temp_cat_home_vip
+            ->union($temp_cat_construct_vip)
+            ->orderBy('created_at', 'desc')
+            ->get();
+
+        $catHome = $temp_cat_home
+            ->union($temp_cat_construct)
+            ->orderBy('created_at', 'desc')
+            ->simplePaginate(5);
 
         // ############## Ariticle ################ //
         // #### VIP
@@ -237,7 +306,8 @@ class AllofhomeController extends Controller {
             ->get();
 
         return view('web.frontend.index')
-            ->with('catHome', $catHome)
+            ->with('catVip', $catHomeVip)
+            ->with('cat', $catHome)
             ->with('catArticleVip', $catArticleVip)
             ->with('catArticle', $catArticle)
             ->with('catIdeaVip', $catIdeaVip)
