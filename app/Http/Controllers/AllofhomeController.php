@@ -1,6 +1,8 @@
 <?php namespace App\Http\Controllers;
 
+use App\Models\Brand;
 use App\Models\CatArticle;
+use App\Models\CatConstruct;
 use App\Models\Category;
 use App\Models\CatHome;
 use App\Models\CatIdea;
@@ -622,6 +624,20 @@ class AllofhomeController extends Controller {
 
         return view('web.frontend.tag_list')
             ->with('tag_list', $tag_list);
+    }
+
+    public function shop_list($id)
+    {
+        $cat = CatConstruct::where('brand_id', '=', $id)
+            ->where('status','=','1')
+            ->orderBy('id', 'desc')
+            ->paginate(15);
+
+        $brand = Brand::find($id);
+
+        return view('web.frontend.shop_list')
+            ->with('cat', $cat)
+            ->with('brand_name', $brand->brand_name);
     }
 }
 

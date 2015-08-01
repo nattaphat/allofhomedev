@@ -135,9 +135,14 @@
                                         &nbsp;&nbsp;<span class="label-success">ยังไม่มีการให้คะแนน</span>
                                     @endif
                                 </div>
-                                <div class="call">
+                                <div class="call" style="margin: 20px 0 0;">
                                     <?php $brand = \App\Models\Brand::find($item->brand_id) ?>
-                                    <p>ติดต่อ : {{ $brand->brand_name }}</p>
+                                    <p style="
+                                        line-height: 23px;
+                                        height: 46px;
+                                        overflow: hidden;
+                                        color: #646464;
+                                    ">ติดต่อ : {{ $brand->brand_name }}</p>
                                     <p class="number">{{ $brand->telephone }}</p>
                                 </div>
                             </div>

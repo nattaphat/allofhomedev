@@ -312,21 +312,4 @@
     <div class="comment-fb"><img src="{{ asset('images/test/commentfb.jpg') }}" /></div>
 </div>
 
-<div class="boxShowBrand">
-    <h2>แสดงร้านค้าตามแบรนด์</h2>
-    <ul>
-        <li><a href="#"><img src="{{ asset('images/logo/sansiri.jpg') }}" alt="" /></a></li>
-        <li><a href="#"><img src="{{ asset('images/logo/ap.jpg') }}" alt="" /></a></li>
-        <li><a href="#"><img src="{{ asset('images/logo/gusto.jpg') }}" alt="" /></a></li>
-        <li><a href="#"><img src="{{ asset('images/logo/prinsiri.jpg') }}" alt="" /></a></li>
-        <li><a href="#"><img src="{{ asset('images/logo/lpn.jpg') }}" alt="" /></a></li>
-        <li><a href="#"><img src="{{ asset('images/logo/perfect.jpg') }}" alt="" /></a></li>
-        <li><a href="#"><img src="{{ asset('images/logo/noble.jpg') }}" alt="" /></a></li>
-        <li><a href="#"><img src="{{ asset('images/logo/pruksa.jpg') }}" alt="" /></a></li>
-        <li><a href="#"><img src="{{ asset('images/logo/casa.jpg') }}" alt="" /></a></li>
-        <li><a href="#"><img src="{{ asset('images/logo/udelight.jpg') }}" alt="" /></a></li>
-        <li><a href="#"><img src="{{ asset('images/logo/ucampus.jpg') }}" alt="" /></a></li>
-        <li><a href="#"><img src="{{ asset('images/logo/scasset.jpg') }}" alt="" /></a></li>
-    </ul>
-    <div class="clear"></div>
-</div>
+@include('layouts._partials.brand_part')

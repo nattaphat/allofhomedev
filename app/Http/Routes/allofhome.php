@@ -1485,3 +1485,10 @@ Route::get('tag_list/{id}', [
     'before' => 'frontend_auth',
     'uses' => 'AllofhomeController@tag_list'
 ]);
+
+/*-------------------------------- Click Logo shop and show all related -------------------------------*/
+Route::get('shop_list/{id}', [
+    'as' => 'shop_list',
+    'before' => 'frontend_auth',
+    'uses' => 'AllofhomeController@shop_list'
+]);
