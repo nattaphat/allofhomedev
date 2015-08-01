@@ -5,6 +5,8 @@ use App\Models\Category;
 use App\Models\CatHome;
 use App\Models\CatIdea;
 use App\Models\CatReview;
+use App\Models\Tag;
+use App\Models\TagSub;
 use Config;
 use App\Models\geoRegion;
 use Request;
@@ -606,5 +608,20 @@ class AllofhomeController extends Controller {
         return redirect('login');
     }
 
+    public function tag_list($id)
+    {
+        $tag_list = Tag::where('tag_sub_id', '=', $id)
+            ->where(function ($query) {
+                $query->where('tagable_type', '=', 'App\\Models\\CatHome')
+                    ->orWhere('tagable_type', '=', 'App\\Models\\CatConstruct')
+                    ->orWhere('tagable_type', '=', 'App\\Models\\CatArticle')
+                    ->orWhere('tagable_type', '=', 'App\\Models\\CatIdea');
+            })
+            ->orderBy('id', 'desc')
+            ->paginate(15);
+
+        return view('web.frontend.tag_list')
+            ->with('tag_list', $tag_list);
+    }
 }
 

@@ -1478,3 +1478,10 @@ Route::get('idea/{id}', [
     'before' => 'frontend_auth',
     'uses' => 'Frontend\ArticleCategoryController@idea_show'
 ]);
+
+/*-------------------------------- Click Tags show all related -------------------------------*/
+Route::get('tag_list/{id}', [
+    'as' => 'tag_list',
+    'before' => 'frontend_auth',
+    'uses' => 'AllofhomeController@tag_list'
+]);
