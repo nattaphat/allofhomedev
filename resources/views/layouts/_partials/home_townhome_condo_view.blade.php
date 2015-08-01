@@ -662,7 +662,7 @@
     <div class="tags">
         @if($tag != null && count($tag) > 0)
             @foreach($tag as $item)
-                <a href="#">{{ App\Models\TagSub::getTagSubName($item->tag_sub_id) }}</a>
+                <a href="{{ url('tag_list')."/".$item->tag_sub_id }}" target="_blank">{{ App\Models\TagSub::getTagSubName($item->tag_sub_id) }}</a>
             @endforeach
         @endif
     </div>
