@@ -1492,3 +1492,10 @@ Route::get('shop_list/{id}', [
     'before' => 'frontend_auth',
     'uses' => 'AllofhomeController@shop_list'
 ]);
+
+/*-------------------------------- Click Logo project and show all related -------------------------------*/
+Route::get('project_list/{id}', [
+    'as' => 'project_list',
+    'before' => 'frontend_auth',
+    'uses' => 'AllofhomeController@project_list'
+]);

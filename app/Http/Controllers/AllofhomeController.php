@@ -639,5 +639,19 @@ class AllofhomeController extends Controller {
             ->with('cat', $cat)
             ->with('brand_name', $brand->brand_name);
     }
+
+    public function project_list($id)
+    {
+        $cat = CatHome::where('brand_id', '=', $id)
+            ->where('status','=','1')
+            ->orderBy('id', 'desc')
+            ->paginate(15);
+
+        $brand = Brand::find($id);
+
+        return view('web.frontend.project_list')
+            ->with('cat', $cat)
+            ->with('brand_name', $brand->brand_name);
+    }
 }
 
