@@ -73,7 +73,7 @@
                             @foreach($bannerB as $item)
                                 <li>
                                     <a href="{{ $item->url }}" target="_blank">
-                                        <img data-src="{{ $item->file_path }}" alt="{{ $item->file_name }}" width="1200" height="400" />
+                                        <img src="{{ $item->file_path }}" alt="{{ $item->file_name }}" width="1200" height="400" />
                                     </a>
                                 </li>
                             @endforeach
@@ -107,7 +107,7 @@
                                 @foreach($bannerC as $item)
                                     <li>
                                         <p>
-                                            <img data-src="{{ $item->file_path }}" alt="{{ $item->file_name }}" />
+                                            <img src="{{ $item->file_path }}" alt="{{ $item->file_name }}" />
                                         </p>
                                         <div class="text">
                                             <h3 style="

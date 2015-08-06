@@ -92,7 +92,7 @@
                                 <p class="pic">
                                     @if(isset($pics) && count($pics) > 0)
                                         <a href="{{ $urlTo.$item->id }}">
-                                            <img src="{{ $pics[0]->file_path }}" alt="{{ $pics[0]->file_name }}"
+                                            <img data-src="{{ $pics[0]->file_path }}" alt="{{ $pics[0]->file_name }}"
                                                  style="width: 250px; height: 150px;" /></a>
                                     @else
                                         &nbsp;
