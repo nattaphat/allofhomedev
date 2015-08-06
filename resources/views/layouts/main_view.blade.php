@@ -14,6 +14,9 @@
     <!-- Font Awesome -->
     <link type="text/css" href="{{ asset('js/lib/fontawesome/css/font-awesome.min.css') }}" rel="stylesheet">
 
+    <!-- Lazy Loading -->
+    <link type="text/css" href="{{ asset('js/lib/lazyloadxt/dist/jquery.lazyloadxt.fadein.css') }}" rel="stylesheet">
+
     <!-- Custom -->
     <link href="{{ asset('css/style.css') }}" rel="stylesheet" type="text/css" />
 
@@ -36,7 +39,7 @@
             {{--<a href="#" class="next"></a>--}}
             {{--<div class="pic-slide">--}}
                 {{--<ul>--}}
-                    {{--<li><a href="#"><img src="{{ asset('images/test/banner-2.jpg') }}" alt="" /></a></li>--}}
+                    {{--<li><a href="#"><img data-src="{{ asset('images/test/banner-2.jpg') }}" alt="" /></a></li>--}}
                 {{--</ul>--}}
             {{--</div>--}}
             {{--<div class="pagin">--}}
@@ -67,7 +70,7 @@
                             @foreach($bannerB as $item)
                                 <li>
                                     <a href="{{ $item->url }}" target="_blank">
-                                        <img src="{{ $item->file_path }}" alt="{{ $item->file_name }}" width="1200" height="400" />
+                                        <img data-src="{{ $item->file_path }}" alt="{{ $item->file_name }}" width="1200" height="400" />
                                     </a>
                                 </li>
                             @endforeach
@@ -87,7 +90,7 @@
         <div class="boxleft">
             {{--<div class="newregister">--}}
                 {{--<h2>ลงทะเบียนโครงการใหม่</h2>--}}
-                {{--<p><img src="{{ asset('images/test/pic-1.jpg')}}" alt="" /></p>--}}
+                {{--<p><img data-src="{{ asset('images/test/pic-1.jpg')}}" alt="" /></p>--}}
                 {{--<div class="text">--}}
                     {{--<h3>Life Asoke (ไลฟ์ อโศก)</h3>--}}
                     {{--<p>ลงทะเบียนส่วนลดสูงสุด <span>100,000</span> บาท</p>--}}
@@ -102,7 +105,7 @@
                             @foreach($bannerC as $item)
                                 <li>
                                     <p>
-                                        <img src="{{ $item->file_path }}" alt="{{ $item->file_name }}" />
+                                        <img data-src="{{ $item->file_path }}" alt="{{ $item->file_name }}" />
                                     </p>
                                     <div class="text">
                                         <h3 style="
@@ -137,9 +140,9 @@
 
             <a href="#" class="btn-likefb"></a>
             <!-- Banner E, F, G -->
-            <div class="side-banner"><img src="{{ asset('images/test/pic-10.jpg') }}" alt="" /></div>
-            <div class="side-banner"><img src="{{ asset('images/test/pic-14.jpg') }}" alt="" /></div>
-            <div class="side-banner"><img src="{{ asset('images/test/pic-3.jpg') }}" alt="" /></div>
+            <div class="side-banner"><img data-src="{{ asset('images/test/pic-10.jpg') }}" alt="" /></div>
+            <div class="side-banner"><img data-src="{{ asset('images/test/pic-14.jpg') }}" alt="" /></div>
+            <div class="side-banner"><img data-src="{{ asset('images/test/pic-3.jpg') }}" alt="" /></div>
 
             <?php
             $youtubes = null;
@@ -278,7 +281,7 @@
                         @endforeach
                         <div class="follow">
                             <span>ติดตามรายการบน </span>
-                            <a href="#"><img src="{{ asset('images/button/youtube.jpg') }}" alt="" /></a>
+                            <a href="#"><img data-src="{{ asset('images/button/youtube.jpg') }}" alt="" /></a>
                         </div>
                     </div>
                 @endif
@@ -296,7 +299,7 @@
                         @endforeach
                         <div class="follow">
                             <span>ติดตามรายการบน </span>
-                            <a href="#"><img src="{{ asset('images/button/youtube.jpg') }}" alt="" /></a>
+                            <a href="#"><img data-src="{{ asset('images/button/youtube.jpg') }}" alt="" /></a>
                         </div>
                     </div>
                 @endif
@@ -341,6 +344,9 @@
 
 <!--Flex slider -->
 <script src={{ asset('plugins/flexslider/jquery.flexslider-min.js') }}></script>
+
+<!-- Lazy Loading -->
+<script src={{ asset('js/lib/lazyloadxt/dist/jquery.lazyloadxt.extra.js') }}></script>
 
 <!--Custom scripts for allofhome -->
 <script src={{ asset('js/script.js') }}></script>

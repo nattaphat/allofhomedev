@@ -38,7 +38,7 @@
                                 <tr>
                                     <td style="vertical-align: middle;
                                        text-align: center;">
-                                        <img src="{{ $p->file_path }}" alt="{{ $p->file_name }}" />
+                                        <img data-src="{{ $p->file_path }}" alt="{{ $p->file_name }}" />
                                     </td>
                                 </tr>
                             </table>
@@ -53,7 +53,7 @@
                 <?php $k = 0; ?>
                 @foreach($pic as $p)
                     <li>
-                        <img src="{{ $p->file_path }}" alt="{{ $p->file_name }}" width="106" height="93" />
+                        <img data-src="{{ $p->file_path }}" alt="{{ $p->file_name }}" width="106" height="93" />
                     </li>
                     <?php $k++; if($k == 8){ break; } ?>
                 @endforeach

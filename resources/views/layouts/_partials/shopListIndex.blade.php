@@ -36,7 +36,7 @@
                     @endif
                 @endif
                 <li>
-                    <p class="tag-vip"><img src="{{ asset('images/blulet/vip.png') }}" alt="" /></p>
+                    <p class="tag-vip"><img data-src="{{ asset('images/blulet/vip.png') }}" alt="" /></p>
                     <div class="left">
                         <div class="showpic">
                             <?php
@@ -48,30 +48,30 @@
                                 @if(count($pics) >= 5)
                                     <p class="pic-hilight">
                                         <a href="{{ $urlTo.$item->id }}">
-                                            <img src="{{ $pics[0]->file_path }}" alt="{{ $pics[0]->file_name }}"
+                                            <img data-src="{{ $pics[0]->file_path }}" alt="{{ $pics[0]->file_name }}"
                                                  style="width: 256px; height: 156px;" />
                                         </a>
                                     </p>
                                     <div class="other">
-                                        <img src="{{ $pics[1]->file_path }}" alt="{{ $pics[1]->file_name }}"
+                                        <img data-src="{{ $pics[1]->file_path }}" alt="{{ $pics[1]->file_name }}"
                                              style="width: 80px; height: 70px;" />
-                                        <img src="{{ $pics[2]->file_path }}" alt="{{ $pics[2]->file_name }}"
+                                        <img data-src="{{ $pics[2]->file_path }}" alt="{{ $pics[2]->file_name }}"
                                              style="width: 80px; height: 70px;" />
-                                        <img src="{{ $pics[3]->file_path }}" alt="{{ $pics[3]->file_name }}"
+                                        <img data-src="{{ $pics[3]->file_path }}" alt="{{ $pics[3]->file_name }}"
                                              style="width: 80px; height: 70px;" />
-                                        <img src="{{ $pics[4]->file_path }}" alt="{{ $pics[4]->file_name }}"
+                                        <img data-src="{{ $pics[4]->file_path }}" alt="{{ $pics[4]->file_name }}"
                                              style="width: 80px; height: 70px;" />
                                     </div>
                                 @else
                                     <p class="pic-hilight">
                                         <a href="{{ $urlTo.$item->id }}">
-                                            <img src="{{ $pics[0]->file_path }}" alt="{{ $pics[0]->file_name }}"
+                                            <img data-src="{{ $pics[0]->file_path }}" alt="{{ $pics[0]->file_name }}"
                                                  style="width: 256px; height: 156px;" />
                                         </a>
                                     <div class="other">
                                         <?php $count = count($pics); ?>
                                         @for($i=1; $i<$count; $i++)
-                                            <img src="{{ $pics[$i]->file_path }}" alt="{{ $pics[$i]->file_name }}"
+                                            <img data-src="{{ $pics[$i]->file_path }}" alt="{{ $pics[$i]->file_name }}"
                                                  style="width: 80px; height: 70px;" />
                                         @endfor
                                     </div>
@@ -100,7 +100,7 @@
                         <div class="rating">
                             @if(isset($item->avg_rating) && $item->avg_rating != null && $item->avg_rating != 0)
                                 &nbsp;&nbsp;<span class="label-success"> {{ $item->avg_rating }} คะแนน</span>
-                                <!--<img src="images/test/rating.jpg" alt="" />-->
+                                <!--<img data-src="images/test/rating.jpg" alt="" />-->
                             @else
                                 &nbsp;&nbsp;<span class="label-success">ยังไม่มีการให้คะแนน</span>
                             @endif
@@ -143,30 +143,30 @@
                                 @if(count($pics) >= 5)
                                     <p class="pic-hilight">
                                         <a href="{{ $urlTo.$item->id }}">
-                                            <img src="{{ $pics[0]->file_path }}" alt="{{ $pics[0]->file_name }}"
+                                            <img data-src="{{ $pics[0]->file_path }}" alt="{{ $pics[0]->file_name }}"
                                                  style="width: 256px; height: 156px;" />
                                         </a>
                                     </p>
                                     <div class="other">
-                                        <img src="{{ $pics[1]->file_path }}" alt="{{ $pics[1]->file_name }}"
+                                        <img data-src="{{ $pics[1]->file_path }}" alt="{{ $pics[1]->file_name }}"
                                              style="width: 80px; height: 70px;" />
-                                        <img src="{{ $pics[2]->file_path }}" alt="{{ $pics[2]->file_name }}"
+                                        <img data-src="{{ $pics[2]->file_path }}" alt="{{ $pics[2]->file_name }}"
                                              style="width: 80px; height: 70px;" />
-                                        <img src="{{ $pics[3]->file_path }}" alt="{{ $pics[3]->file_name }}"
+                                        <img data-src="{{ $pics[3]->file_path }}" alt="{{ $pics[3]->file_name }}"
                                              style="width: 80px; height: 70px;" />
-                                        <img src="{{ $pics[4]->file_path }}" alt="{{ $pics[4]->file_name }}"
+                                        <img data-src="{{ $pics[4]->file_path }}" alt="{{ $pics[4]->file_name }}"
                                              style="width: 80px; height: 70px;" />
                                     </div>
                                 @else
                                     <p class="pic-hilight">
                                         <a href="{{ $urlTo.$item->id }}">
-                                            <img src="{{ $pics[0]->file_path }}" alt="{{ $pics[0]->file_name }}"
+                                            <img data-src="{{ $pics[0]->file_path }}" alt="{{ $pics[0]->file_name }}"
                                                  style="width: 256px; height: 156px;" />
                                         </a>
                                     <div class="other">
                                         <?php $count = count($pics); ?>
                                         @for($i=1; $i<$count; $i++)
-                                            <img src="{{ $pics[$i]->file_path }}" alt="{{ $pics[$i]->file_name }}"
+                                            <img data-src="{{ $pics[$i]->file_path }}" alt="{{ $pics[$i]->file_name }}"
                                                  style="width: 80px; height: 70px;" />
                                         @endfor
                                     </div>
@@ -195,7 +195,7 @@
                         <div class="rating">
                             @if(isset($item->avg_rating) && $item->avg_rating != null && $item->avg_rating != 0)
                                 &nbsp;&nbsp;<span class="label-success"> {{ $item->avg_rating }} คะแนน</span>
-                                <!--<img src="images/test/rating.jpg" alt="" />-->
+                                <!--<img data-src="images/test/rating.jpg" alt="" />-->
                             @else
                                 &nbsp;&nbsp;<span class="label-success">ยังไม่มีการให้คะแนน</span>
                             @endif

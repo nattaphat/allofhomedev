@@ -29,7 +29,7 @@
         <div class="list-select">
             <ul>
                 <li>
-                    <p><a href="#"><img src="images/test/pic-11.jpg" alt="" /></a></p>
+                    <p><a href="#"><img data-src="images/test/pic-11.jpg" alt="" /></a></p>
                     <p class="title">Casa Ville รามอินทรา-หทัยราษฎร์</p>
                     <p class="project-price">ราคาเริ่มเต้น <span>2,500,000</span> บาท</p>
                     <div class="select-project">
@@ -44,7 +44,7 @@
                     <a href="#" class="btn-view">ดูโครงการทั้งหมดของ Casa Ville</a>
                 </li>
                 <li>
-                    <p><a href="#"><img src="images/test/pic-12.jpg" alt="" /></a></p>
+                    <p><a href="#"><img data-src="images/test/pic-12.jpg" alt="" /></a></p>
                     <p class="title">Casa Ville รามอินทรา-หทัยราษฎร์</p>
                     <p class="project-price">ราคาเริ่มเต้น <span>2,500,000</span> บาท</p>
                     <div class="select-project">
@@ -59,7 +59,7 @@
                     <a href="#" class="btn-view">ดูโครงการทั้งหมดของ Casa Ville</a>
                 </li>
                 <li>
-                    <p><a href="#"><img src="images/test/pic-13.jpg" alt="" /></a></p>
+                    <p><a href="#"><img data-src="images/test/pic-13.jpg" alt="" /></a></p>
                     <p class="title">Casa Ville รามอินทรา-หทัยราษฎร์</p>
                     <p class="project-price">ราคาเริ่มเต้น <span>2,500,000</span> บาท</p>
                     <div class="select-project">
@@ -94,7 +94,7 @@
                             <p class="pic">
                                 @if(isset($pics) && count($pics) > 0)
                                     <a href="{{ url('article')."/".$item->id }}">
-                                        <img src="{{ $pics[0]->file_path }}" alt="{{ $pics[0]->file_name }}"
+                                        <img data-src="{{ $pics[0]->file_path }}" alt="{{ $pics[0]->file_name }}"
                                              style="width: 250px; height: 150px;" /></a>
                                 @else
                                     &nbsp;
@@ -120,7 +120,7 @@
                             <p class="pic">
                                 @if(isset($pics) && count($pics) > 0)
                                     <a href="{{ url('article')."/".$item->id }}">
-                                        <img src="{{ $pics[0]->file_path }}" alt="{{ $pics[0]->file_name }}"
+                                        <img data-src="{{ $pics[0]->file_path }}" alt="{{ $pics[0]->file_name }}"
                                              style="width: 250px; height: 150px;" /></a>
                                 @else
                                     &nbsp;
@@ -156,7 +156,7 @@
                             <p class="pic">
                                 @if(isset($pics) && count($pics) > 0)
                                     <a href="{{ url('idea')."/".$item->id }}">
-                                        <img src="{{ $pics[0]->file_path }}" alt="{{ $pics[0]->file_name }}"
+                                        <img data-src="{{ $pics[0]->file_path }}" alt="{{ $pics[0]->file_name }}"
                                              style="width: 250px; height: 150px;" /></a>
                                 @else
                                     &nbsp;
@@ -182,7 +182,7 @@
                             <p class="pic">
                                 @if(isset($pics) && count($pics) > 0)
                                     <a href="{{ url('idea')."/".$item->id }}">
-                                        <img src="{{ $pics[0]->file_path }}" alt="{{ $pics[0]->file_name }}"
+                                        <img data-src="{{ $pics[0]->file_path }}" alt="{{ $pics[0]->file_name }}"
                                              style="width: 250px; height: 150px;" /></a>
                                 @else
                                     &nbsp;

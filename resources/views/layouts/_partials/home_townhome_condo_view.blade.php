@@ -4,7 +4,7 @@
             <h2>ข้อมูลเจ้าของโครงการ</h2>
             <div class="detail">
                 <div class="pic-profile">
-                    <p><img src="{{ \App\Models\Brand::getPathLogo($brand->id) }}" alt="" width="150" height="150"
+                    <p><img data-src="{{ \App\Models\Brand::getPathLogo($brand->id) }}" alt="" width="150" height="150"
                             style="border: 1px solid lightgray"/></p>
                 </div>
                 <div class="info-profile">
@@ -63,36 +63,36 @@
         <div id="share-buttons">
             <!-- Email -->
             <a href="mailto:?Subject={{ $catHome->title }}&amp;Body=I%20saw%20this%20and%20thought%20of%20you!%20 {{ Request::fullUrl() }}">
-                <img src="{{ asset('images/logo/email.png') }}" alt="Email" />
+                <img data-src="{{ asset('images/logo/email.png') }}" alt="Email" />
             </a>
 
             <!-- Facebook -->
             <a href="http://www.facebook.com/sharer.php?u={{ Request::fullUrl() }}" target="_blank">
-                <img src="{{ asset('images/logo/facebook.png') }}" alt="Facebook" />
+                <img data-src="{{ asset('images/logo/facebook.png') }}" alt="Facebook" />
             </a>
 
             <!-- Google+ -->
             <a href="https://plus.google.com/share?url={{ Request::fullUrl() }}" target="_blank">
-                <img src="{{ asset('images/logo/google.png') }}" alt="Google" />
+                <img data-src="{{ asset('images/logo/google.png') }}" alt="Google" />
             </a>
 
             <!-- LinkedIn -->
             <a href="http://www.linkedin.com/shareArticle?mini=true&amp;url={{ Request::fullUrl() }}" target="_blank">
-                <img src="{{ asset('images/logo/linkedin.png') }}" alt="LinkedIn" />
+                <img data-src="{{ asset('images/logo/linkedin.png') }}" alt="LinkedIn" />
             </a>
 
             <!-- Print -->
             <a href="javascript:;" onclick="window.print()">
-                <img src="{{ asset('images/logo/print.png') }}" alt="Print" />
+                <img data-src="{{ asset('images/logo/print.png') }}" alt="Print" />
             </a>
             <!-- Tumblr-->
             <a href="http://www.tumblr.com/share/link?url={{ Request::fullUrl() }}&amp;title={{ $catHome->title }}" target="_blank">
-                <img src="{{ asset('images/logo/tumblr.png') }}" alt="Tumblr" />
+                <img data-src="{{ asset('images/logo/tumblr.png') }}" alt="Tumblr" />
             </a>
 
             <!-- Twitter -->
             <a href="https://twitter.com/share?url={{ Request::fullUrl() }}&amp;name={{ $catHome->title }}&amp;hashtags=allofhome" target="_blank">
-                <img src="{{ asset('images/logo/twitter.png') }}" alt="Twitter" />
+                <img data-src="{{ asset('images/logo/twitter.png') }}" alt="Twitter" />
             </a>
         </div>
         <a href="#" class="btn-favorite">เพิ่มเป็นรายการโปรด</a>
@@ -160,40 +160,40 @@
         </div>
         <div class="right">
             <div class="rating">
-                <span><img src="{{ asset('images/blulet/bstar-y.png') }}" alt="" /></span>
-                <span><img src="{{ asset('images/blulet/bstar-y.png') }}" alt="" /></span>
-                <span><img src="{{ asset('images/blulet/bstar-y.png') }}" alt="" /></span>
-                <span><img src="{{ asset('images/blulet/bstar-y.png') }}" alt="" /></span>
-                <span><img src="{{ asset('images/blulet/bstar-g.png') }}" alt="" /></span>
+                <span><img data-src="{{ asset('images/blulet/bstar-y.png') }}" alt="" /></span>
+                <span><img data-src="{{ asset('images/blulet/bstar-y.png') }}" alt="" /></span>
+                <span><img data-src="{{ asset('images/blulet/bstar-y.png') }}" alt="" /></span>
+                <span><img data-src="{{ asset('images/blulet/bstar-y.png') }}" alt="" /></span>
+                <span><img data-src="{{ asset('images/blulet/bstar-g.png') }}" alt="" /></span>
             </div>
             <p class="text">คะแนนกำหนดจากให้ดาวจากผู้ใช้งานจริง</p>
             <div class="scoll">
                 <h3>โครงสร้างคะแนน</h3>
                 <ul>
                     <li>
-                        <span><img src="{{ asset('images/blulet/star.png') }}" alt="" /></span>
-                        <span><img src="{{ asset('images/blulet/star.png') }}" alt="" /></span>
-                        <span><img src="{{ asset('images/blulet/star.png') }}" alt="" /></span>
-                        <span><img src="{{ asset('images/blulet/star.png') }}" alt="" /></span>
-                        <span><img src="{{ asset('images/blulet/star.png') }}" alt="" /></span>
+                        <span><img data-src="{{ asset('images/blulet/star.png') }}" alt="" /></span>
+                        <span><img data-src="{{ asset('images/blulet/star.png') }}" alt="" /></span>
+                        <span><img data-src="{{ asset('images/blulet/star.png') }}" alt="" /></span>
+                        <span><img data-src="{{ asset('images/blulet/star.png') }}" alt="" /></span>
+                        <span><img data-src="{{ asset('images/blulet/star.png') }}" alt="" /></span>
                     </li>
                     <li>
-                        <span><img src="{{ asset('images/blulet/star.png') }}" alt="" /></span>
-                        <span><img src="{{ asset('images/blulet/star.png') }}" alt="" /></span>
-                        <span><img src="{{ asset('images/blulet/star.png') }}" alt="" /></span>
-                        <span><img src="{{ asset('images/blulet/star.png') }}" alt="" /></span>
+                        <span><img data-src="{{ asset('images/blulet/star.png') }}" alt="" /></span>
+                        <span><img data-src="{{ asset('images/blulet/star.png') }}" alt="" /></span>
+                        <span><img data-src="{{ asset('images/blulet/star.png') }}" alt="" /></span>
+                        <span><img data-src="{{ asset('images/blulet/star.png') }}" alt="" /></span>
                     </li>
                     <li>
-                        <span><img src="{{ asset('images/blulet/star.png') }}" alt="" /></span>
-                        <span><img src="{{ asset('images/blulet/star.png') }}" alt="" /></span>
-                        <span><img src="{{ asset('images/blulet/star.png') }}" alt="" /></span>
+                        <span><img data-src="{{ asset('images/blulet/star.png') }}" alt="" /></span>
+                        <span><img data-src="{{ asset('images/blulet/star.png') }}" alt="" /></span>
+                        <span><img data-src="{{ asset('images/blulet/star.png') }}" alt="" /></span>
                     </li>
                     <li>
-                        <span><img src="{{ asset('images/blulet/star.png') }}" alt="" /></span>
-                        <span><img src="{{ asset('images/blulet/star.png') }}" alt="" /></span>
+                        <span><img data-src="{{ asset('images/blulet/star.png') }}" alt="" /></span>
+                        <span><img data-src="{{ asset('images/blulet/star.png') }}" alt="" /></span>
                     </li>
                     <li>
-                        <span><img src="{{ asset('images/blulet/star.png') }}" alt="" /></span>
+                        <span><img data-src="{{ asset('images/blulet/star.png') }}" alt="" /></span>
                     </li>
                 </ul>
             </div>
@@ -486,7 +486,7 @@
                                     <?php $firstInLoop = false; ?>
                                 @endif
                                 <div>
-                                    <img src="{{ $pic->filepath }}" alt="{{ $pic->filename }}" />
+                                    <img data-src="{{ $pic->filepath }}" alt="{{ $pic->filename }}" />
                                 </div>
                                 <div>
                                     @if($pic->description != null && $pic->description != "")
@@ -521,7 +521,7 @@
                                     <?php $firstInLoop = false; ?>
                                 @endif
                                 <div>
-                                    <img src="{{ $pic->filepath }}" alt="{{ $pic->filename }}" />
+                                    <img data-src="{{ $pic->filepath }}" alt="{{ $pic->filename }}" />
                                 </div>
                                 <div>
                                     @if($pic->description != null && $pic->description != "")
@@ -556,7 +556,7 @@
                                     <?php $firstInLoop = false; ?>
                                 @endif
                                 <div>
-                                    <img src="{{ $pic->filepath }}" alt="{{ $pic->filename }}" />
+                                    <img data-src="{{ $pic->filepath }}" alt="{{ $pic->filename }}" />
                                 </div>
                                 <div>
                                     @if($pic->description != null && $pic->description != "")
@@ -591,7 +591,7 @@
                                     <?php $firstInLoop = false; ?>
                                 @endif
                                 <div>
-                                    <img src="{{ $pic->filepath }}" alt="{{ $pic->filename }}" />
+                                    <img data-src="{{ $pic->filepath }}" alt="{{ $pic->filename }}" />
                                 </div>
                                 <div>
                                     @if($pic->description != null && $pic->description != "")
@@ -626,7 +626,7 @@
                                     <?php $firstInLoop = false; ?>
                                 @endif
                                 <div>
-                                    <img src="{{ $pic->filepath }}" alt="{{ $pic->filename }}" />
+                                    <img data-src="{{ $pic->filepath }}" alt="{{ $pic->filename }}" />
                                 </div>
                                 <div>
                                     @if($pic->description != null && $pic->description != "")
@@ -667,10 +667,10 @@
         @endif
     </div>
     <div class="buttonfb">
-        <div><img src="{{ asset('images/test/fb.jpg') }}" /></div>
+        <div><img data-src="{{ asset('images/test/fb.jpg') }}" /></div>
         <p class="text">ฝากกด like และ share เพื่อเป็นกำลังใจเจ้าของกระทู้ด้วยนะคะ</p>
     </div>
-    <div class="comment-fb"><img src="{{ asset('images/test/commentfb.jpg') }}" /></div>
+    <div class="comment-fb"><img data-src="{{ asset('images/test/commentfb.jpg') }}" /></div>
 </div>
 
 <div class="boxFinan">
@@ -721,10 +721,10 @@
         <div class="right">
             <h3>ติดต่อธนาคารเพื่อรับสินเชื่อ</h3>
             <ul>
-                <li><a href="#"><img src="{{ asset('images/logo/tmb.jpg') }}" alt="" /></a></li>
-                <li><a href="#"><img src="{{ asset('images/logo/ktb.jpg') }}" alt="" /></a></li>
-                <li><a href="#"><img src="{{ asset('images/logo/krungsri.png') }}" alt="" /></a></li>
-                <li><a href="#"><img src="{{ asset('images/logo/kasikorn.jpg') }}" alt="" /></a></li>
+                <li><a href="#"><img data-src="{{ asset('images/logo/tmb.jpg') }}" alt="" /></a></li>
+                <li><a href="#"><img data-src="{{ asset('images/logo/ktb.jpg') }}" alt="" /></a></li>
+                <li><a href="#"><img data-src="{{ asset('images/logo/krungsri.png') }}" alt="" /></a></li>
+                <li><a href="#"><img data-src="{{ asset('images/logo/kasikorn.jpg') }}" alt="" /></a></li>
 
             </ul>
         </div>

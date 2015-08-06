@@ -14,6 +14,9 @@
     <!-- Font Awesome -->
     <link type="text/css" href="{{ asset('js/lib/fontawesome/css/font-awesome.min.css') }}" rel="stylesheet">
 
+    <!-- Lazy Loading -->
+    <link type="text/css" href="{{ asset('js/lib/lazyloadxt/dist/jquery.lazyloadxt.fadein.css') }}" rel="stylesheet">
+
     <!-- Custom -->
     <link href="{{ asset('css/style.css') }}" rel="stylesheet" type="text/css" />
 
@@ -52,7 +55,7 @@
                         @foreach($bannerB as $item)
                             <li>
                                 <a href="{{ $item->url }}" target="_blank">
-                                    <img src="{{ $item->file_path }}" alt="{{ $item->file_name }}" width="1200" height="400" />
+                                    <img data-src="{{ $item->file_path }}" alt="{{ $item->file_name }}" width="1200" height="400" />
                                 </a>
                             </li>
                         @endforeach
@@ -76,7 +79,7 @@
                             @foreach($bannerC as $item)
                                 <li>
                                     <p>
-                                        <img src="{{ $item->file_path }}" alt="{{ $item->file_name }}" />
+                                        <img data-src="{{ $item->file_path }}" alt="{{ $item->file_name }}" />
                                     </p>
                                     <div class="text">
                                         <h3 style="
@@ -110,9 +113,9 @@
             @endif
             <a href="#" class="btn-likefb"></a>
             <!-- Banner D -->
-            <div class="side-banner"><img src="{{ asset('images/test/pic-10.jpg') }}" alt="" /></div>
-            <div class="side-banner"><img src="{{ asset('images/test/pic-14.jpg') }}" alt="" /></div>
-            <div class="side-banner"><img src="{{ asset('images/test/pic-3.jpg') }}" alt="" /></div>
+            <div class="side-banner"><img data-src="{{ asset('images/test/pic-10.jpg') }}" alt="" /></div>
+            <div class="side-banner"><img data-src="{{ asset('images/test/pic-14.jpg') }}" alt="" /></div>
+            <div class="side-banner"><img data-src="{{ asset('images/test/pic-3.jpg') }}" alt="" /></div>
         </div>
         <div class="boxright">
             <!-- บทความและข่าวสาร -->
@@ -149,6 +152,9 @@
 
 <!--Dotdotdot -->
 <script src={{ asset('js/jquery.dotdotdot.min.js') }}></script>
+
+<!-- Lazy Loading -->
+<script src={{ asset('js/lib/lazyloadxt/dist/jquery.lazyloadxt.extra.js') }}></script>
 
 <!--Custom scripts for allofhome -->
 <script src={{ asset('js/script.js') }}></script>

@@ -3,7 +3,7 @@
         <div class="left">
             {{--<ul>--}}
             {{--<li>--}}
-            {{--<div class="pic"><img src="{{ asset('images/test/pic-2.jpg') }}" alt="" /></div>--}}
+            {{--<div class="pic"><img data-src="{{ asset('images/test/pic-2.jpg') }}" alt="" /></div>--}}
             {{--<div class="tag-day">--}}
             {{--<p>02</p>--}}
             {{--<p>มีค 2558</p>--}}
@@ -14,7 +14,7 @@
             {{--</div>--}}
             {{--</li>--}}
             {{--<li>--}}
-            {{--<div class="pic"><img src="{{ asset('images/test/pic-2.jpg') }}" alt="" /></div>--}}
+            {{--<div class="pic"><img data-src="{{ asset('images/test/pic-2.jpg') }}" alt="" /></div>--}}
             {{--<div class="tag-day">--}}
             {{--<p>02</p>--}}
             {{--<p>มีค 2558</p>--}}
@@ -35,7 +35,7 @@
                         <li>
                             <div class="pic" style="width: 555px;">
                                 @if($pics != null && count($pics) > 0)
-                                    <img src="{{ $pics[0]->file_path }}" alt="" />
+                                    <img data-src="{{ $pics[0]->file_path }}" alt="" />
                                 @endif
                             </div>
                             <div class="text-hilight" style="width: 500px;">
@@ -52,8 +52,8 @@
         </div>
         <div class="right">
             <!-- Banner C, D -->
-            <div class="side-banner"><img src="{{ asset('images/test/pic-3.jpg') }}" alt="" /></div>
-            <div class="side-banner"><img src="{{ asset('images/test/pic-4.jpg') }}" alt="" /></div>
+            <div class="side-banner"><img data-src="{{ asset('images/test/pic-3.jpg') }}" alt="" /></div>
+            <div class="side-banner"><img data-src="{{ asset('images/test/pic-4.jpg') }}" alt="" /></div>
         </div>
         <div class="clear"></div>
     </div>

@@ -25,7 +25,7 @@
         <ul>
             @foreach($brand_part as $item)
                 <li><a href="{{ url('shop_list')."/".$item->id }}" target="_blank">
-                    <img src="{{ \App\Models\Brand::getPathLogo($item->id) }}" alt=""
+                    <img data-src="{{ \App\Models\Brand::getPathLogo($item->id) }}" alt=""
                             style="max-width: 110px; max-height: 80px;"/>
                 </a></li>
             @endforeach
