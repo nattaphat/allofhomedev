@@ -667,7 +667,9 @@
         @endif
     </div>
     <div class="buttonfb">
-        <div><img data-src="{{ asset('images/test/fb.jpg') }}" /></div>
+        <div>
+            <div class="fb-like" data-href="https://www.facebook.com/allofhome" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></div>
+        </div>
         <p class="text">ฝากกด like และ share เพื่อเป็นกำลังใจเจ้าของกระทู้ด้วยนะคะ</p>
     </div>
     <div class="comment-fb"><img data-src="{{ asset('images/test/commentfb.jpg') }}" /></div>
