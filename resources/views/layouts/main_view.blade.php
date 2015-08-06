@@ -98,9 +98,9 @@
                 {{--<a href="#" class="btn-register">ลงทะเบียนที่นี่</a>--}}
             {{--</div>--}}
             @if($bannerC != null && count($bannerC) > 0)
-                <div class="newregister">
+                <div class="newregister" style="margin-bottom: 20px;">
                     <h2>ลงทะเบียนโครงการใหม่</h2>
-                    <div id="bannerC_Slider" class="flexslider">
+                    <div id="bannerC_Slider" class="flexslider" style="margin-bottom: 0;">
                         <ul class="slides">
                             @foreach($bannerC as $item)
                                 <li>
@@ -138,11 +138,30 @@
                 </div>
             @endif
 
-            <a href="#" class="btn-likefb"></a>
+            <div id="fb-root"></div>
+            <script>(function(d, s, id) {
+                    var js, fjs = d.getElementsByTagName(s)[0];
+                    if (d.getElementById(id)) return;
+                    js = d.createElement(s); js.id = id;
+                    js.src = "//connect.facebook.net/th_TH/sdk.js#xfbml=1&version=v2.4&appId=218142118246842";
+                    fjs.parentNode.insertBefore(js, fjs);
+                }(document, 'script', 'facebook-jssdk'));
+            </script>
+
+            <div class="fb-page" data-href="https://www.facebook.com/allofhome" data-width="300"
+                 data-small-header="false" data-adapt-container-width="true" data-hide-cover="false"
+                 data-show-facepile="true" data-show-posts="false">
+                <div class="fb-xfbml-parse-ignore">
+                    <blockquote cite="https://www.facebook.com/allofhome">
+                        <a href="https://www.facebook.com/allofhome">Allofhome.com &quot;แหล่งรวมบ้าน&quot;</a>
+                    </blockquote>
+                </div>
+            </div>
+
             <!-- Banner E, F, G -->
-            <div class="side-banner"><img data-src="{{ asset('images/test/pic-10.jpg') }}" alt="" /></div>
-            <div class="side-banner"><img data-src="{{ asset('images/test/pic-14.jpg') }}" alt="" /></div>
-            <div class="side-banner"><img data-src="{{ asset('images/test/pic-3.jpg') }}" alt="" /></div>
+            <div class="side-banner"><img src="{{ asset('images/test/pic-10.jpg') }}" alt="" /></div>
+            <div class="side-banner"><img src="{{ asset('images/test/pic-14.jpg') }}" alt="" /></div>
+            <div class="side-banner"><img src="{{ asset('images/test/pic-3.jpg') }}" alt="" /></div>
 
             <?php
             $youtubes = null;
