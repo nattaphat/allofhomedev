@@ -311,7 +311,10 @@
         </div>
         <p class="text">ฝากกด like และ share เพื่อเป็นกำลังใจเจ้าของกระทู้ด้วยนะคะ</p>
     </div>
-    <div class="comment-fb"><img data-src="{{ asset('images/test/commentfb.jpg') }}" /></div>
+    <div class="comment-fb">
+        <div class="fb-comments" data-href="https://www.facebook.com/allofhome" data-width="873"
+             data-numposts="10" data-order-by="reverse_time"></div>
+    </div>
 </div>
 
 @include('layouts._partials.brand_part')
