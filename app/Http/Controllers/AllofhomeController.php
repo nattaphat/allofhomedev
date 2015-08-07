@@ -3,19 +3,15 @@
 use App\Models\Brand;
 use App\Models\CatArticle;
 use App\Models\CatConstruct;
-use App\Models\Category;
 use App\Models\CatHome;
 use App\Models\CatIdea;
-use App\Models\CatReview;
 use App\Models\Tag;
-use App\Models\TagSub;
-use Config;
 use App\Models\geoRegion;
+use Illuminate\Pagination\Paginator;
 use Request;
 use Validator;
 use Response;
 use Input;
-use File;
 use DB;
 
 class AllofhomeController extends Controller {
@@ -249,13 +245,13 @@ class AllofhomeController extends Controller {
             $catArticle = CatArticle::where('visible','=','true')
                 ->whereNotIn('id', $vip)
                 ->orderBy('created_at', 'desc')
-                ->paginate(15);
+                ->paginate(5);
         }
         else
         {
             $catArticle = CatArticle::where('visible','=','true')
                 ->orderBy('created_at', 'desc')
-                ->paginate(15);
+                ->paginate(5);
         }
 
         // ############## Idea ################ //
@@ -294,13 +290,13 @@ class AllofhomeController extends Controller {
             $catIdea = CatIdea::where('visible','=','true')
                 ->whereNotIn('id', $vip)
                 ->orderBy('created_at', 'desc')
-                ->paginate(15);
+                ->paginate(5);
         }
         else
         {
             $catIdea = CatIdea::where('visible','=','true')
                 ->orderBy('created_at', 'desc')
-                ->paginate(15);
+                ->paginate(5);
         }
 
         // ###################  Article #######################

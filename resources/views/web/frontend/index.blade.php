@@ -137,6 +137,7 @@
                 @endif
             </ul>
             <a class="btn-viewmore" href="#">ดูเพิ่มเติม</a>
+            {!! str_replace('/?', '?', $catArticle->render()) !!}
         </div>
     </div>
 
@@ -199,6 +200,7 @@
                 @endif
             </ul>
             <a class="btn-viewmore" href="#">ดูเพิ่มเติม</a>
+            {!! str_replace('/?', '?', $catIdea->render()) !!}
         </div>
     </div>
 
