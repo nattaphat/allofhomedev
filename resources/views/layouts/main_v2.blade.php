@@ -300,7 +300,7 @@
                             @endforeach
                             <div class="follow">
                                 <span>ติดตามรายการบน </span>
-                                <a href="#"><img data-src="{{ asset('images/button/youtube.jpg') }}" alt="" /></a>
+                                <div class="g-ytsubscribe" data-channelid="UCrGZO3wJ20CWiy36Fdu6vdw" data-layout="default" data-count="default"></div>
                             </div>
                         </div>
                     @endif
@@ -318,7 +318,7 @@
                             @endforeach
                             <div class="follow">
                                 <span>ติดตามรายการบน </span>
-                                <a href="#"><img data-src="{{ asset('images/button/youtube.jpg') }}" alt="" /></a>
+                                <div class="g-ytsubscribe" data-channelid="UCrGZO3wJ20CWiy36Fdu6vdw" data-layout="default" data-count="default"></div>
                             </div>
                         </div>
                     @endif
@@ -365,6 +365,9 @@
 
 <!-- Lazy Loading -->
 <script src={{ asset('js/lib/lazyloadxt/dist/jquery.lazyloadxt.extra.js') }}></script>
+
+<!-- Youtube API -->
+<script src="https://apis.google.com/js/platform.js"></script>
 
 <!--Custom scripts for allofhome -->
 <script src={{ asset('js/script.js') }}></script>

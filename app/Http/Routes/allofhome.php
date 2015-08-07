@@ -118,6 +118,11 @@ Route::get('/', [
     'uses' => 'AllofhomeController@index'
 ]);
 
+Route::get('index/ajax/{type}', array(
+    'as'    => 'index.type',
+    'uses'  => 'AllofhomeController@getIndexType'
+))->where('type', 'home|article|idea');
+
 //    Route::get('signout', [
 //        'as' => 'signout',
 //        'uses' => 'Auth\AuthController@logout'
