@@ -114,7 +114,7 @@ Route::group(['middleware' => 'auth'], function()
 /* Frontend route*/
 Route::get('/', [
     'as' => 'index',
-    'before' => 'frontend_auth',
+//    'before' => 'frontend_auth',
     'uses' => 'AllofhomeController@index'
 ]);
 
@@ -181,7 +181,7 @@ Route::get('topic/list', [
 /*-------------------------------- Home -------------------------------*/
 Route::get('home', [
     'as' => 'home_index',
-    'before' => 'frontend_auth',
+//    'before' => 'frontend_auth',
     'uses' => 'Frontend\HomeCategoryController@index'
 ]);
 
@@ -205,14 +205,14 @@ Route::get('home/update', [
 
 Route::get('home/view/{id}', [
     'as' => 'home_view',
-    'before' => 'frontend_auth',
+//    'before' => 'frontend_auth',
     'uses' => 'Frontend\HomeCategoryController@view'
 ]);
 
 /*-------------------------------- Condo -------------------------------*/
 Route::get('condo', [
     'as' => 'condo_index',
-    'before' => 'frontend_auth',
+//    'before' => 'frontend_auth',
     'uses' => 'Frontend\CondoCategoryController@index'
 ]);
 
@@ -236,14 +236,14 @@ Route::get('condo/update', [
 
 Route::get('condo/view/{id}', [
     'as' => 'condo_view',
-    'before' => 'frontend_auth',
+//    'before' => 'frontend_auth',
     'uses' => 'Frontend\CondoCategoryController@view'
 ]);
 
 /*-------------------------------- Townhome -------------------------------*/
 Route::get('townhome', [
     'as' => 'townhome_index',
-    'before' => 'frontend_auth',
+//    'before' => 'frontend_auth',
     'uses' => 'Frontend\TownHomeCategoryController@index'
 ]);
 
@@ -267,14 +267,14 @@ Route::get('townhome/update', [
 
 Route::get('townhome/view/{id}', [
     'as' => 'townhome_view',
-    'before' => 'frontend_auth',
+//    'before' => 'frontend_auth',
     'uses' => 'Frontend\TownHomeCategoryController@view'
 ]);
 
 /*-------------------------------- Interior Design -------------------------------*/
 Route::get('interiorDesign/index', [
     'as' => 'interiorDesign_index',
-    'before' => 'frontend_auth',
+//    'before' => 'frontend_auth',
     'uses' => 'Frontend\InteriorDesignCategoryController@index'
 ]);
 
@@ -292,14 +292,14 @@ Route::get('interiorDesign/update', [
 
 Route::get('interiorDesign/view', [
     'as' => 'interiorDesign_view',
-    'before' => 'frontend_auth',
+//    'before' => 'frontend_auth',
     'uses' => 'Frontend\InteriorDesignCategoryController@view'
 ]);
 
 /*-------------------------------- Land -------------------------------*/
 Route::get('land/index', [
     'as' => 'land_index',
-    'before' => 'frontend_auth',
+//    'before' => 'frontend_auth',
     'uses' => 'Frontend\LandCategoryController@index'
 ]);
 
@@ -317,14 +317,14 @@ Route::get('land/update', [
 
 Route::get('land/view', [
     'as' => 'land_view',
-    'before' => 'frontend_auth',
+//    'before' => 'frontend_auth',
     'uses' => 'Frontend\LandCategoryController@view'
 ]);
 
 /*-------------------------------- Furniture -------------------------------*/
 Route::get('furniture/index', [
     'as' => 'furniture_index',
-    'before' => 'frontend_auth',
+//    'before' => 'frontend_auth',
     'uses' => 'Frontend\FurnitureCategoryController@index'
 ]);
 
@@ -342,14 +342,14 @@ Route::get('furniture/update', [
 
 Route::get('furniture/view', [
     'as' => 'furniture_view',
-    'before' => 'frontend_auth',
+//    'before' => 'frontend_auth',
     'uses' => 'Frontend\FurnitureCategoryController@view'
 ]);
 
 /*-------------------------------- Electric -------------------------------*/
 Route::get('electric/index', [
     'as' => 'electric_index',
-    'before' => 'frontend_auth',
+//    'before' => 'frontend_auth',
     'uses' => 'Frontend\ElectricCategoryController@index'
 ]);
 
@@ -367,14 +367,14 @@ Route::get('electric/update', [
 
 Route::get('electric/view', [
     'as' => 'electric_view',
-    'before' => 'frontend_auth',
+//    'before' => 'frontend_auth',
     'uses' => 'Frontend\ElectricCategoryController@view'
 ]);
 
 /*-------------------------------- Kitchenware -------------------------------*/
 Route::get('kitchenware/index', [
     'as' => 'kitchenware_index',
-    'before' => 'frontend_auth',
+//    'before' => 'frontend_auth',
     'uses' => 'Frontend\KitchenwareCategoryController@index'
 ]);
 
@@ -392,14 +392,14 @@ Route::get('kitchenware/update', [
 
 Route::get('kitchenware/view', [
     'as' => 'kitchenware_view',
-    'before' => 'frontend_auth',
+//    'before' => 'frontend_auth',
     'uses' => 'Frontend\KitchenwareCategoryController@view'
 ]);
 
 /*-------------------------------- Contractor -------------------------------*/
 Route::get('contractor/index', [
     'as' => 'contractor_index',
-    'before' => 'frontend_auth',
+//    'before' => 'frontend_auth',
     'uses' => 'Frontend\ContractorCategoryController@index'
 ]);
 
@@ -417,14 +417,14 @@ Route::get('contractor/update', [
 
 Route::get('contractor/view', [
     'as' => 'contractor_view',
-    'before' => 'frontend_auth',
+//    'before' => 'frontend_auth',
     'uses' => 'Frontend\ContractorCategoryController@view'
 ]);
 
 /*-------------------------------- Garden -------------------------------*/
 Route::get('garden/index', [
     'as' => 'garden_index',
-    'before' => 'frontend_auth',
+//    'before' => 'frontend_auth',
     'uses' => 'Frontend\GardenCategoryController@index'
 ]);
 
@@ -442,14 +442,14 @@ Route::get('garden/update', [
 
 Route::get('garden/view', [
     'as' => 'garden_index_view',
-    'before' => 'frontend_auth',
+//    'before' => 'frontend_auth',
     'uses' => 'Frontend\GardenCategoryController@view'
 ]);
 
 /*-------------------------------- OldFurniture -------------------------------*/
 Route::get('oldFurniture/index', [
     'as' => 'oldFurniture_index',
-    'before' => 'frontend_auth',
+//    'before' => 'frontend_auth',
     'uses' => 'Frontend\OldFurnitureCategoryController@index'
 ]);
 
@@ -467,7 +467,7 @@ Route::get('oldFurniture/update', [
 
 Route::get('oldFurniture/view', [
     'as' => 'oldFurniture_view',
-    'before' => 'frontend_auth',
+//    'before' => 'frontend_auth',
     'uses' => 'Frontend\OldFurnitureCategoryController@view'
 ]);
 /*------------------------------------------------------------------------------*/
@@ -514,7 +514,7 @@ Route::get('oldFurniture/view', [
 /*-------------------------------- Idea -------------------------------*/
 Route::get('idea/index', [
     'as' => 'idea_index',
-    'before' => 'frontend_auth',
+//    'before' => 'frontend_auth',
     'uses' => 'Frontend\IdeaCategoryController@index'
 ]);
 
@@ -532,7 +532,7 @@ Route::get('idea/update', [
 
 Route::get('idea/view', [
     'as' => 'idea_view',
-    'before' => 'frontend_auth',
+//    'before' => 'frontend_auth',
     'uses' => 'Frontend\IdeaCategoryController@view'
 ]);
 
@@ -547,7 +547,7 @@ Route::get('idea/admin_index', [
 /*-------------------------------- Buysellrent -------------------------------*/
 Route::get('buysellrent/index', [
     'as' => 'buysellrent_index',
-    'before' => 'frontend_auth',
+//    'before' => 'frontend_auth',
     'uses' => 'Frontend\BuysellrentCategoryController@index'
 ]);
 
@@ -565,7 +565,7 @@ Route::get('buysellrent/update', [
 
 Route::get('buysellrent/view', [
     'as' => 'buysellrent_view',
-    'before' => 'frontend_auth',
+//    'before' => 'frontend_auth',
     'uses' => 'Frontend\BuysellrentCategoryController@view'
 ]);
 /*------------------------------------------------------------------------------*/
@@ -573,7 +573,7 @@ Route::get('buysellrent/view', [
 /*-------------------------------- Article -------------------------------*/
 Route::get('article/index', [
     'as' => 'article_index',
-    'before' => 'frontend_auth',
+//    'before' => 'frontend_auth',
     'uses' => 'Frontend\ArticleCategoryController@index'
 ]);
 
@@ -591,7 +591,7 @@ Route::get('article/update', [
 
 Route::get('article/view/{id}', [
     'as' => 'article_view',
-    'before' => 'frontend_auth',
+//    'before' => 'frontend_auth',
     'uses' => 'Frontend\ArticleCategoryController@view'
 ]);
 
@@ -612,7 +612,7 @@ Route::post('article/create', [
 /*-------------------------------- Job -------------------------------*/
 Route::get('job/index', [
     'as' => 'job_index',
-    'before' => 'frontend_auth',
+//    'before' => 'frontend_auth',
     'uses' => 'Frontend\JobCategoryController@index'
 ]);
 
@@ -630,7 +630,7 @@ Route::get('job/update', [
 
 Route::get('job/view', [
     'as' => 'job_view',
-    'before' => 'frontend_auth',
+//    'before' => 'frontend_auth',
     'uses' => 'Frontend\JobCategoryController@view'
 ]);
 /*------------------------------------------------------------------------------*/
@@ -638,7 +638,7 @@ Route::get('job/view', [
 /*-------------------------------- 2hand -------------------------------*/
 Route::get('2hand/index', [
     'as' => '2hand_index',
-    'before' => 'frontend_auth',
+//    'before' => 'frontend_auth',
     'uses' => 'Frontend\TwohandCategoryController@index'
 ]);
 
@@ -656,7 +656,7 @@ Route::get('2hand/update', [
 
 Route::get('2hand/view', [
     'as' => '2hand_view',
-    'before' => 'frontend_auth',
+//    'before' => 'frontend_auth',
     'uses' => 'Frontend\TwohandCategoryController@view'
 ]);
 /*------------------------------------------------------------------------------*/
@@ -672,7 +672,7 @@ Route::any('post/upload', [
 /*-------------------------------- Project -------------------------------*/
 Route::get('project/index', [
     'as' => 'project_index',
-    'before' => 'frontend_auth',
+//    'before' => 'frontend_auth',
     'uses' => 'Frontend\ProjectCategoryController@index'
 ]);
 
@@ -696,13 +696,13 @@ Route::get('project/update', [
 
 Route::get('project/view/{id}', [
     'as' => 'project_view',
-    'before' => 'frontend_auth',
+//    'before' => 'frontend_auth',
     'uses' => 'Frontend\ProjectCategoryController@view'
 ]);
 
 Route::get('project/getSubArea', [
     'as' => 'project_getSubArea',
-    'before' => 'frontend_auth',
+//    'before' => 'frontend_auth',
     'uses' => 'Frontend\ProjectCategoryController@getSubArea'
 ]);
 
@@ -714,31 +714,31 @@ Route::get('project/getAmphoe', [
 
 Route::get('project/getTambon', [
     'as' => 'project_getTambon',
-    'before' => 'frontend_auth',
+//    'before' => 'frontend_auth',
     'uses' => 'Frontend\ProjectCategoryController@getTambon'
 ]);
 
 Route::get('project/view_project/{id}', [
     'as' => 'project_view_project',
-    'before' => 'frontend_auth',
+//    'before' => 'frontend_auth',
     'uses' => 'Frontend\ProjectCategoryController@projectViewProject'
 ]);
 
 Route::any('project/get_project', [
     'as' => 'project_get_project',
-    'before' => 'frontend_auth',
+//    'before' => 'frontend_auth',
     'uses' => 'Frontend\ProjectCategoryController@get_project'
 ]);
 
 Route::any('project/get_shop_project', [
     'as' => 'project_get_shop_project',
-    'before' => 'frontend_auth',
+//    'before' => 'frontend_auth',
     'uses' => 'Frontend\ProjectCategoryController@get_shop_project'
 ]);
 
 Route::any('project/get_latlong', [
     'as' => 'project_get_latlong',
-    'before' => 'frontend_auth',
+//    'before' => 'frontend_auth',
     'uses' => 'Frontend\ProjectCategoryController@get_latlong'
 ]);
 
@@ -747,7 +747,7 @@ Route::any('project/get_latlong', [
 /*-------------------------------- Shop -------------------------------*/
 Route::get('shop/admin_index', [
     'as' => 'shop_admin_index',
-    'before' => 'frontend_auth',
+//    'before' => 'frontend_auth',
     'uses' => 'Frontend\ShopCategoryController@admin_index'
 ]);
 /*------------------------------------------------------------------------------*/
@@ -755,7 +755,7 @@ Route::get('shop/admin_index', [
 /*-------------------------------- Tags -------------------------------*/
 Route::any('get_tag', [
     'as' => 'get_tag',
-    'before' => 'frontend_auth',
+//    'before' => 'frontend_auth',
     'uses' => 'Frontend\TagController@get_tag'
 ]);
 /*------------------------------------------------------------------------------*/
@@ -973,7 +973,7 @@ Route::get('bs_mobilemenu', [
 /*-------------------------------- รีวิวทั้งหมด -------------------------------*/
 Route::get('review', [
     'as' => 'review',
-    'before' => 'frontend_auth',
+//    'before' => 'frontend_auth',
     'uses' => 'Frontend\ReviewController@index'
 ]);
 
@@ -1003,14 +1003,14 @@ Route::post('review/update', [
 
 Route::get('review/{id}', [
     'as' => 'review/show',
-    'before' => 'frontend_auth',
+//    'before' => 'frontend_auth',
     'uses' => 'Frontend\ReviewController@show'
 ]);
 
 /*-------------------------------- พรีวิวทั้งหมด -------------------------------*/
 Route::get('preview', [
     'as' => 'preview',
-    'before' => 'frontend_auth',
+//    'before' => 'frontend_auth',
     'uses' => 'Frontend\PreviewController@index'
 ]);
 
@@ -1040,14 +1040,14 @@ Route::post('preview/update', [
 
 Route::get('preview/{id}', [
     'as' => 'preview/show',
-    'before' => 'frontend_auth',
+//    'before' => 'frontend_auth',
     'uses' => 'Frontend\PreviewController@show'
 ]);
 
 /*-------------------------------- ลงทะเบียนบ้านใหม่ -------------------------------*/
 Route::get('register', [
     'as' => 'register',
-    'before' => 'frontend_auth',
+//    'before' => 'frontend_auth',
     'uses' => 'Frontend\RegisterController@index'
 ]);
 
@@ -1077,7 +1077,7 @@ Route::post('register/update', [
 
 Route::get('register/{id}', [
     'as' => 'register/show',
-    'before' => 'frontend_auth',
+//    'before' => 'frontend_auth',
     'uses' => 'Frontend\RegisterController@show'
 ]);
 
@@ -1085,7 +1085,7 @@ Route::get('register/{id}', [
 /*-------------------------------- รับสร้างบ้าน -------------------------------*/
 Route::get('construct', [
     'as' => 'construct',
-    'before' => 'frontend_auth',
+//    'before' => 'frontend_auth',
     'uses' => 'Frontend\ConstructController@index'
 ]);
 
@@ -1115,14 +1115,14 @@ Route::post('construct/update', [
 
 Route::get('construct/{id}', [
     'as' => 'construct/show',
-    'before' => 'frontend_auth',
+//    'before' => 'frontend_auth',
     'uses' => 'Frontend\ConstructController@show'
 ]);
 
 /*-------------------------------- ต่อเติมบ้าน -------------------------------*/
 Route::get('enlarge', [
     'as' => 'enlarge',
-    'before' => 'frontend_auth',
+//    'before' => 'frontend_auth',
     'uses' => 'Frontend\EnlargeController@index'
 ]);
 
@@ -1152,14 +1152,14 @@ Route::post('enlarge/update', [
 
 Route::get('enlarge/{id}', [
     'as' => 'enlarge/show',
-    'before' => 'frontend_auth',
+//    'before' => 'frontend_auth',
     'uses' => 'Frontend\EnlargeController@show'
 ]);
 
 /*-------------------------------- รับเหมาก่อสร้าง -------------------------------*/
 Route::get('constructor', [
     'as' => 'constructor',
-    'before' => 'frontend_auth',
+//    'before' => 'frontend_auth',
     'uses' => 'Frontend\ConstructorController@index'
 ]);
 
@@ -1189,27 +1189,27 @@ Route::post('constructor/update', [
 
 Route::get('constructor/{id}', [
     'as' => 'constructor/show',
-    'before' => 'frontend_auth',
+//    'before' => 'frontend_auth',
     'uses' => 'Frontend\ConstructorController@show'
 ]);
 
 /*-------------------------------- ร้านค้าต่างๆ -------------------------------*/
 Route::get('shop', [
     'as' => 'shop',
-    'before' => 'frontend_auth',
+//    'before' => 'frontend_auth',
     'uses' => 'Frontend\ShopCategoryController@shop_index'
 ]);
 
 Route::get('shop/{id}', [
     'as' => 'shop/show',
-    'before' => 'frontend_auth',
+//    'before' => 'frontend_auth',
     'uses' => 'Frontend\ShopCategoryController@shop_show'
 ]);
 
 /*-------------------------------- บริการจัดสวน -------------------------------*/
 Route::get('garden', [
     'as' => 'garden',
-    'before' => 'frontend_auth',
+//    'before' => 'frontend_auth',
     'uses' => 'Frontend\ShopCategoryController@garden_index'
 ]);
 
@@ -1239,14 +1239,14 @@ Route::post('garden/update', [
 
 Route::get('garden/{id}', [
     'as' => 'garden/show',
-    'before' => 'frontend_auth',
+//    'before' => 'frontend_auth',
     'uses' => 'Frontend\ShopCategoryController@garden_show'
 ]);
 
 /*-------------------------------- บริการทำความสะอาด -------------------------------*/
 Route::get('clean', [
     'as' => 'clean',
-    'before' => 'frontend_auth',
+//    'before' => 'frontend_auth',
     'uses' => 'Frontend\ShopCategoryController@clean_index'
 ]);
 
@@ -1276,14 +1276,14 @@ Route::post('clean/update', [
 
 Route::get('clean/{id}', [
     'as' => 'clean/show',
-    'before' => 'frontend_auth',
+//    'before' => 'frontend_auth',
     'uses' => 'Frontend\ShopCategoryController@clean_show'
 ]);
 
 /*-------------------------------- ออกแบบภายใน ภายนอก -------------------------------*/
 Route::get('interior', [
     'as' => 'interior',
-    'before' => 'frontend_auth',
+//    'before' => 'frontend_auth',
     'uses' => 'Frontend\ShopCategoryController@interior_index'
 ]);
 
@@ -1313,14 +1313,14 @@ Route::post('interior/update', [
 
 Route::get('interior/{id}', [
     'as' => 'interior/show',
-    'before' => 'frontend_auth',
+//    'before' => 'frontend_auth',
     'uses' => 'Frontend\ShopCategoryController@interior_show'
 ]);
 
 /*-------------------------------- ที่ดิน -------------------------------*/
 Route::get('land', [
     'as' => 'land',
-    'before' => 'frontend_auth',
+//    'before' => 'frontend_auth',
     'uses' => 'Frontend\ShopCategoryController@land_index'
 ]);
 
@@ -1350,14 +1350,14 @@ Route::post('land/update', [
 
 Route::get('land/{id}', [
     'as' => 'land/show',
-    'before' => 'frontend_auth',
+//    'before' => 'frontend_auth',
     'uses' => 'Frontend\ShopCategoryController@land_show'
 ]);
 
 /*-------------------------------- ที่อยู่อาศัยมือสอง -------------------------------*/
 Route::get('secondhand', [
     'as' => 'secondhand',
-    'before' => 'frontend_auth',
+//    'before' => 'frontend_auth',
     'uses' => 'Frontend\ShopCategoryController@secondhand_index'
 ]);
 
@@ -1387,14 +1387,14 @@ Route::post('secondhand/update', [
 
 Route::get('secondhand/{id}', [
     'as' => 'secondhand/show',
-    'before' => 'frontend_auth',
+//    'before' => 'frontend_auth',
     'uses' => 'Frontend\ShopCategoryController@secondhand_show'
 ]);
 
 /*-------------------------------- ปล่อยเช่า -------------------------------*/
 Route::get('rent', [
     'as' => 'rent',
-    'before' => 'frontend_auth',
+//    'before' => 'frontend_auth',
     'uses' => 'Frontend\ShopCategoryController@rent_index'
 ]);
 
@@ -1424,14 +1424,14 @@ Route::post('rent/update', [
 
 Route::get('rent/{id}', [
     'as' => 'rent/show',
-    'before' => 'frontend_auth',
+//    'before' => 'frontend_auth',
     'uses' => 'Frontend\ShopCategoryController@rent_show'
 ]);
 
 /*-------------------------------- อพาร์ทเม้นต์ -------------------------------*/
 Route::get('apartment', [
     'as' => 'apartment',
-    'before' => 'frontend_auth',
+//    'before' => 'frontend_auth',
     'uses' => 'Frontend\ShopCategoryController@apartment_index'
 ]);
 
@@ -1461,46 +1461,46 @@ Route::post('apartment/update', [
 
 Route::get('apartment/{id}', [
     'as' => 'apartment/show',
-    'before' => 'frontend_auth',
+//    'before' => 'frontend_auth',
     'uses' => 'Frontend\ShopCategoryController@apartment_show'
 ]);
 
 /*-------------------------------- บทความ / ไอเดีย -------------------------------*/
 Route::get('article_idea', [
     'as' => 'article_idea',
-    'before' => 'frontend_auth',
+//    'before' => 'frontend_auth',
     'uses' => 'Frontend\ArticleCategoryController@article_idea_index'
 ]);
 
 Route::get('article/{id}', [
     'as' => 'article/show',
-    'before' => 'frontend_auth',
+//    'before' => 'frontend_auth',
     'uses' => 'Frontend\ArticleCategoryController@article_show'
 ]);
 
 Route::get('idea/{id}', [
     'as' => 'idea/show',
-    'before' => 'frontend_auth',
+//    'before' => 'frontend_auth',
     'uses' => 'Frontend\ArticleCategoryController@idea_show'
 ]);
 
 /*-------------------------------- Click Tags show all related -------------------------------*/
 Route::get('tag_list/{id}', [
     'as' => 'tag_list',
-    'before' => 'frontend_auth',
+//    'before' => 'frontend_auth',
     'uses' => 'AllofhomeController@tag_list'
 ]);
 
 /*-------------------------------- Click Logo shop and show all related -------------------------------*/
 Route::get('shop_list/{id}', [
     'as' => 'shop_list',
-    'before' => 'frontend_auth',
+//    'before' => 'frontend_auth',
     'uses' => 'AllofhomeController@shop_list'
 ]);
 
 /*-------------------------------- Click Logo project and show all related -------------------------------*/
 Route::get('project_list/{id}', [
     'as' => 'project_list',
-    'before' => 'frontend_auth',
+//    'before' => 'frontend_auth',
     'uses' => 'AllofhomeController@project_list'
 ]);
