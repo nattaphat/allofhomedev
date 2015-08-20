@@ -204,7 +204,7 @@
         </div>
     </div>
 
-    <!-- Buy Sell Rent -->
+    <!-- Buy Sell Rent
     <div class="boxConversation">
         <h2>สนทนา เเนะนำ ซื้อขายบ้าน</h2>
         <div class="head">
@@ -260,10 +260,10 @@
             </ul>
         </div>
         <a class="btn-viewmore" href="#">ดูเพิ่มเติม</a>
-
     </div>
+    -->
 
-    <!-- Job Post -->
+    <!-- Job Post
     <div class="boxJob">
         <h2>ประกาศรับสมัครงาน</h2>
         <div class="list-job">
@@ -318,5 +318,6 @@
 
         </div>
     </div>
+    -->
 
 @stop

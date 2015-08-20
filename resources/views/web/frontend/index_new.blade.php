@@ -73,9 +73,9 @@
         });
 
         // 3.
-        $('#first').load('{{ url("index/ajax/") }}/home?page=1');
-        $('#second').load('{{ url("index/ajax/") }}/article?page=1');
-        $('#third').load('{{ url("index/ajax/") }}/idea?page=1');
+        {{--$('#first').load('{{ url("index/ajax/") }}/home?page=1');--}}
+        {{--$('#second').load('{{ url("index/ajax/") }}/article?page=1');--}}
+        {{--$('#third').load('{{ url("index/ajax/") }}/idea?page=1');--}}
 
         {{--debugger;--}}
         {{--$data_home = "{!! $vip_home_string !!}";--}}
@@ -205,15 +205,104 @@
                         </li>
                     @endforeach
                 @endif
-            </ul>
-            <ul id="first">
+                @if($catNotVip != null)
+                    @foreach($catNotVip as $item)
+                        @if(isset($item->for_cat) && isset($item->for_type))
+                            @if($item->for_cat == "cat_home")
+                                <?php $urlTo =  url("home/view/")."/"; ?>
+                            @else
+                                <?php $urlTo =  url("shop/")."/"; ?>
+                            @endif
+                        @endif
+                        <li>
+                            <div class="left">
+                                <div class="showpic">
+                                    <?php
+                                    $pics = \App\Models\Picture::where('pictureable_id', '=', $item->id)
+                                            ->where('pictureable_type', '=', 'App\\Models\\CatConstruct')
+                                            ->get();
+                                    ?>
+                                    @if(isset($pics) && count($pics) > 0)
+                                        @if(count($pics) >= 5)
+                                            <p class="pic-hilight">
+                                                <a href="{{ $urlTo.$item->id }}">
+                                                    <img data-src="{{ $pics[0]->file_path }}" alt="{{ $pics[0]->file_name }}"
+                                                         style="width: 256px; height: 156px;" />
+                                                </a>
+                                            </p>
+                                            <div class="other">
+                                                <img data-src="{{ $pics[1]->file_path }}" alt="{{ $pics[1]->file_name }}"
+                                                     style="width: 80px; height: 70px;" />
+                                                <img data-src="{{ $pics[2]->file_path }}" alt="{{ $pics[2]->file_name }}"
+                                                     style="width: 80px; height: 70px;" />
+                                                <img data-src="{{ $pics[3]->file_path }}" alt="{{ $pics[3]->file_name }}"
+                                                     style="width: 80px; height: 70px;" />
+                                                <img data-src="{{ $pics[4]->file_path }}" alt="{{ $pics[4]->file_name }}"
+                                                     style="width: 80px; height: 70px;" />
+                                            </div>
+                                        @else
+                                            <p class="pic-hilight">
+                                                <a href="{{ $urlTo.$item->id }}">
+                                                    <img data-src="{{ $pics[0]->file_path }}" alt="{{ $pics[0]->file_name }}"
+                                                         style="width: 256px; height: 156px;" />
+                                                </a>
+                                            <div class="other">
+                                                <?php $count = count($pics); ?>
+                                                @for($i=1; $i<$count; $i++)
+                                                    <img data-src="{{ $pics[$i]->file_path }}" alt="{{ $pics[$i]->file_name }}"
+                                                         style="width: 80px; height: 70px;" />
+                                                @endfor
+                                            </div>
+                                            </p>
+                                        @endif
+                                    @endif
+                                    <div class="clear"></div>
+                                </div>
+                                <a href="{{ $urlTo.$item->id }}"><h3>{{ $item->title }}</h3></a>
+                                <p class="update">วันที่ลงประกาศ  {{ \App\Models\AllFunction::getDateTimeThai($item->created_at) }}</p>
+                                <p class="p-subtitle">{{ $item->subtitle }}</p>
+                            </div>
+                            <div class="right">
+                                <p class="text-price">ราคาเริ่มต้น</p>
+                                @if($item->sell_price == null || $item->sell_price == "")
+                                    <p class="price" style="padding-top: 22px;
+                        padding-left: 0;
+                        font-size: 28px;
+                        text-align: center;
+                        ">
+                                        &nbsp;&nbsp;ไม่ระบุราคา</p>
+                                @else
+                                    <p class="price">&nbsp;&nbsp;{{ $item->sell_price }}<span style="font-size: 28px;"> บาท</span></p>
+                                @endif
 
+                                <div class="rating">
+                                    @if(isset($item->avg_rating) && $item->avg_rating != null && $item->avg_rating != 0)
+                                        &nbsp;&nbsp;<span class="label-success"> {{ $item->avg_rating }} คะแนน</span>
+                                        <!--<img data-src="images/test/rating.jpg" alt="" />-->
+                                    @else
+                                        &nbsp;&nbsp;<span class="label-success">ยังไม่มีการให้คะแนน</span>
+                                    @endif
+                                </div>
+                                <div class="call" style="margin: 20px 0 0;">
+                                    <?php $brand = \App\Models\Brand::find($item->brand_id) ?>
+                                    <p style="
+                                    line-height: 23px;
+                                    height: 46px;
+                                    overflow: hidden;
+                                    color: #646464;
+                                ">ติดต่อ : {{ $brand->brand_name }}</p>
+                                    <p class="number">{{ $brand->telephone }}</p>
+                                </div>
+                            </div>
+                            <div class="clear"></div>
+                        </li>
+                    @endforeach
+                @endif
             </ul>
-            <a class="btn-viewmore" href="#">ดูเพิ่มเติม</a>
         </div>
     </div>
 
-    <!-- Compare -->
+    <!-- Compare
     <div class="boxCompare">
         <h2>เปรียบเทียบบ้านใหม่</h2>
         <div class="submenu">
@@ -274,20 +363,131 @@
             <div class="clear"></div>
         </div>
     </div>
+    -->
 
     <!-- Article -->
     <div class="boxArticle">
         <h2>บทความและสาระน่ารู้</h2>
-        <div id="second" class="list-article"></div>
+        <div class="list-article">
+            <ul>
+                @if($catArticleVip != null)
+                    @foreach($catArticleVip as $item)
+                        <li>
+                            <?php
+                            $pics = \App\Models\Picture::where('pictureable_id', '=', $item->id)
+                                    ->where('pictureable_type', '=', 'App\\Models\\CatArticle')
+                                    ->get();
+                            ?>
+                            <p class="pic">
+                                @if(isset($pics) && count($pics) > 0)
+                                    <a href="{{ url('article')."/".$item->id }}">
+                                        <img data-src="{{ $pics[0]->file_path }}" alt="{{ $pics[0]->file_name }}"
+                                             style="width: 250px; height: 150px;" /></a>
+                                @else
+                                    &nbsp;
+                                @endif
+                            </p>
+                            <div class="text">
+                                <h3><a href="{{ url('article')."/".$item->id }}">{{ $item->title }}</a></h3>
+                                <p class="update">วันที่ลงประกาศ  {{ \App\Models\AllFunction::getDateTimeThai($item->created_at) }}</p>
+                                <p class="p-subtitle">{{ $item->subtitle }}</p>
+                            </div>
+                            <div class="clear"></div>
+                        </li>
+                    @endforeach
+                @endif
+                @if($catArticle != null)
+                    @foreach($catArticle as $item)
+                        <li>
+                            <?php
+                            $pics = \App\Models\Picture::where('pictureable_id', '=', $item->id)
+                                    ->where('pictureable_type', '=', 'App\\Models\\CatArticle')
+                                    ->get();
+                            ?>
+                            <p class="pic">
+                                @if(isset($pics) && count($pics) > 0)
+                                    <a href="{{ url('article')."/".$item->id }}">
+                                        <img data-src="{{ $pics[0]->file_path }}" alt="{{ $pics[0]->file_name }}"
+                                             style="width: 250px; height: 150px;" /></a>
+                                @else
+                                    &nbsp;
+                                @endif
+                            </p>
+                            <div class="text">
+                                <h3><a href="{{ url('article')."/".$item->id }}">{{ $item->title }}</a></h3>
+                                <p class="update">วันที่ลงประกาศ  {{ \App\Models\AllFunction::getDateTimeThai($item->created_at) }}</p>
+                                <p class="p-subtitle">{{ $item->subtitle }}</p>
+                            </div>
+                            <div class="clear"></div>
+                        </li>
+                    @endforeach
+                @endif
+            </ul>
+        </div>
     </div>
 
     <!-- Idea -->
     <div class="boxDiy">
         <h2>ไอเดียตกแต่งบ้าน</h2>
-        <div id="third" class="list-diy"></div>
+        <div class="list-diy">
+            <ul>
+                @if($catIdeaVip != null)
+                    @foreach($catIdeaVip as $item)
+                        <li>
+                            <?php
+                            $pics = \App\Models\Picture::where('pictureable_id', '=', $item->id)
+                                    ->where('pictureable_type', '=', 'App\\Models\\CatIdea')
+                                    ->get();
+                            ?>
+                            <p class="pic">
+                                @if(isset($pics) && count($pics) > 0)
+                                    <a href="{{ url('idea')."/".$item->id }}">
+                                        <img data-src="{{ $pics[0]->file_path }}" alt="{{ $pics[0]->file_name }}"
+                                             style="width: 250px; height: 150px;" /></a>
+                                @else
+                                    &nbsp;
+                                @endif
+                            </p>
+                            <div class="text">
+                                <h3><a href="{{ url('idea')."/".$item->id }}">{{ $item->title }}</a></h3>
+                                <p class="update">วันที่ลงประกาศ  {{ \App\Models\AllFunction::getDateTimeThai($item->created_at) }}</p>
+                                <p class="p-subtitle">{{ $item->subtitle }}</p>
+                            </div>
+                            <div class="clear"></div>
+                        </li>
+                    @endforeach
+                @endif
+                @if($catIdea != null)
+                    @foreach($catIdea as $item)
+                        <li>
+                            <?php
+                            $pics = \App\Models\Picture::where('pictureable_id', '=', $item->id)
+                                    ->where('pictureable_type', '=', 'App\\Models\\CatIdea')
+                                    ->get();
+                            ?>
+                            <p class="pic">
+                                @if(isset($pics) && count($pics) > 0)
+                                    <a href="{{ url('idea')."/".$item->id }}">
+                                        <img data-src="{{ $pics[0]->file_path }}" alt="{{ $pics[0]->file_name }}"
+                                             style="width: 250px; height: 150px;" /></a>
+                                @else
+                                    &nbsp;
+                                @endif
+                            </p>
+                            <div class="text">
+                                <h3><a href="{{ url('idea')."/".$item->id }}">{{ $item->title }}</a></h3>
+                                <p class="update">วันที่ลงประกาศ  {{ \App\Models\AllFunction::getDateTimeThai($item->created_at) }}</p>
+                                <p class="p-subtitle">{{ $item->subtitle }}</p>
+                            </div>
+                            <div class="clear"></div>
+                        </li>
+                    @endforeach
+                @endif
+            </ul>
+        </div>
     </div>
 
-    <!-- Buy Sell Rent -->
+    <!-- Buy Sell Rent
     <div class="boxConversation">
         <h2>สนทนา เเนะนำ ซื้อขายบ้าน</h2>
         <div class="head">
@@ -343,10 +543,10 @@
             </ul>
         </div>
         <a class="btn-viewmore" href="#">ดูเพิ่มเติม</a>
-
     </div>
+    -->
 
-    <!-- Job Post -->
+    <!-- Job Post
     <div class="boxJob">
         <h2>ประกาศรับสมัครงาน</h2>
         <div class="list-job">
@@ -401,5 +601,6 @@
 
         </div>
     </div>
+    -->
 
 @stop

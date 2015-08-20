@@ -359,6 +359,7 @@ class AllofhomeController extends Controller {
                     from cat_home
                     where status = 1
                     and vip = true
+                    and (for_cat like '%\"0\"%')
 
                     union
 
@@ -367,6 +368,8 @@ class AllofhomeController extends Controller {
                     from cat_construct
                     where status = 1
                     and vip = true
+                    and (for_type like '%\"4\"%' or for_type like '%\"5\"%' or for_type like '%\"7\"%')
+
                 ) TableVIP
                 order by random() limit 5
             "));
@@ -391,6 +394,147 @@ class AllofhomeController extends Controller {
                 $vip_construct_string = substr($vip_construct_string, 0, strlen($vip_construct_string) - 1);
         }
 
+        // #### General (Not include vip)
+        if(strlen($vip_construct_string) == 0)
+        {
+            $catNotVip = DB::select(DB::raw("
+                select *
+                from
+                (
+                    select id, title, subtitle, created_at, true as vip, sell_price, avg_rating, brand_id,
+                        'cat_home' as for_cat, for_cat as for_type
+                    from cat_home
+                    where status = 1
+                    and (for_cat like '%\"0\"%')
+
+                    union
+
+                    select id, title, subtitle, created_at, true as vip, sell_price, avg_rating, brand_id,
+                        'cat_construct' as for_cat, for_type as for_type
+                    from cat_construct
+                    where status = 1
+                    and (for_type like '%\"4\"%' or for_type like '%\"5\"%' or for_type like '%\"7\"%')
+
+                ) TableVIP
+                order by created_at desc
+            "));
+        }
+        else
+        {
+            $catNotVip = DB::select(DB::raw("
+                select *
+                from
+                (
+                    select id, title, subtitle, created_at, true as vip, sell_price, avg_rating, brand_id,
+                        'cat_home' as for_cat, for_cat as for_type
+                    from cat_home
+                    where status = 1
+                    and (for_cat like '%\"0\"%')
+
+                    union
+
+                    select id, title, subtitle, created_at, true as vip, sell_price, avg_rating, brand_id,
+                        'cat_construct' as for_cat, for_type as for_type
+                    from cat_construct
+                    where status = 1
+                    and (for_type like '%\"4\"%' or for_type like '%\"5\"%' or for_type like '%\"7\"%')
+                    and id not in (".$vip_construct_string.")
+
+                ) TableVIP
+                order by created_at desc
+            "));
+        }
+
+        // ############## Ariticle ################ //
+        // #### VIP
+        $catArticleVip = null;
+        try{
+            $catArticleVip = DB::table('cat_article as ch')
+                ->join(DB::raw('
+                (
+                    select id
+                      from cat_article
+                      where visible = true
+                      and suggest = true
+                      ORDER BY random() limit 5
+                ) as vip'), function ($join){
+                    $join->on( 'ch.id', '=', 'vip.id');
+                })
+                ->select('ch.*')
+                ->orderByRaw('random()')
+                ->get();
+        }
+        catch(\Exception $e)
+        {
+
+        }
+
+        // #### General (Not include vip)
+        $catArticle = null;
+        if($catArticleVip != null && count($catArticleVip) > 0)
+        {
+            foreach($catArticleVip as $item)
+            {
+                $vip[] = $item->id;
+            }
+
+            $catArticle = CatArticle::where('visible','=','true')
+                ->whereNotIn('id', $vip)
+                ->orderBy('created_at', 'desc')
+                ->get();
+        }
+        else
+        {
+            $catArticle = CatArticle::where('visible','=','true')
+                ->orderBy('created_at', 'desc')
+                ->get();
+        }
+
+        // ############## Idea ################ //
+        // #### VIP
+        $catIdeaVip = null;
+        try{
+            $catIdeaVip = DB::table('cat_idea as ch')
+                ->join(DB::raw('
+                (
+                    select id
+                      from cat_idea
+                      where visible = true
+                      and suggest = true
+                      ORDER BY random() limit 5
+                ) as vip'), function ($join){
+                    $join->on( 'ch.id', '=', 'vip.id');
+                })
+                ->select('ch.*')
+                ->orderByRaw('random()')
+                ->get();
+        }
+        catch(\Exception $e)
+        {
+
+        }
+
+        // #### General (Not include vip)
+        $catIdea = null;
+        if($catIdeaVip != null && count($catIdeaVip) > 0)
+        {
+            foreach($catIdeaVip as $item)
+            {
+                $vip[] = $item->id;
+            }
+
+            $catIdea = CatIdea::where('visible','=','true')
+                ->whereNotIn('id', $vip)
+                ->orderBy('created_at', 'desc')
+                ->get();
+        }
+        else
+        {
+            $catIdea = CatIdea::where('visible','=','true')
+                ->orderBy('created_at', 'desc')
+                ->get();
+        }
+
         // ###################  Article #######################
         $articleItems = CatArticle::whereRaw('for_cat like \'%"1"%\' and visible = true')  // 1 = หน้าแรก
             ->orderBy('created_at', 'desc')
@@ -400,8 +544,13 @@ class AllofhomeController extends Controller {
         return View::make('web.frontend.index_new', [
             'articleItems' => $articleItems,
             'catVip' => $catVip,
+            'catNotVip' => $catNotVip,
             'vip_home_string' => $vip_home_string,
-            'vip_construct_string' => $vip_construct_string
+            'vip_construct_string' => $vip_construct_string,
+            'catArticleVip' => $catArticleVip,
+            'catArticle' => $catArticle,
+            'catIdeaVip' => $catIdeaVip,
+            'catIdea' => $catIdea
         ]);
     }
 
@@ -410,10 +559,6 @@ class AllofhomeController extends Controller {
         $data_home =  Request::input('data_home');
         $data_construct =  Request::input('data_construct');
         $page = Input::get('page');
-
-        return $page;
-
-        $page = 1;
 
         if ($type == 'home') {
 
