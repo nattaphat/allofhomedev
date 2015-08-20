@@ -26,6 +26,171 @@
 
 <body>
 
+<?php
+    /* ######## Banner D ######## */
+    $bannerD = null;
+    if(strrpos(URL::current(), "/home") > 0)
+    {
+        $bannerD = \App\Models\Banner::where('type','=','D')
+                ->where('visible', '=', 'true')
+                ->whereRaw('for_menu like \'%"2"%\'')
+                ->whereNotNull('file_path')
+                ->orderByRaw('random()')
+                ->take(6)
+                ->get();
+    }
+    else if(strrpos(URL::current(), "/townhome") > 0)
+    {
+        $bannerD = \App\Models\Banner::where('type','=','D')
+                ->where('visible', '=', 'true')
+                ->whereRaw('for_menu like \'%"2"%\'')
+                ->whereNotNull('file_path')
+                ->orderByRaw('random()')
+                ->take(6)
+                ->get();
+    }
+    else if(strrpos(URL::current(), "/condo") > 0)
+    {
+        $bannerD = \App\Models\Banner::where('type','=','D')
+                ->where('visible', '=', 'true')
+                ->whereRaw('for_menu like \'%"2"%\'')
+                ->whereNotNull('file_path')
+                ->orderByRaw('random()')
+                ->take(6)
+                ->get();
+    }
+    else if(strrpos(URL::current(), "/enlarge") > 0)
+    {
+        $bannerD = \App\Models\Banner::where('type','=','D')
+                ->where('visible', '=', 'true')
+                ->whereRaw('for_menu like \'%"3"%\'')
+                ->whereNotNull('file_path')
+                ->orderByRaw('random()')
+                ->take(6)
+                ->get();
+    }
+    else if(strrpos(URL::current(), "/constructor") > 0)
+    {
+        $bannerD = \App\Models\Banner::where('type','=','D')
+                ->where('visible', '=', 'true')
+                ->whereRaw('for_menu like \'%"3"%\'')
+                ->whereNotNull('file_path')
+                ->orderByRaw('random()')
+                ->take(6)
+                ->get();
+    }
+    else if(strrpos(URL::current(), "/construct") > 0)
+    {
+        $bannerD = \App\Models\Banner::where('type','=','D')
+                ->where('visible', '=', 'true')
+                ->whereRaw('for_menu like \'%"3"%\'')
+                ->whereNotNull('file_path')
+                ->orderByRaw('random()')
+                ->take(6)
+                ->get();
+    }
+    else if(strrpos(URL::current(), "/shop") > 0)
+    {
+        $bannerD = \App\Models\Banner::where('type','=','D')
+                ->where('visible', '=', 'true')
+                ->whereRaw('for_menu like \'%"4"%\'')
+                ->whereNotNull('file_path')
+                ->orderByRaw('random()')
+                ->take(6)
+                ->get();
+    }
+    else if(strrpos(URL::current(), "/garden") > 0)
+    {
+        $bannerD = \App\Models\Banner::where('type','=','D')
+                ->where('visible', '=', 'true')
+                ->whereRaw('for_menu like \'%"4"%\'')
+                ->whereNotNull('file_path')
+                ->orderByRaw('random()')
+                ->take(6)
+                ->get();
+    }
+    else if(strrpos(URL::current(), "/clean") > 0)
+    {
+        $bannerD = \App\Models\Banner::where('type','=','D')
+                ->where('visible', '=', 'true')
+                ->whereRaw('for_menu like \'%"4"%\'')
+                ->whereNotNull('file_path')
+                ->orderByRaw('random()')
+                ->take(6)
+                ->get();
+    }
+    else if(strrpos(URL::current(), "/interior") > 0)
+    {
+        $bannerD = \App\Models\Banner::where('type','=','D')
+                ->where('visible', '=', 'true')
+                ->whereRaw('for_menu like \'%"4"%\'')
+                ->whereNotNull('file_path')
+                ->orderByRaw('random()')
+                ->take(6)
+                ->get();
+    }
+    else if(strrpos(URL::current(), "/land") > 0)
+    {
+        $bannerD = \App\Models\Banner::where('type','=','D')
+                ->where('visible', '=', 'true')
+                ->whereRaw('for_menu like \'%"5"%\'')
+                ->whereNotNull('file_path')
+                ->orderByRaw('random()')
+                ->take(6)
+                ->get();
+    }
+    else if(strrpos(URL::current(), "/secondhand") > 0)
+    {
+        $bannerD = \App\Models\Banner::where('type','=','D')
+                ->where('visible', '=', 'true')
+                ->whereRaw('for_menu like \'%"5"%\'')
+                ->whereNotNull('file_path')
+                ->orderByRaw('random()')
+                ->take(6)
+                ->get();
+    }
+    else if(strrpos(URL::current(), "/rent") > 0)
+    {
+        $bannerD = \App\Models\Banner::where('type','=','D')
+                ->where('visible', '=', 'true')
+                ->whereRaw('for_menu like \'%"5"%\'')
+                ->whereNotNull('file_path')
+                ->orderByRaw('random()')
+                ->take(6)
+                ->get();
+    }
+    else if(strrpos(URL::current(), "/apartment") > 0)
+    {
+        $bannerD = \App\Models\Banner::where('type','=','D')
+                ->where('visible', '=', 'true')
+                ->whereRaw('for_menu like \'%"5"%\'')
+                ->whereNotNull('file_path')
+                ->orderByRaw('random()')
+                ->take(6)
+                ->get();
+    }
+    else if(strrpos(URL::current(), "/article_idea") > 0)
+    {
+        $bannerD = \App\Models\Banner::where('type','=','D')
+                ->where('visible', '=', 'true')
+                ->whereRaw('for_menu like \'%"6"%\'')
+                ->whereNotNull('file_path')
+                ->orderByRaw('random()')
+                ->take(6)
+                ->get();
+    }
+    else
+    {
+        $bannerD = \App\Models\Banner::where('type','=','D')
+                ->where('visible', '=', 'true')
+                ->whereRaw('for_menu like \'%"1"%\'')
+                ->whereNotNull('file_path')
+                ->orderByRaw('random()')
+                ->take(6)
+                ->get();
+    }
+?>
+
 <div class="header">
     <div class="wrap">
         @include('layouts._partials.header')
@@ -162,9 +327,30 @@
                 </div>
 
                 <!-- Banner D -->
-                <div class="side-banner"><img data-src="{{ asset('images/test/pic-10.jpg') }}" alt="" /></div>
-                <div class="side-banner"><img data-src="{{ asset('images/test/pic-14.jpg') }}" alt="" /></div>
-                <div class="side-banner"><img data-src="{{ asset('images/test/pic-3.jpg') }}" alt="" /></div>
+                @if($bannerD != null)
+                    @if(isset($bannerD[2]))
+                        <div class="side-banner">
+                            <a href="{{ $bannerD[2]->url }}" target="_blank">
+                                <img data-src="{{ $bannerD[2]->file_path }}" alt="{{ $bannerD[2]->banner_name }}" width="300" height="250" />
+                            </a>
+                        </div>
+                    @endif
+                    @if(isset($bannerD[3]))
+                        <div class="side-banner">
+                            <a href="{{ $bannerD[3]->url }}" target="_blank">
+                                <img data-src="{{ $bannerD[3]->file_path }}" alt="{{ $bannerD[3]->banner_name }}" width="300" height="250" />
+                            </a>
+                        </div>
+                    @endif
+                    @if(isset($bannerD[4]))
+                        <div class="side-banner">
+                            <a href="{{ $bannerD[4]->url }}" target="_blank">
+                                <img data-src="{{ $bannerD[4]->file_path }}" alt="{{ $bannerD[4]->banner_name }}" width="300" height="250" />
+                            </a>
+                        </div>
+                    @endif
+                @endif
+
                 <?php
                 $youtubes = null;
                 $youtubes2 = null;

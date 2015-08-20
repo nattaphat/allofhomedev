@@ -1,10 +1,12 @@
 <h1 class="nodropdown"><a href="{{ url('/') }}">www.allofhome.com</a></h1>
 
 <?php
+
+    /* ######## Banner A ######## */
     $bannerA = \App\Models\Banner::where('type','=','A')
         ->where('visible', '=', 'true')
         ->whereNotNull('file_path')
-        ->orderBy('created_at', 'desc')
+        ->orderByRaw('random()')
         ->take(1)
         ->get();
 ?>

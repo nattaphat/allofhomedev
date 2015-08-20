@@ -51,9 +51,23 @@
 
         </div>
         <div class="right">
-            <!-- Banner C, D -->
-            <div class="side-banner"><img data-src="{{ asset('images/test/pic-3.jpg') }}" alt="" /></div>
-            <div class="side-banner"><img data-src="{{ asset('images/test/pic-4.jpg') }}" alt="" /></div>
+            <!-- Banner D -->
+            @if($bannerD != null)
+                @if(isset($bannerD[0]))
+                    <div class="side-banner">
+                        <a href="{{ $bannerD[0]->url }}" target="_blank">
+                            <img data-src="{{ $bannerD[0]->file_path }}" alt="{{ $bannerD[0]->banner_name }}" width="300" height="250" />
+                        </a>
+                    </div>
+                @endif
+                @if(isset($bannerD[1]))
+                    <div class="side-banner">
+                        <a href="{{ $bannerD[1]->url }}" target="_blank">
+                            <img data-src="{{ $bannerD[1]->file_path }}" alt="{{ $bannerD[1]->banner_name }}" width="300" height="250" />
+                        </a>
+                    </div>
+                @endif
+            @endif
         </div>
         <div class="clear"></div>
     </div>
