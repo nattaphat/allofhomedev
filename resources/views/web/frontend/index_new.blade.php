@@ -31,7 +31,7 @@
 
             $.ajax({
                 url: '{{ url('index/ajax/home') }}',
-                data: { page: pg },
+                data: { current_page: pg },
                 success: function(data) {
                     debugger;
                     $('#first').html(data);
@@ -46,7 +46,7 @@
 
             $.ajax({
                 url: '{{ url('index/ajax/article') }}',
-                data: { page: pg },
+                data: { current_page: (pg - 1) },
                 success: function(data) {
                     debugger;
                     $('#second').html(data);
@@ -61,7 +61,10 @@
 
             $.ajax({
                 url: '{{ url('index/ajax/idea') }}',
-                data: { page: pg },
+                data: { current_page: (pg - 1) },
+                sending: function(file, xhr, formData) {
+                    formData.append("_token", $('[name=_token]').val());
+                },
                 success: function(data) {
                     debugger;
                     $('#third').html(data);
@@ -74,16 +77,140 @@
         $('#second').load('{{ url("index/ajax/") }}/article?page=1');
         $('#third').load('{{ url("index/ajax/") }}/idea?page=1');
 
+        {{--debugger;--}}
+        {{--$data_home = "{!! $vip_home_string !!}";--}}
+        {{--$data_construct = "{!! $vip_construct_string !!}";--}}
+
+        {{--$_token = "{{ csrf_token() }}";--}}
+        {{--$.post(--}}
+            {{--'{{ url("index/ajax/") }}/home?page=1',--}}
+            {{--{--}}
+                {{--_token: $_token,--}}
+                {{--data_home : $data_home,--}}
+                {{--data_construct : $data_construct--}}
+            {{--}--}}
+        {{--)--}}
+        {{--.done(function( data )--}}
+        {{--{--}}
+            {{--debugger;--}}
+            {{--console.log(data);--}}
+        {{--});--}}
+
     });
 </script>
 @stop
 
 @section('content')
 
+    {!! Form::hidden('vip_home_string', $vip_home_string) !!}
+    {!! Form::hidden('vip_construct_string', $vip_construct_string) !!}
+    {!! Form::hidden('_token', csrf_token()) !!}
+
     <!-- Home, Townhome, Condo -->
     <div class="boxreview">
         <h2>รีวิวโครงการ</h2>
-        <div id="first" class="list-review"></div>
+        <div class="list-review">
+            <ul>
+                @if($catVip != null)
+                    @foreach($catVip as $item)
+                        @if(isset($item->for_cat) && isset($item->for_type))
+                            @if($item->for_cat == "cat_home")
+                                <?php $urlTo =  url("home/view/")."/"; ?>
+                            @else
+                                <?php $urlTo =  url("shop/")."/"; ?>
+                            @endif
+                        @endif
+                        <li>
+                            <p class="tag-vip"><img data-src="{{ asset('images/blulet/vip.png') }}" alt="" /></p>
+                            <div class="left">
+                                <div class="showpic">
+                                    <?php
+                                    $pics = \App\Models\Picture::where('pictureable_id', '=', $item->id)
+                                            ->where('pictureable_type', '=', 'App\\Models\\CatConstruct')
+                                            ->get();
+                                    ?>
+                                    @if(isset($pics) && count($pics) > 0)
+                                        @if(count($pics) >= 5)
+                                            <p class="pic-hilight">
+                                                <a href="{{ $urlTo.$item->id }}">
+                                                    <img data-src="{{ $pics[0]->file_path }}" alt="{{ $pics[0]->file_name }}"
+                                                         style="width: 256px; height: 156px;" />
+                                                </a>
+                                            </p>
+                                            <div class="other">
+                                                <img data-src="{{ $pics[1]->file_path }}" alt="{{ $pics[1]->file_name }}"
+                                                     style="width: 80px; height: 70px;" />
+                                                <img data-src="{{ $pics[2]->file_path }}" alt="{{ $pics[2]->file_name }}"
+                                                     style="width: 80px; height: 70px;" />
+                                                <img data-src="{{ $pics[3]->file_path }}" alt="{{ $pics[3]->file_name }}"
+                                                     style="width: 80px; height: 70px;" />
+                                                <img data-src="{{ $pics[4]->file_path }}" alt="{{ $pics[4]->file_name }}"
+                                                     style="width: 80px; height: 70px;" />
+                                            </div>
+                                        @else
+                                        <p class="pic-hilight">
+                                            <a href="{{ $urlTo.$item->id }}">
+                                                <img data-src="{{ $pics[0]->file_path }}" alt="{{ $pics[0]->file_name }}"
+                                                     style="width: 256px; height: 156px;" />
+                                            </a>
+                                            <div class="other">
+                                                <?php $count = count($pics); ?>
+                                                @for($i=1; $i<$count; $i++)
+                                                    <img data-src="{{ $pics[$i]->file_path }}" alt="{{ $pics[$i]->file_name }}"
+                                                         style="width: 80px; height: 70px;" />
+                                                @endfor
+                                            </div>
+                                        </p>
+                                        @endif
+                                    @endif
+                                    <div class="clear"></div>
+                                </div>
+                                <a href="{{ $urlTo.$item->id }}"><h3>{{ $item->title }}</h3></a>
+                                <p class="update">วันที่ลงประกาศ  {{ \App\Models\AllFunction::getDateTimeThai($item->created_at) }}</p>
+                                <p class="p-subtitle">{{ $item->subtitle }}</p>
+                            </div>
+                            <div class="right">
+                                <p class="text-price">ราคาเริ่มต้น</p>
+                                @if($item->sell_price == null || $item->sell_price == "")
+                                    <p class="price" style="padding-top: 22px;
+                            padding-left: 0;
+                            font-size: 28px;
+                            text-align: center;
+                            ">
+                                        &nbsp;&nbsp;ไม่ระบุราคา</p>
+                                @else
+                                    <p class="price">&nbsp;&nbsp;{{ $item->sell_price }}<span style="font-size: 28px;"> บาท</span></p>
+                                @endif
+
+                                <div class="rating">
+                                    @if(isset($item->avg_rating) && $item->avg_rating != null && $item->avg_rating != 0)
+                                        &nbsp;&nbsp;<span class="label-success"> {{ $item->avg_rating }} คะแนน</span>
+                                        <!--<img data-src="images/test/rating.jpg" alt="" />-->
+                                    @else
+                                        &nbsp;&nbsp;<span class="label-success">ยังไม่มีการให้คะแนน</span>
+                                    @endif
+                                </div>
+                                <div class="call" style="margin: 20px 0 0;">
+                                    <?php $brand = \App\Models\Brand::find($item->brand_id) ?>
+                                    <p style="
+                                        line-height: 23px;
+                                        height: 46px;
+                                        overflow: hidden;
+                                        color: #646464;
+                                    ">ติดต่อ : {{ $brand->brand_name }}</p>
+                                    <p class="number">{{ $brand->telephone }}</p>
+                                </div>
+                            </div>
+                            <div class="clear"></div>
+                        </li>
+                    @endforeach
+                @endif
+            </ul>
+            <ul id="first">
+
+            </ul>
+            <a class="btn-viewmore" href="#">ดูเพิ่มเติม</a>
+        </div>
     </div>
 
     <!-- Compare -->

@@ -118,7 +118,7 @@ Route::get('/', [
     'uses' => 'AllofhomeController@index'
 ]);
 
-Route::get('index/ajax/{type}', array(
+Route::any('index/ajax/{type}', array(
     'as'    => 'index.type',
     'uses'  => 'AllofhomeController@getIndexType'
 ))->where('type', 'home|article|idea');

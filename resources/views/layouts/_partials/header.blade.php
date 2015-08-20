@@ -23,7 +23,7 @@
         <li class="home nodropdown">
             <a href="{{ url('/') }}">&nbsp;&nbsp;</a>
         </li>
-        <li class="dropdown">
+        <li class="dropdown" style="display:none;">
             <a href="#">โครงการบ้านใหม่</a>
             <ul class="sub-menu">
                 <li><a href="{{ url('home') }}">บ้านเดี่ยว</a></li>
@@ -31,7 +31,7 @@
                 <li><a href="{{ url('condo') }}">คอนโด</a></li>
             </ul>
         </li>
-        <li class="dropdown">
+        <li class="dropdown" style="display:none;">
             <a href="#">รับสร้างบ้าน / ช่างซ่อม</a>
             <ul class="sub-menu">
                 <li><a href="{{ url('construct') }}">รับสร้างบ้าน</a></li>
@@ -44,11 +44,11 @@
             <ul class="sub-menu">
                 <li><a href="{{ url('shop') }}">ร้านค้าต่างๆ</a></li>
                 <li><a href="{{ url('garden') }}">บริการจัดสวน</a></li>
-                <li><a href="{{ url('clean') }}">บริการทำความสะอาด</a></li>
+                <li style="display:none;"><a href="{{ url('clean') }}">บริการทำความสะอาด</a></li>
                 <li><a href="{{ url('interior') }}">ออกแบบภายใน / ภายนอก</a></li>
             </ul>
         </li>
-        <li class="dropdown">
+        <li class="dropdown" style="display:none;">
             <a href="#">ซื้อ / ขาย / เช่า</a>
             <ul class="sub-menu">
                 <li><a href="{{ url('land') }}">ที่ดิน</a></li>
@@ -57,10 +57,10 @@
                 <li><a href="{{ url('apartment') }}">อพาร์ทเม้นท์</a></li>
             </ul>
         </li>
-        <li class="nodropdown">
+        <li class="nodropdown" style="display:none;">
             <a href="{{ url('article_idea') }}">บทความ / ไอเดีย</a>
         </li>
-        <li class="login nodropdown">
+        <li class="login nodropdown" style="display:none;">
             <a href="#" class="login">เข้าสู่ระบบ</a>
         </li>
     </ul>

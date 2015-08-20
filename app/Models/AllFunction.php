@@ -422,4 +422,31 @@ class AllFunction {
         }
     }
 
+    public static function getBannerDForMenu($for_menu)
+    {
+        $ret = "";
+        switch($for_menu)
+        {
+            case "1":
+                $ret = "หน้าแรก";
+                break;
+            case "2":
+                $ret = "โครงการบ้านใหม่";
+                break;
+            case "3":
+                $ret = "รับสร้างบ้าน / ช่างซ่อม";
+                break;
+            case "4":
+                $ret = "ร้านค้าและบริการ";
+                break;
+            case "5":
+                $ret = "ซื้อ / ขาย / เช่า";
+                break;
+            case "6":
+                $ret = "บทความ / ไอเดีย";
+                break;
+        }
+        return $ret;
+    }
+
 }

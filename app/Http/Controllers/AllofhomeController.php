@@ -7,6 +7,7 @@ use App\Models\CatHome;
 use App\Models\CatIdea;
 use App\Models\Tag;
 use App\Models\geoRegion;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Pagination\Paginator;
 use Request;
 use Validator;
@@ -46,6 +47,7 @@ class AllofhomeController extends Controller {
         $m = new geoRegion();
         return 'yes';
     }
+
     /**
      * Show the application welcome screen to the user.
      *
@@ -279,7 +281,6 @@ class AllofhomeController extends Controller {
             ->with('catIdeaVip', $catIdeaVip)
             ->with('catIdea', $catIdea)
             ->with('articleItems',$articleItems);
-        */
 
         // ###################  Article #######################
         $articleItems = CatArticle::whereRaw('for_cat like \'%"1"%\' and visible = true')  // 1 = หน้าแรก
@@ -289,123 +290,235 @@ class AllofhomeController extends Controller {
 
         return view('web.frontend.index_new')
             ->with('articleItems',$articleItems);
+        */
+
+        /*
+        // ##### CatHome + CatConstruct ##### //
+        $tempVip = DB::select(DB::raw("
+                select *
+                from
+                (
+                    select id, title, subtitle, created_at, true as vip, sell_price, avg_rating, brand_id,
+                        'cat_home' as for_cat, for_cat as for_type
+                    from cat_home
+                    where status = 1
+                    and vip = true
+
+                    union
+
+                    select id, title, subtitle, created_at, true as vip, sell_price, avg_rating, brand_id,
+                        'cat_construct' as for_cat, for_type as for_type
+                    from cat_construct
+                    where status = 1
+                    and vip = true
+                ) TableVIP
+                order by random() limit 5
+            "));
+
+        $vip_string = "";
+        $vip_home_string = "";
+        $vip_construct_string = "";
+
+        if($tempVip != null)
+        {
+            foreach($tempVip as $item)
+            {
+                $vip_string .= $item->id."@@@".$item->for_cat."###";
+                if($item->for_cat == "cat_home")
+                    $vip_home_string .= "'".$item->id."',";
+                else
+                    $vip_construct_string .= "'".$item->id."',";
+            }
+            $vip_string = substr($vip_string, 0, strlen($vip_string) - 3);
+
+            if(strlen($vip_home_string) > 0)
+                $vip_home_string = substr($vip_home_string, 0, strlen($vip_home_string) - 1);
+
+            if(strlen($vip_construct_string) > 0)
+                $vip_construct_string = substr($vip_construct_string, 0, strlen($vip_construct_string) - 1);
+        }
+
+        // ###################  Article #######################
+        $articleItems = CatArticle::whereRaw('for_cat like \'%"1"%\' and visible = true')  // 1 = หน้าแรก
+        ->orderBy('created_at', 'desc')
+            ->take(5)
+            ->get();
+
+        return View::make('web.frontend.index_new', [
+            'articleItems' => $articleItems
+        ]);
+         */
+
+        // ##### CatHome + CatConstruct ##### //
+        $catVip = DB::select(DB::raw("
+                select *
+                from
+                (
+                    select id, title, subtitle, created_at, true as vip, sell_price, avg_rating, brand_id,
+                        'cat_home' as for_cat, for_cat as for_type
+                    from cat_home
+                    where status = 1
+                    and vip = true
+
+                    union
+
+                    select id, title, subtitle, created_at, true as vip, sell_price, avg_rating, brand_id,
+                        'cat_construct' as for_cat, for_type as for_type
+                    from cat_construct
+                    where status = 1
+                    and vip = true
+                ) TableVIP
+                order by random() limit 5
+            "));
+
+        $vip_home_string = "";
+        $vip_construct_string = "";
+
+        if($catVip != null)
+        {
+            foreach($catVip as $item)
+            {
+                if($item->for_cat == "cat_home")
+                    $vip_home_string .= "'".$item->id."',";
+                else
+                    $vip_construct_string .= "'".$item->id."',";
+            }
+
+            if(strlen($vip_home_string) > 0)
+                $vip_home_string = substr($vip_home_string, 0, strlen($vip_home_string) - 1);
+
+            if(strlen($vip_construct_string) > 0)
+                $vip_construct_string = substr($vip_construct_string, 0, strlen($vip_construct_string) - 1);
+        }
+
+        // ###################  Article #######################
+        $articleItems = CatArticle::whereRaw('for_cat like \'%"1"%\' and visible = true')  // 1 = หน้าแรก
+            ->orderBy('created_at', 'desc')
+            ->take(5)
+            ->get();
+
+        return View::make('web.frontend.index_new', [
+            'articleItems' => $articleItems,
+            'catVip' => $catVip,
+            'vip_home_string' => $vip_home_string,
+            'vip_construct_string' => $vip_construct_string
+        ]);
     }
 
     public function getIndexType($type)
     {
-        $items_per_page = Input::get('per_pg', 5);
+        $data_home =  Request::input('data_home');
+        $data_construct =  Request::input('data_construct');
+        $page = Input::get('page');
+
+        return $page;
+
+        $page = 1;
 
         if ($type == 'home') {
-            //// ### Cat Home ### ///
-            $temp = null;
-            try{
-                $temp = DB::table('cat_home as ch')
-                    ->join(DB::raw('
+
+            $temp = DB::select(DB::raw("
+                select Tb.id, Tb.title, Tb.subtitle, Tb.created_at, case when TbVip.vip is not null then true else false end as vip, Tb.sell_price, Tb.avg_rating, Tb.brand_id, Tb.for_cat, Tb.for_type
+                from
                 (
-                    select id
-                      from cat_home
-                      where status = 1
-                      and vip = true
-                      ORDER BY random() limit 2
-                ) as vip'), function ($join){
-                        $join->on( 'ch.id', '=', 'vip.id');
-                    })
-                    ->select('ch.*')
-                    ->orderByRaw('random()')
-                    ->get();
-            }
-            catch(\Exception $e) {}
+                        select id, title, subtitle, created_at, false as vip, sell_price, avg_rating, brand_id,
+                                'cat_home' as for_cat, for_cat as for_type
+                        from cat_home
+                        where status = 1
 
-            $temp_cat_home = null;
-            $temp_cat_home_vip = null;
-            if($temp != null && count($temp) > 0)
-            {
-                foreach($temp as $item)
-                {
-                    $vip[] = $item->id;
-                }
+                        union
 
-                $temp_cat_home = \DB::table('cat_home')
-                    ->select('id', 'title','subtitle', 'created_at', 'vip', 'sell_price', 'avg_rating', 'brand_id',
-                        DB::raw('\'cat_home\' as for_cat'), DB::raw('for_cat as for_type'))
-                    ->where('status', '=', '1')
-                    ->whereNotIn('id', $vip);
-
-                $temp_cat_home_vip = \DB::table('cat_home')
-                    ->select('id', 'title','subtitle', 'created_at', 'vip', 'sell_price', 'avg_rating', 'brand_id',
-                        DB::raw('\'cat_home\' as for_cat'), DB::raw('for_cat as for_type'))
-                    ->whereIn('id', $vip);
-            }
-            else
-            {
-                $temp_cat_home = \DB::table('cat_home')
-                    ->select('id', 'title','subtitle', 'created_at', 'vip', 'sell_price', 'avg_rating', 'brand_id',
-                        DB::raw('\'cat_home\' as for_cat'), DB::raw('for_cat as for_type'))
-                    ->where('status', '=', '1');
-            }
-
-            //// ### Cat Construct ### ///
-            $temp = null;
-            try{
-                $temp = DB::table('cat_construct as ch')
-                    ->join(DB::raw('
+                        select id, title, subtitle, created_at, false as vip, sell_price, avg_rating, brand_id,
+                                'cat_construct' as for_cat, for_type as for_type
+                        from cat_construct
+                        where status = 1
+                ) as Tb
+                left join
                 (
-                    select id
-                      from cat_construct
-                      where status = 1
-                      and vip = true
-                      ORDER BY random() limit 3
-                ) as vip'), function ($join){
-                        $join->on( 'ch.id', '=', 'vip.id');
-                    })
-                    ->select('ch.*')
-                    ->orderByRaw('random()')
-                    ->get();
-            }
-            catch(\Exception $e) {}
+                        select *
+                        from
+                        (
+                                select id, title, subtitle, created_at, true as vip, sell_price, avg_rating, brand_id,
+                                        'cat_home' as for_cat, for_cat as for_type
+                                from cat_home
+                                where status = 1
+                                and vip = true
 
-            $temp_cat_construct = null;
-            $temp_cat_construct_vip = null;
-            $vip = null;
-            if($temp != null && count($temp) > 0)
-            {
-                foreach($temp as $item)
-                {
-                    $vip[] = $item->id;
-                }
+                                union
 
-                $temp_cat_construct = \DB::table('cat_construct')
-                    ->select('id', 'title','subtitle', 'created_at', 'vip', 'sell_price', 'avg_rating', 'brand_id',
-                        DB::raw('\'cat_construct\' as for_cat'), DB::raw('for_type as for_type'))
-                    ->where('status', '=', '1')
-                    ->whereNotIn('id', $vip);
+                                select id, title, subtitle, created_at, true as vip, sell_price, avg_rating, brand_id,
+                                        'cat_construct' as for_cat, for_type as for_type
+                                from cat_construct
+                                where status = 1
+                                and vip = true
+                        ) TableVIP
+                        order by random() limit 5
+                ) as TbVip
+                on (
+                        TbVip.id = Tb.id and TbVip.for_cat = Tb.for_cat
+                )
+                order by TbVip.vip, Tb.created_at desc
+            "));
 
-                $temp_cat_construct_vip = \DB::table('cat_construct')
-                    ->select('id', 'title','subtitle', 'created_at', 'vip', 'sell_price', 'avg_rating', 'brand_id',
-                        DB::raw('\'cat_construct\' as for_cat'), DB::raw('for_type as for_type'))
-                    ->whereIn('id', $vip);
-            }
-            else
-            {
-                $temp_cat_construct = \DB::table('cat_construct')
-                    ->select('id', 'title','subtitle', 'created_at', 'vip', 'sell_price', 'avg_rating', 'brand_id',
-                        DB::raw('\'cat_construct\' as for_cat'), DB::raw('for_type as for_type'))
-                    ->where('status', '=', '1');
-            }
-
-            $catHomeVip = $temp_cat_home_vip
-                ->union($temp_cat_construct_vip)
-                ->orderBy('created_at', 'desc')
-                ->get();
-
-            $catHome = $temp_cat_home
-                ->union($temp_cat_construct)
-                ->orderBy('created_at', 'desc')
-                ->simplePaginate(1);
+            $catHome = new Paginator($temp, 7, $page, ['path' => 'index/ajax/home']);
 
             return View::make('web.frontend.homeListIndex')
-                ->with('catHomeVip',$catHomeVip)
                 ->with('catHome',$catHome);
+        }
+
+        /*
+        $page = Input::get('page');
+        if($page == null)
+            $page = 1;
+
+        if ($type == 'home') {
+            $temp = DB::select(DB::raw("
+                select Tb.id, Tb.title, Tb.subtitle, Tb.created_at, case when TbVip.vip is not null then true else false end as vip, Tb.sell_price, Tb.avg_rating, Tb.brand_id, Tb.for_cat, Tb.for_type
+                from
+                (
+                        select id, title, subtitle, created_at, false as vip, sell_price, avg_rating, brand_id,
+                                'cat_home' as for_cat, for_cat as for_type
+                        from cat_home
+                        where status = 1
+
+                        union
+
+                        select id, title, subtitle, created_at, false as vip, sell_price, avg_rating, brand_id,
+                                'cat_construct' as for_cat, for_type as for_type
+                        from cat_construct
+                        where status = 1
+                ) as Tb
+                left join
+                (
+                        select *
+                        from
+                        (
+                                select id, title, subtitle, created_at, true as vip, sell_price, avg_rating, brand_id,
+                                        'cat_home' as for_cat, for_cat as for_type
+                                from cat_home
+                                where status = 1
+                                and vip = true
+
+                                union
+
+                                select id, title, subtitle, created_at, true as vip, sell_price, avg_rating, brand_id,
+                                        'cat_construct' as for_cat, for_type as for_type
+                                from cat_construct
+                                where status = 1
+                                and vip = true
+                        ) TableVIP
+                        order by random() limit 5
+                ) as TbVip
+                on (
+                        TbVip.id = Tb.id and TbVip.for_cat = Tb.for_cat
+                )
+                order by TbVip.vip, Tb.created_at desc
+            "));
+
+            $catHome = new Paginator($temp, 7, $page, ['path' => 'index/ajax/home']);
+
+            return View::make('web.frontend.homeListIndex')
+                ->with('catHome',$catHome)->render();
 
         } elseif ($type == 'article') {
             // ############## Ariticle ################ //
@@ -501,7 +614,7 @@ class AllofhomeController extends Controller {
                 ->with('catIdeaVip',$catIdeaVip)
                 ->with('catIdea',$catIdea);
         }
-
+        */
 
     }
 

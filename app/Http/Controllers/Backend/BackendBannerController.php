@@ -311,7 +311,6 @@ class BackendBannerController extends Controller {
         $banner->url = $input['url'];
         $banner->remark = $input['remark'];
         $banner->visible = $input['visible'][0];
-        $banner->default = $input['default'][0];
 
         if(Input::has('filename'))
             $banner->file_name = $input['filename'];
@@ -325,17 +324,16 @@ class BackendBannerController extends Controller {
         $banner->user_id = $input['user_id'];
         $banner->type = "D";
 
-        $banner->save();
-
-        if(Input::has('tags'))
+        if(Input::has('for_menu'))
         {
-            foreach($input['tags'] as $key=>$value)
-            {
-                $tag = new Tag();
-                $tag->tag_sub_id = $value;
-                $banner->tag()->save($tag);
-            }
+            $banner->for_menu = serialize($input['for_menu']);
         }
+        else
+        {
+            $banner->for_menu = "";
+        }
+
+        $banner->save();
 
         return Redirect::route('backend_bannerD')
             ->with('flash_message', 'บันทึกข้อมูลสำเร็จ')
@@ -345,11 +343,11 @@ class BackendBannerController extends Controller {
     public function bannerD_edit($id)
     {
         $banner = Banner::find($id);
-        $tags = $banner->tag()->get();
+        $for_menu = unserialize($banner->for_menu);
 
         return view('web.backend.bannerD_edit')
             ->with('banner', $banner)
-            ->with('tags',$tags);
+            ->with('for_menu',$for_menu);
     }
 
     public function bannerD_update()
@@ -361,7 +359,6 @@ class BackendBannerController extends Controller {
         $banner->url = $input['url'];
         $banner->remark = $input['remark'];
         $banner->visible = $input['visible'][0];
-        $banner->default = $input['default'][0];
 
         if(Input::has('filename'))
             $banner->file_name = $input['filename'];
@@ -385,19 +382,16 @@ class BackendBannerController extends Controller {
 
         $banner->user_id = $input['user_id'];
 
-        $banner->update();
-
-
-        $banner->tag()->delete();
-        if(Input::has('tags'))
+        if(Input::has('for_menu'))
         {
-            foreach($input['tags'] as $key=>$value)
-            {
-                $tag = new Tag();
-                $tag->tag_sub_id = $value;
-                $banner->tag()->save($tag);
-            }
+            $banner->for_menu = serialize($input['for_menu']);
         }
+        else
+        {
+            $banner->for_menu = "";
+        }
+
+        $banner->update();
 
         return Redirect::route('backend_bannerD')
             ->with('flash_message', 'แก้ไขข้อมูลสำเร็จ')

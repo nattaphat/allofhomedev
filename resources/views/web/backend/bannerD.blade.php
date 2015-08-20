@@ -34,6 +34,7 @@
                         "columns": [
                             {name: 'no', orderable: false, searchable: false},
                             {name: 'title', orderable: true, searchable: true},
+                            {name: 'for_menu', orderable: true, searchable: true},
                             {name: 'display', orderable: true, searchable: true},
                             {name: 'operation', orderable: false, searchable: false}
                         ],
@@ -79,6 +80,7 @@
                             <tr>
                                 <th>ลำดับ</th>
                                 <th>ชื่อ Banner</th>
+                                <th>แสดงสำหรับเมนู</th>
                                 <th>สถานะ</th>
                                 <th></th>
                             </tr>
@@ -89,6 +91,29 @@
                                     <td class="text-center" style="vertical-align: middle;"></td>
                                     <td  style="vertical-align: middle;">
                                         {{ $item->banner_name }}
+                                    </td>
+                                    <td>
+                                        <?php
+                                        $for_menu = unserialize($item->for_menu);
+                                        if($for_menu != null)
+                                        {
+                                            foreach($for_menu as $c)
+                                            {
+                                                if($c == "1")
+                                                    echo \App\Models\AllFunction::getBannerDForMenu(1)."&nbsp;&nbsp;";
+                                                else if($c == "2")
+                                                    echo \App\Models\AllFunction::getBannerDForMenu(2)."&nbsp;&nbsp;";
+                                                else if($c == "3")
+                                                    echo \App\Models\AllFunction::getBannerDForMenu(3)."&nbsp;&nbsp;";
+                                                else if($c == "4")
+                                                    echo \App\Models\AllFunction::getBannerDForMenu(4)."&nbsp;&nbsp;";
+                                                else if($c == "5")
+                                                    echo \App\Models\AllFunction::getBannerDForMenu(5)."&nbsp;&nbsp;";
+                                                else if($c == "6")
+                                                    echo \App\Models\AllFunction::getBannerDForMenu(6)."&nbsp;&nbsp;";
+                                            }
+                                        }
+                                        ?>
                                     </td>
                                     <td>
                                         {{ $item->visible == true? "แสดงบนเว็บไซต์" : "ซ่อน" }}

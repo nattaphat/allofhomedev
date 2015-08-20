@@ -300,7 +300,7 @@
                         @endforeach
                         <div class="follow">
                             <span>ติดตามรายการบน </span>
-                            <div class="g-ytsubscribe" data-channelid="UCrGZO3wJ20CWiy36Fdu6vdw" data-layout="default" data-count="default"></div>
+                            <div class="g-ytsubscribe" data-channelid="UCcUHcV34H-nAwKOtm_koYkQ" data-layout="default" data-count="default"></div>
                         </div>
                     </div>
                 @endif
@@ -318,7 +318,7 @@
                         @endforeach
                         <div class="follow">
                             <span>ติดตามรายการบน </span>
-                            <div class="g-ytsubscribe" data-channelid="UCrGZO3wJ20CWiy36Fdu6vdw" data-layout="default" data-count="default"></div>
+                            <div class="g-ytsubscribe" data-channelid="UCcUHcV34H-nAwKOtm_koYkQ" data-layout="default" data-count="default"></div>
                         </div>
                     </div>
                 @endif

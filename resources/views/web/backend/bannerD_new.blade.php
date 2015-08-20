@@ -225,24 +225,36 @@
                         </div>
 
                         <div class="form-group">
-                            {!! Form::label('tags', 'Tags', ['class' => 'col-md-2 control-label']) !!}
+                            {!! Form::label('for_cat[]', 'แสดงสำหรับเมนู', ['class' => 'col-md-2 control-label']) !!}
                             <div class="col-md-8">
-                                <select class="form-control" multiple="multiple" id="tags" name="tags[]"></select>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            {!! Form::label('default', 'ตั้งเป็นค่าเริ่มต้น', [
-                            'class' => 'col-md-2 control-label']) !!}
-                            <div class="col-md-8">
-                                <div class="radio">
+                                <div class="checkbox">
                                     <label>
-                                        <input type="radio" name="default[]" value="true"> ตั้งเป็นค่าพื้นฐาน (จะแสดง Banner ในกรณีที่กระทู้ไม่มี Tags ใดๆ สัมพันธ์กับ Banner)
+                                        {!! Form::checkbox('for_menu[]', '1') !!} &nbsp; {{ \App\Models\AllFunction::getBannerDForMenu(1) }}
                                     </label>
                                 </div>
-                                <div class="radio">
+                                <div class="checkbox">
                                     <label>
-                                        <input type="radio" name="default[]" value="false" checked> ไม่ตั้งค่า
+                                        {!! Form::checkbox('for_menu[]', '2') !!} &nbsp; {{ \App\Models\AllFunction::getBannerDForMenu(2) }}
+                                    </label>
+                                </div>
+                                <div class="checkbox">
+                                    <label>
+                                        {!! Form::checkbox('for_menu[]', '3') !!} &nbsp; {{ \App\Models\AllFunction::getBannerDForMenu(3) }}
+                                    </label>
+                                </div>
+                                <div class="checkbox">
+                                    <label>
+                                        {!! Form::checkbox('for_menu[]', '4') !!} &nbsp; {{ \App\Models\AllFunction::getBannerDForMenu(4) }}
+                                    </label>
+                                </div>
+                                <div class="checkbox">
+                                    <label>
+                                        {!! Form::checkbox('for_menu[]', '5') !!} &nbsp; {{ \App\Models\AllFunction::getBannerDForMenu(5) }}
+                                    </label>
+                                </div>
+                                <div class="checkbox">
+                                    <label>
+                                        {!! Form::checkbox('for_menu[]', '6') !!} &nbsp; {{ \App\Models\AllFunction::getBannerDForMenu(6) }}
                                     </label>
                                 </div>
                             </div>

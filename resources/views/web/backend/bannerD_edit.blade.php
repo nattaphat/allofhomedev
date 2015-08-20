@@ -1,7 +1,6 @@
 @extends('layouts.main_backend')
 
 @section('jshome')
-
     <style type="text/css">
 
         img{
@@ -239,38 +238,84 @@
                         </div>
 
                         <div class="form-group">
-                            {!! Form::label('tags', 'Tags', ['class' => 'col-md-2 control-label']) !!}
+                            {!! Form::label('for_cat[]', 'แสดงสำหรับเมนู', ['class' => 'col-md-2 control-label']) !!}
                             <div class="col-md-8">
-                                <select class="form-control" multiple="multiple" id="tags" name="tags[]">
-                                    @if($tags != null)
-                                        @foreach($tags as $key=>$value)
-                                            <option value="{{ $value->tag_sub_id }}" selected>{{ App\Models\TagSub::getTagSubName($value->tag_sub_id) }}</option>
-                                        @endforeach
-                                    @endif
-                                </select>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            {!! Form::label('default', 'ตั้งเป็นค่าเริ่มต้น', [
-                            'class' => 'col-md-2 control-label']) !!}
-                            <div class="col-md-8">
-                                <div class="radio">
+                                <div class="checkbox">
                                     <label>
-                                        <input type="radio" name="default[]" value="true"
-                                            @if($banner->default)
-                                               checked
+                                        @if($for_menu != null)
+                                            @if(in_array("1", $for_menu))
+                                                {!! Form::checkbox('for_menu[]', '1', ['checked' => 'checked']) !!} &nbsp; {{ \App\Models\AllFunction::getBannerDForMenu(1) }}
+                                            @else
+                                                {!! Form::checkbox('for_menu[]', '1') !!} &nbsp; {{ \App\Models\AllFunction::getBannerDForMenu(1) }}
                                             @endif
-                                                > ตั้งเป็นค่าพื้นฐาน (จะแสดง Banner ในกรณีที่กระทู้ไม่มี Tags ใดๆ สัมพันธ์กับ Banner)
+                                        @else
+                                            {!! Form::checkbox('for_menu[]', '1') !!} &nbsp; {{ \App\Models\AllFunction::getBannerDForMenu(1) }}
+                                        @endif
                                     </label>
                                 </div>
-                                <div class="radio">
+                                <div class="checkbox">
                                     <label>
-                                        <input type="radio" name="default[]" value="false"
-                                            @if(!$banner->default)
-                                               checked
+                                        @if($for_menu != null)
+                                            @if(in_array("2", $for_menu))
+                                                {!! Form::checkbox('for_menu[]', '2', ['checked' => 'checked']) !!} &nbsp; {{ \App\Models\AllFunction::getBannerDForMenu(2) }}
+                                            @else
+                                                {!! Form::checkbox('for_menu[]', '2') !!} &nbsp; {{ \App\Models\AllFunction::getBannerDForMenu(2) }}
                                             @endif
-                                                > ไม่ตั้งค่า
+                                        @else
+                                            {!! Form::checkbox('for_menu[]', '2') !!} &nbsp; {{ \App\Models\AllFunction::getBannerDForMenu(2) }}
+                                        @endif
+                                    </label>
+                                </div>
+                                <div class="checkbox">
+                                    <label>
+                                        @if($for_menu != null)
+                                            @if(in_array("3", $for_menu))
+                                                {!! Form::checkbox('for_menu[]', '3', ['checked' => 'checked']) !!} &nbsp; {{ \App\Models\AllFunction::getBannerDForMenu(3) }}
+                                            @else
+                                                {!! Form::checkbox('for_menu[]', '3') !!} &nbsp; {{ \App\Models\AllFunction::getBannerDForMenu(3) }}
+                                            @endif
+                                        @else
+                                            {!! Form::checkbox('for_menu[]', '3') !!} &nbsp; {{ \App\Models\AllFunction::getBannerDForMenu(3) }}
+                                        @endif
+                                    </label>
+                                </div>
+                                <div class="checkbox">
+                                    <label>
+                                        @if($for_menu != null)
+                                            @if(in_array("4", $for_menu))
+                                                {!! Form::checkbox('for_menu[]', '4', ['checked' => 'checked']) !!} &nbsp; {{ \App\Models\AllFunction::getBannerDForMenu(4) }}
+                                            @else
+                                                {!! Form::checkbox('for_menu[]', '4') !!} &nbsp; {{ \App\Models\AllFunction::getBannerDForMenu(4) }}
+                                            @endif
+                                        @else
+                                            {!! Form::checkbox('for_menu[]', '4') !!} &nbsp; {{ \App\Models\AllFunction::getBannerDForMenu(4) }}
+                                        @endif
+                                    </label>
+                                </div>
+                                <div class="checkbox">
+                                    <label>
+                                        @if($for_menu != null)
+                                            @if(in_array("5", $for_menu))
+                                                {!! Form::checkbox('for_menu[]', '5', ['checked' => 'checked']) !!} &nbsp; {{ \App\Models\AllFunction::getBannerDForMenu(5) }}
+                                            @else
+                                                {!! Form::checkbox('for_menu[]', '5') !!} &nbsp; {{ \App\Models\AllFunction::getBannerDForMenu(5) }}
+                                            @endif
+                                        @else
+                                            {!! Form::checkbox('for_menu[]', '5') !!} &nbsp; {{ \App\Models\AllFunction::getBannerDForMenu(5) }}
+                                        @endif
+                                    </label>
+                                </div>
+                                <div class="checkbox">
+                                    <label>
+                                        @if($for_menu != null)
+                                            @if(in_array("6", $for_menu))
+                                                {!! Form::checkbox('for_menu[]', '6', ['checked' => 'checked']) !!} &nbsp; {{ \App\Models\AllFunction::getBannerDForMenu(6) }}
+                                            @else
+                                                {!! Form::checkbox('for_menu[]', '6') !!} &nbsp; {{ \App\Models\AllFunction::getBannerDForMenu(6) }}
+                                            @endif
+                                        @else
+                                            {!! Form::checkbox('for_menu[]', '6') !!} &nbsp; {{ \App\Models\AllFunction::getBannerDForMenu(6) }}
+                                        @endif
                                     </label>
                                 </div>
                             </div>
