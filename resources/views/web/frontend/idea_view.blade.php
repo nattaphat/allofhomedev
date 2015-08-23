@@ -111,13 +111,28 @@
             <div class="text-preview" style="margin-top: 20px;">
                 @if(isset($catIdea) && $catIdea != null)
                     <h3 style="line-height: 28px; letter-spacing: 1.25px;">{{ $catIdea->title }}</h3>
-                    <p style="
-                    line-height: 23px;
-                    text-indent: 30px;
-                    text-align: justify;
-                    letter-spacing: 0.8px;
-                    margin-top: 10px;
-                    ">{{ $catIdea->subtitle }}</p>
+                    {{--<p style="--}}
+                    {{--line-height: 23px;--}}
+                    {{--text-indent: 30px;--}}
+                    {{--text-align: justify;--}}
+                    {{--letter-spacing: 0.8px;--}}
+                    {{--margin-top: 10px;--}}
+                    {{--">{!! $catIdea->subtitle !!}</p>--}}
+
+                    @if(strrpos($catIdea->subtitle, "<p>") === false)
+                        <p style="
+                            line-height: 23px;
+                            text-indent: 30px;
+                            letter-spacing: 0.8px;
+                            margin-top: 10px;
+                            ">{!! $catIdea->subtitle !!}</p>
+                    @else
+                        {!! str_replace("<p>","<p style=\"line-height: 23px;
+                              text-indent: 30px;
+                              letter-spacing: 0.8px;
+                              margin-top: 10px;\">",$catIdea->subtitle); !!}
+                    @endif
+
                 @endif
             </div>
         </div>

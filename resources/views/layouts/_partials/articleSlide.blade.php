@@ -104,7 +104,7 @@
                                         <a href="{{ url("article/view") }}/{{ $item->id }}" style="color: #FFFFFF">เรื่อง: {{ $item->title }}</a>
                                     </h5>
                                     <div style="text-indent: 20px;">
-                                        <p style="word-wrap: break-word;">{{ $item->subtitle }}</p>
+                                        <p style="word-wrap: break-word;">{!! $item->subtitle !!}</p>
                                     </div>
                                 </div>
                             </li>

@@ -64,23 +64,51 @@
         <div class="text-preview" style="margin-top: 20px;">
             @if(isset($catHome) && $catHome != null)
                 <h3 style="line-height: 28px; letter-spacing: 1.25px;">{{ $catHome->title }}</h3>
-                <p style="
-                    line-height: 23px;
-                    text-indent: 30px;
-                    text-align: justify;
-                    letter-spacing: 0.8px;
-                    margin-top: 10px;
-                    ">{{ $catHome->subtitle }}</p>
+                {{--<p style="--}}
+                    {{--line-height: 23px;--}}
+                    {{--text-indent: 30px;--}}
+                    {{--text-align: justify;--}}
+                    {{--letter-spacing: 0.8px;--}}
+                    {{--margin-top: 10px;--}}
+                    {{--">{!! $catHome->subtitle !!}</p>--}}
+
+                @if(strrpos($catHome->subtitle, "<p>") === false)
+                    <p style="
+                        line-height: 23px;
+                        text-indent: 30px;
+                        letter-spacing: 0.8px;
+                        margin-top: 10px;
+                        ">{!! $catHome->subtitle !!}</p>
+                @else
+                    {!! str_replace("<p>","<p style=\"line-height: 23px;
+                                              text-indent: 30px;
+                                              letter-spacing: 0.8px;
+                                              margin-top: 10px;\">",$catHome->subtitle); !!}
+                @endif
             @endif
             @if(isset($catConstruct) && $catConstruct != null)
                 <h3 style="line-height: 28px; letter-spacing: 1.25px;">{{ $catConstruct->title }}</h3>
-                <p style="
+                {{--<p style="--}}
+                    {{--line-height: 23px;--}}
+                    {{--text-indent: 30px;--}}
+                    {{--text-align: justify;--}}
+                    {{--letter-spacing: 0.8px;--}}
+                    {{--margin-top: 10px;--}}
+                    {{--">{!! $catConstruct->subtitle !!}</p>--}}
+
+                @if(strrpos($catConstruct->subtitle, "<p>") === false)
+                    <p style="
                     line-height: 23px;
                     text-indent: 30px;
-                    text-align: justify;
                     letter-spacing: 0.8px;
                     margin-top: 10px;
-                    ">{{ $catConstruct->subtitle }}</p>
+                    ">{!! $catConstruct->subtitle !!}</p>
+                @else
+                    {!! str_replace("<p>","<p style=\"line-height: 23px;
+                                              text-indent: 30px;
+                                              letter-spacing: 0.8px;
+                                              margin-top: 10px;\">",$catConstruct->subtitle); !!}
+                @endif
             @endif
         </div>
     </div>

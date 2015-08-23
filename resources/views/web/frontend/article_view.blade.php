@@ -111,13 +111,28 @@
             <div class="text-preview" style="margin-top: 20px;">
                 @if(isset($catArticle) && $catArticle != null)
                     <h3 style="line-height: 28px; letter-spacing: 1.25px;">{{ $catArticle->title }}</h3>
-                    <p style="
+                    {{--<p style="--}}
+                    {{--line-height: 23px;--}}
+                    {{--text-indent: 30px;--}}
+                    {{--text-align: justify;--}}
+                    {{--letter-spacing: 0.8px;--}}
+                    {{--margin-top: 10px;--}}
+                    {{--">{!! $catArticle->subtitle !!}</p>--}}
+
+                    @if(strrpos($catArticle->subtitle, "<p>") === false)
+                        <p style="
                     line-height: 23px;
                     text-indent: 30px;
-                    text-align: justify;
                     letter-spacing: 0.8px;
                     margin-top: 10px;
-                    ">{{ $catArticle->subtitle }}</p>
+                    ">{!! $catArticle->subtitle !!}</p>
+                    @else
+                        {!! str_replace("<p>","<p style=\"line-height: 23px;
+                                                  text-indent: 30px;
+                                                  letter-spacing: 0.8px;
+                                                  margin-top: 10px;\">",$catArticle->subtitle); !!}
+                    @endif
+
                 @endif
             </div>
         </div>

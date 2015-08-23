@@ -167,7 +167,11 @@
                                 </div>
                                 <a href="{{ $urlTo.$item->id }}"><h3>{{ $item->title }}</h3></a>
                                 <p class="update">วันที่ลงประกาศ  {{ \App\Models\AllFunction::getDateTimeThai($item->created_at) }}</p>
-                                <p class="p-subtitle">{{ $item->subtitle }}</p>
+                                @if(strrpos($item->subtitle, "<p>") === false)
+                                    <p class="p-subtitle">{!! $item->subtitle !!}</p>
+                                @else
+                                    {!! str_replace("<p>","<p class=\"p-subtitle\">",$item->subtitle); !!}
+                                @endif
                             </div>
                             <div class="right">
                                 <p class="text-price">ราคาเริ่มต้น</p>
@@ -260,7 +264,11 @@
                                 </div>
                                 <a href="{{ $urlTo.$item->id }}"><h3>{{ $item->title }}</h3></a>
                                 <p class="update">วันที่ลงประกาศ  {{ \App\Models\AllFunction::getDateTimeThai($item->created_at) }}</p>
-                                <p class="p-subtitle">{{ $item->subtitle }}</p>
+                                @if(strrpos($item->subtitle, "<p>") === false)
+                                    <p class="p-subtitle">{!! $item->subtitle !!}</p>
+                                @else
+                                    {!! str_replace("<p>","<p class=\"p-subtitle\">",$item->subtitle); !!}
+                                @endif
                             </div>
                             <div class="right">
                                 <p class="text-price">ราคาเริ่มต้น</p>
@@ -390,7 +398,11 @@
                             <div class="text">
                                 <h3><a href="{{ url('article')."/".$item->id }}">{{ $item->title }}</a></h3>
                                 <p class="update">วันที่ลงประกาศ  {{ \App\Models\AllFunction::getDateTimeThai($item->created_at) }}</p>
-                                <p class="p-subtitle">{{ $item->subtitle }}</p>
+                                @if(strrpos($item->subtitle, "<p>") === false)
+                                    <p class="p-subtitle">{!! $item->subtitle !!}</p>
+                                @else
+                                    {!! str_replace("<p>","<p class=\"p-subtitle\">",$item->subtitle); !!}
+                                @endif
                             </div>
                             <div class="clear"></div>
                         </li>
@@ -416,7 +428,11 @@
                             <div class="text">
                                 <h3><a href="{{ url('article')."/".$item->id }}">{{ $item->title }}</a></h3>
                                 <p class="update">วันที่ลงประกาศ  {{ \App\Models\AllFunction::getDateTimeThai($item->created_at) }}</p>
-                                <p class="p-subtitle">{{ $item->subtitle }}</p>
+                                @if(strrpos($item->subtitle, "<p>") === false)
+                                    <p class="p-subtitle">{!! $item->subtitle !!}</p>
+                                @else
+                                    {!! str_replace("<p>","<p class=\"p-subtitle\">",$item->subtitle); !!}
+                                @endif
                             </div>
                             <div class="clear"></div>
                         </li>
@@ -451,7 +467,11 @@
                             <div class="text">
                                 <h3><a href="{{ url('idea')."/".$item->id }}">{{ $item->title }}</a></h3>
                                 <p class="update">วันที่ลงประกาศ  {{ \App\Models\AllFunction::getDateTimeThai($item->created_at) }}</p>
-                                <p class="p-subtitle">{{ $item->subtitle }}</p>
+                                @if(strrpos($item->subtitle, "<p>") === false)
+                                    <p class="p-subtitle">{!! $item->subtitle !!}</p>
+                                @else
+                                    {!! str_replace("<p>","<p class=\"p-subtitle\">",$item->subtitle); !!}
+                                @endif
                             </div>
                             <div class="clear"></div>
                         </li>
@@ -477,7 +497,11 @@
                             <div class="text">
                                 <h3><a href="{{ url('idea')."/".$item->id }}">{{ $item->title }}</a></h3>
                                 <p class="update">วันที่ลงประกาศ  {{ \App\Models\AllFunction::getDateTimeThai($item->created_at) }}</p>
-                                <p class="p-subtitle">{{ $item->subtitle }}</p>
+                                @if(strrpos($item->subtitle, "<p>") === false)
+                                    <p class="p-subtitle">{!! $item->subtitle !!}</p>
+                                @else
+                                    {!! str_replace("<p>","<p class=\"p-subtitle\">",$item->subtitle); !!}
+                                @endif
                             </div>
                             <div class="clear"></div>
                         </li>

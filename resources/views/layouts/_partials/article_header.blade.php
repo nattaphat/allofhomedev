@@ -42,7 +42,12 @@
                                 <a href="{{ url('article')."/".$item->id }}"><h3 class="article-title">
                                         {{ $item->title }}
                                     </h3></a>
-                                <p class="article-subtitle">{{ $item->subtitle }}</p>
+                                @if(strrpos($item->subtitle, "<p>") === false)
+                                    <p class="article-subtitle">{!! $item->subtitle !!}</p>
+                                @else
+                                    {!! str_replace("<p>","<p class=\"article-subtitle\">",$item->subtitle); !!}
+                                @endif
+
                             </div>
                         </li>
                     @endforeach
