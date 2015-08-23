@@ -78,7 +78,7 @@
             {{--<a class="share-fb-btn" href="http://www.facebook.com/sharer.php?u={{ Request::fullUrl() }}" target="_blank">--}}
                 {{--<img data-src="{{ asset('images/logo/facebook.png') }}" alt="Facebook" />--}}
             {{--</a>--}}
-            <a class="share-fb-btn" href="{{ $test }}" target="_blank">
+            <a target="_blank" href="https://www.facebook.com/dialog/feed?app_id=218142118246842&amp;redirect_uri={{ Request::fullUrl() }}&amp;link={{ Request::fullUrl() }}&amp;picture=http://placekitten.com/500/500&amp;caption=This%20is%20the%20caption&amp;description=This%20is%20the%20description&amp;properties={text:'value1',key2:'value2'}">
                 <img data-src="{{ asset('images/logo/facebook.png') }}" alt="Facebook" />
             </a>
 
