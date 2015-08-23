@@ -111,10 +111,6 @@
     </div>
 </div>
 
-{{ URL::current() }} <br>
-{{ Request::fullUrl() }} <br>
-{{ Request::url() }} <br>
-
 @if($catConstruct->latitude != null && $catConstruct->latitude != ""
     && $catConstruct->longitude != null && $catConstruct->longitude != "")
     <div class="boxMap">
