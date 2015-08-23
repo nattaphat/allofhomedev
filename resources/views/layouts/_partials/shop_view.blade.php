@@ -67,14 +67,9 @@
             </a>
 
             <!-- Facebook -->
-            {{--<a class="share-fb-btn" href="http://www.facebook.com/sharer.php?u={{ Request::fullUrl() }}" target="_blank">--}}
-                {{--<img data-src="{{ asset('images/logo/facebook.png') }}" alt="Facebook" />--}}
-            {{--</a>--}}
-            <a class="share-fb-btn" href="#">
+            <a class="share-fb-btn" href="http://www.facebook.com/sharer.php?u={{ Request::fullUrl() }}" target="_blank">
                 <img data-src="{{ asset('images/logo/facebook.png') }}" alt="Facebook" />
             </a>
-
-            {{ Request::url() }}
 
             <!-- Google+ -->
             <a href="https://plus.google.com/share?url={{ Request::fullUrl() }}" target="_blank">
