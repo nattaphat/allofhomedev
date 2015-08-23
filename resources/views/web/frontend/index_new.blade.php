@@ -175,11 +175,11 @@
                                     {
                                         $str = $str."<br>".$matches['paragraphs'][$i];
                                     }
-                                    echo '<p class="p-subtitle">'.preg_replace('/^(?:<br\s*\/?>\s*)+/', '', $str).'</p>';
+                                    echo '<p class="p-subtitle">xxxxx'.preg_replace('/^(?:<br\s*\/?>\s*)+/', '', $str).'</p>';
                                 }
                                 else
                                 {
-                                    echo '<p class="p-subtitle">'.$item->subtitle.'</p>';
+                                    echo '<p class="p-subtitle">yyyyyy'.$item->subtitle.'</p>';
                                 }
                                 ?>
                             </div>
@@ -282,11 +282,11 @@
                                     {
                                         $str = $str."<br>".$matches['paragraphs'][$i];
                                     }
-                                    echo '<p class="p-subtitle">'.preg_replace('/^(?:<br\s*\/?>\s*)+/', '', $str).'</p>';
+                                    echo '<p class="p-subtitle">xxxxx'.preg_replace('/^(?:<br\s*\/?>\s*)+/', '', $str).'</p>';
                                 }
                                 else
                                 {
-                                    echo '<p class="p-subtitle">'.$item->subtitle.'</p>';
+                                    echo '<p class="p-subtitle">yyyyyy'.$item->subtitle.'</p>';
                                 }
                                 ?>
                             </div>
@@ -426,11 +426,11 @@
                                     {
                                         $str = $str."<br>".$matches['paragraphs'][$i];
                                     }
-                                    echo '<p class="p-subtitle">'.preg_replace('/^(?:<br\s*\/?>\s*)+/', '', $str).'</p>';
+                                    echo '<p class="p-subtitle">xxxxx'.preg_replace('/^(?:<br\s*\/?>\s*)+/', '', $str).'</p>';
                                 }
                                 else
                                 {
-                                    echo '<p class="p-subtitle">'.$item->subtitle.'</p>';
+                                    echo '<p class="p-subtitle">yyyyyy'.$item->subtitle.'</p>';
                                 }
                                 ?>
                             </div>
@@ -466,11 +466,11 @@
                                     {
                                         $str = $str."<br>".$matches['paragraphs'][$i];
                                     }
-                                    echo '<p class="p-subtitle">'.preg_replace('/^(?:<br\s*\/?>\s*)+/', '', $str).'</p>';
+                                    echo '<p class="p-subtitle">xxxxx'.preg_replace('/^(?:<br\s*\/?>\s*)+/', '', $str).'</p>';
                                 }
                                 else
                                 {
-                                    echo '<p class="p-subtitle">'.$item->subtitle.'</p>';
+                                    echo '<p class="p-subtitle">yyyyyy'.$item->subtitle.'</p>';
                                 }
                                 ?>
                             </div>
@@ -515,11 +515,11 @@
                                     {
                                         $str = $str."<br>".$matches['paragraphs'][$i];
                                     }
-                                    echo '<p class="p-subtitle">'.preg_replace('/^(?:<br\s*\/?>\s*)+/', '', $str).'</p>';
+                                    echo '<p class="p-subtitle">xxxxx'.preg_replace('/^(?:<br\s*\/?>\s*)+/', '', $str).'</p>';
                                 }
                                 else
                                 {
-                                    echo '<p class="p-subtitle">'.$item->subtitle.'</p>';
+                                    echo '<p class="p-subtitle">yyyyyy'.$item->subtitle.'</p>';
                                 }
                                 ?>
                             </div>
@@ -555,11 +555,11 @@
                                     {
                                         $str = $str."<br>".$matches['paragraphs'][$i];
                                     }
-                                    echo '<p class="p-subtitle">'.preg_replace('/^(?:<br\s*\/?>\s*)+/', '', $str).'</p>';
+                                    echo '<p class="p-subtitle">xxxxx'.preg_replace('/^(?:<br\s*\/?>\s*)+/', '', $str).'</p>';
                                 }
                                 else
                                 {
-                                    echo '<p class="p-subtitle">'.$item->subtitle.'</p>';
+                                    echo '<p class="p-subtitle">yyyyyy'.$item->subtitle.'</p>';
                                 }
                                 ?>
                             </div>
