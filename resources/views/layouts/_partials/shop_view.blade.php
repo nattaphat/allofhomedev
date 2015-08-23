@@ -324,7 +324,7 @@
         <p class="text">ฝากกด like และ share เพื่อเป็นกำลังใจเจ้าของกระทู้ด้วยนะคะ</p>
     </div>
     <div class="comment-fb">
-        <div class="fb-comments" data-href="http://103.4.217.227/shop/18" data-width="873" data-numposts="10"></div>
+        <div class="fb-comments" data-href="{{ Request::fullUrl() }}" data-width="873" data-numposts="10"></div>
     </div>
 </div>
 
