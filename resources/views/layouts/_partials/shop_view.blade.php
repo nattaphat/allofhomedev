@@ -66,8 +66,15 @@
                 <img data-src="{{ asset('images/logo/email.png') }}" alt="Email" />
             </a>
 
+            <?php
+            $test = 'http://www.facebook.com/sharer.php?s=100&p[title]='+encodeURIComponent('this is a title') + '&p[summary]=' + encodeURIComponent('description here') + '&p[url]=' + encodeURIComponent('http://www.nufc.com') + '&p[images][0]=' + encodeURIComponent('http://www.somedomain.com/image.jpg')
+            ?>
+
             <!-- Facebook -->
-            <a class="share-fb-btn" href="http://www.facebook.com/sharer.php?u={{ Request::fullUrl() }}" target="_blank">
+            {{--<a class="share-fb-btn" href="http://www.facebook.com/sharer.php?u={{ Request::fullUrl() }}" target="_blank">--}}
+                {{--<img data-src="{{ asset('images/logo/facebook.png') }}" alt="Facebook" />--}}
+            {{--</a>--}}
+            <a class="share-fb-btn" href="{{ $test }}" target="_blank">
                 <img data-src="{{ asset('images/logo/facebook.png') }}" alt="Facebook" />
             </a>
 
