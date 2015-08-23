@@ -168,7 +168,8 @@
                                 <a href="{{ $urlTo.$item->id }}"><h3>{{ $item->title }}</h3></a>
                                 <p class="update">วันที่ลงประกาศ  {{ \App\Models\AllFunction::getDateTimeThai($item->created_at) }}</p>
                                 <?php
-                                if (preg_match_all('~<p>(?P<paragraphs>.*?)</p>~is', $item->subtitle, $matches))
+                                $subtitle = str_replace("<p class=\"p1\">","<p>",$item->subtitle);
+                                if (preg_match_all('~<p>(?P<paragraphs>.*?)</p>~is', $subtitle, $matches))
                                 {
                                     $str = "";
                                     for($i=0; $i< count($matches['paragraphs']); $i++)
@@ -275,7 +276,8 @@
                                 <a href="{{ $urlTo.$item->id }}"><h3>{{ $item->title }}</h3></a>
                                 <p class="update">วันที่ลงประกาศ  {{ \App\Models\AllFunction::getDateTimeThai($item->created_at) }}</p>
                                 <?php
-                                if (preg_match_all('~<p>(?P<paragraphs>.*?)</p>~is', $item->subtitle, $matches))
+                                $subtitle = str_replace("<p class=\"p1\">","<p>",$item->subtitle);
+                                if (preg_match_all('~<p>(?P<paragraphs>.*?)</p>~is', $subtitle, $matches))
                                 {
                                     $str = "";
                                     for($i=0; $i< count($matches['paragraphs']); $i++)
@@ -286,7 +288,7 @@
                                 }
                                 else
                                 {
-                                    echo '<p class="p-subtitle">'.$item->subtitle.'</p>';
+                                    echo '<p class="p-subtitle">yyyyyy'.$item->subtitle.'</p>';
                                 }
                                 ?>
                             </div>
@@ -419,7 +421,8 @@
                                 <h3><a href="{{ url('article')."/".$item->id }}">{{ $item->title }}</a></h3>
                                 <p class="update">วันที่ลงประกาศ  {{ \App\Models\AllFunction::getDateTimeThai($item->created_at) }}</p>
                                 <?php
-                                if (preg_match_all('~<p>(?P<paragraphs>.*?)</p>~is', $item->subtitle, $matches))
+                                $subtitle = str_replace("<p class=\"p1\">","<p>",$item->subtitle);
+                                if (preg_match_all('~<p>(?P<paragraphs>.*?)</p>~is', $subtitle, $matches))
                                 {
                                     $str = "";
                                     for($i=0; $i< count($matches['paragraphs']); $i++)
@@ -459,7 +462,8 @@
                                 <h3><a href="{{ url('article')."/".$item->id }}">{{ $item->title }}</a></h3>
                                 <p class="update">วันที่ลงประกาศ  {{ \App\Models\AllFunction::getDateTimeThai($item->created_at) }}</p>
                                 <?php
-                                if (preg_match_all('~<p>(?P<paragraphs>.*?)</p>~is', $item->subtitle, $matches))
+                                $subtitle = str_replace("<p class=\"p1\">","<p>",$item->subtitle);
+                                if (preg_match_all('~<p>(?P<paragraphs>.*?)</p>~is', $subtitle, $matches))
                                 {
                                     $str = "";
                                     for($i=0; $i< count($matches['paragraphs']); $i++)
@@ -508,7 +512,8 @@
                                 <h3><a href="{{ url('idea')."/".$item->id }}">{{ $item->title }}</a></h3>
                                 <p class="update">วันที่ลงประกาศ  {{ \App\Models\AllFunction::getDateTimeThai($item->created_at) }}</p>
                                 <?php
-                                if (preg_match_all('~<p>(?P<paragraphs>.*?)</p>~is', $item->subtitle, $matches))
+                                $subtitle = str_replace("<p class=\"p1\">","<p>",$item->subtitle);
+                                if (preg_match_all('~<p>(?P<paragraphs>.*?)</p>~is', $subtitle, $matches))
                                 {
                                     $str = "";
                                     for($i=0; $i< count($matches['paragraphs']); $i++)
@@ -548,7 +553,8 @@
                                 <h3><a href="{{ url('idea')."/".$item->id }}">{{ $item->title }}</a></h3>
                                 <p class="update">วันที่ลงประกาศ  {{ \App\Models\AllFunction::getDateTimeThai($item->created_at) }}</p>
                                 <?php
-                                if (preg_match_all('~<p>(?P<paragraphs>.*?)</p>~is', $item->subtitle, $matches))
+                                $subtitle = str_replace("<p class=\"p1\">","<p>",$item->subtitle);
+                                if (preg_match_all('~<p>(?P<paragraphs>.*?)</p>~is', $subtitle, $matches))
                                 {
                                     $str = "";
                                     for($i=0; $i< count($matches['paragraphs']); $i++)
