@@ -170,7 +170,16 @@
                                 @if(strrpos($item->subtitle, "<p>") === false)
                                     <p class="p-subtitle">{!! $item->subtitle !!}</p>
                                 @else
-                                    {!! str_replace("<p>","<p class=\"p-subtitle\">",$item->subtitle); !!}
+                                    <?php
+                                        if (preg_match_all('~<p>(?P<paragraphs>.*?)</p>~is', $item->subtitle, $matches)) {
+                                            $str = "";
+                                            for($i=0; $i< count($matches['paragraphs']); $i++)
+                                            {
+                                                $str = $str."<br>".$matches['paragraphs'][$i];
+                                            }
+                                            echo '<p class="p-subtitle">'.preg_replace('/^(?:<br\s*\/?>\s*)+/', '', $str).'</p>';
+                                        }
+                                    ?>
                                 @endif
                             </div>
                             <div class="right">
@@ -267,7 +276,16 @@
                                 @if(strrpos($item->subtitle, "<p>") === false)
                                     <p class="p-subtitle">{!! $item->subtitle !!}</p>
                                 @else
-                                    {!! str_replace("<p>","<p class=\"p-subtitle\">",$item->subtitle); !!}
+                                    <?php
+                                    if (preg_match_all('~<p>(?P<paragraphs>.*?)</p>~is', $item->subtitle, $matches)) {
+                                        $str = "";
+                                        for($i=0; $i< count($matches['paragraphs']); $i++)
+                                        {
+                                            $str = $str."<br>".$matches['paragraphs'][$i];
+                                        }
+                                        echo '<p class="p-subtitle">'.preg_replace('/^(?:<br\s*\/?>\s*)+/', '', $str).'</p>';
+                                    }
+                                    ?>
                                 @endif
                             </div>
                             <div class="right">
@@ -401,7 +419,16 @@
                                 @if(strrpos($item->subtitle, "<p>") === false)
                                     <p class="p-subtitle">{!! $item->subtitle !!}</p>
                                 @else
-                                    {!! str_replace("<p>","<p class=\"p-subtitle\">",$item->subtitle); !!}
+                                    <?php
+                                    if (preg_match_all('~<p>(?P<paragraphs>.*?)</p>~is', $item->subtitle, $matches)) {
+                                        $str = "";
+                                        for($i=0; $i< count($matches['paragraphs']); $i++)
+                                        {
+                                            $str = $str."<br>".$matches['paragraphs'][$i];
+                                        }
+                                        echo '<p class="p-subtitle">'.preg_replace('/^(?:<br\s*\/?>\s*)+/', '', $str).'</p>';
+                                    }
+                                    ?>
                                 @endif
                             </div>
                             <div class="clear"></div>
@@ -431,7 +458,16 @@
                                 @if(strrpos($item->subtitle, "<p>") === false)
                                     <p class="p-subtitle">{!! $item->subtitle !!}</p>
                                 @else
-                                    {!! str_replace("<p>","<p class=\"p-subtitle\">",$item->subtitle); !!}
+                                    <?php
+                                    if (preg_match_all('~<p>(?P<paragraphs>.*?)</p>~is', $item->subtitle, $matches)) {
+                                        $str = "";
+                                        for($i=0; $i< count($matches['paragraphs']); $i++)
+                                        {
+                                            $str = $str."<br>".$matches['paragraphs'][$i];
+                                        }
+                                        echo '<p class="p-subtitle">'.preg_replace('/^(?:<br\s*\/?>\s*)+/', '', $str).'</p>';
+                                    }
+                                    ?>
                                 @endif
                             </div>
                             <div class="clear"></div>
@@ -470,7 +506,16 @@
                                 @if(strrpos($item->subtitle, "<p>") === false)
                                     <p class="p-subtitle">{!! $item->subtitle !!}</p>
                                 @else
-                                    {!! str_replace("<p>","<p class=\"p-subtitle\">",$item->subtitle); !!}
+                                    <?php
+                                    if (preg_match_all('~<p>(?P<paragraphs>.*?)</p>~is', $item->subtitle, $matches)) {
+                                        $str = "";
+                                        for($i=0; $i< count($matches['paragraphs']); $i++)
+                                        {
+                                            $str = $str."<br>".$matches['paragraphs'][$i];
+                                        }
+                                        echo '<p class="p-subtitle">'.preg_replace('/^(?:<br\s*\/?>\s*)+/', '', $str).'</p>';
+                                    }
+                                    ?>
                                 @endif
                             </div>
                             <div class="clear"></div>
@@ -500,7 +545,16 @@
                                 @if(strrpos($item->subtitle, "<p>") === false)
                                     <p class="p-subtitle">{!! $item->subtitle !!}</p>
                                 @else
-                                    {!! str_replace("<p>","<p class=\"p-subtitle\">",$item->subtitle); !!}
+                                    <?php
+                                    if (preg_match_all('~<p>(?P<paragraphs>.*?)</p>~is', $item->subtitle, $matches)) {
+                                        $str = "";
+                                        for($i=0; $i< count($matches['paragraphs']); $i++)
+                                        {
+                                            $str = $str."<br>".$matches['paragraphs'][$i];
+                                        }
+                                        echo '<p class="p-subtitle">'.preg_replace('/^(?:<br\s*\/?>\s*)+/', '', $str).'</p>';
+                                    }
+                                    ?>
                                 @endif
                             </div>
                             <div class="clear"></div>
