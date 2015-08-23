@@ -70,7 +70,7 @@
             $test = 'http://www.facebook.com/sharer.php?s=100&p[title]=' .
                     \App\Models\AllFunction::encodeURIComponent('Title') .
                     '&p[summary]=' . \App\Models\AllFunction::encodeURIComponent('Description') .
-                    '&p[url]=' . \App\Models\AllFunction::encodeURIComponent(Request::fullUrl()) .
+                    '&p[url]=' . \App\Models\AllFunction::encodeURIComponent('http://www.nufc.com') .
                     '&p[images][0]=' . \App\Models\AllFunction::encodeURIComponent('http://www.somedomain.com/image.jpg')
             ?>
 
