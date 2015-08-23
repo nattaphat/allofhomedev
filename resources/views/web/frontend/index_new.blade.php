@@ -167,20 +167,21 @@
                                 </div>
                                 <a href="{{ $urlTo.$item->id }}"><h3>{{ $item->title }}</h3></a>
                                 <p class="update">วันที่ลงประกาศ  {{ \App\Models\AllFunction::getDateTimeThai($item->created_at) }}</p>
-                                @if(strrpos($item->subtitle, "<p>") === false)
-                                    <p class="p-subtitle">{!! $item->subtitle !!}</p>
-                                @else
-                                    <?php
-                                        if (preg_match_all('~<p>(?P<paragraphs>.*?)</p>~is', $item->subtitle, $matches)) {
-                                            $str = "";
-                                            for($i=0; $i< count($matches['paragraphs']); $i++)
-                                            {
-                                                $str = $str."<br>".$matches['paragraphs'][$i];
-                                            }
-                                            echo '<p class="p-subtitle">'.preg_replace('/^(?:<br\s*\/?>\s*)+/', '', $str).'</p>';
-                                        }
-                                    ?>
-                                @endif
+                                <?php
+                                if (preg_match_all('~<p>(?P<paragraphs>.*?)</p>~is', $item->subtitle, $matches))
+                                {
+                                    $str = "";
+                                    for($i=0; $i< count($matches['paragraphs']); $i++)
+                                    {
+                                        $str = $str."<br>".$matches['paragraphs'][$i];
+                                    }
+                                    echo '<p class="p-subtitle">'.preg_replace('/^(?:<br\s*\/?>\s*)+/', '', $str).'</p>';
+                                }
+                                else
+                                {
+                                    echo '<p class="p-subtitle">'.$item->subtitle.'</p>';
+                                }
+                                ?>
                             </div>
                             <div class="right">
                                 <p class="text-price">ราคาเริ่มต้น</p>
@@ -273,20 +274,21 @@
                                 </div>
                                 <a href="{{ $urlTo.$item->id }}"><h3>{{ $item->title }}</h3></a>
                                 <p class="update">วันที่ลงประกาศ  {{ \App\Models\AllFunction::getDateTimeThai($item->created_at) }}</p>
-                                @if(strrpos($item->subtitle, "<p>") === false)
-                                    <p class="p-subtitle">{!! $item->subtitle !!}</p>
-                                @else
-                                    <?php
-                                    if (preg_match_all('~<p>(?P<paragraphs>.*?)</p>~is', $item->subtitle, $matches)) {
-                                        $str = "";
-                                        for($i=0; $i< count($matches['paragraphs']); $i++)
-                                        {
-                                            $str = $str."<br>".$matches['paragraphs'][$i];
-                                        }
-                                        echo '<p class="p-subtitle">'.preg_replace('/^(?:<br\s*\/?>\s*)+/', '', $str).'</p>';
+                                <?php
+                                if (preg_match_all('~<p>(?P<paragraphs>.*?)</p>~is', $item->subtitle, $matches))
+                                {
+                                    $str = "";
+                                    for($i=0; $i< count($matches['paragraphs']); $i++)
+                                    {
+                                        $str = $str."<br>".$matches['paragraphs'][$i];
                                     }
-                                    ?>
-                                @endif
+                                    echo '<p class="p-subtitle">'.preg_replace('/^(?:<br\s*\/?>\s*)+/', '', $str).'</p>';
+                                }
+                                else
+                                {
+                                    echo '<p class="p-subtitle">'.$item->subtitle.'</p>';
+                                }
+                                ?>
                             </div>
                             <div class="right">
                                 <p class="text-price">ราคาเริ่มต้น</p>
@@ -416,20 +418,21 @@
                             <div class="text">
                                 <h3><a href="{{ url('article')."/".$item->id }}">{{ $item->title }}</a></h3>
                                 <p class="update">วันที่ลงประกาศ  {{ \App\Models\AllFunction::getDateTimeThai($item->created_at) }}</p>
-                                @if(strrpos($item->subtitle, "<p>") === false)
-                                    <p class="p-subtitle">{!! $item->subtitle !!}</p>
-                                @else
-                                    <?php
-                                    if (preg_match_all('~<p>(?P<paragraphs>.*?)</p>~is', $item->subtitle, $matches)) {
-                                        $str = "";
-                                        for($i=0; $i< count($matches['paragraphs']); $i++)
-                                        {
-                                            $str = $str."<br>".$matches['paragraphs'][$i];
-                                        }
-                                        echo '<p class="p-subtitle">'.preg_replace('/^(?:<br\s*\/?>\s*)+/', '', $str).'</p>';
+                                <?php
+                                if (preg_match_all('~<p>(?P<paragraphs>.*?)</p>~is', $item->subtitle, $matches))
+                                {
+                                    $str = "";
+                                    for($i=0; $i< count($matches['paragraphs']); $i++)
+                                    {
+                                        $str = $str."<br>".$matches['paragraphs'][$i];
                                     }
-                                    ?>
-                                @endif
+                                    echo '<p class="p-subtitle">'.preg_replace('/^(?:<br\s*\/?>\s*)+/', '', $str).'</p>';
+                                }
+                                else
+                                {
+                                    echo '<p class="p-subtitle">'.$item->subtitle.'</p>';
+                                }
+                                ?>
                             </div>
                             <div class="clear"></div>
                         </li>
@@ -455,20 +458,21 @@
                             <div class="text">
                                 <h3><a href="{{ url('article')."/".$item->id }}">{{ $item->title }}</a></h3>
                                 <p class="update">วันที่ลงประกาศ  {{ \App\Models\AllFunction::getDateTimeThai($item->created_at) }}</p>
-                                @if(strrpos($item->subtitle, "<p>") === false)
-                                    <p class="p-subtitle">{!! $item->subtitle !!}</p>
-                                @else
-                                    <?php
-                                    if (preg_match_all('~<p>(?P<paragraphs>.*?)</p>~is', $item->subtitle, $matches)) {
-                                        $str = "";
-                                        for($i=0; $i< count($matches['paragraphs']); $i++)
-                                        {
-                                            $str = $str."<br>".$matches['paragraphs'][$i];
-                                        }
-                                        echo '<p class="p-subtitle">'.preg_replace('/^(?:<br\s*\/?>\s*)+/', '', $str).'</p>';
+                                <?php
+                                if (preg_match_all('~<p>(?P<paragraphs>.*?)</p>~is', $item->subtitle, $matches))
+                                {
+                                    $str = "";
+                                    for($i=0; $i< count($matches['paragraphs']); $i++)
+                                    {
+                                        $str = $str."<br>".$matches['paragraphs'][$i];
                                     }
-                                    ?>
-                                @endif
+                                    echo '<p class="p-subtitle">'.preg_replace('/^(?:<br\s*\/?>\s*)+/', '', $str).'</p>';
+                                }
+                                else
+                                {
+                                    echo '<p class="p-subtitle">'.$item->subtitle.'</p>';
+                                }
+                                ?>
                             </div>
                             <div class="clear"></div>
                         </li>
@@ -503,20 +507,21 @@
                             <div class="text">
                                 <h3><a href="{{ url('idea')."/".$item->id }}">{{ $item->title }}</a></h3>
                                 <p class="update">วันที่ลงประกาศ  {{ \App\Models\AllFunction::getDateTimeThai($item->created_at) }}</p>
-                                @if(strrpos($item->subtitle, "<p>") === false)
-                                    <p class="p-subtitle">{!! $item->subtitle !!}</p>
-                                @else
-                                    <?php
-                                    if (preg_match_all('~<p>(?P<paragraphs>.*?)</p>~is', $item->subtitle, $matches)) {
-                                        $str = "";
-                                        for($i=0; $i< count($matches['paragraphs']); $i++)
-                                        {
-                                            $str = $str."<br>".$matches['paragraphs'][$i];
-                                        }
-                                        echo '<p class="p-subtitle">'.preg_replace('/^(?:<br\s*\/?>\s*)+/', '', $str).'</p>';
+                                <?php
+                                if (preg_match_all('~<p>(?P<paragraphs>.*?)</p>~is', $item->subtitle, $matches))
+                                {
+                                    $str = "";
+                                    for($i=0; $i< count($matches['paragraphs']); $i++)
+                                    {
+                                        $str = $str."<br>".$matches['paragraphs'][$i];
                                     }
-                                    ?>
-                                @endif
+                                    echo '<p class="p-subtitle">'.preg_replace('/^(?:<br\s*\/?>\s*)+/', '', $str).'</p>';
+                                }
+                                else
+                                {
+                                    echo '<p class="p-subtitle">'.$item->subtitle.'</p>';
+                                }
+                                ?>
                             </div>
                             <div class="clear"></div>
                         </li>
@@ -542,20 +547,21 @@
                             <div class="text">
                                 <h3><a href="{{ url('idea')."/".$item->id }}">{{ $item->title }}</a></h3>
                                 <p class="update">วันที่ลงประกาศ  {{ \App\Models\AllFunction::getDateTimeThai($item->created_at) }}</p>
-                                @if(strrpos($item->subtitle, "<p>") === false)
-                                    <p class="p-subtitle">{!! $item->subtitle !!}</p>
-                                @else
-                                    <?php
-                                    if (preg_match_all('~<p>(?P<paragraphs>.*?)</p>~is', $item->subtitle, $matches)) {
-                                        $str = "";
-                                        for($i=0; $i< count($matches['paragraphs']); $i++)
-                                        {
-                                            $str = $str."<br>".$matches['paragraphs'][$i];
-                                        }
-                                        echo '<p class="p-subtitle">'.preg_replace('/^(?:<br\s*\/?>\s*)+/', '', $str).'</p>';
+                                <?php
+                                if (preg_match_all('~<p>(?P<paragraphs>.*?)</p>~is', $item->subtitle, $matches))
+                                {
+                                    $str = "";
+                                    for($i=0; $i< count($matches['paragraphs']); $i++)
+                                    {
+                                        $str = $str."<br>".$matches['paragraphs'][$i];
                                     }
-                                    ?>
-                                @endif
+                                    echo '<p class="p-subtitle">'.preg_replace('/^(?:<br\s*\/?>\s*)+/', '', $str).'</p>';
+                                }
+                                else
+                                {
+                                    echo '<p class="p-subtitle">'.$item->subtitle.'</p>';
+                                }
+                                ?>
                             </div>
                             <div class="clear"></div>
                         </li>
