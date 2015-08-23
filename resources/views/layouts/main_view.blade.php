@@ -22,6 +22,11 @@
 
     @yield('jshome')
 
+    <meta property="og:image" content="{{ \App\Models\Brand::getPathLogo($brand->id) }}" />
+    <meta property="og:title" content="{{ $catConstruct->title }}" />
+    <meta property="og:site_name" content="All Of Home : ทุกเรื่องบ้าน" />
+    <meta property="og:url" content="{{ Request::fullUrl() }}" />
+
 </head>
 
 <body>

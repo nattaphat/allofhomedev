@@ -75,7 +75,11 @@
             ?>
 
             <!-- Facebook -->
-            <a class="share-fb-btn" href="http://www.facebook.com/sharer.php?u={{ Request::fullUrl() }}" target="_blank">
+            {{--<a class="share-fb-btn" href="http://www.facebook.com/sharer.php?u={{ Request::fullUrl() }}" target="_blank">--}}
+                {{--<img data-src="{{ asset('images/logo/facebook.png') }}" alt="Facebook" />--}}
+            {{--</a>--}}
+
+            <a rel="nofollow" class="sh-face" href="http://www.facebook.com/sharer.php?u={{ Request::fullUrl() }}" target="_blank">
                 <img data-src="{{ asset('images/logo/facebook.png') }}" alt="Facebook" />
             </a>
 
