@@ -67,7 +67,7 @@
             </a>
 
             <?php
-            $test = 'http://www.facebook.com/sharer.php?s=100&p[title]=' .
+                $test = 'http://www.facebook.com/sharer.php?s=100&p[title]=' .
                     \App\Models\AllFunction::encodeURIComponent('Title') .
                     '&p[summary]=' . \App\Models\AllFunction::encodeURIComponent('Description') .
                     '&p[url]=' . \App\Models\AllFunction::encodeURIComponent(Request::fullUrl()) .
@@ -79,7 +79,7 @@
                 {{--<img data-src="{{ asset('images/logo/facebook.png') }}" alt="Facebook" />--}}
             {{--</a>--}}
 
-            <a rel="nofollow" class="sh-face" href="http://www.facebook.com/sharer.php?u={{ Request::fullUrl() }}" target="_blank">
+            <a href="http://www.facebook.com/sharer.php?u={{ Request::fullUrl() }}" target="_blank">
                 <img data-src="{{ asset('images/logo/facebook.png') }}" alt="Facebook" />
             </a>
 
@@ -110,6 +110,10 @@
         <a href="#" class="btn-favorite">เพิ่มเป็นรายการโปรด</a>
     </div>
 </div>
+
+{{ URL::current() }} <br>
+{{ Request::fullUrl() }} <br>
+{{ Request::url() }} <br>
 
 @if($catConstruct->latitude != null && $catConstruct->latitude != ""
     && $catConstruct->longitude != null && $catConstruct->longitude != "")
