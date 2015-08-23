@@ -66,20 +66,8 @@
                 <img data-src="{{ asset('images/logo/email.png') }}" alt="Email" />
             </a>
 
-            <?php
-                $test = 'http://www.facebook.com/sharer.php?s=100&p[title]=' .
-                    \App\Models\AllFunction::encodeURIComponent('Title') .
-                    '&p[summary]=' . \App\Models\AllFunction::encodeURIComponent('Description') .
-                    '&p[url]=' . \App\Models\AllFunction::encodeURIComponent(Request::fullUrl()) .
-                    '&p[images][0]=' . \App\Models\AllFunction::encodeURIComponent(asset('images/logo/google.png'));
-            ?>
-
             <!-- Facebook -->
-            {{--<a class="share-fb-btn" href="http://www.facebook.com/sharer.php?u={{ Request::fullUrl() }}" target="_blank">--}}
-                {{--<img data-src="{{ asset('images/logo/facebook.png') }}" alt="Facebook" />--}}
-            {{--</a>--}}
-
-            <a href="http://www.facebook.com/sharer.php?u={{ Request::fullUrl() }}" target="_blank">
+            <a class="share-fb-btn" href="http://www.facebook.com/sharer.php?u={{ Request::fullUrl() }}" target="_blank">
                 <img data-src="{{ asset('images/logo/facebook.png') }}" alt="Facebook" />
             </a>
 
