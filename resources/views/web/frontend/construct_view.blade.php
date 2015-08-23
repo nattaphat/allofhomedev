@@ -58,7 +58,7 @@
             FB.ui(
                     {
                         method: 'share',
-                        href: '{{ Request::fullUrl() }}'
+                        href: 'http://www.allofhome.com/'
                     },
                     // callback
                     function(response) {
