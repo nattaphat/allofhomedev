@@ -55,13 +55,20 @@
             {{--} );--}}
 
 
-            FB.ui({
-                method: 'feed',
-                link: '{{ Request::url() }}',
-                caption: 'An example caption'
-            }, function(response){
-
-            });
+            FB.ui(
+                    {
+                        method: 'share',
+                        href: '{{ Request::fullUrl() }}'
+                    },
+                    // callback
+                    function(response) {
+                        if (response && !response.error_code) {
+                            alert('Posting completed.');
+                        } else {
+                            alert('Error while posting.');
+                        }
+                    }
+            );
 
         }
 
