@@ -67,7 +67,7 @@
             </a>
 
             <!-- Facebook -->
-            <a href="http://www.facebook.com/sharer.php?u={{ Request::fullUrl() }}" target="_blank">
+            <a class="share-fb-btn" href="http://www.facebook.com/sharer.php?u={{ Request::fullUrl() }}" target="_blank">
                 <img data-src="{{ asset('images/logo/facebook.png') }}" alt="Facebook" />
             </a>
 

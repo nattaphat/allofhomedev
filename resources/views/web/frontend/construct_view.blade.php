@@ -41,6 +41,28 @@
 
 @section('jsbody')
 
+    <script type="text/javascript">
+        function fb_share() {
+            // facebook share dialog
+            FB.ui( {
+                method: 'feed',
+                name: "Your Page Title",
+                link: "{{ Request::fullUrl() }}",
+                picture: "https://stackexchange.com/users/flair/557969.png",
+                caption: "Some description here"
+            }, function( response ) {
+                // do nothing
+            } );
+
+        }
+
+        // add click event to link using jQuery
+        $(document).ready(function(){
+            $('.share-fb-btn').on( 'click', fb_share );
+        });
+    </script>
+
+
 @stop
 
 @section('content')
