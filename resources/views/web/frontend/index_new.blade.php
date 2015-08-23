@@ -286,7 +286,7 @@
                                 }
                                 else
                                 {
-                                    echo $item->subtitle;
+                                    echo '<p class="p-subtitle">'.$item->subtitle.'</p>';
                                 }
                                 ?>
                             </div>
