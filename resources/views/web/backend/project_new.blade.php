@@ -3,6 +3,10 @@
 @section('jshome')
     {!! $map['js'] !!}
 
+    <!-- elFinder -->
+    <link rel="stylesheet" type="text/css" media="screen" href={{ asset('packages/barryvdh/elfinder/css/elfinder.min.css') }}>
+    <link rel="stylesheet" type="text/css" media="screen" href={{ asset('packages/barryvdh/elfinder/css/theme.css') }}>
+
     <style type="text/css">
         img#img_brand {
             max-width: 100px;
@@ -16,6 +20,60 @@
     <!-- Laravel Javascript Validation -->
     <script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script>
     {!! JsValidator::formRequest('App\Http\Requests\ProjectRequest', '#my-form'); !!}
+
+    <!-- Tiny MCE -->
+    <script src={{ asset('js/lib/tinymce/js/tinymce/tinymce.min.js') }}></script>
+    <script src={{ asset('js/lib/tinymce/js/tinymce/themes/modern/theme.min.js') }}></script>
+
+    <!-- elFinder -->
+    <script type="text/javascript" src={{ asset('packages/barryvdh/elfinder/js/elfinder.min.js') }}></script>
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+
+            <!-- Tiny MCE -->
+            tinymce.init({
+                selector: "textarea#subtitle",
+                theme: "modern",
+                //width: 600,
+                height: 150,
+                file_browser_callback : elFinderBrowser,
+                plugins: [
+                    "advlist autolink link lists charmap print preview hr anchor pagebreak spellchecker",
+                    "searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime nonbreaking",
+                    "save table contextmenu directionality template paste textcolor"
+                ],
+                content_css: "css/content.css",
+                toolbar: "undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | print preview media fullpage | forecolor backcolor emoticons",
+                style_formats: [
+                    {title: 'Bold text', inline: 'b'},
+                    {title: 'Red text', inline: 'span', styles: {color: '#ff0000'}},
+                    {title: 'Red header', block: 'h1', styles: {color: '#ff0000'}},
+                    {title: 'Example 1', inline: 'span', classes: 'example1'},
+                    {title: 'Example 2', inline: 'span', classes: 'example2'},
+                    {title: 'Table styles'},
+                    {title: 'Table row 1', selector: 'tr', classes: 'tablerow1'}
+                ]
+            });
+
+            <!-- elFinder -->
+            function elFinderBrowser (field_name, url, type, win) {
+                tinymce.activeEditor.windowManager.open({
+                    file: '<?= route('elfinder.tinymce4') ?>',// use an absolute path!
+                    title: 'AllOfHome\'s Files',
+                    width: 900,
+                    height: 450,
+                    resizable: 'yes'
+                }, {
+                    setUrl: function (url) {
+                        win.document.getElementById(field_name).value = url;
+                    }
+                });
+                return false;
+            }
+
+        });
+    </script>
 
     <script type="text/javascript">
         $(document).ready(function(){
