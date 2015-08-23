@@ -74,6 +74,8 @@
                 <img data-src="{{ asset('images/logo/facebook.png') }}" alt="Facebook" />
             </a>
 
+            {{ Request::url() }}
+
             <!-- Google+ -->
             <a href="https://plus.google.com/share?url={{ Request::fullUrl() }}" target="_blank">
                 <img data-src="{{ asset('images/logo/google.png') }}" alt="Google" />

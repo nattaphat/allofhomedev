@@ -57,7 +57,7 @@
 
             FB.ui({
                 method: 'feed',
-                link: '{{ Request::getBaseUrl() }}',
+                link: '{{ Request::url() }}',
                 caption: 'An example caption'
             }, function(response){
 
