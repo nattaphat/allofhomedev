@@ -243,7 +243,7 @@
             <p class="text">ฝากกด like และ share เพื่อเป็นกำลังใจเจ้าของกระทู้ด้วยนะคะ</p>
         </div>
         <div class="comment-fb">
-            <div class="fb-comments" data-href="https://www.facebook.com/allofhome" data-width="873"
+            <div class="fb-comments" data-href="{{ Request::fullUrl() }}" data-width="873"
                  data-numposts="10" data-order-by="reverse_time"></div>
         </div>
     </div>
