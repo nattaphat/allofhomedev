@@ -44,15 +44,24 @@
     <script type="text/javascript">
         function fb_share() {
             // facebook share dialog
-            FB.ui( {
+            {{--FB.ui( {--}}
+                {{--method: 'feed',--}}
+                {{--name: "Your Page Title",--}}
+                {{--link: "{{ Request::fullUrl() }}",--}}
+                {{--picture: "https://stackexchange.com/users/flair/557969.png",--}}
+                {{--caption: "Some description here"--}}
+            {{--}, function( response ) {--}}
+                {{--// do nothing--}}
+            {{--} );--}}
+
+
+            FB.ui({
                 method: 'feed',
-                name: "Your Page Title",
-                link: "{{ Request::fullUrl() }}",
-                picture: "https://stackexchange.com/users/flair/557969.png",
-                caption: "Some description here"
-            }, function( response ) {
-                // do nothing
-            } );
+                link: '{{ Request::fullUrl() }}',
+                caption: 'An example caption'
+            }, function(response){
+
+            });
 
         }
 
