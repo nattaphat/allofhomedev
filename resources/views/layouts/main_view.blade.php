@@ -24,10 +24,25 @@
 
     <meta property="og:url"                content="{{ Request::fullUrl() }}" />
     <meta property="og:type"               content="article" />
-    <meta property="og:title"              content="When Great Minds Don’t Think Alike" />
-    <meta property="og:description"        content="How much does culture influence creative thinking?" />
-    <meta property="og:image"              content="http://static01.nyt.com/images/2015/02/19/arts/international/19iht-btnumbers19A/19iht-btnumbers19A-facebookJumbo-v2.jpg" />
-
+    <meta property="og:title"              content="
+    <?php
+        if(isset($catConstruct))
+            echo $catConstruct->title;
+        elseif(isset($catArticle))
+            echo $catArticle->title;
+        elseif(isset($catIdea))
+            echo $catIdea->title;
+        elseif(isset($catHome))
+            echo $catHome->title;
+    ?>
+    " />
+    <meta property="og:description"        content="All Of Home : ทุกเรื่องบ้าน" />
+    <meta property="og:image"              content="<?php
+        if(isset($brand))
+            echo \App\Models\Brand::getPathLogo($brand->id);
+        elseif(isset($pic) and count($pic) > 0)
+            echo $pic[0]->file_path;
+    ?>" />
 </head>
 
 <body>
