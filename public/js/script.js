@@ -67,18 +67,6 @@ $( document ).ready(function() {
             $_url = $('#search_url').val();
 
             $.redirect($_url, { _token: $_token, _word: $_word});
-
-            //$.post(
-            //    $_url,
-            //    {
-            //        _token: $_token,
-            //        word : $_word
-            //    }
-            //).done(function( data )
-            //{
-            //    debugger;
-            //    console.log(data);
-            //});
         }
     });
 
