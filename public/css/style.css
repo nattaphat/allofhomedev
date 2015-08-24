@@ -453,7 +453,7 @@ nav ul li:nth-child(6), nav ul li:nth-child(6) ul li {
 }
 .search .enter-text{
 	border:1px solid #f2f2f2;
-	color:#cdcdcd;
+	/*color:#cdcdcd;*/
 	font-family: 'psl_kittithada_proregular';
 	font-size:34px;
 	width:1004px;

@@ -254,8 +254,14 @@ else
 
         <!-- ค้นหาทั้งหมดในเว็บ -->
         <div class="search">
-            <input type="text" value="คำที่ต้องการค้นหา" class="enter-text" />
-            <input type="submit" value="" class="btn-search" />
+            {!! Form::text('txt_search', null, ['placeholder' => 'คำที่ต้องการค้นหา',
+            'class' => 'enter-text',
+            'id' => 'txt_search']) !!}
+            <input id="btn_search" type="button" value="" class="btn-search" />
+
+            {!! Form::hidden('search_token', csrf_token(), ['id' => 'search_token']) !!}
+            {!! Form::hidden('search_url', url("search_list"), ['id' => 'search_url']) !!}
+
         </div>
 
         <!-- Box Left -->
@@ -571,11 +577,14 @@ else
 <!-- Youtube API -->
 <script src="https://apis.google.com/js/platform.js"></script>
 
-<!--Custom scripts for allofhome -->
-<script src={{ asset('js/script.js') }}></script>
-
 <!--Dotdotdot -->
 <script src={{ asset('js/jquery.dotdotdot.min.js') }}></script>
+
+<!-- Jquery Redirect -->
+<script src={{ asset('js/lib/jquery.redirect/jquery.redirect.js') }}></script>
+
+<!--Custom scripts for allofhome -->
+<script src={{ asset('js/script.js') }}></script>
 
 @yield('jsbody')
 

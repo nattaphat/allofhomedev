@@ -1096,5 +1096,25 @@ class AllofhomeController extends Controller {
             ->with('cat', $cat)
             ->with('brand_name', $brand->brand_name);
     }
+
+    public function search_list()
+    {
+        $req = Request::all();
+        return $req['_word'];
+
+
+//        $tag_list = Tag::where('tag_sub_id', '=', $id)
+//            ->where(function ($query) {
+//                $query->where('tagable_type', '=', 'App\\Models\\CatHome')
+//                    ->orWhere('tagable_type', '=', 'App\\Models\\CatConstruct')
+//                    ->orWhere('tagable_type', '=', 'App\\Models\\CatArticle')
+//                    ->orWhere('tagable_type', '=', 'App\\Models\\CatIdea');
+//            })
+//            ->orderBy('id', 'desc')
+//            ->paginate(15);
+//
+//        return view('web.frontend.tag_list')
+//            ->with('tag_list', $tag_list);
+    }
 }
 

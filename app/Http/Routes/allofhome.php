@@ -1504,3 +1504,10 @@ Route::get('project_list/{id}', [
 //    'before' => 'frontend_auth',
     'uses' => 'AllofhomeController@project_list'
 ]);
+
+/*-------------------------------- Click Search all in website -------------------------------*/
+Route::post('search_list', [
+    'as' => 'search_list',
+//    'before' => 'frontend_auth',
+    'uses' => 'AllofhomeController@search_list'
+]);

@@ -230,11 +230,19 @@ else
             </div>
         </div>
         @endif
-                <!-- ค้นหาทั้งหมดในเว็บ -->
+
+        <!-- ค้นหาทั้งหมดในเว็บ -->
         <div class="search">
-            <input type="text" value="คำที่ต้องการค้นหา" class="enter-text" />
-            <input type="submit" value="" class="btn-search" />
+            {!! Form::text('txt_search', null, ['placeholder' => 'คำที่ต้องการค้นหา',
+            'class' => 'enter-text',
+            'id' => 'txt_search']) !!}
+            <input id="btn_search" type="button" value="" class="btn-search" />
+
+            {!! Form::hidden('search_token', csrf_token(), ['id' => 'search_token']) !!}
+            {!! Form::hidden('search_url', url("search_list"), ['id' => 'search_url']) !!}
+
         </div>
+
         <!-- Box Left -->
         <div class="boxleft">
             @if($bannerC != null && count($bannerC) > 0)
@@ -371,6 +379,9 @@ else
 
 <!-- Lazy Loading -->
 <script src={{ asset('js/lib/lazyloadxt/dist/jquery.lazyloadxt.extra.js') }}></script>
+
+<!-- Jquery Redirect -->
+<script src={{ asset('js/lib/jquery.redirect/jquery.redirect.js') }}></script>
 
 <!--Custom scripts for allofhome -->
 <script src={{ asset('js/script.js') }}></script>
