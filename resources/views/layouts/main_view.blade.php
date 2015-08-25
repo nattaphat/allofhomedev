@@ -22,6 +22,51 @@
 
     @yield('jshome')
 
+    <?php
+    $pic_share = "";
+    if(isset($brand))
+    {
+        $width = Image::make(\App\Models\Brand::getPathLogo($brand->id))->width();
+        $height = Image::make(\App\Models\Brand::getPathLogo($brand->id))->height();
+
+        if($width > 200 && $height > 200)
+        {
+            $pic_share = \App\Models\Brand::getPathLogo($brand->id);
+        }
+        else
+        {
+            if(isset($pic) and count($pic) > 0)
+            {
+                foreach($pic as $p)
+                {
+                    $width = Image::make($p->file_path)->width();
+                    $height = Image::make($p->file_path)->height();
+
+                    if($width > 200 && $height > 200)
+                    {
+                        $pic_share = $p->file_path;
+                        break;
+                    }
+                }
+            }
+        }
+    }
+    elseif(isset($pic) and count($pic) > 0)
+    {
+        foreach($pic as $p)
+        {
+            $width = Image::make($p->file_path)->width();
+            $height = Image::make($p->file_path)->height();
+
+            if($width > 200 && $height > 200)
+            {
+                $pic_share = $p->file_path;
+                break;
+            }
+        }
+    }
+    ?>
+
     <meta property="og:url"                content="{{ Request::fullUrl() }}" />
     <meta property="og:type"               content="article" />
     <meta property="og:title"              content="
@@ -37,12 +82,10 @@
     ?>
     " />
     <meta property="og:description"        content="All Of Home : ทุกเรื่องบ้าน" />
-    <meta property="og:image"              content="<?php
-        if(isset($brand))
-            echo str_replace("103.4.217.227", "www.allofhome.com", \App\Models\Brand::getPathLogo($brand->id));
-        elseif(isset($pic) and count($pic) > 0)
-            echo str_replace("103.4.217.227", "www.allofhome.com", $pic[0]->file_path);
-    ?>" />
+    @if(strlen($pic_share) > 0)
+    <meta property="og:image"              content="{{ $pic_share }}" />
+    @endif
+
 </head>
 
 <body>
