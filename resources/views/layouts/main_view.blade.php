@@ -85,6 +85,8 @@
     @if(strlen($pic_share) > 0)
     <meta property="og:image"              content="{{ $pic_share }}" />
     @endif
+    <meta property="og:url"                content="{{ Request::fullUrl() }}" />
+    <meta property="fb:app_id"                content="218142118246842" />
 
 </head>
 
