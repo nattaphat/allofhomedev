@@ -620,5 +620,22 @@ else
 
 @yield('jsbody')
 
+<script type="text/javascript">
+
+    $( document ).ready(function() {
+        $.post(
+                'https://graph.facebook.com',
+                {
+                    id: '{{ Request::fullUrl() }}',
+                    scrape: true
+                },
+                function(response){
+                    console.log(response);
+                }
+        );
+    });
+
+</script>
+
 </body>
 </html>
