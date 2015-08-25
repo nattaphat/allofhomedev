@@ -24,34 +24,7 @@
 
     <?php
     $pic_share = "";
-    if(isset($brand))
-    {
-        $width = Image::make(\App\Models\Brand::getPathLogo($brand->id))->width();
-        $height = Image::make(\App\Models\Brand::getPathLogo($brand->id))->height();
-
-        if($width > 200 && $height > 200)
-        {
-            $pic_share = \App\Models\Brand::getPathLogo($brand->id);
-        }
-        else
-        {
-            if(isset($pic) and count($pic) > 0)
-            {
-                foreach($pic as $p)
-                {
-                    $width = Image::make($p->file_path)->width();
-                    $height = Image::make($p->file_path)->height();
-
-                    if($width > 200 && $height > 200)
-                    {
-                        $pic_share = $p->file_path;
-                        break;
-                    }
-                }
-            }
-        }
-    }
-    elseif(isset($pic) and count($pic) > 0)
+    if(isset($pic) and count($pic) > 0)
     {
         foreach($pic as $p)
         {
