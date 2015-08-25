@@ -39,9 +39,9 @@
     <meta property="og:description"        content="All Of Home : ทุกเรื่องบ้าน" />
     <meta property="og:image"              content="<?php
         if(isset($brand))
-            echo \App\Models\Brand::getPathLogo($brand->id);
+            echo str_replace("103.4.217.227", "www.allofhome.com", \App\Models\Brand::getPathLogo($brand->id));
         elseif(isset($pic) and count($pic) > 0)
-            echo $pic[0]->file_path;
+            echo str_replace("103.4.217.227", "www.allofhome.com", $pic[0]->file_path);
     ?>" />
 </head>
 

@@ -1,12 +1,22 @@
 <?php namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Nicolaslopezj\Searchable\SearchableTrait;
 
 class CatConstruct extends Model {
+
+    use SearchableTrait;
 
     protected $table = 'cat_construct';
     protected $primaryKey = 'id';
     public $timestamps = true;
+
+    protected $searchable = [
+        'columns' => [
+            'title' => 10,
+            'subtitle' => 10
+        ],
+    ];
 
     public static function getFullPrjAddress($cat_construct_id)
     {
