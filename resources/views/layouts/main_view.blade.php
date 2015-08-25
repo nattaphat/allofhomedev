@@ -67,7 +67,6 @@
     }
     ?>
 
-    <meta property="og:url"                content="{{ Request::fullUrl() }}" />
     <meta property="og:type"               content="article" />
     <meta property="og:title"              content="
     <?php
