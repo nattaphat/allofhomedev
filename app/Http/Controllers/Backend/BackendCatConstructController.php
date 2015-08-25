@@ -97,10 +97,10 @@ class BackendCatConstructController extends Controller {
             $catConstruct->provid = $input['provid'];
         }
 
-        if(Input::has('amphid'))
+        if(Input::has('amphid') && intval($input['amphid']) != 0)
             $catConstruct->amphid = $input['amphid'];
 
-        if(Input::has('tambid'))
+        if(Input::has('tambid') && intval($input['tambid']) != 0)
             $catConstruct->tambid = $input['tambid'];
 
         if(Input::has('add_street'))
@@ -309,12 +309,14 @@ class BackendCatConstructController extends Controller {
             $catConstruct->provid = null;
         }
 
-        if(Input::has('amphid') && $input['amphid'] != "-- กรุณาเลือก --")
+        if(Input::has('amphid') && intval($input['amphid']) != 0
+            && $input['amphid'] != "-- กรุณาเลือก --")
             $catConstruct->amphid = $input['amphid'];
         else
             $catConstruct->amphid = null;
 
-        if(Input::has('tambid') && $input['tambid'] != "-- กรุณาเลือก --")
+        if(Input::has('tambid') && intval($input['tambid']) != 0
+            && $input['tambid'] != "-- กรุณาเลือก --")
             $catConstruct->tambid = $input['tambid'];
         else
             $catConstruct->tambid = null;
