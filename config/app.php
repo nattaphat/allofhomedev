@@ -152,7 +152,8 @@ return [
         'Appitventures\Phpgmaps\PhpgmapsServiceProvider',
         'Barryvdh\Elfinder\ElfinderServiceProvider',
         'Proengsoft\JsValidation\JsValidationServiceProvider',
-        'Intervention\Image\ImageServiceProvider'
+        'Intervention\Image\ImageServiceProvider',
+        'Sofa\Eloquence\ServiceProvider'
 	],
 
 	/*

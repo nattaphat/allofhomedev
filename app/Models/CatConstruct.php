@@ -1,21 +1,28 @@
 <?php namespace App\Models;
 
+use Sofa\Eloquence\Eloquence;
 use Illuminate\Database\Eloquent\Model;
-use Nicolaslopezj\Searchable\SearchableTrait;
 
 class CatConstruct extends Model {
 
-    use SearchableTrait;
+    use Eloquence;
 
     protected $table = 'cat_construct';
     protected $primaryKey = 'id';
     public $timestamps = true;
 
-    protected $searchable = [
-        'columns' => [
-            'title' => 10,
-            'subtitle' => 10
-        ],
+    protected $searchableColumns = [
+        'title' => 10,
+        'subtitle' => 9,
+        'service_day_time' => 1,
+        'website' => 1,
+        'sell_price_detail' => 1,
+        'brand.brand_name' => 8,
+        'brand.telephone' => 1,
+        'brand.email' => 1,
+        'brand.facebook' => 1,
+        'brand.line' => 1,
+        'brand.fax' => 1
     ];
 
     public static function getFullPrjAddress($cat_construct_id)
@@ -90,6 +97,11 @@ class CatConstruct extends Model {
     public function tagSub()
     {
         return $this->belongsToMany('App\Models\TagSub', 'tag', 'cat_construct_id', 'tag_sub_id' );
+    }
+
+    public function brand()
+    {
+        return $this->belongsTo('App\Models\Brand');
     }
 
 }

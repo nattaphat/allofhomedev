@@ -5,6 +5,7 @@ use App\Models\CatArticle;
 use App\Models\CatConstruct;
 use App\Models\CatHome;
 use App\Models\CatIdea;
+use App\Models\Picture;
 use App\Models\Tag;
 use App\Models\geoRegion;
 use Illuminate\Pagination\LengthAwarePaginator;
@@ -1100,21 +1101,52 @@ class AllofhomeController extends Controller {
     public function search_list()
     {
         $req = Request::all();
-        return $req['_word'];
+
+        // #### Cat Construct #### //
+        $searchCatConstruct = CatConstruct::search($req['_word'])
+            ->where('status','=','1')
+            ->whereRaw('(for_type like \'%"4"%\' or for_type like \'%"5"%\' or for_type like \'%"7"%\')')
+            ->orderBy('id', 'desc')->get();
+
+        $searchPictureCatConstruct = Picture::search($req['_word'])
+            ->where('pictureable_type','=','App\\Models\\CatConstruct')
+            ->whereRaw('pictureable_id in (select id from cat_construct where status = 1
+                and (for_type like \'%"4"%\' or for_type like \'%"5"%\' or for_type like \'%"7"%\'))')
+            ->orderBy('pictureable_id', 'desc')->get(['pictureable_id']);
 
 
-//        $tag_list = Tag::where('tag_sub_id', '=', $id)
-//            ->where(function ($query) {
-//                $query->where('tagable_type', '=', 'App\\Models\\CatHome')
-//                    ->orWhere('tagable_type', '=', 'App\\Models\\CatConstruct')
-//                    ->orWhere('tagable_type', '=', 'App\\Models\\CatArticle')
-//                    ->orWhere('tagable_type', '=', 'App\\Models\\CatIdea');
-//            })
-//            ->orderBy('id', 'desc')
-//            ->paginate(15);
-//
-//        return view('web.frontend.tag_list')
-//            ->with('tag_list', $tag_list);
+        // #### Cat Article #### //
+        $searchCatArticle = CatArticle::search($req['_word'])
+            ->where('visible','=','true')
+            ->orderBy('id', 'desc')->get();
+
+        $searchPictureCatArticle = Picture::search($req['_word'])
+            ->where('pictureable_type','=','App\\Models\\CatArticle')
+            ->whereRaw('pictureable_id in (select id from cat_article where visible = true)')
+            ->orderBy('pictureable_id', 'desc')->get(['pictureable_id']);
+
+
+        // #### Cat Idea #### //
+        $searchCatIdea = CatIdea::search($req['_word'])
+            ->where('visible','=','true')
+            ->orderBy('id', 'desc')->get();
+
+        $searchPictureCatIdea = Picture::search($req['_word'])
+            ->where('pictureable_type','=','App\\Models\\CatIdea')
+            ->whereRaw('pictureable_id in (select id from cat_idea where visible = true)')
+            ->orderBy('pictureable_id', 'desc')->get(['pictureable_id']);
+
+        // #### Return #### //
+        return View::make('web.frontend.search_list', [
+            'searchWord' => $req['_word'],
+            'searchCatConstruct' => $searchCatConstruct,
+            'searchPictureCatConstruct' => $searchPictureCatConstruct,
+            'searchCatArticle' => $searchCatArticle,
+            'searchPictureCatArticle' => $searchPictureCatArticle,
+            'searchCatIdea' => $searchCatIdea,
+            'searchPictureCatIdea' => $searchPictureCatIdea
+        ]);
+
     }
 }
 

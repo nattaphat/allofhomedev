@@ -233,7 +233,7 @@ else
 
         <!-- ค้นหาทั้งหมดในเว็บ -->
         <div class="search">
-            {!! Form::text('txt_search', null, ['placeholder' => 'คำที่ต้องการค้นหา',
+            {!! Form::text('txt_search', (isset($searchWord) ? $searchWord : null), ['placeholder' => 'คำที่ต้องการค้นหา',
             'class' => 'enter-text',
             'id' => 'txt_search']) !!}
             <input id="btn_search" type="button" value="" class="btn-search" />

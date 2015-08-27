@@ -1,12 +1,21 @@
 <?php namespace App\Models;
 
+use Sofa\Eloquence\Eloquence;
 use Illuminate\Database\Eloquent\Model;
 
 class CatIdea extends Model {
 
+    use Eloquence;
+
     protected $table = 'cat_idea';
     protected $primaryKey = 'id';
     public $timestamps = true;
+
+    protected $searchableColumns = [
+        'title' => 10,
+        'subtitle' => 9,
+        'other_detail' => 8
+    ];
 
     protected $fillable = ['user_id','title', 'subtitle', 'other_detail', 'video_url'];
 

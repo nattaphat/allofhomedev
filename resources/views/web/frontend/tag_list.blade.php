@@ -101,7 +101,22 @@
                                 <div class="text">
                                     <h3><a href="{{ $urlTo.$catTag[0]->id }}">{{ $catTag[0]->title }}</a></h3>
                                     <p class="update">วันที่ลงประกาศ  {{ \App\Models\AllFunction::getDateTimeThai($catTag[0]->created_at) }}</p>
-                                    <p class="p-subtitle">{{ $catTag[0]->subtitle }}</p>
+                                    <?php
+                                    $subtitle = str_replace("<p class=\"p1\">","<p>",$catTag[0]->subtitle);
+                                    if (preg_match_all('~<p>(?P<paragraphs>.*?)</p>~is', $subtitle, $matches))
+                                    {
+                                        $str = "";
+                                        for($i=0; $i< count($matches['paragraphs']); $i++)
+                                        {
+                                            $str = $str."<br>".$matches['paragraphs'][$i];
+                                        }
+                                        echo '<p class="p-subtitle">'.preg_replace('/^(?:<br\s*\/?>\s*)+/', '', $str).'</p>';
+                                    }
+                                    else
+                                    {
+                                        echo '<p class="p-subtitle">'.$catTag[0]->subtitle.'</p>';
+                                    }
+                                    ?>
                                 </div>
                                 <div class="clear"></div>
                             </li>

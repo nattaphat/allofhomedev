@@ -1,12 +1,24 @@
 <?php namespace App\Models;
 
+use Sofa\Eloquence\Eloquence;
 use Illuminate\Database\Eloquent\Model;
 
 class Brand extends Model {
 
+    use Eloquence;
+
     protected $table = 'brand';
     protected $primaryKey = 'id';
     public $timestamps = true;
+
+    protected $searchableColumns = [
+        'brand_name' => 10,
+        'telephone' => 1,
+        'email' => 1,
+        'facebook' => 1,
+        'line' => 1,
+        'fax' => 1
+    ];
 
     public static function getBrandName($id)
     {
@@ -23,6 +35,11 @@ class Brand extends Model {
     public function catHome()
     {
         return $this->hasMany('App\Models\CatHome');
+    }
+
+    public function catConstruct()
+    {
+        return $this->hasMany('App\Models\CatConstruct');
     }
 
 }
