@@ -668,7 +668,7 @@
     </div>
     <div class="buttonfb">
         <div>
-            <div class="fb-like" data-href="https://www.facebook.com/allofhome" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></div>
+            <div class="fb-like" data-href="{{ Request::fullUrl() }}" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></div>
         </div>
         <p class="text">ฝากกด like และ share เพื่อเป็นกำลังใจเจ้าของกระทู้ด้วยนะคะ</p>
     </div>
