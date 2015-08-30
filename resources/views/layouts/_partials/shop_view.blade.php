@@ -215,15 +215,12 @@
 
             </ul>
         </div>
+
         <div class="right">
-            <div class="rating">
-                <span><img data-src="{{ asset('images/blulet/bstar-y.png') }}" alt="" /></span>
-                <span><img data-src="{{ asset('images/blulet/bstar-y.png') }}" alt="" /></span>
-                <span><img data-src="{{ asset('images/blulet/bstar-y.png') }}" alt="" /></span>
-                <span><img data-src="{{ asset('images/blulet/bstar-y.png') }}" alt="" /></span>
-                <span><img data-src="{{ asset('images/blulet/bstar-g.png') }}" alt="" /></span>
-            </div>
+            <div id="starRating" style="text-align: center;"></div>
             <p class="text">คะแนนกำหนดจากให้ดาวจากผู้ใช้งานจริง</p>
+            <p class="text"><a id="button_rating" href="#">ให้คะแนนร้านค้า</a></p>
+
             <div class="scoll">
                 <h3>โครงสร้างคะแนน</h3>
                 <ul>
@@ -255,6 +252,49 @@
                 </ul>
             </div>
         </div>
+
+        {{--<div class="right">--}}
+            {{--<div id="starRating"></div>--}}
+            {{--<div class="rating">--}}
+                {{--<span><img data-src="{{ asset('images/blulet/bstar-y.png') }}" alt="" /></span>--}}
+                {{--<span><img data-src="{{ asset('images/blulet/bstar-y.png') }}" alt="" /></span>--}}
+                {{--<span><img data-src="{{ asset('images/blulet/bstar-y.png') }}" alt="" /></span>--}}
+                {{--<span><img data-src="{{ asset('images/blulet/bstar-y.png') }}" alt="" /></span>--}}
+                {{--<span><img data-src="{{ asset('images/blulet/bstar-g.png') }}" alt="" /></span>--}}
+            {{--</div>--}}
+            {{--<p class="text">คะแนนกำหนดจากให้ดาวจากผู้ใช้งานจริง</p>--}}
+            {{--<div class="scoll">--}}
+                {{--<h3>โครงสร้างคะแนน</h3>--}}
+                {{--<ul>--}}
+                    {{--<li>--}}
+                        {{--<span><img data-src="{{ asset('images/blulet/star.png') }}" alt="" /></span>--}}
+                        {{--<span><img data-src="{{ asset('images/blulet/star.png') }}" alt="" /></span>--}}
+                        {{--<span><img data-src="{{ asset('images/blulet/star.png') }}" alt="" /></span>--}}
+                        {{--<span><img data-src="{{ asset('images/blulet/star.png') }}" alt="" /></span>--}}
+                        {{--<span><img data-src="{{ asset('images/blulet/star.png') }}" alt="" /></span>--}}
+                    {{--</li>--}}
+                    {{--<li>--}}
+                        {{--<span><img data-src="{{ asset('images/blulet/star.png') }}" alt="" /></span>--}}
+                        {{--<span><img data-src="{{ asset('images/blulet/star.png') }}" alt="" /></span>--}}
+                        {{--<span><img data-src="{{ asset('images/blulet/star.png') }}" alt="" /></span>--}}
+                        {{--<span><img data-src="{{ asset('images/blulet/star.png') }}" alt="" /></span>--}}
+                    {{--</li>--}}
+                    {{--<li>--}}
+                        {{--<span><img data-src="{{ asset('images/blulet/star.png') }}" alt="" /></span>--}}
+                        {{--<span><img data-src="{{ asset('images/blulet/star.png') }}" alt="" /></span>--}}
+                        {{--<span><img data-src="{{ asset('images/blulet/star.png') }}" alt="" /></span>--}}
+                    {{--</li>--}}
+                    {{--<li>--}}
+                        {{--<span><img data-src="{{ asset('images/blulet/star.png') }}" alt="" /></span>--}}
+                        {{--<span><img data-src="{{ asset('images/blulet/star.png') }}" alt="" /></span>--}}
+                    {{--</li>--}}
+                    {{--<li>--}}
+                        {{--<span><img data-src="{{ asset('images/blulet/star.png') }}" alt="" /></span>--}}
+                    {{--</li>--}}
+                {{--</ul>--}}
+            {{--</div>--}}
+        {{--</div>--}}
+
         <div class="clear"></div>
 
     </div>
@@ -317,3 +357,19 @@
 </div>
 
 @include('layouts._partials.brand_part')
+
+<div id="modal2">
+    <div class="header">
+        <h3>ให้คะแนนร้านค้า</h3>
+    </div>
+    <form action="">
+        <div class="txt">
+            <label for="assign_rate">คะแนนความคิดเห็น :</label>
+            <div id="assign_rate" class='starrr'></div>
+        </div>
+        <div class="btn clearfix">
+            <a id="btn_ok_assign_rate" class="close" href="#">ตกลง</a>
+            <a class="close cancel" href="#">ยกเลิก</a>
+        </div>
+    </form>
+</div>

@@ -8,6 +8,9 @@ Laravel is accessible, yet powerful, providing powerful tools needed for large, 
 
 ```
 php artisan make:migration create_geo_region_table
+
+php artisan make:migration create_cat_construct_rating_table --create=cat_construct_rating
+php artisan make:migration alter_cat_construct_rating_table --table=cat_construct_rating
 ```
 
 ## Run migration file

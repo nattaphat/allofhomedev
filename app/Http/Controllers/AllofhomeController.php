@@ -3,6 +3,7 @@
 use App\Models\Brand;
 use App\Models\CatArticle;
 use App\Models\CatConstruct;
+use App\Models\CatConstructRating;
 use App\Models\CatHome;
 use App\Models\CatIdea;
 use App\Models\Picture;
@@ -1148,5 +1149,28 @@ class AllofhomeController extends Controller {
         ]);
 
     }
+
+    public function cat_construct_rating()
+    {
+        $req = Request::all();
+
+        $cat_construct_id = $req['id'];
+        $cat_construct_score = $req['score'];
+
+        $catConstructRating = new CatConstructRating();
+        $catConstructRating->cat_construct_id = $cat_construct_id;
+        $catConstructRating->rating = $cat_construct_score;
+        $catConstructRating->save();
+
+        $sum = CatConstructRating::where('cat_construct_id','=', $cat_construct_id)
+            ->select(DB::raw('round((sum(rating) * 1.00 / count(cat_construct_id)), 2) as avg_rating'))->get();
+
+        $catConstruct = CatConstruct::find($cat_construct_id);
+        $catConstruct->avg_rating = $sum[0]->avg_rating;
+        $catConstruct->update();
+
+        return ($sum[0]->avg_rating);
+    }
+
 }
 

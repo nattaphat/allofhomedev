@@ -1511,3 +1511,10 @@ Route::post('search_list', [
 //    'before' => 'frontend_auth',
     'uses' => 'AllofhomeController@search_list'
 ]);
+
+/*-------------------------------- CatConstruct Rating -------------------------------*/
+Route::post('cat_construct_rating', [
+    'as' => 'cat_construct_rating',
+//    'before' => 'frontend_auth',
+    'uses' => 'AllofhomeController@cat_construct_rating'
+]);

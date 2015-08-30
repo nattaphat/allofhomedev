@@ -17,6 +17,12 @@
     <!-- Lazy Loading -->
     <link type="text/css" href="{{ asset('js/lib/lazyloadxt/dist/jquery.lazyloadxt.fadein.css') }}" rel="stylesheet">
 
+    <!-- Starrr -->
+    <link type="text/css" href="{{ asset('js/lib/starrr/starrr.min.css') }}" rel="stylesheet">
+
+    <!-- Star Rating -->
+    <link type="text/css" href="{{ asset('js/lib/raty/lib/jquery.raty.css') }}" rel="stylesheet">
+
     <!-- Custom -->
     <link href="{{ asset('css/style.css') }}" rel="stylesheet" type="text/css" />
 
@@ -614,6 +620,15 @@ else
 
 <!-- Jquery Redirect -->
 <script src={{ asset('js/lib/jquery.redirect/jquery.redirect.js') }}></script>
+
+<!-- Starrr -->
+<script src={{ asset('js/lib/starrr/starrr.min.js') }}></script>
+
+<!-- Star Rating -->
+<script src={{ asset('js/lib/raty/lib/jquery.raty.js') }}></script>
+
+<!-- easyModal -->
+<script src={{ asset('js/lib/easyModal/jquery.easyModal.js') }}></script>
 
 <!--Custom scripts for allofhome -->
 <script src={{ asset('js/script.js') }}></script>

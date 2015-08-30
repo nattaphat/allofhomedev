@@ -104,4 +104,9 @@ class CatConstruct extends Model {
         return $this->belongsTo('App\Models\Brand');
     }
 
+    public function catConstructRating()
+    {
+        return $this->hasMany('App\Models\CatConstructRating');
+    }
+
 }

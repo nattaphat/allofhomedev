@@ -1065,12 +1065,12 @@ nav ul li:nth-child(6), nav ul li:nth-child(6) ul li {
 	float:left;
 	width:255px;
 	margin-left:30px;
-	padding:30px 0 0;
+	padding:10px 0 0;
 }
 .boxVdoReview .contact-detail .right .rating{ margin-left:5px; }
 .boxVdoReview .contact-detail .right .rating span {  display:inline-block; margin-right:10px;  }
 .boxVdoReview .contact-detail .right .text{ font-size:20px; text-align:center;}
-.boxVdoReview .contact-detail .right .scoll{ margin:20px 0 0; }
+.boxVdoReview .contact-detail .right .scoll{ margin:5px 0 0 25px; }
 .boxVdoReview .contact-detail .right .scoll h3, .boxVdoReview .contact-detail .right .branch h3{
 	color:#5cc5c1;
 	font-size:32px;
@@ -1394,4 +1394,9 @@ nav ul li:nth-child(6), nav ul li:nth-child(6) ul li {
     overflow: hidden;
     text-indent: 30px;
     color: #646464;
+}
+
+div#starRating img{
+    width: 30px;
+    height: 30px;
 }
