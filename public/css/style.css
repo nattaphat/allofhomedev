@@ -668,7 +668,7 @@ nav ul li:nth-child(6), nav ul li:nth-child(6) ul li {
     padding-left: 0px;
     text-align: center;
 }
-.boxreview .right .rating{ margin:90px 0 0 0;}
+.boxreview .right .rating{ margin:90px 0 0 30px;}
 .boxreview .right .call, .boxContactProject .call{
 	background:url(../images/blulet/tel.png) no-repeat left center;
 	height:54px;

@@ -17,6 +17,9 @@
     <!-- Lazy Loading -->
     <link type="text/css" href="{{ asset('js/lib/lazyloadxt/dist/jquery.lazyloadxt.fadein.css') }}" rel="stylesheet">
 
+    <!-- Star Rating -->
+    <link type="text/css" href="{{ asset('js/lib/raty/lib/jquery.raty.css') }}" rel="stylesheet">
+
     <!-- Custom -->
     <link href="{{ asset('css/style.css') }}" rel="stylesheet" type="text/css" />
 
@@ -574,6 +577,9 @@
 
 <!-- Jquery Redirect -->
 <script src={{ asset('js/lib/jquery.redirect/jquery.redirect.js') }}></script>
+
+<!-- Star Rating -->
+<script src={{ asset('js/lib/raty/lib/jquery.raty.js') }}></script>
 
 <!--Custom scripts for allofhome -->
 <script src={{ asset('js/script.js') }}></script>

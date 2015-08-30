@@ -114,10 +114,11 @@
 
                         <div class="rating">
                             @if(isset($item->avg_rating) && $item->avg_rating != null && $item->avg_rating != 0)
-                                &nbsp;&nbsp;<span class="label-success"> {{ $item->avg_rating }} คะแนน</span>
-                                <!--<img data-src="images/test/rating.jpg" alt="" />-->
+                                <div class="raty" data-score="{{ $item->avg_rating }}" style="float:left;"></div>
+                                <span class="label-success" style="float:left; margin-left: 10px;   position: relative; top: 3px;"> {{ $item->avg_rating }} คะแนน</span>
+                                <div class="clear"></div>
                             @else
-                                &nbsp;&nbsp;<span class="label-success">ยังไม่มีการให้คะแนน</span>
+                                <span class="label-success">ยังไม่มีการให้คะแนน</span>
                             @endif
                         </div>
                         <div class="call" style="margin: 20px 0 0;">
@@ -224,10 +225,11 @@
 
                         <div class="rating">
                             @if(isset($item->avg_rating) && $item->avg_rating != null && $item->avg_rating != 0)
-                                &nbsp;&nbsp;<span class="label-success"> {{ $item->avg_rating }} คะแนน</span>
-                                <!--<img data-src="images/test/rating.jpg" alt="" />-->
+                                <div class="raty" data-score="{{ $item->avg_rating }}" style="float:left;"></div>
+                                <span class="label-success" style="float:left; margin-left: 10px;   position: relative; top: 3px;"> {{ $item->avg_rating }} คะแนน</span>
+                                <div class="clear"></div>
                             @else
-                                &nbsp;&nbsp;<span class="label-success">ยังไม่มีการให้คะแนน</span>
+                                <span class="label-success">ยังไม่มีการให้คะแนน</span>
                             @endif
                         </div>
                         <div class="call" style="margin: 20px 0 0;">

@@ -30,7 +30,23 @@
 @stop
 
 @section('jsbody')
+    <script type="text/javascript">
+        $(function() {
+            $('div.raty').raty({
+                starHalf     : 'images/star-half.png',
+                starOff      : 'images/star-off.png',
+                starOn       : 'images/star-on.png',
+                half         : true,
+                starType     : 'img',
+                readOnly     : true,
+                space        : false,
+                score: function() {
+                    return $(this).attr('data-score');
+                }
+            });
 
+        });
+    </script>
 @stop
 
 @section('content')
