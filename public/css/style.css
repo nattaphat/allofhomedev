@@ -1070,14 +1070,15 @@ nav ul li:nth-child(6), nav ul li:nth-child(6) ul li {
 .boxVdoReview .contact-detail .right .rating{ margin-left:5px; }
 .boxVdoReview .contact-detail .right .rating span {  display:inline-block; margin-right:10px;  }
 .boxVdoReview .contact-detail .right .text{ font-size:20px; text-align:center;}
-.boxVdoReview .contact-detail .right .scoll{ margin:5px 0 0 25px; }
+.boxVdoReview .contact-detail .right .scoll{ margin:5px 0 0 5px; }
 .boxVdoReview .contact-detail .right .scoll h3, .boxVdoReview .contact-detail .right .branch h3{
 	color:#5cc5c1;
 	font-size:32px;
 	font-weight:normal;
 	margin:0;
+    text-align: center;
 }
-.boxVdoReview .contact-detail .right .scoll ul{ margin-left:5px; }
+.boxVdoReview .contact-detail .right .scoll ul{ margin-left:20px; margin-right:20px; }
 .boxVdoReview .contact-detail .right .scoll ul li span{ display: inline-block; } 
 .boxVdoReview .contact-detail .right .branch{ font-size:20px; margin-top:20px;}
 .boxVdoReview .contact-detail .right .branch ul li{ float:left; width:125px; margin-bottom:5px; }
@@ -1289,6 +1290,7 @@ nav ul li:nth-child(6), nav ul li:nth-child(6) ul li {
     padding-top:30px;
     height:0;
     overflow:hidden;
+    margin-bottom: 20px;
 }
 
 .video-container iframe, .video-container object, .video-container embed {

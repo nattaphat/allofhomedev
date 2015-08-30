@@ -23,6 +23,9 @@
     <!-- Star Rating -->
     <link type="text/css" href="{{ asset('js/lib/raty/lib/jquery.raty.css') }}" rel="stylesheet">
 
+    <!-- Notify Awesome -->
+    <link type="text/css" href="{{ asset('js/lib/notify-awesome/notify.css') }}" rel="stylesheet">
+
     <!-- Custom -->
     <link href="{{ asset('css/style.css') }}" rel="stylesheet" type="text/css" />
 
@@ -629,6 +632,9 @@ else
 
 <!-- easyModal -->
 <script src={{ asset('js/lib/easyModal/jquery.easyModal.js') }}></script>
+
+<!-- Notify Awesome -->
+<script src={{ asset('js/lib/notify-awesome/notify.js') }}></script>
 
 <!--Custom scripts for allofhome -->
 <script src={{ asset('js/script.js') }}></script>

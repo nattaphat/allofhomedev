@@ -1165,11 +1165,45 @@ class AllofhomeController extends Controller {
         $sum = CatConstructRating::where('cat_construct_id','=', $cat_construct_id)
             ->select(DB::raw('round((sum(rating) * 1.00 / count(cat_construct_id)), 2) as avg_rating'))->get();
 
+        $num_score_1 = CatConstructRating::where('cat_construct_id','=', $cat_construct_id)
+            ->where('rating','=','1')
+            ->select(DB::raw('count(cat_construct_id) as num_row'))->get();
+
+        $num_score_2 = CatConstructRating::where('cat_construct_id','=', $cat_construct_id)
+            ->where('rating','=','2')
+            ->select(DB::raw('count(cat_construct_id) as num_row'))->get();
+
+        $num_score_3 = CatConstructRating::where('cat_construct_id','=', $cat_construct_id)
+            ->where('rating','=','3')
+            ->select(DB::raw('count(cat_construct_id) as num_row'))->get();
+
+        $num_score_4 = CatConstructRating::where('cat_construct_id','=', $cat_construct_id)
+            ->where('rating','=','4')
+            ->select(DB::raw('count(cat_construct_id) as num_row'))->get();
+
+        $num_score_5 = CatConstructRating::where('cat_construct_id','=', $cat_construct_id)
+            ->where('rating','=','5')
+            ->select(DB::raw('count(cat_construct_id) as num_row'))->get();
+
         $catConstruct = CatConstruct::find($cat_construct_id);
         $catConstruct->avg_rating = $sum[0]->avg_rating;
+        $catConstruct->num_score_1 = $num_score_1[0]->num_row;
+        $catConstruct->num_score_2 = $num_score_2[0]->num_row;
+        $catConstruct->num_score_3 = $num_score_3[0]->num_row;
+        $catConstruct->num_score_4 = $num_score_4[0]->num_row;
+        $catConstruct->num_score_5 = $num_score_5[0]->num_row;
         $catConstruct->update();
 
-        return ($sum[0]->avg_rating);
+        return (
+            [
+                'avg_score' => $sum[0]->avg_rating,
+                'num_score_5' => $num_score_5[0]->num_row,
+                'num_score_4' => $num_score_4[0]->num_row,
+                'num_score_3' => $num_score_3[0]->num_row,
+                'num_score_2' => $num_score_2[0]->num_row,
+                'num_score_1' => $num_score_1[0]->num_row,
+            ]
+        );
     }
 
 }

@@ -113,6 +113,11 @@
             text-shadow: 0 1px 0 rgba(255,255,255,0.25);
         }
 
+        .notification-text
+        {
+            font-size: 20px;
+        }
+
     </style>
 @stop
 
@@ -160,6 +165,12 @@
             {
                 e.preventDefault();
 
+                if(rate_score == 0)
+                {
+                    alert('กรุณาให้คะแนนร้านค้า');
+                    return;
+                }
+
                 $.post(
                     "{{ url('cat_construct_rating') }}",
                     { _token: "{{ csrf_token() }}", id: "{{ $catConstruct->id }}", score: rate_score},
@@ -172,22 +183,39 @@
                             half         : true,
                             starType     : 'img',
                             readOnly     : true,
-                            score        : data,
-                            hints        : ['เฉลี่ย ' + data + ' / 5.00 คะแนน',
-                                'เฉลี่ย ' + data + ' / 5.00 คะแนน',
-                                'เฉลี่ย ' + data + ' / 5.00 คะแนน',
-                                'เฉลี่ย ' + data + ' / 5.00 คะแนน',
-                                'เฉลี่ย ' + data + ' / 5.00 คะแนน'],
+                            score        : data['avg_score'],
+                            hints        : ['เฉลี่ย ' + data['avg_score'] + ' / 5.00 คะแนน',
+                                'เฉลี่ย ' + data['avg_score'] + ' / 5.00 คะแนน',
+                                'เฉลี่ย ' + data['avg_score'] + ' / 5.00 คะแนน',
+                                'เฉลี่ย ' + data['avg_score'] + ' / 5.00 คะแนน',
+                                'เฉลี่ย ' + data['avg_score'] + ' / 5.00 คะแนน'],
                             noRatedMsg   : 'ยังไม่มีผู้ให้คะแนน'
                         });
+
+                        $('#num_score_5').html(data['num_score_5'] + " คน");
+                        $('#num_score_4').html(data['num_score_4'] + " คน");
+                        $('#num_score_3').html(data['num_score_3'] + " คน");
+                        $('#num_score_2').html(data['num_score_2'] + " คน");
+                        $('#num_score_1').html(data['num_score_1'] + " คน");
                     }
                 )
                 .done(function() {
-//                    $("#button_rating").attr("style", "display:none;");
-                    alert( "สำเร็จ" );
+                    $("#button_rating").attr("style", "display:none;");
+
+                    var message = '<p><b>สำเร็จ</b></p><p>ให้คะแนนร้านค้าสำเร็จ</p>';
+                    var seconds = 3;
+                    var icon = 'check';
+
+                    Notify(message,icon, seconds);
                 })
                 .fail(function(error) {
-                    alert( "ล้มเหลว" );
+
+                    var message = '<p><b>ล้มเหลว</b></p><p>ให้คะแนนร้านค้าล้มเหลว</p>';
+                    var seconds = 3;
+                    var icon = 'exclamation';
+
+                    Notify(message,icon, seconds);
+
                 });
 
             });

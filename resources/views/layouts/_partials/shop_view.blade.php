@@ -230,24 +230,29 @@
                         <span><img data-src="{{ asset('images/blulet/star.png') }}" alt="" /></span>
                         <span><img data-src="{{ asset('images/blulet/star.png') }}" alt="" /></span>
                         <span><img data-src="{{ asset('images/blulet/star.png') }}" alt="" /></span>
+                        <span style="float:right;" id="num_score_5">{{ $catConstruct->num_score_5 }} คน</span>
                     </li>
                     <li>
                         <span><img data-src="{{ asset('images/blulet/star.png') }}" alt="" /></span>
                         <span><img data-src="{{ asset('images/blulet/star.png') }}" alt="" /></span>
                         <span><img data-src="{{ asset('images/blulet/star.png') }}" alt="" /></span>
                         <span><img data-src="{{ asset('images/blulet/star.png') }}" alt="" /></span>
+                        <span style="float:right;" id="num_score_4">{{ $catConstruct->num_score_4 }} คน</span>
                     </li>
                     <li>
                         <span><img data-src="{{ asset('images/blulet/star.png') }}" alt="" /></span>
                         <span><img data-src="{{ asset('images/blulet/star.png') }}" alt="" /></span>
                         <span><img data-src="{{ asset('images/blulet/star.png') }}" alt="" /></span>
+                        <span style="float:right;" id="num_score_3">{{ $catConstruct->num_score_3 }} คน</span>
                     </li>
                     <li>
                         <span><img data-src="{{ asset('images/blulet/star.png') }}" alt="" /></span>
                         <span><img data-src="{{ asset('images/blulet/star.png') }}" alt="" /></span>
+                        <span style="float:right;" id="num_score_2">{{ $catConstruct->num_score_2 }} คน</span>
                     </li>
                     <li>
                         <span><img data-src="{{ asset('images/blulet/star.png') }}" alt="" /></span>
+                        <span style="float:right;" id="num_score_1">{{ $catConstruct->num_score_1 }} คน</span>
                     </li>
                 </ul>
             </div>
@@ -373,3 +378,5 @@
         </div>
     </form>
 </div>
+
+<div id="notification-area"></div>
