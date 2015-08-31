@@ -1518,3 +1518,10 @@ Route::post('cat_construct_rating', [
 //    'before' => 'frontend_auth',
     'uses' => 'AllofhomeController@cat_construct_rating'
 ]);
+
+/*-------------------------------- Map -------------------------------*/
+Route::get('map_direction/{lat}/{long}', [
+    'as' => 'map_direction',
+//    'before' => 'frontend_auth',
+    'uses' => 'AllofhomeController@map_direction'
+]);

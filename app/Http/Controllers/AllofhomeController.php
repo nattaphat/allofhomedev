@@ -1206,5 +1206,13 @@ class AllofhomeController extends Controller {
         );
     }
 
+    public function map_direction($lat, $long)
+    {
+        return View::make('web.frontend.map_direction', [
+            'lat' => $lat,
+            'long' => $long
+        ]);
+    }
+
 }
 
