@@ -1525,3 +1525,10 @@ Route::get('map_direction/{lat}/{long}', [
 //    'before' => 'frontend_auth',
     'uses' => 'AllofhomeController@map_direction'
 ]);
+
+/*-------------------------------- Post EMail -------------------------------*/
+Route::post('mail', [
+    'as' => 'mail',
+//    'before' => 'frontend_auth',
+    'uses' => 'AllofhomeController@send_mail'
+]);

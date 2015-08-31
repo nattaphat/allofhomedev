@@ -44,13 +44,13 @@
     <div class="right">
         <h2>ติดต่อเจ้าของร้านค้า</h2>
         <div class="form">
-            {!! Form::text('subject', null, ['placeholder' => 'หัวข้อ']) !!}
-            {!! Form::textarea('body', null, ['placeholder' => 'ข้อความ']) !!}
-            {!! Form::text('name_contact_back', null, ['placeholder' => 'ชื่อติดต่อกลับ']) !!}
-            {!! Form::text('telephone_contact_back', null, ['placeholder' => 'เบอร์ติดต่อกลับ']) !!}
+            {!! Form::text('subject', null, ['placeholder' => 'หัวข้อ', 'id' => 'txt_subject']) !!}
+            {!! Form::textarea('body', null, ['placeholder' => 'ข้อความ', 'id' => 'txt_body']) !!}
+            {!! Form::text('name_contact_back', null, ['placeholder' => 'ชื่อติดต่อกลับ', 'id' => 'txt_name_contact_back']) !!}
+            {!! Form::text('telephone_contact_back', null, ['placeholder' => 'เบอร์ติดต่อกลับ', 'id' => 'txt_telephone_contact_back']) !!}
         </div>
-        <input type="submit" value="" class="btn-submit" />
-        <input type="button" value="" class="btn-cancel" />
+        <input id="btn_send" type="button" value="" class="btn-submit" />
+        <input id="btn_clear" type="button" value="" class="btn-cancel" />
     </div>
     <div class="clear"></div>
     <!--
@@ -381,3 +381,18 @@
 </div>
 
 <div id="notification-area"></div>
+
+<div id="modal3">
+    <div class="header">
+        <h3>ยืนยันส่งข้อความ</h3>
+    </div>
+    <form action="">
+        <div class="txt">
+            คุณต้องการส่งข้อความติดต่อเจ้าของร้านค้าหรือไม่
+        </div>
+        <div class="btn clearfix">
+            <a id="btn_ok_send" class="close" href="#">ยืนยัน</a>
+            <a class="close cancel" href="#">ยกเลิก</a>
+        </div>
+    </form>
+</div>

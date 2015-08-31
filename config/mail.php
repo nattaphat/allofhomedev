@@ -15,7 +15,7 @@ return [
 	|
 	*/
 
-	'driver' => 'smtp',
+	'driver' => env('EMAIL_DRIVER','smtp'),
 
 	/*
 	|--------------------------------------------------------------------------
@@ -28,7 +28,7 @@ return [
 	|
 	*/
 
-	'host' => 'smtp.gmail.com',
+	'host' => env('EMAIL_HOST','smtp.gmail.com'),
 
 	/*
 	|--------------------------------------------------------------------------
@@ -41,7 +41,7 @@ return [
 	|
 	*/
 
-	'port' => 587,
+	'port' => env('EMAIL_PORT',587),
 
 	/*
 	|--------------------------------------------------------------------------
@@ -54,7 +54,7 @@ return [
 	|
 	*/
 
-	'from' => ['address' => "no-reply@allofhome.com", 'name' => "Allofhome Admin"],
+	'from' => ['address' => "no-reply@allofhome.com", 'name' => "AllOfHome Admin"],
 
 	/*
 	|--------------------------------------------------------------------------

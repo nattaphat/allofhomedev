@@ -11,6 +11,7 @@ use App\Models\Tag;
 use App\Models\geoRegion;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Facades\Mail;
 use Request;
 use Validator;
 use Response;
@@ -1213,6 +1214,46 @@ class AllofhomeController extends Controller {
             'long' => $long
         ]);
     }
+
+    public function send_mail()
+    {
+        $req = Request::all();
+
+        $to_name = $req['to_name'];
+        $to_mail = $req['to_mail'];
+        $title = $req['title'];
+        $content = $req['content'];
+        $from_name = $req['from_name'];
+        $from_telephone = $req['from_telephone'];
+
+        $receiver = [
+            'name' => $to_name,
+            'mail' => $to_mail
+        ];
+
+        try{
+            $result = \Mail::send('web.frontend.mail',[
+                'to_name'=> $to_name,
+                'title' => $title,
+                'content' => $content,
+                'from_name' => $from_name,
+                'from_telephone' => $from_telephone
+            ],
+            function($message) use ($receiver)
+            {
+                $message->to($receiver['mail'] ,$receiver['name']);
+                $message->cc("allofhome@allofhome.com", "AllOfHome Admin");
+                $message->subject('AllOfHome.com แจ้งให้ทราบเรื่องผู้ติดต่อร้านค้า');
+            });
+
+            return $result;
+        }
+        catch(\Exception $e) {
+            return -1;
+        }
+    }
+
+
 
 }
 
