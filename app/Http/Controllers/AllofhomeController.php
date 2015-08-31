@@ -1231,7 +1231,7 @@ class AllofhomeController extends Controller {
             'mail' => $to_mail
         ];
 
-        try{
+//        try{
             $result = \Mail::send('web.frontend.mail',[
                 'to_name'=> $to_name,
                 'title' => $title,
@@ -1247,10 +1247,10 @@ class AllofhomeController extends Controller {
             });
 
             return $result;
-        }
-        catch(\Exception $e) {
-            return -1;
-        }
+//        }
+//        catch(\Exception $e) {
+//            return -1;
+//        }
     }
 
 
