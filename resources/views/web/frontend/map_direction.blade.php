@@ -113,11 +113,20 @@
         <div class="clear"></div>
         <span class="lineDescription">แสดงเส้นทางไปยังร้านค้า</span>
 
-        <div id="map-container">
-            <div id="map" style="height: 450px;"></div>
-            <div id="map-directions"></div>
-        </div>
+        {{--<div id="map-container">--}}
+            {{--<div id="map" style="height: 450px;"></div>--}}
+            {{--<div id="map-directions"></div>--}}
+        {{--</div>--}}
 
+    </div>
+
+    <div class="boxMap">
+        <div class="map-google">
+            <div id="map-container">
+                <div id="map" style="height: 450px;"></div>
+                <div id="map-directions"></div>
+            </div>
+        </div>
     </div>
 
 @stop
