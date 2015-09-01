@@ -166,8 +166,8 @@ class ReviewCategoryController extends Controller {
     public function view($id)
     {
         $catReview = CatReview::find($id);
-        $tag = $catReview->tag()->get();
-        $pic = $catReview->picture()->get();
+        $tag = $catReview->tag()->orderBy('id','asc')->get();
+        $pic = $catReview->picture()->orderBy('id','asc')->get();
         $project_name = "";
         $type = "";
 

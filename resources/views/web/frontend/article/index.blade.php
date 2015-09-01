@@ -68,7 +68,7 @@
                                     <div class="blog-media" style="padding-top:20px;">
                                         <a href="{{ URL::route('article_view', ['id' => $item->id]) }}" class="thumbnail">
                                             <?php
-                                            $pic = $item->picture()->get();
+                                            $pic = $item->picture()->orderBy('id','asc')->get();
                                             if($pic != null && count($pic) > 0)
                                             {
                                                 echo '

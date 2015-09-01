@@ -111,7 +111,7 @@
                                             <div class="blog-media" style="padding-top:60px;">
                                                 <a href="{{ URL::route('review_view', ['id' => $item->id]) }}">
                                                     <?php
-                                                    $pic = $item->picture()->get();
+                                                    $pic = $item->picture()->orderBy('id','asc')->get();
                                                     if($pic != null && count($pic) > 0)
                                                     {
                                                         echo '

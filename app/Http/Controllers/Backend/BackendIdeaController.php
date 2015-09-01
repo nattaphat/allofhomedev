@@ -92,8 +92,8 @@ class BackendIdeaController extends Controller {
     public function idea_edit($id)
     {
         $cat = CatIdea::find($id);
-        $tag = $cat->tag()->get();
-        $pic = $cat->picture()->get();
+        $tag = $cat->tag()->orderBy('id','asc')->get();
+        $pic = $cat->picture()->orderBy('id','asc')->get();
 
 //        dd($cat);
 

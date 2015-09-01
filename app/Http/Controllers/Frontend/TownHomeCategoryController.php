@@ -379,8 +379,8 @@ class TownHomeCategoryController extends Controller {
         $mrt = $catHome->projectMrt()->get();
         $apl = $catHome->projectAplink()->get();
         $promotion = $catHome->catHomePromotion()->get();
-        $tag = $catHome->tag()->get();
-        $pic = $catHome->picture()->get();
+        $tag = $catHome->tag()->orderBy('id','asc')->get();
+        $pic = $catHome->picture()->orderBy('id','asc')->get();
 
         $catHomePic = null;
         for($i=3; $i<=43; $i++)

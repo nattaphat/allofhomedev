@@ -101,8 +101,8 @@ class BackendArticleController extends Controller {
     public function article_edit($id)
     {
         $catArticle = CatArticle::find($id);
-        $tag = $catArticle->tag()->get();
-        $pic = $catArticle->picture()->get();
+        $tag = $catArticle->tag()->orderBy('id','asc')->get();
+        $pic = $catArticle->picture()->orderBy('id','asc')->get();
 
 //        dd($catArticle);
 

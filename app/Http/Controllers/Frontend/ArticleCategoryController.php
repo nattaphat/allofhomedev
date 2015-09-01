@@ -295,8 +295,8 @@ class ArticleCategoryController extends Controller {
     {
         $catArticle = CatArticle::find($id);
 
-        $tag = $catArticle->tag()->get();
-        $pic = $catArticle->picture()->get();
+        $tag = $catArticle->tag()->orderBy('id', 'asc')->get();
+        $pic = $catArticle->picture()->orderBy('id','asc')->get();
 
         return view('web.frontend.article_view')
             ->with('catArticle', $catArticle)
@@ -310,8 +310,8 @@ class ArticleCategoryController extends Controller {
 
 //        dd($catIdea);
 
-        $tag = $catIdea->tag()->get();
-        $pic = $catIdea->picture()->get();
+        $tag = $catIdea->tag()->orderBy('id','asc')->get();
+        $pic = $catIdea->picture()->orderBy('id','asc')->get();
 
         return view('web.frontend.idea_view')
             ->with('catIdea', $catIdea)

@@ -62,7 +62,9 @@
 
             // Check for geolocation support
             if (navigator.geolocation) {
+                debugger;
                 navigator.geolocation.getCurrentPosition(function (position) {
+                            debugger;
                             // Success!
                             createMap({
                                 coords : true,
@@ -71,6 +73,7 @@
                             });
                         },
                         function () {
+                            debugger;
                             // Gelocation fallback: Defaults to Stockholm, Sweden
                             createMap({
                                 coords : false,
@@ -80,6 +83,7 @@
                 );
             }
             else {
+                debugger;
                 // No geolocation fallback: Defaults to Lisbon, Portugal
                 createMap({
                     coords : false,

@@ -192,8 +192,8 @@ class BackendCatConstructController extends Controller {
         $catConstruct = CatConstruct::find($id);
         $brand = Brand::find($catConstruct->brand_id);
         $province = Provinces::getAllProvince();
-        $tag = $catConstruct->tag()->get();
-        $pic = $catConstruct->picture()->get();
+        $tag = $catConstruct->tag()->orderBy('id','asc')->get();
+        $pic = $catConstruct->picture()->orderBy('id','asc')->get();
 
         $config = null;
 
