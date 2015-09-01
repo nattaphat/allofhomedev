@@ -206,7 +206,6 @@
                 <div class="detail">
 
                     @foreach($pic as $p)
-                        id => {{ $p->id }} <br>
                         <div>
                             <div>
                                 <img data-src="{{ $p->file_path }}" alt="{{ $p->file_name }}" />
