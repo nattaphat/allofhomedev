@@ -37,6 +37,7 @@
             var directionsService = new google.maps.DirectionsService(),
                     directionsDisplay = new google.maps.DirectionsRenderer(),
                     createMap = function (start) {
+                        debugger;
                         var travel = {
                                     origin : (start.coords)? new google.maps.LatLng(start.lat, start.lng) : start.address,
                                     destination : "{{ $lat }}, {{ $long }}",
@@ -46,7 +47,8 @@
                                 mapOptions = {
                                     zoom: 10,
                                     // Default view: downtown Stockholm
-                                    center : new google.maps.LatLng(59.3325215, 18.0643818),
+                                    center : (start.coords)? new google.maps.LatLng(start.lat, start.lng) : start.address,
+//                                    center : new google.maps.LatLng(59.3325215, 18.0643818),
                                     mapTypeId: google.maps.MapTypeId.ROADMAP
                                 };
 
@@ -76,8 +78,11 @@
                             debugger;
                             // Gelocation fallback: Defaults to Stockholm, Sweden
                             createMap({
-                                coords : false,
-                                address : "Sveavägen, Stockholm"
+//                                coords : false,
+//                                address : "Sveavägen, Stockholm"
+                                coords : true,
+                                lat : "13.7650101",
+                                lng : "100.5382141"
                             });
                         }
                 );
@@ -86,8 +91,11 @@
                 debugger;
                 // No geolocation fallback: Defaults to Lisbon, Portugal
                 createMap({
-                    coords : false,
-                    address : "Lisbon, Portugal"
+//                    coords : false,
+//                    address : "Lisbon, Portugal"
+                    coords : true,
+                    lat : "13.7650101",
+                    lng : "100.5382141"
                 });
             }
         });
