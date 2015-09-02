@@ -174,28 +174,32 @@
                 @if($brand->email != null && $brand->email != "")
                     <li>
                         <span class="title">อีเมล์ :</span>
-                        <span class="info">{{ $brand->email }}</span>
+                        <span class="info"><a href="mailto:{{ $brand->email }}?body=เนื้อหาข้อความ">{{ $brand->email }}</a></span>
                     </li>
                 @endif
 
                 @if($brand->facebook != null && $brand->facebook != "")
                     <li>
                         <span class="title">FB Fanpage :</span>
-                        <span class="info">{{ $brand->facebook }}</span>
+                        <span class="info"><a href="{{ $brand->facebook }}" target="_blank">{{ $brand->facebook }}</a></span>
                     </li>
                 @endif
 
                 @if($brand->line != null && $brand->line != "")
                     <li>
                         <span class="title">Line ID :</span>
-                        <span class="info">{{ $brand->line }}</span>
+                        @if($brand->line_url != null && $brand->line_url != "")
+                            <span class="info"><a href="{{ $brand->line_url }}" target="_blank">{{ $brand->line }}</a></span>
+                        @else
+                            <span class="info">{{ $brand->line }}</span>
+                        @endif
                     </li>
                 @endif
 
                 @if($catConstruct->website != null && $catConstruct->website != "")
                     <li>
                         <span class="title">เว็บไซต์ :</span>
-                        <span class="info">{{ $catConstruct->website }}</span>
+                        <span class="info"><a href="{{ $catConstruct->website }}" target="_blank">{{ $catConstruct->website }}</a></span>
                     </li>
                 @endif
 
