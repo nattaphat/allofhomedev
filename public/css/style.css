@@ -1384,8 +1384,8 @@ nav ul li:nth-child(6), nav ul li:nth-child(6) ul li {
     font-weight:normal;
     margin-bottom:5px;
     font-size: 28px;
-    line-height: 23px;
-    height:23px;
+    /*line-height: 23px;*/
+    /*height:23px;*/
     overflow: hidden;
 }
 

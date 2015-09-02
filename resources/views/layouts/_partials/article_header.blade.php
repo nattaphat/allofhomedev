@@ -35,7 +35,9 @@
                         <li>
                             <div class="pic" style="width: 555px;">
                                 @if($pics != null && count($pics) > 0)
-                                    <img data-src="{{ $pics[0]->file_path }}" alt="" />
+                                    <a href="{{ url('article')."/".$item->id }}">
+                                        <img data-src="{{ $pics[0]->file_path }}" alt="" />
+                                    </a>
                                 @endif
                             </div>
                             <div class="text-hilight" style="width: 500px;">
@@ -53,7 +55,6 @@
                     @endforeach
                 </ul>
             </div>
-
         </div>
         <div class="right">
             <!-- Banner D -->
