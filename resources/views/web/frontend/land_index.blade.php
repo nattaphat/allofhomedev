@@ -67,7 +67,6 @@
         <div class="map-google">
             {!! $map['html'] !!}
         </div>
-        <a href="#" class="btn-searchggm">ค้าหาเส้นทางจาก Google Map</a>
     </div>
 
     <div class="boxreview">
