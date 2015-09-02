@@ -106,7 +106,7 @@
         <div class="map-google">
             {!! $map['html'] !!}
         </div>
-        <a href="{{ url("map_direction") }}/{{ $catConstruct->latitude }}/{{ $catConstruct->longitude }}"
+        <a id="btn_get_direction" href="{{ url("map_direction") }}/{{ $catConstruct->latitude }}/{{ $catConstruct->longitude }}"
            target="_blank" class="btn-searchggm">ค้าหาเส้นทางจาก Google Map</a>
     </div>
 @endif
