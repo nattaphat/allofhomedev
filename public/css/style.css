@@ -1089,6 +1089,8 @@ nav ul li:nth-child(6), nav ul li:nth-child(6) ul li {
 
 .boxVdoReview .location ul li .title{ color:#000; }
 .boxVdoReview .contact-detail .left ul li .info{ width:345px; margin-left:10px; text-align:left; }
+.boxVdoReview .contact-detail .left ul li .info a { color: #5cc5c1; }
+.boxVdoReview .contact-detail .left ul li .info a:hover { color: #ffa864; }
 .boxVdoReview .other-detail{  border-bottom:1px solid #f2f2f2; color:#000; font-size:20px; padding:20px 0 0;  }
 .boxVdoReview .other-detail ul li .info{
     /*color:#aeaeae; */
