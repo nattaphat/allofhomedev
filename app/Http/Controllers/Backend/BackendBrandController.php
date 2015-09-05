@@ -32,8 +32,8 @@ class BackendBrandController extends Controller {
 
 //        dd($input);
 
-//        try
-//        {
+        try
+        {
             $brand = new Brand();
             $brand->user_id = \Auth::getUser()->id;
             $brand->brand_name = $input['brand_name'];
@@ -58,13 +58,13 @@ class BackendBrandController extends Controller {
             $brand->display_button = $input['display_button'][0];
             $brand->suggest = $input['suggest'][0];
             $brand->save();
-//        }
-//        catch(\Exception $e)
-//        {
-//            return Redirect::route('backend_brand')
-//                ->with('flash_message', 'บันทึกข้อมูลล้มเหลว')
-//                ->with('flash_type', 'alert-danger');
-//        }
+        }
+        catch(\Exception $e)
+        {
+            return Redirect::route('backend_brand')
+                ->with('flash_message', 'บันทึกข้อมูลล้มเหลว')
+                ->with('flash_type', 'alert-danger');
+        }
 
         return Redirect::route('backend_brand')
             ->with('flash_message', 'บันทึกข้อมูลสำเร็จ')
