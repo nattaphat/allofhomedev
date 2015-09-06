@@ -37,6 +37,7 @@
                                 <p class="update">วันที่ลงประกาศ  {{ \App\Models\AllFunction::getDateTimeThai($item->created_at) }}</p>
                                 <?php
                                 $subtitle = str_replace("<p class=\"p1\">","<p>",$item->subtitle);
+                                $subtitle = str_replace("<p align=\"left\">","<p>",$subtitle);
                                 if (preg_match_all('~<p>(?P<paragraphs>.*?)</p>~is', $subtitle, $matches))
                                 {
                                     $str = "";
@@ -78,6 +79,7 @@
                                 <p class="update">วันที่ลงประกาศ  {{ \App\Models\AllFunction::getDateTimeThai($item->created_at) }}</p>
                                 <?php
                                 $subtitle = str_replace("<p class=\"p1\">","<p>",$item->subtitle);
+                                $subtitle = str_replace("<p align=\"left\">","<p>",$subtitle);
                                 if (preg_match_all('~<p>(?P<paragraphs>.*?)</p>~is', $subtitle, $matches))
                                 {
                                     $str = "";
@@ -133,6 +135,7 @@
                                 <p class="update">วันที่ลงประกาศ  {{ \App\Models\AllFunction::getDateTimeThai($item->created_at) }}</p>
                                 <?php
                                 $subtitle = str_replace("<p class=\"p1\">","<p>",$item->subtitle);
+                                $subtitle = str_replace("<p align=\"left\">","<p>",$subtitle);
                                 if (preg_match_all('~<p>(?P<paragraphs>.*?)</p>~is', $subtitle, $matches))
                                 {
                                     $str = "";
@@ -174,6 +177,7 @@
                                 <p class="update">วันที่ลงประกาศ  {{ \App\Models\AllFunction::getDateTimeThai($item->created_at) }}</p>
                                 <?php
                                 $subtitle = str_replace("<p class=\"p1\">","<p>",$item->subtitle);
+                                $subtitle = str_replace("<p align=\"left\">","<p>",$subtitle);
                                 if (preg_match_all('~<p>(?P<paragraphs>.*?)</p>~is', $subtitle, $matches))
                                 {
                                     $str = "";
