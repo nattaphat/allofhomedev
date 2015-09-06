@@ -49,18 +49,55 @@
 
             e.preventDefault();
         });
+
+        $('#btn_read_more_article').click(function(e)
+        {
+            debugger;
+
+            var pg = $('#cat_article_current_page').val();
+            var vip_article_string = $('#vip_article_string').val();
+
+            $.ajax({
+                url: '{{ url('index/ajax/article') }}',
+                data: {
+                    page: (parseInt(pg) + 1),
+                    vip_article_string : vip_article_string
+                },
+                sending: function(file, xhr, formData) {
+                    formData.append("_token", $('[name=_token]').val());
+                },
+                success: function(data) {
+                    debugger;
+                    $('#ul_article li').last().after(data);
+
+                    $('#cat_article_current_page').val((parseInt(pg) + 1));
+                    if($('#cat_article_current_page').val() == $('#cat_article_last_page').val())
+                    {
+                        $('#btn_read_more_article').attr('style', 'display:none;');
+                    }
+                }
+            });
+
+            e.preventDefault();
+        });
+
+
     });
 </script>
 @stop
 
 @section('content')
 
-    {!! Form::hidden('vip_home_string', $vip_home_string, ['id' => 'vip_home_string']) !!}
-    {!! Form::hidden('vip_construct_string', $vip_construct_string, ['id' => 'vip_construct_string']) !!}
     {!! Form::hidden('_token', csrf_token(), ['id' => '_token']) !!}
 
+    {!! Form::hidden('vip_home_string', $vip_home_string, ['id' => 'vip_home_string']) !!}
+    {!! Form::hidden('vip_construct_string', $vip_construct_string, ['id' => 'vip_construct_string']) !!}
     {!! Form::hidden('cat_main_current_page', $catNotVip->currentPage(), ['id' => 'cat_main_current_page']) !!}
     {!! Form::hidden('cat_main_last_page', $catNotVip->lastPage(), ['id' => 'cat_main_last_page']) !!}
+
+    {!! Form::hidden('vip_article_string', $vip_article_string, ['id' => 'vip_article_string']) !!}
+    {!! Form::hidden('cat_article_current_page', $catArticle->currentPage(), ['id' => 'cat_article_current_page']) !!}
+    {!! Form::hidden('cat_article_last_page', $catArticle->lastPage(), ['id' => 'cat_article_last_page']) !!}
 
     <!-- Home, Townhome, Condo -->
     <div class="boxreview">
@@ -365,7 +402,7 @@
     <div class="boxArticle">
         <h2>บทความและสาระน่ารู้</h2>
         <div class="list-article">
-            <ul>
+            <ul id="ul_article">
                 @if($catArticleVip != null)
                     @foreach($catArticleVip as $item)
                         <li>
@@ -412,13 +449,13 @@
                     @foreach($catArticle as $item)
                         <li>
                             <?php
-                            $pics = \App\Models\Picture::where('pictureable_id', '=', $item->id)
+                            $pics = \App\Models\Picture::where('pictureable_id', '=', $item['id'])
                                     ->where('pictureable_type', '=', 'App\\Models\\CatArticle')
                                     ->get();
                             ?>
                             <p class="pic">
                                 @if(isset($pics) && count($pics) > 0)
-                                    <a href="{{ url('article')."/".$item->id }}">
+                                    <a href="{{ url('article')."/".$item['id'] }}">
                                         <img data-src="{{ $pics[0]->file_path }}" alt="{{ $pics[0]->file_name }}"
                                              style="width: 250px; height: 150px;" /></a>
                                 @else
@@ -426,10 +463,10 @@
                                 @endif
                             </p>
                             <div class="text">
-                                <h3><a href="{{ url('article')."/".$item->id }}">{{ $item->title }}</a></h3>
-                                <p class="update">วันที่ลงประกาศ  {{ \App\Models\AllFunction::getDateTimeThai($item->created_at) }}</p>
+                                <h3><a href="{{ url('article')."/".$item['id'] }}">{{ $item['title'] }}</a></h3>
+                                <p class="update">วันที่ลงประกาศ  {{ \App\Models\AllFunction::getDateTimeThai($item['created_at']) }}</p>
                                 <?php
-                                $subtitle = str_replace("<p class=\"p1\">","<p>",$item->subtitle);
+                                $subtitle = str_replace("<p class=\"p1\">","<p>",$item['subtitle']);
                                 $subtitle = str_replace("<p align=\"left\">","<p>",$subtitle);
                                 if (preg_match_all('~<p>(?P<paragraphs>.*?)</p>~is', $subtitle, $matches))
                                 {
@@ -442,13 +479,16 @@
                                 }
                                 else
                                 {
-                                    echo '<p class="p-subtitle">'.$item->subtitle.'</p>';
+                                    echo '<p class="p-subtitle">'.$item['subtitle'].'</p>';
                                 }
                                 ?>
                             </div>
                             <div class="clear"></div>
                         </li>
                     @endforeach
+                    @if($catArticle->currentPage() != $catArticle->lastPage())
+                        <a id="btn_read_more_article" href="#" class="btn-viewmore">ดูเพิ่มเติม</a>
+                    @endif
                 @endif
             </ul>
         </div>

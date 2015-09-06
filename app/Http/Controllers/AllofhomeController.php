@@ -447,19 +447,13 @@ class AllofhomeController extends Controller {
             "));
         }
 
-        $page = Input::get('pageHome', 1); // Get the current page or default to 1, this is what you miss!
+        $page = 1;
         $perPage = 10;
         $offset = ($page * $perPage) - $perPage;
-
-//        $catNotVip = new LengthAwarePaginator(array_slice($temp_catNotVip, $offset, $perPage, true),
-//            count($temp_catNotVip), $perPage, $page,
-//            ['path' => Request::url(), 'pageName' => 'pageHome', 'query' => Request::query()]);
 
         $catNotVip = new LengthAwarePaginator(array_slice($temp_catNotVip, $offset, $perPage, true),
             count($temp_catNotVip), $perPage, $page,
             ['path' => 'index/ajax/home', 'pageName' => 'pageHome']);
-
-//        dd($catNotVip);
 
         // ############## Ariticle ################ //
         // #### VIP
@@ -486,25 +480,38 @@ class AllofhomeController extends Controller {
         }
 
         // #### General (Not include vip)
-        $catArticle = null;
+        $temp_catArticle = null;
+        $vip_article_string = "";
         if($catArticleVip != null && count($catArticleVip) > 0)
         {
             foreach($catArticleVip as $item)
             {
                 $vip[] = $item->id;
+                $vip_article_string .= "'".$item->id."',";
             }
 
-            $catArticle = CatArticle::where('visible','=','true')
+            if(strlen($vip_article_string) > 0)
+                $vip_article_string = substr($vip_article_string, 0, strlen($vip_article_string) - 1);
+
+            $temp_catArticle = CatArticle::where('visible','=','true')
                 ->whereNotIn('id', $vip)
                 ->orderBy('created_at', 'desc')
-                ->get();
+                ->get()->toArray();
         }
         else
         {
-            $catArticle = CatArticle::where('visible','=','true')
+            $temp_catArticle = CatArticle::where('visible','=','true')
                 ->orderBy('created_at', 'desc')
-                ->get();
+                ->get()->toArray();
         }
+
+        $page = 1;
+        $perPage = 5;
+        $offset = ($page * $perPage) - $perPage;
+
+        $catArticle = new LengthAwarePaginator(array_slice($temp_catArticle, $offset, $perPage, true),
+            count($temp_catArticle), $perPage, $page,
+            ['path' => 'index/ajax/article', 'pageName' => 'pageArticle']);
 
         // ############## Idea ################ //
         // #### VIP
@@ -565,6 +572,7 @@ class AllofhomeController extends Controller {
             'vip_construct_string' => $vip_construct_string,
             'catArticleVip' => $catArticleVip,
             'catArticle' => $catArticle,
+            'vip_article_string' => $vip_article_string,
             'catIdeaVip' => $catIdeaVip,
             'catIdea' => $catIdea
         ]);
@@ -638,6 +646,37 @@ class AllofhomeController extends Controller {
 
             return View::make('web.frontend.homeListIndex')
                 ->with('catNotVip',$catNotVip);
+        }
+        elseif($type == 'article')
+        {
+            $vip_article_string =  Request::input('vip_article_string');
+            $vip_article_string = str_replace('\'', '', $vip_article_string);
+            $vip = explode(",", $vip_article_string);
+
+            $temp_catArticle = null;
+            if(strlen($vip_article_string) == 0)
+            {
+                $temp_catArticle = CatArticle::where('visible','=','true')
+                    ->whereNotIn('id', $vip)
+                    ->orderBy('created_at', 'desc')
+                    ->get()->toArray();
+            }
+            else
+            {
+                $temp_catArticle = CatArticle::where('visible','=','true')
+                    ->orderBy('created_at', 'desc')
+                    ->get()->toArray();
+            }
+
+            $perPage = 5;
+            $offset = ($page * $perPage) - $perPage;
+
+            $catArticle = new LengthAwarePaginator(array_slice($temp_catArticle, $offset, $perPage, true),
+                count($temp_catArticle), $perPage, $page,
+                ['path' => 'index/ajax/article', 'pageName' => 'pageArticle']);
+
+            return View::make('web.frontend.articleListIndex_li')
+                ->with('catArticle',$catArticle);
         }
 
         /*
