@@ -1,5 +1,5 @@
-@if($catHome != null)
-    @foreach($catHome as $item)
+@if($catNotVip != null)
+    @foreach($catNotVip as $item)
         @if(isset($item->for_cat) && isset($item->for_type))
             @if($item->for_cat == "cat_home")
                 <?php $urlTo =  url("home/view/")."/"; ?>
@@ -8,9 +8,6 @@
             @endif
         @endif
         <li>
-            @if($item->vip)
-                <p class="tag-vip"><img src="{{ asset('images/blulet/vip.png') }}" alt="" /></p>
-            @endif
             <div class="left">
                 <div class="showpic">
                     <?php
@@ -77,10 +74,10 @@
                 <p class="text-price">ราคาเริ่มต้น</p>
                 @if($item->sell_price == null || $item->sell_price == "")
                     <p class="price" style="padding-top: 22px;
-                            padding-left: 0;
-                            font-size: 28px;
-                            text-align: center;
-                            ">
+                        padding-left: 0;
+                        font-size: 28px;
+                        text-align: center;
+                        ">
                         &nbsp;&nbsp;ไม่ระบุราคา</p>
                 @else
                     <p class="price">&nbsp;&nbsp;{{ $item->sell_price }}<span style="font-size: 28px;"> บาท</span></p>
@@ -88,29 +85,26 @@
 
                 <div class="rating">
                     @if(isset($item->avg_rating) && $item->avg_rating != null && $item->avg_rating != 0)
-                        &nbsp;&nbsp;<span class="label-success"> {{ $item->avg_rating }} คะแนน</span>
                         <!--<img src="images/test/rating.jpg" alt="" />-->
+                        <div class="raty" data-score="{{ $item->avg_rating }}" style="float:left;"></div>
+                        <span class="label-success" style="float:left; margin-left: 10px;   position: relative; top: 3px;"> {{ $item->avg_rating }} คะแนน</span>
+                        <div class="clear"></div>
                     @else
-                        &nbsp;&nbsp;<span class="label-success">ยังไม่มีการให้คะแนน</span>
+                        <span class="label-success">ยังไม่มีการให้คะแนน</span>
                     @endif
                 </div>
                 <div class="call" style="margin: 20px 0 0;">
                     <?php $brand = \App\Models\Brand::find($item->brand_id) ?>
                     <p style="
-                        line-height: 23px;
-                        height: 46px;
-                        overflow: hidden;
-                        color: #646464;
-                    ">ติดต่อ : {{ $brand->brand_name }}</p>
+                                    line-height: 23px;
+                                    height: 46px;
+                                    overflow: hidden;
+                                    color: #646464;
+                                ">ติดต่อ : {{ $brand->brand_name }}</p>
                     <p class="number">{{ $brand->telephone }}</p>
                 </div>
             </div>
-
             <div class="clear"></div>
         </li>
     @endforeach
-
-    {!! $catHome->nextPageUrl() !!}
-    {!! $catHome->render() !!}
-
 @endif

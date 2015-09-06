@@ -7,95 +7,6 @@
 @section('jsbody')
 <script type="text/javascript">
     $(function() {
-        // 1.
-        function getPaginationSelectedPage(url) {
-            var chunks = url.split('?');
-            var baseUrl = chunks[0];
-            var querystr = chunks[1].split('&');
-            var pg = 1;
-            for (i in querystr) {
-                var qs = querystr[i].split('=');
-                if (qs[0] == 'page') {
-                    pg = qs[1];
-                    break;
-                }
-            }
-            return pg;
-        }
-
-        // 2.
-        $('#first').on('click', '.pager a', function(e) {
-            debugger;
-            e.preventDefault();
-            var pg = getPaginationSelectedPage($(this).attr('href'));
-
-            $.ajax({
-                url: '{{ url('index/ajax/home') }}',
-                data: { current_page: pg },
-                success: function(data) {
-                    debugger;
-                    $('#first').html(data);
-                }
-            });
-        });
-
-        $('#second').on('click', '.pagination a', function(e) {
-            debugger;
-            e.preventDefault();
-            var pg = getPaginationSelectedPage($(this).attr('href'));
-
-            $.ajax({
-                url: '{{ url('index/ajax/article') }}',
-                data: { current_page: (pg - 1) },
-                success: function(data) {
-                    debugger;
-                    $('#second').html(data);
-                }
-            });
-        });
-
-        $('#third').on('click', '.pagination a', function(e) {
-            debugger;
-            e.preventDefault();
-            var pg = getPaginationSelectedPage($(this).attr('href'));
-
-            $.ajax({
-                url: '{{ url('index/ajax/idea') }}',
-                data: { current_page: (pg - 1) },
-                sending: function(file, xhr, formData) {
-                    formData.append("_token", $('[name=_token]').val());
-                },
-                success: function(data) {
-                    debugger;
-                    $('#third').html(data);
-                }
-            });
-        });
-
-        // 3.
-        {{--$('#first').load('{{ url("index/ajax/") }}/home?page=1');--}}
-        {{--$('#second').load('{{ url("index/ajax/") }}/article?page=1');--}}
-        {{--$('#third').load('{{ url("index/ajax/") }}/idea?page=1');--}}
-
-        {{--debugger;--}}
-        {{--$data_home = "{!! $vip_home_string !!}";--}}
-        {{--$data_construct = "{!! $vip_construct_string !!}";--}}
-
-        {{--$_token = "{{ csrf_token() }}";--}}
-        {{--$.post(--}}
-            {{--'{{ url("index/ajax/") }}/home?page=1',--}}
-            {{--{--}}
-                {{--_token: $_token,--}}
-                {{--data_home : $data_home,--}}
-                {{--data_construct : $data_construct--}}
-            {{--}--}}
-        {{--)--}}
-        {{--.done(function( data )--}}
-        {{--{--}}
-            {{--debugger;--}}
-            {{--console.log(data);--}}
-        {{--});--}}
-
         $('div.raty').raty({
             starHalf     : 'images/star-half.png',
             starOff      : 'images/star-off.png',
@@ -109,21 +20,53 @@
             }
         });
 
+        $('#btn_read_more_shop').click(function(e)
+        {
+            var pg = $('#cat_main_current_page').val();
+            var vip_home_string = $('#vip_home_string').val();
+            var vip_construct_string = $('#vip_construct_string').val();
+
+            $.ajax({
+                url: '{{ url('index/ajax/home') }}',
+                data: {
+                    page: (parseInt(pg) + 1),
+                    vip_home_string : vip_home_string,
+                    vip_construct_string : vip_construct_string
+                },
+                sending: function(file, xhr, formData) {
+                    formData.append("_token", $('[name=_token]').val());
+                },
+                success: function(data) {
+                    $('#ul_home li').last().after(data);
+
+                    $('#cat_main_current_page').val((parseInt(pg) + 1));
+                    if($('#cat_main_current_page').val() == $('#cat_main_last_page').val())
+                    {
+                        $('#btn_read_more_shop').attr('style', 'display:none;');
+                    }
+                }
+            });
+
+            e.preventDefault();
+        });
     });
 </script>
 @stop
 
 @section('content')
 
-    {!! Form::hidden('vip_home_string', $vip_home_string) !!}
-    {!! Form::hidden('vip_construct_string', $vip_construct_string) !!}
-    {!! Form::hidden('_token', csrf_token()) !!}
+    {!! Form::hidden('vip_home_string', $vip_home_string, ['id' => 'vip_home_string']) !!}
+    {!! Form::hidden('vip_construct_string', $vip_construct_string, ['id' => 'vip_construct_string']) !!}
+    {!! Form::hidden('_token', csrf_token(), ['id' => '_token']) !!}
+
+    {!! Form::hidden('cat_main_current_page', $catNotVip->currentPage(), ['id' => 'cat_main_current_page']) !!}
+    {!! Form::hidden('cat_main_last_page', $catNotVip->lastPage(), ['id' => 'cat_main_last_page']) !!}
 
     <!-- Home, Townhome, Condo -->
     <div class="boxreview">
         <h2>รีวิวโครงการ</h2>
         <div class="list-review">
-            <ul>
+            <ul id="ul_home">
                 @if($catVip != null)
                     @foreach($catVip as $item)
                         @if(isset($item->for_cat) && isset($item->for_type))
@@ -344,6 +287,9 @@
                             <div class="clear"></div>
                         </li>
                     @endforeach
+                    @if($catNotVip->currentPage() != $catNotVip->lastPage())
+                        <a id="btn_read_more_shop" href="#" class="btn-viewmore">ดูเพิ่มเติม</a>
+                    @endif
                 @endif
             </ul>
         </div>

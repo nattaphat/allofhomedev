@@ -61,7 +61,6 @@ class AllofhomeController extends Controller {
         // if (\Input::has('code'))
         //    {
         //        $user = $this->fb->user();
-
         //        // var_dump($this->fb->user());
         //        print 'yes';exit;
         //    }
@@ -400,7 +399,7 @@ class AllofhomeController extends Controller {
         // #### General (Not include vip)
         if(strlen($vip_construct_string) == 0)
         {
-            $catNotVip = DB::select(DB::raw("
+            $temp_catNotVip = DB::select(DB::raw("
                 select *
                 from
                 (
@@ -424,7 +423,7 @@ class AllofhomeController extends Controller {
         }
         else
         {
-            $catNotVip = DB::select(DB::raw("
+            $temp_catNotVip = DB::select(DB::raw("
                 select *
                 from
                 (
@@ -447,6 +446,20 @@ class AllofhomeController extends Controller {
                 order by created_at desc
             "));
         }
+
+        $page = Input::get('pageHome', 1); // Get the current page or default to 1, this is what you miss!
+        $perPage = 10;
+        $offset = ($page * $perPage) - $perPage;
+
+//        $catNotVip = new LengthAwarePaginator(array_slice($temp_catNotVip, $offset, $perPage, true),
+//            count($temp_catNotVip), $perPage, $page,
+//            ['path' => Request::url(), 'pageName' => 'pageHome', 'query' => Request::query()]);
+
+        $catNotVip = new LengthAwarePaginator(array_slice($temp_catNotVip, $offset, $perPage, true),
+            count($temp_catNotVip), $perPage, $page,
+            ['path' => 'index/ajax/home', 'pageName' => 'pageHome']);
+
+//        dd($catNotVip);
 
         // ############## Ariticle ################ //
         // #### VIP
@@ -559,59 +572,72 @@ class AllofhomeController extends Controller {
 
     public function getIndexType($type)
     {
-        $data_home =  Request::input('data_home');
-        $data_construct =  Request::input('data_construct');
-        $page = Input::get('page');
+        $page =  Request::input('page');
 
-        if ($type == 'home') {
+        if ($type == 'home')
+        {
+            $vip_home_string =  Request::input('vip_home_string');
+            $vip_construct_string =  Request::input('vip_construct_string');
 
-            $temp = DB::select(DB::raw("
-                select Tb.id, Tb.title, Tb.subtitle, Tb.created_at, case when TbVip.vip is not null then true else false end as vip, Tb.sell_price, Tb.avg_rating, Tb.brand_id, Tb.for_cat, Tb.for_type
-                from
-                (
-                        select id, title, subtitle, created_at, false as vip, sell_price, avg_rating, brand_id,
-                                'cat_home' as for_cat, for_cat as for_type
+            if(strlen($vip_construct_string) == 0)
+            {
+                $temp_catNotVip = DB::select(DB::raw("
+                    select *
+                    from
+                    (
+                        select id, title, subtitle, created_at, true as vip, sell_price, avg_rating, brand_id,
+                            'cat_home' as for_cat, for_cat as for_type
                         from cat_home
                         where status = 1
+                        and (for_cat like '%\"0\"%')
 
                         union
 
-                        select id, title, subtitle, created_at, false as vip, sell_price, avg_rating, brand_id,
-                                'cat_construct' as for_cat, for_type as for_type
+                        select id, title, subtitle, created_at, true as vip, sell_price, avg_rating, brand_id,
+                            'cat_construct' as for_cat, for_type as for_type
                         from cat_construct
                         where status = 1
-                ) as Tb
-                left join
-                (
-                        select *
-                        from
-                        (
-                                select id, title, subtitle, created_at, true as vip, sell_price, avg_rating, brand_id,
-                                        'cat_home' as for_cat, for_cat as for_type
-                                from cat_home
-                                where status = 1
-                                and vip = true
+                        and (for_type like '%\"4\"%' or for_type like '%\"5\"%' or for_type like '%\"7\"%')
 
-                                union
+                    ) TableVIP
+                    order by created_at desc
+                "));
+            }
+            else
+            {
+                $temp_catNotVip = DB::select(DB::raw("
+                    select *
+                    from
+                    (
+                        select id, title, subtitle, created_at, true as vip, sell_price, avg_rating, brand_id,
+                            'cat_home' as for_cat, for_cat as for_type
+                        from cat_home
+                        where status = 1
+                        and (for_cat like '%\"0\"%')
 
-                                select id, title, subtitle, created_at, true as vip, sell_price, avg_rating, brand_id,
-                                        'cat_construct' as for_cat, for_type as for_type
-                                from cat_construct
-                                where status = 1
-                                and vip = true
-                        ) TableVIP
-                        order by random() limit 5
-                ) as TbVip
-                on (
-                        TbVip.id = Tb.id and TbVip.for_cat = Tb.for_cat
-                )
-                order by TbVip.vip, Tb.created_at desc
-            "));
+                        union
 
-            $catHome = new Paginator($temp, 7, $page, ['path' => 'index/ajax/home']);
+                        select id, title, subtitle, created_at, true as vip, sell_price, avg_rating, brand_id,
+                            'cat_construct' as for_cat, for_type as for_type
+                        from cat_construct
+                        where status = 1
+                        and (for_type like '%\"4\"%' or for_type like '%\"5\"%' or for_type like '%\"7\"%')
+                        and id not in (".$vip_construct_string.")
+
+                    ) TableVIP
+                    order by created_at desc
+                "));
+            }
+
+            $perPage = 10;
+            $offset = ($page * $perPage) - $perPage;
+
+            $catNotVip = new LengthAwarePaginator(array_slice($temp_catNotVip, $offset, $perPage, true),
+                count($temp_catNotVip), $perPage, $page,
+                ['path' => 'index/ajax/home', 'pageName' => 'pageHome']);
 
             return View::make('web.frontend.homeListIndex')
-                ->with('catHome',$catHome);
+                ->with('catNotVip',$catNotVip);
         }
 
         /*
