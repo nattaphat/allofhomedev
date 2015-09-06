@@ -81,6 +81,39 @@
             e.preventDefault();
         });
 
+        $('#btn_read_more_idea').click(function(e)
+        {
+            debugger;
+
+            var pg = $('#cat_idea_current_page').val();
+            var vip_idea_string = $('#vip_idea_string').val();
+
+            $.ajax({
+                url: '{{ url('index/ajax/idea') }}',
+                data: {
+                    page: (parseInt(pg) + 1),
+                    vip_idea_string : vip_idea_string
+                },
+                sending: function(file, xhr, formData) {
+                    formData.append("_token", $('[name=_token]').val());
+                },
+                success: function(data) {
+                    debugger;
+                    $('#ul_idea li').last().after(data);
+
+                    $('#cat_idea_current_page').val((parseInt(pg) + 1));
+                    if($('#cat_idea_current_page').val() == $('#cat_idea_last_page').val())
+                    {
+                        $('#btn_read_more_idea').attr('style', 'display:none;');
+                    }
+                }
+            });
+
+            e.preventDefault();
+        });
+
+
+
 
     });
 </script>
@@ -98,6 +131,10 @@
     {!! Form::hidden('vip_article_string', $vip_article_string, ['id' => 'vip_article_string']) !!}
     {!! Form::hidden('cat_article_current_page', $catArticle->currentPage(), ['id' => 'cat_article_current_page']) !!}
     {!! Form::hidden('cat_article_last_page', $catArticle->lastPage(), ['id' => 'cat_article_last_page']) !!}
+
+    {!! Form::hidden('vip_idea_string', $vip_idea_string, ['id' => 'vip_idea_string']) !!}
+    {!! Form::hidden('cat_idea_current_page', $catIdea->currentPage(), ['id' => 'cat_idea_current_page']) !!}
+    {!! Form::hidden('cat_idea_last_page', $catIdea->lastPage(), ['id' => 'cat_idea_last_page']) !!}
 
     <!-- Home, Townhome, Condo -->
     <div class="boxreview">
@@ -498,7 +535,7 @@
     <div class="boxDiy">
         <h2>ไอเดียตกแต่งบ้าน</h2>
         <div class="list-diy">
-            <ul>
+            <ul id="ul_idea">
                 @if($catIdeaVip != null)
                     @foreach($catIdeaVip as $item)
                         <li>
@@ -545,13 +582,13 @@
                     @foreach($catIdea as $item)
                         <li>
                             <?php
-                            $pics = \App\Models\Picture::where('pictureable_id', '=', $item->id)
+                            $pics = \App\Models\Picture::where('pictureable_id', '=', $item['id'])
                                     ->where('pictureable_type', '=', 'App\\Models\\CatIdea')
                                     ->get();
                             ?>
                             <p class="pic">
                                 @if(isset($pics) && count($pics) > 0)
-                                    <a href="{{ url('idea')."/".$item->id }}">
+                                    <a href="{{ url('idea')."/".$item['id'] }}">
                                         <img data-src="{{ $pics[0]->file_path }}" alt="{{ $pics[0]->file_name }}"
                                              style="width: 250px; height: 150px;" /></a>
                                 @else
@@ -559,10 +596,10 @@
                                 @endif
                             </p>
                             <div class="text">
-                                <h3><a href="{{ url('idea')."/".$item->id }}">{{ $item->title }}</a></h3>
-                                <p class="update">วันที่ลงประกาศ  {{ \App\Models\AllFunction::getDateTimeThai($item->created_at) }}</p>
+                                <h3><a href="{{ url('idea')."/".$item['id'] }}">{{ $item['title'] }}</a></h3>
+                                <p class="update">วันที่ลงประกาศ  {{ \App\Models\AllFunction::getDateTimeThai($item['created_at']) }}</p>
                                 <?php
-                                $subtitle = str_replace("<p class=\"p1\">","<p>",$item->subtitle);
+                                $subtitle = str_replace("<p class=\"p1\">","<p>",$item['subtitle']);
                                 $subtitle = str_replace("<p align=\"left\">","<p>",$subtitle);
                                 if (preg_match_all('~<p>(?P<paragraphs>.*?)</p>~is', $subtitle, $matches))
                                 {
@@ -575,13 +612,16 @@
                                 }
                                 else
                                 {
-                                    echo '<p class="p-subtitle">'.$item->subtitle.'</p>';
+                                    echo '<p class="p-subtitle">'.$item['subtitle'].'</p>';
                                 }
                                 ?>
                             </div>
                             <div class="clear"></div>
                         </li>
                     @endforeach
+                    @if($catIdea->currentPage() != $catIdea->lastPage())
+                        <a id="btn_read_more_idea" href="#" class="btn-viewmore">ดูเพิ่มเติม</a>
+                    @endif
                 @endif
             </ul>
         </div>

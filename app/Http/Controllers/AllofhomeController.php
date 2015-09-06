@@ -71,286 +71,6 @@ class AllofhomeController extends Controller {
         // echo $user->getEmail();
         // $user->getAvatar();
 
-        /*
-        //// ### Cat Home ### ///
-        $temp = null;
-        try{
-            $temp = DB::table('cat_home as ch')
-                ->join(DB::raw('
-                (
-                    select id
-                      from cat_home
-                      where status = 1
-                      and vip = true
-                      ORDER BY random() limit 2
-                ) as vip'), function ($join){
-                    $join->on( 'ch.id', '=', 'vip.id');
-                })
-                ->select('ch.*')
-                ->orderByRaw('random()')
-                ->get();
-        }
-        catch(\Exception $e) {}
-
-        $temp_cat_home = null;
-        $temp_cat_home_vip = null;
-        if($temp != null && count($temp) > 0)
-        {
-            foreach($temp as $item)
-            {
-                $vip[] = $item->id;
-            }
-
-            $temp_cat_home = \DB::table('cat_home')
-                ->select('id', 'title','subtitle', 'created_at', 'vip', 'sell_price', 'avg_rating', 'brand_id',
-                    DB::raw('\'cat_home\' as for_cat'), DB::raw('for_cat as for_type'))
-                ->where('status', '=', '1')
-                ->whereNotIn('id', $vip);
-
-            $temp_cat_home_vip = \DB::table('cat_home')
-                ->select('id', 'title','subtitle', 'created_at', 'vip', 'sell_price', 'avg_rating', 'brand_id',
-                    DB::raw('\'cat_home\' as for_cat'), DB::raw('for_cat as for_type'))
-                ->whereIn('id', $vip);
-        }
-        else
-        {
-            $temp_cat_home = \DB::table('cat_home')
-                ->select('id', 'title','subtitle', 'created_at', 'vip', 'sell_price', 'avg_rating', 'brand_id',
-                    DB::raw('\'cat_home\' as for_cat'), DB::raw('for_cat as for_type'))
-                ->where('status', '=', '1');
-        }
-
-        //// ### Cat Construct ### ///
-        $temp = null;
-        try{
-            $temp = DB::table('cat_construct as ch')
-                ->join(DB::raw('
-                (
-                    select id
-                      from cat_construct
-                      where status = 1
-                      and vip = true
-                      ORDER BY random() limit 3
-                ) as vip'), function ($join){
-                    $join->on( 'ch.id', '=', 'vip.id');
-                })
-                ->select('ch.*')
-                ->orderByRaw('random()')
-                ->get();
-        }
-        catch(\Exception $e) {}
-
-        $temp_cat_construct = null;
-        $temp_cat_construct_vip = null;
-        $vip = null;
-        if($temp != null && count($temp) > 0)
-        {
-            foreach($temp as $item)
-            {
-                $vip[] = $item->id;
-            }
-
-            $temp_cat_construct = \DB::table('cat_construct')
-                ->select('id', 'title','subtitle', 'created_at', 'vip', 'sell_price', 'avg_rating', 'brand_id',
-                    DB::raw('\'cat_construct\' as for_cat'), DB::raw('for_type as for_type'))
-                ->where('status', '=', '1')
-                ->whereNotIn('id', $vip);
-
-            $temp_cat_construct_vip = \DB::table('cat_construct')
-                ->select('id', 'title','subtitle', 'created_at', 'vip', 'sell_price', 'avg_rating', 'brand_id',
-                    DB::raw('\'cat_construct\' as for_cat'), DB::raw('for_type as for_type'))
-                ->whereIn('id', $vip);
-        }
-        else
-        {
-            $temp_cat_construct = \DB::table('cat_construct')
-                ->select('id', 'title','subtitle', 'created_at', 'vip', 'sell_price', 'avg_rating', 'brand_id',
-                    DB::raw('\'cat_construct\' as for_cat'), DB::raw('for_type as for_type'))
-                ->where('status', '=', '1');
-        }
-
-        $catHomeVip = $temp_cat_home_vip
-            ->union($temp_cat_construct_vip)
-            ->orderBy('created_at', 'desc')
-            ->get();
-
-        $catHome = $temp_cat_home
-            ->union($temp_cat_construct)
-            ->orderBy('created_at', 'desc')
-            ->simplePaginate(5);
-
-        // ############## Ariticle ################ //
-        // #### VIP
-        $catArticleVip = null;
-        try{
-            $catArticleVip = DB::table('cat_article as ch')
-                ->join(DB::raw('
-                (
-                    select id
-                      from cat_article
-                      where visible = true
-                      and suggest = true
-                      ORDER BY random() limit 5
-                ) as vip'), function ($join){
-                    $join->on( 'ch.id', '=', 'vip.id');
-                })
-                ->select('ch.*')
-                ->orderByRaw('random()')
-                ->get();
-        }
-        catch(\Exception $e)
-        {
-
-        }
-
-        // #### General (Not include vip)
-        $catArticle = null;
-        if($catArticleVip != null && count($catArticleVip) > 0)
-        {
-            foreach($catArticleVip as $item)
-            {
-                $vip[] = $item->id;
-            }
-
-            $catArticle = CatArticle::where('visible','=','true')
-                ->whereNotIn('id', $vip)
-                ->orderBy('created_at', 'desc')
-                ->paginate(5);
-        }
-        else
-        {
-            $catArticle = CatArticle::where('visible','=','true')
-                ->orderBy('created_at', 'desc')
-                ->paginate(5);
-        }
-
-        // ############## Idea ################ //
-        // #### VIP
-        $catIdeaVip = null;
-        try{
-            $catIdeaVip = DB::table('cat_idea as ch')
-                ->join(DB::raw('
-                (
-                    select id
-                      from cat_idea
-                      where visible = true
-                      and suggest = true
-                      ORDER BY random() limit 5
-                ) as vip'), function ($join){
-                    $join->on( 'ch.id', '=', 'vip.id');
-                })
-                ->select('ch.*')
-                ->orderByRaw('random()')
-                ->get();
-        }
-        catch(\Exception $e)
-        {
-
-        }
-
-        // #### General (Not include vip)
-        $catIdea = null;
-        if($catIdeaVip != null && count($catIdeaVip) > 0)
-        {
-            foreach($catIdeaVip as $item)
-            {
-                $vip[] = $item->id;
-            }
-
-            $catIdea = CatIdea::where('visible','=','true')
-                ->whereNotIn('id', $vip)
-                ->orderBy('created_at', 'desc')
-                ->paginate(5);
-        }
-        else
-        {
-            $catIdea = CatIdea::where('visible','=','true')
-                ->orderBy('created_at', 'desc')
-                ->paginate(5);
-        }
-
-        // ###################  Article #######################
-        $articleItems = CatArticle::whereRaw('for_cat like \'%"1"%\' and visible = true')  // 1 = หน้าแรก
-        ->orderBy('created_at', 'desc')
-            ->take(5)
-            ->get();
-
-        return view('web.frontend.index')
-            ->with('catVip', $catHomeVip)
-            ->with('cat', $catHome)
-            ->with('catArticleVip', $catArticleVip)
-            ->with('catArticle', $catArticle)
-            ->with('catIdeaVip', $catIdeaVip)
-            ->with('catIdea', $catIdea)
-            ->with('articleItems',$articleItems);
-
-        // ###################  Article #######################
-        $articleItems = CatArticle::whereRaw('for_cat like \'%"1"%\' and visible = true')  // 1 = หน้าแรก
-        ->orderBy('created_at', 'desc')
-            ->take(5)
-            ->get();
-
-        return view('web.frontend.index_new')
-            ->with('articleItems',$articleItems);
-        */
-
-        /*
-        // ##### CatHome + CatConstruct ##### //
-        $tempVip = DB::select(DB::raw("
-                select *
-                from
-                (
-                    select id, title, subtitle, created_at, true as vip, sell_price, avg_rating, brand_id,
-                        'cat_home' as for_cat, for_cat as for_type
-                    from cat_home
-                    where status = 1
-                    and vip = true
-
-                    union
-
-                    select id, title, subtitle, created_at, true as vip, sell_price, avg_rating, brand_id,
-                        'cat_construct' as for_cat, for_type as for_type
-                    from cat_construct
-                    where status = 1
-                    and vip = true
-                ) TableVIP
-                order by random() limit 5
-            "));
-
-        $vip_string = "";
-        $vip_home_string = "";
-        $vip_construct_string = "";
-
-        if($tempVip != null)
-        {
-            foreach($tempVip as $item)
-            {
-                $vip_string .= $item->id."@@@".$item->for_cat."###";
-                if($item->for_cat == "cat_home")
-                    $vip_home_string .= "'".$item->id."',";
-                else
-                    $vip_construct_string .= "'".$item->id."',";
-            }
-            $vip_string = substr($vip_string, 0, strlen($vip_string) - 3);
-
-            if(strlen($vip_home_string) > 0)
-                $vip_home_string = substr($vip_home_string, 0, strlen($vip_home_string) - 1);
-
-            if(strlen($vip_construct_string) > 0)
-                $vip_construct_string = substr($vip_construct_string, 0, strlen($vip_construct_string) - 1);
-        }
-
-        // ###################  Article #######################
-        $articleItems = CatArticle::whereRaw('for_cat like \'%"1"%\' and visible = true')  // 1 = หน้าแรก
-        ->orderBy('created_at', 'desc')
-            ->take(5)
-            ->get();
-
-        return View::make('web.frontend.index_new', [
-            'articleItems' => $articleItems
-        ]);
-         */
-
         // ##### CatHome + CatConstruct ##### //
         $catVip = DB::select(DB::raw("
                 select *
@@ -538,25 +258,38 @@ class AllofhomeController extends Controller {
         }
 
         // #### General (Not include vip)
-        $catIdea = null;
+        $temp_catIdea = null;
+        $vip_idea_string = "";
         if($catIdeaVip != null && count($catIdeaVip) > 0)
         {
             foreach($catIdeaVip as $item)
             {
                 $vip[] = $item->id;
+                $vip_idea_string .= "'".$item->id."',";
             }
 
-            $catIdea = CatIdea::where('visible','=','true')
+            if(strlen($vip_idea_string) > 0)
+                $vip_idea_string = substr($vip_idea_string, 0, strlen($vip_idea_string) - 1);
+
+            $temp_catIdea = CatIdea::where('visible','=','true')
                 ->whereNotIn('id', $vip)
                 ->orderBy('created_at', 'desc')
-                ->get();
+                ->get()->toArray();
         }
         else
         {
-            $catIdea = CatIdea::where('visible','=','true')
+            $temp_catIdea = CatIdea::where('visible','=','true')
                 ->orderBy('created_at', 'desc')
-                ->get();
+                ->get()->toArray();
         }
+
+        $page = 1;
+        $perPage = 1;
+        $offset = ($page * $perPage) - $perPage;
+
+        $catIdea = new LengthAwarePaginator(array_slice($temp_catIdea, $offset, $perPage, true),
+            count($temp_catIdea), $perPage, $page,
+            ['path' => 'index/ajax/idea', 'pageName' => 'pageIdea']);
 
         // ###################  Article #######################
         $articleItems = CatArticle::whereRaw('for_cat like \'%"1"%\' and visible = true')  // 1 = หน้าแรก
@@ -574,7 +307,8 @@ class AllofhomeController extends Controller {
             'catArticle' => $catArticle,
             'vip_article_string' => $vip_article_string,
             'catIdeaVip' => $catIdeaVip,
-            'catIdea' => $catIdea
+            'catIdea' => $catIdea,
+            'vip_idea_string' => $vip_idea_string
         ]);
     }
 
@@ -654,7 +388,7 @@ class AllofhomeController extends Controller {
             $vip = explode(",", $vip_article_string);
 
             $temp_catArticle = null;
-            if(strlen($vip_article_string) == 0)
+            if(strlen($vip_article_string) > 0)
             {
                 $temp_catArticle = CatArticle::where('visible','=','true')
                     ->whereNotIn('id', $vip)
@@ -678,156 +412,36 @@ class AllofhomeController extends Controller {
             return View::make('web.frontend.articleListIndex_li')
                 ->with('catArticle',$catArticle);
         }
+        elseif($type == 'idea')
+        {
+            $vip_idea_string =  Request::input('vip_idea_string');
+            $vip_idea_string = str_replace('\'', '', $vip_idea_string);
+            $vip = explode(",", $vip_idea_string);
 
-        /*
-        $page = Input::get('page');
-        if($page == null)
-            $page = 1;
-
-        if ($type == 'home') {
-            $temp = DB::select(DB::raw("
-                select Tb.id, Tb.title, Tb.subtitle, Tb.created_at, case when TbVip.vip is not null then true else false end as vip, Tb.sell_price, Tb.avg_rating, Tb.brand_id, Tb.for_cat, Tb.for_type
-                from
-                (
-                        select id, title, subtitle, created_at, false as vip, sell_price, avg_rating, brand_id,
-                                'cat_home' as for_cat, for_cat as for_type
-                        from cat_home
-                        where status = 1
-
-                        union
-
-                        select id, title, subtitle, created_at, false as vip, sell_price, avg_rating, brand_id,
-                                'cat_construct' as for_cat, for_type as for_type
-                        from cat_construct
-                        where status = 1
-                ) as Tb
-                left join
-                (
-                        select *
-                        from
-                        (
-                                select id, title, subtitle, created_at, true as vip, sell_price, avg_rating, brand_id,
-                                        'cat_home' as for_cat, for_cat as for_type
-                                from cat_home
-                                where status = 1
-                                and vip = true
-
-                                union
-
-                                select id, title, subtitle, created_at, true as vip, sell_price, avg_rating, brand_id,
-                                        'cat_construct' as for_cat, for_type as for_type
-                                from cat_construct
-                                where status = 1
-                                and vip = true
-                        ) TableVIP
-                        order by random() limit 5
-                ) as TbVip
-                on (
-                        TbVip.id = Tb.id and TbVip.for_cat = Tb.for_cat
-                )
-                order by TbVip.vip, Tb.created_at desc
-            "));
-
-            $catHome = new Paginator($temp, 7, $page, ['path' => 'index/ajax/home']);
-
-            return View::make('web.frontend.homeListIndex')
-                ->with('catHome',$catHome)->render();
-
-        } elseif ($type == 'article') {
-            // ############## Ariticle ################ //
-            // #### VIP
-            $catArticleVip = null;
-            try{
-                $catArticleVip = DB::table('cat_article as ch')
-                    ->join(DB::raw('
-                (
-                    select id
-                      from cat_article
-                      where visible = true
-                      and suggest = true
-                      ORDER BY random() limit 5
-                ) as vip'), function ($join){
-                        $join->on( 'ch.id', '=', 'vip.id');
-                    })
-                    ->select('ch.*')
-                    ->orderByRaw('random()')
-                    ->get();
-            }
-            catch(\Exception $e) {}
-
-            // #### General (Not include vip)
-            $catArticle = null;
-            if($catArticleVip != null && count($catArticleVip) > 0)
+            if(strlen($vip_idea_string) > 0)
             {
-                foreach($catArticleVip as $item)
-                {
-                    $vip[] = $item->id;
-                }
-
-                $catArticle = CatArticle::where('visible','=','true')
+                $temp_catIdea = CatIdea::where('visible','=','true')
                     ->whereNotIn('id', $vip)
                     ->orderBy('created_at', 'desc')
-                    ->paginate(1);
+                    ->get()->toArray();
             }
             else
             {
-                $catArticle = CatArticle::where('visible','=','true')
+                $temp_catIdea = CatIdea::where('visible','=','true')
                     ->orderBy('created_at', 'desc')
-                    ->paginate(1);
+                    ->get()->toArray();
             }
 
-            return View::make('web.frontend.articleListIndex')
-                ->with('catArticleVip',$catArticleVip)
-                ->with('catArticle',$catArticle);
+            $perPage = 1;
+            $offset = ($page * $perPage) - $perPage;
 
-        } else {
-            // ############## Idea ################ //
-            // #### VIP
-            $catIdeaVip = null;
-            try{
-                $catIdeaVip = DB::table('cat_idea as ch')
-                    ->join(DB::raw('
-                (
-                    select id
-                      from cat_idea
-                      where visible = true
-                      and suggest = true
-                      ORDER BY random() limit 5
-                ) as vip'), function ($join){
-                        $join->on( 'ch.id', '=', 'vip.id');
-                    })
-                    ->select('ch.*')
-                    ->orderByRaw('random()')
-                    ->get();
-            }
-            catch(\Exception $e) {}
+            $catIdea = new LengthAwarePaginator(array_slice($temp_catIdea, $offset, $perPage, true),
+                count($temp_catIdea), $perPage, $page,
+                ['path' => 'index/ajax/idea', 'pageName' => 'pageIdea']);
 
-            // #### General (Not include vip)
-            $catIdea = null;
-            if($catIdeaVip != null && count($catIdeaVip) > 0)
-            {
-                foreach($catIdeaVip as $item)
-                {
-                    $vip[] = $item->id;
-                }
-
-                $catIdea = CatIdea::where('visible','=','true')
-                    ->whereNotIn('id', $vip)
-                    ->orderBy('created_at', 'desc')
-                    ->paginate(1);
-            }
-            else
-            {
-                $catIdea = CatIdea::where('visible','=','true')
-                    ->orderBy('created_at', 'desc')
-                    ->paginate(1);
-            }
-
-            return View::make('web.frontend.ideaListIndex')
-                ->with('catIdeaVip',$catIdeaVip)
+            return View::make('web.frontend.ideaListIndex_li')
                 ->with('catIdea',$catIdea);
         }
-        */
 
     }
 
