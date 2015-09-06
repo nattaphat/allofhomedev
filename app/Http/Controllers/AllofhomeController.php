@@ -637,7 +637,7 @@ class AllofhomeController extends Controller {
                 "));
             }
 
-            $perPage = 10;
+            $perPage = 5;
             $offset = ($page * $perPage) - $perPage;
 
             $catNotVip = new LengthAwarePaginator(array_slice($temp_catNotVip, $offset, $perPage, true),
