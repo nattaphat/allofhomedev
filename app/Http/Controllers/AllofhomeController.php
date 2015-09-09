@@ -284,7 +284,7 @@ class AllofhomeController extends Controller {
         }
 
         $page = 1;
-        $perPage = 1;
+        $perPage = 5;
         $offset = ($page * $perPage) - $perPage;
 
         $catIdea = new LengthAwarePaginator(array_slice($temp_catIdea, $offset, $perPage, true),
@@ -371,7 +371,7 @@ class AllofhomeController extends Controller {
                 "));
             }
 
-            $perPage = 5;
+            $perPage = 10;
             $offset = ($page * $perPage) - $perPage;
 
             $catNotVip = new LengthAwarePaginator(array_slice($temp_catNotVip, $offset, $perPage, true),
@@ -432,7 +432,7 @@ class AllofhomeController extends Controller {
                     ->get()->toArray();
             }
 
-            $perPage = 1;
+            $perPage = 5;
             $offset = ($page * $perPage) - $perPage;
 
             $catIdea = new LengthAwarePaginator(array_slice($temp_catIdea, $offset, $perPage, true),
