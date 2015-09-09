@@ -79,6 +79,10 @@ $( document ).ready(function() {
         }
     });
 
+    $('div.slide-up').click(function(){
+        $('body').scrollTop(600);
+    });
+
 });
 
 function picture_preview_slider()
