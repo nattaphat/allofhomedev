@@ -26,7 +26,7 @@
             {{--</li>--}}
             {{--</ul>--}}
 
-            <div id="articleSlider" class="flexslider">
+            <div id="articleSlider" class="flexslider" style="height: 560px;">
                 <ul class="slides">
                     @foreach($articleItems as $item)
                         <?php

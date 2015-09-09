@@ -223,13 +223,21 @@
             init : function()
             {
                 @if($pic != null)
+                    debugger;
+                    var test = 0;
+                    var xx = [];
+                    var yy = [];
+                    var zz = [];
+
                     @foreach($pic as $p)
                         var mockFile = { name: '{{ $p->file_name }}', size: '{{ $p->file_size }}', accepted: true,
                             id: id++, description: '{{ str_replace("\r\n", '##@@##', $p->description) }}' };
 
-                        this.emit("addedfile", mockFile);
-                        this.emit("thumbnail", mockFile, '{{ $p->file_path }}');
-                        this.emit("complete", mockFile);
+                        xx[test] = this.emit("addedfile", mockFile);
+                        yy[test] = this.emit("thumbnail", mockFile, '{{ $p->file_path }}');
+                        zz[test] = this.emit("complete", mockFile);
+
+                        test++;
 
                         var input_hidden = document.createElement('input');
                         input_hidden.setAttribute('id', 'pics_filename_id_' + mockFile.id);
@@ -259,6 +267,8 @@
                         input_hidden.setAttribute('value', '{{ $p->file_path }}');
                         document.forms[0].appendChild(input_hidden);
                     @endforeach
+
+                    debugger
                 @endif
             },
             complete: function(file) {

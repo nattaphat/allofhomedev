@@ -116,7 +116,7 @@ function articleSlider()
         animation: "fade",
         slideshowSpeed: 6000,
         pauseOnHover: true,
-        smoothHeight: true,
+        smoothHeight: false,
         useCSS: true,
         controlNav: false,
         directionNav: true
