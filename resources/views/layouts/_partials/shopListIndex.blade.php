@@ -138,7 +138,11 @@
                 </li>
             @endforeach
         @endif
+    </ul>
+</div>
 
+<div id="cat_not_vip" class="list-review">
+    <ul>
         @if($cat != null)
             @foreach($cat as $item)
                 @if(isset($item->for_cat) && isset($item->for_type))
