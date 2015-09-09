@@ -125,16 +125,16 @@
 
     {!! Form::hidden('vip_home_string', $vip_home_string, ['id' => 'vip_home_string']) !!}
     {!! Form::hidden('vip_construct_string', $vip_construct_string, ['id' => 'vip_construct_string']) !!}
-    {!! Form::hidden('cat_main_current_page', $catNotVip->currentPage(), ['id' => 'cat_main_current_page']) !!}
-    {!! Form::hidden('cat_main_last_page', $catNotVip->lastPage(), ['id' => 'cat_main_last_page']) !!}
+    {!! Form::hidden('cat_main_current_page', ($catNotVip == null? "0" : $catNotVip->currentPage()) , ['id' => 'cat_main_current_page']) !!}
+    {!! Form::hidden('cat_main_last_page', ($catNotVip == null ? "0" : $catNotVip->lastPage()) , ['id' => 'cat_main_last_page']) !!}
 
     {!! Form::hidden('vip_article_string', $vip_article_string, ['id' => 'vip_article_string']) !!}
-    {!! Form::hidden('cat_article_current_page', $catArticle->currentPage(), ['id' => 'cat_article_current_page']) !!}
-    {!! Form::hidden('cat_article_last_page', $catArticle->lastPage(), ['id' => 'cat_article_last_page']) !!}
+    {!! Form::hidden('cat_article_current_page', ($catArticle == null? "0" : $catArticle->currentPage()) , ['id' => 'cat_article_current_page']) !!}
+    {!! Form::hidden('cat_article_last_page', ($catArticle == null? "0" : $catArticle->lastPage()) , ['id' => 'cat_article_last_page']) !!}
 
     {!! Form::hidden('vip_idea_string', $vip_idea_string, ['id' => 'vip_idea_string']) !!}
-    {!! Form::hidden('cat_idea_current_page', $catIdea->currentPage(), ['id' => 'cat_idea_current_page']) !!}
-    {!! Form::hidden('cat_idea_last_page', $catIdea->lastPage(), ['id' => 'cat_idea_last_page']) !!}
+    {!! Form::hidden('cat_idea_current_page', ($catIdea == null? "0" : $catIdea->currentPage()) , ['id' => 'cat_idea_current_page']) !!}
+    {!! Form::hidden('cat_idea_last_page', ($catIdea == null? "0" : $catIdea->lastPage()) , ['id' => 'cat_idea_last_page']) !!}
 
     <!-- Home, Townhome, Condo -->
     <div class="boxreview">
