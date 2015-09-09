@@ -45,6 +45,25 @@
                 }
             });
 
+            //hides the default paginator
+            $('ul.pagination:visible:first').hide();
+
+            //init jscroll and tell it a few key configuration details
+            //nextSelector - this will look for the automatically created {{$cat->render()}}
+            //contentSelector - this is the element wrapper which is cloned and appended with new paginated data
+            $('div.list-review').jscroll({
+                debug: true,
+                autoTrigger: true,
+                nextSelector: '.pagination li.active + li a',
+                contentSelector: 'div.list-review',
+                callback: function() {
+
+                    //again hide the paginator from view
+                    $('ul.pagination:visible:first').hide();
+
+                }
+            });
+
         });
     </script>
 @stop

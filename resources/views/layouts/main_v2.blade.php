@@ -581,6 +581,9 @@
 <!-- Star Rating -->
 <script src={{ asset('js/lib/raty/lib/jquery.raty.js') }}></script>
 
+<!-- Jscroll -->
+<script src={{ asset('js/lib/jquery.jscroll/jquery.jscroll.min.js') }}></script>
+
 <!--Custom scripts for allofhome -->
 <script src={{ asset('js/script.js') }}></script>
 
