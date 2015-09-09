@@ -51,11 +51,12 @@
             //init jscroll and tell it a few key configuration details
             //nextSelector - this will look for the automatically created {{$cat->render()}}
             //contentSelector - this is the element wrapper which is cloned and appended with new paginated data
-            $('div.list-review').jscroll({
-                debug: true,
+            $('div#cat_not_vip').jscroll({
+                loadingHtml: '<div style=\'margin-top:20px; text-align:center;\'><img src="images/loading_50.gif" alt="Loading" /><br>กำลังโหลดข้อมูล...</div>',
+                debug: false,
                 autoTrigger: true,
                 nextSelector: '.pagination li.active + li a',
-                contentSelector: 'div.list-review',
+                contentSelector: 'div#cat_not_vip',
                 callback: function() {
 
                     //again hide the paginator from view
