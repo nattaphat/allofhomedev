@@ -411,6 +411,8 @@ nav ul li:nth-child(6), nav ul li:nth-child(6) ul li {
 	z-index:500;
 	margin-left:-27px;
 }
+
+.slide-up:hover {  cursor:pointer;  }
 /*--------------------------------------------------- Content
 ------------------------------------------------------------------------------*/
 .containner .hilight{
