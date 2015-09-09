@@ -254,7 +254,7 @@
                         </li>
                     @endforeach
                 @endif
-                @if($catNotVip != null)
+                @if($catNotVip != null && count($catNotVip) > 0)
                     @foreach($catNotVip as $item)
                         @if(isset($item->for_cat) && isset($item->for_type))
                             @if($item->for_cat == "cat_home")
@@ -482,7 +482,7 @@
                         </li>
                     @endforeach
                 @endif
-                @if($catArticle != null)
+                @if($catArticle != null && count($catArticle) > 0)
                     @foreach($catArticle as $item)
                         <li>
                             <?php
@@ -578,7 +578,7 @@
                         </li>
                     @endforeach
                 @endif
-                @if($catIdea != null)
+                @if($catIdea != null && count($catIdea) > 0)
                     @foreach($catIdea as $item)
                         <li>
                             <?php
