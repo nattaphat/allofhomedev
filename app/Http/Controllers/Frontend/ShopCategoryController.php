@@ -139,7 +139,7 @@ class ShopCategoryController extends Controller {
                 ->whereRaw('for_type like \'%"4"%\'')
                 ->whereNotIn('id', $vip)
                 ->orderBy('created_at', 'desc')
-                ->paginate(10);
+                ->paginate(15);
 
 //            dd($cat);
         }
@@ -148,7 +148,7 @@ class ShopCategoryController extends Controller {
             $cat = CatConstruct::where('status','=','1')
                 ->whereRaw('for_type like \'%"4"%\'')
                 ->orderBy('created_at', 'desc')
-                ->paginate(10);
+                ->paginate(15);
         }
 
         $config =
