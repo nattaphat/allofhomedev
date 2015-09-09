@@ -67,6 +67,8 @@
                                 <?php
                                 $subtitle = str_replace("<p class=\"p1\">","<p>",$item->subtitle);
                                 $subtitle = str_replace("<p align=\"left\">","<p>",$subtitle);
+                                $subtitle = preg_replace("/<([a-z][a-z0-9]*)[^>]*?(\/?)>/i",'<$1$2>', $subtitle);
+
                                 if (preg_match_all('~<p>(?P<paragraphs>.*?)</p>~is', $subtitle, $matches))
                                 {
                                     $str = "";
@@ -168,6 +170,8 @@
                                 <?php
                                 $subtitle = str_replace("<p class=\"p1\">","<p>",$item->subtitle);
                                 $subtitle = str_replace("<p align=\"left\">","<p>",$subtitle);
+                                $subtitle = preg_replace("/<([a-z][a-z0-9]*)[^>]*?(\/?)>/i",'<$1$2>', $subtitle);
+
                                 if (preg_match_all('~<p>(?P<paragraphs>.*?)</p>~is', $subtitle, $matches))
                                 {
                                     $str = "";
@@ -269,6 +273,8 @@
                                 <?php
                                 $subtitle = str_replace("<p class=\"p1\">","<p>",$item->subtitle);
                                 $subtitle = str_replace("<p align=\"left\">","<p>",$subtitle);
+                                $subtitle = preg_replace("/<([a-z][a-z0-9]*)[^>]*?(\/?)>/i",'<$1$2>', $subtitle);
+
                                 if (preg_match_all('~<p>(?P<paragraphs>.*?)</p>~is', $subtitle, $matches))
                                 {
                                     $str = "";
